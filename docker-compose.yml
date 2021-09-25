@@ -1,7 +1,7 @@
 version: '3'
 services: 
   react-app:
-    image: react-app
+    image: react-apps
     build: ./client/
     stdin_open: true
     ports: 
@@ -13,7 +13,7 @@ services:
     environment: 
       - CHOKIDAR_USEPOLLING=true
   api-server:
-    image: api-server
+    image: api-servers
     build: ./server/
     ports: 
       - "8000:8000"
