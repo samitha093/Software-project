@@ -6,8 +6,13 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({}) => {
         return (
-            <div>
-                
+            <div className="buyer-c-sedebar">
+                    <div className="buyer-c-sedebar-container">
+                        <div className="buyer-c-sedebar-item1">
+                            
+                        </div>
+
+                    </div>
             </div>
         );
 }
