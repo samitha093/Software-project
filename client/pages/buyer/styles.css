@@ -1,0 +1,6 @@
+/*start - Buyer index pg*/
+.buyer-index{
+    display: flex;
+    overflow: auto;
+}
+/*end- Buyer index pg*/

@@ -9,7 +9,7 @@ services:
     networks: 
       - mern-app
     volumes: 
-      - ./client/src:/app/src
+      - ./client/:/app/
     environment: 
       - CHOKIDAR_USEPOLLING=true
   api-server:

@@ -1,0 +1,22 @@
+/*start - sidebar component*/
+.buyer-c-sedebar{
+    width:100px;
+    height: calc(100vh - 70px);
+    padding: 30px 10px;
+}
+.buyer-c-sedebar-container{
+    width: 100%;
+    height:100%;
+    background-color: blueviolet;
+    border-radius: 30px;
+    padding: 30px 10px;
+}
+.buyer-c-sedebar-item1{
+    width:60px;
+    height:60px;
+    border: 1px;
+    border-color: white;
+    border-radius: 10px;
+    border-style:solid;
+}
+/*end - sidebar component*/
