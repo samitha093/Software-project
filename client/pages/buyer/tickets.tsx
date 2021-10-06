@@ -2,21 +2,18 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
-
-const index: NextPage = () => {
+const tickets: NextPage = () => {
         return (
             <div>
                 <Navbar/>
                 <div className="buyer-index">
                     <Sidebar/>
                     <div>
-                        <h1>Tickets</h1>
+                       <h1>Validated Tickets</h1> 
                     </div>
                 </div>
             </div>
-            
-            
         );
 }
 
-export default index;
+export default tickets;
