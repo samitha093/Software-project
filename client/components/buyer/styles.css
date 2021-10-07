@@ -23,3 +23,89 @@
     cursor: pointer;
 }
 /*end - sidebar component*/
+
+/*start - valid ticket component*/
+:root {
+    --parent-height: 220px;
+  }
+.buyer-c-ticketvalid{
+    cursor: pointer;
+    width: 20%;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #752E9E;
+    position: relative;
+}
+.buyer-c-ticketvalid-cardstatus{
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.buyer-c-ticketvalid-top{
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    width: 100%;
+    background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
+    background-size: cover;
+    height:calc(var(--parent-height)*0.8);
+    position: relative;
+}
+.buyer-c-ticketvalid-top-info{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    height:calc(var(--parent-height)*0.2);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+.buyer-c-ticketvalid-top-info-left{
+    width: 75%;
+    padding-left: 6px;
+    color: white;
+}
+.buyer-c-ticketvalid-top-info-right{
+    padding-right: 6px;
+    color: white;
+    position: relative;
+    width: 25%;
+    text-align: center;
+}
+.buyer-c-ticketvalid-top-info-right-nooftickets{
+    position: block;
+    width: 100%;
+}
+.buyer-c-ticketvalid-top-info-right-tickets{
+    font-size: 10px;
+}
+.buyer-c-ticketvalid-top-head{
+    display: flex;
+    padding-left: 10px;
+}
+.buyer-c-ticketvalid-top-head-left{
+    padding-top: 10px;
+    color: white;
+    width: 60%;
+}
+.buyer-c-ticketvalid-top-head-right{
+    width: 40%;
+    display: flex;
+    background-color: #752E9E;
+    justify-content: flex-end;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    border-top-right-radius: 19px;
+    border-bottom-left-radius: 40px;
+    color: white;
+}
+.buyer-c-ticketvalid-top-head-right-1{
+    font-size: 12px;
+    padding-right: 5px;
+    bottom: 0;
+}
+.buyer-c-ticketvalid-top-head-right-2{
+    font-size: 18px;
+}
+/*end - valid ticket component*/
