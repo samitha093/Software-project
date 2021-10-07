@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Icon from '@mdi/react';
-import { mdiHomeOutline } from '@mdi/js';
+//import { mdiHomeOutline } from '@mdi/js';
 import { mdiLanPending  } from '@mdi/js';
-import { mdiCheckDecagramOutline } from '@mdi/js';
+//import { mdiCheckDecagramOutline } from '@mdi/js';
 import { mdiCheckboxMultipleOutline } from '@mdi/js';
 import { mdiCloseBoxMultipleOutline  } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
@@ -18,37 +18,29 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                     <div className="manager-c-sidebar-container">
                         <Link href="/manager">
                             <div className="manager-c-sidebar-item">
-                                <Icon path={mdiHomeOutline} color='white'/>
+                                <Icon path={mdiLanPending} color='white'/>
                             </div>
                         </Link>
-                        <Link href="/manager/payment">
+                        <Link href="/manager/active_events">
                             <div className="manager-c-sidebar-item">
-                                <Icon path={mdiLanPending } color='white'/>
+                                <Icon path={mdiCheckboxMultipleOutline} color='white'/>
                             </div>
                         </Link>
-                        <Link href="/manager/bids">
-                            <div className="manager-c-sidebar-item">
-                                <Icon path={mdiCheckDecagramOutline} color='white'/>
-                            </div>
-                        </Link>
-                        <Link href="/manager/tickets">
-                            <div className="manager-c-sidebar-item">
-                                <Icon path={ mdiCheckboxMultipleOutline} color='white'/>
-                            </div>
-                        </Link>
-                        <Link href="/manager/settings">
+                        <Link href="/manager/declined_events">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCloseBoxMultipleOutline } color='white'/>
                             </div>
                         </Link>
-                        <Link href="/manager">
+                        <Link href="/manager/settings">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCogs} color='white'/>
                             </div>
                         </Link>
+                        <Link href= "/">
                         <div className="manager-c-sidebar-item">
                             <Icon path={mdiLogout} color='white'/>
                         </div>
+                        </Link>
                     </div>
             </div>
         );
