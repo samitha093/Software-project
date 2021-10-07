@@ -108,4 +108,19 @@
 .buyer-c-ticketvalid-top-head-right-2{
     font-size: 18px;
 }
+#customized-dialog-title{
+    background-color: #752E9E;
+    color: white;
+}
 /*end - valid ticket component*/
+
+/*start -  ticket component*/
+.buyer-c-ticket{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57); 
+box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
+}
+/*end -  ticket component*/
