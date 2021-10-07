@@ -1,0 +1,56 @@
+/*start - Login component*/
+.login_container{
+    left: 0;
+	width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    align-content: center;
+    
+}
+.head{
+    font-size: x-large;
+    font-weight: bolder ;
+    color: slategrey;
+    align-self: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.textfield{
+    margin-bottom: 30px;
+    size: small; 
+    font-size: smaller;
+       
+}
+
+.link{
+    font-size: small;
+    color: rgb(87, 30, 87);
+    margin-bottom: 5px;
+}
+
+.btnsubmit{
+
+    height: 30px;
+    width: 100px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    align-self: center;
+    font-size: small;
+    background-color: rgb(155, 77, 155)
+}
+/*end - login component*/
+
+/*start - register component*/
+
+.register-container{
+    left: 0;
+	width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    align-content: center;
+    
+}
+/*end - register component*/
