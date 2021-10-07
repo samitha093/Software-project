@@ -1,6 +1,17 @@
 /*start - Buyer index pg*/
+.buyer-bg{
+    background-image: url("../../assets/dashbord-bg.png");
+    background-size: cover;
+}
 .buyer-index{
     display: flex;
     overflow: auto;
+}
+.buyer-index-content{
+    width: 100%;
+}
+.buyer-index-container{
+    width: 100%;
+    padding-left: 30px;
 }
 /*end- Buyer index pg*/
