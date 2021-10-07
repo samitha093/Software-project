@@ -11,6 +11,9 @@ const index: NextPage = () => {
                     <Sidebar/>
                     <div>
                         <h1>Tickets</h1>
+                        <div className="buyer-index-container">
+                            lakshan
+                        </div>
                     </div>
                 </div>
             </div>

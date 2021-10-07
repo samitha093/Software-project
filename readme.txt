@@ -1,1 +1,6 @@
-Created buyer1 branch for creat user side bar (client)  - lakshan
+##### git branch -a
+lakshan pthiraja
+*master
+buyer
+user
+
