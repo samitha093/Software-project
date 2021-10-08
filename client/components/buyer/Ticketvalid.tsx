@@ -98,7 +98,6 @@ export default function Ticketvalid() {
 
 
       <BootstrapDialog
-        onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
@@ -106,9 +105,9 @@ export default function Ticketvalid() {
           Event name
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Ticket/>
-          <Ticket/>
-          <Ticket/>
+          <Ticket id="123456 654321 345678 34567 987678"/>
+          <Ticket id="766756 343545 766688 67678 876668"/>
+          <Ticket id="464666 776766 765757 86868 787686"/>
         </DialogContent>
       </BootstrapDialog>
     </div>
