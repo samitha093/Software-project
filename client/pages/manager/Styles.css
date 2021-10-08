@@ -1,0 +1,17 @@
+/*start - manager index pg*/
+.manager-bg{
+    background-image: url("../../assets/dashbord-bg.png");
+    background-size: cover;
+}
+.manager-index{
+    display: flex;
+    overflow: auto;
+}
+.manager-index-content{
+    width: 100%;
+}
+.manager-index-container{
+    width: 100%;
+    padding-left: 30px;
+}
+/*end- manager index pg*/
