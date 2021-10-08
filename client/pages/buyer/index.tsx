@@ -14,6 +14,11 @@ const index: NextPage = () => {
                         <h1>Tickets</h1>
                         <div className="buyer-index-container">
                             <Ticketvalid/>
+                            <Ticketvalid/>
+                            <Ticketvalid/>
+                            <Ticketvalid/>
+                            <Ticketvalid/>
+                            <Ticketvalid/>
                         </div>
                     </div>
                 </div>

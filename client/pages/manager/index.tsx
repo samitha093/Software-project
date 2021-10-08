@@ -8,10 +8,11 @@ const index: NextPage = () => {
             <div>
                 <Navbar/>
                 <div className="manager-index">
+                    <div><Sidebar/></div>
                     <div>
                         <h1>Hello</h1>
                     </div>
-                    <Sidebar/>
+                    
                 </div>
             </div>
             
