@@ -22,17 +22,12 @@ const Login: React.FC<LoginProps> = ({}) => {
           autoComplete="current-password"
           size = "small"
         />
-
         <Link href="#" className = "link">
           Forgot password?
         </Link>
         <Link href="#" className = "link">
           New to TickBid ? Sign Up here
         </Link>
-        
-        
-        
-
         <Button className = "btnsubmit"
           type="submit"         
           variant="contained"      
@@ -40,7 +35,10 @@ const Login: React.FC<LoginProps> = ({}) => {
           Sign In
         </Button>
     </div>
-    
+
+    <div className = "right-overlay">
+
+    </div>   
   );
 
 
