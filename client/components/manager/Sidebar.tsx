@@ -21,16 +21,19 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <Icon path={mdiLanPending} color='white'/>
                             </div>
                         </Link>
-                        <Link href="/manager/active_events">
+
+                        <Link href="/manager/activeevents">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCheckboxMultipleOutline} color='white'/>
                             </div>
                         </Link>
-                        <Link href="/manager/declined_events">
+
+                        <Link href="/manager/declinedevents">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCloseBoxMultipleOutline } color='white'/>
                             </div>
                         </Link>
+
                         <Link href="/manager/settings">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCogs} color='white'/>
