@@ -1,8 +1,9 @@
 /*start - sidebar component*/
 .manager-c-sidebar{
     width:130px;
-    height: calc(100vh - 95px);
-    padding: 20px 10px;
+    height: calc(100vh - 70px);
+    min-height: 800px;
+    padding: 60px 10px;
 }
 .manager-c-sidebar-container{
     width: 100%;

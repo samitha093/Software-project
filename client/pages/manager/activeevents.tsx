@@ -9,7 +9,7 @@ const bids: NextPage = () => {
                 <div className="manager-index">
                     <Sidebar/>
                     <div>
-                       <h1>Pending Events</h1> 
+                       <h1>Active Events</h1> 
                     </div>
                 </div>
             </div>
