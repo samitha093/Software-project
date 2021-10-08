@@ -9,13 +9,11 @@ const index: NextPage = () => {
                 <Navbar/>
                 <div className="manager-index">
                     <div>
-                        <h1>Hello</h1>
+                        <h1>Manager Manager</h1>
                     </div>
                     <Sidebar/>
                 </div>
-            </div>
-            
-            
+            </div>          
         );
 }
 
