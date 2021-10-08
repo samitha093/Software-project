@@ -19,7 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <li>My Accout</li>
                     </ul>
                     <div className="cart">
-                        <Icon path={mdiCartVariant} color='black' size={2}/>
+                    <Icon path={mdiCartVariant} color='black' size={2}/>
                     </div>
                 </div>
             </div>
