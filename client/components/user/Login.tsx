@@ -7,7 +7,8 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({}) => {
 
   return(
-    <div className = "login_container">
+    <>
+        <div className = "login_container">
         <Typography className = "head">Sign In</Typography> 
         <TextField className ="textfield"
           required
@@ -34,11 +35,13 @@ const Login: React.FC<LoginProps> = ({}) => {
         >
           Sign In
         </Button>
-    </div>
+      </div>
 
-    <div className = "right-overlay">
+      <div className = "right-overlay">
 
-    </div>   
+    </div>  
+    </>
+ 
   );
 
 
