@@ -60,9 +60,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                         className="textfield"
                         required
                     />
-
-
-                {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
+       {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
                     <TextField
                         type="password"
                         id="password"
@@ -93,7 +91,6 @@ const Login: React.FC<LoginProps> = ({}) => {
                     </Button>
 
             </form>
-        </div>
         </div>
     
   );
