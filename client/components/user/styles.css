@@ -1,28 +1,29 @@
 /*start - Login component*/
 .login_container{
-	width: auto;
-    display: flex;
-    flex-direction: row;
     padding: 50px;
     align-content: center;
-    resize: both;
+    width: 100%;  
+}
+
+.box{
+    height: 100%;
+    width: 100%;
+    background-color:#482D57;
+    text-align: center;
+    font-weight: bolder;
+    
     
 }
 .head{
     font-size: x-large;
     font-weight: bolder ;
     color: slategrey;
-    align-self: center;
-    margin-top: 50px;
     margin-bottom: 40px;
+    margin-top: 50px;
+    text-align: center;
+   
 }
 
-.textfield{
-    margin-bottom: 30px;
-    size: small; 
-    font-size: smaller;
-       
-}
 .input-box{
     margin-bottom: auto;
     font-size: large;
@@ -59,9 +60,9 @@
 
 }
 .link{
-    font-size: small;
-    color: rgb(87, 30, 87);
-    margin-bottom: 5px;
+    color:#BB9CD1 ;
+    font-weight: semibold;
+    padding: 0px;
 }
 
 .error-message{
@@ -72,29 +73,18 @@
 
 .btnsubmit{
 
-    max-height: 50px;
     width: 100%;
-    size: auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 50px;
     align-self: center;
     font-size: medium;
-    background-color: rgb(155, 77, 155);
+    background-color: #BB9CD1;
     resize: both;
 }
+
 /*end - login component*/
 
 /*start - register component*/
-
-.register-container{
-    left: 0;
-	width: 50%;
-    display: flex;
-    flex-direction: row;
-    padding: 50px;
-    align-content: center;
-    
-}
 
 .already-signup{
     margin-top: 10px;

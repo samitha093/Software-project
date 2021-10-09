@@ -1,21 +1,8 @@
 .main_container{
-	background-color:white;
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-
-	margin-left: 400px;
-	margin-right: 400px;
+	margin-left: 300px;
+	margin-right: 300px;
 	margin-top: 30px;
-
-	align-content: center;
-	resize: both;
-	
-	
-	
-		
 }
