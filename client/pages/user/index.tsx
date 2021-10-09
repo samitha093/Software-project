@@ -9,7 +9,7 @@ const index: NextPage = () => {
         <div>
              <Navbar/>
               <div className= "main_container">  
-                   
+                 <Login/>  
               </div>
         </div>
     );
