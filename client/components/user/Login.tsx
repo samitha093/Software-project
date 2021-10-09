@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router'
-import { Typography,Button,TextField, Container,Link } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Typography,Button,TextField,Link } from '@mui/material';
 
 
 interface LoginProps {
@@ -18,26 +17,21 @@ const Login: React.FC<LoginProps> = ({}) => {
     const [passwordError,setPasswordError] = React.useState<boolean>(false);
 
 
-    const emailChangeHandler = (event)=>{
+    const emailChangeHandler = (event:any)=>{
         setEmail(event.target.value);
         const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         const valid = !!event.target.value.match(email_regex);
         setEmailError(!valid);
-
-
     }
 
-    const passwordChangeHandler =(event)=>{
+    const passwordChangeHandler =(event:any)=>{
         setPassword(event.target.value);
         const valid = event.target.value.trim().length >= 5;
         setPasswordError(!valid);
-
-
     }
 
-    const submitForm = (event)=>{
+    const submitForm = (event:any)=>{
         event.preventDefault();
-
         router.push('/user');
         setPassword("");
         setEmail("");
@@ -60,7 +54,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                         className="textfield"
                         required
                     />
-       {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
+                {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
                     <TextField
                         type="password"
                         id="password"
@@ -92,9 +86,10 @@ const Login: React.FC<LoginProps> = ({}) => {
 
             </form>
         </div>
+    </div>
+    
+
     
   );
-
-
 }
 export default Login;

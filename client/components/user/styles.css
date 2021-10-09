@@ -2,7 +2,7 @@
 .login_container{
 	width: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 50px;
     align-content: center;
     resize: both;
@@ -15,7 +15,6 @@
     align-self: center;
     margin-top: 50px;
     margin-bottom: 40px;
-    margin-left: 150px;
 }
 
 .textfield{
@@ -75,6 +74,7 @@
 
     max-height: 50px;
     width: 100%;
+    size: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     align-self: center;
@@ -90,7 +90,7 @@
     left: 0;
 	width: 50%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 50px;
     align-content: center;
     
