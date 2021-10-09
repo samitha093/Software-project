@@ -93,7 +93,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                   
                                         <Grid container>
                                            <Grid item xs>
-                                                <Typography sx={{ fontSize: 12, mt:1 }} >    
+                                                <Typography sx={{ fontSize: 12, mt:1, mb:2}} >    
                                                 Don't have a TickBid account ? </Typography>
                                             </Grid>   
                                             <Grid item xs>            
@@ -102,7 +102,10 @@ const Login: React.FC<LoginProps> = ({}) => {
                                                 </Link>
                                              </Grid>   
                                         </Grid> 
-                                                <Link href="#" sx ={{fontSize:11}} className= "link">
+                                                <Typography sx={{ fontSize: 12, mt:1}} >    
+                                                or </Typography>
+                                    
+                                                <Link href="#" sx ={{fontSize:11} } className= "link">
                                                 Forgot password?
                                                 </Link>
                                                 
