@@ -1,44 +1,101 @@
-import React from 'react'
+import React from 'react';
+import { useRouter } from 'next/router'
 import { Typography,Button,TextField, Container,Link } from '@mui/material';
 import Box from '@mui/material/Box';
+
+
 interface LoginProps {
 
 }
+
 const Login: React.FC<LoginProps> = ({}) => {
 
-  return(
+    const router = useRouter()
+
+    const [email,setEmail] = React.useState<string>("");
+    const [emailHasError,setEmailError] = React.useState<boolean>(false);
+    const [password,setPassword] =React.useState<string>("");
+    const [passwordError,setPasswordError] = React.useState<boolean>(false);
+
+
+    const emailChangeHandler = (event)=>{
+        setEmail(event.target.value);
+        const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        const valid = !!event.target.value.match(email_regex);
+        setEmailError(!valid);
+
+
+    }
+
+    const passwordChangeHandler =(event)=>{
+        setPassword(event.target.value);
+        const valid = event.target.value.trim().length >= 5;
+        setPasswordError(!valid);
+
+
+    }
+
+    const submitForm = (event)=>{
+        event.preventDefault();
+
+        router.push('/user');
+        setPassword("");
+        setEmail("");
+    }
+
+    return(
     <div className = "login_container">
-        <Typography className = "head">Sign In</Typography> 
-        <TextField className ="textfield"
-          required
-          id="email"
-          label="Email"
-          size = "small"
-        />
-        <TextField className = "textfield"
-          id="password"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          size = "small"
-        />
-        <Link href="#" className = "link">
-          Forgot password?
-        </Link>
-        <Link href="#" className = "link">
-          New to TickBid ? Sign Up here
-        </Link>
-        <Button className = "btnsubmit"
-          type="submit"         
-          variant="contained"      
-        >
-          Sign In
-        </Button>
-    </div>
 
-    <div className = "right-overlay">
+        <div className="form-wrapper">
+            <Typography className = "head">Sign In</Typography>
+            <form className="pricing-box">
+                {emailHasError && (<p className="error-message"> * Invalid email</p>)}
+                    <TextField
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={emailChangeHandler}
+                        // onBlur={emailBlurHandler}
+                        className="textfield"
+                        required
+                    />
 
-    </div>   
+
+                {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
+                    <TextField
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={passwordChangeHandler}
+                        onBlur={passwordChangeHandler}
+                        // onBlur={emailBlurHandler}
+                        className="textfield"
+                        required
+                    />
+
+                    <Link href="#" className = "link">
+                      Forgot password?
+                    </Link>
+                    <Link href="/user/register" className = "link">
+                      New to TickBid ? Sign Up here
+                    </Link>
+
+
+                    <Button className = "btnsubmit"
+                            type="submit"
+                            variant="contained"
+                            disabled={emailHasError || passwordError}
+                            onClick={submitForm}
+                    >
+                        Sign In
+                    </Button>
+
+            </form>
+        </div>
+        </div>
+    
   );
 
 
