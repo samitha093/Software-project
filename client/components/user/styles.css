@@ -1,11 +1,11 @@
 /*start - Login component*/
 .login_container{
-    left: 0;
-	width: 50%;
+	width: auto;
     display: flex;
     flex-direction: column;
     padding: 50px;
     align-content: center;
+    resize: both;
     
 }
 .head{
@@ -23,22 +23,64 @@
     font-size: smaller;
        
 }
+.input-box{
+    margin-bottom: auto;
+    font-size: large;
+    width: 100%;
 
+
+}
+.input-box-error{
+    margin-bottom: auto;
+    font-size: large;
+    border-color: red;
+    width: 100%;
+
+}
+.input-div{
+    width: auto;
+    height: auto;
+    align-self: auto;
+
+}
+.pricing-box{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    size: auto;
+}
+.form-wrapper{
+    width: 400px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: auto auto 0;
+    position: relative;
+
+}
 .link{
     font-size: small;
     color: rgb(87, 30, 87);
     margin-bottom: 5px;
 }
 
+.error-message{
+    font-family: Arial, serif;
+    color: red;
+    font-size: small;
+}
+
 .btnsubmit{
 
-    height: 30px;
-    width: 100px;
+    height: 50px;
+    width: 100%;
+    size: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     align-self: center;
-    font-size: small;
-    background-color: rgb(155, 77, 155)
+    font-size: medium;
+    background-color: rgb(155, 77, 155);
+    resize: both;
 }
 /*end - login component*/
 
@@ -52,5 +94,10 @@
     padding: 50px;
     align-content: center;
     
+}
+
+.already-signup{
+    margin-top: 10px;
+
 }
 /*end - register component*/
