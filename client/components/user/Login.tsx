@@ -18,31 +18,26 @@ const Login: React.FC<LoginProps> = ({}) => {
     const [passwordError,setPasswordError] = React.useState<boolean>(false);
 
 
-    const emailChangeHandler = (event:any)=>{
+    const emailChangeHandler = (event)=>{
         setEmail(event.target.value);
         const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         const valid = !!event.target.value.match(email_regex);
         setEmailError(!valid);
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 780d4b4c7541ca7e51d2a0e1f35d06e04a145293
     }
 
-    const passwordChangeHandler =(event:any)=>{
+    const passwordChangeHandler =(event)=>{
         setPassword(event.target.value);
         const valid = event.target.value.trim().length >= 5;
         setPasswordError(!valid);
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 780d4b4c7541ca7e51d2a0e1f35d06e04a145293
     }
 
-    const submitForm = (event:any)=>{
+    const submitForm = (event)=>{
         event.preventDefault();
+
         router.push('/user');
         setPassword("");
         setEmail("");
@@ -97,10 +92,6 @@ const Login: React.FC<LoginProps> = ({}) => {
 
             </form>
         </div>
-<<<<<<< HEAD
-        </div>
-=======
->>>>>>> 780d4b4c7541ca7e51d2a0e1f35d06e04a145293
     
   );
 
