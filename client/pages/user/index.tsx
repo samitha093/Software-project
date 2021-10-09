@@ -13,6 +13,7 @@ const index: NextPage = () => {
                 <Login/>
                 <Register/> 
               </div>
+         </div>     
     );
 }
 
