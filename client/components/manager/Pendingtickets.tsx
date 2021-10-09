@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import Pendingeventinfo from '../../components/manager/Pendingeventinfo'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
@@ -65,7 +66,7 @@ export default function Pendingtickets() {
           <div className="manager-c-pendingtickets-top">
             
 
-            
+
             <div className="manager-c-pendingtickets-top-info">
               <div className="manager-c-pendingtickets-top-info-left">
                 <div className="manager-c-pendingtickets-top-info-left-name">
@@ -94,24 +95,7 @@ export default function Pendingtickets() {
           Event name
         </BootstrapDialogTitle>
         <DialogContent dividers>
-
-
-          <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                <button type="button" class="btn btn-primary">Primary</button>
-              </div>
-            </div>
-          </div>
-
-
-
+          <Pendingeventinfo/>
         </DialogContent>
       </BootstrapDialog>
 
