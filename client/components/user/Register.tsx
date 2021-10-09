@@ -42,7 +42,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
          <FormControl component="fieldset">
                 <FormLabel component="legend">You are here as</FormLabel>
                 <RadioGroup row aria-label="You are here as" name="row-radio-buttons-group">
-                    <FormControlLabel size = "small" value="buyer" control={<Radio />} label="Buyer" />
+                    <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
                     <FormControlLabel value="seller" control={<Radio />} label="Ticket Seller" />
                     <FormControlLabel value="manager" control={<Radio />} label="Manager" />
                     
