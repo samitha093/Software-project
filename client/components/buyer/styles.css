@@ -2,7 +2,9 @@
 .buyer-c-sidebar{
     width:130px;
     height: calc(100vh - 70px);
+    min-height: 800px;
     padding: 60px 10px;
+    
 }
 .buyer-c-sidebar-container{
     width: 100%;
@@ -22,4 +24,178 @@
     padding: 7px;
     cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+    .buyer-c-sidebar{
+        width: 100%;
+        height: auto;
+        min-height: 0px;
+        padding: 10px 10px 0px;
+        
+    }
+    .buyer-c-sidebar-container{
+        display: flex;
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    .buyer-c-sidebar-item{
+        margin-top: 0px;
+        width: 15%;
+        margin: 0 1%;
+        height: auto;
+    }
+}
 /*end - sidebar component*/
+
+/*start - valid ticket component*/
+:root {
+    --parent-height: 220px;
+  }
+.buyer-c-ticketvalid{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #752E9E;
+    position: relative;
+    margin: 10px;
+}
+.buyer-c-ticketvalid-cardstatus{
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.buyer-c-ticketvalid-top{
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    width: 100%;
+    background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
+    background-size: cover;
+    height:calc(var(--parent-height)*0.8);
+    position: relative;
+}
+.buyer-c-ticketvalid-top-info{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    height:calc(var(--parent-height)*0.2);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+.buyer-c-ticketvalid-top-info-left{
+    width: 75%;
+    padding-left: 6px;
+    color: white;
+}
+.buyer-c-ticketvalid-top-info-right{
+    padding-right: 6px;
+    color: white;
+    position: relative;
+    width: 25%;
+    text-align: center;
+}
+.buyer-c-ticketvalid-top-info-right-nooftickets{
+    position: block;
+    width: 100%;
+}
+.buyer-c-ticketvalid-top-info-right-tickets{
+    font-size: 10px;
+}
+.buyer-c-ticketvalid-top-head{
+    display: flex;
+    padding-left: 10px;
+}
+.buyer-c-ticketvalid-top-head-left{
+    padding-top: 10px;
+    color: white;
+    width: 60%;
+}
+.buyer-c-ticketvalid-top-head-right{
+    width: 40%;
+    display: flex;
+    background-color: #752E9E;
+    justify-content: flex-end;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    border-top-right-radius: 19px;
+    border-bottom-left-radius: 40px;
+    color: white;
+}
+.buyer-c-ticketvalid-top-head-right-1{
+    font-size: 12px;
+    padding-right: 5px;
+    bottom: 0;
+}
+.buyer-c-ticketvalid-top-head-right-2{
+    font-size: 18px;
+}
+#customized-dialog-title{
+    background-color: #752E9E;
+    color: white;
+}
+@media only screen and (max-width: 550px) {
+    .buyer-c-ticketvalid{
+        width: 230px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .buyer-c-ticketvalid{
+        width: 170px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .buyer-c-ticketvalid{
+        width: 155px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .buyer-c-ticketvalid{
+        width: 135px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .buyer-c-ticketvalid{
+        width: 90vw;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+
+
+
+
+
+
+/*end - valid ticket component*/
+
+/*start -  ticket component*/
+.buyer-c-ticket{
+    text-align: center;
+    min-width: 500px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57); 
+box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
+}
+@media only screen and (max-width: 450px) {
+    .buyer-c-ticket{
+        min-width: 100px;
+        text-align: left;
+    }
+}
+/*end -  ticket component*/

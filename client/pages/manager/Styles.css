@@ -1,16 +1,20 @@
-/*start - Buyer index pg*/
-.buyer-bg{
+/*start - manager index pg*/
+.manager-bg
+{
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
 }
-.buyer-index{
+.manager-index
+{
     display: flex;
     overflow: auto;
 }
-.buyer-index-content{
+.manager-index-content
+{
     width: 100%;
 }
-.buyer-index-container{
+.manager-index-container
+{
     width: 100%;
     padding-left: 30px;
     position: relative;
@@ -19,17 +23,18 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 @media only screen and (max-width: 600px) {
-    .buyer-index{
+    .manager-index{
         display: block;
         overflow: auto;
     }
-    .buyer-index-content h1{
+    .manager-index-content h1{
         padding-left: 30px;
     }
-    .buyer-index-container{
+    .manager-index-container{
         padding-left: 0px;
         display: flex;
     }
 }
-/*end- Buyer index pg*/
+/*end- manager index pg*/

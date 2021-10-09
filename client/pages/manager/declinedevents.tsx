@@ -1,19 +1,19 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import Sidebar from '../../components/buyer/Sidebar'
+import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
-const payment: NextPage = () => {
+const bids: NextPage = () => {
         return (
-            <div className="buyer-bg">
+            <div className="manager-bg">
                 <Navbar/>
-                <div className="buyer-index">
+                <div className="manager-index">
                     <Sidebar/>
                     <div>
-                       <h1>Pending Payment</h1> 
+                       <h1>Declined Events</h1> 
                     </div>
                 </div>
             </div>
         );
 }
 
-export default payment;
+export default bids;
