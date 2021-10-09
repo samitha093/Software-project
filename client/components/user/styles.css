@@ -15,6 +15,7 @@
     align-self: center;
     margin-top: 50px;
     margin-bottom: 40px;
+    margin-left: 150px;
 }
 
 .textfield{
@@ -72,9 +73,8 @@
 
 .btnsubmit{
 
-    height: 50px;
+    max-height: 50px;
     width: 100%;
-    size: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     align-self: center;
