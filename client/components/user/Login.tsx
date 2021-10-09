@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Typography,Button,TextField, Container,Link } from '@mui/material';
 import Box from '@mui/material/Box';
 
+
 interface LoginProps {
 
 }
@@ -23,12 +24,14 @@ const Login: React.FC<LoginProps> = ({}) => {
         const valid = !!event.target.value.match(email_regex);
         setEmailError(!valid);
 
+
     }
 
     const passwordChangeHandler =(event)=>{
         setPassword(event.target.value);
         const valid = event.target.value.trim().length >= 5;
         setPasswordError(!valid);
+
 
     }
 
@@ -57,7 +60,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                         className="textfield"
                         required
                     />
-                {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
+       {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
                     <TextField
                         type="password"
                         id="password"
@@ -89,8 +92,6 @@ const Login: React.FC<LoginProps> = ({}) => {
 
             </form>
         </div>
-        
-    </div>
     
   );
 

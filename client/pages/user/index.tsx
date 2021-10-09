@@ -4,13 +4,7 @@ import Navbar from '../../components/Navbar'
 import Login from '../../components/user/Login'
 import Register from '../../components/user/Register'
 
-
-
-
-
 const index: NextPage = () => {
- 
-
     return (
         <div>
              <Navbar/>
@@ -19,15 +13,6 @@ const index: NextPage = () => {
                 <Login/>
                 <Register/> 
               </div>
-             
-                 
-                 
-                 
-
-        </div>
-            
-           
-        
     );
 }
 

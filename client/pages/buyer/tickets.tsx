@@ -4,7 +4,7 @@ import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
 const tickets: NextPage = () => {
         return (
-            <div>
+            <div className="buyer-bg">
                 <Navbar/>
                 <div className="buyer-index">
                     <Sidebar/>
