@@ -8,7 +8,6 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import Ticket from '../../components/buyer/Ticket'  //this may course error. Check it later
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
@@ -49,7 +48,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-export default function Ticketvalid() {
+export default function Pendingtickets() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -61,43 +60,69 @@ export default function Ticketvalid() {
 
   return (
     <div>
-        <div className="buyer-c-ticketvalid" onClick={handleClickOpen}>
-            <div>
-                <div className="buyer-c-ticketvalid-top">
-                    <div className="buyer-c-ticketvalid-top-head">
-                        <div className="buyer-c-ticketvalid-top-head-left">
-                            13:30:00
-                        </div>
-                        <div className="buyer-c-ticketvalid-top-head-right">
-                            <div className="buyer-c-ticketvalid-top-head-right-1">
-                                Level
-                            </div>
-                            <div className="buyer-c-ticketvalid-top-head-right-2">
-                                2
-                            </div>
-                        </div>
-                    </div>
-                    <div className="buyer-c-ticketvalid-top-info">
-                        <div className="buyer-c-ticketvalid-top-info-left">
-                            <div className="buyer-c-ticketvalid-top-info-left-name">
-                                Event name
-                            </div>
-                            <div className="buyer-c-ticketvalid-top-info-left-date">
-                                2021-08-23
-                            </div>
-                        </div>
-                        <div className="buyer-c-ticketvalid-top-info-right">
-                            <div className="buyer-c-ticketvalid-top-info-right-nooftickets">460</div>
-                            <div className="buyer-c-ticketvalid-top-info-right-tickets">tickets</div>
-                        </div>
-                    </div>
+      <div className="manager-c-pendingtickets" onClick={handleClickOpen}>
+        <div>
+          <div className="manager-c-pendingtickets-top">
+            
+
+            
+            <div className="manager-c-pendingtickets-top-info">
+              <div className="manager-c-pendingtickets-top-info-left">
+                <div className="manager-c-pendingtickets-top-info-left-name">
+                  Event name
                 </div>
-                <h5 className="buyer-c-ticketvalid-cardstatus">card status</h5>
+                <div className="manager-c-pendingtickets-top-info-left-date">
+                  2021-08-23
+                </div>
+              </div>
+              <div className="manager-c-pendingtickets-top-info-right">
+                <div className="manager-c-pendingtickets-top-info-right-nooftickets">460</div>
+                <div className="manager-c-pendingtickets-top-info-right-tickets">tickets</div>
+              </div>
             </div>
+          </div>
+          <h5 className="manager-c-pendingtickets-cardstatus">Info</h5>
         </div>
+      </div>
 
 
       <BootstrapDialog
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Event name
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                One of three columns
+              </div>
+              <div class="col-sm">
+                One of three columns
+              </div>
+              <div class="col-sm">
+                <button type="button" class="btn btn-primary">Primary</button>
+              </div>
+            </div>
+          </div>
+
+
+
+        </DialogContent>
+      </BootstrapDialog>
+
+
+
+    </div>
+  );
+}
+
+/*THIS PART MUST BE IN THE ABOVE DIV SPACES (PRTIALLY ADDED UNTIL I UNDERSTAND THE CODE FULLY)
+<BootstrapDialog
         aria-labelledby="customized-dialog-title"
         open={open}
       >
@@ -109,7 +134,4 @@ export default function Ticketvalid() {
           <Ticket id="766756 343545 766688 67678 876668"/>
           <Ticket id="464666 776766 765757 86868 787686"/>
         </DialogContent>
-      </BootstrapDialog>
-    </div>
-  );
-}
+      </BootstrapDialog>*/
