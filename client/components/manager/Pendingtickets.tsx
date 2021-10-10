@@ -104,18 +104,3 @@ export default function Pendingtickets() {
     </div>
   );
 }
-
-/*THIS PART MUST BE IN THE ABOVE DIV SPACES (PRTIALLY ADDED UNTIL I UNDERSTAND THE CODE FULLY)
-<BootstrapDialog
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Event name
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Ticket id="123456 654321 345678 34567 987678"/>
-          <Ticket id="766756 343545 766688 67678 876668"/>
-          <Ticket id="464666 776766 765757 86868 787686"/>
-        </DialogContent>
-      </BootstrapDialog>*/
