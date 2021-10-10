@@ -17,7 +17,7 @@ const bids: NextPage = () => {
                             <Ticketvalid level="2" type="3"/>
                             <Ticketvalid level="3" type="3"/>
                             <Ticketvalid level="4" type="3"/>
-                            <Ticketunvalid/>
+                            <Ticketunvalid level="4" />
                         </div>
                     </div>
                 </div>
