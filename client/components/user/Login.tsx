@@ -1,14 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router'
 import { Typography,Button,TextField,Link,Box,Grid,Card, CardContent,CardActions,Stack} from '@mui/material';
-import {
-    createTheme,
-    responsiveFontSizes,
-  } from '@mui/material/styles';
 
-  let theme = createTheme();
-  theme = responsiveFontSizes(theme);
-  
 
 interface LoginProps {
 
@@ -90,34 +83,25 @@ const Login: React.FC<LoginProps> = ({}) => {
                                         >
                                             Sign In
                                         </Button>
-                                  
-                                        <Grid container>
-                                           <Grid item xs>
-                                                <Typography sx={{ fontSize: 12, mt:1, mb:2}} >    
-                                                Don't have a TickBid account ? </Typography>
-                                            </Grid>   
-                                            <Grid item xs>            
-                                                <Link href="#" sx ={{fontSize:11}}  className= "link">
-                                                Sign Up now
-                                                </Link>
-                                             </Grid>   
-                                        </Grid> 
-                                                <Typography sx={{ fontSize: 12, mt:1}} >    
-                                                or </Typography>
+                                        <div className="already-signup">
+                                        Don't have a TickBid account? <Link href="/user/login" className = "link">Sign Up</Link>
+                                        <br/><br/>
+                                        or
+                                        </div>
+                
+                                        
+                                                
                                     
                                                 <Link href="#" sx ={{fontSize:11} } className= "link">
                                                 Forgot password?
                                                 </Link>
-                                                
-                                        
-
                             </form>
                         </div>
                     </Grid>
                     <Grid item xs={6} >
 
                         <Box className = "box">
-                            
+                        
                         </Box>   
                                 
                     </Grid>
