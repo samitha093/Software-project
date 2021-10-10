@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Pendingtickets from '../../components/manager/Pendingtickets'
-const bids: NextPage = () => {
+const index: NextPage = () => {
         return (
             <div className="manager-bg">
                 <Navbar/>
@@ -25,4 +25,4 @@ const bids: NextPage = () => {
         );
 }
 
-export default bids;
+export default index;
