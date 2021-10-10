@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import {Grid} from '@mui/material';
 import Navbar from '../../components/Navbar'
-import Resetpwd from '../../components/user/resetpwd';
+import Resetpwd from '../../components/user/Resetpwd';
 
 
 const resetpwd: NextPage = () => {
