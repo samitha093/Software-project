@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router'
-import { Typography,Button,TextField,Link,Box,Grid,Card, CardContent,CardActions,Stack} from '@mui/material';
-
+import { Typography,Button,TextField,Link,Box,Grid,Stack} from '@mui/material';
 
 interface LoginProps {
 
@@ -41,13 +40,12 @@ const Login: React.FC<LoginProps> = ({}) => {
       <div >
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
-                    <Grid item xs={6} className = "login_container">
+                    <Grid item xs={7} className = "login_container">
                         <div className="form-wrapper">
                             <Typography className = "head">Sign In</Typography>
                             <form className="pricing-box">
                                 {emailHasError && (<p className="error-message"> * Invalid email</p>)}
-                                <Stack spacing ={3}>
-                                    
+                                <Stack spacing ={4}>
                                         <TextField
                                             type="email"
                                             id="email"
@@ -74,6 +72,13 @@ const Login: React.FC<LoginProps> = ({}) => {
                                         />
                                        
                                 </Stack>     
+                                        
+                                        <div className="already-signup">
+                                        Don't have a TickBid account? <Link href="/user/login" className = "link"> Sign Up</Link>
+                                        <br/><br/>
+                                        or
+                                        <br/><Link href="/user/resetpwd" className = "link">Forgot password ?</Link>
+                                        </div>
                                         <Button className = "btnsubmit"
                                                 type="submit"
                                                 variant="contained"
@@ -83,24 +88,20 @@ const Login: React.FC<LoginProps> = ({}) => {
                                         >
                                             Sign In
                                         </Button>
-                                        <div className="already-signup">
-                                        Don't have a TickBid account? <Link href="/user/login" className = "link">Sign Up</Link>
-                                        <br/><br/>
-                                        or
-                                        </div>
-                
-                                        
-                                                
-                                    
-                                                <Link href="#" sx ={{fontSize:11} } className= "link">
-                                                Forgot password?
-                                                </Link>
                             </form>
                         </div>
                     </Grid>
-                    <Grid item xs={6} >
+                    <Grid item xs={5} >
 
                         <Box className = "box">
+                            <div className="content-1">
+                             Welcome Back ! 
+                            </div>
+                            <br/>
+                            <div className= "content-2">
+                            Please login with personal info & <br/>
+                            Keep connected with us.  
+                            </div>
                         
                         </Box>   
                                 
