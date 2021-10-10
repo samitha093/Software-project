@@ -14,7 +14,7 @@ const Login: React.FC<LoginProps> = ({}) => {
     const [emailHasError,setEmailError] = React.useState<boolean>(false);
     const [password,setPassword] =React.useState<string>("");
     const [passwordError,setPasswordError] = React.useState<boolean>(false);
-
+    
 
     const emailChangeHandler = (event:any)=>{
         setEmail(event.target.value);
@@ -28,6 +28,8 @@ const Login: React.FC<LoginProps> = ({}) => {
         const valid = event.target.value.trim().length >= 5;
         setPasswordError(!valid);
     }
+     
+    
 
     const submitForm = (event:any)=>{
         event.preventDefault();
@@ -74,9 +76,6 @@ const Login: React.FC<LoginProps> = ({}) => {
                                 </Stack>     
                                         
                                         <div className="already-signup">
-                                        Don't have a TickBid account? <Link href="/user/login" className = "link"> Sign Up</Link>
-                                        <br/><br/>
-                                        or
                                         <br/><Link href="/user/resetpwd" className = "link">Forgot password ?</Link>
                                         </div>
                                         <Button className = "btnsubmit"

@@ -7,9 +7,11 @@ const index: NextPage = () => {
     return (
         <div>
              <Navbar/>
-              <Grid>
-               
-            </Grid>
+             <Grid item xs={6} className= "index_container">
+             <div>
+                              
+            </div>
+              </Grid>
         </div>
     );
 }
