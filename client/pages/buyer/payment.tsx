@@ -13,12 +13,12 @@ const payment: NextPage = () => {
                     <div>
                        <h1>Pending Payment</h1> 
                        <div className="buyer-index-container">
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
+                            <Ticketvalid level="1" type="2"/>
+                            <Ticketvalid level="2" type="2"/>
+                            <Ticketvalid level="3" type="2"/>
+                            <Ticketvalid level="4" type="2"/>
+                            <Ticketvalid level="5" type="2"/>
+                            <Ticketvalid level="3" type="2"/>
                         </div>
                     </div>
                 </div>

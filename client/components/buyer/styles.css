@@ -57,7 +57,6 @@
     width: 250px;
     height: var(--parent-height);
     border-radius: 20px;
-    background-color: #752E9E;
     position: relative;
     margin: 10px;
 }
@@ -72,7 +71,6 @@
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
-    background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
     background-size: cover;
     height:calc(var(--parent-height)*0.8);
     position: relative;
@@ -116,7 +114,6 @@
 .buyer-c-ticketvalid-top-head-right{
     width: 40%;
     display: flex;
-    background-color: #752E9E;
     justify-content: flex-end;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -299,6 +296,12 @@
     }
 }
 /*end - unvalid ticket component*/
+/*start -  ticket popup*/
+.paynow{
+    margin-top: 20px;
+    width: 100%;
+}
+/*start -  ticket popup*/
 
 /*start -  ticket component*/
 .buyer-c-ticket{

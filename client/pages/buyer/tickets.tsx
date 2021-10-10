@@ -12,12 +12,12 @@ const tickets: NextPage = () => {
                     <div>
                        <h1>Validated Tickets</h1> 
                        <div className="buyer-index-container">
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
+                            <Ticketvalid level="1" type="4"/>
+                            <Ticketvalid level="2" type="4"/>
+                            <Ticketvalid level="3" type="4"/>
+                            <Ticketvalid level="4" type="4"/>
+                            <Ticketvalid level="5" type="4"/>
+                            <Ticketvalid level="2" type="4"/>
                         </div>
                     </div>
                 </div>

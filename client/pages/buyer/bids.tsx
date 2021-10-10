@@ -13,10 +13,10 @@ const bids: NextPage = () => {
                     <div>
                        <h1>Pending Bids</h1> 
                        <div className="buyer-index-container">
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
-                            <Ticketvalid/>
+                            <Ticketvalid level="1" type="3"/>
+                            <Ticketvalid level="2" type="3"/>
+                            <Ticketvalid level="3" type="3"/>
+                            <Ticketvalid level="4" type="3"/>
                             <Ticketunvalid/>
                         </div>
                     </div>
