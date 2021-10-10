@@ -6,7 +6,8 @@ import '../components/manager/styles.css'
 import '../pages/manager/styles.css'
 import '../components/user/styles.css'
 import '../pages/user/style.css'
-
+import '../components/seller/styles.css'
+import '../pages/seller/styles.css'
 
 import type { AppProps } from 'next/app'
 
