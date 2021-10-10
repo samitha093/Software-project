@@ -92,7 +92,7 @@ export default function Pendingtickets() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Event name
+          Event Name
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Pendingeventinfo/>
