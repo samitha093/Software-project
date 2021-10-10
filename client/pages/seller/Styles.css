@@ -1,0 +1,38 @@
+.seller-bg
+{
+    background-image: url("../../assets/dashbord-bg.png");
+    background-size: cover;
+}
+.seller-index
+{
+    display: flex;
+    overflow: auto;
+}
+.seller-index-content
+{
+    width: 100%;
+}
+.seller-index-container
+{
+    width: 100%;
+    padding-left: 30px;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 600px) {
+    .seller-index{
+        display: block;
+        overflow: auto;
+    }
+    .seller-index-content h1{
+        padding-left: 30px;
+    }
+    .seller-index-container{
+        padding-left: 0px;
+        display: flex;
+    }
+}

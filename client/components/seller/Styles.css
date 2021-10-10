@@ -1,0 +1,24 @@
+.seller-c-sidebar{
+    width:130px;
+    height: calc(100vh - 70px);
+    min-height: 800px;
+    padding: 60px 10px;
+}
+.seller-c-sidebar-container{
+    width: 100%;
+    height:100%;
+    background-color: #752E9E;
+    border-radius: 30px;
+    padding: 30px 23px;
+}
+.seller-c-sidebar-item{
+    width:60px;
+    height:60px;
+    border: 1px;
+    border-color: white;
+    border-radius: 10px;
+    border-style:solid;
+    margin-top: 35px;
+    padding: 7px;
+    cursor: pointer;
+}
