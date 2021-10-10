@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -8,6 +9,14 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import FilledInput from '@mui/material/FilledInput';
+import InputAdornment from '@mui/material/InputAdornment';
+
+interface TicketunvalidProps {
+  level : string,
+ }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
@@ -47,10 +56,29 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     </DialogTitle>
   );
 };
-
-export default function Ticketunvalid() {
+const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
   const [open, setOpen] = React.useState(false);
-
+  const [Ticketcolor, setTicketcolor] =  React.useState("");
+  const [Ticketlevel, setTicketlevel] =  React.useState("");
+  const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
+  const [Ticketimg, setTicketimg] =  React.useState("");
+  useEffect(()=>{
+    setTicketcolor("#881700");
+    setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
+    setTicketlevel(level);
+    if( level == "1"){
+      setTicketlevelcolor("#57B473");
+    }else if(level == "2"){
+      setTicketlevelcolor("#752E9E");
+    }else if(level == "3"){
+      setTicketlevelcolor("#5776B4");
+    }else if(level == "4"){
+      setTicketlevelcolor("#AE006E");
+    }else{
+      setTicketlevelcolor("#AE6300");
+    }
+    
+  },[])
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -60,19 +88,19 @@ export default function Ticketunvalid() {
 
   return (
     <div>
-        <div className="buyer-c-ticketunvalid" onClick={handleClickOpen}>
+        <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid" onClick={handleClickOpen}>
             <div>
-                <div className="buyer-c-ticketunvalid-top">
+                <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
                     <div className="buyer-c-ticketunvalid-top-head">
                         <div className="buyer-c-ticketunvalid-top-head-left">
                             13:30:00
                         </div>
-                        <div className="buyer-c-ticketunvalid-top-head-right">
+                        <div style={{backgroundColor: Ticketlevelcolor}} className="buyer-c-ticketunvalid-top-head-right">
                             <div className="buyer-c-ticketunvalid-top-head-right-1">
                                 Level
                             </div>
                             <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
-                                3
+                                {Ticketlevel}
                             </div>
                         </div>
                     </div>
@@ -105,20 +133,15 @@ export default function Ticketunvalid() {
           Modal title
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+          <FormControl fullWidth sx={{ m: 1 }} variant="filled">
+            <InputLabel htmlFor="filled-adornment-amount">Amount for a Ticket</InputLabel>
+            <FilledInput
+              id="filled-adornment-amount"
+              startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
+            />
+          </FormControl>
+          <div className='x'><center><b>X</b></center></div>
+          <div><center>4 Tickes</center></div>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
@@ -129,3 +152,4 @@ export default function Ticketunvalid() {
     </div>
   );
 }
+export default Ticketunvalid;
