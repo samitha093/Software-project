@@ -12,7 +12,13 @@ const Resetpwd: React.FC<ResetpwdProps> = ({}) => {
         <div >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
-                
+                <Grid item xs={7} >
+                <Box className = "box-1">
+                        <div >
+                        </div>
+                    
+                    </Box>             
+                </Grid>
                 <Grid item xs={5} className = "pwd_container" >
                 <div className="form-wrapper">
                         <Typography className = "head">Forgot Password</Typography>
@@ -46,14 +52,6 @@ const Resetpwd: React.FC<ResetpwdProps> = ({}) => {
                                         </Button>
                     </div>
                     
-                </Grid>
-                <Grid item xs={7} >
-                <Box className = "box-1">
-                        <div >
-                            hello
-                        </div>
-                    
-                    </Box>             
                 </Grid>
                         
             </Grid>
