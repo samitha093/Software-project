@@ -48,7 +48,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-export default function Popup() {
+export default function Ticketunvalid() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -60,38 +60,38 @@ export default function Popup() {
 
   return (
     <div>
-        <div className="buyer-c-ticketvalid" onClick={handleClickOpen}>
+        <div className="buyer-c-ticketunvalid" onClick={handleClickOpen}>
             <div>
-                <div className="buyer-c-ticketvalid-top">
-                    <div className="buyer-c-ticketvalid-top-head">
-                        <div className="buyer-c-ticketvalid-top-head-left">
+                <div className="buyer-c-ticketunvalid-top">
+                    <div className="buyer-c-ticketunvalid-top-head">
+                        <div className="buyer-c-ticketunvalid-top-head-left">
                             13:30:00
                         </div>
-                        <div className="buyer-c-ticketvalid-top-head-right">
-                            <div className="buyer-c-ticketvalid-top-head-right-1">
+                        <div className="buyer-c-ticketunvalid-top-head-right">
+                            <div className="buyer-c-ticketunvalid-top-head-right-1">
                                 Level
                             </div>
-                            <div className="buyer-c-ticketvalid-top-head-right-2">
-                                2
+                            <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
+                                3
                             </div>
                         </div>
                     </div>
-                    <div className="buyer-c-ticketvalid-top-info">
-                        <div className="buyer-c-ticketvalid-top-info-left">
-                            <div className="buyer-c-ticketvalid-top-info-left-name">
+                    <div className="buyer-c-ticketunvalid-top-info">
+                        <div className="buyer-c-ticketunvalid-top-info-left">
+                            <div className="buyer-c-ticketunvalid-top-info-left-name">
                                 Event name
                             </div>
-                            <div className="buyer-c-ticketvalid-top-info-left-date">
+                            <div className="buyer-c-ticketunvalid-top-info-left-date">
                                 2021-08-23
                             </div>
                         </div>
-                        <div className="buyer-c-ticketvalid-top-info-right">
-                            <div className="buyer-c-ticketvalid-top-info-right-nooftickets">460</div>
-                            <div className="buyer-c-ticketvalid-top-info-right-tickets">tickets</div>
+                        <div className="buyer-c-ticketunvalid-top-info-right">
+                            <div className="buyer-c-ticketunvalid-top-info-right-nooftickets">460</div>
+                            <div className="buyer-c-ticketunvalid-top-info-right-tickets">tickets</div>
                         </div>
                     </div>
                 </div>
-                <h5 className="buyer-c-ticketvalid-cardstatus">card status</h5>
+                <h5 className="buyer-c-ticketunvalid-cardstatus">card status</h5>
             </div>
         </div>
 
