@@ -63,7 +63,6 @@
 .link{
     color:#BB9CD1 ;
     font-weight: semibold;
-    padding: 0px;
     
 }
 
@@ -90,6 +89,7 @@
 
 .already-signup{
     margin-top: 10px;
+    font-size: 12px;
 
 }
 /*end - register component*/
