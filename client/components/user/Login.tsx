@@ -1,8 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router'
 import { Typography,Button,TextField,Link,Box,Grid,Stack} from '@mui/material';
-import { mdiLockCheckOutline } from '@mdi/js';
-import Icon from '@mdi/react';
 
 interface LoginProps {
 
@@ -79,7 +77,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                         Don't have a TickBid account? <Link href="/user/login" className = "link"> Sign Up</Link>
                                         <br/><br/>
                                         or
-                                        <br/><Link href=" " className = "link">Forgot password ?</Link>
+                                        <br/><Link href="/user/resetpwd" className = "link">Forgot password ?</Link>
                                         </div>
                                         <Button className = "btnsubmit"
                                                 type="submit"
