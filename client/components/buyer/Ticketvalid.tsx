@@ -51,6 +51,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 
 export default function Ticketvalid() {
   const [open, setOpen] = React.useState(false);
+  const [Ticketlevel, setTicketlevel] =  React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -72,7 +73,7 @@ export default function Ticketvalid() {
                             <div className="buyer-c-ticketvalid-top-head-right-1">
                                 Level
                             </div>
-                            <div className="buyer-c-ticketvalid-top-head-right-2">
+                            <div className="buyer-c-ticketvalid-top-head-right-2" id="ticket-level">
                                 2
                             </div>
                         </div>

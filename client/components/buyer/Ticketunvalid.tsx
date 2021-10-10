@@ -71,7 +71,7 @@ export default function Ticketunvalid() {
                             <div className="buyer-c-ticketunvalid-top-head-right-1">
                                 Level
                             </div>
-                            <div className="buyer-c-ticketunvalid-top-head-right-2">
+                            <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
                                 3
                             </div>
                         </div>
