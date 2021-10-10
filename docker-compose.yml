@@ -26,6 +26,8 @@ services:
       - ./server:/app
     environment: 
       - CHOKIDAR_USEPOLLING=true
+    restart: always
+    command: npm run dev
 networks: 
   mern-app:
     driver: bridge
