@@ -1,106 +1,126 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Switch from '@mui/material/Switch';
 import Pendingeventinfo from '../../components/manager/Pendingeventinfo'
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuDialogActions-root': {
-    padding: theme.spacing(1),
-  },
-}));
+export default function MaxWidthDialog() {
+    const [open, setOpen] = React.useState(false);
+    const [fullWidth, setFullWidth] = React.useState(true);
+    const [maxWidth, setMaxWidth] = React.useState('sm');
 
-export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose: () => void;
-}
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
-  const { children, onClose, ...other } = props;
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-};
+    const handleMaxWidthChange = (event) => {
+        setMaxWidth(
+            // @ts-expect-error autofill of arbitrary value is not handled.
+            event.target.value,
+        );
+    };
 
-export default function Pendingtickets() {
-  const [open, setOpen] = React.useState(false);
+    const handleFullWidthChange = (event) => {
+        setFullWidth(event.target.checked);
+    };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <div className="manager-c-pendingtickets" onClick={handleClickOpen}>
-        <div>
-          <div className="manager-c-pendingtickets-top">
-            
+    return (
+        <React.Fragment>
+            <div>
+                <div className="manager-c-pendingtickets" onClick={handleClickOpen}>
+                    <div>
+                        <div className="manager-c-pendingtickets-top">
 
 
-            <div className="manager-c-pendingtickets-top-info">
-              <div className="manager-c-pendingtickets-top-info-left">
-                <div className="manager-c-pendingtickets-top-info-left-name">
-                  Event name
+
+                            <div className="manager-c-pendingtickets-top-info">
+                                <div className="manager-c-pendingtickets-top-info-left">
+                                    <div className="manager-c-pendingtickets-top-info-left-name">
+                                        Event name
+                                    </div>
+                                    <div className="manager-c-pendingtickets-top-info-left-date">
+                                        2021-08-23
+                                    </div>
+                                </div>
+                                <div className="manager-c-pendingtickets-top-info-right">
+                                    <div className="manager-c-pendingtickets-top-info-right-nooftickets">460</div>
+                                    <div className="manager-c-pendingtickets-top-info-right-tickets">tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 className="manager-c-pendingtickets-cardstatus">Info</h5>
+                    </div>
                 </div>
-                <div className="manager-c-pendingtickets-top-info-left-date">
-                  2021-08-23
-                </div>
-              </div>
-              <div className="manager-c-pendingtickets-top-info-right">
-                <div className="manager-c-pendingtickets-top-info-right-nooftickets">460</div>
-                <div className="manager-c-pendingtickets-top-info-right-tickets">tickets</div>
-              </div>
             </div>
-          </div>
-          <h5 className="manager-c-pendingtickets-cardstatus">Info</h5>
-        </div>
-      </div>
 
-
-      <BootstrapDialog
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Event Name
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Pendingeventinfo/>
-        </DialogContent>
-      </BootstrapDialog>
-
-
-
-    </div>
-  );
+            <Dialog
+                fullWidth={fullWidth}
+                maxWidth={maxWidth}
+                open={open}
+                onClose={handleClose}
+            >
+                <DialogTitle>Optional sizes</DialogTitle>
+                <DialogContent>
+                    <DialogContent dividers>
+                        <Pendingeventinfo/>
+                    </DialogContent>
+                    <Box
+                        noValidate
+                        component="form"
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            m: 'auto',
+                            width: 'fit-content',
+                        }}
+                    >
+                        <FormControl sx={{ mt: 2, minWidth: 120 }}>
+                            <InputLabel htmlFor="max-width">maxWidth</InputLabel>
+                            <Select
+                                autoFocus
+                                value={maxWidth}
+                                onChange={handleMaxWidthChange}
+                                label="maxWidth"
+                                inputProps={{
+                                    name: 'max-width',
+                                    id: 'max-width',
+                                }}
+                            >
+                                <MenuItem value={false}>false</MenuItem>
+                                <MenuItem value="xs">xs</MenuItem>
+                                <MenuItem value="sm">sm</MenuItem>
+                                <MenuItem value="md">md</MenuItem>
+                                <MenuItem value="lg">lg</MenuItem>
+                                <MenuItem value="xl">xl</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControlLabel
+                            sx={{ mt: 1 }}
+                            control={
+                                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
+                            }
+                            label="Full width"
+                        />
+                    </Box>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                </DialogActions>
+            </Dialog>
+        </React.Fragment>
+    );
 }
