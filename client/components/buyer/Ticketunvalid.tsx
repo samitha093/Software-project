@@ -9,6 +9,10 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import FilledInput from '@mui/material/FilledInput';
+import InputAdornment from '@mui/material/InputAdornment';
 
 interface TicketunvalidProps {
   level : string,
@@ -129,20 +133,15 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
           Modal title
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+          <FormControl fullWidth sx={{ m: 1 }} variant="filled">
+            <InputLabel htmlFor="filled-adornment-amount">Amount for a Ticket</InputLabel>
+            <FilledInput
+              id="filled-adornment-amount"
+              startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
+            />
+          </FormControl>
+          <div className='x'><center><b>X</b></center></div>
+          <div><center>4 Tickes</center></div>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

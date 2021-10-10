@@ -301,6 +301,13 @@
     margin-top: 20px;
     width: 100%;
 }
+div.MuiFormControl-root.MuiFormControl-fullWidth.css-1w4vsez-MuiFormControl-root{
+    width:92% !important;
+}
+.x{
+    font-size: 25px;
+    margin: 10px;
+}
 /*start -  ticket popup*/
 
 /*start -  ticket component*/
