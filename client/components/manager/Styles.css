@@ -158,7 +158,6 @@
 
 .manager-c-pendingticketsinfo-buttons-stack
 {
-    direction : "row";
     align-items : "center";
     align-content : "center";  
 }
