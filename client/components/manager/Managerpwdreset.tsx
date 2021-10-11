@@ -11,20 +11,12 @@ const Managerpwdreset: React.FC<ManagerpwdresetProps> = ({ }) => {
     return (
         <div >
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={0}>
-                    <Grid item xs={7} >
-                        <Box className="manager-password-box">
-                            <div >
-                            </div>
-
-                        </Box>
-                    </Grid>
-                    <Grid item xs={5} className="manager-password-container" >
+                <Grid container xs={12} className="manager-password-container" >
                         <div className="manager-password-form-wrapper">
-                            <Typography className="head">New Password</Typography>
+                            <Typography className="head">Reset Password</Typography>
                             <form className="manager-password-box2">
                                 <Stack spacing={4}>
-                                <TextField
+                                    <TextField
                                         type="password"
                                         id="current-password"
                                         placeholder="Current Password"
@@ -60,8 +52,6 @@ const Managerpwdreset: React.FC<ManagerpwdresetProps> = ({ }) => {
                         </div>
 
                     </Grid>
-
-                </Grid>
             </Box>
         </div>
 
