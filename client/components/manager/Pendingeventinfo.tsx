@@ -13,6 +13,9 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
 
+
+//THIS COMPONENT WILL BE DELETED
+
 export default function PendingEventsInfo() {
   return (
     <Card sx={{ maxWidth: 1300 }}>
