@@ -7,19 +7,14 @@ import Forgotpwd from '../../components/user/Forgotpwd';
 
 const resetpwd: NextPage = () => {
     return (
-            <div>
+            <div className = "buyer-bg">
             <Navbar/>
-            <Grid>
+            <Grid className = "index_container">
             <div className = "main_container">
                <Forgotpwd/>
               </div>            
           </Grid>
       </div>
-         
-
-                
-    
-   
     );
 }
 
