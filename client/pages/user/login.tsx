@@ -7,9 +7,9 @@ import Tabcustom from '../../components/user/Tabcustom'
 
 const login: NextPage = () => {
     return (
-            <div>
+            <div >
             <Navbar/>
-            <Grid>
+            <Grid className= "index_container">
               <div className = "main_container">
                 <Tabcustom/>
               </div>   

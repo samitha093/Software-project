@@ -39,8 +39,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
   const confirmPasswordChangeHandler = (event:any)=>{
       setconfirmpassword(event.target.value);
       const isValid = event.target.value.match(!password);
-      setvalidationerror(!isValid);
-        
+      setvalidationerror(!isValid);   
 
     }  
 
@@ -75,7 +74,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
                 <Grid container spacing={0}>
                     <Grid item xs={7} className = "login_container">
                     <div className="form-wrapper">
-                    <Typography className = "head">Sign Up</Typography>
+                    <Typography className = "head-signup">Sign Up</Typography>
                     <form className="pricing-box">
                         {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
                         <Stack spacing = {2}>
@@ -118,7 +117,6 @@ const Register: React.FC<RegisterProps> = ({}) => {
                                             onBlur={confirmPasswordChangeHandler}
                                             // onBlur={emailBlurHandler}
                                             size = "small"
-                                            className="textfield"
                                             required
                                         />
                               {contactHasError && (<p className="error-message"> * Enter a valid contact number</p>)}

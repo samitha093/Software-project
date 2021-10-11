@@ -2,10 +2,26 @@
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
+	width :950px;
 	margin-left: 300px;
-	margin-right: 300px;
+	margin-right: 150px;;
 	margin-top: 30px;
-	min-width: 950px;
+	
+	
+}
+@media only screen and (max-width: 700px) {
+    .main_container{
+        width : 300px;
+		margin-left: 150px;
+		margin-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .main_container{
+        display: block;
+		overflow: hidden;
+    }
 }
 
 .index-bg{
