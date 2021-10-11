@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
-const bids: NextPage = () => {
+const activeevents: NextPage = () => {
         return (
             <div className="manager-bg">
                 <Navbar/>
@@ -16,4 +16,4 @@ const bids: NextPage = () => {
         );
 }
 
-export default bids;
+export default activeevents;
