@@ -1,11 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
 import Icon from '@mdi/react';
-import { mdiLanPending  } from '@mdi/js';
-import { mdiCheckboxMultipleOutline } from '@mdi/js';
-import { mdiCloseBoxMultipleOutline  } from '@mdi/js';
-import { mdiCogs } from '@mdi/js';
-import { mdiLogout } from '@mdi/js';
+import { mdiHomeOutline } from '@mdi/js';
+import { mdiCalendarSearch } from '@mdi/js';
+import { mdiCalendarClock } from '@mdi/js';
+import { mdiCalendarCheck } from '@mdi/js';
+import { mdiCalendarRemove } from '@mdi/js';
 interface SidebarProps {
 
 }
@@ -14,32 +14,32 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
         return (
             <div className="seller-c-sidebar">
                     <div className="seller-c-sidebar-container">
-                        <Link href="/seller">
+                        <Link href="/seller/homepage">
                             <div className="seller-c-sidebar-item">
-                                <Icon path={mdiLanPending} color='white'/>
+                                <Icon path={mdiHomeOutline} color='white'/>
+                            </div>
+                        </Link>
+
+                        <Link href="/seller/pendingevents">
+                            <div className="seller-c-sidebar-item">
+                                <Icon path={mdiCalendarSearch} color='white'/>
                             </div>
                         </Link>
 
                         <Link href="/seller/activeevents">
                             <div className="seller-c-sidebar-item">
-                                <Icon path={mdiCheckboxMultipleOutline} color='white'/>
+                                <Icon path={mdiCalendarClock} color='white'/>
                             </div>
                         </Link>
 
-                        <Link href="/seller/declinedevents">
+                        <Link href="/seller/endevents">
                             <div className="seller-c-sidebar-item">
-                                <Icon path={mdiCloseBoxMultipleOutline } color='white'/>
+                                <Icon path={mdiCalendarCheck} color='white'/>
                             </div>
                         </Link>
-
-                        <Link href="/seller/settings">
-                            <div className="seller-c-sidebar-item">
-                                <Icon path={mdiCogs} color='white'/>
-                            </div>
-                        </Link>
-                        <Link href= "/">
+                        <Link href= "/seller/declined">
                         <div className="seller-c-sidebar-item">
-                            <Icon path={mdiLogout} color='white'/>
+                            <Icon path={mdiCalendarRemove} color='white'/>
                         </div>
                         </Link>
                     </div>

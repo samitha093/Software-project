@@ -22,3 +22,127 @@
     padding: 7px;
     cursor: pointer;
 }
+
+:root {
+    --parent-height: 220px;
+  }
+.seller-c-pendingevents{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #752E9E;
+    position: relative;
+    margin: 10px;
+}
+.seller-c-pendingevents-cardstatus{
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.seller-c-pendingevents-top{
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    width: 100%;
+    background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
+    background-size: cover;
+    height:calc(var(--parent-height)*0.8);
+    position: relative;
+}
+.seller-c-pendingevents-top-info{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    height:calc(var(--parent-height)*0.2);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+.seller-c-pendingevents-top-info-left{
+    width: 75%;
+    padding-left: 6px;
+    color: white;
+}
+.seller-c-pendingevents-top-info-right{
+    padding-right: 6px;
+    color: white;
+    position: relative;
+    width: 25%;
+    text-align: center;
+}
+.seller-c-pendingevents-top-info-right-nooftickets{
+    position: block;
+    width: 100%;
+}
+.seller-c-pendingevents-top-info-right-tickets{
+    font-size: 10px;
+}
+.seller-c-events-top-head{
+    display: flex;
+    padding-left: 10px;
+}
+.seller-c-evens-top-head-left{
+    padding-top: 10px;
+    color: white;
+    width: 60%;
+}
+.seller-c-events-top-head-right{
+    width: 40%;
+    display: flex;
+    background-color: #752E9E;
+    justify-content: flex-end;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    border-top-right-radius: 19px;
+    border-bottom-left-radius: 40px;
+    color: white;
+}
+.seller-c-events-top-head-right-1{
+    font-size: 12px;
+    padding-right: 5px;
+    bottom: 0;
+}
+.seller-c-events-top-head-right-2{
+    font-size: 18px;
+}
+#customized-dialog-title{
+    background-color: #752E9E;
+    color: white;
+}
+@media only screen and (max-width: 550px) {
+    .seller-c-events{
+        width: 230px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .seller-c-events{
+        width: 170px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .seller-c-events{
+        width: 155px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .seller-c-events{
+        width: 135px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .seller-c-events{
+        width: 90vw;
+        border-radius: 20px;
+        margin: 10px;
+    }
+}
