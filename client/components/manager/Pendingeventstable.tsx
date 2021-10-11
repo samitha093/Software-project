@@ -49,14 +49,14 @@ const rows = [
 export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 480 }} aria-label="customized table">
+      <Table sx={{ minWidth: 180,maxWidth: 480 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Ticket Level</StyledTableCell>
-            <StyledTableCell align="right">Fixed Quantity</StyledTableCell>
-            <StyledTableCell align="right">Fixed Amount</StyledTableCell>
-            <StyledTableCell align="right">Bid Quantity</StyledTableCell>
-            <StyledTableCell align="right">Bid Amount</StyledTableCell>
+            <StyledTableCell align="center">Fixed Quantity</StyledTableCell>
+            <StyledTableCell align="center">Fixed Amount</StyledTableCell>
+            <StyledTableCell align="center">Bid Quantity</StyledTableCell>
+            <StyledTableCell align="center">Bid Amount</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -65,10 +65,10 @@ export default function CustomizedTables() {
               <StyledTableCell component="th" scope="row">
                 {row.ticketlevel}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.fixedquantity}</StyledTableCell>
-              <StyledTableCell align="right">{row.fixedamount}</StyledTableCell>
-              <StyledTableCell align="right">{row.bidquantity}</StyledTableCell>
-              <StyledTableCell align="right">{row.bidamount}</StyledTableCell>
+              <StyledTableCell align="center">{row.fixedquantity}</StyledTableCell>
+              <StyledTableCell align="center">{row.fixedamount}</StyledTableCell>
+              <StyledTableCell align="center">{row.bidquantity}</StyledTableCell>
+              <StyledTableCell align="center">{row.bidamount}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
