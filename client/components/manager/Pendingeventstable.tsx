@@ -49,10 +49,10 @@ const rows = [
 export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 180,maxWidth: 480 }} aria-label="customized table">
+      <Table sx={{ minWidth: 100,maxWidth: 480 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Ticket Level</StyledTableCell>
+            <StyledTableCell align="center" background-color="red">Ticket Level</StyledTableCell>
             <StyledTableCell align="center">Fixed Quantity</StyledTableCell>
             <StyledTableCell align="center">Fixed Amount</StyledTableCell>
             <StyledTableCell align="center">Bid Quantity</StyledTableCell>
