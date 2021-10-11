@@ -1,8 +1,9 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
+import Managerpwdreset from '../../components/manager/Managerpwdreset'
 import Navbar from '../../components/Navbar'
-const managersettings: NextPage = () => {
+const settings: NextPage = () => {
     return (
         <div className="manager-bg">
             <Navbar />
@@ -11,7 +12,7 @@ const managersettings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-index-container">
-
+                        
                     </div>
                 </div>
             </div>
@@ -19,4 +20,4 @@ const managersettings: NextPage = () => {
     );
 }
 
-export default managersettings;
+export default settings;
