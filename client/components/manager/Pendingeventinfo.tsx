@@ -53,7 +53,7 @@ export default function PendingEventsInfo() {
         </Box>
       </CardContent>
       <CardActions>
-        <Stack spacing={2} direction="row" className="manager-c-pendingticketsinfo-buttons-stack"  >
+        <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
           <Button variant="contained" endIcon={<PublishIcon />}>
             Publish
           </Button>
