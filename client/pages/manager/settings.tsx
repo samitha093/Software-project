@@ -2,6 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Managerpwdreset from '../../components/manager/Managerpwdreset'
+import Sellerapprovaltable from '../../components/manager/Sellerapprovaltable'
 import Navbar from '../../components/Navbar'
 const settings: NextPage = () => {
     return (
@@ -12,8 +13,8 @@ const settings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-settings-container">
-                        <Managerpwdreset/>
-                        
+                        <Managerpwdreset/>   
+                        <Sellerapprovaltable/>
                     </div>
                 </div>
             </div>
