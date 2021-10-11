@@ -5,13 +5,13 @@ import {Grid} from '@mui/material';
 
 const index: NextPage = () => {
     return (
-        <div>
+        <div className="buyer-bg">
              <Navbar/>
-             <Grid item xs={6} className= "index_container">
+             
              <div>
                               
             </div>
-              </Grid>
+              
         </div>
     );
 }

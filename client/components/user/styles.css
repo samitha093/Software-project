@@ -2,7 +2,8 @@
 .login_container{
     padding: 50px;
     align-content: center;
-    width: 100%;  
+    width: 100%;
+    height: 700px;
 }
 
 .box{
@@ -11,11 +12,46 @@
     background-color:#482D57;
     border-bottom-right-radius: 10px;
     text-align: center;
-    font-weight: bolder;
-    
-    
+    font-weight: bolder;   
 }
-.head{
+
+@media only screen and (max-width: 500px) {
+    .login_container{
+        height: max-content;
+        display: flex;
+        display: block;
+        margin-bottom: 50px;
+        padding: 10px;
+        
+            
+    }
+    .box{
+      display: none;
+       
+    }
+    .btnsubmit{
+        margin-top: 5px;
+        
+    }
+    .content-1{
+        display: none;
+    }
+    .content-2{
+        display: none;
+        
+    }
+   
+}
+.head-signin{
+    font-size: x-large;
+    font-weight: bolder ;
+    color: slategrey;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    text-align: center;
+   
+}
+.head-signup{
     font-size: x-large;
     font-weight: bolder ;
     color: slategrey;
@@ -24,7 +60,6 @@
     text-align: center;
    
 }
-
 .input-box{
     margin-bottom: auto;
     font-size: large;
@@ -108,6 +143,7 @@
 .already-signup{
     margin-top: 20px;
     font-size: 12px;
+    text-align: center;
 
 }
 /*end - register component*/
