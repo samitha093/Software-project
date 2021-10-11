@@ -5,4 +5,34 @@
 	margin-left: 300px;
 	margin-right: 300px;
 	margin-top: 30px;
+	min-width: 950px;
+}
+
+.index-bg{
+	background-image: url("../../assets/Landing-bg.png");
+	padding: 0;
+	width: 100%;
+	height: 100%;
+    
+}
+
+.index_container{
+
+    display: flex;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .index-bg{
+        display: block;
+        overflow: auto;
+    }
+    
+}
+
+
+
+.content{
+
+	margin-top: 200PX;
 }

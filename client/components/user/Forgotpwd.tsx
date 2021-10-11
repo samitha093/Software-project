@@ -1,23 +1,21 @@
 import React from 'react';
 import { useRouter } from 'next/router'
+import Image from 'next/image';
 import { Typography,Button,TextField,Link,Box,Grid,Stack} from '@mui/material';
 
-
-interface ResetpwdProps {
+interface ForgotpwdProps {
 
 }
 
-const Resetpwd: React.FC<ResetpwdProps> = ({}) => {
+const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
     return(
         <div >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item xs={7} >
                 <Box className = "box-1">
-                        <div >
-                        </div>
-                    
-                    </Box>             
+                 
+                </Box>             
                 </Grid>
                 <Grid item xs={5} className = "pwd_container" >
                 <div className="form-wrapper">
@@ -48,7 +46,7 @@ const Resetpwd: React.FC<ResetpwdProps> = ({}) => {
                             
                                                 size = "small"
                                         >
-                                            Sign In
+                                            Reset Password
                                         </Button>
                     </div>
                     
@@ -63,4 +61,4 @@ const Resetpwd: React.FC<ResetpwdProps> = ({}) => {
 
 
 }
-export default Resetpwd;
+export default Forgotpwd;
