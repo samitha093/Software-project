@@ -38,3 +38,10 @@
     }
 }
 /*end- manager index pg*/
+
+/*start-manager settings page*/
+.manager-index-container{
+    padding-left: 10px;
+    display: flex;
+    align-self: center;
+}

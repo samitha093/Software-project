@@ -11,7 +11,8 @@ const settings: NextPage = () => {
                 <Sidebar />
                 <div>
                     <h1>Settings</h1>
-                    <div className="manager-index-container">
+                    <div className="manager-settings-container">
+                        <Managerpwdreset/>
                         
                     </div>
                 </div>
