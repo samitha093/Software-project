@@ -8,7 +8,7 @@ const index: NextPage = () => {
     return (
         <div className="buyer-bg">
              <Navbar/>
-             <Grid className= "index_container">
+             <Grid className = "index_container">
               <div className = "main_container">
                 <Tabcustom/>
               </div>   

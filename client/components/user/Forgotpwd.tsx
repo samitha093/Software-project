@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router'
 import Image from 'next/image';
+import lock from '../../assets/forgot-password.png'
 import { Typography,Button,TextField,Link,Box,Grid,Stack} from '@mui/material';
 
 interface ForgotpwdProps {
@@ -12,14 +13,9 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
         <div >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
-                <Grid item xs={7} >
-                <Box className = "box-1">
-                 
-                </Box>             
-                </Grid>
-                <Grid item xs={5} className = "pwd_container" >
+                <Grid item xs={7} className = "pwd_container" >
                 <div className="form-wrapper">
-                        <Typography className = "head">Forgot Password</Typography>
+                        <Typography className = "head-password">Forgot Password</Typography>
                         <form className="pricing-box">
                             <Stack spacing ={4}>
                                 <TextField
@@ -48,8 +44,17 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                                         >
                                             Reset Password
                                         </Button>
-                    </div>
+                   </div>
                     
+                </Grid>
+                <Grid item xs className = "box-1" >
+               
+                    <Image
+                     src = {lock}
+                     layout = "responsive"
+                     m-50
+                    ></Image>
+                         
                 </Grid>
                         
             </Grid>

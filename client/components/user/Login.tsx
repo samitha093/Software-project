@@ -85,7 +85,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                 </Button>
                                 <div className="already-signup">
                                             Forgot Password ? 
-                                        <br/><Link href="/user/resetpwd" className = "link">Reset my password</Link>
+                                        <br/><Link href="/user/forgotpwd" className = "link">Reset my password</Link>
                                 </div>
                                         
                             </form>

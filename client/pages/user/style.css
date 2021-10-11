@@ -25,16 +25,7 @@
     }
 }
 
-.index-bg{
-	background-image: url("../../assets/Landing-bg.png");
-	padding: 0;
-	width: 100%;
-	height: 100%;
-    
-}
-
 .index_container{
-
     display: flex;
     overflow: auto;
 }
@@ -47,9 +38,40 @@
     
 }
 
+/*start - Index page*/
+.index-bg{
+	background-image: url("../../assets/Landing-bg.png");
+	padding: 0;
+	width: 100%;
+	height: 100%;
+    
+}
 
+.btn-create{
+	width :40%;
+	align-self: center;
+    text-size-adjust: small;
+    background-color: #764777;
+    resize: both;
 
+}
+.btn-create:hover {background-color:#905f91 }
+
+.text-1{
+
+	font-size: x-large;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: #764777;
+}
+.text-2{
+
+	font-size: large;
+	font-weight: bold;
+	text-decoration: #8d898d;
+	
+}
 .content{
-
-	margin-top: 200PX;
+	margin-top: 150px;
+	margin-left: 100px;
 }
