@@ -1,121 +1,133 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+//import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Pendingeventinfo from '../../components/manager/Pendingeventinfo'
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PublishIcon from '@mui/icons-material/Publish';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Pendingeventstable from '../../components/manager/Pendingeventstable'
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuDialogActions-root': {
-    padding: theme.spacing(1),
-  },
-}));
+//import Pendingeventinfo from '../../components/manager/Pendingeventinfo'
 
-export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose: () => void;
-}
+export default function PendingEvents() {
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
-  const { children, onClose, ...other } = props;
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-};
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-export default function Pendingtickets() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <div className="manager-c-pendingtickets" onClick={handleClickOpen}>
+    return (
         <div>
-          <div className="manager-c-pendingtickets-top">
-            
+            <div className="manager-c-pendingtickets" onClick={handleClickOpen}>
+                <div>
+                    <div className="manager-c-pendingtickets-top">
 
 
-            <div className="manager-c-pendingtickets-top-info">
-              <div className="manager-c-pendingtickets-top-info-left">
-                <div className="manager-c-pendingtickets-top-info-left-name">
-                  Event name
+
+                        <div className="manager-c-pendingtickets-top-info">
+                            <div className="manager-c-pendingtickets-top-info-left">
+                                <div className="manager-c-pendingtickets-top-info-left-name">
+                                    Event name
+                                </div>
+                                <div className="manager-c-pendingtickets-top-info-left-date">
+                                    2021-08-23
+                                </div>
+                            </div>
+                            <div className="manager-c-pendingtickets-top-info-right">
+                                <div className="manager-c-pendingtickets-top-info-right-nooftickets">460</div>
+                                <div className="manager-c-pendingtickets-top-info-right-tickets">tickets</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 className="manager-c-pendingtickets-cardstatus">Info</h5>
                 </div>
-                <div className="manager-c-pendingtickets-top-info-left-date">
-                  2021-08-23
-                </div>
-              </div>
-              <div className="manager-c-pendingtickets-top-info-right">
-                <div className="manager-c-pendingtickets-top-info-right-nooftickets">460</div>
-                <div className="manager-c-pendingtickets-top-info-right-tickets">tickets</div>
-              </div>
             </div>
-          </div>
-          <h5 className="manager-c-pendingtickets-cardstatus">Info</h5>
+            <Dialog
+                fullScreen={fullScreen}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="responsive-dialog-title"
+            >
+                <DialogTitle id="responsive-dialog-title" className = "manager-c-tickets-top-head-right">
+                    {"More Info"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        <Card sx={{ maxWidth: 480 }}>
+                            <CardMedia
+                                component="img"
+                                height="200"
+                                image="/static/images/cards/contemplative-reptile.jpg"
+                                alt="Error event image not found!!!"
+                            />
+                            <CardContent>
+                                <Box sx={{ flexGrow: 1 }}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12}>
+                                            <Typography> Event Name </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography> Organaizer </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography> Venue </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography> Date </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography> Time </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography> Starting Date </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Typography> Ending Date </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Pendingeventstable />
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            </CardContent>
+                            <CardActions>
+
+                            </CardActions>
+                        </Card>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
+                        <Button variant="contained" endIcon={<PublishIcon />}>
+                            Publish
+                        </Button>
+                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+                            Decline
+                        </Button>
+                    </Stack>
+                </DialogActions>
+            </Dialog>
         </div>
-      </div>
-
-
-      <BootstrapDialog
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Event Name
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Pendingeventinfo/>
-        </DialogContent>
-      </BootstrapDialog>
-
-
-
-    </div>
-  );
+    );
 }
-
-/*THIS PART MUST BE IN THE ABOVE DIV SPACES (PRTIALLY ADDED UNTIL I UNDERSTAND THE CODE FULLY)
-<BootstrapDialog
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Event name
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Ticket id="123456 654321 345678 34567 987678"/>
-          <Ticket id="766756 343545 766688 67678 876668"/>
-          <Ticket id="464666 776766 765757 86868 787686"/>
-        </DialogContent>
-      </BootstrapDialog>*/

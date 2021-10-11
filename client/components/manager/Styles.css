@@ -30,7 +30,7 @@
 :root {
     --parent-height: 220px;
   }
-.manager-c-pendingtickets{
+.manager-c-tickets{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -39,14 +39,14 @@
     position: relative;
     margin: 10px;
 }
-.manager-c-pendingtickets-cardstatus{
+.manager-c-tickets-cardstatus{
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-.manager-c-pendingtickets-top{
+.manager-c-tickets-top{
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
@@ -55,7 +55,7 @@
     height:calc(var(--parent-height)*0.8);
     position: relative;
 }
-.manager-c-pendingtickets-top-info{
+.manager-c-tickets-top-info{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     height:calc(var(--parent-height)*0.2);
@@ -63,35 +63,35 @@
     bottom: 0;
     display: flex;
 }
-.manager-c-pendingtickets-top-info-left{
+.manager-c-tickets-top-info-left{
     width: 75%;
     padding-left: 6px;
     color: white;
 }
-.manager-c-pendingtickets-top-info-right{
+.manager-c-tickets-top-info-right{
     padding-right: 6px;
     color: white;
     position: relative;
     width: 25%;
     text-align: center;
 }
-.manager-c-pendingtickets-top-info-right-nooftickets{
+.manager-c-tickets-top-info-right-nooftickets{
     position: block;
     width: 100%;
 }
-.manager-c-pendingtickets-top-info-right-tickets{
+.manager-c-tickets-top-info-right-tickets{
     font-size: 10px;
 }
-.manager-c-pendingtickets-top-head{
+.manager-c-tickets-top-head{
     display: flex;
     padding-left: 10px;
 }
-.manager-c-pendingtickets-top-head-left{
+.manager-c-tickets-top-head-left{
     padding-top: 10px;
     color: white;
     width: 60%;
 }
-.manager-c-pendingtickets-top-head-right{
+.manager-c-tickets-top-head-right{
     width: 40%;
     display: flex;
     background-color: #752E9E;
@@ -103,12 +103,12 @@
     border-bottom-left-radius: 40px;
     color: white;
 }
-.manager-c-pendingtickets-top-head-right-1{
+.manager-c-tickets-top-head-right-1{
     font-size: 12px;
     padding-right: 5px;
     bottom: 0;
 }
-.manager-c-pendingtickets-top-head-right-2{
+.manager-c-tickets-top-head-right-2{
     font-size: 18px;
 }
 #customized-dialog-title{
@@ -116,35 +116,35 @@
     color: white;
 }
 @media only screen and (max-width: 550px) {
-    .manager-c-pendingtickets{
+    .manager-c-tickets{
         width: 230px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 450px) {
-    .manager-c-pendingtickets{
+    .manager-c-tickets{
         width: 170px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 400px) {
-    .manager-c-pendingtickets{
+    .manager-c-tickets{
         width: 155px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 350px) {
-    .manager-c-pendingtickets{
+    .manager-c-tickets{
         width: 135px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 330px) {
-    .manager-c-pendingtickets{
+    .manager-c-tickets{
         width: 90vw;
         border-radius: 20px;
         margin: 10px;
@@ -156,9 +156,8 @@
 
 /*start - pending events info component*/
 
-.manager-c-pendingticketsinfo-buttons-stack
+.manager-c-ticketspublishdecline-buttons-stack
 {
-    direction : "row";
-    align-items : "center";
-    align-content : "center";  
+    align-items : "center" !important;
+    align-content : "center" !important;  
 }

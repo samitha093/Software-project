@@ -1,6 +1,7 @@
 import React from 'react'
-import Icon from '@mdi/react';
-import { mdiCartVariant } from '@mdi/js';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import IconButton from '@mui/material/IconButton';
 interface NavbarProps {
 
 }
@@ -19,7 +20,9 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <li>My Accout</li>
                     </ul>
                     <div className="cart">
-                    <Icon path={mdiCartVariant} color='black' size={2}/>
+                    <IconButton color="secondary" size="large" aria-label="add to shopping cart">
+                    <ShoppingCartOutlinedIcon fontSize="inherit" />
+                    </IconButton>
                     </div>
                 </div>
             </div>
