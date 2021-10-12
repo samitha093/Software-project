@@ -13,8 +13,10 @@ const settings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-settings-container">
-                        <Managerpwdreset/>   
+                        <Managerpwdreset/>
+                        <div className="manager-password-container" >   
                         <Sellerapprovaltable/>
+                        </div>
                     </div>
                 </div>
             </div>

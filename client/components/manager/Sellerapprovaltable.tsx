@@ -17,26 +17,26 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
+import PublishIcon from '@mui/icons-material/Publish';
+import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-interface Data
-{
+interface Data {
     name: string;
     email: string;
-    telephone: number;
+    telephone: string;
 }
 
 function createData
-(
-    name: string,
-    email: string,
-    telephone: number,
-): 
-Data
-{
-    return{
+    (
+        name: string,
+        email: string,
+        telephone: string,
+):
+    Data {
+    return {
         name,
         email,
         telephone,
@@ -44,14 +44,14 @@ Data
 }
 
 const rows = [
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
-    createData('seller_example', 'sellerexample@example.com', 799999999),
+    createData('seller_example8', 'sellerexample8@example.com', '0799999998'),
+    createData('seller_example6', 'sellerexample6@example.com', '0799999996'),
+    createData('seller_example3', 'sellerexample3@example.com', '0799999993'),
+    createData('seller_example4', 'sellerexample4@example.com', '0799999994'),
+    createData('seller_example5', 'sellerexample5@example.com', '0799999995'),
+    createData('seller_example1', 'sellerexample1@example.com', '0799999991'),
+    createData('seller_example7', 'sellerexample7@example.com', '0799999997'),
+    createData('seller_example2', 'sellerexample2@example.com', '0799999992'),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -215,11 +215,12 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </Typography>
             )}
             {numSelected > 0 ? (
-                <Tooltip title="Approve">
+                <Tooltip title="Approve and Publish Seller">
                     <IconButton>
-                        <DeleteIcon />
+                        <PublishIcon />
                     </IconButton>
                 </Tooltip>
+
             ) : (
                 <Tooltip title="Filter list">
                     <IconButton>
@@ -227,13 +228,29 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     </IconButton>
                 </Tooltip>
             )}
+
+            {numSelected > 0 ? (
+                <Tooltip title="Decline and Delete Seller">
+                    <IconButton>
+                        <DeleteForeverSharpIcon />
+                    </IconButton>
+                </Tooltip>
+
+            ) : (
+                <Tooltip title="Info">
+                    <IconButton>
+                        <InfoOutlinedIcon />
+                    </IconButton>
+                </Tooltip>
+            )}
+
         </Toolbar>
     );
 };
 
 export default function EnhancedTable() {
     const [order, setOrder] = React.useState<Order>('asc');
-    const [orderBy, setOrderBy] = React.useState<keyof Data>('email');
+    const [orderBy, setOrderBy] = React.useState<keyof Data>('name'); //Order by name of the seller
     const [selected, setSelected] = React.useState<readonly string[]>([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
