@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
@@ -14,8 +15,8 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                 </div>
                 <div className="navbar-right">
                     <ul className="main-menu">
-                        <li>Home</li>
-                        <li>Events</li>
+                        <li><Link href="/">Home</Link></li>
+                        <li><Link href="/events">Events </Link></li>
                         <li>About us</li>
                         <li>My Accout</li>
                     </ul>
