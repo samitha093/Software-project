@@ -158,9 +158,8 @@
 
 .manager-c-ticketspublishdecline-buttons-stack
 {
-    align-items : "center" !important;
-    align-content : "center" !important; 
     align-self: center; 
+    justify-content: center;
 }
 
 .manager-c-ticketsinfo-top-head-right{
