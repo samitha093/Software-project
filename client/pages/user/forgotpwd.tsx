@@ -2,24 +2,19 @@ import React from 'react'
 import type { NextPage } from 'next'
 import {Grid} from '@mui/material';
 import Navbar from '../../components/Navbar'
-import Resetpwd from '../../components/user/Resetpwd';
+import Forgotpwd from '../../components/user/Forgotpwd';
 
 
 const resetpwd: NextPage = () => {
     return (
-            <div>
+            <div className = "buyer-bg">
             <Navbar/>
-            <Grid>
+            <Grid className = "index_container">
             <div className = "main_container">
-               <Resetpwd/>
+               <Forgotpwd/>
               </div>            
           </Grid>
       </div>
-         
-
-                
-    
-   
     );
 }
 

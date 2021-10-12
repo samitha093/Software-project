@@ -17,9 +17,13 @@ const Register: React.FC<RegisterProps> = ({}) => {
   const [password,setPassword] =React.useState<string>("");
   const [passwordError,setPasswordError] = React.useState<boolean>(false);
 
+  const [confirmPassword,setconfirmpassword] =React.useState<string>("");
+  const [validationError,setvalidationerror] = React.useState<boolean>(false);
+
   const [contact,setContact] = React.useState("");
   const [contactHasError,setContactError] = React.useState(false);
-
+  
+  const [category,setCategory] = React.useState("buyer");
 
   const nameChangeHandler = (event:any) =>{
       setName(event.target.value)
@@ -32,6 +36,12 @@ const Register: React.FC<RegisterProps> = ({}) => {
       const isValid = e.target.value.length > 5;
       setPasswordError(!isValid);
   }
+  const confirmPasswordChangeHandler = (event:any)=>{
+      setconfirmpassword(event.target.value);
+      const isValid = event.target.value.match(!password);
+      setvalidationerror(!isValid);   
+
+    }  
 
   const contactChangeHandler =(e:any) =>{
       setContact(e.target.value);
@@ -53,9 +63,10 @@ const Register: React.FC<RegisterProps> = ({}) => {
       e.preventDefault();
       setContact("");
       setPassword("");
+      setconfirmpassword("");
       setName("");
       setEmail("")
-      Router.push('/user/login');
+      Router.push('/user');
   }
 
         return (
@@ -63,7 +74,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
                 <Grid container spacing={0}>
                     <Grid item xs={7} className = "login_container">
                     <div className="form-wrapper">
-                    <Typography className = "head">Sign Up</Typography>
+                    <Typography className = "head-signup">Sign Up</Typography>
                     <form className="pricing-box">
                         {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
                         <Stack spacing = {2}>
@@ -96,6 +107,18 @@ const Register: React.FC<RegisterProps> = ({}) => {
                                   size ="small"
                                   required
                               />
+                              {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)} 
+                                        <TextField
+                                            type="password"
+                                            id="confirm-password"
+                                            placeholder="Confirm Password"
+                                            value={confirmPassword}
+                                            onChange={confirmPasswordChangeHandler}
+                                            onBlur={confirmPasswordChangeHandler}
+                                            // onBlur={emailBlurHandler}
+                                            size = "small"
+                                            required
+                                        />
                               {contactHasError && (<p className="error-message"> * Enter a valid contact number</p>)}
                               <TextField
                                   type="text"
@@ -107,17 +130,15 @@ const Register: React.FC<RegisterProps> = ({}) => {
                                   required
                               />
                             </Stack>
-                            <FormControl component="fieldset" className = "already-signup">
+                              <FormControl component="fieldset" className = "already-signup">
                               <FormLabel component="legend">You are here as</FormLabel>
-                              <RadioGroup row aria-label="You are here as" name="row-radio-buttons-group">
+                              <RadioGroup  value= {category} onChange={(e:any)=> setCategory(e.target.value)}  row aria-label="You are here as">
                                     <FormControlLabel value="buyer" control={<Radio size="small" color = "secondary" />} label="Buyer" />
                                     <FormControlLabel value="seller" control={<Radio size="small" color = "secondary" />} label="Ticket Seller" />
                                     <FormControlLabel value="manager" control={<Radio size="small" color = "secondary" />} label="Manager" />
                               </RadioGroup>
                             </FormControl>
-                        <div className="already-signup">
-                            Already have an account ? <Link href="/user/login" className="link">Sign in</Link>
-                        </div>
+                        
                         <Button className = "btnsubmit"
                                 type="submit"
                                 variant="contained"
@@ -151,3 +172,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
 }
 
 export default Register;
+
+function isValid(isValid: any) {
+    throw new Error('Function not implemented.');
+}

@@ -2,7 +2,8 @@
 .login_container{
     padding: 50px;
     align-content: center;
-    width: 100%;  
+    width: 100%;
+    height: 700px;
 }
 
 .box{
@@ -11,11 +12,45 @@
     background-color:#482D57;
     border-bottom-right-radius: 10px;
     text-align: center;
-    font-weight: bolder;
-    
-    
+    font-weight: bolder;   
 }
-.head{
+
+@media only screen and (max-width: 500px) {
+    .login_container{
+        height: max-content;
+        display: flex;
+        display: block;
+        margin-bottom: 50px;
+        padding: 10px;
+                 
+    }
+    .box{
+      display: none;
+       
+    }
+    .btnsubmit{
+        margin-top: 5px;
+        
+    }
+    .content-1{
+        display: none;
+    }
+    .content-2{
+        display: none;
+        
+    }
+   
+}
+.head-signin{
+    font-size: x-large;
+    font-weight: bolder ;
+    color: slategrey;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    text-align: center;
+   
+}
+.head-signup{
     font-size: x-large;
     font-weight: bolder ;
     color: slategrey;
@@ -24,7 +59,6 @@
     text-align: center;
    
 }
-
 .input-box{
     margin-bottom: auto;
     font-size: large;
@@ -78,7 +112,7 @@
     margin-bottom: 10px;
     margin-top: 50px;
     align-self: center;
-    font-size: medium;
+    text-size-adjust: small;
     background-color: #BB9CD1;
     resize: both;
 }
@@ -108,26 +142,56 @@
 .already-signup{
     margin-top: 20px;
     font-size: 12px;
+    text-align: center;
 
 }
 /*end - register component*/
 
 /*start - resetpwd component*/
 
-.Box-1{
-    height: 100%;
+.box-1{
     width: 100%;
-    background-color :white;
-    border-bottom-left-radius: 10px;
-
+    background-color: #E3E3ED;
+    border-bottom-right-radius: 10px;
+  
 }
 
+.head-password{
+    font-size: x-large;
+    font-weight: bolder ;
+    color: slategrey;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    text-align: center;
+}
 .pwd_container{
     padding: 50px;
     align-content: center;
     width: 100%;
-    height: 100%; 
-    background-color: #E3E3ED;
+    height: 700px;
+    
+}
 
+@media only screen and (max-width: 500px) {
+    .pwd_container{
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        display: block;
+        margin-bottom: 50px;
+        padding-left:10px;
+        padding-right: 0px;
+                
+    }
+    .box-1{
+        width: 0px;
+       display: none;
+    
+}
+    .head-password{
+          
+        display: flex;
+        font-size:large;
 
+    }
 }
