@@ -11,13 +11,13 @@ const index: NextPage = () => {
              <div className ="index_container">
              <Grid container className = "content" >
                  <Grid item xs={4}  >
-                     <Stack >
+                     <Stack spacing = {7}>
                             <div className="text-1">
-                             You dream it <br/> We ticket it
+                             You dream it <br/><br/> We ticket it
                             </div>
-                            <div className= "content-2">
-                            Please login with personal info & <br/>
-                            Keep connected with us.  
+                            <div className= "text-2">
+                            The best place to sell your <br/>
+                            fully customized event tickets  
                             </div>
                             <Button className= "btn-create"  variant="contained" startIcon = {<CreateIcon/>}>Create Event</Button>
                       </Stack>  
