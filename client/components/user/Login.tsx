@@ -46,7 +46,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                         <div className="form-wrapper">
                             <Typography className = "head-signin">Sign In</Typography>
                             <form className="pricing-box">
-                                {emailHasError && (<p className="error-message"> * Invalid email</p>)}
+                               
                                 <Stack spacing ={4}>
                                         <TextField
                                             type="email"
@@ -58,6 +58,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             size = "small"
                                             className="textfield"
                                             required
+                                            
                                         />
                                     {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
                                         <TextField
