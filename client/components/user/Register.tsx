@@ -133,8 +133,8 @@ const Register: React.FC<RegisterProps> = ({}) => {
                               />
                             </Stack>
                               <FormControl component="fieldset" className = "already-signup">
-                              <FormLabel component="legend">You are here as</FormLabel>
-                              <RadioGroup  value= {category} onChange={(e:any)=> setCategory(e.target.value)}  row aria-label="You are here as">
+                              <FormLabel component="legend" className="formlabel">You are here as</FormLabel>
+                              <RadioGroup  value= {category} onChange={(e:any)=> setCategory(e.target.value)} row >
                                     <FormControlLabel value="buyer" control={<Radio size="small" color = "secondary" />} label="Buyer" />
                                     <FormControlLabel value="seller" control={<Radio size="small" color = "secondary" />} label="Ticket Seller" />
                                     <FormControlLabel value="manager" control={<Radio size="small" color = "secondary" />} label="Manager" />

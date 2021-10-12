@@ -25,7 +25,8 @@
                  
     }
     .box{
-      display: none;
+        width: 0px;
+        display: none;
        
     }
     .btnsubmit{
@@ -94,6 +95,9 @@
     position: relative;
 
 }
+.formlabel{
+    text-align: left;
+}
 .link{
     color:#BB9CD1 ;
     font-weight: semibold;
@@ -120,7 +124,7 @@
 
 .content-1{
     font-size: larger;
-    font-weight: bolder;
+    font-weight: bolders;
     color:#8F7F98;
     text-align: center;
     padding-top:200px;
@@ -141,7 +145,7 @@
 
 .already-signup{
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
 
 }
@@ -174,17 +178,14 @@
 
 @media only screen and (max-width: 500px) {
     .pwd_container{
-        width: fit-content;
-        height: fit-content;
         display: flex;
         display: block;
-        margin-bottom: 50px;
-        padding-left:10px;
-        padding-right: 0px;
+        margin-bottom: 40px;
+        padding: 10px;
                 
     }
     .box-1{
-        width: 0px;
+       width: 0px;
        display: none;
     
 }

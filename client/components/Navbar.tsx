@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/events">Events </Link></li>
                         <li>About us</li>
-                        <li>My Accout</li>
+                        <li>My Account</li>
                     </ul>
                     <div className="cart">
                     <IconButton color="secondary" size="large" aria-label="add to shopping cart">

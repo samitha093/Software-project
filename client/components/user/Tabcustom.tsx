@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {Tabs,Tab,Typography,Box} from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 import Login from '../../components/user/Login'
 import Register from './Register';
 
@@ -45,8 +47,8 @@ export default function BasicTabs() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderColor: 'divider'}}>
         <Tabs value={value} onChange={handleChange} textColor={'secondary'} indicatorColor={'secondary'} centered>
-          <Tab label="Sign In" {...a11yProps(0)} />
-          <Tab label="Sign Up" {...a11yProps(1)} />
+          <Tab icon={<LoginIcon/>} label="Sign In" {...a11yProps(0)} />
+          <Tab icon = {<PersonPinIcon/>}label="Sign Up" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
