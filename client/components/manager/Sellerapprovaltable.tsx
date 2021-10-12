@@ -237,7 +237,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </Tooltip>
 
             ) : (
-                <Tooltip title="Info">
+                <Tooltip title="Seller can't sell items until you approve">
                     <IconButton>
                         <InfoOutlinedIcon />
                     </IconButton>
