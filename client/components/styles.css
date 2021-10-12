@@ -53,3 +53,37 @@
     }
 }
 /*end - navbar*/
+/*start - Shop*/
+.shop-home{
+    height: calc(100vh);
+}
+.new{
+    position: relative;
+}
+.shop-card-controler{
+    display: flex;
+    height: calc(var(--parent-height)*0.2);
+}
+.shop-card-controler-left{
+    color: white;
+    display: flex;
+    width: 50%;
+    background-color: #C1A700;
+    border-bottom-left-radius: 19px;
+}
+.shop-card-controler-right{
+    color: white;
+    display: flex;
+    width: 50%;
+    background-color: #943404;
+    border-bottom-right-radius: 19px;
+}
+.icon{
+    width: 55%;
+    height: calc(var(--parent-height)*0.2);
+}
+.text{
+    padding-top: 7px;
+    width: 35%;
+}
+/*end - Shop*/
