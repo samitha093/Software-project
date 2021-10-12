@@ -13,9 +13,9 @@ const settings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-settings-container">
-                        <Managerpwdreset/>
-                        <div className="manager-password-container" >   
-                        <Sellerapprovaltable/>
+                        <Managerpwdreset />
+                        <div className="manager-password-container" >
+                            <Sellerapprovaltable />
                         </div>
                     </div>
                 </div>
