@@ -22,7 +22,8 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
 
-//import Pendingeventinfo from '../../components/manager/Pendingeventinfo'
+
+//Line 80 space for the image box
 
 export default function PendingEvents() {
     const [open, setOpen] = React.useState(false);
@@ -69,19 +70,19 @@ export default function PendingEvents() {
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title" className = "manager-c-tickets-top-head-right">
+                <DialogTitle id="responsive-dialog-title" className="manager-c-ticketsinfo-top-head-right">
                     {"More Info"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <Card sx={{ maxWidth: 480 }}>
-                            <CardMedia
-                                component="img"
-                                height="200"
-                                image="/static/images/cards/contemplative-reptile.jpg"
-                                alt="Error event image not found!!!"
-                            />
-                            <CardContent>
+                        <Grid sx={{ maxWidth: 480 }}>
+                            <Grid>
+                            
+
+
+                            </Grid>
+
+                            <Grid margin-top = "20px">
                                 <Box sx={{ flexGrow: 1 }}>
                                     <Grid container spacing={2}>
                                         <Grid item xs={12}>
@@ -110,11 +111,8 @@ export default function PendingEvents() {
                                         </Grid>
                                     </Grid>
                                 </Box>
-                            </CardContent>
-                            <CardActions>
-
-                            </CardActions>
-                        </Card>
+                            </Grid>
+                        </Grid>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
