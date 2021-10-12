@@ -40,28 +40,28 @@ export default function PendingEvents() {
 
     return (
         <div>
-            <div className="manager-c-pendingtickets" onClick={handleClickOpen}>
+            <div className="manager-c-tickets" onClick={handleClickOpen}>
                 <div>
-                    <div className="manager-c-pendingtickets-top">
+                    <div className="manager-c-tickets-top">
 
 
 
-                        <div className="manager-c-pendingtickets-top-info">
-                            <div className="manager-c-pendingtickets-top-info-left">
-                                <div className="manager-c-pendingtickets-top-info-left-name">
+                        <div className="manager-c-tickets-top-info">
+                            <div className="manager-c-tickets-top-info-left">
+                                <div className="manager-c-tickets-top-info-left-name">
                                     Event name
                                 </div>
-                                <div className="manager-c-pendingtickets-top-info-left-date">
+                                <div className="manager-c-tickets-top-info-left-date">
                                     2021-08-23
                                 </div>
                             </div>
-                            <div className="manager-c-pendingtickets-top-info-right">
-                                <div className="manager-c-pendingtickets-top-info-right-nooftickets">460</div>
-                                <div className="manager-c-pendingtickets-top-info-right-tickets">tickets</div>
+                            <div className="manager-c-tickets-top-info-right">
+                                <div className="manager-c-tickets-top-info-right-nooftickets">460</div>
+                                <div className="manager-c-tickets-top-info-right-tickets">tickets</div>
                             </div>
                         </div>
                     </div>
-                    <h5 className="manager-c-pendingtickets-cardstatus">Info</h5>
+                    <h5 className="manager-c-tickets-cardstatus">Info</h5>
                 </div>
             </div>
             <Dialog
