@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useRouter} from 'next/router'
 import {Grid,Box,Stack,Typography,Button,TextField,Link,Radio,RadioGroup,FormControl,FormControlLabel,FormLabel } from '@mui/material';
 
@@ -14,10 +14,10 @@ const Register: React.FC<RegisterProps> = ({}) => {
   const [email,setEmail] = React.useState<string>("");
   const [emailHasError,setEmailError] = React.useState<boolean>(false);
 
-  const [password,setPassword] =React.useState<string>("");
+  const [password,setPassword] =React.useState("");
   const [passwordError,setPasswordError] = React.useState<boolean>(false);
 
-  const [confirmPassword,setconfirmpassword] =React.useState<string>("");
+  const [confirmPassword,setconfirmpassword] =React.useState("");
   const [validationError,setvalidationerror] = React.useState<boolean>(false);
 
   const [contact,setContact] = React.useState("");
@@ -36,11 +36,12 @@ const Register: React.FC<RegisterProps> = ({}) => {
       const isValid = e.target.value.length > 5;
       setPasswordError(!isValid);
   }
-  const confirmPasswordChangeHandler = (event:any)=>{
-      setconfirmpassword(event.target.value);
-      const isValid = event.target.value.match(!password);
-      setvalidationerror(!isValid);   
-
+  
+  const confirmPasswordChangeHandler = async(event:any)=>{
+      var me = new String(password);
+      var you = new String(confirmPassword);
+      var isEquel = JSON.stringify(me) === JSON.stringify(you);
+      setvalidationerror(!isEquel);
     }  
 
   const contactChangeHandler =(e:any) =>{
@@ -103,7 +104,8 @@ const Register: React.FC<RegisterProps> = ({}) => {
                                   id="password"
                                   placeholder="Password"
                                   value={password}
-                                  onChange={passwordChangeHandler}
+                                  onChange={(e)=>setPassword(e.target.value)} 
+                                  //onChange={passwordChangeHandler}
                                   size ="small"
                                   required
                               />
@@ -113,9 +115,9 @@ const Register: React.FC<RegisterProps> = ({}) => {
                                             id="confirm-password"
                                             placeholder="Confirm Password"
                                             value={confirmPassword}
-                                            onChange={confirmPasswordChangeHandler}
+                                            onChange={(e)=>setconfirmpassword(e.target.value)} 
+                                            //onChange={confirmPasswordChangeHandler}
                                             onBlur={confirmPasswordChangeHandler}
-                                            // onBlur={emailBlurHandler}
                                             size = "small"
                                             required
                                         />
