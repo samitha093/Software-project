@@ -9,7 +9,7 @@ const index: NextPage = () => {
             <div className="index-bg">
              <Navbar/>
              <div className ="index_container">
-             <Grid container >
+             <Grid container className = "content" >
                  <Grid item xs={4}  >
                      <Stack >
                             <div className="text-1">
