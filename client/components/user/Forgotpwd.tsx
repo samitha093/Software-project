@@ -13,37 +13,28 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
         <div >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
-                <Grid item xs={7} className = "pwd_container" >
+                <Grid item sm={7} className = "pwd_container" >
                 <div className="form-wrapper">
                         <Typography className = "head-password">Forgot Password</Typography>
                         <form className="pricing-box">
-                            <Stack spacing ={4}>
-                                <TextField
-                                    type="password"
-                                    id="new-password"
-                                    placeholder="New Password"
-                                    size = "small"
-                                    className="textfield"
-                                    required
-                                        />
-                                <TextField
-                                    type="password"
-                                    id="confirm-password"
-                                    placeholder="Confirm Password"
-                                    size = "small"
-                                    className="textfield"
-                                    required
-                                        />        
-                             </Stack>
+                         <TextField
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                               // value={email}
+                                size = "small"
+                                className="textfield"
+                                required                   
+                        />
+                                
                         </form>
                              <Button className = "btnsubmit"
                                                 type="submit"
                                                 variant="contained"
-                            
                                                 size = "small"
                                         >
-                                            Reset Password
-                                        </Button>
+                                            send email
+                             </Button>
                    </div>
                     
                 </Grid>

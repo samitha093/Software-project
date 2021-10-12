@@ -1,10 +1,18 @@
 import React from 'react'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import CreateIcon from '@mui/icons-material/Create';
-import { Typography,Button,TextField,Link,Box,Grid,Stack} from '@mui/material';
+import {Button,Grid,Stack} from '@mui/material';
 import Navbar from '../components/Navbar'
 
 const index: NextPage = () => {
+    const router = useRouter()
+
+    const create = (event:any)=>{
+    event.preventDefault();
+    router.push('/user'); 
+       
+    }
         return (
             <div className="index-bg">
              <Navbar/>
@@ -19,7 +27,12 @@ const index: NextPage = () => {
                             The best place to sell your <br/>
                             fully customized event tickets  
                             </div>
-                            <Button className= "btn-create"  variant="contained" startIcon = {<CreateIcon/>}>Create Event</Button>
+                            <Button 
+                            className= "btn-create" 
+                             variant="contained" 
+                             startIcon = {<CreateIcon/>}
+                             onClick={create}
+                             >Create Event</Button>
                       </Stack>  
               </Grid>  </Grid>  
 
