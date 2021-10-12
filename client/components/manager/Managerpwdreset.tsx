@@ -46,6 +46,7 @@ const Managerpwdreset: React.FC<ManagerpwdresetProps> = ({ }) => {
                                 type="submit"
                                 variant="contained"
                                 size="small"
+                                alignment = "center"
                             >
                                 Submit
                             </Button>
