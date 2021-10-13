@@ -174,6 +174,12 @@
     color: white;
 }
 
+.manager-eventinfo-image{
+    background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
+    height: 150px;
+    width: 200px;
+    padding: 10px;
+}
 
 /*manager password reset component*/
 
@@ -203,6 +209,8 @@
     align-self: center;
     width: 100%;
     height: 100%;
+    background-color: transparent !important;
+    opacity: 100%;
 }
 
 .manager-password-box2{
@@ -211,6 +219,7 @@
     flex-direction: column;
     position: relative;
     size: auto;
+    margin: 10px;
 }
 .manager-password-form-wrapper{
     width: 400px;
@@ -224,10 +233,10 @@
 
     width: 40%;
     margin-bottom: 10px;
-    margin-top: 50px;
-    align-self: center;
+    margin-top: 10px;
+    align-self: center !important;
     font-size: medium;
     background-color: #BB9CD1;
     resize: both;
-    justify-content: center;
+    justify-content: center !important;
 }

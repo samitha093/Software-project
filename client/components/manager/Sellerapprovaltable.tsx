@@ -368,9 +368,7 @@ export default function EnhancedTable() {
                                                 {row.name}
                                             </TableCell>
                                             <TableCell align="center">{row.email}</TableCell>
-                                            <TableCell align="center">{row.fat}</TableCell>
                                             <TableCell align="center">{row.telephone}</TableCell>
-                                            <TableCell align="center">{row.protein}</TableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -397,8 +395,8 @@ export default function EnhancedTable() {
                 />
             </Paper>
             <FormControlLabel
-                control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                control={<Switch checked={dense} onChange={handleChangeDense}/>}
+                label="Dense Padding"
             />
         </Box>
     );
