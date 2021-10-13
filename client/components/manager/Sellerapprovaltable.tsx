@@ -17,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import PublishIcon from '@mui/icons-material/Publish';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -154,7 +154,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'center' : 'left'}
+                        align={headCell.numeric ? 'center' : 'center'}  //'center':'left'
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -205,7 +205,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     {numSelected} selected
                 </Typography>
             ) : (
-                <Typography
+                <Typography className ="manager-settings-head"
                     sx={{ flex: '1 1 100%' }}
                     variant="h6"
                     id="tableTitle"
@@ -217,7 +217,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
             {numSelected > 0 ? (
                 <Tooltip title="Approve and Publish Seller">
                     <IconButton>
-                        <PublishIcon />
+                        <AddTaskIcon />
                     </IconButton>
                 </Tooltip>
 
