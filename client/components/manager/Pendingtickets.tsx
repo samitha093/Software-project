@@ -7,12 +7,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import Button from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PublishIcon from '@mui/icons-material/Publish';
 import Stack from '@mui/material/Stack';
@@ -77,9 +73,10 @@ export default function PendingEvents() {
                     <DialogContentText>
                         <Grid sx={{ maxWidth: 480 }}>
                             <Grid>
-                            
+                                <div className="manager-eventinfo-image">
 
-
+                                </div>
+                        
                             </Grid>
 
                             <Grid margin-top = "20px">

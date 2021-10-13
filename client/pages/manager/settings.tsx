@@ -14,13 +14,13 @@ const settings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-index-container">
-                        <Grid container lg={12} margin-top="20px" maxWidth="480px" justifyContent="center">
+                        <Grid container lg={12} className="manager-settings-container-center" justifyContent="center">
                             <div>
                                 <Sellerapprovaltable />
                             </div>
                         </Grid>
 
-                        <Grid container lg={12} margin-top="20px" maxWidth="480px" justifyContent="center">
+                        <Grid container lg={12} className="manager-settings-container-center" justifyContent="center">
                             <div>
                                 <Managerpwdreset />
                             </div >
