@@ -6,7 +6,7 @@ import {Grid} from '@mui/material';
 
 const index: NextPage = () => {
     return (
-        <div className="buyer-bg">
+        <div style={{backgroundColor:"#FBFBF4"}}>
              <Navbar/>
              <Grid className = "index_container">
               <div className = "main_container">
