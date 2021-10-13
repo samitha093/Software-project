@@ -178,12 +178,13 @@
 /*manager password reset component*/
 
 .manager-settings-head{
-    font-size: x-large;
-    font-weight: bolder ;
-    color: slategrey;
+    font-size: x-large !important;
+    font-weight: bolder !important ;
+    color: slategrey !important;
     margin-bottom: 40px;
     margin-top: 50px;
-    text-align: center;
+    text-align: center !important;
+    text-decoration: underline !important;
    
 }
 .manager-password-box{
@@ -201,8 +202,7 @@
     align-content: center;
     align-self: center;
     width: 100%;
-    height: 100%; 
-    background-color: #E3E3ED;
+    height: 100%;
 }
 
 .manager-password-box2{
@@ -229,4 +229,5 @@
     font-size: medium;
     background-color: #BB9CD1;
     resize: both;
+    justify-content: center;
 }
