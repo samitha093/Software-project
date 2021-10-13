@@ -39,7 +39,6 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                     
                 </Grid>
                 <Grid item xs className = "box-1" >
-               
                     <Image
                      src = {lock}
                      layout = "responsive"

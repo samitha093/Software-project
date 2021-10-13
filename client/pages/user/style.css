@@ -14,7 +14,7 @@
 
 @media only screen and (max-width: 800px) {
     .main_container{
-        width : 300px;
+        width : 400px;
 		margin-left: 150px;
 		margin-right: 50px;
     }
@@ -52,9 +52,10 @@
     
 }
 
+
 .btn-create{
 	width :40%;
-	margin-top: 50px;
+	margin-top: 100px;
 	margin-top: 200px;
     text-size-adjust: small;
     background-color: #764777;
@@ -92,22 +93,31 @@
 /*start - About page*/
 
 .grid-container{
-	display: flex;
-	flex-direction: row;
-	margin :100px;
-	background-color: #905f91;
+	border-radius: 1px;
+	width :1500px;
+	margin-left: 250px;
+	margin-right: 150px;;
+	
+
 }
-.Images{
-	width: 500px;
-    align-content: center;
-	padding: 50px;
-	height: fit-content;
+.head-about{
+	text-align: center;
+	font-weight: bolder;
+	color: rgb(212, 99, 99);
+	margin-bottom: 50px;
+	margin-top: 50px;
+
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 900px) {
     .grid-container{
 
      display: block;
+	 margin-left:100px;
     }
 }
+
+
+
+
 /*end - About page*/
