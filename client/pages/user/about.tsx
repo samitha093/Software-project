@@ -3,8 +3,9 @@ import type { NextPage } from 'next'
 import Image from 'next/image';
 import lock from '../../assets/forgot-password.png'
 import Navbar from '../../components/Navbar'
+import Mediacard from '../../components/user/Media-card'
 import {Grid,Box, Typography} from '@mui/material';
-import Mediacard from '../../components/user/Media-card';
+
 
 const about: NextPage = () => {
     return (
