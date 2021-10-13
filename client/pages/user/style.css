@@ -1,3 +1,4 @@
+/*start - User Index page*/
 .main_container{
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
@@ -10,6 +11,7 @@
 	
 	
 }
+
 @media only screen and (max-width: 800px) {
     .main_container{
         width : 300px;
@@ -37,6 +39,8 @@
     }
     
 }
+
+/*end - UserIndex page*/
 
 /*start - Index page*/
 .index-bg{
@@ -84,3 +88,26 @@
      font-size: 0;
     }
 }
+
+/*start - About page*/
+
+.grid-container{
+	display: flex;
+	flex-direction: row;
+	margin :100px;
+	background-color: #905f91;
+}
+.Images{
+	width: 500px;
+    align-content: center;
+	padding: 50px;
+	height: fit-content;
+}
+
+@media only screen and (max-width: 400px) {
+    .grid-container{
+
+     display: block;
+    }
+}
+/*end - About page*/

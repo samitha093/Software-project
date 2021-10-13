@@ -13,7 +13,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
         <div >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
-                <Grid item sm={7} className = "pwd_container" >
+                <Grid item md={7} className = "pwd_container" >
                 <div className="form-wrapper">
                         <Typography className = "head-password">Forgot Password</Typography>
                         <form className="pricing-box">
