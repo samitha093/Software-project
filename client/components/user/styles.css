@@ -151,6 +151,7 @@
 }
 /*end - register component*/
 
+
 /*start - forgotpwd component*/
 
 .box-1{
@@ -201,7 +202,6 @@
 
 
 /*start - mediacard component*/
-
 .root{
     max-width: 950px;
     margin-bottom: 50px;
@@ -211,6 +211,4 @@
     height: 400px;
    
 }
-
-
 /*end- mediacard component*/

@@ -7,7 +7,6 @@ import CreditCardTwoToneIcon from '@mui/icons-material/CreditCardTwoTone';
 import Mediacard from '../../components/user/Media-card';
 import {Grid, Typography} from '@mui/material';
 
-
 const about: NextPage = () => {
     return (
         <div className="buyer-bg">
@@ -17,7 +16,7 @@ const about: NextPage = () => {
             <Typography variant="h4" fontWeight="bold" className ="head-about">Welcome ! to TickBid Event Ticketing Platform</Typography>
                 <EventSeatTwoToneIcon fontSize= "large"/>
                  <Mediacard 
-                 image = {require("../../assets/Seat.jpeg")}
+                 image = {require("../../public/Seat.jpeg")}
                  title = "Reserve your seat with  Online Ticketing Platform"
                  description ="This is a convenient ticketing platform to all with tight
                                schedules now can simply visit us to quick check the best event

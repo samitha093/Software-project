@@ -1,8 +1,8 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import{Card,CardContent,CardMedia, CardActions,Typography} from '@mui/material'
+import { height } from '@mui/system';
    
 interface cardProps {
     image: string;
@@ -16,8 +16,10 @@ const Mediacard: React.FC<cardProps> = ({image,title,description}) => {
     return(
         <Card className = "root">
               <CardMedia
-              className ="media"
-              image = {image}
+              style ={{height:400}}
+              component = "img"
+              image={image}
+              
               >
               </CardMedia>
               <CardContent>
