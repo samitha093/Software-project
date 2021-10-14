@@ -151,6 +151,8 @@
 }
 /*end - register component*/
 
+
+
 /*start - forgotpwd component*/
 
 .box-1{
@@ -164,7 +166,7 @@
     font-size: x-large;
     font-weight: bolder ;
     color: slategrey;
-    margin-bottom: 70px;
+    margin-bottom: 100px;
     margin-top: 50px;
     text-align: center;
 }
@@ -172,8 +174,12 @@
     padding: 50px;
     align-content: center;
     width: 100%;
-    height: 700px;
+    height: 600px;
     
+}
+.img{
+    padding-top: 500px;
+    width: 50%;
 }
 
 @media only screen and (max-width: 500px) {
@@ -200,15 +206,17 @@
 /*end- forgotpwd component*/
 
 
+
 /*start - mediacard component*/
 
 .root{
     max-width: 950px;
     margin-bottom: 50px;
-    background-color: #dac9e652;
+    background-color: #dac9e611;
 }
 .media{
     height: 400px;
+    padding-top: 5px;
    
 }
 
