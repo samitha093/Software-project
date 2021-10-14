@@ -16,7 +16,7 @@ const about: NextPage = () => {
             <Typography variant="h4" fontWeight="bold" className ="head-about">Welcome ! to TickBid Event Ticketing Platform</Typography>
                 <EventSeatTwoToneIcon fontSize= "large"/>
                  <Mediacard 
-                 image = {require("../../public/Seat.jpeg")}
+                 image = {"../../assets/Seat.jpeg"}
                  title = "Reserve your seat with  Online Ticketing Platform"
                  description ="This is a convenient ticketing platform to all with tight
                                schedules now can simply visit us to quick check the best event
