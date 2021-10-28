@@ -58,24 +58,28 @@
     height: calc(100vh);
 }
 .new{
+    margin: 30px 10px!important;
     position: relative;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5)  ; 
+	-webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5)  ; 
+	-moz-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5)  ; 
 }
 .shop-card-controler{
     display: flex;
     height: calc(var(--parent-height)*0.2);
 }
 .shop-card-controler-left{
-    color: white;
+    color: black;
     display: flex;
     width: 50%;
-    background-color: #C1A700;
+    background-color: white;
     border-bottom-left-radius: 19px;
 }
 .shop-card-controler-right{
-    color: white;
+    color: black;
     display: flex;
     width: 50%;
-    background-color: #943404;
+    background-color: white;
     border-bottom-right-radius: 19px;
 }
 .icon{

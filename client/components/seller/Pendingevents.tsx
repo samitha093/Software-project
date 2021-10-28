@@ -11,6 +11,7 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
 
     const handleClickOpen = () => {
         setOpen(true);
+        console.log('asd');
     };
 
     const handleClose = () => {
