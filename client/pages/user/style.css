@@ -1,54 +1,69 @@
-
-/*start - Index page*/
-.index-bg{
-	background-image: url("../../assets/Landing-bg.png");
-	background-size: cover;
-	padding: 0;
+/*Start-index page*/
+.main-container{
+	min-height: 100vh;
 	width: 100%;
-	height: 100%;
-    
-}
-
-
-.btn-create{
-	width :40%;
-	margin-top: 100px;
-	margin-top: 200px;
-    text-size-adjust: small;
-    background-color: #764777;
-    resize: both;
-
-}
-.btn-create:hover {background-color:#905f91 }
-
-.text-1{
-
-	font-size: xx-large;
-	font-weight: bold;
-	font-style: italic;
-	margin-bottom: 10pxcd;
-	text-decoration: #764777;
-}
-.text-2{
-
-	font-size: large;
-	margin-bottom: 100px;
-	text-decoration: #8d898d;
-	
-}
-.content{
+	background-image: url("../../assets/bg.png");
+	background-size: cover;
+  }
+  .top-container{
+	height: auto;
+	width: 100%;
+	display: flex;
+  }
+  .left-container{
+	height: auto;
+	width: 50%;
+	display: flex row;
 	margin-top: 150px;
-	margin-left: 150px;
-}
+    margin-left: 150px;
+  
+	}
+  
+.right-container{
+	height: auto;
+	width: 50%;
+	display: flex row;
+	justify-content: center;
+  
+  
+	} 
+  
+.btn-create{
+	  width :30%;
+	  margin-top: 100px;
+	  margin-top: 30px;
+	  text-size-adjust: small;
+	  background-color: #764777;
+	  resize: both;
+	
+	}
+.btn-create:hover {background-color:#905f91 }
+	
+.text-1{
+	
+	  font-size: xx-large;
+	  font-weight: bold;
+	  font-style: italic;
+	  margin-bottom: 10pxcd;
+	  text-decoration: #764777;
+	}
+	.text-2{
+	
+	  font-size: large;
+	  margin-bottom: 100px;
+	  margin-top: 30px;
+	  text-decoration: #8d898d;
+	  
+	}
+	
+  /*End-index page*/
+
 
 @media only screen and (max-width: 900px) {
     .btn-create{
      font-size: 0;
     }
 }
-
-/*end - Index page*/
-
 
 
 /*start - User Index page*/

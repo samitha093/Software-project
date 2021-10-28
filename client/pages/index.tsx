@@ -14,28 +14,28 @@ const index: NextPage = () => {
        
     }
         return (
-            <div className="index-bg">
+            
+            <div className="main-container">
              <Navbar/>
-             <div className ="index_container">
-             <Grid container className = "content" >
-                 <Grid item xs={4}  >
-                     <Stack spacing = {7}>
+             <div className ="top-container">
+                 <div className ="left-container">
                             <div className="text-1">
-                             You dream it <br/><br/> We ticket it
+                             You dream it <br/> We ticket it
                             </div>
                             <div className= "text-2">
                             The best place to sell your <br/>
-                            fully customized event tickets  
+                            fully customized event tickets.<br/><br/>
+                            Join with TickBid today
                             </div>
                             <Button 
                             className= "btn-create" 
                              variant="contained" 
                              startIcon = {<CreateIcon/>}
                              onClick={create}
-                             >Create Event</Button>
-                      </Stack>  
-              </Grid>  </Grid>  
-
+                             >Create Event</Button> 
+                 </div>
+                 <div className ="left-container"></div>
+            
              </div>
              
            </div>
