@@ -12,6 +12,30 @@ const Shop: React.FC<ShopProps> = ({}) => {
                 <Shopcard level='2'/>
                 <Shopcard level='1'/>
                 <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='5'/>
+                <Shopcard level='2'/>
+                <Shopcard level='1'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='5'/>
+                <Shopcard level='2'/>
+                <Shopcard level='1'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='5'/>
+                <Shopcard level='2'/>
+                <Shopcard level='1'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
+                <Shopcard level='3'/>
             </div>
         );
 }
