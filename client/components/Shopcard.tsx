@@ -121,7 +121,6 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                 <div className='shop-card-controler'>
                     <div className='shop-card-controler-left'>
                         <div className='icon'>
-
                         </div>
                         <div className='text'>
                             Buy
@@ -129,7 +128,6 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                     </div>
                     <div className='shop-card-controler-right'>
                         <div className='icon'>
-
                         </div>
                         <div className='text'>
                             Bid
