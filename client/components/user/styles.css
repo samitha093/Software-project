@@ -151,7 +151,8 @@
 }
 /*end - register component*/
 
-/*start - resetpwd component*/
+
+/*start - forgotpwd component*/
 
 .box-1{
     width: 100%;
@@ -196,3 +197,18 @@
 
     }
 }
+
+/*end- forgotpwd component*/
+
+
+/*start - mediacard component*/
+.root{
+    max-width: 950px;
+    margin-bottom: 50px;
+    background-color: #dac9e652;
+}
+.media{
+    height: 400px;
+   
+}
+/*end- mediacard component*/

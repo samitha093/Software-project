@@ -1,9 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Icon from '@mdi/react';
-//import { mdiHomeOutline } from '@mdi/js';
 import { mdiLanPending  } from '@mdi/js';
-//import { mdiCheckDecagramOutline } from '@mdi/js';
 import { mdiCheckboxMultipleOutline } from '@mdi/js';
 import { mdiCloseBoxMultipleOutline  } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
