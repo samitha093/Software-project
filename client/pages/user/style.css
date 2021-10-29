@@ -5,24 +5,25 @@
 	background-image: url("../../assets/bg.png");
 	background-size: cover;
   }
-  .top-container{
+.top-container{
 	height: auto;
 	width: 100%;
 	display: flex;
+	margin-top: 100px;
+	
   }
-  .left-container{
+.left-container{
 	height: auto;
 	width: 50%;
-	display: flex row;
-	margin-top: 150px;
-    margin-left: 150px;
+	display: block;
+	
   
-	}
+}
   
 .right-container{
 	height: auto;
 	width: 50%;
-	display: flex row;
+	display: block;
 	justify-content: center;
   
   
@@ -30,7 +31,6 @@
   
 .btn-create{
 	  width :30%;
-	  margin-top: 100px;
 	  margin-top: 30px;
 	  text-size-adjust: small;
 	  background-color: #764777;
@@ -40,21 +40,28 @@
 .btn-create:hover {background-color:#905f91 }
 	
 .text-1{
-	
+
+	  display: flex;
+	  justify-content: center;
 	  font-size: xx-large;
 	  font-weight: bold;
 	  font-style: italic;
 	  margin-bottom: 10pxcd;
-	  text-decoration: #764777;
+	  text-decoration: #8b5d8b;
 	}
-	.text-2{
-	
-	  font-size: large;
+.text-2{
+      display: flex;
+	  justify-content: center;
+	  font-size: medium;
 	  margin-bottom: 100px;
 	  margin-top: 30px;
-	  text-decoration: #8d898d;
+	  text-decoration: #9b979b;
 	  
 	}
+.btn-class{
+   display: flex;
+   justify-content: center;
+}
 	
   /*End-index page*/
 
@@ -62,6 +69,12 @@
 @media only screen and (max-width: 900px) {
     .btn-create{
      font-size: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .top-container{
+     display: block;
     }
 }
 
@@ -76,6 +89,7 @@
 	margin-right: 150px;;
 	margin-top: 30px;
 	background-color: white;
+	justify-content: center;
 	
 	
 }

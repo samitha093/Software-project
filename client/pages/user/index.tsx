@@ -1,20 +1,21 @@
-import React,{ useState, useEffect} from 'react'
-import ReactDOM from "react-dom";
+import React from 'react'
 import type { NextPage } from 'next'
 import Navbar from '../../components/Navbar'
 import Tabcustom from '../../components/user/Tabcustom'
 import {Grid} from '@mui/material';
+import Login from '../../components/user/Login-Register';
 
 const index: NextPage = () => {
-  return (
-      <div style={{backgroundColor:"#FBFBF4"}}>
-        <Navbar/>
-        <Grid className = "index_container">
-          <div className = "main_container">
-            <Tabcustom />
-          </div>   
-        </Grid>
-      </div>
-  );
+    return (
+        <div className ="main-container">
+             <Navbar/>
+             
+              <div className="main-background">
+                <Login/>
+              </div>   
+         
+              
+        </div>
+    );
 }
 export default index;
