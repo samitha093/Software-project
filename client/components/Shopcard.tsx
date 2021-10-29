@@ -13,82 +13,32 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
+import { TryRounded } from '@mui/icons-material';
 
 interface ShopcardProps {
   level : string,
  }
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuDialogActions-root': {
-    padding: theme.spacing(1),
-  },
-}));
-
-export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose: () => void;
-}
-
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
-  const { children, onClose, ...other } = props;
-
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-};
 const Shopcard: React.FC<ShopcardProps> = ({level}) => {
-  const [open, setOpen] = React.useState(false);
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");
-  const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
   useEffect(()=>{
     setTicketcolor("#881700");
     setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
     setTicketlevel(level);
-    if( level == "1"){
-      setTicketlevelcolor("#57B473");
-    }else if(level == "2"){
-      setTicketlevelcolor("#752E9E");
-    }else if(level == "3"){
-      setTicketlevelcolor("#5776B4");
-    }else if(level == "4"){
-      setTicketlevelcolor("#AE006E");
-    }else{
-      setTicketlevelcolor("#AE6300");
-    }
     
   },[])
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen_buy = () => {
+    console.log('buy');
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleClickOpen_bid = () => {
+    console.log('bid');
   };
 
   return (
     <div>
-        <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid new" onClick={handleClickOpen}>
+        <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid new">
             
                 <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
                     <div className="buyer-c-ticketunvalid-top-head">
@@ -119,14 +69,14 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                     </div>
                 </div>
                 <div className='shop-card-controler'>
-                    <div className='shop-card-controler-left'>
+                    <div className='shop-card-controler-left' onClick={handleClickOpen_buy}>
                         <div className='icon'>
                         </div>
                         <div className='text'>
                             Buy
                         </div>
                     </div>
-                    <div className='shop-card-controler-right'>
+                    <div className='shop-card-controler-right' onClick={handleClickOpen_bid}>
                         <div className='icon'>
                         </div>
                         <div className='text'>
