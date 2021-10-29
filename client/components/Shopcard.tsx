@@ -14,6 +14,8 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import { TryRounded } from '@mui/icons-material';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 
 interface ShopcardProps {
   level : string,
@@ -71,6 +73,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                 <div className='shop-card-controler'>
                     <div className='shop-card-controler-left' onClick={handleClickOpen_buy}>
                         <div className='icon'>
+                        <AddShoppingCartOutlinedIcon />
                         </div>
                         <div className='text'>
                             Buy
@@ -78,6 +81,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                     </div>
                     <div className='shop-card-controler-right' onClick={handleClickOpen_bid}>
                         <div className='icon'>
+                          <PanToolOutlinedIcon />
                         </div>
                         <div className='text'>
                             Bid

@@ -83,8 +83,12 @@
     border-bottom-right-radius: 19px;
 }
 .icon{
+    display: flex;
+    justify-content: end;
+    padding-top: 7px;
     width: 55%;
     height: calc(var(--parent-height)*0.2);
+    padding-right: 10px;
 }
 .text{
     padding-top: 7px;
