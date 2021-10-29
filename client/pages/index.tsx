@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import CreateIcon from '@mui/icons-material/Create';
-import {Button,Grid,Stack} from '@mui/material';
+import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
 
 const index: NextPage = () => {
@@ -27,14 +27,16 @@ const index: NextPage = () => {
                             fully customized event tickets.<br/><br/>
                             Join with TickBid today
                             </div>
+                            <div className="btn-class">
                             <Button 
                             className= "btn-create" 
                              variant="contained" 
                              startIcon = {<CreateIcon/>}
                              onClick={create}
-                             >Create Event</Button> 
+                             >Create Event</Button>
+                             </div> 
                  </div>
-                 <div className ="left-container"></div>
+                 <div className ="right-container"></div>
             
              </div>
              
