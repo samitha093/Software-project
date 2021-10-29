@@ -1,6 +1,8 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import Image from 'next/image';
+import ticket from '../assets/online-ticket.png'
 import CreateIcon from '@mui/icons-material/Create';
 import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
@@ -36,7 +38,13 @@ const index: NextPage = () => {
                              >Create Event</Button>
                              </div> 
                  </div>
-                 <div className ="right-container"></div>
+                 <div className ="right-container">
+                 <Image
+                     src = {ticket}
+                     layout = "responsive"
+                     m-50
+                    ></Image>   
+                 </div>
             
              </div>
              
