@@ -23,6 +23,28 @@
     padding: 7px;
     cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+    .manager-c-sidebar{
+        width: 100%;
+        height: auto;
+        min-height: 0px;
+        padding: 10px 10px 0px;
+        
+    }
+    .manager-c-sidebar-container{
+        display: flex;
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    .manager-c-sidebar-item{
+        margin-top: 0px;
+        width: 15%;
+        margin: 0 1%;
+        height: auto;
+    }
+}
 /*end - sidebar component*/
 
 
@@ -173,12 +195,15 @@
     padding-left: auto;
     color: white;
 }
-
 .manager-eventinfo-image{
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    height: 150px;
-    width: 200px;
+    height:calc(var(--parent-height)*0.5);
+    width: 100%;
     padding: 10px;
+}
+.manager-eventinfo-font
+{
+    color:black
 }
 
 /*manager password reset component*/

@@ -8,10 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PublishIcon from '@mui/icons-material/Publish';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -76,32 +76,32 @@ export default function PendingEvents() {
                                 <div className="manager-eventinfo-image">
 
                                 </div>
-                        
+
                             </Grid>
 
-                            <Grid margin-top = "20px">
+                            <Grid margin-top="20px">
                                 <Box sx={{ flexGrow: 1 }}>
-                                    <Grid container spacing={2}>
+                                    <Grid container spacing={2} className="manager-eventinfo-font">
                                         <Grid item xs={12}>
-                                            <Typography> Event Name </Typography>
+                                            <Typography> Event Name: </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography> Organaizer </Typography>
+                                            <Typography> Organaizer: </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography> Venue </Typography>
+                                            <Typography> Venue: </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography> Date </Typography>
+                                            <Typography> Date: </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography> Time </Typography>
+                                            <Typography> Time: </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography> Starting Date </Typography>
+                                            <Typography> Starting Date: </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography> Ending Date </Typography>
+                                            <Typography> Ending Date: </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Pendingeventstable />
@@ -114,10 +114,10 @@ export default function PendingEvents() {
                 </DialogContent>
                 <DialogActions>
                     <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
-                        <Button variant="contained" endIcon={<PublishIcon />}>
-                            Publish
+                        <Button variant="contained" startIcon={<PublishIcon />}>
+                            Approve
                         </Button>
-                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+                        <Button variant="outlined" endIcon={<DeleteIcon />}>
                             Decline
                         </Button>
                     </Stack>
