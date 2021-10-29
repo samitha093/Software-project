@@ -7,13 +7,12 @@ import Forgotpwd from '../../components/user/Forgotpwd';
 
 const resetpwd: NextPage = () => {
     return (
-            <div style={{backgroundColor:"#FBFBF4"}}>
+            <div className="main-container">
             <Navbar/>
-            <Grid className = "index_container">
-            <div className = "main_container">
+            <div className = "main-background">
                <Forgotpwd/>
-              </div>            
-          </Grid>
+            </div>            
+        
       </div>
     );
 }
