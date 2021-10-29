@@ -105,7 +105,6 @@ const Login: React.FC<LoginProps> = ({}) => {
     
     return(
 
-      
         <div className="container" id="container">
 
           <div className="form-container sign-up-container">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from 'next/router'
+
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import {Box,Grid,} from '@mui/material';
@@ -27,7 +27,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                 <div className="form-wrapper">
                         <form className='modern-form' action="#">
                          <h1 className = "head-password" >Forgot Password</h1>
-              
+                         {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
                         <input 
                          className='inputbox-modern' 
                          type="email" 

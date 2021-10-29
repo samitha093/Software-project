@@ -15,9 +15,7 @@
 .left-container{
 	height: auto;
 	width: 50%;
-	display: block;
-	
-  
+	display: block; 
 }
   
 .right-container{
@@ -25,7 +23,6 @@
 	width: 50%;
 	display: block;
 	justify-content: center;
-  
   
 	} 
   
@@ -63,9 +60,6 @@
    justify-content: center;
 }
 	
-  /*End-index page*/
-
-
 @media only screen and (max-width: 900px) {
     .btn-create{
      font-size: 0;
@@ -78,48 +72,8 @@
     }
 }
 
+ /*End-index page*/
 
-/*start - User Index page*/
-.main_container{
-	border-radius: 10px;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-	width :950px;
-	margin-left: 300px;
-	margin-right: 150px;;
-	margin-top: 30px;
-	background-color: white;
-	justify-content: center;
-	display: flex;
-    overflow: auto;
-	
-	
-}
-
-@media only screen and (max-width: 800px) {
-    .main_container{
-        width : 400px;
-		margin-left: 150px;
-		margin-right: 50px;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .main_container{
-        display: block;
-		overflow: hidden;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .index-bg{
-        display: block;
-        overflow: auto;
-    }
-    
-}
-
-/*end - UserIndex page*/
 
 
 
