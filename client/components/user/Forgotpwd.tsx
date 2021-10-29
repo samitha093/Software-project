@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import {Box,Grid,} from '@mui/material';

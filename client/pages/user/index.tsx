@@ -5,7 +5,7 @@ import Login from '../../components/user/Login-Register';
 
 const index: NextPage = () => {
     return (
-        <div className ="main-container">
+        <div className ="main-container-1">
              <Navbar/>
              
               <div className="main-background">

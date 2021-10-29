@@ -10,10 +10,10 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({}) => {
         return (
             <div className="navbar">
-                <div className="navbar-left" style={{background:"#dac9e611"}}>
+                <div className="navbar-left" >
                     TickBid
                 </div>
-                <div className="navbar-right" style={{background:"#dac9e611"}}>
+                <div className="navbar-right" >
                     <ul className="main-menu">
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/events">Events </Link></li>
