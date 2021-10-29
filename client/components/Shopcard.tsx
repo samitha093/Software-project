@@ -94,7 +94,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                     <div className="buyer-c-ticketunvalid-top-head">
                         <div className="buyer-c-ticketunvalid-top-head-left">
                         </div>
-                        <div style={{backgroundColor: Ticketlevelcolor}} className="buyer-c-ticketunvalid-top-head-right">
+                        <div style={{backgroundColor: '#424242'}} className="buyer-c-ticketunvalid-top-head-right">
                             <div className="buyer-c-ticketunvalid-top-head-right-1">
                                 Level
                             </div>
@@ -136,33 +136,6 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                 </div>
             
         </div>
-
-
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-            <InputLabel htmlFor="filled-adornment-amount">Amount for a Ticket</InputLabel>
-            <FilledInput
-              id="filled-adornment-amount"
-              startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
-            />
-          </FormControl>
-          <div className='x'><center><b>X</b></center></div>
-          <div><center>4 Tickes</center></div>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
-      </BootstrapDialog>
     </div>
   );
 }
