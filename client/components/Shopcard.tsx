@@ -145,7 +145,14 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
-            <h1>Evante Name</h1>  
+            <h1>Evante Name - Evante Name Evante Name</h1>  
+          </div>
+          <div className='ticketview-data'>
+            <div>Event Location : jhfhshhashkashghlkhLKHFS</div>
+            <div>Event Date : 2021 JAN 23</div>
+            <div>Event Time :  07 : 00 pm</div>
+            <div>Ticket Type :  LEVEL 2</div>
+            <div>In Stock : 400 Tickets</div>
           </div>  
           <div className='ticketview-price'>
             LKR 1490.00
@@ -156,8 +163,10 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
               <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt=""/></div> 
               <div className='ticketview-count-number-num'> 5 </div>
               <div className='ticketview-count-number+'><Image className='button-img' src={add} width={'20px'} height={'20px'} alt=""/></div>
-             
             </div>
+          </div>
+          <div className='ticketview-price-btn'>
+            PAY NOW ( LKR 1490.00 )
           </div>
         </DialogContent>
       </BootstrapDialog>
