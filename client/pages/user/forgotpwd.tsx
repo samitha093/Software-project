@@ -1,6 +1,5 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import {Grid} from '@mui/material';
 import Navbar from '../../components/Navbar'
 import Forgotpwd from '../../components/user/Forgotpwd';
 
