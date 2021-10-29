@@ -279,19 +279,13 @@ button.ghost {
     .head-signup{
     font-size: small;
     
-    }
-    
-    
+    }   
 }
-
-
 
 .input-box{
     margin-bottom: auto;
     font-size: large;
     width: 100%;
-
-
 }
 .input-box-error{
     margin-bottom: auto;
@@ -309,9 +303,6 @@ button.ghost {
     position: relative;
     size: auto;
 }
-
-
-
 .error-message{
     font-family: Arial, serif;
     color: red;
@@ -320,7 +311,6 @@ button.ghost {
 
 
 /*end - Login component*/
-
 
 
 /*start - forgotpwd component*/
@@ -344,7 +334,7 @@ button.ghost {
     padding: 50px;
     align-content: center;
     width: 100%;
-    height: 700px;
+    min-height: 600px;
     
 }
 
@@ -352,7 +342,6 @@ button.ghost {
     .pwd_container{
         display: flex;
         display: block;
-        margin-bottom: 40px;
         padding: 10px;
                 
     }
