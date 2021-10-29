@@ -16,15 +16,57 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { TryRounded } from '@mui/icons-material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
+import Image from 'next/image'
+import remove from '../assets/icons/minus.png'
+import add from '../assets/icons/plus.png'
 
 interface ShopcardProps {
   level : string,
  }
+ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+export interface DialogTitleProps {
+  id: string;
+  children?: React.ReactNode;
+  onClose: () => void;
+}
+
+const BootstrapDialogTitle = (props: DialogTitleProps) => {
+  const { children, onClose, ...other } = props;
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+};
 
 const Shopcard: React.FC<ShopcardProps> = ({level}) => {
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
+  const [openbuy, setOpenbuy] = React.useState(false);
+  const [openbid, setOpenbid] = React.useState(false);
   useEffect(()=>{
     setTicketcolor("#881700");
     setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
@@ -32,64 +74,105 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
     
   },[])
   const handleClickOpen_buy = () => {
-    console.log('buy');
+    setOpenbuy(true);
   };
   const handleClickOpen_bid = () => {
-    console.log('bid');
+    setOpenbid(true);
+  };
+  const handleClickClose_buy = () => {
+    setOpenbuy(false);
+  };
+  const handleClickClose_bid = () => {
+    setOpenbid(false);
   };
 
   return (
     <div>
         <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid new">
-            
-                <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
-                    <div className="buyer-c-ticketunvalid-top-head">
-                        <div className="buyer-c-ticketunvalid-top-head-left">
-                        </div>
-                        <div style={{backgroundColor: '#424242'}} className="buyer-c-ticketunvalid-top-head-right">
-                            <div className="buyer-c-ticketunvalid-top-head-right-1">
-                                Level
-                            </div>
-                            <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
-                                {Ticketlevel}
-                            </div>
-                        </div>
+            <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
+                <div className="buyer-c-ticketunvalid-top-head">
+                    <div className="buyer-c-ticketunvalid-top-head-left">
                     </div>
-                    <div className="buyer-c-ticketunvalid-top-info">
-                        <div className="buyer-c-ticketunvalid-top-info-left">
-                            <div className="buyer-c-ticketunvalid-top-info-left-name">
-                                Event name
-                            </div>
-                            <div className="buyer-c-ticketunvalid-top-info-left-date">
-                                2021-08-23
-                            </div>
+                    <div style={{backgroundColor: '#424242'}} className="buyer-c-ticketunvalid-top-head-right">
+                        <div className="buyer-c-ticketunvalid-top-head-right-1">
+                            Level
                         </div>
-                        <div className="buyer-c-ticketunvalid-top-info-right">
-                            <div className="buyer-c-ticketunvalid-top-info-right-nooftickets">460</div>
-                            <div className="buyer-c-ticketunvalid-top-info-right-tickets">tickets</div>
+                        <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
+                            {Ticketlevel}
                         </div>
                     </div>
                 </div>
-                <div className='shop-card-controler'>
-                    <div className='shop-card-controler-left' onClick={handleClickOpen_buy}>
-                        <div className='icon'>
-                        <AddShoppingCartOutlinedIcon />
+                <div className="buyer-c-ticketunvalid-top-info">
+                    <div className="buyer-c-ticketunvalid-top-info-left">
+                        <div className="buyer-c-ticketunvalid-top-info-left-name">
+                            Event name
                         </div>
-                        <div className='text'>
-                            Buy
+                        <div className="buyer-c-ticketunvalid-top-info-left-date">
+                            2021-08-23
                         </div>
                     </div>
-                    <div className='shop-card-controler-right' onClick={handleClickOpen_bid}>
-                        <div className='icon'>
-                          <PanToolOutlinedIcon />
-                        </div>
-                        <div className='text'>
-                            Bid
-                        </div>
+                    <div className="buyer-c-ticketunvalid-top-info-right">
+                        <div className="buyer-c-ticketunvalid-top-info-right-nooftickets">460</div>
+                        <div className="buyer-c-ticketunvalid-top-info-right-tickets">tickets</div>
                     </div>
                 </div>
-            
+            </div>
+            <div className='shop-card-controler'>
+                <div className='shop-card-controler-left' onClick={handleClickOpen_buy}>
+                    <div className='icon'>
+                    <AddShoppingCartOutlinedIcon />
+                    </div>
+                    <div className='text'>
+                        Buy
+                    </div>
+                </div>
+                <div className='shop-card-controler-right' onClick={handleClickOpen_bid}>
+                    <div className='icon'>
+                      <PanToolOutlinedIcon />
+                    </div>
+                    <div className='text'>
+                        Bid
+                    </div>
+                </div>
+            </div>
         </div>
+        <BootstrapDialog 
+        aria-labelledby="customized-dialog-title"
+        open={openbuy}
+      >
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClickClose_buy}>
+          Buy Ticket
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+          <div className="ticketview">
+            <h1>Evante Name</h1>  
+          </div>  
+          <div className='ticketview-price'>
+            LKR 1490.00
+          </div>
+          <div className='ticketview-count'>
+            <div className='ticketview-count-text'><div className='ticketview-count-text-item'>No. Of Tickets : </div></div>
+            <div className='ticketview-count-number'>
+              <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt=""/></div> 
+              <div className='ticketview-count-number-num'> 5 </div>
+              <div className='ticketview-count-number+'><Image className='button-img' src={add} width={'20px'} height={'20px'} alt=""/></div>
+             
+            </div>
+          </div>
+        </DialogContent>
+      </BootstrapDialog>
+
+      <BootstrapDialog
+        aria-labelledby="customized-dialog-title"
+        open={openbid}
+      >
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClickClose_bid}>
+          Bid Ticket
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+          JHKJHKHKH jdhfkjhsdkafhkadhskf asfkasjlfkjasljfljas         
+        </DialogContent>
+      </BootstrapDialog>
     </div>
   );
 }
