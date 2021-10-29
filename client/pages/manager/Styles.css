@@ -41,9 +41,13 @@
 
 /*start-manager settings page*/
 .manager-settings-container{
-    padding-left: 10px;
-    display: flex;
-    align-self: center;
+    background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 90vh;
+	margin: -70px 0 50px;
 }
 .manager-settings-container-center{
     margin-top:"10px";

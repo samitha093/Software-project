@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Grid from '@mui/material/Grid';
-import Managerpwdreset from '../../components/manager/Managerpwdreset'
+import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
 import Sellerapproval from '../../components/manager/Sellerapproval'
 import Navbar from '../../components/Navbar'
 const settings: NextPage = () => {
@@ -14,12 +14,8 @@ const settings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-index-container">
-                        <Grid container lg={12} className="manager-settings-container-center" justifyContent="center">
-                            <div className="manager-settings-container-center">
-                                <Sellerapproval />
-                                <Managerpwdreset />
-                            </div >
-                        </Grid>
+                        <Passwordresetmanager />
+                        <Sellerapproval />
                     </div>
                 </div>
             </div>
