@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router'
 import { Typography, Button, TextField, Link, Box, Grid, Stack } from '@mui/material';
 
-
 interface ManagerpwdresetProps {
 
 }
