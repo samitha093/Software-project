@@ -2,39 +2,44 @@ import React from 'react';
 import { useRouter } from 'next/router'
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
-import { Typography,Button,TextField,Box,Grid,Stack} from '@mui/material';
+import {Box,Grid,} from '@mui/material';
 
 interface ForgotpwdProps {
 
 }
 
 const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
+
+  const [login_email,login_setEmail] = React.useState<string>("");
+  const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
+  
+  const login_emailChangeHandler = (event:any)=>{
+    login_setEmail(event.target.value);
+    const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const valid = !!event.target.value.match(email_regex);
+    login_setEmailError(!valid);
+  }
     return(
-        <div >
+        <div className="container" id="container" >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item md={7} className = "pwd_container" >
                 <div className="form-wrapper">
-                        <Typography className = "head-password">Forgot Password</Typography>
-                        <form className="pricing-box">
-                         <TextField
-                                type="email"
-                                id="email"
-                                placeholder="Enter your email"
-                               // value={email}
-                                size = "small"
-                                className="textfield"
-                                required                   
-                        />
-                                
-                        </form>
-                             <Button className = "btnsubmit"
-                                                type="submit"
-                                                variant="contained"
-                                                size = "small"
-                                        >
-                                            send email
-                             </Button>
+                        <form className='modern-form' action="#">
+                         <h1 className = "head-password" >Forgot Password</h1>
+              
+                        <input 
+                         className='inputbox-modern' 
+                         type="email" 
+                         placeholder="Your Email"
+                         value={login_email}
+                         onChange={login_emailChangeHandler}
+                        // onBlur={emailBlurHandler} 
+                          />
+                          <br/><br/>
+                          <button className='modern-btn'>Send Email</button>
+                          </form>
+                          
                    </div>
                     
                 </Grid>
