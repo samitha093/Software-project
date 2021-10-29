@@ -3,16 +3,17 @@ import type { NextPage } from 'next'
 import Navbar from '../../components/Navbar'
 import Tabcustom from '../../components/user/Tabcustom'
 import {Grid} from '@mui/material';
+import Login from '../../components/user/Login-Register';
 
 const index: NextPage = () => {
     return (
-        <div style={{backgroundColor:"#FBFBF4"}}>
+        <div className ="main-container">
              <Navbar/>
-             <Grid className = "index_container">
-              <div className = "main_container">
-                <Tabcustom/>
+             
+              <div className="main-background">
+                <Login/>
               </div>   
-          </Grid>
+         
               
         </div>
     );
