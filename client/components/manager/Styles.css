@@ -265,3 +265,9 @@
     resize: both;
     justify-content: center !important;
 }
+
+/*seller approval*/
+.manager-c-sellerapprovaltable
+{
+    width: 100%;
+}
