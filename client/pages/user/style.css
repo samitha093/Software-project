@@ -41,12 +41,12 @@
   
 .btn-create{
 	  width :auto;
-	  margin-top: -50px;
+	  margin-top: 20px;
 	  text-size-adjust: small;
 	  background-color: #3b1c4e;
 	  resize: both;
 	  border-radius: 20px;
-		padding: 0px 40px;
+	  padding: 10px 40px;
 	}
 .btn-create:hover {background-color:#905f91 }
 	
@@ -61,11 +61,10 @@
 	  text-align: center;
 	}
 .text-2{
-	  padding: 0px 50px;
+	  padding: 20px 50px;
       display: flex;
 	  justify-content: center;
 	  font-family: 'Roboto', sans-serif;
-	  width: 70%;
 	  font-size: 20px;
 	  text-align: justify;
 	  color: #686568;
