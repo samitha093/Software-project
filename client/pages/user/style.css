@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 /*Start-index page*/
+.index{
+	width: 100%;
+}
 .main-container{
 	min-height: 100vh;
 	width: 100%;
@@ -23,7 +26,7 @@
   }
 .left-container{
 	height: auto;
-	width: 50%;
+	width: 40%;
 	display: block;
 	justify-content: center; 
 	margin-top: 30px;
@@ -31,23 +34,44 @@
   
 .right-container{
 	height: auto;
-	width: 50%;
+	width: 60%;
 	display: block;
 	justify-content: center;
   
 	} 
   
 .btn-create{
-	  width :30%;
-	  margin-top: 30px;
+	  width :auto;
+	  margin-top: 20px;
 	  text-size-adjust: small;
 	  background-color: #533964;
 	  resize: both;
-	
+	  border-radius: 20px;
+	  padding: 10px 40px;
 	}
 .btn-create:hover {background-color:#905f91 }
 	
 .text-1{
+     display: flex;
+	  justify-content: center;
+	  font-size: 40px;
+	  font-weight: bold;
+	  font-style: italic;
+	  margin-bottom: 10pxcd;
+	  color: #1a191a;
+	  text-align: center;
+	}
+.text-2{
+	  padding: 20px 50px;
+    display: flex;
+	  justify-content: center;
+	  font-family: 'Roboto', sans-serif;
+	  font-size: 20px;
+	  text-align: justify;
+	  color: #686568;
+	  text-align: justify;
+	}
+.text-2-wrap{
 
 	display: flex;
 	justify-content: center;
@@ -72,6 +96,18 @@
 .btn-class{
    display: flex;
    justify-content: center;
+}
+.trending-board-container{
+ text-align: center;
+}
+.trending-board{
+	font-size: 40px;
+	color: #3b1c4e;
+	width: auto;
+	font-family: 'Handlee', cursive;
+}
+.svgstyle{
+	margin-bottom: -10px;
 }
 	
 @media only screen and (max-width: 900px) {
