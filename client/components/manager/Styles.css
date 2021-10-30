@@ -238,30 +238,48 @@
     opacity: 100%;
 }
 
-.manager-password-box2{
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    size: auto;
-    margin: 10px;
+.manager-button-submit{
+    background-color: #BB9CD1;
+    justify-content: center !important;
 }
-.manager-password-form-wrapper{
+
+/*seller approval*/
+.manager-c-sellerapprovaltable
+{
+    width: 100%;
+}
+.form-wrapper{
     width: 400px;
     max-width: 100%;
     box-sizing: border-box;
+    margin: auto;
+    /*position: relative;*/
+    justify-content: center;
+    vertical-align: middle; /*center*/
+}
+.Box-1{
+    height: 100%;
+    width: 100%;
     background-color :white;
-    margin: auto auto 0;
-    position: relative;
+    border-bottom-left-radius: 10px;
+    vertical-align: auto;
+    justify-content: center;
 }
-.manager-button-submit{
+.pwd_container{
+    display: flex; /*check and delete if not working*/
+    padding: 50px;
+    align-content: center;
+    justify-content: center; /*check and delete if not working*/
+    vertical-align: middle; /*check and delete if not working*/
+    width: 100%;
+    height: 100%; 
+    background-color: #E3E3ED;
+}
+.content-1{
+    font-size: larger;
+    font-weight: bold;
+    color:#8F7F98;
+    text-align: center;
+    padding-top:200px;   
+}
 
-    width: 40%;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    align-self: center !important;
-    font-size: medium;
-    background-color: #BB9CD1;
-    resize: both;
-    justify-content: center !important;
-}

@@ -67,6 +67,9 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
   const [Ticketimg, setTicketimg] =  React.useState("");
   const [openbuy, setOpenbuy] = React.useState(false);
   const [openbid, setOpenbid] = React.useState(false);
+  const [ticketpricet, setticketprice] = React.useState(1495);
+  const [ticketbidpricet, setticketbidprice] = React.useState(ticketpricet);
+  const [ticketcount, setticketcount] = React.useState(0);
   useEffect(()=>{
     setTicketcolor("#881700");
     setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
@@ -84,6 +87,19 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
   };
   const handleClickClose_bid = () => {
     setOpenbid(false);
+  };
+
+  const handleClickadd = () => {
+    var i = ticketcount;
+    i += 1;
+    setticketcount(i);
+  };
+  const handleClickremove = () => {
+    var i = ticketcount;
+    if(i>0){
+      i -= 1;
+    }
+    setticketcount(i);
   };
 
   return (
@@ -155,18 +171,18 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
             <div>In Stock : 400 Tickets</div>
           </div>  
           <div className='ticketview-price'>
-            LKR 1490.00
+            LKR {ticketpricet}.00
           </div>
           <div className='ticketview-count'>
             <div className='ticketview-count-text'><div className='ticketview-count-text-item'>No. Of Tickets : </div></div>
             <div className='ticketview-count-number'>
-              <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt=""/></div> 
-              <div className='ticketview-count-number-num'> 5 </div>
-              <div className='ticketview-count-number+'><Image className='button-img' src={add} width={'20px'} height={'20px'} alt=""/></div>
+              <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt="" onClick={ handleClickremove}/></div> 
+              <div className='ticketview-count-number-num'> {ticketcount} </div>
+              <div className='ticketview-count-number+' ><Image className='button-img' src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
             </div>
           </div>
           <div className='ticketview-price-btn'>
-            PAY NOW ( LKR 1490.00 )
+            PAY NOW ( LKR {ticketpricet*ticketcount}.00 )
           </div>
         </DialogContent>
       </BootstrapDialog>
@@ -179,7 +195,31 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
           Bid Ticket
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          JHKJHKHKH jdhfkjhsdkafhkadhskf asfkasjlfkjasljfljas         
+        <div className="ticketview">
+            <h1>Evante Name - Evante Name Evante Name</h1>  
+          </div>
+          <div className='ticketview-data'>
+            <div>Event Location : jhfhshhashkashghlkhLKHFS</div>
+            <div>Event Date : 2021 JAN 23</div>
+            <div>Event Time :  07 : 00 pm</div>
+            <div>Ticket Type :  LEVEL 2</div>
+            <div>In Stock : 400 Tickets</div>
+          </div>
+
+          <div className='ticketview-price'>
+            LKR <input className='priceboxforbid' type={'number'} value={ticketbidpricet} onChange={(e)=>setticketbidprice(Number(e.target.value))} min={ticketpricet}/>
+          </div>
+          <div className='ticketview-count'>
+            <div className='ticketview-count-text'><div className='ticketview-count-text-item'>No. Of Tickets : </div></div>
+            <div className='ticketview-count-number'>
+              <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt="" onClick={ handleClickremove}/></div> 
+              <div className='ticketview-count-number-num'> {ticketcount} </div>
+              <div className='ticketview-count-number+' ><Image className='button-img' src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
+            </div>
+          </div>
+          <div className='ticketview-price-btn'>
+            PAY NOW ( LKR {ticketpricet*ticketcount}.00 )
+          </div>         
         </DialogContent>
       </BootstrapDialog>
     </div>

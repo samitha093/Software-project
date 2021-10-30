@@ -1,5 +1,4 @@
 import * as React from 'react';
-//import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,15 +7,23 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+//import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import DeleteIcon from '@mui/icons-material/Delete';
-import PublishIcon from '@mui/icons-material/Publish';
+//import DeleteIcon from '@mui/icons-material/Delete';
+//import PublishIcon from '@mui/icons-material/Publish';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
+
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Fab from '@mui/material/Fab';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
 //Line 80 space for the image box
@@ -113,13 +120,25 @@ export default function PendingEvents() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
-                        <Button variant="contained" startIcon={<PublishIcon />}>
-                            Approve
-                        </Button>
-                        <Button variant="outlined" endIcon={<DeleteIcon />}>
-                            Decline
-                        </Button>
+                    <Stack spacing={2}>
+                        <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
+                            <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+                                <FormControlLabel value="approve" control={<Radio />} label="Approve" />
+                                <FormControlLabel value="decline" control={<Radio />} label="Decline" />
+                            </RadioGroup>
+                        </Stack>
+                        <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
+                            <TextareaAutosize
+                                minRows={2}
+                                maxRows={3}
+                                aria-label="maximum height"
+                                placeholder="Reason to decline event and the ticket(if any)"
+                                style={{ width: 400 }}
+                            />
+                            <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add">
+                                SUBMIT
+                            </Fab>
+                        </Stack>
                     </Stack>
                 </DialogActions>
             </Dialog>
