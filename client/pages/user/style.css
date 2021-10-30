@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 /*Start-index page*/
+.index{
+	width: 100%;
+}
 .main-container{
-	min-height: 100vh;
+	min-height: 80vh;
 	width: 100%;
 	background-image: url("../../assets/bg.png");
 	background-size: cover;
@@ -22,31 +26,31 @@
   }
 .left-container{
 	height: auto;
-	width: 50%;
+	width: 40%;
 	display: block;
 	justify-content: center; 
 }
   
 .right-container{
 	height: auto;
-	width: 50%;
+	width: 60%;
 	display: block;
 	justify-content: center;
   
 	} 
   
 .btn-create{
-	  width :30%;
-	  margin-top: 30px;
+	  width :auto;
+	  margin-top: -50px;
 	  text-size-adjust: small;
 	  background-color: #3b1c4e;
 	  resize: both;
-	
+	  border-radius: 20px;
+		padding: 0px 40px;
 	}
 .btn-create:hover {background-color:#905f91 }
 	
 .text-1{
-
 	  display: flex;
 	  justify-content: center;
 	  font-size: 40px;
@@ -54,21 +58,30 @@
 	  font-style: italic;
 	  margin-bottom: 10pxcd;
 	  color: #1a191a;
-	  
+	  text-align: center;
 	}
 .text-2{
-
+	  padding: 0px 50px;
       display: flex;
 	  justify-content: center;
 	  font-size: medium;
 	  margin-bottom: 100px;
 	  margin-top: 30px;
 	  color: #686568;
-	  
+	  text-align: justify;
 	}
 .btn-class{
    display: flex;
    justify-content: center;
+}
+.trending-board-container{
+ text-align: center;
+}
+.trending-board{
+	font-size: 40px;
+	color: #3b1c4e;
+	width: auto;
+	font-family: 'Handlee', cursive;
 }
 	
 @media only screen and (max-width: 900px) {
