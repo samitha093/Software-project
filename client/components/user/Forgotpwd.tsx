@@ -48,6 +48,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                      src = {lock}
                      layout = "responsive"
                      m-50
+                     alt= " "
                     ></Image>    
                  </div>
                             
