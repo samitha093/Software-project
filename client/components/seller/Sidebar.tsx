@@ -6,6 +6,7 @@ import { mdiCalendarSearch } from '@mdi/js';
 import { mdiCalendarClock } from '@mdi/js';
 import { mdiCalendarCheck } from '@mdi/js';
 import { mdiCalendarRemove } from '@mdi/js';
+import { mdiCogs } from '@mdi/js';
 interface SidebarProps {
 
 }
@@ -37,9 +38,16 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <Icon path={mdiCalendarCheck} color='white'/>
                             </div>
                         </Link>
-                        <Link href= "/seller/declined">
+
+                        <Link href= "/seller/Declinedevents">
                         <div className="manager-c-sidebar-item">
                             <Icon path={mdiCalendarRemove} color='white'/>
+                        </div>
+                        </Link>
+
+                        <Link href= "/seller/Settings">
+                        <div className="manager-c-sidebar-item">
+                            <Icon path={mdiCogs} color='white'/>
                         </div>
                         </Link>
                     </div>
