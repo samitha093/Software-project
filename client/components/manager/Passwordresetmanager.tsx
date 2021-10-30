@@ -5,6 +5,7 @@ import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
 
 import Sellerapproval from '../../components/manager/Sellerapproval'
+import Fab from '@mui/material/Fab';
 
 interface Passwordresetmanager {
 
@@ -25,8 +26,8 @@ const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
         <div className="container" id="container" >
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
-                    <Grid item md={7} className="pwd_container" >
-                        <div className="form-wrapper">
+                    <Grid item md={7} className="manager-password-container" >
+                        <div className="manager-password-form-wrapper">
                             <form className='modern-form' action="#">
                                 <h1 className="head-password" >Reset Password</h1>
 
@@ -55,13 +56,16 @@ const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
 
-                                <button className='modern-btn'>Submit</button>
+                                <Fab variant="extended" size="medium" background-color="#BB9CD1" aria-label="add">
+                                    SUBMIT
+                                </Fab>
+                                <br />
                             </form>
                         </div>
 
                     </Grid>
                     <Grid item xs className="box-1" >
-                        <div className="content-1">
+                        <div className="manager-password-content-1">
                             <Image
                                 src={lock}
                                 layout="responsive"
