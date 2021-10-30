@@ -248,7 +248,7 @@
 {
     width: 100%;
 }
-.manager-password-form-wrapper{
+.form-wrapper{
     width: 400px;
     max-width: 100%;
     box-sizing: border-box;
@@ -265,7 +265,7 @@
     vertical-align: auto;
     justify-content: center;
 }
-.manager-password_container{
+.pwd_container{
     display: flex; /*check and delete if not working*/
     padding: 50px;
     align-content: center;
@@ -275,7 +275,7 @@
     height: 100%; 
     background-color: #E3E3ED;
 }
-.manager-password-content-1{
+.content-1{
     font-size: larger;
     font-weight: bold;
     color:#8F7F98;
