@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Grid from '@mui/material/Grid';
 import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
-import Sellerapproval from '../../components/manager/Sellerapproval'
+
 import Navbar from '../../components/Navbar'
 const settings: NextPage = () => {
     return (
@@ -15,7 +15,7 @@ const settings: NextPage = () => {
                     <h1>Settings</h1>
                     <div className="manager-index-container">
                         <Passwordresetmanager />
-                        <Sellerapproval />
+                        
                     </div>
                 </div>
             </div>

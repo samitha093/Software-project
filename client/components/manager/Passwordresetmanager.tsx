@@ -4,6 +4,8 @@ import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
 
+import Sellerapproval from '../../components/manager/Sellerapproval'
+
 interface Passwordresetmanager {
 
 }
@@ -52,10 +54,9 @@ const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
                                 //onChange={login_emailChangeHandler}
                                 // onBlur={emailBlurHandler} 
                                 />
-                                <br /><br />
+
                                 <button className='modern-btn'>Submit</button>
                             </form>
-
                         </div>
 
                     </Grid>
@@ -66,6 +67,7 @@ const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
                                 layout="responsive"
                                 m-50
                             ></Image>
+                            <Sellerapproval />
                         </div>
                     </Grid>
 

@@ -278,7 +278,9 @@
     max-width: 100%;
     box-sizing: border-box;
     margin: auto auto 0;
-    position: relative;
+    /*position: relative;*/
+    justify-content: center;
+    vertical-align: middle; /*center*/
 
 }
 .Box-1{
@@ -286,12 +288,17 @@
     width: 100%;
     background-color :white;
     border-bottom-left-radius: 10px;
+    vertical-align: auto;
+    justify-content: center;
 
 }
 
 .pwd_container{
+    display: flex; /*check and delete if not working*/
     padding: 50px;
     align-content: center;
+    justify-content: center; /*check and delete if not working*/
+    vertical-align: middle; /*check and delete if not working*/
     width: 100%;
     height: 100%; 
     background-color: #E3E3ED;

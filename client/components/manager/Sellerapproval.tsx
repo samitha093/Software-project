@@ -27,7 +27,7 @@ export default function SellerApproval() {
 
   return (
     <div>
-      <Fab variant="extended" onClick={handleClickOpen} size="small" color="primary" aria-label="add">
+      <Fab variant="extended" onClick={handleClickOpen} size="medium" color="primary" aria-label="add">
         <NavigationIcon sx={{ mr: 1 }} />
         Approve Sellers
       </Fab>
