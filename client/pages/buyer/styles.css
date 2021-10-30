@@ -33,3 +33,13 @@
     }
 }
 /*end- Buyer index pg*/
+/*start- Buyer settings pg*/
+.buyer-setting{
+    width:100%;
+}
+.buyer-setting-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+/*end- Buyer settings pg*/
