@@ -135,7 +135,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
             </div>
             <div className='shop-card-controler'>
                 <div className='shop-card-controler-left' onClick={handleClickOpen_buy}>
-                    <div className='icon'>
+                    <div className='icon-card'>
                     <AddShoppingCartOutlinedIcon />
                     </div>
                     <div className='text'>
@@ -143,7 +143,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
                     </div>
                 </div>
                 <div className='shop-card-controler-right' onClick={handleClickOpen_bid}>
-                    <div className='icon'>
+                    <div className='icon-card'>
                       <PanToolOutlinedIcon />
                     </div>
                     <div className='text'>
