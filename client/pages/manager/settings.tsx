@@ -14,8 +14,7 @@ const settings: NextPage = () => {
                 <div>
                     <h1>Settings</h1>
                     <div className="manager-index-container">
-                        <Passwordresetmanager />
-                        
+                        <Passwordresetmanager />  
                     </div>
                 </div>
             </div>
