@@ -9,6 +9,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import DialogContentText from '@mui/material/DialogContentText';
 import Image from 'next/image'
 import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
@@ -102,46 +106,127 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
-            <h1>Evante Name - Evante Name Evante Name</h1>  
-          </div>
-          <div className='ticketview-data'>
-            <div>Event Venue : jhfhshhashkashghlkhLKHFS</div>
-            <div>Event Date : 2021 JAN 23</div>
-            <div>Event Time :  07 : 00 pm</div>
-            <div>Ticket Type :  LEVEL 1</div>
-            <div>
-                <div>Fix Price : Rs.900 </div>
-                <div>Bid Price : Rs.850 </div>
-            </div>
-            <div>Ticket Type :  LEVEL 2</div>
-            <div>
-                <div>Fix Price : Rs.800 </div>
-                <div>   Bid Price : Rs.750 </div>
-            </div>
-            <div>Ticket Type :  LEVEL 3</div>
-            <div>
-                <div>Fix Price : Rs.700 </div>
-                <div>Bid Price : Rs.650 </div>
-            </div>
-            <div>Ticket Type :  LEVEL 4</div>
-            <div>
-                <div>Fix Price : Rs.600 </div>
-                <div>Bid Price : Rs.550 </div>
-            </div>
-            <div>Ticket Type :  LEVEL 5</div>
-            <div>
-                <div>Fix Price : Rs.400 </div>
-                <div>Bid Price : Rs.350 </div>
-            </div>
-          </div>
+            <h1>Evante Name - Evante Name Name</h1>  
+          </div>  
+          <Grid sx={{ maxWidth: 480 }}>
+            <Grid margin-top="20px">
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid  className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Event Venue: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                     <Typography> Event Date: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Event Time: </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Ticket Type : Level 1 </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Fix price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Bid Price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Ticket Type : Level 2 </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Fix price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Bid Price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Ticket Type : Level 3 </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Fix price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Bid Price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Ticket Type : Level 4 </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Fix price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Bid Price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={2} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Ticket Type : Level 5 </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Fix price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Bid Price: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Number of Tickets: </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Grid>
+          </Grid>
           <div className='ticketview-price-btn'>
             Delete Event
           </div>
         </DialogContent>
-      </BootstrapDialog>
-            
-        </div>
-    );
+      </BootstrapDialog>       
+    </div>
+  );
 }
 
 export default Pendingevents;
