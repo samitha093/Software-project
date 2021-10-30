@@ -164,4 +164,17 @@
     margin-left: 50px;
     margin-right: 50px;
 }
+.priceboxforbid{
+    width: 100px;
+    text-align: left;
+    font-size: 26px!important;
+    margin-top: -20px;
+    height: 45px;
+    color: #752E9E;
+    background-color: #d3c1df;
+    border:none;
+}
+.priceboxforbid:focus {
+    outline: none;
+  }
 /*end - Shop*/
