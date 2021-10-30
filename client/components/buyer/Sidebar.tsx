@@ -7,6 +7,7 @@ import { mdiCameraTimer } from '@mdi/js';
 import { mdiTicketPercentOutline } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
+import Tooltip from '@mui/material/Tooltip';
 interface SidebarProps {
 
 }
@@ -16,33 +17,45 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
             <div className="buyer-c-sidebar">
                     <div className="buyer-c-sidebar-container">
                         <Link href="/buyer">
-                            <div className="buyer-c-sidebar-item">
-                                <Icon path={mdiHomeOutline} color='white'/>
-                            </div>
+                            <Tooltip title="My Tickets" followCursor>
+                                <div className="buyer-c-sidebar-item">
+                                    <Icon path={mdiHomeOutline} color='white'/>
+                                </div>
+                            </Tooltip>
                         </Link>
                         <Link href="/buyer/payment">
+                        <Tooltip title="Pending Payment Tickets" followCursor>
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={mdiCreditCardMarkerOutline} color='white'/>
                             </div>
+                            </Tooltip>
                         </Link>
                         <Link href="/buyer/bids">
+                        <Tooltip title="Pending Bids" followCursor>
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={mdiCameraTimer} color='white'/>
                             </div>
+                            </Tooltip>
                         </Link>
                         <Link href="/buyer/tickets">
+                        <Tooltip title="My Old Tickets" followCursor>
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={ mdiTicketPercentOutline} color='white'/>
                             </div>
+                            </Tooltip>
                         </Link>
                         <Link href="/buyer/settings">
+                        <Tooltip title="Change User information" followCursor>
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={mdiCogs} color='white'/>
                             </div>
+                            </Tooltip>
                         </Link>
+                        <Tooltip title="Logout" followCursor>
                         <div className="buyer-c-sidebar-item">
                             <Icon path={mdiLogout} color='white'/>
                         </div>
+                        </Tooltip>
                     </div>
             </div>
         );
