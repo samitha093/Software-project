@@ -90,9 +90,36 @@
 
 
 
-
 /*start - About page*/
+.main-container-2{
+	padding: 0 50px;
+}
 
+.h1{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	display: block;
+	justify-content: center;
+	text-align: center;
+	color: rgb(221, 82, 82);
+	margin-top: 20px;
+}
+.top-container-1{
+	height: auto;
+	width: 100%;
+	display: flex;
+	margin-top: 75px;
+	padding: 50;
+    box-shadow: 0 4px 8px -5px ;
+	border-radius: 5px;
+	
+  }
+
+@media only screen and (max-width: 800px) {
+    .top-container-1{
+     display: block;
+    }
+} 
 .left-container-1{
 	height: auto;
 	width: 50%;
@@ -193,7 +220,11 @@
 	color: #555355;
     
 }
-
+@media only screen and (max-width: 800px) {
+    .text-3{
+     display: block;
+    }
+}
 .text-2{
 
 	display: flex;
