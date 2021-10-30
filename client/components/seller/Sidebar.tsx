@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                             </div>
                         </Link>
 
-                        <Link href="/seller/endevents">
+                        <Link href="/seller/Endevents">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCalendarCheck} color='white'/>
                             </div>
