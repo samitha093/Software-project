@@ -24,7 +24,7 @@ const index: NextPage = () => {
                             <div className="text-1">
                              You dream it <br/> We ticket it
                             </div>
-                            <div className= "text-2">
+                            <div className= "text-1-1">
                             The best place to sell your <br/>
                             fully customized event tickets.<br/><br/>
                             Join with TickBid today
