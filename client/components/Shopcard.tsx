@@ -68,6 +68,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
   const [openbuy, setOpenbuy] = React.useState(false);
   const [openbid, setOpenbid] = React.useState(false);
   const [ticketpricet, setticketprice] = React.useState(1495);
+  const [ticketbidpricet, setticketbidprice] = React.useState(ticketpricet);
   const [ticketcount, setticketcount] = React.useState(0);
   useEffect(()=>{
     setTicketcolor("#881700");
@@ -206,7 +207,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
           </div>
 
           <div className='ticketview-price'>
-            LKR <input type={'text'} value={ticketpricet} /> .00
+            LKR <input className='priceboxforbid' type={'number'} value={ticketbidpricet} onChange={(e)=>setticketbidprice(Number(e.target.value))} min={ticketpricet}/>
           </div>
           <div className='ticketview-count'>
             <div className='ticketview-count-text'><div className='ticketview-count-text-item'>No. Of Tickets : </div></div>
