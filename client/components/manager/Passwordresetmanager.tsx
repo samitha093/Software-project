@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
-
 import Sellerapproval from '../../components/manager/Sellerapproval'
 import Fab from '@mui/material/Fab';
 
@@ -64,8 +63,8 @@ const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
                         </div>
 
                     </Grid>
-                    <Grid item xs className="box-1" >
-                        <div className="manager-password-content-1">
+                    <Grid item xs className="manager-password-box1" >
+                        <div className="manager-password-content">
                             <Image
                                 src={lock}
                                 layout="responsive"
