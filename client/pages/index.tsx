@@ -19,7 +19,7 @@ const index: NextPage = () => {
     }
         return (
             <div className='index'>
-                <div className="main-container">
+                <div className="main-container-1">
                     <Navbar/>
                     <div className ="top-container">
                         <div className ="left-container">
