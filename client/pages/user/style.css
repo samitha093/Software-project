@@ -29,6 +29,7 @@
 	width: 40%;
 	display: block;
 	justify-content: center; 
+	margin-top: 30px;
 }
   
 .right-container{
@@ -43,7 +44,7 @@
 	  width :auto;
 	  margin-top: 20px;
 	  text-size-adjust: small;
-	  background-color: #3b1c4e;
+	  background-color: #533964;
 	  resize: both;
 	  border-radius: 20px;
 	  padding: 10px 40px;
@@ -51,7 +52,7 @@
 .btn-create:hover {background-color:#905f91 }
 	
 .text-1{
-	  display: flex;
+     display: flex;
 	  justify-content: center;
 	  font-size: 40px;
 	  font-weight: bold;
@@ -62,7 +63,7 @@
 	}
 .text-2{
 	  padding: 20px 50px;
-      display: flex;
+    display: flex;
 	  justify-content: center;
 	  font-family: 'Roboto', sans-serif;
 	  font-size: 20px;
@@ -74,10 +75,23 @@
 
 	display: flex;
 	justify-content: center;
+	font-size: 40px;
+	font-weight: bold;
+	font-style: italic;
+	margin-bottom: 20px;
+	color: #1a191a;
+	  
+	}
+
+.text-1-1{
+
+	display: flex;
+	justify-content: center;
+	font-size: 18px;
 	text-align: justify;
-	margin: 30 0 100 0;
+	color: #686568;
 		
- }
+	  }
 
 .btn-class{
    display: flex;
@@ -132,14 +146,6 @@
   
 } 
 
-.icon{
-	display: block;
-	justify-content: center; 
-	text-align: center;
-	width: 100%;
-	margin: 30px 0 30px 0;
-}
-
 .footer{
     position: relative;
 	height: auto;
@@ -152,7 +158,13 @@
 	background-color: #2d153b;
 }
 
-
+.icon{
+	display: block;
+	justify-content: center; 
+	text-align: center;
+	width: 100%;
+	margin: 30px 0 30px 0;
+}
 
 .aboutus{
 	margin-right: 30px;
@@ -217,13 +229,26 @@
 	color: #555355;
     
 }
-.head-about{
-	text-align: center;
-	font-weight: bolder;
-	color: rgb(212, 99, 99);
-	margin-bottom: 50px;
-	margin-top: 50px;
 
+.text-2{
+
+	display: flex;
+	justify-content: center;
+	font-family: 'Roboto', sans-serif;
+	width: 70%;
+	font-size: 20px;
+	text-align: justify;
+	color: #686568;
+	
+  }
+.text-2-wrap{
+
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  margin: 30 0 100 0;
+	  
 }
+
 
 /*end - About page*/

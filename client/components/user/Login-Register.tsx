@@ -217,7 +217,7 @@ const Login: React.FC<LoginProps> = ({}) => {
               onBlur={login_passwordChangeHandler}
               // onBlur={emailBlurHandler}
               />
-              <a href="./forgotpwd" className='modern-a'>Forgot your password?</a>
+              <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
               <button className='modern-btn'>Sign In</button>
             </form>
           </div>
