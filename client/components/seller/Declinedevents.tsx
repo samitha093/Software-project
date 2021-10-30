@@ -18,7 +18,7 @@ import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
-interface PendingeventProps {
+interface DeclinedeventProps {
 
 }
 
@@ -60,7 +60,7 @@ export interface DialogTitleProps {
     );
   };
 
-const Pendingevents: React.FC<PendingeventProps> = ({}) => {
+const Declinedevents: React.FC<DeclinedeventProps> = ({}) => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -102,7 +102,7 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Pending Event
+          Active Event
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
@@ -111,7 +111,7 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
           <Grid sx={{ maxWidth: 480 }}>
             <Grid margin-top="20px">
               <Box sx={{ flexGrow: 1 }}>
-                <Grid  className="manager-eventinfo-font">
+              <Grid  className="manager-eventinfo-font">
                   <Grid item xs={6}>
                     <Typography> Event Venue: </Typography>
                   </Grid>
@@ -217,16 +217,18 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                     <Typography> Number of Tickets: </Typography>
                   </Grid>
                 </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Declined reason :  </Typography>
+                  </Grid>
+                </Grid>
               </Box>
             </Grid>
           </Grid>
-          <div className='ticketview-price-btn'>
-            Delete Event
-          </div>
         </DialogContent>
       </BootstrapDialog>       
     </div>
   );
 }
 
-export default Pendingevents;
+export default Declinedevents;

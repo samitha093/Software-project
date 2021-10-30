@@ -18,7 +18,7 @@ import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
-interface PendingeventProps {
+interface EndeventProps {
 
 }
 
@@ -60,7 +60,7 @@ export interface DialogTitleProps {
     );
   };
 
-const Pendingevents: React.FC<PendingeventProps> = ({}) => {
+const Endevents: React.FC<EndeventProps> = ({}) => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -102,7 +102,7 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Pending Event
+          Active Event
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
@@ -135,10 +135,12 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                     <Typography> Bid Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Sold: </Typography>
+                    <Typography> Sell: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Max Bid: </Typography>
+                    <Typography> Number of Bids: </Typography>
                   </Grid>
                 </Grid>
                 <Grid container spacing={2} className="manager-eventinfo-font">
@@ -154,10 +156,12 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                     <Typography> Bid Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Sold: </Typography>
+                    <Typography> Sell: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Max Bid: </Typography>
+                    <Typography> Number of Bids: </Typography>
                   </Grid>
                 </Grid>
                 <Grid container spacing={2} className="manager-eventinfo-font">
@@ -173,10 +177,12 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                     <Typography> Bid Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Sold: </Typography>
+                    <Typography> Sell: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Max Bid: </Typography>
+                    <Typography> Number of Bids: </Typography>
                   </Grid>
                 </Grid>
                 <Grid container spacing={2} className="manager-eventinfo-font">
@@ -192,10 +198,12 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                     <Typography> Bid Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Sold: </Typography>
+                    <Typography> Sell: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Max Bid: </Typography>
+                    <Typography> Number of Bids: </Typography>
                   </Grid>
                 </Grid>
                 <Grid container spacing={2} className="manager-eventinfo-font">
@@ -211,22 +219,29 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                     <Typography> Bid Price: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Sold: </Typography>
+                    <Typography> Sell: </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
+                    <Typography> Max Bid: </Typography>
+                    <Typography> Number of Bids: </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={0} className="manager-eventinfo-font">
+                  <Grid item xs={6}>
+                    <Typography> Total amount :  </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography> Total amount :  </Typography>
                   </Grid>
                 </Grid>
               </Box>
             </Grid>
           </Grid>
-          <div className='ticketview-price-btn'>
-            Delete Event
-          </div>
         </DialogContent>
       </BootstrapDialog>       
     </div>
   );
 }
 
-export default Pendingevents;
+export default Endevents;
