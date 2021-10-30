@@ -27,8 +27,8 @@ const index: NextPage = () => {
                                     <h2 style={{color:'#3b1c4e'}}>You dream it</h2>
                                     <div style={{marginTop:'-60px', color:'#212121'}}> We ticket it</div>
                                     </div>
-                                    <div className= "text-2">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                                    <div className= "text-1-1">
+                                     The best place to sell your<br/>fully customized event tickets.<br/><br/> Join with TickBid today!
                                     </div>
                                     <div className="btn-class">
                                     <Button 
