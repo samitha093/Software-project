@@ -226,17 +226,6 @@
 
 }
 
-.manager-password-container{
-    padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    align-content: center;
-    align-self: center;
-    width: 100%;
-    height: 100%;
-    background-color: transparent !important;
-    opacity: 100%;
-}
 
 .manager-button-submit{
     background-color: #BB9CD1;
@@ -248,16 +237,16 @@
 {
     width: 100%;
 }
-.form-wrapper{
+.manager-password-form-wrapper{
     width: 400px;
     max-width: 100%;
     box-sizing: border-box;
     margin: auto;
-    /*position: relative;*/
+    position: relative;
     justify-content: center;
     vertical-align: middle; /*center*/
 }
-.Box-1{
+.manager-password-box1{
     height: 100%;
     width: 100%;
     background-color :white;
@@ -265,7 +254,7 @@
     vertical-align: auto;
     justify-content: center;
 }
-.pwd_container{
+.manager-password-container{
     display: flex; /*check and delete if not working*/
     padding: 50px;
     align-content: center;
@@ -275,11 +264,10 @@
     height: 100%; 
     background-color: #E3E3ED;
 }
-.content-1{
+.manager-password-content{
     font-size: larger;
     font-weight: bold;
     color:#8F7F98;
     text-align: center;
     padding-top:200px;   
 }
-
