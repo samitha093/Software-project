@@ -4,7 +4,7 @@
 	width: 100%;
 }
 .main-container{
-	min-height: 80vh;
+	min-height: 100vh;
 	width: 100%;
 	background-image: url("../../assets/bg.png");
 	background-size: cover;
@@ -91,6 +91,9 @@
 	color: #3b1c4e;
 	width: auto;
 	font-family: 'Handlee', cursive;
+}
+.svgstyle{
+	margin-bottom: -10px;
 }
 	
 @media only screen and (max-width: 900px) {
