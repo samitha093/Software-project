@@ -20,13 +20,13 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                             </div>
                         </Link>
 
-                        <Link href="/seller/pendingevents">
+                        <Link href="/seller/Pendingevents">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCalendarSearch} color='white'/>
                             </div>
                         </Link>
 
-                        <Link href="/seller/activeevents">
+                        <Link href="/seller/Activeevents">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiCalendarClock} color='white'/>
                             </div>
