@@ -18,9 +18,10 @@
     width: 100%;
     padding-left: 30px;
     position: relative;
+    vertical-align: middle; /*delete if not worked*/
     display: flex;
     box-sizing: border-box;
-    justify-content: space-between;
+    justify-content: center; /*space between*/
     flex-wrap: wrap;
 }
 
