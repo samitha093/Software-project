@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
-import NavigationIcon from '@mui/icons-material/Navigation';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 import Sellerapprovaltable from '../../components/manager/Sellerapprovaltable'
 
@@ -27,8 +27,8 @@ export default function SellerApproval() {
 
   return (
     <div>
-      <Fab variant="extended" onClick={handleClickOpen} size="medium" color="primary" aria-label="add">
-        <NavigationIcon sx={{ mr: 1 }} />
+      <Fab variant="extended" onClick={handleClickOpen} size="medium" background-color="#BB9CD1" aria-label="add">
+        <AddTaskIcon sx={{ mr: 1 }} />
         Approve Sellers
       </Fab>
       
