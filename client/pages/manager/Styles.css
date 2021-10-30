@@ -18,11 +18,25 @@
     width: 100%;
     padding-left: 30px;
     position: relative;
-    vertical-align: middle; /*delete if not worked*/
     display: flex;
     box-sizing: border-box;
-    justify-content: center; /*space between*/
+    justify-content: space-between;
     flex-wrap: wrap;
+}
+
+
+/*end- manager index page*/
+
+.manager-settings-main-container
+{
+    width: 100%;
+    padding-left: 30px;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #8F7F98 !important;
 }
 
 @media only screen and (max-width: 600px) {
@@ -37,23 +51,8 @@
         padding-left: 0px;
         display: flex;
     }
+    .manager-settings-main-container{
+        padding-left: 0px;
+        display: flex;
+    }
 }
-/*end- manager index pg*/
-
-/*start-manager settings page*/
-.manager-settings-container{
-    background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	height: 90vh;
-	margin: -70px 0 50px;
-}
-.manager-settings-container-center{
-    margin-top:"10px";
-    margin-left:"auto";
-    margin-right:"auto";
-    max-width:"480px";
-}
-/*end-manager settings page*/
