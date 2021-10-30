@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                     <ul className="main-menu">
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/events">Events </Link></li>
-                        <li ><Link href ="/about">About us</Link></li>
+                        <li ><Link href ="/user/about">About us</Link></li>
                         <li><Link href="/user">My Account</Link></li>
                     </ul>
                     <div className="cart">
