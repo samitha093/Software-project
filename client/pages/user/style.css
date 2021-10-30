@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 /*Start-index page*/
 .main-container{
 	min-height: 100vh;
@@ -17,7 +18,7 @@
 	height: auto;
 	width: 100%;
 	display: flex;
-	margin-top: 100px;
+	margin-top: 75px;
 	
   }
 .left-container{
@@ -60,12 +61,22 @@
 
       display: flex;
 	  justify-content: center;
-	  font-size: medium;
-	  margin-bottom: 100px;
-	  margin-top: 30px;
+	  font-family: 'Roboto', sans-serif;
+	  width: 70%;
+	  font-size: 20px;
+	  text-align: justify;
 	  color: #686568;
 	  
 	}
+.text-2-wrap{
+
+	display: flex;
+	justify-content: center;
+	text-align: justify;
+	margin: 30 0 100 0;
+		
+ }
+
 .btn-class{
    display: flex;
    justify-content: center;
@@ -105,14 +116,91 @@
 	justify-content: center;
 	padding: 50px;
   
-	} 
+} 
+
+.icon{
+	display: block;
+	justify-content: center; 
+	text-align: center;
+	width: 100%;
+	margin: 30px 0 30px 0;
+}
+
+.footer{
+    position: relative;
+	height: auto;
+	width:100%;
+	padding: 50px 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	background-color: #2d153b;
+}
+
+
+
+.aboutus{
+	margin-right: 30px;
+    width: 40%;
+}
+
+.h2{
+    color: rgba(253, 253, 253, 0.849);
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	position: relative;
+	margin-bottom: 15px;
+}
+.aboutus p{
+	color: #adaaad;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+}
+.Quicklinks{
+	position: relative;
+	width:25%;
+}
+
+.Quicklinks ul li{
+	list-style: none;
+}
+
+.Quicklinks ul li a {
+	color: #adaaad;
+	text-decoration: none;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+.Quicklinks ul li a:hover{
+	color: white;
+}
+
+.contact{
+	display: block;
+	
+}
+.row{
+	width: 100%;
+	display: flex;
+	margin: 20px;
+}
+.text-4{
+
+	color: #adaaad;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	margin-left: 10px;
+
+}
 .text-3{
 	display: flex;
-	  justify-content: center;
-	  font-size: 36px;
-	  font-weight: bold;
-	  margin-bottom: 10px;
-	  color: #555355;
+	justify-content: center;
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #555355;
     
 }
 .head-about{
