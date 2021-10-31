@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
         return (
             <div className="manager-c-sidebar">
                     <div className="manager-c-sidebar-container">
-                        <Link href="/seller/homepage">
+                        <Link href="/seller">
                             <div className="manager-c-sidebar-item">
                                 <Icon path={mdiHomeOutline} color='white'/>
                             </div>
