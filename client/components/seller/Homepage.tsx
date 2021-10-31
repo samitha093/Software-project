@@ -22,6 +22,7 @@ import tick from '../../assets/office-chair.png'
 import CreateIcon from '@mui/icons-material/Create';
 import {Button} from '@mui/material';
 import Paper from '@mui/material/Paper';
+import Createevent from '../../components/seller/Createevents'
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -82,10 +83,6 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
         console.log('asd');
     };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <div className="seller-index-container">
             <div className ="left-container">
@@ -115,13 +112,9 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
         </Grid>
       </Grid>
     </Box>
-            <div className="btn-class">
-            <Button 
-                className= "btn-create" 
-                variant="contained" 
-                startIcon = {<CreateIcon/>}
-                >Publish an Event</Button>
-            </div> 
+    <div>
+    <Createevent/>
+    </div>
             </div>
             <div className ="right-container">
             <Image
