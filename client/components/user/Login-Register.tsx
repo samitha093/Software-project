@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import {useRouter} from 'next/router'
+import LockIcon from '@mui/icons-material/Lock';
+import EmailIcon from '@mui/icons-material/Email';
 
 interface LoginProps {
 
@@ -145,6 +147,7 @@ const Login: React.FC<LoginProps> = ({}) => {
               onChange={(e)=>setPassword(e.target.value)} 
              //onChange={passwordChangeHandler}
                />
+
               {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)} 
               <input 
               className='inputbox-modern' 
@@ -198,18 +201,23 @@ const Login: React.FC<LoginProps> = ({}) => {
             <form className='modern-form' action="#">
               <h1 className ="head-signin" >Sign in</h1>
               <span className='new-span'>or use your account</span>
-            {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}  
+            {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
+            <div className ='input-box-container'> 
+             <div className ='icn'><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div>  
               <input 
-              className='inputbox-modern' 
+              className='inputbox-modern-1' 
               type="email" 
               placeholder="Email"
               value={login_email}
               onChange={login_emailChangeHandler}
             // onBlur={emailBlurHandler} 
              />
-            {login_passwordError && (<p className="error-message"> * Password can not be empty</p>)}                         
+             </div>
+            {login_passwordError && (<p className="error-message"> * Password can not be empty</p>)} 
+            <div className ='input-box-container'> 
+            <div className='icn'> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
               <input 
-              className='inputbox-modern' 
+              className='inputbox-modern-1' 
               type="password" 
               placeholder="Password" 
               value={login_password}
@@ -217,6 +225,7 @@ const Login: React.FC<LoginProps> = ({}) => {
               onBlur={login_passwordChangeHandler}
               // onBlur={emailBlurHandler}
               />
+              </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
               <button className='modern-btn'>Sign In</button>
             </form>

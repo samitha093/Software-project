@@ -319,7 +319,7 @@ const about: NextPage = () => {
                           <div className ="Quicklinks">
                             <h2 className ="h2">Quick Links</h2>
                             <ul>
-                            <li><a href = "#" color="#a688a7">About Us</a></li>
+                            <li><a href = "/" color="#a688a7">About Us</a></li>
                              <li> <a href = "#">Contact</a></li>
                             </ul>  
                           </div>
