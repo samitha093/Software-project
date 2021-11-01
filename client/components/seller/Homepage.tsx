@@ -18,7 +18,7 @@ import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
-import tick from '../../assets/office-chair.png'
+import tick from '../../assets/online-ticket.png'
 import CreateIcon from '@mui/icons-material/Create';
 import {Button} from '@mui/material';
 import Paper from '@mui/material/Paper';
@@ -88,8 +88,8 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
             <div className ="left-container">
                 <div className="text-1" style={{display:'block'}}>
                   <h2 style={{color:'#3b1c4e'}}>Welcome to our Website</h2>
-                <div style={{color:'#212121'}}> About</div>
-            </div>
+                  <div style={{color:'#212121'}}> About</div>
+                </div>
             <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
         <Grid item xs={5}>

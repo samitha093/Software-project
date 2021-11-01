@@ -19,12 +19,34 @@ import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 interface CreateeventProps {
 
 }
+
+function createData(
+  name: string
+) {
+  return { name };
+}
+
+const rows = [
+  createData('Level 1'),
+  createData('Level 2'),
+  createData('Level 3'),
+  createData('Level 4'),
+  createData('Level 5'),
+];
 
 const Img = styled('img')({
     margin: 'auto',
@@ -85,9 +107,10 @@ export default function MaxWidthDialog() {
   };
   return (
     <React.Fragment >
-      <div className='ticketview-price-btn' onClick={handleClickOpen}>
-          
-            Next
+      <div onClick={handleClickOpen}>
+      <Stack direction="row" justifyContent="right">
+      <Button variant="contained"  >Submit Event & Next</Button>
+      </Stack>
           </div>
       <Dialog
         fullWidth={fullWidth}
@@ -101,178 +124,93 @@ export default function MaxWidthDialog() {
         <DialogContent>
         <DialogContent dividers>
         <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="space-evenly">
         <Grid item xs={6}>
-          <ButtonBase sx={{ width: 300, height: 300 }}>
+          <ButtonBase sx={{ width: 200, height: 150 }}>
             <Img alt="complex" src="/assets/office-chair.png" />
           </ButtonBase>
         </Grid>
         <Grid item xs={8} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Ticket Level
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Level 1
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography  >
-                Level 2
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Level 3
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Level 4
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Level 5
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Fix Quantity
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                4645
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography  >
-                52154
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3115
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3165
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3515
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Fix Amount
-              </Typography>
-              </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                4645
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography  >
-                52154
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3115
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3165
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3515
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Bid Amount
-              </Typography>
-              </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                4645
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography  >
-                52154
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3115
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3165
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3515
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Bid Quantity
-              </Typography>
-              </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                4645
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography  >
-                52154
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3115
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3165
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                3515
-              </Typography>
-            </Grid>
-          </Grid>
+        <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 180 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Ticket Level</TableCell>
+            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Fix Amount</TableCell>
+            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Bid Amount</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
         </Grid>
       </Grid>
     </Paper>
-    <div className='ticketview-price-btn'>
-            Submit
+    <div onClick={handleClickOpen}>
+      <Stack direction="row" justifyContent="right" >
+      <Button className="seller-btn-pos" variant="contained"  >Submit Tickets</Button>
+      </Stack>
           </div>
         </DialogContent>
         </DialogContent>

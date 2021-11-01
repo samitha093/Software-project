@@ -2,30 +2,44 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Switch from '@mui/material/Switch';
-import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import Createtickets from '../../components/seller/Createtickets'
-
+import TextField from '@mui/material/TextField';
 interface CreateeventProps {
 
 }
+
+const currencies = [
+  {
+    value: '1',
+    label: '1',
+  },
+  {
+    value: '2',
+    label: '2',
+  },
+  {
+    value: '3',
+    label: '3',
+  },
+  {
+    value: '4',
+    label: '4',
+  },
+  {
+    value: '5',
+    label: '5',
+  },
+];
 
 const Img = styled('img')({
     margin: 'auto',
@@ -77,6 +91,20 @@ export default function MaxWidthDialog() {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('lg');
 
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54'),
+  );
+
+  const handleChanger = (newValue: Date | null) => {
+    setValue(newValue);
+  };
+
+  const [currency, setCurrency] = React.useState('EUR');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrency(event.target.value);
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -108,32 +136,68 @@ export default function MaxWidthDialog() {
         <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <ButtonBase sx={{ width: 300, height: 300 }}>
+          <ButtonBase sx={{ width: 250, height: 220 }}>
             <Img alt="complex" src="/assets/office-chair.png" />
           </ButtonBase>
         </Grid>
         <Grid item xs={8} sm container>
           <Grid item xs container direction="column" spacing={1}>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Event Name : khghjb
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Event Venue : dbjhsb
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography  >
-                Event Date : 52154
-              </Typography>
-            </Grid>
-            <Grid item xs className="manager-eventinfo-font" spacing={2}>
-              <Typography >
-                Ticket Levels : 5
-              </Typography>
-            </Grid>
+          <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          id="outlined-required"
+          label="Event Name"
+        />
+        <TextField
+          id="outlined-required"
+          label="Event Venue"
+        />
+        <TextField
+        id="date"
+        label="Event Date"
+        type="date"
+        defaultValue="2017-05-24"
+        sx={{ width: 220 }}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <TextField
+        id="time"
+        label="Event Time"
+        type="time"
+        defaultValue="07:30"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          step: 300, // 5 min
+        }}
+        sx={{ width: 150 }}
+      />
+        <TextField
+          id="outlined-select-currency"
+          select
+          label="Ticket Levels"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select ticket levels"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+      </div>
+    </Box>
           </Grid>
         </Grid>
       </Grid>
@@ -141,6 +205,7 @@ export default function MaxWidthDialog() {
     <div>
     <Createtickets/>
     </div>
+    
         </DialogContent>
         </DialogContent>
       </Dialog>

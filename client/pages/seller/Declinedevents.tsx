@@ -11,7 +11,7 @@ const index: NextPage = () => {
                 <div className="seller-index">
                     <Sidebar/>
                     <div>
-                       <h1>End Events</h1>
+                       <h1>Declined Events</h1>
                        <div className="seller-index-container">
                             <Declinedevents/>
                             <Declinedevents/>
