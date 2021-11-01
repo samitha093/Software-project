@@ -7,21 +7,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-//import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-//import DeleteIcon from '@mui/icons-material/Delete';
-//import PublishIcon from '@mui/icons-material/Publish';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
+//import { styled } from '@mui/material/styles';
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+//import FormControl from '@mui/material/FormControl';
+//import FormLabel from '@mui/material/FormLabel';
 import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -72,7 +68,6 @@ export default function PendingEvents() {
             <Dialog
                 fullScreen={fullScreen}
                 open={open}
-                onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title" className="manager-c-ticketsinfo-top-head-right">
