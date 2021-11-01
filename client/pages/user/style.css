@@ -61,27 +61,6 @@
 	  color: #1a191a;
 	  text-align: center;
 	}
-.text-2{
-	  padding: 20px 50px;
-    display: flex;
-	  justify-content: center;
-	  font-family: 'Roboto', sans-serif;
-	  font-size: 20px;
-	  text-align: justify;
-	  color: #686568;
-	  text-align: justify;
-	}
-.text-2-wrap{
-
-	display: flex;
-	justify-content: center;
-	font-size: 40px;
-	font-weight: bold;
-	font-style: italic;
-	margin-bottom: 20px;
-	color: #1a191a;
-	  
-	}
 
 .text-1-1{
 
@@ -145,7 +124,7 @@
 	width: 100%;
 	display: flex;
 	margin-top: 75px;
-	padding: 50;
+	padding: 50px;
     box-shadow: 0 4px 8px -5px ;
 	border-radius: 5px;
 	
