@@ -36,7 +36,8 @@
     box-sizing: border-box;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #8F7F98 !important;
+    background-color: #E3E3ED !important;
+    align-items: center;
 }
 
 @media only screen and (max-width: 600px) {

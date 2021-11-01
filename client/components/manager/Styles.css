@@ -181,8 +181,10 @@
 
 .manager-c-ticketspublishdecline-buttons-stack
 {
-    align-self: center; 
     justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
 }
 
 .manager-c-ticketsinfo-top-head-right{
@@ -248,8 +250,10 @@
 .manager-password-box1{
     height: 100%;
     width: 100%;
-    background-color :#8F7F98;
+    background-color :#E3E3ED;
     border-bottom-left-radius: 10px;
+    vertical-align: auto;
+
 }
 .manager-password-container{
     padding: 50px;
