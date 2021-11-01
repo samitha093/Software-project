@@ -74,9 +74,9 @@
     border-top-right-radius: 19px;
     width: 100%;
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    background-size: cover;
-    height:calc(var(--parent-height)*0.8);
+    height:100px;
     position: relative;
+    background-size: contain;
 }
 .manager-c-tickets-top-info{
     width: 100%;
@@ -181,8 +181,10 @@
 
 .manager-c-ticketspublishdecline-buttons-stack
 {
-    align-self: center; 
     justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
 }
 
 .manager-c-ticketsinfo-top-head-right{
@@ -248,8 +250,11 @@
 .manager-password-box1{
     height: 100%;
     width: 100%;
-    background-color :#8F7F98;
+    background-color :#E3E3ED;
     border-bottom-left-radius: 10px;
+    justify-content: center;
+    display: flex;
+
 }
 .manager-password-container{
     padding: 50px;

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
-import Sellerapproval from '../../components/manager/Sellerapproval'
+import Approvesellers from '../../components/manager/Approvesellers'
 import Fab from '@mui/material/Fab';
 
 interface Passwordresetmanager {
@@ -70,7 +70,7 @@ const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
                                 layout="responsive"
                                 m-50
                             ></Image>
-                            <Sellerapproval />
+                            <Approvesellers />
                         </div>
                     </Grid>
 

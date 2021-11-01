@@ -43,3 +43,77 @@
     width: 100%;
 }
 /*end- Buyer settings pg*/
+/*start- Cart pg*/
+.cart{
+    height: 100vh;
+}
+.cart-container{
+    width:100%;
+    height:calc(100vh - 70px);
+    display: flex;
+}
+.cart-container-left{
+    padding: 50px;
+    height: 100%;
+    width:65%
+}
+.cart-container-right{
+    padding: 50px;
+    height: 100%;
+    width:35%
+}
+.cart-container-left-drower{
+    padding: 10px;
+    height: 100%;
+    box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
+-webkit-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
+-moz-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
+}
+.cart-container-right-drower{
+    padding: 10px;
+    height: 100%;
+    box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
+-webkit-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
+-moz-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
+}
+.cart-container-right-drower-1{
+    height: 75%;
+    width: 100%;
+}
+hr{
+    width: 80%;
+}
+.cart-container-right-drower-2{
+    height: 25%;
+    width:100%;
+}
+.cart-container-right-drower-2-price{
+    display: flex;
+}
+.cart-container-right-drower-2-price-left{
+    width: 40%;
+    margin: 3px 0px 0px 20px!important;
+    padding-top: 0px;
+}
+.cart-container-right-drower-2-price-left h1{
+    margin: 0px;
+    padding: 0px;
+}
+.cart-container-right-drower-2-price-right{
+    text-align: end;
+    width:60%;
+    padding-right: 30px;
+}
+.modern-paybutton{
+    width: 100%;
+    padding: 0px 40px;
+}
+.modern-paybutton-t{
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #752E9E;
+}
+/*end- Cart pg*/

@@ -329,3 +329,39 @@ box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
     }
 }
 /*end -  ticket component*/
+/*start -  cart card full component*/
+.cartitem-card{
+    padding: 10px;
+    width: 100%;
+    border: 1px rgb(221, 221, 221);
+    border-style:solid;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+/*end -  cart card full component*/
+/*start -  cart card component*/
+.cartprice-card{
+    font-size: medium;
+    display: flex;
+}
+.cartprice-card-left{
+    display: flex;
+    width:50%;
+}
+.cartprice-card-right{
+    text-align: end;
+    width:50%;
+}
+.cartitem-card-img{
+    width: 25%;
+}
+.cartitem-card-eventname{
+    width:50%;
+}
+.cartitem-card-price{
+    width:25%;
+}
+.cartitem-card{
+    display: flex;
+}
+/*end -  cart card component*/
