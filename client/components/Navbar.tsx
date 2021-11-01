@@ -21,9 +21,11 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <li><Link href="/user">My Account</Link></li>
                     </ul>
                     <div className="cart">
-                    <IconButton color="secondary" size="large" aria-label="add to shopping cart">
-                    <ShoppingCartOutlinedIcon fontSize="inherit" />
-                    </IconButton>
+                    <Link href="/buyer/cart">
+                        <IconButton color="secondary" size="large" aria-label="add to shopping cart">
+                            <ShoppingCartOutlinedIcon fontSize="inherit" />
+                        </IconButton>
+                    </Link>
                     </div>
                 </div>
             </div>
