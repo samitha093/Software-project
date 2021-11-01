@@ -122,7 +122,7 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({}) => {
                     <Typography> Event Time: </Typography>
                   </Grid>
                 </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
+                <Grid container spacing={0} className="manager-eventinfo-font">
                   <Grid item xs={6}>
                     <Typography> Ticket Type : Level 1 </Typography>
                   </Grid>
