@@ -28,7 +28,7 @@ const index: NextPage = () => {
                                     <div style={{marginTop:'-60px', color:'#212121'}}> We ticket it</div>
                                     </div>
                                     <div className= "text-1-1">
-                                     The best place to sell your<br/>fully customized event tickets.<br/><br/> Join with TickBid today!
+                                    <br/><br/>The best place to sell your<br/>fully customized event tickets.<br/><br/> Join with TickBid today!
                                     </div>
                                     <div className="btn-class">
                                     <Button 
