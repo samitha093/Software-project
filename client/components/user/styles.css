@@ -291,8 +291,9 @@ button.ghost {
     .modern-btn{
      font-size: 9px;
      height: max-content;
-	 padding: 5px 8px;
+	 padding: 8px 10px;
     }
+	
     .content-1{
         display: none;
     }
@@ -363,18 +364,17 @@ button.ghost {
 	font-family: 'Open Sans', sans-serif;
 }
 .pwd_container{
-    padding: 50px;
+    padding: 50px 0px;
     align-content: center;
     width: 100%;
     min-height: 600px;
     
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 400px) {
     .pwd_container{
         display: flex;
         display: block;
-        padding: 10px;
                 
     }
     .box-1{
@@ -382,8 +382,7 @@ button.ghost {
        display: none;
     
 }
-    .head-password{
-          
+    .head-password{ 
         display: flex;
         font-size:large;
 
