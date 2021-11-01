@@ -24,6 +24,8 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 //Line 80 space for the image box
@@ -75,6 +77,18 @@ export default function PendingEvents() {
             >
                 <DialogTitle id="responsive-dialog-title" className="manager-c-ticketsinfo-top-head-right">
                     {"More Info"}
+                    <IconButton
+                        aria-label="close"
+                        onClick={handleClose}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 4,
+                            color: (theme) => theme.palette.grey[500],
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -120,26 +134,26 @@ export default function PendingEvents() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                        <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
-                            <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
-                                <FormControlLabel value="approve" control={<Radio />} label="Approve" />
-                                <FormControlLabel value="decline" control={<Radio />} label="Decline" />
-                            </RadioGroup>
-                        </Stack>
-                        <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack" >
-                            <TextField
-                                required
-                                id="standard-multiline-static"
-                                placeholder="Reason for declining"
-                                multiline
-                                maxRows="1"
-                                variant="standard"
-                                fullWidth
-                            />
-                            <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" marginleft="30px">
-                                SUBMIT
-                            </Fab>
-                        </Stack>
+                    <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
+                        <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+                            <FormControlLabel value="approve" control={<Radio />} label="Approve" />
+                            <FormControlLabel value="decline" control={<Radio />} label="Decline" />
+                        </RadioGroup>
+                    </Stack>
+                    <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack" >
+                        <TextField
+                            required
+                            id="standard-multiline-static"
+                            placeholder="Reason for declining"
+                            multiline
+                            maxRows="1"
+                            variant="standard"
+                            fullWidth
+                        />
+                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" marginleft="30px">
+                            SUBMIT
+                        </Fab>
+                    </Stack>
                 </DialogActions>
             </Dialog>
         </div>
