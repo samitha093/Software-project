@@ -63,12 +63,14 @@
     width:35%
 }
 .cart-container-left-drower{
+    padding: 10px;
     height: 100%;
     box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
 -webkit-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
 -moz-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
 }
 .cart-container-right-drower{
+    padding: 10px;
     height: 100%;
     box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);
 -webkit-box-shadow: -1px -1px 12px 2px rgba(0,0,0,0.19);

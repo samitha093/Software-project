@@ -85,7 +85,7 @@
 }
 .icon-card{
     display: flex;
-    justify-content: end;
+    justify-content: left;
     padding-top: 7px;
     width: 55%;
     height: calc(var(--parent-height)*0.2);
