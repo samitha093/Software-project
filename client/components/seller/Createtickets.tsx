@@ -108,7 +108,7 @@ export default function MaxWidthDialog() {
   return (
     <React.Fragment >
       <div onClick={handleClickOpen}>
-      <Stack direction="row">
+      <Stack direction="row" justifyContent="right">
       <Button variant="contained"  >Submit Event & Next</Button>
       </Stack>
           </div>
@@ -124,7 +124,7 @@ export default function MaxWidthDialog() {
         <DialogContent>
         <DialogContent dividers>
         <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="space-evenly">
         <Grid item xs={6}>
           <ButtonBase sx={{ width: 200, height: 150 }}>
             <Img alt="complex" src="/assets/office-chair.png" />
@@ -132,7 +132,7 @@ export default function MaxWidthDialog() {
         </Grid>
         <Grid item xs={8} sm container>
         <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 200 }} aria-label="simple table">
+      <Table sx={{ minWidth: 180 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Ticket Level</TableCell>
@@ -208,8 +208,8 @@ export default function MaxWidthDialog() {
       </Grid>
     </Paper>
     <div onClick={handleClickOpen}>
-      <Stack direction="row">
-      <Button variant="contained"  >Submit Tickets</Button>
+      <Stack direction="row" justifyContent="right" >
+      <Button className="seller-btn-pos" variant="contained"  >Submit Tickets</Button>
       </Stack>
           </div>
         </DialogContent>

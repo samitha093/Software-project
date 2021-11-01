@@ -18,6 +18,34 @@ import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+function createData(
+  level: string,
+  fixprice: number,
+  fsell: number,
+  fsold: number,
+  bidprice: number,
+  totbid: number,
+  availablebid: number,
+) {
+  return { level, fixprice, fsell, fsold, bidprice, totbid, availablebid };
+}
+
+const rows = [
+  createData('1', 159, 6, 8, 124, 4, 5),
+  createData('2', 237, 4, 9, 137, 4, 6),
+  createData('3', 262, 16, 9, 124, 6, 3),
+  createData('4', 305, 3, 7, 167, 4, 4),
+  createData('5', 356, 16, 9, 149, 3, 8),
+];
+
 interface EndeventProps {
 
 }
@@ -102,7 +130,7 @@ const Endevents: React.FC<EndeventProps> = ({}) => {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Active Event
+          End Event
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
@@ -111,7 +139,7 @@ const Endevents: React.FC<EndeventProps> = ({}) => {
           <Grid sx={{ maxWidth: 480 }}>
             <Grid margin-top="20px">
               <Box sx={{ flexGrow: 1 }}>
-                <Grid  className="manager-eventinfo-font">
+                <Grid  className="manager-eventinfo-font" container spacing={1}>
                   <Grid item xs={6}>
                     <Typography> Event Venue: </Typography>
                   </Grid>
@@ -122,119 +150,39 @@ const Endevents: React.FC<EndeventProps> = ({}) => {
                     <Typography> Event Time: </Typography>
                   </Grid>
                 </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 1 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Sold: </Typography>
-                    <Typography> Sell: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Max Bid: </Typography>
-                    <Typography> Number of Bids: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 2 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Sold: </Typography>
-                    <Typography> Sell: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Max Bid: </Typography>
-                    <Typography> Number of Bids: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 3 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Sold: </Typography>
-                    <Typography> Sell: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Max Bid: </Typography>
-                    <Typography> Number of Bids: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 4 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Sold: </Typography>
-                    <Typography> Sell: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Max Bid: </Typography>
-                    <Typography> Number of Bids: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 5 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Sold: </Typography>
-                    <Typography> Sell: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Max Bid: </Typography>
-                    <Typography> Number of Bids: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Total amount :  </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Total amount :  </Typography>
-                  </Grid>
-                </Grid>
+                <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 400 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Ticket Level</TableCell>
+            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">FSell</TableCell>
+            <TableCell align="right">FSold</TableCell>
+            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Total Bid</TableCell>
+            <TableCell align="right">Available Bid</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.level}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.level}
+              </TableCell>
+              <TableCell align="right">{row.fixprice}</TableCell>
+              <TableCell align="right">{row.fsell}</TableCell>
+              <TableCell align="right">{row.fsold}</TableCell>
+              <TableCell align="right">{row.bidprice}</TableCell>
+              <TableCell align="right">{row.totbid}</TableCell>
+              <TableCell align="right">{row.availablebid}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
               </Box>
             </Grid>
           </Grid>

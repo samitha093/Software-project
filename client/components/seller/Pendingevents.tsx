@@ -30,13 +30,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 
 function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
+  level: string,
+  fixprice: number,
+  fquantity: number,
+  bidprice: number,
+  bquantity: number,
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { level, fixprice, fquantity, bidprice, bquantity};
 }
 
 const rows = [
@@ -157,24 +157,24 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
           <TableRow>
             <TableCell>Ticket Level</TableCell>
             <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell align="right">Quantity</TableCell>
             <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell align="right">Quantity</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.level}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.level}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.fixprice}</TableCell>
+              <TableCell align="right">{row.fquantity}</TableCell>
+              <TableCell align="right">{row.bidprice}</TableCell>
+              <TableCell align="right">{row.bquantity}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -185,7 +185,7 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
           </Grid>
           <Grid spacing={5}>
           <Grid spacing={5}>
-          <Stack direction="row">
+          <Stack direction="row" justifyContent="right">
             <Button variant="outlined" startIcon={<DeleteIcon />}>
               Delete Event
             </Button>

@@ -18,6 +18,35 @@ import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
+
+function createData(
+  level: string,
+  fixprice: number,
+  fquantity: number,
+  bidprice: number,
+  bquantity: number,
+) {
+  return { level, fixprice, fquantity, bidprice, bquantity};
+}
+
+const rows = [
+  createData('1', 159, 6, 124, 4),
+  createData('2', 237, 9, 137, 4),
+  createData('3', 262, 16, 124, 6),
+  createData('4', 305, 3, 167, 4),
+  createData('5', 356, 16, 149, 3),
+];
+
 interface DeclinedeventProps {
 
 }
@@ -102,7 +131,7 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({}) => {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Active Event
+          Declined Event
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
@@ -111,7 +140,7 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({}) => {
           <Grid sx={{ maxWidth: 480 }}>
             <Grid margin-top="20px">
               <Box sx={{ flexGrow: 1 }}>
-              <Grid  className="manager-eventinfo-font">
+                <Grid  className="manager-eventinfo-font" container spacing={1}>
                   <Grid item xs={6}>
                     <Typography> Event Venue: </Typography>
                   </Grid>
@@ -122,109 +151,43 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({}) => {
                     <Typography> Event Time: </Typography>
                   </Grid>
                 </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 1 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 2 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 3 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 4 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Ticket Type : Level 5 </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Fix price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Bid Price: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography> Number of Tickets: </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={0} className="manager-eventinfo-font">
-                  <Grid item xs={6}>
-                    <Typography> Declined reason :  </Typography>
-                  </Grid>
-                </Grid>
+                <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 400 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Ticket Level</TableCell>
+            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Quantity</TableCell>
+            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Quantity</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.level}
+              </TableCell>
+              <TableCell align="right">{row.fixprice}</TableCell>
+              <TableCell align="right">{row.fquantity}</TableCell>
+              <TableCell align="right">{row.bidprice}</TableCell>
+              <TableCell align="right">{row.bquantity}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
               </Box>
             </Grid>
           </Grid>
+          <Grid  className="manager-eventinfo-font" container spacing={1}>
+                  <Grid item xs={6}>
+                    <Typography> Declined Reason: </Typography>
+                  </Grid>
+                </Grid>
         </DialogContent>
       </BootstrapDialog>       
     </div>
