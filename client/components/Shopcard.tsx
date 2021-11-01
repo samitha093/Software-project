@@ -218,7 +218,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
             </div>
           </div>
           <div className='ticketview-price-btn'>
-            PAY NOW ( LKR {ticketpricet*ticketcount}.00 )
+            Bid NOW ( LKR {ticketpricet*ticketcount}.00 )
           </div>         
         </DialogContent>
       </BootstrapDialog>
