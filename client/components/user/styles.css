@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@100;300&display=swap');
 
 
 /*start-Login component*/
@@ -12,6 +14,7 @@
 }
 .new-span{
 	font-size: 12px;
+	font-family: 'Open Sans', sans-serif;
 }
 .modern-a{
 	color: #333;
@@ -19,12 +22,15 @@
     color:#BB9CD1 ;
 	text-decoration: none;
 	margin: 15px 0;
+	font-family: 'Open Sans', sans-serif;
 }
+	
 .modern-btn{
 	border-radius: 20px;
 	border: 1px solid #BB9CD1;
 	background-color: #BB9CD1;
 	color: #FFFFFF;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	padding: 12px 45px;
@@ -56,12 +62,35 @@ button.ghost {
 	height: 100%;
 	text-align: center;
 }
+.input-box-container{
+	display: flex;
+	border-radius: 8px;
+	width: 80%;
+	margin: 8px 0;
+	background-color: rgba(238, 238, 238, 0.856);
+}
 .inputbox-modern{
-	background-color: rgba(238, 238, 238, 0.788);
+	background-color: rgba(238, 238, 238, 0.856);
 	border: none;
+	border-radius: 8px;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 80%;
+	font-family: 'Open Sans', sans-serif;
+
+}
+.inputbox-modern-1{
+	background-color: rgba(238, 238, 238, 0.856);
+	border: none;
+	border-radius: 8px;
+	padding: 12px 15px;
+	width: 80%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.icn{
+	width: 20%;
+	margin-top: 10px;
 }
 .container {
 	background-color: #fff;
@@ -205,20 +234,22 @@ button.ghost {
 
 .head-signin{
     font-size: x-large;
-    font-weight: bolder ;
+    font: weight 700px; 
     color: slategrey;
     margin-bottom: 70px;
     margin-top: 50px;
     text-align: center;
+	font-family: 'Open Sans', sans-serif;
    
 }
 .head-signup{
     font-size: x-large;
-    font-weight: bolder ;
+    font: weight 700px; 
     color: slategrey;
     margin-bottom: 40px;
     margin-top: 50px;
     text-align: center;
+	font-family: 'Open Sans', sans-serif;
    
 }
 
@@ -228,6 +259,7 @@ button.ghost {
     color:#8F7F98;
     text-align: center;
     padding-top:20px;
+	font-family: 'Open Sans', sans-serif;
     
 }
 
@@ -236,6 +268,7 @@ button.ghost {
     color : #8F7F98;
     text-align: center;
     text-indent: left;
+	font-family: 'Open Sans', sans-serif;
     
 }
 
@@ -258,7 +291,7 @@ button.ghost {
     .modern-btn{
      font-size: 9px;
      height: max-content;
-     width: 50%;
+	 padding: 5px 8px;
     }
     .content-1{
         display: none;
@@ -285,11 +318,6 @@ button.ghost {
     }   
 }
 
-.input-box{
-    margin-bottom: auto;
-    font-size: large;
-    width: 100%;
-}
 .input-box-error{
     margin-bottom: auto;
     font-size: large;
@@ -327,11 +355,12 @@ button.ghost {
 
 .head-password{
     font-size: x-large;
-    font-weight: bolder ;
+    font: weight 700px ;
     color: slategrey;
     margin-bottom: 70px;
     margin-top: 50px;
     text-align: center;
+	font-family: 'Open Sans', sans-serif;
 }
 .pwd_container{
     padding: 50px;
