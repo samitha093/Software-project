@@ -252,7 +252,8 @@
     width: 100%;
     background-color :#E3E3ED;
     border-bottom-left-radius: 10px;
-    vertical-align: auto;
+    justify-content: center;
+    display: flex;
 
 }
 .manager-password-container{
