@@ -31,7 +31,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                         <div className ='input-box-container'> 
                         <div className ='icn'><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
                         <input 
-                         className='inputbox-modern-1' 
+                         className='inputbox-modern' 
                          type="email" 
                          placeholder="Your Email"
                          value={login_email}
