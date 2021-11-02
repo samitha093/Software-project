@@ -94,7 +94,7 @@ export default function MaxWidthDialog() {
         </BootstrapDialogTitle>
         <DialogContent>
           <DialogContent dividers>
-            <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
+            <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1300, flexGrow: 1 }}>
               <Sellerapprovaltable />
             </Paper>
           </DialogContent>
