@@ -138,6 +138,11 @@
     background-color: #752E9E;
     color: white;
 }
+
+#manager-pendingevents-table-head{
+    background-color: #752E9E !important;
+}
+
 @media only screen and (max-width: 550px) {
     .manager-c-tickets{
         width: 230px;
@@ -204,6 +209,7 @@
     background-size: contain;
     width: 100%;
     padding: 10px;
+    margin-top: 20px;
 }
 .manager-eventinfo-font
 {
@@ -220,10 +226,7 @@
     margin-top: 50px;
     text-align: center !important;
 }
-/*delete if not worked. Newly added id. Still not visible in my local host*/
-#pwd-conainer-id{
-    background-color: #9980FA;
-}
+
 .manager-button-submit{
     background-color: #BB9CD1;
     justify-content: center !important;
