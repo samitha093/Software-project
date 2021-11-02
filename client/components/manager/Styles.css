@@ -139,7 +139,7 @@
     color: white;
 }
 
-#manager-pendingevents-table-head{
+.css-og52vs-MuiTableCell-root.MuiTableCell-head{
     background-color: #752E9E !important;
 }
 
@@ -215,8 +215,33 @@
 {
     color:black
 }
+/*end-pendig tikcets info component*/
 
-/*manager password reset component*/
+/*start-active events component*/
+.manager-c-tickets-active{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #5776B4;
+    position: relative;
+    margin: 10px;
+}
+/*end-active events component*/
+
+/*start-declined events component*/
+.manager-c-tickets-declined{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #AE006E;
+    position: relative;
+    margin: 10px;
+}
+/*end-declined events component*/
+
+/*start-manager password reset component*/
 
 .manager-settings-head{
     font-size: x-large !important;

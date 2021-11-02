@@ -59,13 +59,13 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                     </Grid>
                     <Grid item xs className="box-1" >
                         <div className="content-1">
-                            <Sellerapproval />
                             <Image
                                 src={lock}
                                 layout="responsive"
                                 m-50
                             >
                             </Image>
+                            <Sellerapproval />
 
                         </div>
                     </Grid>
