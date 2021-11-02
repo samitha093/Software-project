@@ -11,7 +11,6 @@
     background-color: #752E9E;
     border-radius: 30px;
     padding: 30px 23px;
-    align-items: center; /*may not work*/
 }
 .manager-c-sidebar-item{
     width:60px;
@@ -201,8 +200,8 @@
 }
 .manager-eventinfo-image{
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    height:100px;
-    background-size: cover;
+    height:200px;
+    background-size: contain;
     width: 100%;
     padding: 10px;
 }
@@ -220,8 +219,10 @@
     margin-bottom: 40px;
     margin-top: 50px;
     text-align: center !important;
-    text-decoration: underline !important;
-   
+}
+/*delete if not worked. Newly added id. Still not visible in my local host*/
+#pwd-conainer-id{
+    background-color: #9980FA;
 }
 .manager-button-submit{
     background-color: #BB9CD1;
