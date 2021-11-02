@@ -20,7 +20,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
         <div className="container" id="container" >
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
-                    <Grid item md={7} className="pwd_container" id = "pwd-conainer-id" >
+                    <Grid item md={7} className="pwd_container">
                         <div className="form-wrapper">
                             <form className='modern-form' action="#">
                                 <h1 className="head-password" >Reset Password</h1>
@@ -59,13 +59,14 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                     </Grid>
                     <Grid item xs className="box-1" >
                         <div className="content-1">
+                            <Sellerapproval />
                             <Image
                                 src={lock}
                                 layout="responsive"
                                 m-50
                             >
                             </Image>
-                            <Sellerapproval />
+
                         </div>
                     </Grid>
 
