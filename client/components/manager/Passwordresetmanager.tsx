@@ -20,13 +20,13 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
         <div className="container" id="container" >
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
-                    <Grid item md={7} className="pwd_container" >
+                    <Grid item md={7} className="pwd_container" id = "pwd-conainer-id" >
                         <div className="form-wrapper">
                             <form className='modern-form' action="#">
                                 <h1 className="head-password" >Reset Password</h1>
                                 <input
                                     className='inputbox-modern'
-                                    type="email"
+                                    type="password"
                                     placeholder="Current password"
                                     value={currentpwd}
                                     onChange={(e) => setcurrentpwd(e.target.value)}
@@ -34,7 +34,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 />
                                 <input
                                     className='inputbox-modern'
-                                    type="email"
+                                    type="password"
                                     placeholder="New Password"
                                     value={newpwd}
                                     onChange={(e) => setnewpwdpw(e.target.value)}
@@ -42,7 +42,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 />
                                 <input
                                     className='inputbox-modern'
-                                    type="email"
+                                    type="password"
                                     placeholder="Confirm New Password"
                                     value={cnewpwd}
                                     onChange={(e) => setcnewpwdpw(e.target.value)}
