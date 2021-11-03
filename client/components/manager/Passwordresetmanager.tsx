@@ -1,82 +1,74 @@
 import React from 'react';
-import { useRouter } from 'next/router'
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
-import { Box, Grid, } from '@mui/material';
+import {Box,Grid,} from '@mui/material';
 import Approvesellers from '../../components/manager/Approvesellers'
-import Fab from '@mui/material/Fab';
 
-interface Passwordresetmanager {
+interface ResetPwdProps {
 
 }
 
-const Passwordresetmanager: React.FC<Passwordresetmanager> = ({ }) => {
+const Passwordresetmanager: React.FC<ResetPwdProps> = ({}) => {
 
-    /*const [login_email,login_setEmail] = React.useState<string>("");
-    const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
-    
-    const login_emailChangeHandler = (event:any)=>{
-      login_setEmail(event.target.value);
-      const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-      const valid = !!event.target.value.match(email_regex);
-      login_setEmailError(!valid);
-    }*/
-    return (
+  const [login_email,login_setEmail] = React.useState<string>("");
+  const [currentpwd, setcurrentpwd] = React.useState("");
+  const [newpwd, setnewpwdpw] = React.useState("");
+  const [cnewpwd, setcnewpwdpw] = React.useState("");
+
+    return(
         <div className="container" id="container" >
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={0}>
-                    <Grid item md={7} className="manager-password-container" >
-                        <div className="manager-password-form-wrapper">
-                            <form className='modern-form' action="#">
-                                <h1 className="head-password" >Reset Password</h1>
-
-                                <input
-                                    className='inputbox-modern'
-                                    type="password"
-                                    placeholder="Enter Current Password"
-                                //value={login_email}
-                                //onChange={login_emailChangeHandler}
-                                // onBlur={emailBlurHandler} 
-                                />
-                                <input
-                                    className='inputbox-modern'
-                                    type="password"
-                                    placeholder="Enter New Password"
-                                //value={login_email}
-                                //onChange={login_emailChangeHandler}
-                                // onBlur={emailBlurHandler} 
-                                />
-                                <input
-                                    className='inputbox-modern'
-                                    type="password"
-                                    placeholder="Confirm New Password"
-                                //value={login_email}
-                                //onChange={login_emailChangeHandler}
-                                // onBlur={emailBlurHandler} 
-                                />
-
-                                <Fab variant="extended" size="medium" background-color="#BB9CD1" aria-label="add">
-                                    SUBMIT
-                                </Fab>
-                                <br />
-                            </form>
-                        </div>
-
-                    </Grid>
-                    <Grid item xs className="manager-password-box1" >
-                        <div className="manager-password-content">
-                            <Image
-                                src={lock}
-                                layout="responsive"
-                                m-50
-                            ></Image>
-                            <Approvesellers />
-                        </div>
-                    </Grid>
-
+        <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={0}>
+                <Grid item md={7} className = "pwd_container" >
+                <div className="form-wrapper">
+                        <form className='modern-form' action="#">
+                         <h1 className = "head-password" >Reset Password</h1>
+                        <input 
+                         className='inputbox-modern' 
+                         type="email" 
+                         placeholder="Current password"
+                         value={currentpwd}
+                         onChange={(e)=>setcurrentpwd(e.target.value)}
+                        // onBlur={emailBlurHandler} 
+                          />
+                        <input 
+                         className='inputbox-modern' 
+                         type="email" 
+                         placeholder="New Password"
+                         value={newpwd}
+                         onChange={(e)=>setnewpwdpw(e.target.value)}
+                        // onBlur={emailBlurHandler} 
+                          />
+                        <input 
+                         className='inputbox-modern' 
+                         type="email" 
+                         placeholder="Confirm New Password"
+                         value={cnewpwd}
+                         onChange={(e)=>setcnewpwdpw(e.target.value)}
+                        // onBlur={emailBlurHandler} 
+                          />
+                          <br/><br/>
+                          <button className='modern-btn'>Rest Password</button>
+                          </form>
+                          
+                   </div>
+                    
                 </Grid>
-            </Box>
-        </div>
+                <Grid item xs className = "box-1" >
+                <div className="content-1">
+                <Image
+                     src = {lock}
+                     layout = "responsive"
+                     m-50
+                    >
+                        </Image>    
+                        <Approvesellers/>
+                 </div>        
+                </Grid>
+                        
+            </Grid>
+        </Box>  
+</div>
 
     );
 
