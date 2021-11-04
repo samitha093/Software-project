@@ -126,7 +126,6 @@ export default function MaxWidthDialog() {
         fullWidth={fullWidth}
         maxWidth={maxWidth}
         open={open}
-        onClose={handleClose}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Create Event
