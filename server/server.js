@@ -26,6 +26,10 @@ app.use('/ab',testrout);
 const sellerrout = require('./routes/seller');
 app.use('/seller',sellerrout);
 
+const userrout = require('./routes/user');
+app.use('/user',userrout);
+
+
 app.listen(port, ()=>{
     console.log(`server is on port: ${port}`);
 });
