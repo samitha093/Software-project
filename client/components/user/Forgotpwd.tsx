@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import {Box,Grid,} from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
 
 interface ForgotpwdProps {
 
@@ -27,6 +28,8 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                         <form className='modern-form' action="#">
                          <h1 className = "head-password" >Forgot Password</h1>
                          {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
+                        <div className ='input-box-container'> 
+                        <div className ='icn'><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
                         <input 
                          className='inputbox-modern' 
                          type="email" 
@@ -35,6 +38,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                          onChange={login_emailChangeHandler}
                         // onBlur={emailBlurHandler} 
                           />
+                          </div>
                           <br/><br/>
                           <button className='modern-btn'>Send Email</button>
                           </form>
@@ -43,15 +47,12 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                     
                 </Grid>
                 <Grid item xs className = "box-1" >
-                <div className="content-1">
                 <Image
                      src = {lock}
                      layout = "responsive"
                      m-50
                      alt= " "
-                    ></Image>    
-                 </div>
-                            
+                    ></Image>            
                 </Grid>
                         
             </Grid>

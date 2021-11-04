@@ -68,26 +68,39 @@ button.ghost {
 	width: 80%;
 	margin: 8px 0;
 	background-color: rgba(238, 238, 238, 0.856);
+	transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out;
 }
+
+.input-box-container:hover {
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  }
+  
+.input-box-container.active {
+	background-color: #ffffff;
+	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+
+
 .inputbox-modern{
-	background-color: rgba(238, 238, 238, 0.856);
+	background-color: rgba(238, 238, 238, 0.733);
 	border: none;
+	outline: none;
 	border-radius: 8px;
 	padding: 12px 15px;
-	margin: 8px 0;
-	width: 80%;
+	width: 100%;
 	font-family: 'Open Sans', sans-serif;
 
 }
 .inputbox-modern-1{
-	background-color: rgba(238, 238, 238, 0.856);
+	background-color: rgba(238, 238, 238, 0.733);
 	border: none;
+	outline: none;
 	border-radius: 8px;
 	padding: 12px 15px;
 	width: 80%;
 	font-family: 'Open Sans', sans-serif;
 }
-
 .icn{
 	width: 20%;
 	margin-top: 10px;
@@ -225,7 +238,7 @@ button.ghost {
 .radio{
     margin-top: 20px;
     margin-bottom: 20px;
-    
+
 }
 .radio-label{
     font-size: 13px;
@@ -291,8 +304,9 @@ button.ghost {
     .modern-btn{
      font-size: 9px;
      height: max-content;
-	 padding: 5px 8px;
+	 padding: 8px 10px;
     }
+	
     .content-1{
         display: none;
     }
@@ -319,13 +333,12 @@ button.ghost {
 }
 
 .input-box-error{
-    margin-bottom: auto;
+    margin-bottom: 5px;
     font-size: large;
     border-color: red;
     width: 100%;
 
 }
-
 
 .pricing-box{
     width: auto;
@@ -335,9 +348,9 @@ button.ghost {
     size: auto;
 }
 .error-message{
-    font-family: Arial, serif;
+    font-family: 'Open Sans', sans-serif;
     color: red;
-    font-size: small;
+    font-size: 12px;
 }
 
 
@@ -363,18 +376,17 @@ button.ghost {
 	font-family: 'Open Sans', sans-serif;
 }
 .pwd_container{
-    padding: 50px;
+    padding: 50px 0px;
     align-content: center;
     width: 100%;
     min-height: 600px;
     
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 400px) {
     .pwd_container{
         display: flex;
         display: block;
-        padding: 10px;
                 
     }
     .box-1{
@@ -382,8 +394,7 @@ button.ghost {
        display: none;
     
 }
-    .head-password{
-          
+    .head-password{ 
         display: flex;
         font-size:large;
 

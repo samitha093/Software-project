@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import {useRouter} from 'next/router'
 import LockIcon from '@mui/icons-material/Lock';
-import EmailIcon from '@mui/icons-material/Email';
-
+import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 interface LoginProps {
 
 }
@@ -114,22 +113,25 @@ const Login: React.FC<LoginProps> = ({}) => {
               <h1 className =" head-signup">Create Account</h1>
               <span className='new-span'>Please fill up your details below</span>
               {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
+              <div className ='input-box-container' > 
               <input
                 className='inputbox-modern'
                 type="text" 
                 placeholder="Name"
                 //value={name}
                 onChange={nameChangeHandler}
-                 />
+                 /></div>
                {emailHasError && (<p className="error-message"> * Invalid email</p>)}  
+               <div className ='input-box-container' > 
               <input
                className='inputbox-modern' 
                type="email"
                placeholder="Email"
                value={email}
                onChange={emailChangeHandler}
-               />
+               /></div>
                {contactHasError && (<p className="error-message"> * Enter a valid contact number</p>)}
+               <div className ='input-box-container' > 
                <input 
                className='inputbox-modern' 
                type="text" 
@@ -137,8 +139,9 @@ const Login: React.FC<LoginProps> = ({}) => {
                value={contact}
                onChange={contactChangeHandler}
 
-               />
+               /></div>
                {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
+               <div className ='input-box-container' > 
               <input 
               className='inputbox-modern' 
               type="password" 
@@ -146,9 +149,10 @@ const Login: React.FC<LoginProps> = ({}) => {
               value={password}
               onChange={(e)=>setPassword(e.target.value)} 
              //onChange={passwordChangeHandler}
-               />
+               /></div>
 
-              {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)} 
+              {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)}
+              <div className ='input-box-container' >  
               <input 
               className='inputbox-modern' 
               type="password" 
@@ -157,7 +161,7 @@ const Login: React.FC<LoginProps> = ({}) => {
               onChange={(e)=>setconfirmpassword(e.target.value)} 
               //onChange={confirmPasswordChangeHandler}
               onBlur={confirmPasswordChangeHandler}
-               />
+               /></div>
               
               <div className="radio">  
               <label className ="radio-label">
@@ -202,12 +206,12 @@ const Login: React.FC<LoginProps> = ({}) => {
               <h1 className ="head-signin" >Sign in</h1>
               <span className='new-span'>or use your account</span>
             {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
-            <div className ='input-box-container'> 
-             <div className ='icn'><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div>  
+            <div className ='input-box-container' > 
+             <div className ='icn'><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
               <input 
               className='inputbox-modern-1' 
               type="email" 
-              placeholder="Email"
+              placeholder="User email"
               value={login_email}
               onChange={login_emailChangeHandler}
             // onBlur={emailBlurHandler} 
