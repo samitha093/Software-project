@@ -29,15 +29,12 @@
 
 .manager-settings-main-container
 {
-    width: 100%;
-    padding-left: 30px;
-    position: relative;
     display: flex;
-    box-sizing: border-box;
     justify-content: center;
-    flex-wrap: wrap;
-    background-color: #E3E3ED !important;
-    align-items: center;
+    width: 100%;
+}
+.manager-setting{
+    width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -49,10 +46,6 @@
         padding-left: 30px;
     }
     .manager-index-container{
-        padding-left: 0px;
-        display: flex;
-    }
-    .manager-settings-main-container{
         padding-left: 0px;
         display: flex;
     }

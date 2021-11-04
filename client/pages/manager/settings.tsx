@@ -11,10 +11,10 @@ const settings: NextPage = () => {
             <Navbar />
             <div className="manager-index">
                 <Sidebar />
-                <div>
+                <div className="manager-setting">
                     <h1>Settings</h1>
                     <div className="manager-settings-main-container">
-                        <Passwordresetmanager />  
+                        <Passwordresetmanager/>  
                     </div>
                 </div>
             </div>

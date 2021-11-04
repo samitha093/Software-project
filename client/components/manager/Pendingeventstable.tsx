@@ -50,9 +50,9 @@ export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 100,maxWidth: 480 }} aria-label="customized table">
-        <TableHead>
+        <TableHead id = "manager-pendingevents-table-head">
           <TableRow>
-            <StyledTableCell align="center" background-color="red">Ticket Level</StyledTableCell>
+            <StyledTableCell align="center">Ticket Level</StyledTableCell>
             <StyledTableCell align="center">Fixed Quantity</StyledTableCell>
             <StyledTableCell align="center">Fixed Amount</StyledTableCell>
             <StyledTableCell align="center">Bid Quantity</StyledTableCell>
