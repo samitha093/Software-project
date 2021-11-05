@@ -29,6 +29,8 @@ app.use('/seller',sellerrout);
 const userrout = require('./routes/user');
 app.use('/user',userrout);
 
+const managerroute = require('./routes/manager');
+app.use('/manager',managerroute);
 
 app.listen(port, ()=>{
     console.log(`server is on port: ${port}`);
