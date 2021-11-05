@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import Createtickets from '../../components/seller/Createtickets'
 import TextField from '@mui/material/TextField';
+import axios from 'axios'
 interface CreateeventProps {
 
 }
@@ -112,6 +113,25 @@ export default function MaxWidthDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  //const [event_name] = React.useState<string>("eventName");
+  /*React.useEffect(()=>{
+    const datapack = {
+      EventName:event_name,
+      EventDate:"2021/12/25",
+      EventVenue: "Negombo",
+      EventTime:"02.00 pm",
+      TicketLevel:"3",
+      ImageUrl:"fehgjngjfgd",
+      UserId:"61842a1e0ec95f011fdc3bcf"
+    }
+      axios.post('http://localhost:8000/seller/events',datapack)
+          .then(async (res)=>{
+              console.log(res.data)
+          })
+      
+  },[])*/
+
   return (
     <React.Fragment >
       <div className="btn-class">

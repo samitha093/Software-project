@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar'
 import Homepage from '../../components/seller/Homepage'
 
 const index: NextPage = () => {
+    
     return (
         <div className="seller-bg">
                 <Navbar/>
