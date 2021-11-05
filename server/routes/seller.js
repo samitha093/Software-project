@@ -2,7 +2,6 @@ const router = require('express').Router();
 const events = require('../models/events');
 const ticketLevels = require('../models/ticketLevels');
 
-
 router.route('/events').post((req,res) => {
     const event_name = req.body.EventName;
     const event_venue = req.body.EventVenue;
@@ -47,5 +46,34 @@ router.route('/ticketlevels').post((req,res) => {
     
 });
 
+router.route('/pending/:id').get((req,res) => {
+    events.find({user_id:req.params.id, status:"pending"})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
+
+router.route('/active/:id').get((req,res) => {
+    events.find({user_id:req.params.id, status:"active"})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
+
+router.route('/end/:id').get((req,res) => {
+    events.find({user_id:req.params.id, status:"end"})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
+
+router.route('/declined/:id').get((req,res) => {
+    events.find({user_id:req.params.id, status:"decclined"})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
+
+router.route('/details/:id').get((req,res) => {
+    ticketLevels.find({event_id:req.params.id})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
 
 module.exports = router;
