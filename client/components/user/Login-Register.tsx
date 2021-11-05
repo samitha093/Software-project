@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {useRouter} from 'next/router'
 import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import 'axios'
 interface LoginProps {
 
 }
