@@ -24,10 +24,14 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [contact,setContact] = React.useState("");
   const [contactHasError,setContactError] = React.useState(false);
   
-  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
+  const [login_email,login_setEmail] = React.useState<string>("");
+  const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
 
+  const [login_password,login_setPassword] =React.useState<string>("");
+  const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
+
+  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
   const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
-    
   const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
 
 
@@ -66,12 +70,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
 
   }
-  const [login_email,login_setEmail] = React.useState<string>("");
-  const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
-  const [login_password,login_setPassword] =React.useState<string>("");
-  const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
-    
-
+ 
     const login_emailChangeHandler = (event:any)=>{
       login_setEmail(event.target.value);
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
