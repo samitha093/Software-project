@@ -1,6 +1,20 @@
 const router = require('express').Router();
 const events = require('../models/events');
 const ticketLevels = require('../models/ticketLevels');
+const users = require('../models/users');
+const jwt = require('jsonwebtoken');
+
+function authtoken(req, res, next){
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if(token == null) return res.sendStatus(401)
+
+    jwt.verify(token, "hjfhsahf282714ndflsd8we0" , (err, data)=>{
+        if(err) return res.sendStatus(403)
+        next();
+    } )
+ 
+}
 
 router.route('/events').post((req,res) => {
     const event_name = req.body.EventName;
@@ -70,9 +84,21 @@ router.route('/declined/:id').get((req,res) => {
         .catch(err => res.status(400).json(err))
 });
 
-router.route('/details/:id').get((req,res) => {
+router.route('/details/:id').get(authtoken,(req,res) => {
     ticketLevels.find({event_id:req.params.id})
         .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
+
+router.route('/userdetails/:id').get((req,res) => {
+    users.findById(req.params.id)
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
+
+router.route('/delete/:id').delete(authtoken,(req,res) => {
+    testmdel.findByIdAndDelete(req.params.id)
+        .then(()=> res.status(200).json("event deleted"))
         .catch(err => res.status(400).json(err))
 });
 
