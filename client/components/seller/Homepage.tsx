@@ -2,25 +2,14 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
-import PendingEvents from '../manager/Pendingtickets';
-import { dividerClasses } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import DialogContentText from '@mui/material/DialogContentText';
 import Image from 'next/image'
-import remove from '../assets/icons/minus.png'
-import add from '../assets/icons/plus.png'
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import tick from '../../assets/online-ticket.png'
-import CreateIcon from '@mui/icons-material/Create';
-import {Button} from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Createevent from '../../components/seller/Createevents'
 import axios from 'axios'
@@ -79,6 +68,16 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const [item, setitem] = React.useState([])
+    React.useEffect(()=>{
+      axios.get('http://localhost:8000/seller/userdetails/61842a1e0ec95f011fdc3bcf')
+      .then(async (res)=>{
+        await setitem(res.data)
+        console.log(res.data)
+      })
+        
+    },[])
+
     const handleClickOpen = () => {
         setOpen(true);
         console.log('asd');
@@ -97,19 +96,19 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
           <Item>Full Name</Item>
         </Grid>
         <Grid item xs={7}>
-          <Item>sdbfhsgb</Item>
+          <Item>{item.user_name}</Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Email</Item>
         </Grid>
         <Grid item xs={7}>
-          <Item>sfbsuhgubsvf</Item>
+          <Item>{item.email}</Item>
         </Grid>
         <Grid item xs={5}>
           <Item>Contact Number</Item>
         </Grid>
         <Grid item xs={7}>
-          <Item>32154644848</Item>
+          <Item>{item.contact}</Item>
         </Grid>
       </Grid>
     </Box>
