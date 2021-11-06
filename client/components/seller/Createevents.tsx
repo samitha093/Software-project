@@ -15,6 +15,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Createtickets from '../../components/seller/Createtickets'
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
+import {gethost} from '../../session/Session'
+
 interface CreateeventProps {
 
 }
@@ -100,7 +102,12 @@ export default function MaxWidthDialog() {
     setValue(newValue);
   };
 
-  const [currency, setCurrency] = React.useState('EUR');
+  const [currency, setCurrency] = React.useState("");
+  const [event_name,setname] = React.useState<string>("");
+  const [event_venue,setvenue] = React.useState<string>("");
+  const [event_date,setdate] = React.useState<string>("");
+  const [event_time,settime] = React.useState<string>("");
+  const [ticket_levels,setlevel] = React.useState<string>("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrency(event.target.value);
@@ -114,17 +121,53 @@ export default function MaxWidthDialog() {
     setOpen(false);
   };
 
+  const eventNameChangeHandler = (event:any)=>{
+    setname(event.target.value);
+  };
+
+  const eventVenueChangeHandler = (event:any)=>{
+    setvenue(event.target.value);
+  };
+
+  const eventDateChangeHandler = (event:any)=>{
+    setdate(event.target.value);
+  };
+
+  const eventTimeChangeHandler = (event:any)=>{
+    settime(event.target.value);
+  };
+
+  const submitevent = () => {
+    const datapack = {
+      EventName:event_name,
+      EventDate:event_date,
+      EventVenue:event_venue,
+      EventTime:event_time,
+      TicketLevel:currency,
+      ImageUrl:"fehgjngjfgd",
+      UserId:"61842a1e0ec95f011fdc3bcf"
+    }
+    axios.post(gethost()+'seller/events',datapack)
+          .then(async (res)=>{
+              console.log(res.data)
+          })
+    console.log(datapack);
+    
+  };
+  
+
   //const [event_name] = React.useState<string>("eventName");
   /*React.useEffect(()=>{
     const datapack = {
       EventName:event_name,
-      EventDate:"2021/12/25",
-      EventVenue: "Negombo",
-      EventTime:"02.00 pm",
-      TicketLevel:"3",
+      EventDate:event_date,
+      EventVenue:event_venue,
+      EventTime:event_time,
+      TicketLevel:ticket_levels,
       ImageUrl:"fehgjngjfgd",
       UserId:"61842a1e0ec95f011fdc3bcf"
     }
+    console.log(datapack)
       axios.post('http://localhost:8000/seller/events',datapack)
           .then(async (res)=>{
               console.log(res.data)
@@ -173,10 +216,12 @@ export default function MaxWidthDialog() {
         <TextField
           id="outlined-required"
           label="Event Name"
+          onChange={eventNameChangeHandler}
         />
         <TextField
           id="outlined-required"
           label="Event Venue"
+          onChange={eventVenueChangeHandler}
         />
         <TextField
         id="date"
@@ -187,6 +232,7 @@ export default function MaxWidthDialog() {
         InputLabelProps={{
           shrink: true,
         }}
+        onChange={eventDateChangeHandler}
       />
       <TextField
         id="time"
@@ -200,6 +246,7 @@ export default function MaxWidthDialog() {
           step: 300, // 5 min
         }}
         sx={{ width: 150 }}
+        onChange={eventTimeChangeHandler}
       />
         <TextField
           id="outlined-select-currency"
@@ -221,7 +268,7 @@ export default function MaxWidthDialog() {
         </Grid>
       </Grid>
     </Paper>
-    <div>
+    <div onClick={submitevent}>
     <Createtickets/>
     </div>
     

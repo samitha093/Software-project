@@ -4,18 +4,23 @@ import Sidebar from '../../components/seller/Sidebar'
 import Navbar from '../../components/Navbar'
 import Pendingevents from '../../components/seller/Pendingevents'
 import axios from 'axios'
+import {gethost} from '../../session/Session'
 
 const index: NextPage = () => {
 
-    const [item, setitem] = React.useState([])
+    const [items, setitem] = React.useState([])
     React.useEffect(()=>{
-      axios.get('http://localhost:8000/seller/pending/61842a1e0ec95f011fdc3bcf')
+      axios.get(gethost()+'seller/pending/61842a1e0ec95f011fdc3bcf')
       .then(async (res)=>{
         await setitem(res.data)
         console.log(res.data)
       })
         
     },[])
+
+    const listitem = items.map((item)=>(
+      <Pendingevents data={item}/>
+    ));
 
     return (
         <div className="seller-bg">
@@ -25,9 +30,7 @@ const index: NextPage = () => {
                     <div>
                        <h1>Pending Events</h1>
                        <div className="seller-index-container">
-                            <Pendingevents/>
-                            <Pendingevents/>
-                            <Pendingevents/>
+                         {listitem}
                        </div>
                     </div>
                 </div>

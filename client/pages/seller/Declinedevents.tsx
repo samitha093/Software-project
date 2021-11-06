@@ -4,18 +4,23 @@ import Sidebar from '../../components/seller/Sidebar'
 import Navbar from '../../components/Navbar'
 import Declinedevents from '../../components/seller/Declinedevents'
 import axios from 'axios'
+import {gethost} from '../../session/Session'
 
 const index: NextPage = () => {
 
-    const [item, setitem] = React.useState([])
+    const [items, setitem] = React.useState([])
     React.useEffect(()=>{
-      axios.get('http://localhost:8000/seller/declined/61842a1e0ec95f011fdc3bcf')
+      axios.get(gethost()+'seller/declined/61842a1e0ec95f011fdc3bcf')
       .then(async (res)=>{
         await setitem(res.data)
         console.log(res.data)
       })
         
     },[])
+
+    const listitem = items.map((item)=>(
+      <Declinedevents data={item}/>
+    ));
 
     return (
         <div className="seller-bg">
@@ -25,12 +30,8 @@ const index: NextPage = () => {
                     <div>
                        <h1>Declined Events</h1>
                        <div className="seller-index-container">
-                            <Declinedevents/>
-                            <Declinedevents/>
-                            <Declinedevents/>
-                            <Declinedevents/>
-                            <Declinedevents/>
-                        </div>
+                        {listitem}
+                       </div>
                     </div>
                 </div>
             </div>
