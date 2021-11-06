@@ -14,12 +14,33 @@ import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import Createtickets from '../../components/seller/Createtickets'
 import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 
 interface CreateeventProps {
 
 }
+
+function createData(
+  name: string
+) {
+  return { name };
+}
+
+const rows = [
+  createData('Level 1'),
+  createData('Level 2'),
+  createData('Level 3'),
+  createData('Level 4'),
+  createData('Level 5'),
+];
 
 const currencies = [
   {
@@ -90,7 +111,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   };
 
 export default function MaxWidthDialog() {
-  const [open, setOpen] = React.useState(false);
+  const [openevent, setOpenevent] = React.useState(false);
+  const [openticket, setOpenticket] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('lg');
 
@@ -114,11 +136,22 @@ export default function MaxWidthDialog() {
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenevent(true);
+    setOpenticket(false);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenevent(false);
+  };
+
+  const handleClickOpenticket = async() => {
+    await submitevent();
+    setOpenticket(true);
+    setOpenevent(false);
+  };
+
+  const handleCloseticket = () => {
+    setOpenticket(false);
   };
 
   const eventNameChangeHandler = (event:any)=>{
@@ -150,6 +183,11 @@ export default function MaxWidthDialog() {
     axios.post(gethost()+'seller/events',datapack)
           .then(async (res)=>{
               console.log(res.data)
+              setCurrency("");
+              setname("");
+              setvenue("");
+              setdate("");
+              settime("");
           })
     console.log(datapack);
     
@@ -188,7 +226,7 @@ export default function MaxWidthDialog() {
       <Dialog
         fullWidth={fullWidth}
         maxWidth={maxWidth}
-        open={open}
+        open={openevent}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Create Event
@@ -268,13 +306,120 @@ export default function MaxWidthDialog() {
         </Grid>
       </Grid>
     </Paper>
-    <div onClick={submitevent}>
-    <Createtickets/>
+    <div >
+    <Stack direction="row" justifyContent="right" >
+    <Button onClick={handleClickOpenticket} variant="contained"  >Submit Event & Next</Button>
+    </Stack>
+    
     </div>
     
         </DialogContent>
         </DialogContent>
       </Dialog>
+      
+      <Dialog
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        open={openticket}
+      >
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleCloseticket}>
+          Create Tickets
+        </BootstrapDialogTitle>
+        <DialogContent>
+        <DialogContent dividers>
+        <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
+      <Grid container spacing={2} justifyContent="space-evenly">
+        <Grid item xs={6}>
+          <ButtonBase sx={{ width: 200, height: 150 }}>
+            <Img alt="complex" src="/assets/office-chair.png" />
+          </ButtonBase>
+        </Grid>
+        <Grid item xs={8} sm container>
+        <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 180 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Ticket Level</TableCell>
+            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Fix Amount</TableCell>
+            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell align="right">Bid Amount</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+              <TableCell>
+              <div>
+              <TextField
+          id="standard-number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+      </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+        </Grid>
+      </Grid>
+    </Paper>
+    <div>
+      <Stack direction="row" justifyContent="right" >
+      <Button className="seller-btn-pos" variant="contained"  >Submit Tickets</Button>
+      </Stack>
+          </div>
+        </DialogContent>
+        </DialogContent>
+      </Dialog>
+
     </React.Fragment>
   );
 }
