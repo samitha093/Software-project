@@ -23,23 +23,7 @@ import Stack from '@mui/material/Stack';
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 
-function createData(
-  level: string,
-  fixprice: number,
-  fquantity: number,
-  bidprice: number,
-  bquantity: number,
-) {
-  return { level, fixprice, fquantity, bidprice, bquantity};
-}
 
-const rows = [
-  createData('1', 159, 6, 124, 4),
-  createData('2', 237, 9, 137, 4),
-  createData('3', 262, 16, 124, 6),
-  createData('4', 305, 3, 167, 4),
-  createData('5', 356, 16, 149, 3),
-];
 
 interface PendingeventProps {
   data:any,
@@ -105,6 +89,21 @@ const Pendingevents: React.FC<PendingeventProps> = ({data}) => {
       })
         
     },[])
+
+    function createData(
+      level: any,
+      fixprice: any,
+      fquantity: any,
+      bidprice: any,
+      bquantity: any,
+    ) {
+      return { level, fixprice, fquantity, bidprice, bquantity};
+    }
+    
+    const rows = items.map((item)=>(
+        createData(item.ticket_level,item.buy_amount, item.buy_quantity, item.bid_amount, item.bid_quantity,)
+      ));
+    
 
     return (
         <div>
