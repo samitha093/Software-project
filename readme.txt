@@ -12,8 +12,3 @@ nrp  - new react function
 rc  - new react components
 
 
-lakshan pthiraja
-*master
-buyer
-user
-
