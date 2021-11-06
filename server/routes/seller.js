@@ -84,7 +84,7 @@ router.route('/declined/:id').get((req,res) => {
         .catch(err => res.status(400).json(err))
 });
 
-router.route('/details/:id').get(authtoken,(req,res) => {
+router.route('/details/:id').get((req,res) => {
     ticketLevels.find({event_id:req.params.id})
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
