@@ -23,6 +23,10 @@
     padding: 7px;
     cursor: pointer;
 }
+.centername{
+    text-align: center!important;
+}
+
 @media only screen and (max-width: 600px) {
     .seller-c-sidebar{
         width: 100%;

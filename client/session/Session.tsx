@@ -25,6 +25,6 @@ export const getuser = () =>{
     }
 }
 export const gethost = () =>{
-    const host = 'http://localhost:8000/ab/er';
+    const host = 'http://localhost:8000/';
     return host;
 }
