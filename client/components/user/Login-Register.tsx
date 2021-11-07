@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useRouter} from 'next/router'
 import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
-import 'axios'
+import axios from 'axios';
 interface LoginProps {
 
 }
@@ -31,6 +31,24 @@ const Login: React.FC<LoginProps> = ({}) => {
     
   const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
 
+  const [item, setitem] = React.useState([])
+  React.useEffect(()=>{
+    const datapack = {
+      uname:"gafdhajd",
+      pw:65
+    }
+      axios.post('http://localhost:8000/ab/login',datapack)
+          .then(async (res)=>{
+              console.log(res.data)
+              
+          })
+      
+  },[])
+
+   async function clickHandl(){
+  endsession();
+  console.log(gettoken());
+};
 
   const nameChangeHandler = (event:any) =>{
       setName(event.target.value)
@@ -104,7 +122,9 @@ const Login: React.FC<LoginProps> = ({}) => {
         } 
       };
 
-    
+    const loginhandle = (event:any) =>{
+      event.preventDefault();
+    };
     return(
 
         <div className="container" id="container">
@@ -202,6 +222,8 @@ const Login: React.FC<LoginProps> = ({}) => {
           </div>
 
 
+
+
           <div className="form-container sign-in-container">
             <form className='modern-form' action="#">
               <h1 className ="head-signin" >Sign in</h1>
@@ -232,7 +254,7 @@ const Login: React.FC<LoginProps> = ({}) => {
               />
               </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
-              <button className='modern-btn'>Sign In</button>
+              <button className='modern-btn' onClick={loginhandle}>Sign In</button>
             </form>
           </div>
 
