@@ -138,7 +138,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         };
 
     return (
-        <TableHead>
+        <TableHead className="manager-c-sellerapprovaltable">
             <TableRow>
                 <TableCell padding="checkbox">
                     <Checkbox

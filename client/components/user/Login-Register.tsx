@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import {useRouter} from 'next/router'
+import React, { useState } from 'react';
+import {useRouter} from 'next/router';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import axios from 'axios';
+import {startsession, gettoken, endsession } from '../../session/Session';
 interface LoginProps {
 
 }
@@ -25,10 +26,14 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [contact,setContact] = React.useState("");
   const [contactHasError,setContactError] = React.useState(false);
   
-  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
+  const [login_email,login_setEmail] = React.useState<string>("");
+  const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
 
+  const [login_password,login_setPassword] =React.useState<string>("");
+  const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
+
+  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
   const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
-    
   const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
 
   const [item, setitem] = React.useState([])
@@ -40,12 +45,12 @@ const Login: React.FC<LoginProps> = ({}) => {
       axios.post('http://localhost:8000/ab/login',datapack)
           .then(async (res)=>{
               console.log(res.data)
-              
+              await startsession(res.data, "buyer")
           })
       
   },[])
 
-   async function clickHandl(){
+async function clickHandl(){
   endsession();
   console.log(gettoken());
 };
@@ -85,12 +90,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
 
   }
-  const [login_email,login_setEmail] = React.useState<string>("");
-  const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
-  const [login_password,login_setPassword] =React.useState<string>("");
-  const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
-    
-
+ 
     const login_emailChangeHandler = (event:any)=>{
       login_setEmail(event.target.value);
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -122,9 +122,7 @@ const Login: React.FC<LoginProps> = ({}) => {
         } 
       };
 
-    const loginhandle = (event:any) =>{
-      event.preventDefault();
-    };
+    
     return(
 
         <div className="container" id="container">
@@ -222,8 +220,6 @@ const Login: React.FC<LoginProps> = ({}) => {
           </div>
 
 
-
-
           <div className="form-container sign-in-container">
             <form className='modern-form' action="#">
               <h1 className ="head-signin" >Sign in</h1>
@@ -254,7 +250,7 @@ const Login: React.FC<LoginProps> = ({}) => {
               />
               </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
-              <button className='modern-btn' onClick={loginhandle}>Sign In</button>
+              <button className='modern-btn' onClick={clickHandl}>Sign In</button>
             </form>
           </div>
 

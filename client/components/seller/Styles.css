@@ -10,6 +10,7 @@
     background-color: #752E9E;
     border-radius: 30px;
     padding: 30px 23px;
+    align-items: center;
 }
 .seller-c-sidebar-item{
     width:60px;
@@ -18,9 +19,35 @@
     border-color: white;
     border-radius: 10px;
     border-style:solid;
-    margin-top: 35px;
+    margin-top: 26px;
     padding: 7px;
     cursor: pointer;
+}
+.centername{
+    text-align: center!important;
+}
+
+@media only screen and (max-width: 600px) {
+    .seller-c-sidebar{
+        width: 100%;
+        height: auto;
+        min-height: 0px;
+        padding: 10px 10px 0px;
+        
+    }
+    .seller-c-sidebar-container{
+        display: flex;
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    .seller-c-sidebar-item{
+        margin-top: 0px;
+        width: 15%;
+        margin: 0 1%;
+        height: auto;
+    }
 }
 
 :root {

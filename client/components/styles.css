@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@100&display=swap');
 /*start - navbar*/
 .navbar{
     width:100%;
@@ -58,32 +59,122 @@
     height: calc(100vh);
 }
 .new{
+    margin: 30px 10px!important;
     position: relative;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5)  ; 
+	-webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5)  ; 
+	-moz-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5)  ; 
 }
 .shop-card-controler{
     display: flex;
     height: calc(var(--parent-height)*0.2);
 }
 .shop-card-controler-left{
-    color: white;
+    color: black;
     display: flex;
     width: 50%;
-    background-color: #C1A700;
+    background-color: white;
     border-bottom-left-radius: 19px;
 }
 .shop-card-controler-right{
-    color: white;
+    color: black;
     display: flex;
     width: 50%;
-    background-color: #943404;
+    background-color: white;
     border-bottom-right-radius: 19px;
 }
-.icon{
+.icon-card{
+    display: flex;
+    justify-content: left;
+    padding-top: 7px;
     width: 55%;
     height: calc(var(--parent-height)*0.2);
+    padding-left: 24px;
 }
 .text{
     padding-top: 7px;
     width: 35%;
 }
+.ticketview{
+    color:#752E9E;
+    font-family: 'Palanquin', sans-serif;
+    margin-top: -30px;
+}
+.ticketview-price{
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    color: #752E9E;
+    background-color: #d3c1df;
+}
+.ticketview-count{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.ticketview-count-text{
+    position: relative;
+    width:50%;
+    
+}
+.ticketview-count-text-item{
+    top: 40%;
+    position: absolute;
+
+}
+.ticketview-count-text-item{
+    width:100%;
+    text-align: center;
+    font-size: 20px;
+}
+.ticketview-count-number{
+    margin-top: 30px;
+    background-color: #dfc6ee;
+    padding: 8px;
+    display: flex;
+    border-radius: 50px;
+}
+.ticketview-count-number-num{
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    padding: 15px;
+    background-color: #752E9E;
+    border-radius: 30px;
+}
+.button-img{
+    cursor: pointer;
+}
+.ticketview-price-btn{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #752E9E;
+    border-radius: 40px;
+    cursor: pointer;
+}
+.ticketview-data{
+    margin-top: -20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.priceboxforbid{
+    width: 100px;
+    text-align: left;
+    font-size: 26px!important;
+    margin-top: -20px;
+    height: 45px;
+    color: #752E9E;
+    background-color: #d3c1df;
+    border:none;
+}
+.priceboxforbid:focus {
+    outline: none;
+  }
 /*end - Shop*/

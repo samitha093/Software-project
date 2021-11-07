@@ -6,6 +6,22 @@ import { mdiCalendarSearch } from '@mdi/js';
 import { mdiCalendarClock } from '@mdi/js';
 import { mdiCalendarCheck } from '@mdi/js';
 import { mdiCalendarRemove } from '@mdi/js';
+import { mdiCogs } from '@mdi/js';
+import { mdiLogout } from '@mdi/js';
+import { styled } from '@mui/material/styles';
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+
+const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+
 interface SidebarProps {
 
 }
@@ -14,34 +30,60 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
         return (
             <div className="seller-c-sidebar">
                     <div className="seller-c-sidebar-container">
-                        <Link href="/seller/homepage">
+                        <Link href="/seller">
                             <div className="seller-c-sidebar-item">
+                            <BootstrapTooltip title="Home Page">
                                 <Icon path={mdiHomeOutline} color='white'/>
+                                </BootstrapTooltip>
                             </div>
                         </Link>
 
-                        <Link href="/seller/pendingevents">
+                        <Link href="/seller/Pendingevents">
                             <div className="seller-c-sidebar-item">
+                            <BootstrapTooltip title="Pending Events">
                                 <Icon path={mdiCalendarSearch} color='white'/>
+                                </BootstrapTooltip>
                             </div>
                         </Link>
 
-                        <Link href="/seller/activeevents">
+                        <Link href="/seller/Activeevents">
                             <div className="seller-c-sidebar-item">
+                            <BootstrapTooltip title="Active Events">
                                 <Icon path={mdiCalendarClock} color='white'/>
+                                </BootstrapTooltip>
                             </div>
                         </Link>
 
-                        <Link href="/seller/endevents">
+                        <Link href="/seller/Endevents">
                             <div className="seller-c-sidebar-item">
+                            <BootstrapTooltip title="End Events">
                                 <Icon path={mdiCalendarCheck} color='white'/>
+                                </BootstrapTooltip>
                             </div>
                         </Link>
-                        <Link href= "/seller/declined">
+
+                        <Link href= "/seller/Declinedevents">
                         <div className="seller-c-sidebar-item">
+                        <BootstrapTooltip title="Declined Events">
                             <Icon path={mdiCalendarRemove} color='white'/>
+                            </BootstrapTooltip>
                         </div>
                         </Link>
+
+                        <Link href= "/seller/Settings">
+                        <div className="seller-c-sidebar-item">
+                        <BootstrapTooltip title="Change Password">
+                            <Icon path={mdiCogs} color='white'/>
+                            </BootstrapTooltip>
+                        </div>
+                        </Link>
+                        <Link href="/">
+                    <div className="manager-c-sidebar-item">
+                    <BootstrapTooltip title="Logout">
+                            <Icon path={mdiLogout} color='white' />
+                            </BootstrapTooltip>
+                    </div>
+                </Link>
                     </div>
             </div>
         );

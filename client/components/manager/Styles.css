@@ -23,6 +23,28 @@
     padding: 7px;
     cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+    .manager-c-sidebar{
+        width: 100%;
+        height: auto;
+        min-height: 0px;
+        padding: 10px 10px 0px;
+        
+    }
+    .manager-c-sidebar-container{
+        display: flex;
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    .manager-c-sidebar-item{
+        margin-top: 0px;
+        width: 15%;
+        margin: 0 1%;
+        height: auto;
+    }
+}
 /*end - sidebar component*/
 
 
@@ -50,10 +72,11 @@
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
+    /*this image can be added in another ways, refer buyer's similar component*/
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    background-size: cover;
     height:calc(var(--parent-height)*0.8);
     position: relative;
+    background-size: cover;
 }
 .manager-c-tickets-top-info{
     width: 100%;
@@ -115,6 +138,11 @@
     background-color: #752E9E;
     color: white;
 }
+
+.css-og52vs-MuiTableCell-root.MuiTableCell-head{
+    background-color: #752E9E !important;
+}
+
 @media only screen and (max-width: 550px) {
     .manager-c-tickets{
         width: 230px;
@@ -158,8 +186,10 @@
 
 .manager-c-ticketspublishdecline-buttons-stack
 {
-    align-self: center; 
     justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: auto;
 }
 
 .manager-c-ticketsinfo-top-head-right{
@@ -173,15 +203,45 @@
     padding-left: auto;
     color: white;
 }
-
 .manager-eventinfo-image{
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    height: 150px;
-    width: 200px;
+    height:200px;
+    background-size: contain;
+    width: 100%;
     padding: 10px;
+    margin-top: 20px;
 }
+.manager-eventinfo-font
+{
+    color:black
+}
+/*end-pendig tikcets info component*/
 
-/*manager password reset component*/
+/*start-active events component*/
+.manager-c-tickets-active{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #5776B4;
+    position: relative;
+    margin: 10px;
+}
+/*end-active events component*/
+
+/*start-declined events component*/
+.manager-c-tickets-declined{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #AE006E;
+    position: relative;
+    margin: 10px;
+}
+/*end-declined events component*/
+
+/*start-manager password reset component*/
 
 .manager-settings-head{
     font-size: x-large !important;
@@ -190,53 +250,15 @@
     margin-bottom: 40px;
     margin-top: 50px;
     text-align: center !important;
-    text-decoration: underline !important;
-   
-}
-.manager-password-box{
-    height: 100%;
-    width: 100%;
-    background-color :white;
-    border-bottom-left-radius: 10px;
-
 }
 
-.manager-password-container{
-    padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    align-content: center;
-    align-self: center;
-    width: 100%;
-    height: 100%;
-    background-color: transparent !important;
-    opacity: 100%;
-}
-
-.manager-password-box2{
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    size: auto;
-    margin: 10px;
-}
-.manager-password-form-wrapper{
-    width: 400px;
-    max-width: 100%;
-    box-sizing: border-box;
-    background-color :white;
-    margin: auto auto 0;
-    position: relative;
-}
 .manager-button-submit{
-
-    width: 40%;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    align-self: center !important;
-    font-size: medium;
     background-color: #BB9CD1;
-    resize: both;
     justify-content: center !important;
+}
+
+/*seller approval*/
+.manager-c-sellerapprovaltable
+{
+    width: 100%;
 }

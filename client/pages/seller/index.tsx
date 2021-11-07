@@ -1,28 +1,21 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import type { NextPage } from 'next'
+import axios from 'axios'
 import Sidebar from '../../components/seller/Sidebar'
 import Navbar from '../../components/Navbar'
-import Pendingevents from '../../components/seller/Pendingevents'
+import Homepage from '../../components/seller/Homepage'
 
 const index: NextPage = () => {
+    
     return (
         <div className="seller-bg">
                 <Navbar/>
                 <div className="seller-index">
                     <Sidebar/>
-                    <div>
-                       <h1>WELCOME</h1>
-                       <div className="seller-index-container">
-                            <Pendingevents/>
-                            <Pendingevents/>
-                            <Pendingevents/>
-                            <Pendingevents/>
-                            <Pendingevents/>
-                            <Pendingevents/>
-                        </div>
-                    </div>
+                    <Homepage />
                 </div>
-            </div>
+        </div>
     );
 }
 

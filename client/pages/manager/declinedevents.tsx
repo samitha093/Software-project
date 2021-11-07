@@ -2,6 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
+import Declinedevents from '../../components/manager/Declinedevents'
 const declinedevents: NextPage = () => {
         return (
             <div className="manager-bg">
@@ -10,6 +11,14 @@ const declinedevents: NextPage = () => {
                     <Sidebar/>
                     <div>
                        <h1>Declined Events</h1> 
+                       <div className="manager-index-container">
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                        </div> 
                     </div>
                 </div>
             </div>

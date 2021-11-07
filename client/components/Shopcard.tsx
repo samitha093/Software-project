@@ -13,12 +13,17 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
+import { TryRounded } from '@mui/icons-material';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
+import Image from 'next/image'
+import remove from '../assets/icons/minus.png'
+import add from '../assets/icons/plus.png'
 
 interface ShopcardProps {
   level : string,
  }
-
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
     padding: theme.spacing(2),
   },
@@ -35,7 +40,6 @@ export interface DialogTitleProps {
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
-
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
@@ -56,114 +60,167 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     </DialogTitle>
   );
 };
+
 const Shopcard: React.FC<ShopcardProps> = ({level}) => {
-  const [open, setOpen] = React.useState(false);
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");
-  const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
+  const [openbuy, setOpenbuy] = React.useState(false);
+  const [openbid, setOpenbid] = React.useState(false);
+  const [ticketpricet, setticketprice] = React.useState(1495);
+  const [ticketbidpricet, setticketbidprice] = React.useState(ticketpricet);
+  const [ticketcount, setticketcount] = React.useState(0);
   useEffect(()=>{
     setTicketcolor("#881700");
     setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
     setTicketlevel(level);
-    if( level == "1"){
-      setTicketlevelcolor("#57B473");
-    }else if(level == "2"){
-      setTicketlevelcolor("#752E9E");
-    }else if(level == "3"){
-      setTicketlevelcolor("#5776B4");
-    }else if(level == "4"){
-      setTicketlevelcolor("#AE006E");
-    }else{
-      setTicketlevelcolor("#AE6300");
-    }
     
   },[])
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen_buy = () => {
+    setOpenbuy(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleClickOpen_bid = () => {
+    setOpenbid(true);
+  };
+  const handleClickClose_buy = () => {
+    setOpenbuy(false);
+  };
+  const handleClickClose_bid = () => {
+    setOpenbid(false);
+  };
+
+  const handleClickadd = () => {
+    var i = ticketcount;
+    i += 1;
+    setticketcount(i);
+  };
+  const handleClickremove = () => {
+    var i = ticketcount;
+    if(i>0){
+      i -= 1;
+    }
+    setticketcount(i);
   };
 
   return (
     <div>
-        <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid new" onClick={handleClickOpen}>
-            
-                <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
-                    <div className="buyer-c-ticketunvalid-top-head">
-                        <div className="buyer-c-ticketunvalid-top-head-left">
-                        </div>
-                        <div style={{backgroundColor: Ticketlevelcolor}} className="buyer-c-ticketunvalid-top-head-right">
-                            <div className="buyer-c-ticketunvalid-top-head-right-1">
-                                Level
-                            </div>
-                            <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
-                                {Ticketlevel}
-                            </div>
-                        </div>
+        <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid new">
+            <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
+                <div className="buyer-c-ticketunvalid-top-head">
+                    <div className="buyer-c-ticketunvalid-top-head-left">
                     </div>
-                    <div className="buyer-c-ticketunvalid-top-info">
-                        <div className="buyer-c-ticketunvalid-top-info-left">
-                            <div className="buyer-c-ticketunvalid-top-info-left-name">
-                                Event name
-                            </div>
-                            <div className="buyer-c-ticketunvalid-top-info-left-date">
-                                2021-08-23
-                            </div>
+                    <div style={{backgroundColor: '#424242'}} className="buyer-c-ticketunvalid-top-head-right">
+                        <div className="buyer-c-ticketunvalid-top-head-right-1">
+                            Level
                         </div>
-                        <div className="buyer-c-ticketunvalid-top-info-right">
-                            <div className="buyer-c-ticketunvalid-top-info-right-nooftickets">460</div>
-                            <div className="buyer-c-ticketunvalid-top-info-right-tickets">tickets</div>
+                        <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
+                            {Ticketlevel}
                         </div>
                     </div>
                 </div>
-                <div className='shop-card-controler'>
-                    <div className='shop-card-controler-left'>
-                        <div className='icon'>
-
+                <div className="buyer-c-ticketunvalid-top-info">
+                    <div className="buyer-c-ticketunvalid-top-info-left">
+                        <div className="buyer-c-ticketunvalid-top-info-left-name">
+                            Event name
                         </div>
-                        <div className='text'>
-                            Buy
+                        <div className="buyer-c-ticketunvalid-top-info-left-date">
+                            2021-08-23
                         </div>
                     </div>
-                    <div className='shop-card-controler-right'>
-                        <div className='icon'>
-
-                        </div>
-                        <div className='text'>
-                            Bid
-                        </div>
+                    <div className="buyer-c-ticketunvalid-top-info-right">
+                        <div className="buyer-c-ticketunvalid-top-info-right-nooftickets">460</div>
+                        <div className="buyer-c-ticketunvalid-top-info-right-tickets">tickets</div>
                     </div>
                 </div>
-            
+            </div>
+            <div className='shop-card-controler'>
+                <div className='shop-card-controler-left' onClick={handleClickOpen_buy}>
+                    <div className='icon-card'>
+                    <AddShoppingCartOutlinedIcon />
+                    </div>
+                    <div className='text'>
+                        Buy
+                    </div>
+                </div>
+                <div className='shop-card-controler-right' onClick={handleClickOpen_bid}>
+                    <div className='icon-card'>
+                      <PanToolOutlinedIcon />
+                    </div>
+                    <div className='text'>
+                        Bid
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-      <BootstrapDialog
-        onClose={handleClose}
+        <BootstrapDialog 
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={openbuy}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClickClose_buy}>
+          Buy Ticket
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-            <InputLabel htmlFor="filled-adornment-amount">Amount for a Ticket</InputLabel>
-            <FilledInput
-              id="filled-adornment-amount"
-              startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
-            />
-          </FormControl>
-          <div className='x'><center><b>X</b></center></div>
-          <div><center>4 Tickes</center></div>
+          <div className="ticketview">
+            <h1>Evante Name - Evante Name Evante Name</h1>  
+          </div>
+          <div className='ticketview-data'>
+            <div>Event Location : jhfhshhashkashghlkhLKHFS</div>
+            <div>Event Date : 2021 JAN 23</div>
+            <div>Event Time :  07 : 00 pm</div>
+            <div>Ticket Type :  LEVEL 2</div>
+            <div>In Stock : 400 Tickets</div>
+          </div>  
+          <div className='ticketview-price'>
+            LKR {ticketpricet}.00
+          </div>
+          <div className='ticketview-count'>
+            <div className='ticketview-count-text'><div className='ticketview-count-text-item'>No. Of Tickets : </div></div>
+            <div className='ticketview-count-number'>
+              <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt="" onClick={ handleClickremove}/></div> 
+              <div className='ticketview-count-number-num'> {ticketcount} </div>
+              <div className='ticketview-count-number+' ><Image className='button-img' src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
+            </div>
+          </div>
+          <div className='ticketview-price-btn'>
+            PAY NOW ( LKR {ticketpricet*ticketcount}.00 )
+          </div>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
+      </BootstrapDialog>
+
+      <BootstrapDialog
+        aria-labelledby="customized-dialog-title"
+        open={openbid}
+      >
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClickClose_bid}>
+          Bid Ticket
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+        <div className="ticketview">
+            <h1>Evante Name - Evante Name Evante Name</h1>  
+          </div>
+          <div className='ticketview-data'>
+            <div>Event Location : jhfhshhashkashghlkhLKHFS</div>
+            <div>Event Date : 2021 JAN 23</div>
+            <div>Event Time :  07 : 00 pm</div>
+            <div>Ticket Type :  LEVEL 2</div>
+            <div>In Stock : 400 Tickets</div>
+          </div>
+
+          <div className='ticketview-price'>
+            LKR <input className='priceboxforbid' type={'number'} value={ticketbidpricet} onChange={(e)=>setticketbidprice(Number(e.target.value))} min={ticketpricet}/>
+          </div>
+          <div className='ticketview-count'>
+            <div className='ticketview-count-text'><div className='ticketview-count-text-item'>No. Of Tickets : </div></div>
+            <div className='ticketview-count-number'>
+              <div className='ticketview-count-number-'><Image className='button-img' src={remove} width={'20px'} height={'20px'} alt="" onClick={ handleClickremove}/></div> 
+              <div className='ticketview-count-number-num'> {ticketcount} </div>
+              <div className='ticketview-count-number+' ><Image className='button-img' src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
+            </div>
+          </div>
+          <div className='ticketview-price-btn'>
+            Bid NOW ( LKR {ticketpricet*ticketcount}.00 )
+          </div>         
+        </DialogContent>
       </BootstrapDialog>
     </div>
   );
