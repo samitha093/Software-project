@@ -35,6 +35,9 @@ app.use('/manager',managerroute);
 const buyerroute = require('./routes/buyer');
 app.use('/buyer',buyerroute);
 
+const shoproute = require('./routes/shop');
+app.use('/shop',shoproute);
+
 app.listen(port, ()=>{
     console.log(`server is on port: ${port}`);
 });
