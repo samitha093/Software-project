@@ -5,12 +5,12 @@ const schema = mongoose.Schema;
 
 const userschema = new schema({
     user_name:{type:String , require:true},
-    email:{type:String , require:true},
+    email:{type:String , unique:true ,require:true},
     contact:{type:String , require:true},
     password:{type:String , require:true},
     user_type:{type:String , require:true},
     status:{type:Boolean , default:true},
-    user_id: {type:String, required:true}
+    user_id: {type:String, unique:true, required:true}
 
 },{
     timestamps:true
