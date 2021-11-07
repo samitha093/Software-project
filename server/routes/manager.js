@@ -35,7 +35,20 @@ router.route('/sellerapprove').get((req,res) => {
 
 });
 
+/*Taking Ticket Info Table Details in Pending/Active/Declined Events Tabs*/
+router.route('/ticketdetails/:id').get((req,res) => {
+    ticketLevels.find({event_id:req.params.id})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
 
+
+/*Taking User Details to Get the Organizer Name*/
+router.route('/organizer/:id').get((req,res) => {
+    users.find({user_id:req.params.id})
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+});
 
 
 
