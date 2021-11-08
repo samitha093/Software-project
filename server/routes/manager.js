@@ -67,12 +67,23 @@ router.route('/sellerapproveupdate/:id').put((req,res) => {
 
 /*Update Ticket Status to "Active"*/
 router.route('/activeticket/:id').put((req,res) => {
-    const Status = req.body.status;
-
-    users.findById(req.params.id)
+    events.findById(req.params.id)
         .then(data =>{
-            data.status = Status;
-            
+            data.status = 'active';
+            data.save()
+                .then(()=> res.status(200).json("data updated"))
+                .catch(err => res.status(400).json(err))
+        })
+        .catch(err => res.status(400).json(err))
+});
+
+
+/*Update Ticket Status to "Declined"*/
+router.route('/declinedticket/:id').put((req,res) => {
+    events.findById(req.params.id)
+        .then(data =>{
+            data.status = 'declined';
+            data.comment = 'Your event has been declined'; /*this is a tempory message, it may taken from message box later*/
             data.save()
                 .then(()=> res.status(200).json("data updated"))
                 .catch(err => res.status(400).json(err))
