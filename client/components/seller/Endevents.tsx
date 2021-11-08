@@ -20,26 +20,6 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 
-function createData(
-  level: string,
-  fixprice: number,
-  fsell: number,
-  fsold: number,
-  bidprice: number,
-  totbid: number,
-  availablebid: number,
-) {
-  return { level, fixprice, fsell, fsold, bidprice, totbid, availablebid };
-}
-
-const rows = [
-  createData('1', 159, 6, 8, 124, 4, 5),
-  createData('2', 237, 4, 9, 137, 4, 6),
-  createData('3', 262, 16, 9, 124, 6, 3),
-  createData('4', 305, 3, 7, 167, 4, 4),
-  createData('5', 356, 16, 9, 149, 3, 8),
-];
-
 interface EndeventProps {
   data:any,
 }
@@ -89,7 +69,6 @@ const Endevents: React.FC<EndeventProps> = ({data}) => {
 
     const handleClickOpen = () => {
         setOpen(true);
-        console.log('asd');
     };
 
     const handleClose = () => {
@@ -101,10 +80,25 @@ const Endevents: React.FC<EndeventProps> = ({data}) => {
       axios.get(gethost()+'seller/details/'+data.id)
       .then(async (res)=>{
         await setitem(res.data)
-        console.log(res.data)
       })
         
     },[])
+
+    function createData(
+      level: any,
+      fixprice: any,
+      fquantity: any,
+      fsold: any,
+      bidprice: any,
+      bquantity: any,
+      availablebid: any,
+    ) {
+      return { level, fixprice, fquantity, fsold, bidprice, bquantity, availablebid};
+    }
+    
+    const rows = items.map((item)=>(
+        createData(item.ticket_level, item.buy_amount, item.buy_quantity, item.sold, item.bid_amount, item.bid_quantity, item.bid_count)
+      ));
 
     return (
         <div>
@@ -177,10 +171,10 @@ const Endevents: React.FC<EndeventProps> = ({data}) => {
                 {row.level}
               </TableCell>
               <TableCell align="right">{row.fixprice}</TableCell>
-              <TableCell align="right">{row.fsell}</TableCell>
+              <TableCell align="right">{row.fquantity}</TableCell>
               <TableCell align="right">{row.fsold}</TableCell>
               <TableCell align="right">{row.bidprice}</TableCell>
-              <TableCell align="right">{row.totbid}</TableCell>
+              <TableCell align="right">{row.bquantity}</TableCell>
               <TableCell align="right">{row.availablebid}</TableCell>
             </TableRow>
           ))}

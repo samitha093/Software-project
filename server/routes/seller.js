@@ -79,7 +79,7 @@ router.route('/end/:id').get((req,res) => {
 });
 
 router.route('/declined/:id').get((req,res) => {
-    events.find({user_id:req.params.id, status:"decclined"})
+    events.find({user_id:req.params.id, status:"declined"})
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 });

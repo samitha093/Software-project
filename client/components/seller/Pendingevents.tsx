@@ -85,7 +85,6 @@ const Pendingevents: React.FC<PendingeventProps> = ({data}) => {
       axios.get(gethost()+'seller/details/'+data.id)
       .then(async (res)=>{
         await setitem(res.data)
-        console.log(res.data)
       })
         
     },[])
