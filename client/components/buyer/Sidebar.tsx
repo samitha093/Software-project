@@ -8,11 +8,19 @@ import { mdiTicketPercentOutline } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
 import Tooltip from '@mui/material/Tooltip';
+import {endsession} from '../../session/Session';
+import {useRouter} from 'next/router';
 interface SidebarProps {
 
 }
 
 const Sidebar: React.FC<SidebarProps> = ({}) => {
+const router = useRouter()
+
+    async function logout(){
+        endsession();
+        router.push('/user');
+    }
         return (
             <div className="buyer-c-sidebar">
                     <div className="buyer-c-sidebar-container">
@@ -52,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                             </Tooltip>
                         </Link>
                         <Tooltip title="Logout" followCursor>
-                        <div className="buyer-c-sidebar-item">
+                        <div onClick={logout} className="buyer-c-sidebar-item">
                             <Icon path={mdiLogout} color='white'/>
                         </div>
                         </Tooltip>

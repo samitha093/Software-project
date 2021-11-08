@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import axios from 'axios';
-import {startsession, gettoken, endsession } from '../../session/Session';
+import {startsession, gethost, getuser } from '../../session/Session';
 interface LoginProps {
 
 }
@@ -36,24 +36,46 @@ const Login: React.FC<LoginProps> = ({}) => {
   const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
   const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
 
-  const [item, setitem] = React.useState([])
-  React.useEffect(()=>{
-    const datapack = {
-      uname:"gafdhajd",
-      pw:65
-    }
-      axios.post('http://localhost:8000/ab/login',datapack)
-          .then(async (res)=>{
-              console.log(res.data)
-              await startsession(res.data, "buyer")
-          })
-      
-  },[])
+  // const [item, setitem] = React.useState([])
+  // React.useEffect(()=>{
+  //   const datapack = {
+  //     email:"gafdhajd",
+  //     password:65
+  //   }
+  //     axios.post(gethost() + 'user/login',datapack)
+  //         .then(async (res)=>{
+  //             console.log(res.data)
+  //             //await startsession(res.data, "buyer")
+  //         })
+  // },[])
 
-async function clickHandl(){
-  endsession();
-  console.log(gettoken());
+async function signinformn(){
+  const datapack = {
+    email:login_email,
+    password:login_password
+  }
+  //console.log(datapack);
+  axios.post(gethost() + 'user/login',datapack)
+  .then(async (res)=>{
+      await startsession(res.data, "buyer")
+      await login_setEmail('');
+      await login_setPassword('');
+      const type = getuser();
+      if(type == 'buyer'){
+        router.push('/buyer');
+      }else if(type == 'manager'){
+        router.push('/manage');
+      }else if(type == 'seller'){
+        router.push('/seller');
+      }else{
+        router.push('/user');
+      }
+
+  })
 };
+async function signUpformn(){
+
+}
 
   const nameChangeHandler = (event:any) =>{
       setName(event.target.value)
@@ -215,13 +237,13 @@ async function clickHandl(){
               <button 
               className='modern-btn'
               disabled={emailHasError || passwordError || nameHasError}
-              onClick={signUpButton}>Sign Up</button>
+              onClick={signUpformn}>Sign Up</button>
             </form>
           </div>
 
 
           <div className="form-container sign-in-container">
-            <form className='modern-form' action="#">
+            <div className='modern-form'>
               <h1 className ="head-signin" >Sign in</h1>
               <span className='new-span'>or use your account</span>
             {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
@@ -250,8 +272,8 @@ async function clickHandl(){
               />
               </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
-              <button className='modern-btn' onClick={clickHandl}>Sign In</button>
-            </form>
+              <button className='modern-btn' onClick={signinformn}>Sign In</button>
+            </div>
           </div>
 
           <div className="overlay-container">
