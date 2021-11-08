@@ -39,7 +39,7 @@ router.route('/login').post((req,res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    User.find({email:email, password:password},(err,data)=>{
+    User.find({email:email, password:password, status:true},(err,data)=>{
     if(data.length>0){
         const token = jwt.sign(email,"eb01a367e696551962e1b8b659e643b59f6f21c8eb6c42657fede6be6d509c93fc9282f6643c7ce00c723fbb810955656203867676b819efbfa6653316db42da")
         res.json(token);
