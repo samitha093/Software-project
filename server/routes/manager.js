@@ -35,7 +35,7 @@ router.route('/ticketdetails/:id').get((req,res) => {
 });
 
 
-/*Taking User Details to Get the Organizer Name*/
+/*Taking User Details to Get the Organizer Name in Pending/Active/Declined Events Tabs*/
 router.route('/organizer/:id').get((req,res) => {
     users.find({user_id:req.params.id})
         .then(data => res.json(data))
@@ -59,7 +59,7 @@ router.route('/sellerapproveupdate/:id').put((req,res) => {
     const password = req.body.password;
     const user_type = req.body.userType;
     const status = req.body.userStatus;
-    const user_id = req.body.UserId
+    const user_id = req.body.UserId;
 
     users.findById(req.params.id)
         .then(data =>{
@@ -71,6 +71,38 @@ router.route('/sellerapproveupdate/:id').put((req,res) => {
             data.userStatus = status;
             data.UserId = user_id;
 
+            data.save()
+                .then(()=> res.status(200).json("data updated"))
+                .catch(err => res.status(400).json(err))
+        })
+        .catch(err => res.status(400).json(err))
+});
+
+
+/*Update Ticket Status to "Active"*/
+router.route('/activeticket/:id').put((req,res) => {
+    const Status = req.body.status;
+    const EventName = req.body.event_name;
+    const EventVenue = req.body.event_venue;
+    const EventDate = req.body.event_date;
+    const EventTime = req.body.event_time;
+    const TicketLevel = req.body.ticket_level;
+    const ImageUrl = req.body.image_url;
+    const UserId = req.body.user_id;
+    /*const EventId = req.body.event_id;*/
+
+    users.findById(req.params.id)
+        .then(data =>{
+            data.event_name = EventName;
+            data.event_venue = EventVenue;
+            data.event_date = EventDate;
+            data.event_time = EventTime;
+            data.ticket_level = TicketLevel;
+            data.image_url = ImageUrl;
+            data.status = Status;
+            data.user_id = req.body.UserId;
+            /*data.event_id = EventId;*/
+            
             data.save()
                 .then(()=> res.status(200).json("data updated"))
                 .catch(err => res.status(400).json(err))
