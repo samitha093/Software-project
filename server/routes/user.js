@@ -21,8 +21,7 @@ router.route('/register').post((req,res) => {
         password,
         user_type,
         status,
-        user_id
-
+        
         });
     newuser.save()
         .then(()=> res.status(200).json("Registration success"))
@@ -33,7 +32,6 @@ router.route('/register').post((req,res) => {
  
 });
 
-
 router.route('/login').post((req,res) => {
     
     const email = req.body.email;
@@ -42,7 +40,7 @@ router.route('/login').post((req,res) => {
     User.find({email:email, password:password},(err,data)=>{
     if(data.length>0){
         const token = jwt.sign(email,"eb01a367e696551962e1b8b659e643b59f6f21c8eb6c42657fede6be6d509c93fc9282f6643c7ce00c723fbb810955656203867676b819efbfa6653316db42da")
-        res.json(token);
+        res.json(token, userType);
     }else{
         res.status(400).json("User does not exist");
     }
