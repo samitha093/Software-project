@@ -53,23 +53,9 @@ router.route('/sellerapprove').get((req,res) => {
 
 /*Update Seller Status to "True"*/
 router.route('/sellerapproveupdate/:id').put((req,res) => {
-    const user_name = req.body.name;
-    const email = req.body.email;
-    const contact = req.body.contact;
-    const password = req.body.password;
-    const user_type = req.body.userType;
-    const status = req.body.userStatus;
-    const user_id = req.body.UserId;
-
     users.findById(req.params.id)
         .then(data =>{
-            data.name = user_name;
-            data.email = email;
-            data.contact = contact;
-            data.password = password;
-            data.userType = user_type;
-            data.userStatus = status;
-            data.UserId = user_id;
+            data.status = true;
 
             data.save()
                 .then(()=> res.status(200).json("data updated"))
@@ -82,26 +68,10 @@ router.route('/sellerapproveupdate/:id').put((req,res) => {
 /*Update Ticket Status to "Active"*/
 router.route('/activeticket/:id').put((req,res) => {
     const Status = req.body.status;
-    const EventName = req.body.event_name;
-    const EventVenue = req.body.event_venue;
-    const EventDate = req.body.event_date;
-    const EventTime = req.body.event_time;
-    const TicketLevel = req.body.ticket_level;
-    const ImageUrl = req.body.image_url;
-    const UserId = req.body.user_id;
-    /*const EventId = req.body.event_id;*/
 
     users.findById(req.params.id)
         .then(data =>{
-            data.event_name = EventName;
-            data.event_venue = EventVenue;
-            data.event_date = EventDate;
-            data.event_time = EventTime;
-            data.ticket_level = TicketLevel;
-            data.image_url = ImageUrl;
             data.status = Status;
-            data.user_id = req.body.UserId;
-            /*data.event_id = EventId;*/
             
             data.save()
                 .then(()=> res.status(200).json("data updated"))
