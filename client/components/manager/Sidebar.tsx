@@ -24,40 +24,41 @@ const Sidebar: React.FC<SidebarProps> = ({ }) => {
     return (
         <div className="manager-c-sidebar">
             <div className="manager-c-sidebar-container">
+
                 <Link href="/manager">
-                    <div className="manager-c-sidebar-item">
-                        <Tooltip title="Pending Events" placement="bottom-end">
+                    <Tooltip title="Pending Events" placement="bottom-end">
+                        <div className="manager-c-sidebar-item">
                             <Icon path={mdiLanPending} color='white' />
-                        </Tooltip>
-                    </div>
+                        </div>
+                    </Tooltip>
                 </Link>
 
                 <Link href="/manager/activeevents">
-                    <div className="manager-c-sidebar-item">
-                        <Tooltip title="Active Events" placement="bottom-end">
+                    <Tooltip title="Active Events" placement="bottom-end">
+                        <div className="manager-c-sidebar-item">
                             <Icon path={mdiCheckboxMultipleOutline} color='white' />
-                        </Tooltip>
-                    </div>
+                        </div>
+                    </Tooltip>
                 </Link>
 
                 <Link href="/manager/declinedevents">
-                    <div className="manager-c-sidebar-item">
-                        <Tooltip title="Declined Events" placement="bottom-end">
+                    <Tooltip title="Declined Events" placement="bottom-end">
+                        <div className="manager-c-sidebar-item">
                             <Icon path={mdiCloseBoxMultipleOutline} color='white' />
-                        </Tooltip>
-                    </div>
+                        </div>
+                    </Tooltip>
                 </Link>
 
                 <Link href="/manager/settings">
-                    <div className="manager-c-sidebar-item">
-                        <Tooltip title="Manager Settings" placement="bottom-end">
+                    <Tooltip title="Manager Settings" placement="bottom-end">
+                        <div className="manager-c-sidebar-item">
                             <Icon path={mdiCogs} color='white' />
-                        </Tooltip>
-                    </div>
+                        </div>
+                    </Tooltip>
                 </Link>
+
                 <Tooltip title="Logout from Manager" placement="bottom-end">
                     <div onClick={logout} className="manager-c-sidebar-item">
-
                         <Icon path={mdiLogout} color='white' />
                     </div>
                 </Tooltip>
