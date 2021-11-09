@@ -7,12 +7,20 @@ import { mdiCloseBoxMultipleOutline } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
 import Tooltip from '@mui/material/Tooltip';
+import { endsession } from '../../session/Session';
+import { useRouter } from 'next/router';
 
 interface SidebarProps {
 
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ }) => {
+    const router = useRouter()
+
+    async function logout() {
+        endsession();
+        router.push('/user');
+    }
     return (
         <div className="manager-c-sidebar">
             <div className="manager-c-sidebar-container">
@@ -47,13 +55,12 @@ const Sidebar: React.FC<SidebarProps> = ({ }) => {
                         </Tooltip>
                     </div>
                 </Link>
-                <Link href="/">
-                    <div className="manager-c-sidebar-item">
-                        <Tooltip title="Logout from Manager" placement="bottom-end">
-                            <Icon path={mdiLogout} color='white' />
-                        </Tooltip>
+                <Tooltip title="Logout from Manager" placement="bottom-end">
+                    <div onClick={logout} className="manager-c-sidebar-item">
+
+                        <Icon path={mdiLogout} color='white' />
                     </div>
-                </Link>
+                </Tooltip>
             </div>
         </div>
     );
