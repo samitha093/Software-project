@@ -3,7 +3,15 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Pendingtickets from '../../components/manager/Pendingtickets'
+import axios from 'axios'
+
 const index: NextPage = () => {
+    React.useEffect(() => {
+        axios.get('https://localhost:8000/manager/pending')
+            .then((res)=>{
+                console.log(res.data);
+            })
+    }, [])
         return (
             <div className="manager-bg">
                 <Navbar/>
