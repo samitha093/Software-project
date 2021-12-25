@@ -20,24 +20,6 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 
-function createData(
-  level: string,
-  fixprice: number,
-  fquantity: number,
-  bidprice: number,
-  bquantity: number,
-) {
-  return { level, fixprice, fquantity, bidprice, bquantity};
-}
-
-const rows = [
-  createData('1', 159, 6, 124, 4),
-  createData('2', 237, 9, 137, 4),
-  createData('3', 262, 16, 124, 6),
-  createData('4', 305, 3, 167, 4),
-  createData('5', 356, 16, 149, 3),
-];
-
 interface DeclinedeventProps {
   data:any,
 }
@@ -99,10 +81,23 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({data}) => {
       axios.get(gethost()+'seller/details/'+data.id)
       .then(async (res)=>{
         await setitem(res.data)
-        console.log(res.data)
       })
         
     },[])
+
+    function createData(
+      level: any,
+      fixprice: any,
+      fquantity: any,
+      bidprice: any,
+      bquantity: any,
+    ) {
+      return { level, fixprice, fquantity, bidprice, bquantity};
+    }
+    
+    const rows = items.map((item)=>(
+        createData(item.ticket_level,item.buy_amount, item.buy_quantity, item.bid_amount, item.bid_quantity,)
+      ));
 
     return (
         <div>
@@ -166,7 +161,7 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({data}) => {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.level}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
@@ -186,7 +181,7 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({data}) => {
           </Grid>
           <Grid  className="manager-eventinfo-font" container spacing={1}>
                   <Grid item xs={6}>
-                    <Typography> Declined Reason: </Typography>
+                    <Typography> Declined Reason : {data.comment}</Typography>
                   </Grid>
                 </Grid>
         </DialogContent>
