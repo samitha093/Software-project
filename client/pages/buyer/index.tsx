@@ -27,16 +27,42 @@ const index: NextPage = () => {
                     <div>
                         <Navbar/>
                     <div className="buyer-index">
-                        <Sidebar/>
-                        <div className="buyer-index-content">
+                        <Sidebar id="1"/>
+                        <div className="buyer-index-content buyer-index-container-parent">
                             <h1>Tickets</h1>
-                            <div className="buyer-index-container">
-                                <Ticketvalid level="1" type="1"/>
-                                <Ticketvalid level="2" type="1"/>
-                                <Ticketvalid level="3" type="1"/>
-                                <Ticketvalid level="4" type="1"/>
-                                <Ticketvalid level="5" type="1"/>
-                                <Ticketvalid level="5" type="1"/>
+                            <div className="buyer-index-container-d2">
+                                <div className="buyer-index-container">
+                                    <Ticketvalid level="1" type="1"/>
+                                    <Ticketvalid level="2" type="1"/>
+                                    <Ticketvalid level="3" type="1"/>
+                                    <Ticketvalid level="4" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="1" type="1"/>
+                                    <Ticketvalid level="2" type="1"/>
+                                    <Ticketvalid level="3" type="1"/>
+                                    <Ticketvalid level="4" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="1" type="1"/>
+                                    <Ticketvalid level="2" type="1"/>
+                                    <Ticketvalid level="3" type="1"/>
+                                    <Ticketvalid level="4" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="1" type="1"/>
+                                    <Ticketvalid level="2" type="1"/>
+                                    <Ticketvalid level="3" type="1"/>
+                                    <Ticketvalid level="4" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="1" type="1"/>
+                                    <Ticketvalid level="2" type="1"/>
+                                    <Ticketvalid level="3" type="1"/>
+                                    <Ticketvalid level="4" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                    <Ticketvalid level="5" type="1"/>
+                                </div>
                             </div>
                         </div>
                     </div>
