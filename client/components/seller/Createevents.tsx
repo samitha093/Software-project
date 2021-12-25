@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -20,8 +19,26 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Stack from '@mui/material/Stack';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import NavigationIcon from '@mui/icons-material/Navigation';
+import Box from '@mui/material/Box';
 import axios from 'axios'
 import {gethost} from '../../session/Session'
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+
+const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.black,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
 
 interface CreateeventProps {
 
@@ -397,12 +414,13 @@ export default function MaxWidthDialog() {
   return (
     <React.Fragment >
       <div className="btn-class">
-        <Button 
-        className= "btn-create" 
-        variant="contained" 
-        startIcon = {<CreateIcon/>}
-        onClick={handleClickOpen}
-        >Publish an Event</Button>
+      <BootstrapTooltip title="Publish an Event">
+        <Box onClick={handleClickOpen} className="seller-index-float" sx={{ '& > :not(style)': { m: 1 } }}>
+          <Fab color="secondary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </Box>
+      </BootstrapTooltip> 
        </div>
       <Dialog
         fullWidth={fullWidth}

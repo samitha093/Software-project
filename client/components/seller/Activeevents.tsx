@@ -67,8 +67,6 @@ const Activeevents: React.FC<ActiveeventProps> = ({data}) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    
-
     const handleClickOpen = () => {
         setOpen(true);
         console.log('asd');
