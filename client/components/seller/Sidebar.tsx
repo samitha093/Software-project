@@ -55,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                         </Link>
 
                         <Link href="/">
-                        <div className="manager-c-sidebar-item">
+                        <div className="seller-c-sidebar-item">
                         <BootstrapTooltip title="Logout">
                             <Icon path={mdiLogout} color='white' />
                             </BootstrapTooltip>
