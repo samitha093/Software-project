@@ -228,6 +228,7 @@
 .text-3{
 	display: flex;
 	justify-content: center;
+	vertical-align: middle;
 	font-size: 36px;
 	font-weight: bold;
 	margin-bottom: 10px;
@@ -243,6 +244,7 @@
 
 	display: flex;
 	justify-content: center;
+	vertical-align: middle;
 	font-family: 'Roboto', sans-serif;
 	width: 70%;
 	font-size: 20px;
@@ -255,6 +257,7 @@
   display: flex;
   justify-content: center;
   text-align: justify;
+  vertical-align: middle;
   margin: 30 0 100 0;
 	  
 }
