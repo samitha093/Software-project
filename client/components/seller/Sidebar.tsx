@@ -33,15 +33,15 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                         <Link href="/seller">
                             <div className="seller-c-sidebar-item">
                             <BootstrapTooltip title="Home Page">
-                                <Icon path={mdiHomeOutline} color='white'/>
+                                <Icon className="seller-c-sidebar-item-icon" path={mdiHomeOutline}/>
                                 </BootstrapTooltip>
                             </div>
                         </Link>
 
                         <Link href="/seller/Pendingevents">
                             <div className="seller-c-sidebar-item">
-                            <BootstrapTooltip title="Pending Events">
-                                <Icon path={mdiCalendarSearch} color='white'/>
+                            <BootstrapTooltip title="Events">
+                                <Icon className="seller-c-sidebar-item-icon" path={mdiCalendarSearch}/>
                                 </BootstrapTooltip>
                             </div>
                         </Link>
@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                         <Link href= "/seller/Settings">
                         <div className="seller-c-sidebar-item">
                         <BootstrapTooltip title="Change Password">
-                            <Icon path={mdiCogs} color='white'/>
+                            <Icon className="seller-c-sidebar-item-icon" path={mdiCogs}/>
                             </BootstrapTooltip>
                         </div>
                         </Link>
@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                         <Link href="/">
                         <div className="seller-c-sidebar-item">
                         <BootstrapTooltip title="Logout">
-                            <Icon path={mdiLogout} color='white' />
+                            <Icon className="seller-c-sidebar-item-icon" path={mdiLogout}/>
                             </BootstrapTooltip>
                         </div>
                         </Link>

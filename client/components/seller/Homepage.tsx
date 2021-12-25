@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import Image from 'next/image'
 import tick from '../../assets/online-ticket.png'
 import Paper from '@mui/material/Paper';
-import Createevent from '../../components/seller/Createevents'
 import axios from 'axios'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -112,9 +111,6 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
         </Grid>
       </Grid>
     </Box>
-    <div>
-    <Createevent/>
-    </div>
             </div>
             <div className ="right-container">
             <Image
