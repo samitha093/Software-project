@@ -110,6 +110,7 @@
 }
 
 .h1{
+	padding-top: 75px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 700;
 	display: block;
