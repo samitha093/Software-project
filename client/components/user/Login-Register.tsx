@@ -34,8 +34,7 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [login_password,login_setPassword] =React.useState<string>("");
   const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
 
-<<<<<<< Updated upstream
-  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
+  //const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
   
 
 
@@ -63,33 +62,6 @@ async function signinformn(){
       }
 
   })
-=======
-
-  const [item, setitem] = React.useState([])
-
-  React.useEffect(()=>{
-
-    const datapack = {
-      email:login_email,
-      password: login_password
-    }
-      axios.post('http://localhost:8000/user/login',datapack)
-          .then(async (res)=>{
-               console.log(res.data)
-               await startsession(res.data.token, res.data.userType)
-          })
-      
-  },[])
-
-  const loginhandle = async (event:any) =>{
-    event.preventDefault();
-    
-  };
-
-   async function clickHandl(){
-  endsession();
-  console.log(gettoken());
->>>>>>> Stashed changes
 };
 async function signUpformn(){
   const datapack = {
@@ -155,20 +127,11 @@ async function signUpformn(){
       const valid = !!event.target.value.match(email_regex);
       setEmailError(!valid);
   }
-<<<<<<< Updated upstream
 
   const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
   const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
  
   const login_emailChangeHandler = (event:any)=>{
-=======
-  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
-    
-  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
-
-
-    const login_emailChangeHandler = (event:any)=>{
->>>>>>> Stashed changes
       login_setEmail(event.target.value);
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
@@ -329,13 +292,8 @@ async function signUpformn(){
               />
               </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
-<<<<<<< Updated upstream
               <button className='modern-btn' onClick={signinformn}>Sign In</button>
             </div>
-=======
-              <button className='modern-btn' onClick={loginhandle}>Sign In</button>
-            </form>
->>>>>>> Stashed changes
           </div>
 
           <div className="overlay-container">
