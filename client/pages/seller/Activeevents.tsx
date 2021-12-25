@@ -1,6 +1,7 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/seller/Sidebar'
+import Topbar from '../../components/seller/Topbar'
 import Navbar from '../../components/Navbar'
 import Activeevents from '../../components/seller/Activeevents'
 import axios from 'axios'
@@ -26,8 +27,9 @@ const index: NextPage = () => {
                 <Navbar/>
                 <div className="seller-index">
                     <Sidebar/>
-                    <div>
-                       <h1>Active Events</h1>
+                    <Topbar/>
+                    <div className="seller-index-parent">
+                       <h1 className="seller-index-container">Active Events</h1>
                        <div className="seller-index-container">
                           {listitem}
                        </div>

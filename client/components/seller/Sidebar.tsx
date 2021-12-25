@@ -46,30 +46,6 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                             </div>
                         </Link>
 
-                        <Link href="/seller/Activeevents">
-                            <div className="seller-c-sidebar-item">
-                            <BootstrapTooltip title="Active Events">
-                                <Icon path={mdiCalendarClock} color='white'/>
-                                </BootstrapTooltip>
-                            </div>
-                        </Link>
-
-                        <Link href="/seller/Endevents">
-                            <div className="seller-c-sidebar-item">
-                            <BootstrapTooltip title="End Events">
-                                <Icon path={mdiCalendarCheck} color='white'/>
-                                </BootstrapTooltip>
-                            </div>
-                        </Link>
-
-                        <Link href= "/seller/Declinedevents">
-                        <div className="seller-c-sidebar-item">
-                        <BootstrapTooltip title="Declined Events">
-                            <Icon path={mdiCalendarRemove} color='white'/>
-                            </BootstrapTooltip>
-                        </div>
-                        </Link>
-
                         <Link href= "/seller/Settings">
                         <div className="seller-c-sidebar-item">
                         <BootstrapTooltip title="Change Password">
@@ -77,13 +53,14 @@ const Sidebar: React.FC<SidebarProps> = ({}) => {
                             </BootstrapTooltip>
                         </div>
                         </Link>
+
                         <Link href="/">
-                    <div className="manager-c-sidebar-item">
-                    <BootstrapTooltip title="Logout">
+                        <div className="seller-c-sidebar-item">
+                        <BootstrapTooltip title="Logout">
                             <Icon path={mdiLogout} color='white' />
                             </BootstrapTooltip>
-                    </div>
-                </Link>
+                        </div>
+                        </Link>
                     </div>
             </div>
         );
