@@ -7,9 +7,22 @@ import { mdiCameraTimer } from '@mdi/js';
 import { mdiTicketPercentOutline } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
-import Tooltip from '@mui/material/Tooltip';
 import {endsession} from '../../session/Session';
 import {useRouter} from 'next/router';
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
+
+const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+
 interface SidebarProps {
 
 }
@@ -25,45 +38,45 @@ const router = useRouter()
             <div className="buyer-c-sidebar">
                     <div className="buyer-c-sidebar-container">
                         <Link href="/buyer">
-                            <Tooltip title="My Tickets" followCursor>
+                            <BootstrapTooltip title="My Tickets">
                                 <div className="buyer-c-sidebar-item">
                                     <Icon path={mdiHomeOutline} className="buyer-c-sidebar-item-icon"/>
                                 </div>
-                            </Tooltip>
+                            </BootstrapTooltip>
                         </Link>
                         <Link href="/buyer/payment">
-                        <Tooltip title="Pending Payment Tickets" followCursor>
+                        <BootstrapTooltip title="Pending Payment Tickets">
                             <div className="buyer-c-sidebar-item">
                                 <Icon className="buyer-c-sidebar-item-icon" path={mdiCreditCardMarkerOutline} />
                             </div>
-                            </Tooltip>
+                            </BootstrapTooltip>
                         </Link>
                         <Link href="/buyer/bids">
-                        <Tooltip title="Pending Bids" followCursor>
+                        <BootstrapTooltip title="Pending Bids">
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={mdiCameraTimer} className="buyer-c-sidebar-item-icon"/>
                             </div>
-                            </Tooltip>
+                            </BootstrapTooltip>
                         </Link>
                         <Link href="/buyer/tickets">
-                        <Tooltip title="My Old Tickets" followCursor>
+                        <BootstrapTooltip title="My Old Tickets">
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={ mdiTicketPercentOutline} className="buyer-c-sidebar-item-icon"/>
                             </div>
-                            </Tooltip>
+                            </BootstrapTooltip>
                         </Link>
                         <Link href="/buyer/settings">
-                        <Tooltip title="Change User information" followCursor>
+                        <BootstrapTooltip title="Change User information">
                             <div className="buyer-c-sidebar-item">
                                 <Icon path={mdiCogs} className="buyer-c-sidebar-item-icon"/>
                             </div>
-                            </Tooltip>
+                            </BootstrapTooltip>
                         </Link>
-                        <Tooltip title="Logout" followCursor>
+                        <BootstrapTooltip title="Logout">
                         <div onClick={logout} className="buyer-c-sidebar-item">
                             <Icon path={mdiLogout} className="buyer-c-sidebar-item-icon"/>
                         </div>
-                        </Tooltip>
+                        </BootstrapTooltip>
                     </div>
             </div>
         );
