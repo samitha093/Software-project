@@ -6,11 +6,23 @@
 .buyer-index{
     padding-top: 70px;
     display: flex;
+    max-height: 100%;
+    position: relative;
+}
+.buyer-index-container-parent{
+    position:relative;
+    width: 100%;
+    max-height: 100%;
     overflow: auto;
 }
-.buyer-index-content{
-    width: 100%;
+.buyer-index-container-d2{
+    position: absolute;
+    height: auto;
 }
+.buyer-index-content{
+    width: 100%; 
+}
+
 .buyer-index-container{
     width: 100%;
     padding-left: 30px;
@@ -31,6 +43,9 @@
     .buyer-index-container{
         padding-left: 0px;
         display: flex;
+    }
+    .buyer-index-container-d2{
+        position: relative;
     }
 }
 /*end- Buyer index pg*/

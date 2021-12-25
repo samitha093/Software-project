@@ -9,15 +9,37 @@ const bids: NextPage = () => {
             <div className="buyer-bg">
                 <Navbar/>
                 <div className="buyer-index">
-                    <Sidebar/>
-                    <div>
+                    <Sidebar id="3" />
+                    <div className='buyer-index-container-parent'>
                        <h1>Pending Bids</h1> 
-                       <div className="buyer-index-container">
-                            <Ticketvalid level="1" type="3"/>
-                            <Ticketvalid level="2" type="3"/>
-                            <Ticketvalid level="3" type="3"/>
-                            <Ticketvalid level="4" type="3"/>
-                            <Ticketunvalid level="4" />
+                       <div className="buyer-index-container-d2">
+                            <div className="buyer-index-container">
+                                <Ticketvalid level="1" type="3"/>
+                                <Ticketvalid level="2" type="3"/>
+                                <Ticketvalid level="3" type="3"/>
+                                <Ticketvalid level="4" type="3"/>
+                                <Ticketunvalid level="4" />
+                                <Ticketvalid level="1" type="3"/>
+                                <Ticketvalid level="2" type="3"/>
+                                <Ticketvalid level="3" type="3"/>
+                                <Ticketvalid level="4" type="3"/>
+                                <Ticketunvalid level="4" />
+                                <Ticketvalid level="1" type="3"/>
+                                <Ticketvalid level="2" type="3"/>
+                                <Ticketvalid level="3" type="3"/>
+                                <Ticketvalid level="4" type="3"/>
+                                <Ticketunvalid level="4" />
+                                <Ticketvalid level="1" type="3"/>
+                                <Ticketvalid level="2" type="3"/>
+                                <Ticketvalid level="3" type="3"/>
+                                <Ticketvalid level="4" type="3"/>
+                                <Ticketunvalid level="4" />
+                                <Ticketvalid level="1" type="3"/>
+                                <Ticketvalid level="2" type="3"/>
+                                <Ticketvalid level="3" type="3"/>
+                                <Ticketvalid level="4" type="3"/>
+                                <Ticketunvalid level="4" />
+                            </div>
                         </div>
                     </div>
                 </div>
