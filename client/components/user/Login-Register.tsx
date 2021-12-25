@@ -26,28 +26,18 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [contact,setContact] = React.useState("");
   const [contactHasError,setContactError] = React.useState(false);
   
+  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
+
   const [login_email,login_setEmail] = React.useState<string>("");
   const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
 
   const [login_password,login_setPassword] =React.useState<string>("");
   const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
 
+<<<<<<< Updated upstream
   const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
-  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
-  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
+  
 
-  // const [item, setitem] = React.useState([])
-  // React.useEffect(()=>{
-  //   const datapack = {
-  //     email:"gafdhajd",
-  //     password:65
-  //   }
-  //     axios.post(gethost() + 'user/login',datapack)
-  //         .then(async (res)=>{
-  //             console.log(res.data)
-  //             //await startsession(res.data, "buyer")
-  //         })
-  // },[])
 
 async function signinformn(){
   const datapack = {
@@ -57,14 +47,15 @@ async function signinformn(){
   //console.log(datapack);
   axios.post(gethost() + 'user/login',datapack)
   .then(async (res)=>{
-      await startsession(res.data, "buyer")
+      await startsession(res.data,res.data)
       await login_setEmail('');
       await login_setPassword('');
+      alert('Login success')
       const type = getuser();
       if(type == 'buyer'){
         router.push('/buyer');
       }else if(type == 'manager'){
-        router.push('/manage');
+        router.push('/manager');
       }else if(type == 'seller'){
         router.push('/seller');
       }else{
@@ -72,8 +63,62 @@ async function signinformn(){
       }
 
   })
+=======
+
+  const [item, setitem] = React.useState([])
+
+  React.useEffect(()=>{
+
+    const datapack = {
+      email:login_email,
+      password: login_password
+    }
+      axios.post('http://localhost:8000/user/login',datapack)
+          .then(async (res)=>{
+               console.log(res.data)
+               await startsession(res.data.token, res.data.userType)
+          })
+      
+  },[])
+
+  const loginhandle = async (event:any) =>{
+    event.preventDefault();
+    
+  };
+
+   async function clickHandl(){
+  endsession();
+  console.log(gettoken());
+>>>>>>> Stashed changes
 };
 async function signUpformn(){
+  const datapack = {
+    name:name,
+    email:email,
+    contact: contact,
+    password:password,
+    userType:selectedRadiobtn
+  }
+  //console.log(datapack);
+  axios.post(gethost() + 'user/register',datapack)
+  .then(async (res)=>{
+      await setName('');
+      await setEmail('');
+      await setContact('');
+      await setPassword('');
+      await setselectedRadionbtn('');
+      const type = getuser();
+      if(type == 'buyer'){
+        router.push('/buyer');
+      }else if(type == 'manager'){
+        router.push('/manager');
+      }else if(type == 'seller'){
+        router.push('/seller');
+      }else{
+        router.push('/user');
+      }
+
+  })
 
 }
 
@@ -109,18 +154,28 @@ async function signUpformn(){
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
       setEmailError(!valid);
-
-
   }
+<<<<<<< Updated upstream
+
+  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
+  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
  
+  const login_emailChangeHandler = (event:any)=>{
+=======
+  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
+    
+  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
+
+
     const login_emailChangeHandler = (event:any)=>{
+>>>>>>> Stashed changes
       login_setEmail(event.target.value);
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
       login_setEmailError(!valid);
     }
 
-    const login_passwordChangeHandler =(event:any)=>{
+  const login_passwordChangeHandler =(event:any)=>{
       login_setPassword(event.target.value);
       const valid = event.target.value.trim().length >= 5;
       login_setPasswordError(!valid);
@@ -150,7 +205,7 @@ async function signUpformn(){
         <div className="container" id="container">
 
           <div className="form-container sign-up-container">
-            <form className='modern-form' action="#">
+            <div className='modern-form'>
               <h1 className =" head-signup">Create Account</h1>
               <span className='new-span'>Please fill up your details below</span>
               {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
@@ -238,8 +293,10 @@ async function signUpformn(){
               className='modern-btn'
               disabled={emailHasError || passwordError || nameHasError}
               onClick={signUpformn}>Sign Up</button>
-            </form>
+            </div>
           </div>
+
+
 
 
           <div className="form-container sign-in-container">
@@ -272,8 +329,13 @@ async function signUpformn(){
               />
               </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
+<<<<<<< Updated upstream
               <button className='modern-btn' onClick={signinformn}>Sign In</button>
             </div>
+=======
+              <button className='modern-btn' onClick={loginhandle}>Sign In</button>
+            </form>
+>>>>>>> Stashed changes
           </div>
 
           <div className="overlay-container">
