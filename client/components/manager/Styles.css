@@ -47,6 +47,50 @@
 }
 /*end - sidebar component*/
 
+/*start - topbar component*/
+.manager-c-topbar{
+    z-index: 10;
+    position: fixed;
+    top: 70px;
+    left: calc(50% - 207px);
+    width: 415px;
+    height: auto;
+    min-height: 0px;
+    padding: 10px 10px 10px;
+
+}
+.manager-c-topbar-container{
+    display: flex;
+    height: auto;
+    width: 400px;
+    padding: 10px;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
+    box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
+}
+.manager-c-topbar-item{
+    margin-top: 0px;
+    width: 25%;
+    text-align: center;
+    margin: 0px 10px 0px;
+    height: auto;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 10px;
+    border-style:solid;
+    cursor: pointer;
+}
+
+.manager-c-topbar-item:hover{
+    border-color:#752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+
+/*end - topbar component*/
+
 
 /*start - pending ticket component*/
 :root {
