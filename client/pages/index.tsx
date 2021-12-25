@@ -9,6 +9,7 @@ import Navbar from '../components/Navbar'
 import Shop from '../components/Shop'
 import { color } from '@mui/system';
 
+
 const index: NextPage = () => {
     const router = useRouter()
 
@@ -55,6 +56,7 @@ const index: NextPage = () => {
                     <div className='trending-board-container'><h2 className='trending-board'>Trending Events</h2></div>
                     <Shop />
                 </div>
+                
             </div>
             
 

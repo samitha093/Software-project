@@ -5,6 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import { getuser } from '../session/Session';
+import CloseIcon from '@mui/icons-material/Close';
 interface NavbarProps {
 
 }
@@ -24,6 +25,26 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
         router.push('/user');
       }
     }
+    const closeminicart = () => {
+      console.log('cart');
+       if (process.browser) {
+         const container = document.getElementById("minicart");
+       if (container !== null) {
+      //     container.classList.add("right-panel-active");
+      container.style.width ='0px';
+       }
+       }
+    };
+    const openminicart = () => {
+      console.log('cart');
+       if (process.browser) {
+         const container = document.getElementById("minicart");
+       if (container !== null) {
+      //     container.classList.add("right-panel-active");
+      container.style.width ='400px';
+       }
+       }
+    };
     const changebg = () =>{
       //console.log(window.scrollY);
       if(window.scrollY >= 10){
@@ -37,6 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
     window.addEventListener('scroll',changebg);
     },[]);
         return (
+          <div>
             <div className={navbar ? 'navbar active' : 'navbar'}>
                 <div className="navbar-left" >
                     TickBid
@@ -49,14 +71,17 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <li onClick={navclick}>My Account</li>
                     </ul>
                     <div className="cart">
-                    <Link href="/buyer/cart">
-                        <IconButton className="navbar-active" size="large" aria-label="add to shopping cart">
+                        <IconButton onClick={openminicart} className="navbar-active" size="large" aria-label="add to shopping cart">
                             <ShoppingCartOutlinedIcon fontSize="inherit" />
                         </IconButton>
-                    </Link>
                     </div>
                 </div>
             </div>
+            <div className='cart-drower' id='minicart'>
+                <CloseIcon fontSize='large' className='cart-close'  onClick={closeminicart}/>
+            </div>
+          </div>
+            
         );
 }
 

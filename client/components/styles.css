@@ -188,3 +188,21 @@
     outline: none;
   }
 /*end - Shop*/
+/*end - mini cart*/
+.cart-drower{
+
+    background-color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    height: 100vh;
+    width: 0px;
+    transition: 0.5s;
+}
+.cart-close{
+    cursor: pointer;
+    margin: 10px;
+    color: #752E9E;
+}
+/*end - mini cart*/
