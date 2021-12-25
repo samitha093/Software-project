@@ -1,10 +1,11 @@
 .seller-c-sidebar{
+    position: fixed;
+    left: 0%;
     width:130px;
-    height: calc(100vh - 70px);
-    min-height: 800px;
     padding: 60px 10px;
 }
 .seller-c-sidebar-container{
+    
     width: 100%;
     height:100%;
     background-color: #752E9E;
