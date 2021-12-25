@@ -4,6 +4,7 @@
     background-size: cover;
 }
 .buyer-index{
+    padding-top: 70px;
     display: flex;
     overflow: auto;
 }

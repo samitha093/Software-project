@@ -11,6 +11,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({}) => {
     const router = useRouter()
+    const [navbar,setNavbar] = React.useState(false);
     async function navclick (){
       const type = getuser();
       if(type == 'buyer'){
@@ -23,8 +24,20 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
         router.push('/user');
       }
     }
+    const changebg = () =>{
+      //console.log(window.scrollY);
+      if(window.scrollY >= 10){
+        setNavbar(true);
+      }else{
+        setNavbar(false);
+      }
+    }
+    //window.addEventListener('scroll',changebg);
+    React.useEffect(() => {
+    window.addEventListener('scroll',changebg);
+    },[]);
         return (
-            <div className="navbar">
+            <div className={navbar ? 'navbar active' : 'navbar'}>
                 <div className="navbar-left" >
                     TickBid
                 </div>
@@ -37,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                     </ul>
                     <div className="cart">
                     <Link href="/buyer/cart">
-                        <IconButton color="secondary" size="large" aria-label="add to shopping cart">
+                        <IconButton className="navbar-active" size="large" aria-label="add to shopping cart">
                             <ShoppingCartOutlinedIcon fontSize="inherit" />
                         </IconButton>
                     </Link>

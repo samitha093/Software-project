@@ -27,41 +27,41 @@ const router = useRouter()
                         <Link href="/buyer">
                             <Tooltip title="My Tickets" followCursor>
                                 <div className="buyer-c-sidebar-item">
-                                    <Icon path={mdiHomeOutline} color='white'/>
+                                    <Icon path={mdiHomeOutline} className="buyer-c-sidebar-item-icon"/>
                                 </div>
                             </Tooltip>
                         </Link>
                         <Link href="/buyer/payment">
                         <Tooltip title="Pending Payment Tickets" followCursor>
                             <div className="buyer-c-sidebar-item">
-                                <Icon path={mdiCreditCardMarkerOutline} color='white'/>
+                                <Icon className="buyer-c-sidebar-item-icon" path={mdiCreditCardMarkerOutline} />
                             </div>
                             </Tooltip>
                         </Link>
                         <Link href="/buyer/bids">
                         <Tooltip title="Pending Bids" followCursor>
                             <div className="buyer-c-sidebar-item">
-                                <Icon path={mdiCameraTimer} color='white'/>
+                                <Icon path={mdiCameraTimer} className="buyer-c-sidebar-item-icon"/>
                             </div>
                             </Tooltip>
                         </Link>
                         <Link href="/buyer/tickets">
                         <Tooltip title="My Old Tickets" followCursor>
                             <div className="buyer-c-sidebar-item">
-                                <Icon path={ mdiTicketPercentOutline} color='white'/>
+                                <Icon path={ mdiTicketPercentOutline} className="buyer-c-sidebar-item-icon"/>
                             </div>
                             </Tooltip>
                         </Link>
                         <Link href="/buyer/settings">
                         <Tooltip title="Change User information" followCursor>
                             <div className="buyer-c-sidebar-item">
-                                <Icon path={mdiCogs} color='white'/>
+                                <Icon path={mdiCogs} className="buyer-c-sidebar-item-icon"/>
                             </div>
                             </Tooltip>
                         </Link>
                         <Tooltip title="Logout" followCursor>
                         <div onClick={logout} className="buyer-c-sidebar-item">
-                            <Icon path={mdiLogout} color='white'/>
+                            <Icon path={mdiLogout} className="buyer-c-sidebar-item-icon"/>
                         </div>
                         </Tooltip>
                     </div>
