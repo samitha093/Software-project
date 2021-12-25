@@ -33,21 +33,8 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
 
   const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
-  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
-  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
+  
 
-  // const [item, setitem] = React.useState([])
-  // React.useEffect(()=>{
-  //   const datapack = {
-  //     email:"gafdhajd",
-  //     password:65
-  //   }
-  //     axios.post(gethost() + 'user/login',datapack)
-  //         .then(async (res)=>{
-  //             console.log(res.data)
-  //             //await startsession(res.data, "buyer")
-  //         })
-  // },[])
 
 async function signinformn(){
   const datapack = {
@@ -57,14 +44,15 @@ async function signinformn(){
   //console.log(datapack);
   axios.post(gethost() + 'user/login',datapack)
   .then(async (res)=>{
-      await startsession(res.data, "buyer")
+      await startsession(res.data,res.data)
       await login_setEmail('');
       await login_setPassword('');
+      alert('Login success')
       const type = getuser();
       if(type == 'buyer'){
         router.push('/buyer');
       }else if(type == 'manager'){
-        router.push('/manage');
+        router.push('/manager');
       }else if(type == 'seller'){
         router.push('/seller');
       }else{
@@ -74,6 +62,33 @@ async function signinformn(){
   })
 };
 async function signUpformn(){
+  const datapack = {
+    name:name,
+    email:email,
+    contact: contact,
+    password:password,
+    userType:selectedRadiobtn
+  }
+  //console.log(datapack);
+  axios.post(gethost() + 'user/register',datapack)
+  .then(async (res)=>{
+      await setName('');
+      await setEmail('');
+      await setContact('');
+      await setPassword('');
+      await setselectedRadionbtn('');
+      const type = getuser();
+      if(type == 'buyer'){
+        router.push('/buyer');
+      }else if(type == 'manager'){
+        router.push('/manager');
+      }else if(type == 'seller'){
+        router.push('/seller');
+      }else{
+        router.push('/user');
+      }
+
+  })
 
 }
 
@@ -109,18 +124,19 @@ async function signUpformn(){
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
       setEmailError(!valid);
-
-
   }
+
+  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
+  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
  
-    const login_emailChangeHandler = (event:any)=>{
+  const login_emailChangeHandler = (event:any)=>{
       login_setEmail(event.target.value);
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
       login_setEmailError(!valid);
     }
 
-    const login_passwordChangeHandler =(event:any)=>{
+  const login_passwordChangeHandler =(event:any)=>{
       login_setPassword(event.target.value);
       const valid = event.target.value.trim().length >= 5;
       login_setPasswordError(!valid);
@@ -150,7 +166,7 @@ async function signUpformn(){
         <div className="container" id="container">
 
           <div className="form-container sign-up-container">
-            <form className='modern-form' action="#">
+            <div className='modern-form'>
               <h1 className =" head-signup">Create Account</h1>
               <span className='new-span'>Please fill up your details below</span>
               {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
@@ -238,7 +254,7 @@ async function signUpformn(){
               className='modern-btn'
               disabled={emailHasError || passwordError || nameHasError}
               onClick={signUpformn}>Sign Up</button>
-            </form>
+            </div>
           </div>
 
 
