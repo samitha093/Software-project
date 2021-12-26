@@ -9,7 +9,7 @@ import {gethost} from '../../session/Session';
 const index: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-        axios.get(gethost() + 'manager/pending')
+        axios.get(gethost() + 'manager')
             .then((res)=>{
                 console.log(res.data);
             })
