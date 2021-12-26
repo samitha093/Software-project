@@ -30,6 +30,12 @@ const activeevents: NextPage = () => {
                             <Activeevents/>
                             <Activeevents/>
                             <Activeevents/>
+                            <Activeevents/>
+                            <Activeevents/>
+                            <Activeevents/>
+                            <Activeevents/>
+                            <Activeevents/>
+                            <Activeevents/>
                         </div> 
                     </div>
                 </div>
