@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
       if(type == 'buyer'){
         router.push('/buyer');
       }else if(type == 'manager'){
-        router.push('/manage');
+        router.push('/manager');
       }else if(type == 'seller'){
         router.push('/seller');
       }else{
@@ -36,7 +36,6 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
        }
     };
     const openminicart = () => {
-      console.log('cart');
        if (process.browser) {
          const container = document.getElementById("minicart");
        if (container !== null) {

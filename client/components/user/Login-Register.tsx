@@ -46,10 +46,11 @@ async function signinformn(){
   //console.log(datapack);
   axios.post(gethost() + 'user/login',datapack)
   .then(async (res)=>{
-      await startsession(res.data,res.data)
+    //console.log(res.data);
+      await startsession(res.data.tokenkey,res.data.type)
       await login_setEmail('');
       await login_setPassword('');
-      alert('Login success')
+      //alert('Login success')
       const type = getuser();
       if(type == 'buyer'){
         router.push('/buyer');
