@@ -21,8 +21,7 @@ router.route('/register').post((req,res) => {
         password,
         user_type,
         status,
-        user_id
-
+        
         });
     newuser.save()
         .then(()=> res.status(200).json("Registration success"))
@@ -32,7 +31,6 @@ router.route('/register').post((req,res) => {
     })
  
 });
-
 
 router.route('/login').post((req,res) => {
     
