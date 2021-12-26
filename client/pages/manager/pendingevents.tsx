@@ -20,7 +20,7 @@ const pendingevents: NextPage = () => {
                 <Navbar/>
                 <div className="manager-index">
                     <Sidebar/>
-                    <ManagerTopBar/>
+                    <ManagerTopBar id2='1'/>
                     <div>
                        <h1>Pending Events</h1>
                        <div className="manager-index-container">
