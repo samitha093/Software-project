@@ -1,7 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
-import Grid from '@mui/material/Grid';
 import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
 
 import Navbar from '../../components/Navbar'
