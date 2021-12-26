@@ -4,9 +4,18 @@ import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Declinedevents from '../../components/manager/Declinedevents'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
+import axios from 'axios'
+import {gethost} from '../../session/Session';
 
 const declinedevents: NextPage = () => {
-        return (
+    React.useEffect(() => {
+        axios.get(gethost() + 'manager/declinedevents')
+            .then((res)=>{
+                console.log(res.data);
+            })
+   
+    }, [])
+    return (
             <div className="manager-bg">
                 <Navbar/>
                 <div className="manager-index">

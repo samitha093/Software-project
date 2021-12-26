@@ -5,13 +5,15 @@ import Navbar from '../../components/Navbar'
 import Pendingtickets from '../../components/manager/Pendingtickets'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
 import axios from 'axios'
+import {gethost} from '../../session/Session';
 
 const pendingevents: NextPage = () => {
     React.useEffect(() => {
-        axios.get('https://localhost:8000/manager/pending')
+        axios.get(gethost() + 'manager/pending')
             .then((res)=>{
                 console.log(res.data);
             })
+   
     }, [])
         return (
             <div className="manager-bg">
