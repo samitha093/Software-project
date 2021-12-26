@@ -8,6 +8,7 @@
 {
     display: flex;
     overflow: auto;
+    padding-top: 80px;
 }
 .manager-index-content
 {
@@ -16,7 +17,7 @@
 .manager-index-container
 {
     width: 100%;
-    padding-left: 30px;
+    padding-left: 120px;
     position: relative;
     display: flex;
     box-sizing: border-box;
