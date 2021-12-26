@@ -63,7 +63,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 src={lock}
                                 layout="responsive"
                                 m-50='true'
-                                alt=''
+                                alt='Invalid Format'
                             >
                             </Image>
                             <Sellerapproval />
