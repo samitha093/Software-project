@@ -9,7 +9,7 @@ import {gethost} from '../../session/Session';
 
 const pendingevents: NextPage = () => {
     React.useEffect(() => {
-        axios.get(gethost() + 'manager/pending')
+        axios.get(gethost() + 'manager/pendingevents')
             .then((res)=>{
                 console.log(res.data);
             })
