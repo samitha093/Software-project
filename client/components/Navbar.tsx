@@ -6,6 +6,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import { getuser } from '../session/Session';
 import CloseIcon from '@mui/icons-material/Close';
+import { textAlign } from '@mui/system';
 interface NavbarProps {
 
 }
@@ -30,8 +31,9 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
        if (process.browser) {
          const container = document.getElementById("minicart");
        if (container !== null) {
-      //     container.classList.add("right-panel-active");
-      container.style.width ='0px';
+      //container.classList.add("right-panel-active");
+      //container.style.width ='0px';
+      container.style.right='-400px';
        }
        }
     };
@@ -40,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
          const container = document.getElementById("minicart");
        if (container !== null) {
       //     container.classList.add("right-panel-active");
-      container.style.width ='400px';
+      container.style.right ='0px';
        }
        }
     };
@@ -78,6 +80,24 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
             </div>
             <div className='cart-drower' id='minicart'>
                 <CloseIcon fontSize='large' className='cart-close'  onClick={closeminicart}/>
+                <div className='cart-drower-content'> 
+                  <div className='cart-drower-content-list'>
+                    <div className='cart-drower-content-list-items'>
+                      jdskhfkjhdsfkhdsk
+                    </div>
+                  </div>
+                  <div className='cart-drower-content-btn'>
+                    <div className='cart-drower-content-btn-flex'>
+                    <div className='text-left'>Total </div><div className='text-right' >50007.00 LKR</div>
+                    </div>
+                    <div className='gotocheckout'>
+                    <Link href ="/buyer/checkout">
+                      <div className='gotocheckout-btn'>Go to checkout</div>
+                    </Link>
+                    </div>
+                  </div>
+                  
+                </div>
             </div>
           </div>
             
