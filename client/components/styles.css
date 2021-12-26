@@ -32,7 +32,6 @@
 }
 .main-menu{
     position: absolute;
-    width: 100%;
     position: relative;
     float: right;
     text-align: right;
@@ -41,14 +40,20 @@
     margin-top: 5px !important;
 }
 .main-menu li {
+    margin-top: 10px;
     text-align: center;
     font-size: 18px;
     cursor: pointer;
-    margin-right: 5%;
+    margin-right: 25px;
+    min-width: 50px;
 }
 .cart{
     padding-right: 30px;
     cursor: pointer;
+}
+.navbar-mobile{
+    display: none;
+    width:0px
 }
 @media only screen and (max-width: 1000px) {
     .main-menu li{
@@ -56,8 +61,34 @@
     }
 }
 @media only screen and (max-width: 750px) {
+    .navbar{
+        padding-left: 15px;
+    }
     .main-menu{
         display: none;
+    }
+    .navbar-right{
+        width:100px;
+    }
+    .navbar-left{
+        display: flex;
+        width: calc(100% - 100px);
+    }
+    .navbar-name{
+        width: 100%;
+        text-align: center;
+    }
+    .navbar-mobile{
+        display:block;
+        width:100px
+    }
+    .font-icon-mobilenave{
+        margin-top: 8px;
+        font-size: 25px;
+    }
+    .cart{
+        padding-right: 10px;
+        font-size: 15px;
     }
 }
 /*end - navbar*/
@@ -260,4 +291,47 @@
       border-radius: 20px;
       background-color: #583074;
   }
+  @media only screen and (max-width: 500px) {
+    .cart-drower{
+        width: 300px;
+    }
+    .cart-drower-content-btn{
+        width:300px;
+        font-size: 20px;
+        height: 150px;
+    }
+    .gotocheckout-btn{
+        font-size: 20px;
+    }
+}
+
 /*end - mini cart*/
+/*start - mobile mudu drower*/
+.menu-drower{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    z-index: 101;
+    height: 100vh;
+    width: 250px;
+    transition: 0.5s;
+}
+.menu-close{
+    cursor: pointer;
+    margin: 10px;
+    color: #752E9E;
+    float: right;  
+}
+.minimenu-drower-content{
+    padding: 50px 20px 0px;
+}
+.mobile-drower-menu{
+    list-style: none;
+    font-size: 17px;
+}
+.mobile-drower-menu li{
+    margin-top: 20px;
+
+}
+/*end - mobile mudu drower*/

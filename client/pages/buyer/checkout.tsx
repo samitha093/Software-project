@@ -1,6 +1,7 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Navbar from '../../components/Navbar'
+import Checkoutcard from '../../components/buyer/Checkoutcard'
 import TextField from '@mui/material/TextField';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +14,12 @@ const checkout: NextPage = () => {
                 <div className='checkout-container'>
                    <div className='checkout-container-left'>
                         <div className='checkout-container-left-drower'>
-                            sdfds
+                            <Checkoutcard/>
+                            <Checkoutcard/>
+                            <Checkoutcard/>
+                            <Checkoutcard/>
+                            <Checkoutcard/>
+                            <Checkoutcard/>
                         </div>
                    </div>
                    <div className='checkout-container-right'>

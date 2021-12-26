@@ -386,6 +386,7 @@ box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
 }
 .cartitem-card-eventname{
     width:50%;
+    overflow: hidden;
 }
 .cartitem-card-price{
     width:25%;
@@ -394,3 +395,66 @@ box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
     display: flex;
 }
 /*end -  cart card component*/
+/*end -  checkout card component*/
+.checkout-card{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 18px;
+    height: 130px;
+}
+.checkout-card-container{
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    -webkit-box-shadow: 0px 0px 16px -3px rgba(0,0,0,0.48); 
+    box-shadow: 0px 0px 16px -3px rgba(0,0,0,0.48);
+    display: flex;
+}
+.checkout-card-container-left{
+    display: flex;
+ width: 80%;
+}
+.checkout-card-container-right{
+    cursor: pointer;
+    width:20%;
+    text-align: center;
+    font-size: 50px;
+    color: rgb(102, 101, 101);
+}
+.checkout-card-container-left-name{
+    padding: 10px 25px;
+    overflow: hidden;
+}
+.checkout-card-container-left-price{
+    padding: 20px 25px;
+    font-size: 25px;
+}
+@media only screen and (max-width: 550px) {
+    .checkout-card-container-left-price{
+        padding: 27px 9px;
+        font-size: 15px;
+    }
+    .checkout-card-container-right{
+        padding-top: 12px;
+        font-size: 30px;
+    }
+    .checkout-card-container-left-name{
+        overflow: hidden;
+        padding: 5px 8px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .checkout-card-container-left-price{
+        padding: 27px 9px;
+        font-size: 15px;
+    }
+    .checkout-card-container-right{
+        padding-top: 12px;
+        font-size: 30px;
+    }
+    .checkout-card-container-left-name{
+        overflow: hidden;
+        padding: 5px 8px;
+    }
+}
+/*end -  checkout card component*/

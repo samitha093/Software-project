@@ -7,6 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import { getuser } from '../session/Session';
 import CloseIcon from '@mui/icons-material/Close';
 import { textAlign } from '@mui/system';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars} from "@fortawesome/free-solid-svg-icons";
 interface NavbarProps {
 
 }
@@ -27,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
       }
     }
     const closeminicart = () => {
-      console.log('cart');
+      //console.log('cart');
        if (process.browser) {
          const container = document.getElementById("minicart");
        if (container !== null) {
@@ -41,10 +44,29 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
        if (process.browser) {
          const container = document.getElementById("minicart");
        if (container !== null) {
+        if(window.innerWidth < 500){
+          container.style.width ='300px';
+        }
       //     container.classList.add("right-panel-active");
       container.style.right ='0px';
        }
        }
+    };
+    const openminimenu = () => {
+      if (process.browser) {
+        const container = document.getElementById("minimenu");
+      if (container !== null) {
+     container.style.left ='0px';
+      }
+      }
+    };
+    const closeminimenu = () => {
+      if (process.browser) {
+        const container = document.getElementById("minimenu");
+      if (container !== null) {
+     container.style.left ='-300px';
+      }
+      }
     };
     const changebg = () =>{
       //console.log(window.scrollY);
@@ -61,8 +83,13 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
         return (
           <div>
             <div className={navbar ? 'navbar active' : 'navbar'}>
+              <div className='navbar-mobile'>
+                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faBars} className='font-icon-mobilenave' onClick={openminimenu}/>
+              </div>
                 <div className="navbar-left" >
+                  <div className='navbar-name'>
                     TickBid
+                  </div>
                 </div>
                 <div className="navbar-right" >
                     <ul className="main-menu">
@@ -97,6 +124,17 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                     </div>
                   </div>
                   
+                </div>
+            </div>
+            <div className='menu-drower' id='minimenu'>
+                <CloseIcon fontSize='large' className='menu-close'  onClick={closeminimenu}/>
+                <div className='minimenu-drower-content'> 
+                  <ul className='mobile-drower-menu'>
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/events">Events </Link></li>
+                    <li><Link href ="/user/about">About us</Link></li>
+                    <li onClick={navclick}>My Account</li>
+                  </ul>
                 </div>
             </div>
           </div>
