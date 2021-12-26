@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import CreateIcon from '@mui/icons-material/Create';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -21,10 +20,8 @@ import TableRow from '@mui/material/TableRow';
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import NavigationIcon from '@mui/icons-material/Navigation';
 import Box from '@mui/material/Box';
+import carnival from '../../assets/carnival.jpeg'
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
@@ -432,19 +429,19 @@ export default function MaxWidthDialog() {
         </BootstrapDialogTitle>
         <DialogContent>
         <DialogContent dividers>
-        <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
+        
       <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <ButtonBase sx={{ width: 250, height: 220 }}>
-            <Img alt="complex" src="/assets/office-chair.png" />
-          </ButtonBase>
+        <Grid className="seller-c-create-img" item xs={6}>
+            <div className="seller-c-create-img">
+            <Img alt="complex" src="/test.jpg" />
+            </div>
         </Grid>
         <Grid item xs={8} sm container>
           <Grid item xs container direction="column" spacing={1}>
           <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { m: 1, width: '100%' },
       }}
       noValidate
       autoComplete="off"
@@ -509,7 +506,6 @@ export default function MaxWidthDialog() {
           </Grid>
         </Grid>
       </Grid>
-    </Paper>
     <div >
     <Stack direction="row" justifyContent="right" >
     <Button onClick={handleClickOpenticket} variant="contained"  >Submit Event & Next</Button>

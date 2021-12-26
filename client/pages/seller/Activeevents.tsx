@@ -26,8 +26,8 @@ const index: NextPage = () => {
         <div className="seller-bg">
                 <Navbar/>
                 <div className="seller-index">
-                    <Sidebar/>
-                    <Topbar/>
+                    <Sidebar id="2"/>
+                    <Topbar id2="2"/>
                     <div className="seller-index-parent">
                        <h1 className="seller-index-container-name">Active Events</h1>
                        <div className="seller-index-container">

@@ -12,7 +12,7 @@ const index: NextPage = () => {
         <div className="seller-bg">
                 <Navbar/>
                 <div className="seller-index">
-                    <Sidebar/>
+                    <Sidebar id="1"/>
                     <Homepage />
                 </div>
         </div>
