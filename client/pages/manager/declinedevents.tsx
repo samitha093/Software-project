@@ -20,7 +20,7 @@ const declinedevents: NextPage = () => {
                 <Navbar/>
                 <div className="manager-index">
                     <Sidebar/>
-                    <ManagerTopBar/>
+                    <ManagerTopBar id2='3'/>
                     <div>
                        <h1>Declined Events</h1> 
                        <div className="manager-index-container">

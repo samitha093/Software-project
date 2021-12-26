@@ -99,6 +99,9 @@
             height: calc(100vh - 70px);
             overflow: auto;
         } 
+    }
+    .seller-setting-con h1{
+        margin-left: 20px;
     } 
 }
 @media only screen and (max-width: 600px) {

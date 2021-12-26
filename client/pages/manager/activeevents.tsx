@@ -20,7 +20,7 @@ const activeevents: NextPage = () => {
                 <Navbar/>
                 <div className="manager-index">
                     <Sidebar/>
-                    <ManagerTopBar/>
+                    <ManagerTopBar id2='2'/>
                     <div>
                        <h1>Active Events</h1>
                        <div className="manager-index-container">
