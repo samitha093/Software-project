@@ -9,13 +9,15 @@ import Navbar from '../components/Navbar'
 import Shop from '../components/Shop'
 import { color } from '@mui/system';
 
+
 const index: NextPage = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter()
 
-    const create = (event:any)=>{
-    event.preventDefault();
-    router.push('/user'); 
-       
+    function create(event: any) {
+        event.preventDefault();
+        router.push('/user');
+
     }
         return (
             <div className='index'>
@@ -40,10 +42,10 @@ const index: NextPage = () => {
                                     </div> 
                         </div>
                         <div className ="right-container">
-                        <Image
-                            src = {ticket}
+                        <Image src = {ticket}
                             layout = "responsive"
-                            m-50
+                            m-50="true"
+                            alt=''
                             ></Image>   
                         </div>
                     </div>
@@ -55,6 +57,7 @@ const index: NextPage = () => {
                     <div className='trending-board-container'><h2 className='trending-board'>Trending Events</h2></div>
                     <Shop />
                 </div>
+                
             </div>
             
 

@@ -4,10 +4,9 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Image from 'next/dist/client/image';
-import seat from '../../assets/Seat.jpeg'
-import social_distance from '../../assets/Social-distance.jpeg'
+import seat from '../../assets/seat.png'
+import social_distance from '../../assets/social.jpg'
 import aud from '../../assets/aud.jpeg'
-import carnival from '../../assets/carnival.jpeg'
 import mock from '../../assets/mock.png'
 import payment from '../../assets/payment.jpeg'
 import bid from '../../assets/bid.jpg'
@@ -39,7 +38,7 @@ const about: NextPage = () => {
 
     const create = (event:any)=>{
     event.preventDefault();
-    router.push('/user'); 
+    router.push('/events'); 
        
     }
     return (
@@ -55,8 +54,8 @@ const about: NextPage = () => {
                        <div className ="icon">
                           <Image
                              src = {chair}
-                             width={40}
-                             height={40}
+                             width={50}
+                             height={50}
                              alt= " "
                           ></Image>    
                        </div>
@@ -64,7 +63,7 @@ const about: NextPage = () => {
                        <div className= "text-2">
                              This is a convenient ticketing platform to 
                               all with tight schedules now can simply visit 
-                              us to quick check the best  event reserve your 
+                              us to quick check the best event reserve your 
                               seat from any place and at any time. 
                               With many exiting events coming up our 24/7  
                               service provides the chance to choose your seat. 
@@ -97,8 +96,8 @@ const about: NextPage = () => {
                        <div className ="icon">
                           <Image
                              src = {virus}
-                             width={40}
-                             height={40}
+                             width={50}
+                             height={50}
                              alt= " "
                           ></Image>    
                        </div>
@@ -123,8 +122,8 @@ const about: NextPage = () => {
                        <div className ="icon">
                           <Image
                              src = {money}
-                             width={40}
-                             height={40}
+                             width={50}
+                             height={50}
                              alt= " "
                           ></Image>    
                        </div>
@@ -133,7 +132,7 @@ const about: NextPage = () => {
                              We offer more options for the payments as preferences, 
                              instant confirmation and quick purchase of e-tickets
                              drives the your online ticket booking experience insanely 
-                             convenient.  Standard assurance of e- tickets takes you 
+                             convenient.Standard assurance of e-tickets takes you 
                              to next level and you will never loss you concert ticket 
                             again! 
                        </div>
@@ -159,15 +158,17 @@ const about: NextPage = () => {
                     </div>  
                      <div className ="left-container-1">
                        <div className="text-1">
-                       Reserve your Ticket now ..
+                       Reserve your Ticket now ...
+                       <br/><br/>
                        </div>
                        <div className= "text-2-wrap">
                        <div className= "text-2">
-                         <br/>  <br/>
+                         
                             With online bookings you can round the clock at 
                             any time without leaving home. Find out more about
-                             your favorite event. E- tickets and instant confirmation
-                             secure your payments. Hurry up! bid and win your ticket.
+                            your favorite event.E-tickets and instant confirmation
+                            secure your payments. Hurry up! bid and win your ticket.
+                            <br/><br/><br/> 
                                       
                        </div>
                        </div>
@@ -181,9 +182,6 @@ const about: NextPage = () => {
                              </div> 
                     </div> 
             </div>
-
-
-
 
             <div data-aos='fade-right' className ="top-container-1" style={{backgroundColor:'#DCD1E1'}}>
                      <div className ="right-container-1">
@@ -203,7 +201,7 @@ const about: NextPage = () => {
                        <br/>  <br/>
                                  Our simple to use ticketing page builder lets you create an 
                                   attractive ticketing page that fits to your unique event with our
-                                  super easy integrated tools, all without any technical knowledge
+                                  super easy integrated tools,all without any technical knowledge
                                   &  also supported with live preview, setting open and closed
                                  dates, & multiple ticket options. 
                        </div>
@@ -255,53 +253,14 @@ const about: NextPage = () => {
                        <br/>  <br/>
                              With online bookings you can round the clock at 
                             any time without leaving home. Find out more about
-                             your favorite event. E- tickets and instant confirmation
+                             your favorite event. E-tickets and instant confirmation
                              secure your payments. Hurry up! bid and win your ticket. 
                        </div>
                        </div>
                     </div>
-            </div>
-            <div data-aos='fade-left'  className ="top-container">
-                    <div className ="left-container-1">
-                       <div className="text-1">
-                       Event ticketing has never been this easy !!
-
-                       </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
-                         <br/>  <br/>
-                            With online bookings you can round the clock at 
-                            any time without leaving home. Find out more about
-                             your favorite event. E- tickets and instant confirmation
-                             secure your payments. Hurry up! bid and win your ticket.
-                                      
-                       </div>
-                       </div>
-                       <div className="btn-class">
-                       <Button 
-                            className= "btn-create" 
-                             variant="contained" 
-                             startIcon = {<CreateIcon/>}
-                             onClick={create}
-                             >Create your Event</Button>
-                             </div> 
-                    </div> 
-                    <div className ="right-container-1">
-                      <Image
-                        src = {carnival}
-                        layout = "responsive"
-                        p-30
-                        alt= " "
-                       ></Image> 
-                    </div>  
-                     
-            </div> 
-                   
-                    
+            </div>   
             </div>
     
-
-
                 <div className ="top-container"> 
                        <div className ="footer">
                           <div className ="aboutus">

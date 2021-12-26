@@ -62,7 +62,8 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                             <Image
                                 src={lock}
                                 layout="responsive"
-                                m-50
+                                m-50='true'
+                                alt=''
                             >
                             </Image>
                             <Sellerapproval />

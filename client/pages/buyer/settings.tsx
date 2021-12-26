@@ -8,8 +8,8 @@ const settings: NextPage = () => {
             <div className="buyer-bg">
                 <Navbar/>
                 <div className="buyer-index">
-                    <Sidebar/>
-                    <div className='buyer-setting'>
+                    <Sidebar id="5"/>
+                    <div className='buyer-setting buyer-index-container-parent'>
                        <h1>Settings</h1>
                        <div className='buyer-setting-container'><Resetpw /></div> 
                        

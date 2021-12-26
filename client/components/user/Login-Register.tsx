@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
-import {useRouter} from 'next/router'
+import React, { useState } from 'react';
+import {useRouter} from 'next/router';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import axios from 'axios';
+import {startsession, gethost, getuser } from '../../session/Session';
 interface LoginProps {
 
 }
@@ -24,16 +26,74 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [contact,setContact] = React.useState("");
   const [contactHasError,setContactError] = React.useState(false);
   
+  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
+
   const [login_email,login_setEmail] = React.useState<string>("");
   const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
 
   const [login_password,login_setPassword] =React.useState<string>("");
   const [login_passwordError,login_setPasswordError] = React.useState<boolean>(false);
 
-  const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
-  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
-  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
+  //const [selectedRadiobtn, setselectedRadionbtn] =React.useState('buyer');
+  
 
+
+async function signinformn(){
+  const datapack = {
+    email:login_email,
+    password:login_password
+  }
+  //console.log(datapack);
+  axios.post(gethost() + 'user/login',datapack)
+  .then(async (res)=>{
+    //console.log(res.data);
+      await startsession(res.data.tokenkey,res.data.type)
+      await login_setEmail('');
+      await login_setPassword('');
+      //alert('Login success')
+      const type = getuser();
+      if(type == 'buyer'){
+        router.push('/buyer');
+      }else if(type == 'manager'){
+        router.push('/manager');
+      }else if(type == 'seller'){
+        router.push('/seller');
+      }else{
+        router.push('/user');
+      }
+
+  })
+};
+async function signUpformn(){
+  const datapack = {
+    name:name,
+    email:email,
+    contact: contact,
+    password:password,
+    userType:selectedRadiobtn
+  }
+  //console.log(datapack);
+  axios.post(gethost() + 'user/register',datapack)
+  .then(async (res)=>{
+      await setName('');
+      await setEmail('');
+      await setContact('');
+      await setPassword('');
+      await setselectedRadionbtn('');
+      const type = getuser();
+      if(type == 'buyer'){
+        router.push('/buyer');
+      }else if(type == 'manager'){
+        router.push('/manager');
+      }else if(type == 'seller'){
+        router.push('/seller');
+      }else{
+        router.push('/user');
+      }
+
+  })
+
+}
 
   const nameChangeHandler = (event:any) =>{
       setName(event.target.value)
@@ -67,18 +127,19 @@ const Login: React.FC<LoginProps> = ({}) => {
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
       setEmailError(!valid);
-
-
   }
+
+  const isRadioSelected = (value :string): boolean => selectedRadiobtn === value;
+  const onValueChange =(e:React.ChangeEvent<HTMLInputElement>): void => setselectedRadionbtn(e.currentTarget.value);
  
-    const login_emailChangeHandler = (event:any)=>{
+  const login_emailChangeHandler = (event:any)=>{
       login_setEmail(event.target.value);
       const email_regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
       const valid = !!event.target.value.match(email_regex);
       login_setEmailError(!valid);
     }
 
-    const login_passwordChangeHandler =(event:any)=>{
+  const login_passwordChangeHandler =(event:any)=>{
       login_setPassword(event.target.value);
       const valid = event.target.value.trim().length >= 5;
       login_setPasswordError(!valid);
@@ -108,7 +169,7 @@ const Login: React.FC<LoginProps> = ({}) => {
         <div className="container" id="container">
 
           <div className="form-container sign-up-container">
-            <form className='modern-form' action="#">
+            <div className='modern-form'>
               <h1 className =" head-signup">Create Account</h1>
               <span className='new-span'>Please fill up your details below</span>
               {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
@@ -195,13 +256,15 @@ const Login: React.FC<LoginProps> = ({}) => {
               <button 
               className='modern-btn'
               disabled={emailHasError || passwordError || nameHasError}
-              onClick={signUpButton}>Sign Up</button>
-            </form>
+              onClick={signUpformn}>Sign Up</button>
+            </div>
           </div>
 
 
+
+
           <div className="form-container sign-in-container">
-            <form className='modern-form' action="#">
+            <div className='modern-form'>
               <h1 className ="head-signin" >Sign in</h1>
               <span className='new-span'>or use your account</span>
             {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
@@ -230,8 +293,8 @@ const Login: React.FC<LoginProps> = ({}) => {
               />
               </div>
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
-              <button className='modern-btn'>Sign In</button>
-            </form>
+              <button className='modern-btn' onClick={signinformn}>Sign In</button>
+            </div>
           </div>
 
           <div className="overlay-container">

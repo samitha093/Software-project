@@ -2,8 +2,6 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
-import PendingEvents from '../manager/Pendingtickets';
-import { dividerClasses } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,12 +10,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import DialogContentText from '@mui/material/DialogContentText';
-import Image from 'next/image'
-import remove from '../assets/icons/minus.png'
-import add from '../assets/icons/plus.png'
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -28,27 +20,13 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
+import axios from 'axios'
+import {gethost} from '../../session/Session'
 
-function createData(
-  level: string,
-  fixprice: number,
-  fquantity: number,
-  bidprice: number,
-  bquantity: number,
-) {
-  return { level, fixprice, fquantity, bidprice, bquantity};
-}
 
-const rows = [
-  createData('1', 159, 6, 124, 4),
-  createData('2', 237, 9, 137, 4),
-  createData('3', 262, 16, 124, 6),
-  createData('4', 305, 3, 167, 4),
-  createData('5', 356, 16, 149, 3),
-];
 
 interface PendingeventProps {
-
+  data:any,
 }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -89,19 +67,42 @@ export interface DialogTitleProps {
     );
   };
 
-const Pendingevents: React.FC<PendingeventProps> = ({}) => {
+const Pendingevents: React.FC<PendingeventProps> = ({data}) => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleClickOpen = () => {
         setOpen(true);
-        console.log('asd');
     };
 
     const handleClose = () => {
         setOpen(false);
     };
+
+    const [items, setitem] = React.useState([])
+    React.useEffect(()=>{
+      axios.get(gethost()+'seller/details/'+data.id)
+      .then(async (res)=>{
+        await setitem(res.data)
+      })
+        
+    },[])
+
+    function createData(
+      level: any,
+      fixprice: any,
+      fquantity: any,
+      bidprice: any,
+      bquantity: any,
+    ) {
+      return { level, fixprice, fquantity, bidprice, bquantity};
+    }
+    
+    const rows = items.map((item)=>(
+        createData(item.ticket_level,item.buy_amount, item.buy_quantity, item.bid_amount, item.bid_quantity,)
+      ));
+    
 
     return (
         <div>
@@ -111,10 +112,10 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
                         <div className="manager-c-tickets-top-info">
                             <div className="manager-c-tickets-top-info-left">
                                 <div className="manager-c-tickets-top-info-left-name">
-                                    Event name
+                                    {data.event_name}
                                 </div>
                                 <div className="manager-c-tickets-top-info-left-date">
-                                    2021-08-23
+                                    {data.event_date} 
                                 </div>
                             </div>
                             <div className="manager-c-tickets-top-info-right">
@@ -134,21 +135,21 @@ const Pendingevents: React.FC<PendingeventProps> = ({}) => {
           Pending Event
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <div className="ticketview">
-            <h1>Evante Name - Evante Name Name</h1>  
+          <div className="ticketview centername">
+            <h1>{data.event_name}</h1>  
           </div>  
           <Grid sx={{ maxWidth: 480 }}>
             <Grid margin-top="20px">
               <Box sx={{ flexGrow: 1 }}>
                 <Grid  className="manager-eventinfo-font" container spacing={1}>
                   <Grid item xs={6}>
-                    <Typography> Event Venue: </Typography>
+                    <Typography>Event Venue : {data.event_venue}</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                     <Typography> Event Date: </Typography>
+                     <Typography>Event Date : {data.event_date}</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Event Time: </Typography>
+                    <Typography>Event Time : {data.event_time}</Typography>
                   </Grid>
                 </Grid>
                 <TableContainer component={Paper}>

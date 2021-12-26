@@ -15,12 +15,32 @@
 .seller-index-container
 {
     width: 100%;
-    padding-left: 30px;
+    padding-left: 120px;
     position: relative;
     display: flex;
     box-sizing: border-box;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+.seller-index-container-name
+{
+    width: 100%;
+    padding-left: 160px;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.seller-index-parent
+{ 
+    padding-top: 120px;
+}
+.seller-index-float
+{ 
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -34,5 +54,12 @@
     .seller-index-container{
         padding-left: 0px;
         display: flex;
+    }
+    .seller-index-container-name{
+        padding-left: 0px;
+        display: flex;
+    }
+    .seller-index-parent{ 
+    padding-top: 180px;
     }
 }

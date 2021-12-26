@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../components/styles.css'
+import '../pages/styles.css'
 import '../components/buyer/styles.css'
 import '../pages/buyer/styles.css'
 import '../components/manager/styles.css'

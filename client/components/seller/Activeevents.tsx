@@ -2,8 +2,6 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
-import PendingEvents from '../manager/Pendingtickets';
-import { dividerClasses } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,12 +10,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import DialogContentText from '@mui/material/DialogContentText';
-import Image from 'next/image'
-import remove from '../assets/icons/minus.png'
-import add from '../assets/icons/plus.png'
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -25,32 +17,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Stack from '@mui/material/Stack';
-
-function createData(
-  level: string,
-  fixprice: number,
-  fsell: number,
-  fsold: number,
-  bidprice: number,
-  totbid: number,
-  availablebid: number,
-) {
-  return { level, fixprice, fsell, fsold, bidprice, totbid, availablebid };
-}
-
-const rows = [
-  createData('1', 159, 6, 8, 124, 4, 5),
-  createData('2', 237, 4, 9, 137, 4, 6),
-  createData('3', 262, 16, 9, 124, 6, 3),
-  createData('4', 305, 3, 7, 167, 4, 4),
-  createData('5', 356, 16, 9, 149, 3, 8),
-];
+import axios from 'axios'
+import {gethost} from '../../session/Session'
 
 interface ActiveeventProps {
-
+  data:any,
 }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -91,7 +62,7 @@ export interface DialogTitleProps {
     );
   };
 
-const Activeevents: React.FC<ActiveeventProps> = ({}) => {
+const Activeevents: React.FC<ActiveeventProps> = ({data}) => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -105,6 +76,31 @@ const Activeevents: React.FC<ActiveeventProps> = ({}) => {
         setOpen(false);
     };
 
+    const [items, setitem] = React.useState([])
+    React.useEffect(()=>{
+      axios.get(gethost()+'seller/details/'+data.id)
+      .then(async (res)=>{
+        await setitem(res.data)
+      })
+        
+    },[])
+
+    function createData(
+      level: any,
+      fixprice: any,
+      fquantity: any,
+      fsold: any,
+      bidprice: any,
+      bquantity: any,
+      availablebid: any,
+    ) {
+      return { level, fixprice, fquantity, fsold, bidprice, bquantity, availablebid};
+    }
+    
+    const rows = items.map((item)=>(
+        createData(item.ticket_level, item.buy_amount, item.buy_quantity, item.sold, item.bid_amount, item.bid_quantity, item.bid_count)
+      ));
+
     return (
         <div>
             <div className="manager-c-tickets" onClick={handleClickOpen}>
@@ -113,10 +109,10 @@ const Activeevents: React.FC<ActiveeventProps> = ({}) => {
                         <div className="manager-c-tickets-top-info">
                             <div className="manager-c-tickets-top-info-left">
                                 <div className="manager-c-tickets-top-info-left-name">
-                                    Event name
+                                    {data.event_name}
                                 </div>
                                 <div className="manager-c-tickets-top-info-left-date">
-                                    2021-08-23
+                                    {data.event_date}
                                 </div>
                             </div>
                             <div className="manager-c-tickets-top-info-right">
@@ -137,20 +133,20 @@ const Activeevents: React.FC<ActiveeventProps> = ({}) => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className="ticketview">
-            <h1>Evante Name - Evante Name Name</h1>  
+            <h1>{data.event_name}</h1>  
           </div>  
           <Grid sx={{ maxWidth: 480 }}>
             <Grid margin-top="20px">
               <Box sx={{ flexGrow: 1 }}>
                 <Grid  className="manager-eventinfo-font" container spacing={1}>
                   <Grid item xs={6}>
-                    <Typography> Event Venue: </Typography>
+                    <Typography> Event Venue: {data.event_venue}</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                     <Typography> Event Date: </Typography>
+                     <Typography> Event Date : {data.event_date}</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography> Event Time: </Typography>
+                    <Typography> Event Time : {data.event_time}</Typography>
                   </Grid>
                 </Grid>
                 <TableContainer component={Paper}>
@@ -176,10 +172,10 @@ const Activeevents: React.FC<ActiveeventProps> = ({}) => {
                 {row.level}
               </TableCell>
               <TableCell align="right">{row.fixprice}</TableCell>
-              <TableCell align="right">{row.fsell}</TableCell>
+              <TableCell align="right">{row.fquantity}</TableCell>
               <TableCell align="right">{row.fsold}</TableCell>
               <TableCell align="right">{row.bidprice}</TableCell>
-              <TableCell align="right">{row.totbid}</TableCell>
+              <TableCell align="right">{row.bquantity}</TableCell>
               <TableCell align="right">{row.availablebid}</TableCell>
             </TableRow>
           ))}
