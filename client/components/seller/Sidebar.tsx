@@ -23,33 +23,52 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   }));
 
 interface SidebarProps {
-
+    id : string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({}) => {
+const Sidebar: React.FC<SidebarProps> = ({id}) => {
+const [sellersidebar1,setsellersidebar1] = React.useState(true);
+const [sellersidebar2,setsellersidebar2] = React.useState(false);
+const [sellersidebar3,setsellersidebar3] = React.useState(false);
+    React.useEffect(() => {
+        if(id == "1"){
+            setsellersidebar1(true);  
+            setsellersidebar2(false);
+            setsellersidebar3(false);
+        }else if(id == "2"){
+            setsellersidebar1(false);  
+            setsellersidebar2(true);
+            setsellersidebar3(false);
+        }else if(id == "3"){
+            setsellersidebar1(false);  
+            setsellersidebar2(false);
+            setsellersidebar3(true);
+        }
+    },[]);
+    
         return (
             <div className="seller-c-sidebar">
                     <div className="seller-c-sidebar-container">
                         <Link href="/seller">
-                            <div className="seller-c-sidebar-item">
+                            <div className={sellersidebar1 ? 'seller-c-sidebar-item active' : 'seller-c-sidebar-item'}>
                             <BootstrapTooltip title="Home Page">
-                                <Icon className="seller-c-sidebar-item-icon" path={mdiHomeOutline}/>
+                                <Icon className={sellersidebar1 ? 'seller-c-sidebar-item-icon active' : 'seller-c-sidebar-item-icon'} path={mdiHomeOutline}/>
                                 </BootstrapTooltip>
                             </div>
                         </Link>
 
                         <Link href="/seller/Pendingevents">
-                            <div className="seller-c-sidebar-item">
+                            <div className={sellersidebar2 ? 'seller-c-sidebar-item active' : 'seller-c-sidebar-item'}>
                             <BootstrapTooltip title="Events">
-                                <Icon className="seller-c-sidebar-item-icon" path={mdiCalendarSearch}/>
+                                <Icon className={sellersidebar2 ? 'seller-c-sidebar-item-icon active' : 'seller-c-sidebar-item-icon'} path={mdiCalendarSearch}/>
                                 </BootstrapTooltip>
                             </div>
                         </Link>
 
                         <Link href= "/seller/Settings">
-                        <div className="seller-c-sidebar-item">
+                        <div className={sellersidebar3 ? 'seller-c-sidebar-item active' : 'seller-c-sidebar-item'}>
                         <BootstrapTooltip title="Change Password">
-                            <Icon className="seller-c-sidebar-item-icon" path={mdiCogs}/>
+                            <Icon className={sellersidebar3 ? 'seller-c-sidebar-item-icon active' : 'seller-c-sidebar-item-icon'} path={mdiCogs}/>
                             </BootstrapTooltip>
                         </div>
                         </Link>
