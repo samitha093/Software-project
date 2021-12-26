@@ -6,7 +6,7 @@
     top: calc(55vh - 325px);
     height: 700px;
     width:130px;
-    padding: 60px 10px;
+    padding: 35px 35px;
 }
 .manager-c-sidebar-container{
     width: 100%;
@@ -41,13 +41,13 @@
     padding: 10px;
     color: black;
 }
-.manager-c-topbar-item:hover{
-    border-color:#752E9E;
-    background-color: #752E9E;
-    color: white;
-}
+
 .centername{
     text-align: center!important;
+}
+.manager-c-sidebar-item.active{
+    border-color: white;
+    background-color: #752E9E;
 }
 /*end - sidebar component*/
 
@@ -92,7 +92,19 @@
     background-color: #752E9E;
     color: white;
 }
-
+.manager-c-sidebar-item-icon.active{
+    color: white;
+}
+.manager-c-topbar-item.active{
+    border-color: #752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+.manager-c-topbar-item:hover{
+    border-color:#752E9E;
+    background-color: #752E9E;
+    color: white;
+}
 /*end - topbar component*/
 
 @media only screen and (max-width: 600px) {

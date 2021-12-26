@@ -427,12 +427,12 @@ export default function MaxWidthDialog() {
         <BootstrapDialogTitle id="customized-dialog-title" className="manager-c-ticketsinfo-top-head-right" onClose={handleClose}>
           Create Event
         </BootstrapDialogTitle>
-        <DialogContent>
+        <DialogContent className="seller-c-create-table-pos-c">
         <DialogContent dividers>
         
       <Grid container spacing={2}>
-        <Grid className="seller-c-create-img" item xs={6}>
-            <div className="seller-c-create-img">
+        <Grid className="seller-c-create-img-in" item xs={6}>
+            <div className="seller-c-create-img-in">
             <Img alt="complex" src="/test.jpg" />
             </div>
         </Grid>
@@ -525,14 +525,13 @@ export default function MaxWidthDialog() {
         <BootstrapDialogTitle id="customized-dialog-title" className="manager-c-ticketsinfo-top-head-right" onClose={handleCloseticket}>
           Create Tickets
         </BootstrapDialogTitle>
-        <DialogContent>
-        <DialogContent dividers>
-        <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1500, flexGrow: 1 }}>
-      <Grid container spacing={2} justifyContent="space-evenly">
-        <Grid item xs={6}>
-          <ButtonBase sx={{ width: 200, height: 150 }}>
-            <Img alt="complex" src="/assets/office-chair.png" />
-          </ButtonBase>
+        <DialogContent className="seller-c-create-table-pos-p">
+        <DialogContent className="seller-c-create-table-pos" dividers>
+      <Grid className="seller-c-create-table" container spacing={2} >
+      <Grid className="seller-c-create-img" item xs={6}>
+            <div className="seller-c-create-img">
+            <Img alt="complex" src="/test.jpg" />
+            </div>
         </Grid>
         <Grid item xs={8} sm container>
         <TableContainer component={Paper}>
@@ -597,7 +596,6 @@ export default function MaxWidthDialog() {
     </TableContainer>
         </Grid>
       </Grid>
-    </Paper>
     <div>
       <Stack direction="row" justifyContent="right" >
       <Button onClick={handleClickSubmitticket} className="seller-btn-pos" variant="contained"  >Submit Tickets</Button>
