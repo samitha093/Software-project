@@ -1,55 +1,65 @@
 import React from 'react'
 import Link from 'next/link'
-import Icon from '@mdi/react';
-import { mdiHomeOutline } from '@mdi/js';
-import { mdiCalendarSearch } from '@mdi/js';
-import { mdiCalendarClock } from '@mdi/js';
-import { mdiCalendarCheck } from '@mdi/js';
-import { mdiCalendarRemove } from '@mdi/js';
-import { mdiCogs } from '@mdi/js';
-import { mdiLogout } from '@mdi/js';
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} arrow classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: theme.palette.common.black,
-    },
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: theme.palette.common.black,
-    },
-  }));
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.black,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
 
 interface TopbarProps {
-
+  id2: string;
 }
 
-const ManagerTopBar: React.FC<TopbarProps> = ({}) => {
-        return (
-            <div className="manager-c-topbar">
-                    <div className="manager-c-topbar-container">
-                        <Link href="/manager/pendingevents">
-                            <div className="manager-c-topbar-item">
-                            Pending
-                            </div>
-                        </Link>
+const ManagerTopBar: React.FC<TopbarProps> = ({ id2 }) => {
+  const [managertopbar1, setmanagertopbar1] = React.useState(true);
+  const [managertopbar2, setmanagertopbar2] = React.useState(false);
+  const [managertopbar3, setmanagertopbar3] = React.useState(false);
+  React.useEffect(() => {
+    if (id2 == "1") {
+      setmanagertopbar1(true);
+      setmanagertopbar2(false);
+      setmanagertopbar3(false);
+    } else if (id2 == "2") {
+      setmanagertopbar1(false);
+      setmanagertopbar2(true);
+      setmanagertopbar3(false);
+    } else if (id2 == "3") {
+      setmanagertopbar1(false);
+      setmanagertopbar2(false);
+      setmanagertopbar3(true);
+    }
+  }, []);
+  return (
+    <div className="manager-c-topbar">
+      <div className="manager-c-topbar-container">
+        <Link href="/manager/pendingevents">
+          <div className={managertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+            Pending
+          </div>
+        </Link>
 
-                        <Link href="/manager/activeevents">
-                            <div className="manager-c-topbar-item">
-                            Active
-                            </div>
-                        </Link>
+        <Link href="/manager/activeevents">
+          <div className={managertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+            Active
+          </div>
+        </Link>
 
-                        <Link href="/manager/declinedevents">
-                        <div className="manager-c-topbar-item">
-                            Declined
-                        </div>
-                        </Link>
-                    </div>
-            </div>
-        );
+        <Link href="/manager/declinedevents">
+          <div className={managertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+            Declined
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export default ManagerTopBar;
