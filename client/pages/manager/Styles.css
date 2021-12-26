@@ -3,6 +3,8 @@
 {
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
+    height:100vh;
+    position: absolute;
 }
 .manager-index
 {

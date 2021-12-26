@@ -30,6 +30,11 @@ const declinedevents: NextPage = () => {
                             <Declinedevents/>
                             <Declinedevents/>
                             <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
                         </div> 
                     </div>
                 </div>

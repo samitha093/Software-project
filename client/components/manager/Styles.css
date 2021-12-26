@@ -5,7 +5,7 @@
     left: 0%;
     top: calc(55vh - 325px);
     height: 700px;
-    width:130px;
+    width:200px;
     padding: 35px 35px;
 }
 .manager-c-sidebar-container{
@@ -114,6 +114,7 @@
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
+        margin-top: 40px; /*delete if not work*/
         
     }
     .manager-c-sidebar-container{
@@ -142,12 +143,12 @@
 
 @media only screen and (max-width: 500px) {
     .manager-c-sidebar-item{
-        margin: 0% 7%;
+        margin: 0% 4%;
     }
 }
 @media only screen and (max-width: 400px) {
     .manager-c-sidebar-item{
-        margin: 0% 6%;
+        margin: 0% 3%;
     }
     .manager-c-topbar-container{
         display: flex;
