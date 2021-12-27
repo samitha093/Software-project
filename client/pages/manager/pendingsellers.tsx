@@ -2,13 +2,13 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
-import ManagerTopBar from '../../components/manager/ManagerTopBar'
+import SellersTopBar from '../../components/manager/SellersTopBar'
 import axios from 'axios'
 import {gethost} from '../../session/Session';
 
-const sellers: NextPage = () => {
+const pendingsellers: NextPage = () => {
     React.useEffect(() => {
-        axios.get(gethost() + 'manager/sellers')
+        axios.get(gethost() + 'manager/pendingsellers')
             .then((res) => {
                 console.log(res.data);
             })
@@ -18,9 +18,9 @@ const sellers: NextPage = () => {
             <Navbar />
             <div className="manager-index">
                 <Sidebar />
-                <ManagerTopBar />
+                <SellersTopBar id3='2'/>
                 <div>
-                    <h1>Sellers</h1>
+                    <h1>Pending Sellers</h1>
                     <div className="manager-index-container">
 
 
@@ -31,4 +31,4 @@ const sellers: NextPage = () => {
     );
 }
 
-export default sellers;
+export default pendingsellers;

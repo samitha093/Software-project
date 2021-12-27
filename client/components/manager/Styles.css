@@ -5,8 +5,9 @@
     left: 0%;
     top: calc(55vh - 325px);
     height: 700px;
-    width:200px;
+    width:180px;
     padding: 35px 35px;
+    margin-top: 50px;
 }
 .manager-c-sidebar-container{
     width: 100%;
@@ -107,6 +108,61 @@
 }
 /*end - topbar component*/
 
+/*start - seller topbar component*/
+.manager-seller-c-topbar{
+    z-index: 10;
+    position: fixed;
+    top: 70px;
+    left: calc(50% - 207px);
+    width: 240px;
+    height: auto;
+    min-height: 0px;
+    padding: 10px 10px 10px;
+    margin-left: 10%;
+
+}
+.manager-seller-c-topbar-container{
+    display: flex;
+    height: auto;
+    width: 220px;
+    padding: 10px;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
+    box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
+}
+.manager-seller-c-topbar-item{
+    margin-top: 0px;
+    width: 40%;
+    text-align: center;
+    margin: 0px 10px 0px;
+    height: auto;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 10px;
+    border-style:solid;
+    cursor: pointer;
+}
+
+.manager-seller-c-topbar-item:hover{
+    border-color:#752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+
+.manager-seller-c-topbar-item.active{
+    border-color: #752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+.manager-seller-c-topbar-item:hover{
+    border-color:#752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+/*end - seller topbar component*/
+
 @media only screen and (max-width: 600px) {
     .manager-c-sidebar{
         width: 100%;
@@ -114,7 +170,7 @@
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
-        margin-top: 40px; /*delete if not work*/
+        margin-top: 10px; /*delete if not work*/
         
     }
     .manager-c-sidebar-container{
@@ -127,7 +183,7 @@
     .manager-c-sidebar-item{
         margin-top: 0px;
         width: 50px;
-        margin: 0% 8%;
+        margin: 0% 5%;
         height: auto;
     }
 
@@ -137,7 +193,19 @@
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
-        
+    }
+    .manager-c-topbar-container{
+        margin-top: 20px;
+    }
+    .manager-seller-c-topbar{
+        width: 100%;
+        top: 145px;
+        height: auto;
+        min-height: 0px;
+        padding: 10px 10px 0px;
+    }
+    .manager-seller-c-topbar-container{
+        margin-top: 20px;
     }
 }
 
@@ -407,8 +475,9 @@
     justify-content: center !important;
 }
 
-/*seller approval*/
+/*start - seller approval*/
 .manager-c-sellerapprovaltable
 {
     width: 100%;
 }
+/*end - seller approval*/
