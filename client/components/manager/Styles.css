@@ -5,8 +5,9 @@
     left: 0%;
     top: calc(55vh - 325px);
     height: 700px;
-    width:200px;
+    width:180px;
     padding: 35px 35px;
+    margin-top: 50px;
 }
 .manager-c-sidebar-container{
     width: 100%;
@@ -114,7 +115,7 @@
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
-        margin-top: 40px; /*delete if not work*/
+        margin-top: 10px; /*delete if not work*/
         
     }
     .manager-c-sidebar-container{
@@ -127,7 +128,7 @@
     .manager-c-sidebar-item{
         margin-top: 0px;
         width: 50px;
-        margin: 0% 8%;
+        margin: 0% 5%;
         height: auto;
     }
 
@@ -137,7 +138,9 @@
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
-        
+    }
+    .manager-c-topbar-container{
+        margin-top: 20px;
     }
 }
 
