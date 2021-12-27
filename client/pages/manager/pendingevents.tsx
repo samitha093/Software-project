@@ -19,9 +19,9 @@ const pendingevents: NextPage = () => {
             <div className="manager-bg">
                 <Navbar/>
                 <div className="manager-index">
-                    <Sidebar/>
+                    <Sidebar id = '2'/>
                     <ManagerTopBar id2='1'/>
-                    <div>
+                    <div className="manager-index-scroll-set">
                        <h1>Pending Events</h1>
                        <div className="manager-index-container">
                             <Pendingtickets/>

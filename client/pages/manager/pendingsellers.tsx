@@ -17,7 +17,7 @@ const pendingsellers: NextPage = () => {
         <div className="manager-bg">
             <Navbar />
             <div className="manager-index">
-                <Sidebar />
+                <Sidebar id = '3' />
                 <SellersTopBar id3='2'/>
                 <div>
                     <h1>Pending Sellers</h1>

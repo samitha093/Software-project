@@ -17,7 +17,7 @@ const settings: NextPage = () => {
         <div className="manager-bg">
             <Navbar />
             <div className="manager-index">
-                <Sidebar />
+                <Sidebar id = '4' />
                 <div className="manager-setting">
                     <h1>Settings</h1>
                     <div className="manager-settings-main-container">

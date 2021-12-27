@@ -19,7 +19,7 @@ const index: NextPage = () => {
             <div className="manager-bg">
                 <Navbar/>
                 <div className="manager-index">
-                    <Sidebar/>
+                    <Sidebar id = '1'/>
                     <div>
                        <h1>Pending Events</h1>
                        <div className="manager-index-container">
