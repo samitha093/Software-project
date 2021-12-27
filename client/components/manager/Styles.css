@@ -48,7 +48,7 @@
 }
 .manager-c-sidebar-item.active{
     border-color: white;
-    background-color: #752E9E;
+    background-color: #752E9E !important;
 }
 /*end - sidebar component*/
 

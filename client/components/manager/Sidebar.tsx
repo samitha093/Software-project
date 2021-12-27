@@ -11,16 +11,43 @@ import { endsession } from '../../session/Session';
 import { useRouter } from 'next/router';
 
 interface SidebarProps {
-
+    id: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ }) => {
+const Sidebar: React.FC<SidebarProps> = ({ id }) => {
     const router = useRouter()
-
     async function logout() {
         endsession();
         router.push('/user');
     }
+    const [managersellersidebar1, setmanagersellersidebar1] = React.useState(true);
+    const [managersellersidebar2, setmanagersellersidebar2] = React.useState(false);
+    const [managersellersidebar3, setmanagersellersidebar3] = React.useState(false);
+    const [managersellersidebar4, setmanagersellersidebar4] = React.useState(false);
+    React.useEffect(() => {
+        if (id == "1") {
+            setmanagersellersidebar1(true);
+            setmanagersellersidebar2(false);
+            setmanagersellersidebar3(false);
+            setmanagersellersidebar4(false);
+        } else if (id == "2") {
+            setmanagersellersidebar1(false);
+            setmanagersellersidebar2(true);
+            setmanagersellersidebar3(false);
+            setmanagersellersidebar4(false);
+        } else if (id == "3") {
+            setmanagersellersidebar1(false);
+            setmanagersellersidebar2(false);
+            setmanagersellersidebar3(true);
+            setmanagersellersidebar4(false);
+        } else if (id == "4") {
+            setmanagersellersidebar1(false);
+            setmanagersellersidebar2(false);
+            setmanagersellersidebar3(false);
+            setmanagersellersidebar4(true);
+        }
+    }, []);
+
     return (
         <div className="manager-c-sidebar">
             <div className="manager-c-sidebar-container">
@@ -28,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ }) => {
                 <Link href="/manager">
                     <Tooltip title="Home Page" placement="bottom-end">
                         <div className="manager-c-sidebar-item">
-                            <Icon className="manager-c-sidebar-item-icon" path={mdiHomeOutline} />
+                            <Icon className={managersellersidebar1 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiHomeOutline} />
                         </div>
                     </Tooltip>
                 </Link>
@@ -36,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ }) => {
                 <Link href="/manager/pendingevents">
                     <Tooltip title="Events" placement="bottom-end">
                         <div className="manager-c-sidebar-item">
-                            <Icon className="manager-c-sidebar-item-icon" path={mdiCalendarSearch} />
+                            <Icon className={managersellersidebar2 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCalendarSearch} />
                         </div>
                     </Tooltip>
                 </Link>
@@ -44,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({ }) => {
                 <Link href="/manager/activesellers">
                     <Tooltip title="Sellers" placement="bottom-end">
                         <div className="manager-c-sidebar-item">
-                            <Icon className="manager-c-sidebar-item-icon" path={mdiAccountGroup} />
+                            <Icon className={managersellersidebar3 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiAccountGroup} />
                         </div>
                     </Tooltip>
                 </Link>
@@ -53,7 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({ }) => {
                 <Link href="/manager/settings">
                     <Tooltip title="Manager Settings" placement="bottom-end">
                         <div className="manager-c-sidebar-item">
-                            <Icon className="manager-c-sidebar-item-icon" path={mdiCogs} />
+                            <Icon className={managersellersidebar4 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCogs} />
                         </div>
                     </Tooltip>
                 </Link>
