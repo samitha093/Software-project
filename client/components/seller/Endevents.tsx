@@ -152,13 +152,13 @@ const Endevents: React.FC<EndeventProps> = ({data}) => {
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Ticket Level</TableCell>
-            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">FSell</TableCell>
-            <TableCell align="right">FSold</TableCell>
-            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Total Bid</TableCell>
-            <TableCell align="right">Available Bid</TableCell>
+            <TableCell id="customized-dialog-title">Ticket Level</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell id="customized-dialog-title" align="right">FSell</TableCell>
+            <TableCell id="customized-dialog-title" align="right">FSold</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Total Bid</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Available Bid</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
