@@ -28,11 +28,13 @@ const index: NextPage = () => {
                 <div className="seller-index">
                     <Sidebar id="2"/>
                     <Topbar id2="4"/>
+                    <div className="seller-index-parent-fix">
                     <div className="seller-index-parent">
                        <h1 className="seller-index-container-name">Declined Events</h1>
                        <div className="seller-index-container">
                         {listitem}
                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
