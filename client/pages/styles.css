@@ -1,5 +1,5 @@
 /*start event page*/
-.buyer-bg .shop-home{
+.shop-home{
     width:100%;
     height: 100vh;
     position: relative;
@@ -7,9 +7,11 @@
 }
 
 .event-container{
-    max-height: 100%;
-    padding-top: 80px;
+    max-height: 90%;
+    margin-top: 80px;
     display: flex;
+    position: relative;
+    overflow: auto;
 }
 .event-container-left{
     width: 20%;
@@ -36,5 +38,44 @@
   .event-container-left {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+  .advance-options{
+      padding: 20px 0;
+      display: flex;
+      display: none;
+  }
+  .advance-options-left{
+     width: 70%;
+     text-align: center;
+  }
+  .advance-options-right{
+    width:30%;
+  }
+  @media only screen and (max-width: 800px) {
+      .advance-options{
+          display: flex;
+      }
+      .event-container{
+          display: block;
+      }
+      .event-container-left{
+          width: 100%;
+          height: 100%;
+      }
+      .event-container-Right{
+          width: 100%;
+          height: 100%;
+      }
+      .auto-hide{
+          overflow: hidden;
+        transition: 0.5s;
+        height: 0px;
+      }
+      .event-container-left-content{
+          padding: 0 20px;
+      }
+      .advance-options{
+          padding: 20px 0 0 0;
+      }
   }
 /*end event page*/

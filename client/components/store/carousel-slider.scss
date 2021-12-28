@@ -1,0 +1,39 @@
+@import 'swiper/scss';
+@import 'swiper/scss/autoplay';
+@import 'swiper/scss/pagination';
+@import 'swiper/scss/navigation';
+
+:root {
+  --carousel-slider-max-width: 1200px;
+  --carousel-slider-width: 520px;
+  --carousel-slider-height: 380px;
+  --carousel-slider-navigation-color: #fff;
+  --carousel-slider-pagination-color: #fff;
+}
+.carousel-slider {
+  --swiper-navigation-color: var(--carousel-slider-navigation-color);
+  --swiper-pagination-color: var(--carousel-slider-pagination-color);
+  --swiper-pagination-bullet-inactive-color: var(
+    --carousel-slider-pagination-color
+  );
+  position: relative;
+  width: var(--carousel-slider-max-width);
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: hidden;
+  .swiper {
+    padding-bottom: 32px;
+  }
+  .swiper-slide {
+    width: var(--carousel-slider-width);
+    height: var(--carousel-slider-height);
+    position: relative;
+  }
+  .swiper-pagination-bullets {
+    bottom: 0;
+  }
+}
+
+.carousel-slider .swiper-slide img {
+  display: block;
+}
