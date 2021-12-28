@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Progressbar from '../../components/seller/Progressbar'
 
@@ -197,14 +198,14 @@ return (
         <div className="dashboardtop">
             <div className ="dashboardItem">
               <div>
-              <span className="dashboardTitle">Revanue</span>
+              <span className="dashboardTitle">No. of Sales</span>
                 <div className ="dashboardContainer">
-                    <span className="dashboardMoney">$2,678</span>
+                    <span className="dashboardMoney">15</span>
                     <span className="dashboardRate">
-                        -11.4 < ArrowUpwardIcon className="dashboardIcon"/>
+                        90 
                     </span>
                 </div>
-                <span className="dashboardSub">Compared to last month</span>
+                <span className="dashboardSub">Compared to tickets</span>
               </div>
               <div className="seller-progressbar">
                 <Progressbar/>
@@ -212,14 +213,14 @@ return (
             </div>
             <div className ="dashboardItem">
               <div>
-                <span className="dashboardTitle">Sales</span>
+                <span className="dashboardTitle">No. of Bids</span>
                 <div className ="dashboardContainer">
-                    <span className="dashboardMoney">$6,698</span>
+                    <span className="dashboardMoney">8</span>
                     <span className="dashboardRate">
-                        -171.4 < ArrowUpwardIcon className="dashboardIcon"/>
+                        35 
                     </span>
                 </div>
-                <span className="dashboardSub">Compared to last month</span>
+                <span className="dashboardSub">Compared to available</span>
               </div>
               <div className="seller-progressbar">
                 <Progressbar/>
@@ -227,14 +228,15 @@ return (
             </div>
             <div className ="dashboardItem">
               <div>
-                <span className="dashboardTitle">Refund</span>
+                <span className="dashboardTitle">Revanue</span>
                 <div className ="dashboardContainer">
-                    <span className="dashboardMoney">$178</span>
+                    <span id="dashboardMoney-f" className="dashboardMoney">LKR2578</span>
                     <span className="dashboardRate">
-                        -1.4 <ArrowUpwardIcon className="dashboardIcon"/>
+                      <ArrowUpwardIcon className="dashboardIcon-up"/>
+                      <ArrowDownwardIcon className="dashboardIcon-down"/>
                     </span>
                 </div>
-                <span className="dashboardSub">Compared to last month</span>
+                <span className="dashboardSub">Compared to yesterday</span>
               </div>
               <div className="seller-progressbar">
                 <Progressbar/>
