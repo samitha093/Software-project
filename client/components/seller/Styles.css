@@ -248,12 +248,14 @@
     justify-content: space-between;
 }
 .dashboardItem{
+    overflow: hidden;
+    position: relative;
     flex: 1;
     display: flex;
     margin: 10px 40px;
     padding: 25px 30px;
     border-radius: 10px;
-    max-height: 100px;
+    max-height: 100%;
     -webkit-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.24); 
     box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.24)
 }
@@ -310,6 +312,8 @@
         width: 65px;
     }
     .dashboardItem{
+        overflow: hidden;
+        position: relative;
         flex: 1;
         margin: 10px 10px;
         padding: 25px 10px;
@@ -322,7 +326,9 @@
         flex-flow: column-reverse;
         margin: 125px 5px;
         padding: 5px 5px;
-        height: 80px;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
     }
     .seller-progressbar {
         margin: auto;
@@ -340,7 +346,9 @@
         flex-flow: column-reverse;
         margin: 150px 5px;
         padding: 5px 5px;
-        height: 100px;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
     }
     .dashboardtop {
         height: 250px;
