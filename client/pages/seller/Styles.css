@@ -92,6 +92,11 @@
     overflow: auto;
 }
 @media only screen and (min-width: 600px) {
+    @media only screen and (max-height: 1000px) {
+        .seller-setting-fix{
+            margin-top: 100px;
+        } 
+    } 
     @media only screen and (max-height: 565px) {
         .seller-setting-fix{
             width: 100%;
@@ -102,7 +107,8 @@
     }
     .seller-setting-con h1{
         margin-left: 20px;
-    } 
+    }
+    
 }
 @media only screen and (max-width: 600px) {
     @media only screen and (max-height: 321px) {

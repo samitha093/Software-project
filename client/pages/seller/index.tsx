@@ -13,7 +13,9 @@ const index: NextPage = () => {
                 <Navbar/>
                 <div className="seller-index">
                     <Sidebar id="1"/>
+                    <div className="seller-setting-fix">
                     <Homepage />
+                    </div>
                 </div>
         </div>
     );
