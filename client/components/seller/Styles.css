@@ -249,6 +249,7 @@
 }
 .dashboardItem{
     flex: 1;
+    display: flex;
     margin: 10px 40px;
     padding: 25px 30px;
     border-radius: 10px;
@@ -292,18 +293,57 @@
 .chartTitle{
     margin-bottom: 20px;
 }
-@media only screen and (max-width: 1000px) {
+.seller-progressbar {
+    margin: 0px calc(100% - 80%);
+    justify-content: center;
+    width: 60px;
+}
+@media only screen and (max-width: 1550px) {
+    .seller-progressbar {
+        margin: 0px calc(100% - 90%);
+        width: 65px;
+    }
+}
+@media only screen and (max-width: 1270px) {
+    .seller-progressbar {
+        margin: 0px calc(100% - 96%);
+        width: 65px;
+    }
     .dashboardItem{
         flex: 1;
         margin: 10px 10px;
         padding: 25px 10px;
     }
 }
-@media only screen and (max-width: 640px) {
-    .dashboardItem{
-        flex: 1;
-        margin: 10px 5px;
-        padding: 25px 5px;
+@media only screen and (max-width: 1000px) {
+    .dashboardItem {
+        flex: 1 1;
+        display: flex;
+        flex-flow: column-reverse;
+        margin: 125px 5px;
+        padding: 5px 5px;
+        height: 80px;
+    }
+    .seller-progressbar {
+        margin: auto;
+        margin-bottom: 10px;
+        width: 70px;
+    }
+    .dashboardtop {
+        height: 200px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .dashboardItem {
+        flex: 1 1;
+        display: flex;
+        flex-flow: column-reverse;
+        margin: 150px 5px;
+        padding: 5px 5px;
+        height: 100px;
+    }
+    .dashboardtop {
+        height: 250px;
     }
 }
 @media only screen and (min-width: 600px) {

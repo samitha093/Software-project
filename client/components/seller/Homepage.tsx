@@ -16,6 +16,7 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import Progressbar from '../../components/seller/Progressbar'
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -195,7 +196,8 @@ return (
     <div className="seller-dashboard">
         <div className="dashboardtop">
             <div className ="dashboardItem">
-                <span className="dashboardTitle">Revanue</span>
+              <div>
+              <span className="dashboardTitle">Revanue</span>
                 <div className ="dashboardContainer">
                     <span className="dashboardMoney">$2,678</span>
                     <span className="dashboardRate">
@@ -203,8 +205,13 @@ return (
                     </span>
                 </div>
                 <span className="dashboardSub">Compared to last month</span>
+              </div>
+              <div className="seller-progressbar">
+                <Progressbar/>
+              </div>
             </div>
             <div className ="dashboardItem">
+              <div>
                 <span className="dashboardTitle">Sales</span>
                 <div className ="dashboardContainer">
                     <span className="dashboardMoney">$6,698</span>
@@ -213,8 +220,13 @@ return (
                     </span>
                 </div>
                 <span className="dashboardSub">Compared to last month</span>
+              </div>
+              <div className="seller-progressbar">
+                <Progressbar/>
+              </div>
             </div>
             <div className ="dashboardItem">
+              <div>
                 <span className="dashboardTitle">Refund</span>
                 <div className ="dashboardContainer">
                     <span className="dashboardMoney">$178</span>
@@ -223,6 +235,10 @@ return (
                     </span>
                 </div>
                 <span className="dashboardSub">Compared to last month</span>
+              </div>
+              <div className="seller-progressbar">
+                <Progressbar/>
+              </div>
             </div>
        </div>
        <div className="dashboardgraph">
