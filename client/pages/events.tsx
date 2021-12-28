@@ -20,6 +20,9 @@ import Box from '@mui/material/Box';
 import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusSquare} from "@fortawesome/free-regular-svg-icons";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -46,6 +49,24 @@ function getStyles(name: string, personName: string[], theme: Theme) {
         : theme.typography.fontWeightMedium,
   };
 }
+
+const advanceclick = () => {
+    if (process.browser) {
+    const container = document.getElementById("advance-opt");
+      if (container !== null) {
+        //console.log(container.style.height);
+        //container.classList.add("right-panel-active");
+        //container.style.width ='0px';
+        // container.style.right='-400px';
+    if(container.style.height == '0px'){
+        container.style.height= '100%';
+    }else{
+        container.style.height= '0px';
+    }
+    
+      }
+     }
+  };
 
 const events: NextPage = () => {
     const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
@@ -82,6 +103,15 @@ const events: NextPage = () => {
                                 <SearchIcon />
                             </IconButton>
                         </Paper>
+                        <div className='advance-options'>
+                            <div className='advance-options-left'>
+                                Advance Options
+                            </div>
+                            <div className='advance-options-right'>
+                                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faPlusSquare} className='font-icon' onClick={advanceclick}/>
+                            </div>
+                        </div>
+                        <div className='auto-hide' id="advance-opt">
                         <div>
                             <h4>
                                 Event Date
@@ -109,7 +139,7 @@ const events: NextPage = () => {
                                 Area
                             </h4>
                             <div>
-                                <FormControl sx={{ m: 1, width: 300 }}>
+                                <FormControl sx={{ m: 1, width: '90%' }}>
                                     <InputLabel id="demo-multiple-name-label">Select Area</InputLabel>
                                     <Select
                                     labelId="demo-multiple-name-label"
@@ -150,7 +180,7 @@ const events: NextPage = () => {
                                 Event Category 
                             </h4>
                             <div>
-                                <FormControl sx={{ m: 1, width: 300 }}>
+                                <FormControl sx={{ m: 1, width: '90%' }}>
                                     <InputLabel id="demo-multiple-name-label">Select Category</InputLabel>
                                     <Select
                                     labelId="demo-multiple-name-label"
@@ -174,6 +204,8 @@ const events: NextPage = () => {
                                 </FormControl>
                             </div>
                         </div>
+                        </div>
+                        
                         </div>
                     </div>
                     <div className='event-container-Right'>
