@@ -7,13 +7,13 @@ import CreateIcon from '@mui/icons-material/Create';
 import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
 import Shop from '../components/Shop'
+import Carosaltop from '../components/store/Carosaltop'
 import { color } from '@mui/system';
 
 
 const index: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter()
-
     function create(event: any) {
         event.preventDefault();
         router.push('/user');
@@ -24,7 +24,7 @@ const index: NextPage = () => {
                 <div className="main-container-1">
                     <Navbar/>
                     <div className ="top-container">
-                        <div className ="left-container">
+                        <div className ="left-container" id='left-container'>
                                     <div className="text-1" style={{display:'block'}}>
                                     <h2 style={{color:'#3b1c4e'}}>You dream it</h2>
                                     <div style={{marginTop:'-60px', color:'#212121'}}> We ticket it</div>
@@ -41,7 +41,7 @@ const index: NextPage = () => {
                                     >Publish an Event</Button>
                                     </div> 
                         </div>
-                        <div className ="right-container">
+                        <div className ="right-container" id='right-container'>
                         <Image src = {ticket}
                             layout = "responsive"
                             m-50="true"
@@ -55,6 +55,7 @@ const index: NextPage = () => {
                 </div>
                 <div>
                     <div className='trending-board-container'><h2 className='trending-board'>Trending Events</h2></div>
+                    <Carosaltop/>
                     <Shop />
                 </div>
                 

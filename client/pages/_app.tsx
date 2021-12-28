@@ -10,9 +10,7 @@ import '../components/user/styles.css'
 import '../pages/user/style.css'
 import '../components/seller/styles.css'
 import '../pages/seller/styles.css'
-
-import '../components/store/main.scss'
-import '../components/store/carousel-slider.scss'
+import '../components/store/styles.css'
 
 import type { AppProps } from 'next/app'
 

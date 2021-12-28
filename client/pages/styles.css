@@ -79,3 +79,13 @@
       }
   }
 /*end event page*/
+/*start home page*/
+@media only screen and (max-width: 900px) {
+    #left-container{
+        width: 100%;
+    }
+    #right-container{
+        width: 100%;
+    }
+}
+/*E nd home page*/
