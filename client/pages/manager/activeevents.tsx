@@ -9,7 +9,7 @@ import {gethost} from '../../session/Session';
 
 const activeevents: NextPage = () => {
     React.useEffect(() => {
-        axios.get(gethost() + 'manager/activeevents')
+        axios.get(gethost() + 'manager/active')
             .then((res)=>{
                 console.log(res.data);
             })
