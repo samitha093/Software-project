@@ -22,7 +22,7 @@ const activesellers: NextPage = () => {
                 <SellersTopBar id3='1' />
                 <div>
                     <h1>Active Sellers</h1>
-                    <div className="manager-index-container">
+                    <div className="manager-sellers-container">
                         <SellerActions />
                     </div>
                 </div>
