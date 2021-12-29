@@ -211,7 +211,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     id="tableTitle"
                     component="div"
                 >
-                    Seller Approval
+                    Seller Details
                 </Typography>
             )}
             {numSelected > 0 ? (
@@ -253,7 +253,6 @@ export default function EnhancedTable() {
     const [orderBy, setOrderBy] = React.useState<keyof Data>('name'); //Order by name of the seller
     const [selected, setSelected] = React.useState<readonly string[]>([]);
     const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleRequestSort = (
@@ -303,10 +302,6 @@ export default function EnhancedTable() {
         setPage(0);
     };
 
-    const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDense(event.target.checked);
-    };
-
     const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -321,7 +316,6 @@ export default function EnhancedTable() {
                     <Table
                         sx={{ minWidth: 750 }}
                         aria-labelledby="tableTitle"
-                        size={dense ? 'small' : 'medium'}
                     >
                         <EnhancedTableHead
                             numSelected={selected.length}
@@ -373,11 +367,7 @@ export default function EnhancedTable() {
                                     );
                                 })}
                             {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: (dense ? 33 : 53) * emptyRows,
-                                    }}
-                                >
+                                <TableRow>
                                     <TableCell colSpan={6} />
                                 </TableRow>
                             )}
@@ -394,10 +384,6 @@ export default function EnhancedTable() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-            <FormControlLabel
-                control={<Switch checked={dense} onChange={handleChangeDense}/>}
-                label="Dense Padding"
-            />
         </Box>
     );
 }
