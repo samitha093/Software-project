@@ -30,14 +30,6 @@
     padding: 0px;
     cursor: pointer;
 }
-.manager-c-sidebar-item:hover{
-    border-color: white;
-    background-color: #752E9E !important;
-    color: white;
-}
-.manager-c-sidebar-item-icon:hover{
-    color: white;
-}
 .manager-c-sidebar-item-icon{
     padding: 10px;
     color: black;
@@ -49,6 +41,17 @@
 .manager-c-sidebar-item.active{
     border-color: white;
     background-color: #752E9E !important;
+}
+.manager-c-sidebar-item-icon.active{
+    color: white;
+}
+.manager-c-sidebar-item:hover{
+    border-color: white;
+    background-color: #752E9E !important;
+    color: white;
+}
+.manager-c-sidebar-item-icon:hover{
+    color: white;
 }
 /*end - sidebar component*/
 
@@ -486,3 +489,6 @@
 .css-1mxz8qt-MuiPaper-root{
     width: 80% !important;
 }
+
+/*start - manager settings page*/
+/*this is to adjust margins or the forms*/

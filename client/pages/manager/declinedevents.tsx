@@ -9,7 +9,7 @@ import {gethost} from '../../session/Session';
 
 const declinedevents: NextPage = () => {
     React.useEffect(() => {
-        axios.get(gethost() + 'manager/declinedevents')
+        axios.get(gethost() + 'manager/declined')
             .then((res)=>{
                 console.log(res.data);
             })

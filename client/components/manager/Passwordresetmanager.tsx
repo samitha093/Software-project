@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
-import Sellerapproval from '../../components/manager/Sellerapproval'
 import Fab from '@mui/material/Fab';
 
 interface ResetPwdProps {
@@ -66,7 +65,6 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 alt='Invalid Format'
                             >
                             </Image>
-                            <Sellerapproval />
 
                         </div>
                     </Grid>
