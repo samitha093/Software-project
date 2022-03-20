@@ -39,8 +39,6 @@
 }
 .manager-setting{
     width: 100%;
-    padding-left: 10%;
-    position: fixed; /*newly added one to check whethe box is centered*/
 }
 
 @media only screen and (max-width: 600px) {
@@ -57,16 +55,3 @@
         display: flex;
     }
 }
-
-/*start - sellers page*/
-.manager-sellers-container
-{
-    width: 100%;
-    padding-left: 20%;
-    position: fixed;
-    display: flex;
-    box-sizing: border-box;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-/*end - sellers page*/
