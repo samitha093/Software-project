@@ -3,7 +3,6 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
 import Navbar from '../../components/Navbar'
-import SettingsTopBar from '../../components/manager/SettingsTopBar'
 import axios from 'axios'
 import {gethost} from '../../session/Session';
 
@@ -18,7 +17,6 @@ const settings: NextPage = () => {
         <div className="manager-bg">
             <Navbar />
             <div className="manager-index">
-                <SettingsTopBar/>
                 <Sidebar id = '4' />
                 <div className="manager-setting">
                     <h1>Settings</h1>
