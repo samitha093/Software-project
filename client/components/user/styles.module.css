@@ -4,7 +4,7 @@
 
 
 /*start-Login component*/
-.main-background{
+.mainbackground{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,11 +12,11 @@
 	padding-top: 70px;
 	height: 90vh;
 }
-.new-span{
+.new_span{
 	font-size: 12px;
 	font-family: 'Open Sans', sans-serif;
 }
-.modern-a{
+.modern_a{
 	color: #333;
 	font-size: 12px;
     color:#BB9CD1 ;
@@ -25,7 +25,7 @@
 	font-family: 'Open Sans', sans-serif;
 }
 	
-.modern-btn{
+.modern_btn{
 	border-radius: 20px;
 	border: 1px solid #BB9CD1;
 	background-color: #BB9CD1;
@@ -38,11 +38,11 @@
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
-.modern-btn:active {
+.modern_btn:active {
 	transform: scale(0.95);
 }
 
-.modern-btn:focus {
+.modern_btn:focus {
 	outline: none;
 }
 button.ghost {
@@ -52,7 +52,7 @@ button.ghost {
 }
 
 
-.modern-form{
+.modern_form{
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -62,7 +62,7 @@ button.ghost {
 	height: 100%;
 	text-align: center;
 }
-.input-box-container{
+.input_box_container{
 	display: flex;
 	border-radius: 8px;
 	width: 80%;
@@ -71,18 +71,18 @@ button.ghost {
 	transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out;
 }
 
-.input-box-container:hover {
+.input_box_container:hover {
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
   }
   
-.input-box-container.active {
+.input_box_container.active {
 	background-color: #ffffff;
 	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
   }
 
 
-.inputbox-modern{
+.inputbox_modern{
 	background-color: rgba(238, 238, 238, 0.733);
 	border: none;
 	outline: none;
@@ -92,7 +92,7 @@ button.ghost {
 	font-family: 'Open Sans', sans-serif;
 
 }
-.inputbox-modern-1{
+.inputbox_modern_1{
 	background-color: rgba(238, 238, 238, 0.733);
 	border: none;
 	outline: none;
@@ -117,31 +117,31 @@ button.ghost {
 	min-height: 600px;
 }
 
-.form-container {
+.form_container {
 	position: absolute;
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+.sign_in_container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
 }
 
-.container.right-panel-active .sign-in-container {
+.container.right_panel_active .sign_in_container {
 	transform: translateX(100%);
 }
 
-.sign-up-container {
+.sign_up_container {
 	left: 0;
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
 }
 
-.container.right-panel-active .sign-up-container {
+.container.right_panel_active .sign_up_container {
 	transform: translateX(100%);
 	opacity: 1;
 	z-index: 5;
@@ -160,7 +160,7 @@ button.ghost {
 	}
 }
 
-.overlay-container {
+.overlay_container {
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -173,12 +173,12 @@ button.ghost {
 
 
 @media only screen and (max-width: 600px) {
-    .overlay-container{
+    .overlay_container{
      display: block;
     }
 }
 
-.container.right-panel-active .overlay-container{
+.container.right_panel_active .overlay_container{
 	transform: translateX(-100%);
 }
 
@@ -198,11 +198,11 @@ button.ghost {
 	transition: transform 0.6s ease-in-out;
 }
 
-.container.right-panel-active .overlay {
+.container.right_panel_active .overlay {
   	transform: translateX(50%);
 }
 
-.overlay-panel {
+.overlay_panel {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -217,20 +217,20 @@ button.ghost {
 	transition: transform 0.6s ease-in-out;
 }
 
-.overlay-left {
+.overlay_left {
 	transform: translateX(-20%);
 }
 
-.container.right-panel-active .overlay-left {
+.container.right_panel_active .overlay_left {
 	transform: translateX(0);
 }
 
-.overlay-right {
+.overlay_right {
 	right: 0;
 	transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.container.right-panel_active .overlay_right {
 	transform: translateX(20%);
 }
 
@@ -240,12 +240,12 @@ button.ghost {
     margin-bottom: 20px;
 
 }
-.radio-label{
+.radio_label{
     font-size: 13px;
     padding: 0 15px 5px 0;
 }
 
-.head-signin{
+.head_signin{
     font-size: x-large;
     font: weight 700px; 
     color: slategrey;
@@ -255,7 +255,7 @@ button.ghost {
 	font-family: 'Open Sans', sans-serif;
    
 }
-.head-signup{
+.head_signup{
     font-size: x-large;
     font: weight 700px; 
     color: slategrey;
@@ -266,7 +266,7 @@ button.ghost {
    
 }
 
-.content-1{
+.content_1{
     font-size: 30px;
     font-weight: bolder;
     color:#8F7F98;
@@ -276,7 +276,7 @@ button.ghost {
     
 }
 
-.content-2{
+.content_2{
     font-size: 12px;
     color : #8F7F98;
     text-align: center;
@@ -294,23 +294,23 @@ button.ghost {
 
 @media only screen and (max-width: 500px) {
     
-    .head-signup{
+    .head_signup{
     font-size: medium;
     }
 
-    .new-span{
+    .new_span{
     display: none;
     }
-    .modern-btn{
+    .modern_btn{
      font-size: 9px;
      height: max-content;
 	 padding: 8px 10px;
     }
 	
-    .content-1{
+    .content_1{
         display: none;
     }
-    .content-2{
+    .content_2{
         display: none;
         
     }
@@ -326,13 +326,13 @@ button.ghost {
 }
 @media only screen and (max-width: 300px) {
     
-    .head-signup{
+    .head_signup{
     font-size: small;
     
     }   
 }
 
-.input-box-error{
+.input_box_error{
     margin-bottom: 5px;
     font-size: large;
     border-color: red;
@@ -340,14 +340,14 @@ button.ghost {
 
 }
 
-.pricing-box{
+.pricing_box{
     width: auto;
     display: flex;
     flex-direction: column;
     position: relative;
     size: auto;
 }
-.error-message{
+.error_message{
     font-family: 'Open Sans', sans-serif;
     color: red;
     font-size: 12px;
@@ -360,14 +360,14 @@ button.ghost {
 
 /*start - forgotpwd component*/
 
-.box-1{
+.box_1{
     width: 100%;
     background-color: #E3E3ED;
     border-bottom-right-radius: 10px;
   
 }
 
-.head-password{
+.head_password{
     font-size: x-large;
     font: weight 700px ;
     color: slategrey;
@@ -390,12 +390,12 @@ button.ghost {
         display: block;
                 
     }
-    .box-1{
+    .box_1{
        width: 0px;
        display: none;
     
 }
-    .head-password{ 
+    .head_password{ 
         display: flex;
         font-size:large;
 

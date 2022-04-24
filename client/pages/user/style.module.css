@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 /*Start-index page*/
+.main_background{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 70px;
+	height: 90vh;
+}
 .index{
 	width: 100%;
 }
