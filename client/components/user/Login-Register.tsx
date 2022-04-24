@@ -172,7 +172,7 @@ async function signUpformn(){
             <div className='modern-form'>
               <h1 className =" head-signup">Create Account</h1>
               <span className='new-span'>Please fill up your details below</span>
-              {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
+             
               <div className ='input-box-container' > 
               <input
                 className='inputbox-modern'
@@ -181,7 +181,8 @@ async function signUpformn(){
                 //value={name}
                 onChange={nameChangeHandler}
                  /></div>
-               {emailHasError && (<p className="error-message"> * Invalid email</p>)}  
+                {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
+              
                <div className ='input-box-container' > 
               <input
                className='inputbox-modern' 
@@ -190,7 +191,8 @@ async function signUpformn(){
                value={email}
                onChange={emailChangeHandler}
                /></div>
-               {contactHasError && (<p className="error-message"> * Enter a valid contact number</p>)}
+                {emailHasError && (<p className="error-message"> * Invalid email</p>)}  
+               
                <div className ='input-box-container' > 
                <input 
                className='inputbox-modern' 
@@ -198,9 +200,9 @@ async function signUpformn(){
                placeholder="Contact Number"
                value={contact}
                onChange={contactChangeHandler}
-
                /></div>
-               {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
+               {contactHasError && (<p className="error-message"> * Enter a valid contact number</p>)}
+
                <div className ='input-box-container' > 
               <input 
               className='inputbox-modern' 
@@ -210,8 +212,8 @@ async function signUpformn(){
               onChange={(e)=>setPassword(e.target.value)} 
              //onChange={passwordChangeHandler}
                /></div>
+              {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
 
-              {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)}
               <div className ='input-box-container' >  
               <input 
               className='inputbox-modern' 
@@ -222,6 +224,7 @@ async function signUpformn(){
               //onChange={confirmPasswordChangeHandler}
               onBlur={confirmPasswordChangeHandler}
                /></div>
+               {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)}
               
               <div className="radio">  
               <label className ="radio-label">
@@ -267,7 +270,7 @@ async function signUpformn(){
             <div className='modern-form'>
               <h1 className ="head-signin" >Sign in</h1>
               <span className='new-span'>or use your account</span>
-            {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
+            
             <div className ='input-box-container' > 
              <div className ='icn'><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
               <input 
@@ -279,7 +282,7 @@ async function signUpformn(){
             // onBlur={emailBlurHandler} 
              />
              </div>
-            {login_passwordError && (<p className="error-message"> * Password can not be empty</p>)} 
+             {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
             <div className ='input-box-container'> 
             <div className='icn'> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
               <input 
@@ -292,6 +295,7 @@ async function signUpformn(){
               // onBlur={emailBlurHandler}
               />
               </div>
+              {login_passwordError && (<p className="error-message"> * Password can not be empty</p>)}
               <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
               <button className='modern-btn' onClick={signinformn}>Sign In</button>
             </div>
