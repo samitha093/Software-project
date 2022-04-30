@@ -6,6 +6,8 @@ import SellersTopBar from '../../components/manager/SellersTopBar'
 import SellerActions from '../../components/manager/SellerActions'
 import axios from 'axios'
 import { gethost } from '../../session/Session';
+import styles from './styles.module.css'
+import classnames from 'classnames';
 
 const activesellers: NextPage = () => {
     React.useEffect(() => {
@@ -15,14 +17,14 @@ const activesellers: NextPage = () => {
             })
     }, [])
     return (
-        <div className="manager-bg">
+        <div className={styles.manager_bg}>
             <Navbar />
-            <div className="manager-index">
+            <div className={styles.manager_index}>
                 <Sidebar id='3' />
                 <SellersTopBar id3='1' />
                 <div>
                     <h1>Active Sellers</h1>
-                    <div className="manager-index-container">
+                    <div className={styles.manager_index_container}>
                         <SellerActions />
                     </div>
                 </div>
