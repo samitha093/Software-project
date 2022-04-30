@@ -4,7 +4,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import axios from 'axios';
 import {startsession, gethost, getuser } from '../../session/Session';
-import styles from './styles.module.css'
+
 interface LoginProps {
 
 }
@@ -159,7 +159,7 @@ async function signUpformn(){
         if (process.browser) {
           const container = document.getElementById("container");
           if (container !== null) {
-            container.classList.remove("right_panel_active");
+            container.classList.remove( "right_panel_active");
           }
         } 
       };
@@ -167,57 +167,57 @@ async function signUpformn(){
     
     return(
 
-        <div className={styles.container} id="container">
+        <div className="container" id="container">
 
-          <div className={`${styles.form_container} ${styles.sign_up_container}`}>
-            <div className={styles.modern_form}>
-              <h1 className ={styles.head_signup}>Create Account</h1>
-              <span className={styles.new_span}>Please fill up your details below</span>
+          <div className="form_container sign_up_container">
+            <div className="modern_form">
+              <h1 className ="head_signup">Create Account</h1>
+              <span className="new_span">Please fill up your details below</span>
              
-              <div className ={styles.input_box_container} > 
+              <div className ="input_box_container" > 
               <input
-                className={styles.inputbox_modern}
+                className="inputbox_modern"
                 type="text" 
                 placeholder="Name"
                 //value={name}
                 onChange={nameChangeHandler}
                  /></div>
-                {nameHasError && (<p className={styles.error_message}> * Name cannot be empty</p>)}
+                {nameHasError && (<p className="error_message"> * Name cannot be empty</p>)}
               
-               <div className ={styles.input_box_container} > 
+               <div className ="input_box_container" > 
               <input
-               className={styles.inputbox_modern} 
+               className="inputbox_modern" 
                type="email"
                placeholder="Email"
                value={email}
                onChange={emailChangeHandler}
                /></div>
-                {emailHasError && (<p className={styles.error_message}> * Invalid email</p>)}  
+                {emailHasError && (<p className="error_message"> * Invalid email</p>)}  
                
-               <div className ={styles.input_box_container} > 
+               <div className = "input_box_container" > 
                <input 
-               className={styles.inputbox_modern}
+               className="inputbox_modern"
                type="text" 
                placeholder="Contact Number"
                value={contact}
                onChange={contactChangeHandler}
                /></div>
-               {contactHasError && (<p className={styles.error_message}> * Enter a valid contact number</p>)}
+               {contactHasError && (<p className="error_message"> * Enter a valid contact number</p>)}
 
-               <div className ={styles.input_box_container} > 
+               <div className ="input_box_container" > 
               <input 
-              className={styles.inputbox_modern} 
+              className="inputbox_modern" 
               type="password" 
               placeholder="Password"
               value={password}
               onChange={(e)=>setPassword(e.target.value)} 
              //onChange={passwordChangeHandler}
                /></div>
-              {passwordError && (<p className={styles.error_message}> * Password can not be empty</p>)}
+              {passwordError && (<p className="error_message"> * Password can not be empty</p>)}
 
-              <div className ={styles.input_box_container} >  
+              <div className ="input_box_container" >  
               <input 
-              className={styles.inputbox_modern}
+              className="inputbox_modern"
               type="password" 
               placeholder="Confirm Password"
               value={confirmPassword}
@@ -225,10 +225,10 @@ async function signUpformn(){
               //onChange={confirmPasswordChangeHandler}
               onBlur={confirmPasswordChangeHandler}
                /></div>
-               {validationError && (<p className={styles.error_message}> * Confirm password should match with your password</p>)}
+               {validationError && (<p className="error_message"> * Confirm password should match with your password</p>)}
               
-              <div className={styles.radio}>  
-              <label className ={styles.radio_label}>
+              <div className="radio">  
+              <label className ="radio_label">
               <input
               type="radio"
               value="buyer"
@@ -237,7 +237,7 @@ async function signUpformn(){
               />
               Buyer
               </label>
-              <label className ={styles.radio_label}>
+              <label className ="radio_label">
               <input
               type="radio"
               value="seller"
@@ -246,7 +246,7 @@ async function signUpformn(){
               />
               Ticket Seller
               </label >
-              <label className ={styles.radio_label}>
+              <label className ="radio_label">
               <input
               type="radio"
               value="Admin"
@@ -258,7 +258,7 @@ async function signUpformn(){
               </div>
                
               <button 
-              className={styles.modern_btn}
+              className="modern_btn"
               disabled={emailHasError || passwordError || nameHasError}
               onClick={signUpformn}>Sign Up</button>
             </div>
@@ -267,15 +267,15 @@ async function signUpformn(){
 
 
 
-          <div className={`${styles.form_container} ${styles.sign_in_container}`}>
-            <div className={styles.modern_form}>
-              <h1 className ={styles.head_signin} >Sign in</h1>
-              <span className={styles.new_span}>or use your account</span>
+          <div className="form_container sign_in_container">
+            <div className="modern_form">
+              <h1 className ="head_signin" >Sign in</h1>
+              <span className="new_span">or use your account</span>
             
-            <div className ={styles.input_box_container} > 
-             <div className ={styles.icn}><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
+            <div className ="input_box_container" > 
+             <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
               <input 
-              className={styles.inputbox_modern_1} 
+              className="inputbox_modern_1"
               type="email" 
               placeholder="User email"
               value={login_email}
@@ -283,11 +283,11 @@ async function signUpformn(){
             // onBlur={emailBlurHandler} 
              />
              </div>
-             {login_emailHasError && (<p className={styles.error_message}> * Invalid email</p>)}
-            <div className ={styles.input_box_container}> 
-            <div className={styles.icn}> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
+             {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+            <div className ="input_box_container"> 
+            <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
               <input 
-              className={styles.inputbox_modern_1} 
+              className="inputbox_modern_1"
               type="password" 
               placeholder="Password" 
               value={login_password}
@@ -296,26 +296,26 @@ async function signUpformn(){
               // onBlur={emailBlurHandler}
               />
               </div>
-              {login_passwordError && (<p className={styles.error_message}> * Password can not be empty</p>)}
-              <a href="./user/forgotpwd" className={styles.modern_a}>Forgot your password?</a>
-              <button className={styles.modern_btn} onClick={signinformn}>Sign In</button>
+              {login_passwordError && (<p className="error_message"> * Password can not be empty</p>)}
+              <a href="./forgotpwd" className="modern_a">Forgot your password?</a>
+              <button className="modern_btn" onClick={signinformn}>Sign In</button>
             </div>
           </div>
 
-          <div className={styles.overlay_container}>
-            <div className={styles.overlay}>
-              <div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
-                <h1 className={styles.content_1}>Welcome Back!</h1>
-                <p className={styles.content_2}>To keep connected with us. <br/> please login with your personal info</p>
+          <div className="overlay_container">
+            <div className="overlay">
+              <div className="overlay_panel overlay_left">
+                <h1 className="content_1">Welcome Back!</h1>
+                <p className="content_2">To keep connected with us. <br/> please login with your personal info</p>
                 <button 
-                className={`${styles.ghost} ${styles.modern_btn}`} 
+                className="ghost modern_btn"
                 onClick={signInButton}>Sign In</button>
               </div>
-              <div className={`${styles.overlay_panel} ${styles.overlay_right}`}>
-                <h1 className={styles.content_1}>Hello, Friend!</h1>
-                <p className={styles.content_2}>Please login with personal info & <br/>Keep connected with us.  </p>
+              <div className="overlay_panel overlay_right">
+                <h1 className="content_1">Hello, Friend!</h1>
+                <p className="content_2">Please login with personal info & <br/>Keep connected with us.  </p>
                 <button 
-                className={`${styles.ghost} ${styles.modern_btn}`} 
+                className="ghost modern_btn"
                 onClick={signUpButton}
                 disabled={emailHasError || passwordError}>Sign Up</button>
               </div>

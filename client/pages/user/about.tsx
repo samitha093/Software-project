@@ -222,7 +222,7 @@ const about: NextPage = () => {
                                  auction. Introducing pre-ticketing event duration & 
                                 event ticket auction enables the best prices for your
                                 tickets creating competitive marketing environment 
-                               and handles the dynamic event ticket prices.
+                                and handles the dynamic event ticket prices.
                        </div>
                        </div>
                     </div> 
