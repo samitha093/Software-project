@@ -46,6 +46,22 @@
 	justify-content: center;
   
 	} 
+
+@media only screen and (max-width: 1000px) {
+	.left_container{
+		height: auto;
+		width: 90%;
+		justify-content: center; 
+		margin-top: 30px;
+	}
+	.right_container{
+		height: auto;
+		width: 90%;
+		justify-content: center;
+		margin-top: 30px;
+	}
+}
+
   
 .btn_create{
 	  width :auto;
@@ -55,11 +71,12 @@
 	  resize: both;
 	  border-radius: 20px;
 	  padding: 10px 40px;
+	  margin: 20px;
 	}
 .btn_create:hover {background-color:#905f91 }
 	
 .text_1{
-     display: flex;
+      display: flex;
 	  justify-content: center;
 	  font-size: 40px;
 	  font-weight: bold;
@@ -71,17 +88,34 @@
 
 .text_1_1{
 
-	display: flex;
-	justify-content: center;
-	font-size: 18px;
-	text-align: justify;
-	color: #686568;
-		
+		display: flex;
+		justify-content: center;
+		font-size: 18px;
+		text-align: justify;
+		color: #686568;
+			
+		}
+	
+@media only screen and (max-width: 600px) {
+	.text_1{
+		font-size: 25px;
 	  }
+	  .text_1_1{
+		font-size: 14px;
+		align-self: center;
+	  }
+}
+
+@media only screen and (max-width: 400px) {
+	.text_1{
+		font-size: auto;
+	  }
+	} 
 
 .btn_class{
    display: flex;
    justify-content: center;
+   padding: 10px;
 }
 .trending-board-container{
  text-align: center;
@@ -102,7 +136,7 @@
     }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
     .top_container{
      display: block;
     }

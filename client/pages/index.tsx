@@ -3,7 +3,8 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Image from 'next/image';
 import ticket from '../assets/online-ticket.png'
-import CreateIcon from '@mui/icons-material/Create';
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
 import Shop from '../components/Shop'
@@ -27,19 +28,25 @@ const index: NextPage = () => {
                     <div className ={style.top_container}>
                         <div className ={style.left_container}>
                                     <div className={style.text_1} style={{display:'block'}}>
-                                    <h2 style={{color:'#3b1c4e'}}>You dream it</h2>
-                                    <div style={{marginTop:'-60px', color:'#212121'}}> We ticket it</div>
+                                    <h2 style={{color:'#3b1c4e'}}>You dream it</h2><br/>
+                                    <div style={{marginTop:'-60px', color:'#212121'}}> We ticket it</div><br/>
                                     </div>
                                     <div className= {style.text_1_1}>
-                                    <br/><br/>The best place to sell your<br/>fully customized event tickets.<br/><br/> Join with TickBid today!
+                                    <br/>The best place to sell your<br/>fully customized event tickets.<br/><br/> Join with TickBid today!
                                     </div>
                                     <div className={style.btn_class}>
                                     <Button 
                                     className= {style.btn_create}
                                     variant="contained" 
-                                    startIcon = {<CreateIcon/>}
+                                    startIcon = {<ShoppingCartTwoToneIcon/>}
                                     onClick={create}
-                                    >Publish an Event</Button>
+                                    >Buy Ticket</Button>
+                                    <Button 
+                                    className= {style.btn_create}
+                                    variant="contained" 
+                                    startIcon = {<StorefrontTwoToneIcon/>}
+                                    onClick={create}
+                                    >Sell Ticket</Button>
                                     </div> 
                         </div>
                         <div className ={style.right_container}>
