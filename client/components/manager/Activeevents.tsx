@@ -34,28 +34,28 @@ export default function ActiveEvents() {
 
     return (
         <div>
-            <div className="manager-c-tickets-active" onClick={handleClickOpen}>
+            <div className={styles.manager_c_tickets_active} onClick={handleClickOpen}>
                 <div>
-                    <div className="manager-c-tickets-top">
+                    <div className={styles.manager_c_tickets_top}>
 
 
 
-                        <div className="manager-c-tickets-top-info">
-                            <div className="manager-c-tickets-top-info-left">
-                                <div className="manager-c-tickets-top-info-left-name">
+                        <div className={styles.manager_c_tickets_top_info}>
+                            <div className={styles.manager_c_tickets_top_info_left}>
+                                <div className={styles.manager_c_tickets_top_info_left-name}>
                                     Event name
                                 </div>
-                                <div className="manager-c-tickets-top-info-left-date">
+                                <div className={styles.manager_c_tickets_top_info_left_date}>
                                     2021-08-23
                                 </div>
                             </div>
-                            <div className="manager-c-tickets-top-info-right">
-                                <div className="manager-c-tickets-top-info-right-nooftickets">460</div>
-                                <div className="manager-c-tickets-top-info-right-tickets">tickets</div>
+                            <div className={styles.manager_c_tickets_top_info_right">
+                                <div className={styles.manager_c_tickets_top_info_right-nooftickets">460</div>
+                                <div className={styles.manager_c_tickets_top_info_right-tickets">tickets</div>
                             </div>
                         </div>
                     </div>
-                    <h5 className="manager-c-tickets-cardstatus">Info</h5>
+                    <h5 className={styles.manager_c_tickets_cardstatus">Info</h5>
                 </div>
             </div>
             <Dialog
