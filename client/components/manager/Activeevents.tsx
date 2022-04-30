@@ -16,6 +16,9 @@ import Pendingeventstable from '../../components/manager/Pendingeventstable'
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
+import styles from './styles.module.css'
+import classnames from 'classnames';
+
 
 //Line 80 space for the image box
 
