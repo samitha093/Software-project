@@ -1,5 +1,5 @@
 /*start - sidebar component*/
-.manager-c-sidebar{
+.manager_c_sidebar{
     z-index: 10;
     position: fixed;
     left: 0%;
@@ -9,16 +9,15 @@
     padding: 35px 35px;
     margin-top: 50px;
 }
-.manager-c-sidebar-container{
+.manager_c_sidebar_container{
     width: 100%;
     height:100%;
     background-color: white;
     border-radius: 30px;
     padding: 30px 25px;
-    align-items: center;
+    align_items: center;
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
-
     width:60px;
     height:60px;
     border: 1px;
@@ -29,15 +28,15 @@
     padding: 0px;
     cursor: pointer;
 }
-.manager-c-sidebar-item:hover{
+.manager_c_sidebar_item:hover{
     border-color: white;
     background-color: #752E9E !important;
     color: white;
 }
-.manager-c-sidebar-item-icon:hover{
+.manager_c_sidebar_item_icon:hover{
     color: white;
 }
-.manager-c-sidebar-item-icon{
+.manager_c_sidebar_item_icon{
     padding: 10px;
     color: black;
 }
@@ -45,14 +44,14 @@
 .centername{
     text-align: center!important;
 }
-.manager-c-sidebar-item.active{
+.manager_c_sidebar_item.active{
     border-color: white;
     background-color: #752E9E !important;
 }
 /*end - sidebar component*/
 
 /*start - topbar component*/
-.manager-c-topbar{
+.manager_c_topbar{
     z-index: 10;
     position: fixed;
     top: 70px;
@@ -63,18 +62,18 @@
     padding: 10px 10px 10px;
 
 }
-.manager-c-topbar-container{
+.manager_c_topbar_container{
     display: flex;
     height: auto;
     width: 400px;
     padding: 10px;
-    align-items: center;
+    align_items: center;
     background-color: white;
     border-radius: 30px;
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
 }
-.manager-c-topbar-item{
+.manager_c_topbar_item{
     margin-top: 0px;
     width: 25%;
     text-align: center;
@@ -87,20 +86,20 @@
     cursor: pointer;
 }
 
-.manager-c-topbar-item:hover{
+.manager_c_topbar_item:hover{
     border-color:#752E9E;
     background-color: #752E9E;
     color: white;
 }
-.manager-c-sidebar-item-icon.active{
+.manager_c_sidebar_item_icon.active{
     color: white;
 }
-.manager-c-topbar-item.active{
+.manager_c_topbar_item.active{
     border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
-.manager-c-topbar-item:hover{
+.manager_c_topbar_item:hover{
     border-color:#752E9E;
     background-color: #752E9E;
     color: white;
@@ -108,7 +107,7 @@
 /*end - topbar component*/
 
 /*start - seller topbar component*/
-.manager-seller-c-topbar{
+.manager_seller_c_topbar{
     z-index: 10;
     position: fixed;
     top: 70px;
@@ -120,18 +119,18 @@
     margin-left: 10%;
 
 }
-.manager-seller-c-topbar-container{
+.manager_seller_c_topbar_container{
     display: flex;
     height: auto;
     width: 220px;
     padding: 10px;
-    align-items: center;
+    align_items: center;
     background-color: white;
     border-radius: 30px;
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
 }
-.manager-seller-c-topbar-item{
+.manager_seller_c_topbar_item{
     margin-top: 0px;
     width: 40%;
     text-align: center;
@@ -144,18 +143,18 @@
     cursor: pointer;
 }
 
-.manager-seller-c-topbar-item:hover{
+.manager_seller_c_topbar_item:hover{
     border-color:#752E9E;
     background-color: #752E9E;
     color: white;
 }
 
-.manager-seller-c-topbar-item.active{
+.manager_seller_c_topbar_item.active{
     border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
-.manager-seller-c-topbar-item:hover{
+.manager_seller_c_topbar_item:hover{
     border-color:#752E9E;
     background-color: #752E9E;
     color: white;
@@ -163,7 +162,7 @@
 /*end - seller topbar component*/
 
 @media only screen and (max-width: 600px) {
-    .manager-c-sidebar{
+    .manager_c_sidebar{
         width: 100%;
         top: 70px;
         height: auto;
@@ -172,58 +171,58 @@
         margin-top: 10px; /*delete if not work*/
         
     }
-    .manager-c-sidebar-container{
+    .manager_c_sidebar_container{
         display: flex;
         height:  70px;
         width: 100%;
         padding: 10px;
         border-radius: 15px;
     }
-    .manager-c-sidebar-item{
+    .manager_c_sidebar_item{
         margin-top: 0px;
         width: 50px;
         margin: 0% 5%;
         height: auto;
     }
 
-    .manager-c-topbar{
+    .manager_c_topbar{
         width: 100%;
         top: 145px;
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
     }
-    .manager-c-topbar-container{
+    .manager_c_topbar_container{
         margin-top: 20px;
     }
-    .manager-seller-c-topbar{
+    .manager_seller_c_topbar{
         width: 100%;
         top: 145px;
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
     }
-    .manager-seller-c-topbar-container{
+    .manager_seller_c_topbar_container{
         margin-top: 20px;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    .manager-c-sidebar-item{
+    .manager_c_sidebar_item{
         margin: 0% 4%;
     }
 }
 @media only screen and (max-width: 400px) {
-    .manager-c-sidebar-item{
+    .manager_c_sidebar_item{
         margin: 0% 3%;
     }
-    .manager-c-topbar-container{
+    .manager_c_topbar_container{
         display: flex;
         height: auto;
         width: 360px;
         padding: 10px;
     }
-    .manager-c-topbar{
+    .manager_c_topbar{
         width: 360px;
         left: calc(50% - 51%);
         height: auto;
@@ -233,33 +232,33 @@
     }
 }
 @media only screen and (max-width: 360px) {
-    .manager-c-topbar{
+    .manager_c_topbar{
         left: calc(50% - 53%);
     }
-    .manager-c-topbar-item{
+    .manager_c_topbar_item{
         margin: 0px 5px 0px;
     }
 }
 @media only screen and (max-width: 320px) {
-    .manager-c-topbar{
+    .manager_c_topbar{
         left: calc(50% - 60%);
     }
-    .manager-c-topbar-item{
+    .manager_c_topbar_item{
         margin: 0px 3px 0px;
     }
 }
 @media only screen and (max-width: 300px) {
-    .manager-c-sidebar-item{
+    .manager_c_sidebar_item{
         margin: 0% 4%;
     }
-    .manager-c-topbar{
+    .manager_c_topbar{
         left: calc(50% - 68%);
         width: 280px;
     }
-    .manager-c-topbar-item{
+    .manager_c_topbar_item{
         margin: 0px;
     }
-    .manager-c-sidebar-container{
+    .manager_c_sidebar_container{
         width: 280px;
     }
 }
@@ -269,7 +268,7 @@
 :root {
     --parent-height: 220px;
   }
-.manager-c-tickets{
+.manager_c_tickets{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -278,14 +277,14 @@
     position: relative;
     margin: 10px;
 }
-.manager-c-tickets-cardstatus{
+.manager_c_tickets_cardstatus{
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-.manager-c-tickets-top{
+.manager_c_tickets_top{
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
@@ -295,7 +294,7 @@
     position: relative;
     background-size: cover;
 }
-.manager-c-tickets-top-info{
+.manager_c_tickets_top_info{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     height:calc(var(--parent-height)*0.2);
@@ -303,35 +302,35 @@
     bottom: 0;
     display: flex;
 }
-.manager-c-tickets-top-info-left{
+.manager_c_tickets_top_info_left{
     width: 75%;
     padding-left: 6px;
     color: white;
 }
-.manager-c-tickets-top-info-right{
+.manager_c_tickets_top_info_right{
     padding-right: 6px;
     color: white;
     position: relative;
     width: 25%;
     text-align: center;
 }
-.manager-c-tickets-top-info-right-nooftickets{
+.manager_c_tickets_top_info_right_nooftickets{
     position: block;
     width: 100%;
 }
-.manager-c-tickets-top-info-right-tickets{
+.manager_c_tickets_top_info_right_tickets{
     font-size: 10px;
 }
-.manager-c-tickets-top-head{
+.manager_c_tickets_top_head{
     display: flex;
     padding-left: 10px;
 }
-.manager-c-tickets-top-head-left{
+.manager_c_tickets_top_head_left{
     padding-top: 10px;
     color: white;
     width: 60%;
 }
-.manager-c-tickets-top-head-right{
+.manager_c_tickets_top_head_right{
     width: 40%;
     display: flex;
     background-color: #752E9E;
@@ -343,53 +342,53 @@
     border-bottom-left-radius: 40px;
     color: white;
 }
-.manager-c-tickets-top-head-right-1{
+.manager_c_tickets_top_head_right_1{
     font-size: 12px;
     padding-right: 5px;
     bottom: 0;
 }
-.manager-c-tickets-top-head-right-2{
+.manager_c_tickets_top_head_right_2{
     font-size: 18px;
 }
-#customized-dialog-title{
+#customized_dialog_title{
     background-color: #752E9E;
     color: white;
 }
 
-.css-og52vs-MuiTableCell-root.MuiTableCell-head{
+.css_og52vs_MuiTableCell_root.MuiTableCell_head{
     background-color: #752E9E !important;
 }
 
 @media only screen and (max-width: 550px) {
-    .manager-c-tickets{
+    .manager_c_tickets{
         width: 230px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 450px) {
-    .manager-c-tickets{
+    .manager_c_tickets{
         width: 170px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 400px) {
-    .manager-c-tickets{
+    .manager_c_tickets{
         width: 155px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 350px) {
-    .manager-c-tickets{
+    .manager_c_tickets{
         width: 135px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 330px) {
-    .manager-c-tickets{
+    .manager_c_tickets{
         width: 90vw;
         border-radius: 20px;
         margin: 10px;
@@ -401,7 +400,7 @@
 
 /*start - pending events info component*/
 
-.manager-c-ticketspublishdecline-buttons-stack
+.manager_c_ticketspublishdecline_buttons_stack
 {
     justify-content: center;
     align-items: center;
@@ -409,7 +408,7 @@
     padding: auto;
 }
 
-.manager-c-ticketsinfo-top-head-right{
+.manager_c_ticketsinfo_top_head_right{
     width: 100%;
     display: flex;
     background-color: #752E9E;
@@ -420,7 +419,7 @@
     padding-left: auto;
     color: white;
 }
-.manager-eventinfo-image{
+.manager_eventinfo_image{
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
     height:200px;
     background-size: contain;
@@ -428,14 +427,14 @@
     padding: 10px;
     margin-top: 20px;
 }
-.manager-eventinfo-font
+.manager_eventinfo_font
 {
     color:black
 }
 /*end-pendig tikcets info component*/
 
 /*start-active events component*/
-.manager-c-tickets-active{
+.manager_c_tickets_active{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -447,7 +446,7 @@
 /*end-active events component*/
 
 /*start-declined events component*/
-.manager-c-tickets-declined{
+.manager_c_tickets_declined{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -460,7 +459,7 @@
 
 /*start-manager password reset component*/
 
-.manager-settings-head{
+.manager_settings_head{
     font-size: x-large !important;
     font-weight: bolder !important ;
     color: slategrey !important;
@@ -469,13 +468,13 @@
     text-align: center !important;
 }
 
-.manager-button-submit{
+.manager_button_submit{
     background-color: #BB9CD1;
     justify-content: center !important;
 }
 
 /*start - seller approval*/
-.manager-c-sellerapprovaltable
+.manager_c_sellerapprovaltable
 {
     width: 100%;
 }
