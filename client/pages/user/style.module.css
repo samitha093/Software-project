@@ -110,8 +110,6 @@
 
  /*End-index page*/
 
-
-
 /*start - About page*/
 
 .main_container_2{
@@ -193,7 +191,7 @@
   margin: 30 0 100 0;
 	  
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
 	.main_container_2{
 		padding: 0px;
 	}
@@ -203,9 +201,11 @@
     }
 	.left_container_1{
 		width: 90%;
+		vertical-align: middle;
 	}
 	.right_container_1{
 		width: 90%;
+		vertical-align: middle;
 		
 	}
 	.text_2{
@@ -215,10 +215,7 @@
 		width: fit-content;
 	}
 
-	
-	
 } 
-
 
 .footer{
     position: relative;
@@ -292,7 +289,5 @@
      display: block;
     }
 }
-
-
 
 /*end - About page*/
