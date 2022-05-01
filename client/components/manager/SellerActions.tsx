@@ -23,6 +23,9 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
+import styles from './styles.module.css'
+import classnames from 'classnames';
+
 interface Data {
     name: string;
     email: string;
@@ -138,7 +141,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         };
 
     return (
-        <TableHead className="manager-c-sellerapprovaltable">
+        <TableHead className={styles.manager_c_sellerapprovaltable}>
             <TableRow>
                 <TableCell padding="checkbox">
                     <Checkbox
@@ -205,7 +208,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     {numSelected} selected
                 </Typography>
             ) : (
-                <Typography className ="manager-settings-head"
+                <Typography className ={styles.manager_settings_head}
                     sx={{ flex: '1 1 100%' }}
                     variant="h6"
                     id="tableTitle"
