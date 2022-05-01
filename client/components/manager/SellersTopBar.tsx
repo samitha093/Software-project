@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
+import styles from './styles.module.css'
+import classnames from 'classnames';
+
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({
@@ -31,8 +34,8 @@ const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
     }
   }, []);
   return (
-    <div className="manager-seller-c-topbar">
-      <div className="manager-seller-c-topbar-container">
+    <div className={styles.manager_seller_c_topbar}>
+      <div className={styles.manager_seller_c_topbar_container}>
         <Link href="/manager/activesellers">
           <div className={sellerstopbar1 ? 'manager-seller-c-topbar-item active' : 'manager-seller-c-topbar-item'}>
             Active
