@@ -1,57 +1,63 @@
 /*start - sidebar component*/
-.manager_c_sidebar{
+.manager_c_sidebar {
     z-index: 10;
     position: fixed;
     left: 0%;
     top: calc(55vh - 325px);
     height: 700px;
-    width:180px;
+    width: 180px;
     padding: 35px 35px;
     margin-top: 50px;
 }
-.manager_c_sidebar_container{
+
+.manager_c_sidebar_container {
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color: white;
     border-radius: 30px;
     padding: 30px 25px;
-    align_items: center;
-    -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
-    box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
-    width:60px;
-    height:60px;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
+    box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
+    width: 60px;
+    height: 60px;
     border: 1px;
     border-color: black;
     border-radius: 10px;
-    border-style:solid;
+    border-style: solid;
     margin-top: 45px;
     padding: 0px;
     cursor: pointer;
 }
-.manager_c_sidebar_item:hover{
+
+.manager_c_sidebar_item:hover {
     border-color: white;
     background-color: #752E9E !important;
     color: white;
 }
-.manager_c_sidebar_item_icon:hover{
+
+.manager_c_sidebar_item_icon:hover {
     color: white;
 }
-.manager_c_sidebar_item_icon{
+
+.manager_c_sidebar_item_icon {
     padding: 10px;
     color: black;
 }
 
-.centername{
-    text-align: center!important;
+.centername {
+    text-align: center !important;
 }
-.manager_c_sidebar_item.active{
+
+.manager_c_sidebar_item.active {
     border-color: white;
     background-color: #752E9E !important;
 }
+
 /*end - sidebar component*/
 
 /*start - topbar component*/
-.manager_c_topbar{
+.manager_c_topbar {
     z-index: 10;
     position: fixed;
     top: 70px;
@@ -62,18 +68,20 @@
     padding: 10px 10px 10px;
 
 }
-.manager_c_topbar_container{
+
+.manager_c_topbar_container {
     display: flex;
     height: auto;
     width: 400px;
     padding: 10px;
-    align_items: center;
+    align-items: center;
     background-color: white;
     border-radius: 30px;
-    -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
-    box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
+    -webkit-box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
+    box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
-.manager_c_topbar_item{
+
+.manager_c_topbar_item {
     margin-top: 0px;
     width: 25%;
     text-align: center;
@@ -82,32 +90,36 @@
     border-width: 1px;
     border-color: white;
     border-radius: 10px;
-    border-style:solid;
+    border-style: solid;
     cursor: pointer;
 }
 
-.manager_c_topbar_item:hover{
-    border-color:#752E9E;
-    background-color: #752E9E;
-    color: white;
-}
-.manager_c_sidebar_item_icon.active{
-    color: white;
-}
-.manager_c_topbar_item.active{
+.manager_c_topbar_item:hover {
     border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
-.manager_c_topbar_item:hover{
-    border-color:#752E9E;
+
+.manager_c_sidebar_item_icon.active {
+    color: white;
+}
+
+.manager_c_topbar_item.active {
+    border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
+
+.manager_c_topbar_item:hover {
+    border-color: #752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+
 /*end - topbar component*/
 
 /*start - seller topbar component*/
-.manager_seller_c_topbar{
+.manager_manager_c_topbar {
     z-index: 10;
     position: fixed;
     top: 70px;
@@ -119,18 +131,20 @@
     margin-left: 10%;
 
 }
-.manager_seller_c_topbar_container{
+
+.manager_manager_c_topbar_container {
     display: flex;
     height: auto;
     width: 220px;
     padding: 10px;
-    align_items: center;
+    align-items: center;
     background-color: white;
     border-radius: 30px;
-    -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
-    box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
+    -webkit-box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
+    box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
-.manager_seller_c_topbar_item{
+
+.manager_manager_c_topbar_item {
     margin-top: 0px;
     width: 40%;
     text-align: center;
@@ -139,136 +153,156 @@
     border-width: 1px;
     border-color: white;
     border-radius: 10px;
-    border-style:solid;
+    border-style: solid;
     cursor: pointer;
 }
 
-.manager_seller_c_topbar_item:hover{
-    border-color:#752E9E;
-    background-color: #752E9E;
-    color: white;
-}
-
-.manager_seller_c_topbar_item.active{
+.manager_manager_c_topbar_item:hover {
     border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
-.manager_seller_c_topbar_item:hover{
-    border-color:#752E9E;
+
+.manager_manager_c_topbar_item.active {
+    border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
+
+.manager_manager_c_topbar_item:hover {
+    border-color: #752E9E;
+    background-color: #752E9E;
+    color: white;
+}
+
 /*end - seller topbar component*/
 
 @media only screen and (max-width: 600px) {
-    .manager_c_sidebar{
+    .manager_c_sidebar {
         width: 100%;
         top: 70px;
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
-        margin-top: 10px; /*delete if not work*/
-        
+        margin-top: 10px;
+        /*delete if not work*/
+
     }
-    .manager_c_sidebar_container{
+
+    .manager_c_sidebar_container {
         display: flex;
-        height:  70px;
+        height: 70px;
         width: 100%;
         padding: 10px;
         border-radius: 15px;
     }
-    .manager_c_sidebar_item{
+
+    .manager_c_sidebar_item {
         margin-top: 0px;
         width: 50px;
         margin: 0% 5%;
         height: auto;
     }
 
-    .manager_c_topbar{
+    .manager_c_topbar {
         width: 100%;
         top: 145px;
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
     }
-    .manager_c_topbar_container{
+
+    .manager_c_topbar_container {
         margin-top: 20px;
     }
-    .manager_seller_c_topbar{
+
+    .manager_manager_c_topbar {
         width: 100%;
         top: 145px;
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
     }
-    .manager_seller_c_topbar_container{
+
+    .manager_manager_c_topbar_container {
         margin-top: 20px;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    .manager_c_sidebar_item{
+    .manager_c_sidebar_item {
         margin: 0% 4%;
     }
 }
+
 @media only screen and (max-width: 400px) {
-    .manager_c_sidebar_item{
+    .manager_c_sidebar_item {
         margin: 0% 3%;
     }
-    .manager_c_topbar_container{
+
+    .manager_c_topbar_container {
         display: flex;
         height: auto;
         width: 360px;
         padding: 10px;
     }
-    .manager_c_topbar{
+
+    .manager_c_topbar {
         width: 360px;
         left: calc(50% - 51%);
         height: auto;
         min-height: 0px;
         padding: 10px 10px 10px;
-    
+
     }
 }
+
 @media only screen and (max-width: 360px) {
-    .manager_c_topbar{
+    .manager_c_topbar {
         left: calc(50% - 53%);
     }
-    .manager_c_topbar_item{
+
+    .manager_c_topbar_item {
         margin: 0px 5px 0px;
     }
 }
+
 @media only screen and (max-width: 320px) {
-    .manager_c_topbar{
+    .manager_c_topbar {
         left: calc(50% - 60%);
     }
-    .manager_c_topbar_item{
+
+    .manager_c_topbar_item {
         margin: 0px 3px 0px;
     }
 }
+
 @media only screen and (max-width: 300px) {
-    .manager_c_sidebar_item{
+    .manager_c_sidebar_item {
         margin: 0% 4%;
     }
-    .manager_c_topbar{
+
+    .manager_c_topbar {
         left: calc(50% - 68%);
         width: 280px;
     }
-    .manager_c_topbar_item{
+
+    .manager_c_topbar_item {
         margin: 0px;
     }
-    .manager_c_sidebar_container{
+
+    .manager_c_sidebar_container {
         width: 280px;
     }
 }
 
 
 /*start - pending ticket component*/
-:root {
+.root {
     --parent-height: 220px;
-  }
-.manager_c_tickets{
+}
+
+.manager_c_tickets {
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -277,60 +311,70 @@
     position: relative;
     margin: 10px;
 }
-.manager_c_tickets_cardstatus{
+
+.manager_c_tickets_cardstatus {
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-.manager_c_tickets_top{
+
+.manager_c_tickets_top {
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
     /*this image can be added in another ways, refer buyer's similar component*/
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    height:calc(var(--parent-height)*0.8);
+    height: calc(var(--parent-height)*0.8);
     position: relative;
     background-size: cover;
 }
-.manager_c_tickets_top_info{
+
+.manager_c_tickets_top_info {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    height:calc(var(--parent-height)*0.2);
+    height: calc(var(--parent-height)*0.2);
     position: absolute;
     bottom: 0;
     display: flex;
 }
-.manager_c_tickets_top_info_left{
+
+.manager_c_tickets_top_info_left {
     width: 75%;
     padding-left: 6px;
     color: white;
 }
-.manager_c_tickets_top_info_right{
+
+.manager_c_tickets_top_info_right {
     padding-right: 6px;
     color: white;
     position: relative;
     width: 25%;
     text-align: center;
 }
-.manager_c_tickets_top_info_right_nooftickets{
+
+.manager_c_tickets_top_info_right_nooftickets {
     position: block;
     width: 100%;
 }
-.manager_c_tickets_top_info_right_tickets{
+
+.manager_c_tickets_top_info_right_tickets {
     font-size: 10px;
 }
-.manager_c_tickets_top_head{
+
+.manager_c_tickets_top_head {
     display: flex;
     padding-left: 10px;
 }
-.manager_c_tickets_top_head_left{
+
+.manager_c_tickets_top_head_left {
     padding-top: 10px;
     color: white;
     width: 60%;
 }
-.manager_c_tickets_top_head_right{
+
+.manager_c_tickets_top_head_right {
     width: 40%;
     display: flex;
     background-color: #752E9E;
@@ -342,53 +386,60 @@
     border-bottom-left-radius: 40px;
     color: white;
 }
-.manager_c_tickets_top_head_right_1{
+
+.manager_c_tickets_top_head_right_1 {
     font-size: 12px;
     padding-right: 5px;
     bottom: 0;
 }
-.manager_c_tickets_top_head_right_2{
+
+.manager_c_tickets_top_head_right_2 {
     font-size: 18px;
 }
-#customized_dialog_title{
+
+#customized_dialog_title {
     background-color: #752E9E;
     color: white;
 }
 
-.css_og52vs_MuiTableCell_root.MuiTableCell_head{
+.css_og52vs_MuiTableCell_root.MuiTableCell_head {
     background-color: #752E9E !important;
 }
 
 @media only screen and (max-width: 550px) {
-    .manager_c_tickets{
+    .manager_c_tickets {
         width: 230px;
         border-radius: 20px;
         margin: 10px;
     }
 }
+
 @media only screen and (max-width: 450px) {
-    .manager_c_tickets{
+    .manager_c_tickets {
         width: 170px;
         border-radius: 20px;
         margin: 10px;
     }
 }
+
 @media only screen and (max-width: 400px) {
-    .manager_c_tickets{
+    .manager_c_tickets {
         width: 155px;
         border-radius: 20px;
         margin: 10px;
     }
 }
+
 @media only screen and (max-width: 350px) {
-    .manager_c_tickets{
+    .manager_c_tickets {
         width: 135px;
         border-radius: 20px;
         margin: 10px;
     }
 }
+
 @media only screen and (max-width: 330px) {
-    .manager_c_tickets{
+    .manager_c_tickets {
         width: 90vw;
         border-radius: 20px;
         margin: 10px;
@@ -400,15 +451,14 @@
 
 /*start - pending events info component*/
 
-.manager_c_ticketspublishdecline_buttons_stack
-{
+.manager_c_ticketspublishdecline_buttons_stack {
     justify-content: center;
     align-items: center;
     margin: auto;
     padding: auto;
 }
 
-.manager_c_ticketsinfo_top_head_right{
+.manager_c_ticketsinfo_top_head_right {
     width: 100%;
     display: flex;
     background-color: #752E9E;
@@ -419,22 +469,24 @@
     padding-left: auto;
     color: white;
 }
-.manager_eventinfo_image{
+
+.manager_eventinfo_image {
     background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
-    height:200px;
+    height: 200px;
     background-size: contain;
     width: 100%;
     padding: 10px;
     margin-top: 20px;
 }
-.manager_eventinfo_font
-{
-    color:black
+
+.manager_eventinfo_font {
+    color: black
 }
+
 /*end-pendig tikcets info component*/
 
 /*start-active events component*/
-.manager_c_tickets_active{
+.manager_c_tickets_active {
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -443,10 +495,11 @@
     position: relative;
     margin: 10px;
 }
+
 /*end-active events component*/
 
 /*start-declined events component*/
-.manager_c_tickets_declined{
+.manager_c_tickets_declined {
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -455,27 +508,234 @@
     position: relative;
     margin: 10px;
 }
+
 /*end-declined events component*/
 
 /*start-manager password reset component*/
 
-.manager_settings_head{
+.manager_settings_head {
     font-size: x-large !important;
-    font-weight: bolder !important ;
+    font-weight: bolder !important;
     color: slategrey !important;
     margin-bottom: 40px;
     margin-top: 50px;
     text-align: center !important;
 }
 
-.manager_button_submit{
+.manager_button_submit {
     background-color: #BB9CD1;
     justify-content: center !important;
 }
 
 /*start - seller approval*/
-.manager_c_sellerapprovaltable
-{
+.manager_c_sellerapprovaltable {
     width: 100%;
 }
+
 /*end - seller approval*/
+
+/*start - manager dashboard */
+.manager_dashboard {
+    flex: 15;
+    width: 100%;
+    height: calc(100vh - 150px);
+    padding-left: 124px;
+}
+
+.dashboardtop {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboardItem {
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    display: flex;
+    margin: 10px 40px;
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-height: 100%;
+    -webkit-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.24)
+}
+
+.dashboardContainer {
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboardMoney {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.dashboardRate {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.dashboardIcon_up {
+    color: rgb(0, 200, 30);
+    font-size: 20px;
+    display: none;
+}
+
+.dashboardIcon_down {
+    color: rgb(200, 0, 30);
+    font-size: 20px;
+    display: flex;
+}
+
+.dashboardSub {
+    font-size: 15px;
+    color: gray;
+}
+
+.dashboardgraph {
+    margin: 40px;
+    padding: 30px;
+    -webkit-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.24)
+}
+
+.dashboardtable {
+    margin: 40px;
+    padding: 30px;
+}
+
+.chartTitle {
+    margin-bottom: 20px;
+}
+
+.manager_progressbar {
+    margin: auto;
+    justify-content: center;
+    width: 75px;
+}
+
+@media only screen and (max-width: 1550px) {
+    .manager_progressbar {
+        width: 70px;
+    }
+}
+
+@media only screen and (max-width: 1270px) {
+    .manager_progressbar {
+        width: 65px;
+    }
+
+    .dashboardItem {
+        flex: 1;
+        margin: 10px 10px;
+        padding: 25px 10px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .dashboardItem {
+        flex: 1 1;
+        display: flex;
+        flex-flow: column-reverse;
+        margin: 20px 5px;
+        padding: 5px 5px;
+        height: 100%;
+    }
+
+    .dashboardtop {
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .dashboardtable {
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .dashboardtop {
+        height: 250px;
+    }
+}
+
+@media only screen and (max-height: 1000px) {
+    .manager_dashboard {
+        height: calc(100vh - 100px);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .manager_dashboard {
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .dashboardgraph {
+        margin: 60px 5px 20px;
+        padding: 10px;
+    }
+
+    .dashboardtable {
+        margin: 20px 5px;
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .dashboardMoney {
+        font-size: 20px;
+    }
+
+    .dashboardSub {
+        font-size: 10px;
+    }
+
+    .dashboardMoney {
+        font-size: 20px;
+    }
+
+    .dashboardSub {
+        font-size: 15px;
+    }
+
+    .dashboardRate {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .dashboardMoney {
+        font-size: 19px;
+    }
+
+    .dashboardSub {
+        font-size: 12px;
+    }
+
+    .dashboardRate {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .dashboardMoney {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .dashboardMoney {
+        font-size: 14px;
+    }
+
+    .dashboardSub {
+        font-size: 10px;
+    }
+
+    .dashboardRate {
+        font-size: 10px;
+    }
+}
