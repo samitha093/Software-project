@@ -31,14 +31,26 @@
 
 /*end- manager index page*/
 
+.manager_settings_bg
+{
+    background-image: url("../../assets/dashbord-bg.png");
+    background-size: cover;
+    height:100vh;
+    position: absolute;
+    width: -webkit-fill-available;
+}
 .manager_settings_main_container
 {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 .manager_setting{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {

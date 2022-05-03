@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
 
                 <Link href="/manager">
                     <Tooltip title="Home Page" placement="bottom-end">
-                        <div className={styles.manager_c_sidebar_item}>
+                        <div className="manager-c-sidebar-item">
                             <Icon className={managersellersidebar1 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiHomeOutline} />
                         </div>
                     </Tooltip>
@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
 
                 <Link href="/manager/pendingevents">
                     <Tooltip title="Events" placement="bottom-end">
-                        <div className={styles.manager_c_sidebar_item}>
+                        <div className="manager-c-sidebar-item">
                             <Icon className={managersellersidebar2 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCalendarSearch} />
                         </div>
                     </Tooltip>
@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
 
                 <Link href="/manager/activesellers">
                     <Tooltip title="Sellers" placement="bottom-end">
-                        <div className={styles.manager_c_sidebar_item}>
+                        <div className="manager-c-sidebar-item">
                             <Icon className={managersellersidebar3 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiAccountGroup} />
                         </div>
                     </Tooltip>
@@ -82,15 +82,15 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
 
                 <Link href="/manager/settings">
                     <Tooltip title="Manager Settings" placement="bottom-end">
-                        <div className={styles.manager_c_sidebar_item}>
+                        <div className="manager-c-sidebar-item">
                             <Icon className={managersellersidebar4 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCogs} />
                         </div>
                     </Tooltip>
                 </Link>
 
                 <Tooltip title="Logout from Manager" placement="bottom-end">
-                    <div onClick={logout} className={styles.manager_c_sidebar_item}>
-                        <Icon className={styles.manager_c_sidebar_item_icon} path={mdiLogout} />
+                    <div onClick={logout} className="manager-c-sidebar-item">
+                        <Icon className="manager-c-sidebar-item-icon" path={mdiLogout} />
                     </div>
                 </Tooltip>
             </div>
