@@ -92,37 +92,30 @@ const Homepage: React.FC<HomepageProps> = ({ }) => {
         {
             date: '1',
             Revenue: 4000,
-            Returns: 2400,
         },
         {
             date: '2',
             Revenue: 3000,
-            Returns: 1398,
         },
         {
             date: '3',
             Revenue: 2000,
-            Returns: 9800,
         },
         {
             date: '4',
             Revenue: 2780,
-            Returns: 3908,
         },
         {
             date: '5',
             Revenue: 1890,
-            Returns: 4800,
         },
         {
             date: '6',
             Revenue: 2390,
-            Returns: 3800,
         },
         {
             date: '7',
             Revenue: 3490,
-            Returns: 4300,
         },
     ];
 
