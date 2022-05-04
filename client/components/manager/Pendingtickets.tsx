@@ -146,8 +146,9 @@ export default function PendingEvents() {
                             maxRows="1"
                             variant="standard"
                             fullWidth
+                            error
                         />
-                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" marginleft="30px">
+                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" margin-left="30px">
                             SUBMIT
                         </Fab>
                     </Stack>

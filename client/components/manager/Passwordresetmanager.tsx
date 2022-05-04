@@ -27,7 +27,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                             <form className={styles.modern_form} action="#">
                                 <h1 className={styles.head_password} >Reset Password</h1>
                                 <input
-                                    className="inputbox-modern"
+                                    className={styles.inputbox_modern}
                                     type="password"
                                     placeholder="Current password"
                                     value={currentpwd}
@@ -35,7 +35,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
                                 <input
-                                    className="inputbox-modern"
+                                    className={styles.inputbox_modern}
                                     type="password"
                                     placeholder="New Password"
                                     value={newpwd}
@@ -43,7 +43,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
                                 <input
-                                    className="inputbox-modern"
+                                    className={styles.inputbox_modern}
                                     type="password"
                                     placeholder="Confirm New Password"
                                     value={cnewpwd}

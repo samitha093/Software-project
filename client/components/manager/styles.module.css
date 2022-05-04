@@ -455,6 +455,23 @@
     justify-content: center !important;
 }
 
+.inputbox_modern{
+	background-color: rgba(238, 238, 238, 0.733);
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	padding: 12px 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+
+}
+.head_password
+{
+    margin-left: 20px;
+}
+
 /*start - seller approval*/
 .manager_c_sellerapprovaltable {
     width: 100%;
