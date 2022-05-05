@@ -154,7 +154,7 @@ const Homepage: React.FC<HomepageProps> = ({ }) => {
                     <div>
                         <span className={styles.dashboardTitle}>Pending Bids</span>
                         <div className={styles.dashboardContainer}>
-                            <span className={styles.dashboardMoney}>8</span>
+                            <span className={styles.dashboardMoney}>16</span>
                             <span className={styles.dashboardRate}>
                                 35
                             </span>
@@ -169,7 +169,7 @@ const Homepage: React.FC<HomepageProps> = ({ }) => {
                     <div>
                         <span className={styles.dashboardTitle}>Total Sold Tickets</span>
                         <div className={styles.dashboardContainer}>
-                            <span className={styles.dashboardMoney}>8</span>
+                            <span className={styles.dashboardMoney}>21</span>
                             <span className={styles.dashboardRate}>
                                 35
                             </span>
