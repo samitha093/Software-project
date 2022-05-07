@@ -10,6 +10,7 @@ import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import Styles from './Styles.module.css'
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -56,28 +57,28 @@ const [sellertopbar4,setsellertopbar4] = React.useState(false);
         }     
     },[]);
         return (
-            <div className="seller-c-topbar">
-                    <div className="seller-c-topbar-container">
+            <div className={Styles.seller_c_topbar}>
+                    <div className={Styles.seller_c_topbar_container}>
                         <Link href="/seller/Pendingevents">
-                            <div className={sellertopbar1 ? 'seller-c-topbar-item active' : 'seller-c-topbar-item'}>
+                            <div className={sellertopbar1 ? 'seller_c_topbar_item active' : 'seller_c_topbar_item'}>
                             Pending
                             </div>
                         </Link>
 
                         <Link href="/seller/Activeevents">
-                            <div className={sellertopbar2 ? 'seller-c-topbar-item active' : 'seller-c-topbar-item'}>
+                            <div className={sellertopbar2 ? 'seller_c_topbar_item active' : 'seller_c_topbar_item'}>
                             Active
                             </div>
                         </Link>
 
                         <Link href= "/seller/Endevents">
-                            <div className={sellertopbar3 ? 'seller-c-topbar-item active' : 'seller-c-topbar-item'}>
+                            <div className={sellertopbar3 ? 'seller_c_topbar_item active' : 'seller_c_topbar_item'}>
                             End
                             </div>
                         </Link>
 
                         <Link href="/seller/Declinedevents">
-                        <div className={sellertopbar4 ? 'seller-c-topbar-item active' : 'seller-c-topbar-item'}>
+                        <div className={sellertopbar4 ? 'seller_c_topbar_item active' : 'seller_c_topbar_item'}>
                             Declined
                         </div>
                         </Link>

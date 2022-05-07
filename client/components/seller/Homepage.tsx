@@ -18,6 +18,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Progressbar from '../../components/seller/Progressbar'
+import Styles from './Styles.module.css'
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -194,57 +195,57 @@ const Homepage: React.FC<HomepageProps> = ({}) => {
   
 
 return (
-    <div className="seller-dashboard">
-        <div className="dashboardtop">
-            <div className ="dashboardItem">
+    <div className={Styles.seller_dashboard}>
+        <div className={Styles.dashboardtop}>
+            <div className ={Styles.dashboardItem}>
               <div>
-              <span className="dashboardTitle">No. of Sales</span>
-                <div className ="dashboardContainer">
-                    <span className="dashboardMoney">15</span>
-                    <span className="dashboardRate">
+              <span className={Styles.dashboardTitle}>No. of Sales</span>
+                <div className ={Styles.dashboardContainer}>
+                    <span className={Styles.dashboardMoney}>15</span>
+                    <span className={Styles.dashboardRate}>
                         90 
                     </span>
                 </div>
-                <span className="dashboardSub">Compared to tickets</span>
+                <span className={Styles.dashboardSub}>Compared to tickets</span>
               </div>
-              <div className="seller-progressbar">
+              <div className={Styles.seller_progressbar}>
                 <Progressbar/>
               </div>
             </div>
-            <div className ="dashboardItem">
+            <div className ={Styles.dashboardItem}>
               <div>
-                <span className="dashboardTitle">No. of Bids</span>
-                <div className ="dashboardContainer">
-                    <span className="dashboardMoney">8</span>
-                    <span className="dashboardRate">
+                <span className={Styles.dashboardTitle}>No. of Bids</span>
+                <div className ={Styles.dashboardContainer}>
+                    <span className={Styles.dashboardMoney}>8</span>
+                    <span className={Styles.dashboardRate}>
                         35 
                     </span>
                 </div>
-                <span className="dashboardSub">Compared to available</span>
+                <span className={Styles.dashboardSub}>Compared to available</span>
               </div>
-              <div className="seller-progressbar">
+              <div className={Styles.seller_progressbar}>
                 <Progressbar/>
               </div>
             </div>
-            <div className ="dashboardItem">
+            <div className ={Styles.dashboardItem}>
               <div>
-                <span className="dashboardTitle">Revanue</span>
-                <div className ="dashboardContainer">
-                    <span id="dashboardMoney-f" className="dashboardMoney">LKR2578</span>
-                    <span className="dashboardRate">
-                      <ArrowUpwardIcon className="dashboardIcon-up"/>
-                      <ArrowDownwardIcon className="dashboardIcon-down"/>
+                <span className={Styles.dashboardTitle}>Revanue</span>
+                <div className ={Styles.dashboardContainer}>
+                    <span id="dashboardMoney-f" className={Styles.dashboardMoney}>LKR2578</span>
+                    <span className={Styles.dashboardRate}>
+                      <ArrowUpwardIcon className={Styles.dashboardIcon_up}/>
+                      <ArrowDownwardIcon className={Styles.dashboardIcon_down}/>
                     </span>
                 </div>
-                <span className="dashboardSub">Compared to yesterday</span>
+                <span className={Styles.dashboardSub}>Compared to yesterday</span>
               </div>
-              <div className="seller-progressbar">
+                <div className={Styles.seller_progressbar}>
                 <Progressbar/>
               </div>
             </div>
        </div>
-       <div className="dashboardgraph">
-            <h3 className="chartTitle">Sales Analytics</h3>
+       <div className={Styles.dashboardgraph}>
+            <h3 className={Styles.chartTitle}>Sales Analytics</h3>
             <ResponsiveContainer width="100%" aspect={4/1}>
                 <LineChart data={data}>
                     <XAxis dataKey="date" stroke="#5550bd"/>
@@ -255,16 +256,16 @@ return (
                 </LineChart>
             </ResponsiveContainer>
        </div>
-       <div className="dashboardtable">
+       <div className={Styles.dashboardtable}>
        <TableContainer component={Paper}>
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell id="customized-dialog-title">Ticket Level</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
+            <TableCell id={Styles.customized_dialog_title1}>Ticket Level</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Quantity</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Quantity</TableCell>
           </TableRow>
         </TableHead>
       </Table>

@@ -14,3 +14,115 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.seller_c_sidebar_item.active{
+  border-color: white;
+  background-color: #752E9E;
+}
+.seller_c_sidebar_item_icon.active{
+  color: white;
+}
+.seller_c_topbar_item.active{
+  border-color: #752E9E;
+  background-color: #752E9E;
+  color: white;
+}
+.seller_c_sidebar_item:hover{
+  border-color: white;
+  background-color: #752E9E;
+  color: white;
+}
+.seller_c_sidebar_item_icon:hover{
+  color: white;
+}
+.seller_c_sidebar_item_icon{
+  padding: 10px;
+  color: black;
+}
+.seller_c_topbar_item:hover{
+  border-color:#752E9E;
+  background-color: #752E9E;
+  color: white;
+}
+.seller_c_sidebar_item{
+  width:60px;
+  height:60px;
+  border: 1px;
+  border-color: black;
+  border-radius: 10px;
+  border-style:solid;
+  margin-top: 45px;
+  padding: 0px;
+  cursor: pointer;
+}
+.seller_c_topbar_item{
+  margin-top: 0px;
+  width: 25%;
+  text-align: center;
+  margin: 0px 10px 0px;
+  height: auto;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 10px;
+  border-style:solid;
+  cursor: pointer;
+}
+:root {
+  --parent-height: 220px;
+}
+@media only screen and (min-width: 600px) {
+  @media only screen and (max-height: 415px) {
+      .seller_c_sidebar_item {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          margin-top: 6px;
+          padding: 0px;
+      }
+  }
+  @media only screen and (min-height: 530px) {
+      .seller_c_sidebar_item {
+          width: 55px;
+          height: 55px;
+          border-radius: 10px;
+          margin-top: 30px;
+          padding: 0px;
+      }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .seller_c_sidebar_item{
+      margin-top: 0px;
+      width: 50px;
+      margin: 0% 8%;
+      height: auto;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .seller_c_sidebar_item{
+      margin: 0% 6%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .seller_c_sidebar_item{
+      margin: 0% 5%;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .seller_c_topbar_item{
+      margin: 0px 5px 0px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .seller_c_topbar_item{
+      margin: 0px 3px 0px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .seller_c_sidebar_item{
+      margin: 0% 4%;
+  }
+  .seller_c_topbar_item{
+      margin: 0px;
+  }
+}
