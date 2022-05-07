@@ -49,9 +49,6 @@
 /*end - sidebar component*/
 
 /*start - valid ticket component*/
-.root {
-    --parent-height: 220px;
-  }
 .buyer_c_ticketvalid{
     cursor: pointer;
     width: 250px;

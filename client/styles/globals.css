@@ -14,6 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+:root {
+  --parent-height: 220px;
+}
 
 /*start-Login component*/
 .mainbackground{
