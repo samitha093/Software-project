@@ -12,16 +12,18 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 //import { styled } from '@mui/material/styles';
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 //import FormControl from '@mui/material/FormControl';
 //import FormLabel from '@mui/material/FormLabel';
-import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { Fab } from '@mui/material';
+
+import styles from './styles.module.css'
+import classnames from 'classnames';
 
 
 //Line 80 space for the image box
@@ -41,28 +43,28 @@ export default function PendingEvents() {
 
     return (
         <div>
-            <div className="manager-c-tickets" onClick={handleClickOpen}>
+            <div className={styles.manager_c_tickets} onClick={handleClickOpen}>
                 <div>
-                    <div className="manager-c-tickets-top">
+                    <div className={styles.manager_c_tickets_top}>
 
 
 
-                        <div className="manager-c-tickets-top-info">
-                            <div className="manager-c-tickets-top-info-left">
-                                <div className="manager-c-tickets-top-info-left-name">
+                        <div className={styles.manager_c_tickets_top_info}>
+                            <div className={styles.manager_c_tickets_top_info_left}>
+                                <div className={styles.manager_c_tickets_top_info_left_name}>
                                     Event name
                                 </div>
-                                <div className="manager-c-tickets-top-info-left-date">
+                                <div className={styles.manager_c_tickets_top_info_left_date}>
                                     2021-08-23
                                 </div>
                             </div>
-                            <div className="manager-c-tickets-top-info-right">
-                                <div className="manager-c-tickets-top-info-right-nooftickets">460</div>
-                                <div className="manager-c-tickets-top-info-right-tickets">tickets</div>
+                            <div className={styles.manager_c_tickets_top_info_right}>
+                                <div className={styles.manager_c_tickets_top_info_right_nooftickets}>460</div>
+                                <div className={styles.manager_c_tickets_top_info_right_tickets}>tickets</div>
                             </div>
                         </div>
                     </div>
-                    <h5 className="manager-c-tickets-cardstatus">Info</h5>
+                    <h5 className={styles.manager_c_tickets_cardstatus}>Info</h5>
                 </div>
             </div>
             <Dialog
@@ -70,7 +72,7 @@ export default function PendingEvents() {
                 open={open}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title" className="manager-c-ticketsinfo-top-head-right">
+                <DialogTitle id="responsive-dialog-title" className={styles.manager_c_ticketsinfo_top_head_right}>
                     {"More Info"}
                     <IconButton
                         aria-label="close"
@@ -89,7 +91,7 @@ export default function PendingEvents() {
                     <DialogContentText>
                         <Grid sx={{ maxWidth: 480 }}>
                             <Grid>
-                                <div className="manager-eventinfo-image">
+                                <div className={styles.manager_eventinfo_image}>
 
                                 </div>
 
@@ -97,7 +99,7 @@ export default function PendingEvents() {
 
                             <Grid margin-top="20px">
                                 <Box sx={{ flexGrow: 1 }}>
-                                    <Grid container spacing={2} className="manager-eventinfo-font">
+                                    <Grid container spacing={2} className={styles.manager_eventinfo_font}>
                                         <Grid item xs={12}>
                                             <Typography> Event Name: </Typography>
                                         </Grid>
@@ -129,13 +131,13 @@ export default function PendingEvents() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack"  >
+                    <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
                         <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
                             <FormControlLabel value="approve" control={<Radio />} label="Approve" />
                             <FormControlLabel value="decline" control={<Radio />} label="Decline" />
                         </RadioGroup>
                     </Stack>
-                    <Stack spacing={2} direction="row" className="manager-c-ticketspublishdecline-buttons-stack" >
+                    <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
                         <TextField
                             required
                             id="standard-multiline-static"
@@ -144,8 +146,9 @@ export default function PendingEvents() {
                             maxRows="1"
                             variant="standard"
                             fullWidth
+                            error
                         />
-                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" marginleft="30px">
+                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" margin-left="30px">
                             SUBMIT
                         </Fab>
                     </Stack>

@@ -6,6 +6,8 @@ import Declinedevents from '../../components/manager/Declinedevents'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
 import axios from 'axios'
 import {gethost} from '../../session/Session';
+import styles from './styles.module.css'
+import classnames from 'classnames';
 
 const declinedevents: NextPage = () => {
     React.useEffect(() => {
@@ -16,14 +18,19 @@ const declinedevents: NextPage = () => {
    
     }, [])
     return (
-            <div className="manager-bg">
+            <div className={styles.manager_bg}>
                 <Navbar/>
-                <div className="manager-index">
-                    <Sidebar/>
-                    <ManagerTopBar/>
+                <div className={styles.manager_index}>
+                    <Sidebar id = '2'/>
+                    <ManagerTopBar id2='3'/>
                     <div>
                        <h1>Declined Events</h1> 
-                       <div className="manager-index-container">
+                       <div className={styles.manager_index_container}>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
+                            <Declinedevents/>
                             <Declinedevents/>
                             <Declinedevents/>
                             <Declinedevents/>

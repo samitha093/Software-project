@@ -14,8 +14,11 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Paper from '@mui/material/Paper';
 import Fab from '@mui/material/Fab';
-import Sellerapprovaltable from '../../components/manager/Sellerapprovaltable'
+import SellerActions from '../../components/manager/SellerActions'
 import AddTaskIcon from '@mui/icons-material/AddTask';
+
+import styles from './styles.module.css'
+import classnames from 'classnames';
 
 interface CreateeventProps {
 
@@ -89,13 +92,13 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" className="manager-c-ticketsinfo-top-head-right" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized-dialog-title" className={styles.manager_c_ticketsinfo_top_head_right} onClose={handleClose}>
           Approve Sellers
         </BootstrapDialogTitle>
         <DialogContent>
           <DialogContent dividers>
             <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1300, flexGrow: 1 }}>
-              <Sellerapprovaltable />
+              <SellerActions/>
             </Paper>
           </DialogContent>
         </DialogContent>

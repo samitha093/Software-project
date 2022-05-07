@@ -11,10 +11,15 @@ const index: NextPage = () => {
 
     const [items, setitem] = React.useState([])
     React.useEffect(()=>{
-      axios.get(gethost()+'seller/active/61842a1e0ec95f011fdc3bcf')
-      .then(async (res)=>{
-        await setitem(res.data)
-      })
+        try{
+            axios.get(gethost()+'seller/active/61842a1e0ec95f011fdc3bcf')
+                .then(async (res)=>{
+                    await setitem(res.data)
+                })
+        }catch{
+
+        }
+
         
     },[])
 
@@ -28,11 +33,13 @@ const index: NextPage = () => {
                 <div className="seller-index">
                     <Sidebar id="2"/>
                     <Topbar id2="2"/>
+                    <div className="seller-index-parent-fix">
                     <div className="seller-index-parent">
                        <h1 className="seller-index-container-name">Active Events</h1>
                        <div className="seller-index-container">
                           {listitem}
                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

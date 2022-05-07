@@ -1,5 +1,6 @@
 import React from 'react'
 import QRCode from 'qrcode'
+import styles from './styles.module.css'
 interface TicketProps {
  id : string
 }
@@ -18,7 +19,7 @@ const Ticket: React.FC<TicketProps> = ({id}) => {
         }
     };
         return (
-            <div className="buyer-c-ticket" onClick={viewchange}>
+            <div className={styles.buyer_c_ticket} onClick={viewchange}>
                 {!open?
                     <div  id="ticket-cord" >
                         {id}

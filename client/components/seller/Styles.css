@@ -237,7 +237,111 @@
     transition: transform 80ms ease-in;
     transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
 }
-
+.seller-dashboard{
+    flex: 15;
+    width: 100%;
+    height: calc(100vh - 150px);
+    padding-left: 124px;
+}
+.dashboardtop{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboardItem{
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    display: flex;
+    margin: 10px 40px;
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-height: 100%;
+    -webkit-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.24); 
+    box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.24)
+}
+.dashboardContainer{
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.dashboardMoney{
+    font-size: 30px;
+    font-weight: 600;
+}
+.dashboardRate{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.dashboardIcon-up{
+    color: rgb(0, 168, 22);
+    font-size: 20px;
+    display: none;
+}
+.dashboardIcon-down{
+    color: rgb(168, 0, 22);
+    font-size: 20px;
+    display: flex;
+}
+.dashboardSub{
+    font-size: 15px;
+    color: gray;
+}
+.dashboardgraph{
+    margin: 40px;
+    padding: 30px;
+    -webkit-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.24); 
+    box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.24)
+}
+.dashboardtable{
+    margin: 40px;
+    padding: 30px;
+}
+.chartTitle{
+    margin-bottom: 20px;
+}
+.seller-progressbar {
+    margin: auto;
+    justify-content: center;
+    width: 75px;
+}
+@media only screen and (max-width: 1550px) {
+    .seller-progressbar {
+        width: 70px;
+    }
+}
+@media only screen and (max-width: 1270px) {
+    .seller-progressbar {
+        width: 65px;
+    }
+    .dashboardItem{
+        flex: 1;
+        margin: 10px 10px;
+        padding: 25px 10px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .dashboardItem {
+        flex: 1 1;
+        display: flex;
+        flex-flow: column-reverse;
+        margin: 20px 5px;
+        padding: 5px 5px;
+        height: 100%;
+    }
+    .dashboardtop {
+        height: 200px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .dashboardtable {
+        margin: 20px;
+        padding: 10px;
+    }
+    .dashboardtop {
+        height: 250px;
+    }
+}
 @media only screen and (min-width: 600px) {
     @media only screen and (max-height: 415px) {
         .seller-c-sidebar {
@@ -251,11 +355,44 @@
             padding: 60px 10px;
         }
         .seller-c-sidebar-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-top: 6px;
+            padding: 0px;
+        }
+        .seller-c-sidebar-container {
+            padding: 30px 30px;
+        }
+        .seller-c-topbar{
+            left: calc(57% - 207px);
+        }
+    }
+    @media only screen and (min-height: 530px) {
+        .seller-c-sidebar {
+            z-index: 10;
+            position: fixed;
+            left: 0%;
+            top: -webkit-calc(55vh - 325px);
+            top: calc(55vh - 210px);
+            height: 420px;
+            width: 130px;
+            padding: 0px 10px;
+        }
+        .seller-c-sidebar-item {
             width: 55px;
             height: 55px;
             border-radius: 10px;
-            margin-top: 1px;
+            margin-top: 30px;
             padding: 0px;
+        }
+        .seller-c-sidebar-container {
+            padding: 27px 27px;
+        }
+    }
+    @media only screen and (max-height: 1000px) {
+        .seller-dashboard{
+            height: calc(100vh - 100px);
         }
     }
     .seller-c-create-img-in{
@@ -272,6 +409,9 @@
     }
 }
 @media only screen and (max-width: 600px) {
+    .seller-dashboard {
+        padding-left: 0px;
+    }
     .seller-c-create-img-in{
         width: 288px;
         height: 150px;
@@ -340,10 +480,18 @@
         background: transparent;
         height: 100%;
     }
+    .dashboardgraph {
+        margin: 60px 5px 20px;
+        padding: 10px;
+    }
+    .dashboardtable {
+        margin: 20px 5px;
+        padding: 5px;
+    }
 }
 @media only screen and (max-width: 500px) {
     .seller-c-sidebar-item{
-        margin: 0% 7%;
+        margin: 0% 6%;
     }
     .seller-c-create-img-in{
         width: 255px;
@@ -361,6 +509,21 @@
         border-radius: 20px;
         margin: 10px;
     }
+    .dashboardMoney {
+        font-size: 20px;
+    }
+    .dashboardSub {
+        font-size: 10px;
+    }
+    .dashboardMoney {
+        font-size: 20px;
+    }
+    .dashboardSub {
+        font-size: 15px;
+    }
+    .dashboardRate {
+        font-size: 15px;
+    }
 }
 @media only screen and (max-width: 400px) {
     .seller-c-events{
@@ -369,7 +532,7 @@
         margin: 10px;
     }
     .seller-c-sidebar-item{
-        margin: 0% 6%;
+        margin: 0% 5%;
     }
     .seller-c-topbar-container{
         display: flex;
@@ -412,6 +575,15 @@
     .seller-c-create-table{
         width: 455px;
         padding-left: 0%;
+    }
+    .dashboardMoney {
+        font-size: 19px;
+    }
+    .dashboardSub {
+        font-size: 12px;
+    }
+    .dashboardRate {
+        font-size: 12px;
     } 
 }
 @media only screen and (max-width: 360px) {
@@ -447,12 +619,24 @@
         width: 435px;
         padding-left: 0%;
     }
+    .dashboardMoney {
+        font-size: 17px;
+    }
 }
 @media only screen and (max-width: 350px) {
     .seller-c-events{
         width: 135px;
         border-radius: 20px;
         margin: 10px;
+    }
+    .dashboardMoney {
+        font-size: 14px;
+    }
+    .dashboardSub {
+        font-size: 10px;
+    }
+    .dashboardRate {
+        font-size: 10px;
     }
 }
 @media only screen and (max-width: 330px) {
@@ -463,8 +647,8 @@
     }
 }
 @media only screen and (max-width: 320px) {
-    .seller-c-topbar{
-        left: calc(50% - 60%);
+    .seller-c-topbar-container {
+        width: 318px;
     }
     .seller-c-topbar-item{
         margin: 0px 3px 0px;
@@ -511,6 +695,4 @@
         width: 280px;
     }
 }
-
-
 

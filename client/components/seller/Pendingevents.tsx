@@ -156,11 +156,11 @@ const Pendingevents: React.FC<PendingeventProps> = ({data}) => {
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Ticket Level</TableCell>
-            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Quantity</TableCell>
+            <TableCell id="customized-dialog-title">Ticket Level</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

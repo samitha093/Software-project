@@ -412,3 +412,131 @@ button.ghost {
 }
 
 /*end- forgotpwd component*/
+
+/*buyer - sidebar component*/
+.buyer-c-sidebar-item{
+  width:60px;
+  height:60px;
+  border: 1px;
+  border-color: black;
+  border-radius: 10px;
+  border-style:solid;
+  margin-top: 35px;
+  cursor: pointer;
+}
+.buyer-c-sidebar-item.active{
+  border-color: white;
+  background-color: #752E9E;
+}
+.buyer-c-sidebar-item-icon.active{
+  color: white;
+}
+.buyer-c-sidebar-item:hover{
+  border-color: white;
+  background-color: #752E9E;
+  color: white;
+}
+.buyer-c-sidebar-item-icon:hover{
+  color: white;
+}
+.buyer-c-sidebar-item-icon{
+  color: black;
+}
+@media only screen and (max-width: 600px) {
+  .buyer-c-sidebar-item{
+    margin-top: 0px;
+    width: 15%;
+    margin: 0 1%;
+    height: auto;
+  }
+}
+/*buyer - sidebar component*/
+
+
+/*manager styles*/
+
+/*start - sidebar*/
+
+.manager-c-sidebar-item{
+  width:60px;
+  height:60px;
+  border: 1px;
+  border-color: black;
+  border-radius: 10px;
+  border-style:solid;
+  margin-top: 35px;
+  cursor: pointer;
+}
+.manager-c-sidebar-item.active{
+  border-color: white;
+  background-color: #752E9E;
+}
+.manager-c-sidebar-item-icon.active{
+  color: white;
+}
+.manager-c-sidebar-item:hover{
+  border-color: white;
+  background-color: #752E9E;
+  color: white;
+}
+.manager-c-sidebar-item-icon:hover{
+  color: white;
+}
+.manager-c-sidebar-item-icon{
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .manager-c-sidebar-item{
+    margin-top: 0px;
+    width: 15%;
+    margin: 0 1%;
+    height: auto;
+  }
+}
+/*end - sidebar*/
+
+/*start - manager topbar*/
+
+.manager-c-topbar-item.active {
+  border-color: #752E9E;
+  background-color: #752E9E;
+  color: white;
+}
+
+.manager-c-topbar-item {
+  margin-top: 0px;
+  width: 40%;
+  text-align: center;
+  margin: 0px 10px 0px;
+  height: auto;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 10px;
+  border-style: solid;
+  cursor: pointer;
+}
+/*end - manager topbar*/
+
+/*start - manager seller topbar*/
+
+.manager_seller_c_topbar_item {
+  margin-top: 0px;
+  width: 25%;
+  text-align: center;
+  margin: 0px 10px 0px;
+  height: auto;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 10px;
+  border-style: solid;
+  cursor: pointer;
+}
+.manager_seller_c_topbar_item.active {
+  border-color: #752E9E;
+  background-color: #752E9E;
+  color: white;
+}
+
+/*end - manager seller topbar*/
+

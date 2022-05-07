@@ -15,7 +15,7 @@ const Resetpw: React.FC<ForgotpwdProps> = ({}) => {
   const [cnewpw, setcnewpwpw] = React.useState("");
 
     return(
-        <div className="container" id="container" >
+        <div className={container} id="container" >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item md={7} className = "pwd_container" >

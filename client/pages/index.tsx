@@ -9,13 +9,12 @@ import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
 import Shop from '../components/Shop'
 import style from './user/style.module.css'
-
-
+import Carosaltop from '../components/store/Carosaltop'
+import { color } from '@mui/system';
 
 const index: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter()
-
     function create(event: any) {
         event.preventDefault();
         router.push('/user');

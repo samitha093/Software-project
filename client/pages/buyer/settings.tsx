@@ -3,15 +3,18 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
 import Resetpw from '../../components/buyer/Resetpw'
+
+import styles from './styles.module.css'
+
 const settings: NextPage = () => {
         return (
-            <div className="buyer-bg">
+            <div className={styles.buyer_bg}>
                 <Navbar/>
-                <div className="buyer-index">
+                <div className={styles.buyer_index}>
                     <Sidebar id="5"/>
-                    <div className='buyer-setting buyer-index-container-parent'>
+                    <div className={'${styles.buyer_setting} ${buyer_index_container_parent}'}>
                        <h1>Settings</h1>
-                       <div className='buyer-setting-container'><Resetpw /></div> 
+                       <div className={styles.buyer_setting_container}><Resetpw /></div>
                        
                     </div>
                 </div>

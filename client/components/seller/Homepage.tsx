@@ -6,12 +6,18 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Image from 'next/image'
-import tick from '../../assets/online-ticket.png'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import Progressbar from '../../components/seller/Progressbar'
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -41,6 +47,21 @@ export interface DialogTitleProps {
   
   const BootstrapDialogTitle = (props: DialogTitleProps) => {
     const { children, onClose, ...other } = props;
+
+    function createData(
+      level: any,
+      fixprice: any,
+      fquantity: any,
+      bidprice: any,
+      bquantity: any,
+    ) {
+      return { level, fixprice, fquantity, bidprice, bquantity};
+    }
+    
+    /*const rows = items.map((item)=>(
+        createData(item.ticket_level,item.buy_amount, item.buy_quantity, item.bid_amount, item.bid_quantity,)
+      ));*/
+
     return (
       <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
         {children}
@@ -63,64 +84,194 @@ export interface DialogTitleProps {
   };
 
 const Homepage: React.FC<HomepageProps> = ({}) => {
-    const [open, setOpen] = React.useState(false);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const data = [
+    {
+      date: '1',
+      Sales: 4000,
+      Returns: 2400,
+    },
+    {
+      date: '2',
+      Sales: 3000,
+      Returns: 1398,
+    },
+    {
+      date: '3',
+      Sales: 2000,
+      Returns: 9800,
+    },
+    {
+      date: '4',
+      Sales: 2780,
+      Returns: 3908,
+    },
+    {
+      date: '5',
+      Sales: 1890,
+      Returns: 4800,
+    },
+    {
+      date: '6',
+      Sales: 2390,
+      Returns: 3800,
+    },
+    {
+      date: '7',
+      Sales: 3490,
+      Returns: 4300,
+    },
+    {
+        date: '8',
+        Sales: 4000,
+        Returns: 2400,
+      },
+      {
+        date: '9',
+        Sales: 3000,
+        Returns: 1398,
+      },
+      {
+        date: '10',
+        Sales: 2000,
+        Returns: 9800,
+      },
+      {
+        date: '11',
+        Sales: 2780,
+        Returns: 3908,
+      },
+      {
+        date: '12',
+        Sales: 1890,
+        Returns: 4800,
+      },
+      {
+        date: '13',
+        Sales: 2390,
+        Returns: 3800,
+      },
+      {
+        date: '14',
+        Sales: 3490,
+        Returns: 4300,
+      },
+      {
+        date: '15',
+        Sales: 4000,
+        Returns: 2400,
+      },
+      {
+        date: '16',
+        Sales: 3000,
+        Returns: 1398,
+      },
+      {
+        date: '17',
+        Sales: 2000,
+        Returns: 9800,
+      },
+      {
+        date: '1',
+        Sales: 2780,
+        Returns: 3908,
+      },
+      {
+        date: '18',
+        Sales: 1890,
+        Returns: 4800,
+      },
+      {
+        date: '19',
+        Sales: 2390,
+        Returns: 3800,
+      },
+      {
+        date: '20',
+        Sales: 3490,
+        Returns: 4300,
+      },
+  ];
+  
 
-    const [item, setitem] = React.useState([])
-    React.useEffect(()=>{
-      axios.get('http://localhost:8000/seller/userdetails/61842a1e0ec95f011fdc3bcf')
-      .then(async (res)=>{
-        await setitem(res.data)
-        console.log(res.data)
-      })
-        
-    },[])
-
-    const handleClickOpen = () => {
-        setOpen(true);
-        console.log('asd');
-    };
-
-    return (
-        <div className="seller-index-container">
-            <div className ="left-container">
-                <div className="text-1" style={{display:'block'}}>
-                  <h2 style={{color:'#3b1c4e'}}>Welcome to our Website</h2>
-                  <div style={{color:'#212121'}}> About</div>
+return (
+    <div className="seller-dashboard">
+        <div className="dashboardtop">
+            <div className ="dashboardItem">
+              <div>
+              <span className="dashboardTitle">No. of Sales</span>
+                <div className ="dashboardContainer">
+                    <span className="dashboardMoney">15</span>
+                    <span className="dashboardRate">
+                        90 
+                    </span>
                 </div>
-            <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={5}>
-          <Item>Full Name</Item>
-        </Grid>
-        <Grid item xs={7}>
-          <Item>{item.user_name}</Item>
-        </Grid>
-        <Grid item xs={5}>
-          <Item>Email</Item>
-        </Grid>
-        <Grid item xs={7}>
-          <Item>{item.email}</Item>
-        </Grid>
-        <Grid item xs={5}>
-          <Item>Contact Number</Item>
-        </Grid>
-        <Grid item xs={7}>
-          <Item>{item.contact}</Item>
-        </Grid>
-      </Grid>
-    </Box>
+                <span className="dashboardSub">Compared to tickets</span>
+              </div>
+              <div className="seller-progressbar">
+                <Progressbar/>
+              </div>
             </div>
-            <div className ="right-container">
-            <Image
-              src = {tick}
-              layout = "responsive"
-              m-50
-            ></Image>   
-        </div>
+            <div className ="dashboardItem">
+              <div>
+                <span className="dashboardTitle">No. of Bids</span>
+                <div className ="dashboardContainer">
+                    <span className="dashboardMoney">8</span>
+                    <span className="dashboardRate">
+                        35 
+                    </span>
+                </div>
+                <span className="dashboardSub">Compared to available</span>
+              </div>
+              <div className="seller-progressbar">
+                <Progressbar/>
+              </div>
+            </div>
+            <div className ="dashboardItem">
+              <div>
+                <span className="dashboardTitle">Revanue</span>
+                <div className ="dashboardContainer">
+                    <span id="dashboardMoney-f" className="dashboardMoney">LKR2578</span>
+                    <span className="dashboardRate">
+                      <ArrowUpwardIcon className="dashboardIcon-up"/>
+                      <ArrowDownwardIcon className="dashboardIcon-down"/>
+                    </span>
+                </div>
+                <span className="dashboardSub">Compared to yesterday</span>
+              </div>
+              <div className="seller-progressbar">
+                <Progressbar/>
+              </div>
+            </div>
+       </div>
+       <div className="dashboardgraph">
+            <h3 className="chartTitle">Sales Analytics</h3>
+            <ResponsiveContainer width="100%" aspect={4/1}>
+                <LineChart data={data}>
+                    <XAxis dataKey="date" stroke="#5550bd"/>
+                    <Line type="monotone" dataKey="Sales" stroke="#2ECC71"/>
+                    <Line type="monotone" dataKey="Returns" stroke="#E67E22"/>
+                    <Tooltip/>
+                    <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5"/>
+                </LineChart>
+            </ResponsiveContainer>
+       </div>
+       <div className="dashboardtable">
+       <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 400 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell id="customized-dialog-title">Ticket Level</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+    </TableContainer>
+       </div>
     </div>
-  );
+)
 }
 
 export default Homepage;

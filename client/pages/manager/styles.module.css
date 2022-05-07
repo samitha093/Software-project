@@ -1,20 +1,23 @@
 /*start - manager index pg*/
-.manager-bg
+.manager_bg
 {
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
+    height:100vh;
+    position: absolute;
 }
-.manager-index
+.manager_index
 {
     display: flex;
     overflow: auto;
     padding-top: 80px;
+    padding-left: 30px;
 }
-.manager-index-content
+.manager_index_content
 {
     width: 100%;
 }
-.manager-index-container
+.manager_index_container
 {
     width: 100%;
     padding-left: 120px;
@@ -28,25 +31,39 @@
 
 /*end- manager index page*/
 
-.manager-settings-main-container
+.manager_settings_bg
+{
+    background-image: url("../../assets/dashbord-bg.png");
+    background-size: cover;
+    height:100vh;
+    position: absolute;
+    width: -webkit-fill-available;
+}
+.manager_settings_main_container
 {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
+    margin-left: 45%;
 }
-.manager-setting{
+.manager_setting{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {
-    .manager-index{
+    .manager_index{
         display: block;
         overflow: auto;
+        margin-top: 120px;
     }
-    .manager-index-content h1{
+    .manager_index_content h1{
         padding-left: 30px;
     }
-    .manager-index-container{
+    .manager_index_container{
         padding-left: 0px;
         display: flex;
     }
