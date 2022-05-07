@@ -6,6 +6,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 require('dotenv').config();
+const uri = process.env.MONGO_URI;
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -54,13 +55,14 @@ app.use('/public',publicroute);
 app.listen(port, async ()=>{
   console.log('------------------------------ Staring Server ---------------------------------')
   console.log(`Lisning With port No : ${port}`);
+  console.log("DB Concting With : "+uri);
   try {
-    await mongoose.connect('mongodb://root:password@mongo:27017/tickbid', {
+    await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       authSource: "admin",
     });
-    console.log("Connected to mongo db Sever");
+    console.log("Connected to mongodb Sever");
   } catch (error) {
     console.error("Error connecting to mongodb", error);
   }
