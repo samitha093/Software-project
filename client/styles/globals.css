@@ -365,6 +365,50 @@ button.ghost {
     font-size: 12px;
 	
 }
-
-
 /*end - Login component*/
+
+/*start - forgotpwd component*/
+
+.box_1{
+    width: 100%;
+    background-color: #E3E3ED;
+    border-bottom-right-radius: 10px;
+  
+}
+
+.head_password{
+    font-size: x-large;
+    font: weight 700px ;
+    color: slategrey;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+.pwd_container{
+    padding: 50px 0px;
+    align-content: center;
+    width: 100%;
+    min-height: 600px;
+    
+}
+
+@media only screen and (max-width: 400px) {
+    .pwd_container{
+        display: flex;
+        display: block;
+                
+    }
+    .box_1{
+       width: 0px;
+       display: none;
+    
+}
+    .head_password{ 
+        display: flex;
+        font-size:large;
+
+    }
+}
+
+/*end- forgotpwd component*/

@@ -297,7 +297,7 @@ async function signUpformn(){
               />
               </div>
               {login_passwordError && (<p className="error_message"> * Password can not be empty</p>)}
-              <a href="./forgotpwd" className="modern_a">Forgot your password?</a>
+              <a href="./user/forgotpwd" className="modern_a">Forgot your password?</a>
               <button className="modern_btn" onClick={signinformn}>Sign In</button>
             </div>
           </div>
