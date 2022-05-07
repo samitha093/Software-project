@@ -14,6 +14,12 @@
     padding-top: 80px;
     padding-left: 30px;
 }
+.manager_setting_fix{
+    position:relative;
+    width: 100%;
+    height: 90vh;
+    overflow: auto;
+}
 .manager_index_content
 {
     width: 100%;
