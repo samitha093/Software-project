@@ -4,6 +4,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import axios from 'axios';
 import {startsession, gethost, getuser } from '../../session/Session';
+
 interface LoginProps {
 
 }
@@ -150,7 +151,7 @@ async function signUpformn(){
         if (process.browser) {
           const container = document.getElementById("container");
           if (container !== null) {
-            container.classList.add("right-panel-active");
+            container.classList.add("right_panel_active");
           }
         }
       };
@@ -158,7 +159,7 @@ async function signUpformn(){
         if (process.browser) {
           const container = document.getElementById("container");
           if (container !== null) {
-            container.classList.remove("right-panel-active");
+            container.classList.remove( "right_panel_active");
           }
         } 
       };
@@ -168,53 +169,55 @@ async function signUpformn(){
 
         <div className="container" id="container">
 
-          <div className="form-container sign-up-container">
-            <div className='modern-form'>
-              <h1 className =" head-signup">Create Account</h1>
-              <span className='new-span'>Please fill up your details below</span>
-              {nameHasError && (<p className="error-message"> * Name cannot be empty</p>)}
-              <div className ='input-box-container' > 
+          <div className="form_container sign_up_container">
+            <div className="modern_form">
+              <h1 className ="head_signup">Create Account</h1>
+              <span className="new_span">Please fill up your details below</span>
+             
+              <div className ="input_box_container" > 
               <input
-                className='inputbox-modern'
+                className="inputbox_modern"
                 type="text" 
                 placeholder="Name"
                 //value={name}
                 onChange={nameChangeHandler}
                  /></div>
-               {emailHasError && (<p className="error-message"> * Invalid email</p>)}  
-               <div className ='input-box-container' > 
+                {nameHasError && (<p className="error_message"> * Name cannot be empty</p>)}
+              
+               <div className ="input_box_container" > 
               <input
-               className='inputbox-modern' 
+               className="inputbox_modern" 
                type="email"
                placeholder="Email"
                value={email}
                onChange={emailChangeHandler}
                /></div>
-               {contactHasError && (<p className="error-message"> * Enter a valid contact number</p>)}
-               <div className ='input-box-container' > 
+                {emailHasError && (<p className="error_message"> * Invalid email</p>)}  
+               
+               <div className = "input_box_container" > 
                <input 
-               className='inputbox-modern' 
+               className="inputbox_modern"
                type="text" 
                placeholder="Contact Number"
                value={contact}
                onChange={contactChangeHandler}
-
                /></div>
-               {passwordError && (<p className="error-message"> * Password can not be empty</p>)}
-               <div className ='input-box-container' > 
+               {contactHasError && (<p className="error_message"> * Enter a valid contact number</p>)}
+
+               <div className ="input_box_container" > 
               <input 
-              className='inputbox-modern' 
+              className="inputbox_modern" 
               type="password" 
               placeholder="Password"
               value={password}
               onChange={(e)=>setPassword(e.target.value)} 
              //onChange={passwordChangeHandler}
                /></div>
+              {passwordError && (<p className="error_message"> * Password can not be empty</p>)}
 
-              {validationError && (<p className="error-message"> * Confirm password should match with your password</p>)}
-              <div className ='input-box-container' >  
+              <div className ="input_box_container" >  
               <input 
-              className='inputbox-modern' 
+              className="inputbox_modern"
               type="password" 
               placeholder="Confirm Password"
               value={confirmPassword}
@@ -222,9 +225,10 @@ async function signUpformn(){
               //onChange={confirmPasswordChangeHandler}
               onBlur={confirmPasswordChangeHandler}
                /></div>
+               {validationError && (<p className="error_message"> * Confirm password should match with your password</p>)}
               
               <div className="radio">  
-              <label className ="radio-label">
+              <label className ="radio_label">
               <input
               type="radio"
               value="buyer"
@@ -233,7 +237,7 @@ async function signUpformn(){
               />
               Buyer
               </label>
-              <label className ="radio-label">
+              <label className ="radio_label">
               <input
               type="radio"
               value="seller"
@@ -242,7 +246,7 @@ async function signUpformn(){
               />
               Ticket Seller
               </label >
-              <label className ="radio-label">
+              <label className ="radio_label">
               <input
               type="radio"
               value="Admin"
@@ -254,7 +258,7 @@ async function signUpformn(){
               </div>
                
               <button 
-              className='modern-btn'
+              className="modern_btn"
               disabled={emailHasError || passwordError || nameHasError}
               onClick={signUpformn}>Sign Up</button>
             </div>
@@ -263,15 +267,15 @@ async function signUpformn(){
 
 
 
-          <div className="form-container sign-in-container">
-            <div className='modern-form'>
-              <h1 className ="head-signin" >Sign in</h1>
-              <span className='new-span'>or use your account</span>
-            {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
-            <div className ='input-box-container' > 
-             <div className ='icn'><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
+          <div className="form_container sign_in_container">
+            <div className="modern_form">
+              <h1 className ="head_signin" >Sign in</h1>
+              <span className="new_span">or use your account</span>
+            
+            <div className ="input_box_container" > 
+             <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
               <input 
-              className='inputbox-modern-1' 
+              className="inputbox_modern_1"
               type="email" 
               placeholder="User email"
               value={login_email}
@@ -279,11 +283,11 @@ async function signUpformn(){
             // onBlur={emailBlurHandler} 
              />
              </div>
-            {login_passwordError && (<p className="error-message"> * Password can not be empty</p>)} 
-            <div className ='input-box-container'> 
-            <div className='icn'> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
+             {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+            <div className ="input_box_container"> 
+            <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
               <input 
-              className='inputbox-modern-1' 
+              className="inputbox_modern_1"
               type="password" 
               placeholder="Password" 
               value={login_password}
@@ -292,25 +296,26 @@ async function signUpformn(){
               // onBlur={emailBlurHandler}
               />
               </div>
-              <a href="./user/forgotpwd" className='modern-a'>Forgot your password?</a>
-              <button className='modern-btn' onClick={signinformn}>Sign In</button>
+              {login_passwordError && (<p className="error_message"> * Password can not be empty</p>)}
+              <a href="./user/forgotpwd" className="modern_a">Forgot your password?</a>
+              <button className="modern_btn" onClick={signinformn}>Sign In</button>
             </div>
           </div>
 
-          <div className="overlay-container">
+          <div className="overlay_container">
             <div className="overlay">
-              <div className="overlay-panel overlay-left">
-                <h1 className="content-1">Welcome Back!</h1>
-                <p className="content-2">To keep connected with us. <br/> please login with your personal info</p>
+              <div className="overlay_panel overlay_left">
+                <h1 className="content_1">Welcome Back!</h1>
+                <p className="content_2">To keep connected with us. <br/> please login with your personal info</p>
                 <button 
-                className="ghost modern-btn" 
+                className="ghost modern_btn"
                 onClick={signInButton}>Sign In</button>
               </div>
-              <div className="overlay-panel overlay-right">
-                <h1 className="content-1">Hello, Friend!</h1>
-                <p className="content-2">Please login with personal info & <br/>Keep connected with us.  </p>
+              <div className="overlay_panel overlay_right">
+                <h1 className="content_1">Hello, Friend!</h1>
+                <p className="content_2">Please login with personal info & <br/>Keep connected with us.  </p>
                 <button 
-                className="ghost modern-btn" 
+                className="ghost modern_btn"
                 onClick={signUpButton}
                 disabled={emailHasError || passwordError}>Sign Up</button>
               </div>

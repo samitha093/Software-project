@@ -24,14 +24,14 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item md={6} className = "pwd_container" >
-                <div className="form-wrapper">
-                        <form className='modern-form' action="#">
-                         <h1 className = "head-password" >Forgot Password</h1>
-                         {login_emailHasError && (<p className="error-message"> * Invalid email</p>)}
-                        <div className ='input-box-container'> 
-                        <div className ='icn'><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
+                <div className="form_wrapper">
+                        <form className="modern_form" action="#">
+                         <h1 className = "head_password" >Forgot Password</h1>
+                         {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+                        <div className ="input_box_container"> 
+                        <div className ="icn"><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
                         <input 
-                         className='inputbox-modern' 
+                         className="inputbox_modern"
                          type="email" 
                          placeholder="Your Email"
                          value={login_email}
@@ -40,13 +40,13 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                           />
                           </div>
                           <br/><br/>
-                          <button className='modern-btn'>Send Email</button>
+                          <button className="modern_btn">Send Email</button>
                           </form>
                           
                    </div>
                     
                 </Grid>
-                <Grid item xs className = "box-1" >
+                <Grid item xs className = "box_1" >
                 <Image
                      src = {lock}
                      layout = "responsive"

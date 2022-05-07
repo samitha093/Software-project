@@ -24,6 +24,7 @@ import { grey } from '@mui/material/colors';
 import {Button} from '@mui/material';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import style from './style.module.css'
 
 
 const about: NextPage = () => {
@@ -42,16 +43,16 @@ const about: NextPage = () => {
        
     }
     return (
-        <div style={{backgroundColor:'#FEFEF9'}}>
+        <div>
             <Navbar/>
-            <h1 className="h1">TickBid Event Ticketing Platform</h1>
-            <div className="main-container-2">
-            <div className ="top-container-1" style={{backgroundColor:'#DCD1E1'}}>
-                     <div className ="left-container-1">
-                       <div className="text-3">
-                           Reserve your seat with <br/>  Online Ticketing Platform
+            <h1 className={style.h1}>TickBid Event Ticketing Platform</h1>
+            <div className={style.main_container_2}>
+            <div className ={style.top_container_1} style={{backgroundColor:'#DCD1E1'}}>
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_3}>
+                           Reserve your seat with Online Ticketing Platform
                        </div>
-                       <div className ="icon">
+                       <div className ={style.icon}>
                           <Image
                              src = {chair}
                              width={50}
@@ -59,8 +60,8 @@ const about: NextPage = () => {
                              alt= " "
                           ></Image>    
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                              This is a convenient ticketing platform to 
                               all with tight schedules now can simply visit 
                               us to quick check the best event reserve your 
@@ -71,29 +72,30 @@ const about: NextPage = () => {
                        </div>
                     </div> 
                    
-                    <div className ="right-container-1">
+                    <div className ={style.right_container_1}>
                       <Image
                         src = {seat}
-                        layout = "responsive"
-                        p-30
+                        width={900}
+                        height={700}
+                        p-30='true'
                         alt= " "
                        ></Image> 
                     </div>  
             </div>
-            <div data-aos='fade-left' className ="top-container-1" style={{backgroundColor:'#CFEAEA'}}>
-                    <div className ="right-container-1">
+            <div data-aos='fade-left' className ={style.top_container_1} style={{backgroundColor:'#CFEAEA'}}>
+                    <div className ={style.right_container_1}>
                       <Image
                         src = {social_distance}
                         layout = "responsive"
-                        p-30
+                        p-30='true'
                         alt= " "
                        ></Image> 
                     </div>  
-                     <div className ="left-container-1">
-                       <div className="text-3">
-                               Improve Social Distancing <br/>  Say No to long queues
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_3}>
+                               Improve Social Distancing. Say No to long queues
                        </div>
-                       <div className ="icon">
+                       <div className ={style.icon}>
                           <Image
                              src = {virus}
                              width={50}
@@ -101,8 +103,8 @@ const about: NextPage = () => {
                              alt= " "
                           ></Image>    
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                              Our virtual ticket box improves health security of 
                              the society while improving the social-distancing
                              policies and health guidelines relevant to the 
@@ -114,12 +116,12 @@ const about: NextPage = () => {
                        </div>
                     </div> 
             </div>
-            <div data-aos='fade-right'  className ="top-container-1" style={{backgroundColor:'#DAE1F3'}}>
-                     <div className ="left-container-1">
-                       <div className="text-3">
-                           Easy Payment options <br/> and e- tickets
+            <div data-aos='fade-right'  className ={style.top_container_1} style={{backgroundColor:'#DAE1F3'}}>
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_3}>
+                           Easy Payment options and e- tickets
                        </div>
-                       <div className ="icon">
+                       <div className ={style.icon}>
                           <Image
                              src = {money}
                              width={50}
@@ -127,8 +129,8 @@ const about: NextPage = () => {
                              alt= " "
                           ></Image>    
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                              We offer more options for the payments as preferences, 
                              instant confirmation and quick purchase of e-tickets
                              drives the your online ticket booking experience insanely 
@@ -138,31 +140,31 @@ const about: NextPage = () => {
                        </div>
                        </div>
                     </div> 
-                    <div className ="right-container-1">
+                    <div className ={style.right_container_1}>
                       <Image
                         src = {payment}
                         layout = "responsive"
                         alt= " "
-                        p-30
+                        p-30='true'
                        ></Image> 
                     </div>
                 </div>
-                <div data-aos='fade-left'  className ="top-container">
-                    <div className ="right-container-1">
+                <div data-aos='fade-left'  className ={style.top_container}>
+                    <div className ={style.right_container_1}>
                       <Image
                         src = {aud}
                         layout = "responsive"
-                        p-30
+                        p-30='true'
                         alt= " "
                        ></Image> 
                     </div>  
-                     <div className ="left-container-1">
-                       <div className="text-1">
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_1}>
                        Reserve your Ticket now ...
                        <br/><br/>
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                          
                             With online bookings you can round the clock at 
                             any time without leaving home. Find out more about
@@ -172,9 +174,9 @@ const about: NextPage = () => {
                                       
                        </div>
                        </div>
-                       <div className="btn-class">
+                       <div className={style.btn_class}>
                        <Button 
-                            className= "btn-create" 
+                            className= {style.btn_create} 
                              variant="contained" 
                              startIcon = {<CreateIcon/>}
                              onClick={create}
@@ -183,21 +185,21 @@ const about: NextPage = () => {
                     </div> 
             </div>
 
-            <div data-aos='fade-right' className ="top-container-1" style={{backgroundColor:'#DCD1E1'}}>
-                     <div className ="right-container-1">
+            <div data-aos='fade-right' className ={style.top_container_1} style={{backgroundColor:'#DCD1E1'}}>
+                     <div className ={style.right_container_1}>
                       <Image
                         src = {mock}
                         layout = "responsive"
-                        p-30
+                        p-30='true'
                         alt= " "
                        ></Image> 
                     </div>  
-                     <div className ="left-container-1">
-                       <div className="text-3">
-                       Create your & sell your Tickets<br/>Virtual Ticket Box 
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_3}>
+                       Create your & sell your Tickets Virtual Ticket Box 
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                        <br/>  <br/>
                                  Our simple to use ticketing page builder lets you create an 
                                   attractive ticketing page that fits to your unique event with our
@@ -208,34 +210,34 @@ const about: NextPage = () => {
                        </div>
                     </div>
             </div>
-            <div data-aos='fade-left' className ="top-container-1" style={{backgroundColor:'#CFEAEA'}}>
-                     <div className ="left-container-1">
-                       <div className="text-3">
-                          Premium Experiences with <br/>our Bidding System 
+            <div data-aos='fade-left' className ={style.top_container_1} style={{backgroundColor:'#CFEAEA'}}>
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_3}>
+                          Premium Experiences with our Bidding System 
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                           <br/><br/>
                                 Create multiple levels of tickets and put into the 
                                  auction. Introducing pre-ticketing event duration & 
                                 event ticket auction enables the best prices for your
                                 tickets creating competitive marketing environment 
-                               and handles the dynamic event ticket prices.
+                                and handles the dynamic event ticket prices.
                        </div>
                        </div>
                     </div> 
                    
-                    <div className ="right-container-1">
+                    <div className ={style.right_container_1}>
                       <Image
                         src = {bid}
                         layout = "responsive"
-                        p-30
+                        p-30='true'
                         alt= " "
                        ></Image> 
                     </div>  
             </div>
-            <div data-aos='fade-right' className ="top-container-1" style={{backgroundColor:'#DAE1F3'}}>
-                     <div className ="right-container-1">
+            <div data-aos='fade-right' className ={style.top_container_1} style={{backgroundColor:'#DAE1F3'}}>
+                     <div className ={style.right_container_1}>
                       <Image
                         src = {stat}
                         layout = "responsive"
@@ -243,13 +245,13 @@ const about: NextPage = () => {
                         alt= " "
                        ></Image> 
                     </div>  
-                     <div className ="left-container-1">
-                       <div className="text-3">
-                       Marketing Insights <br/> & Analytical Reports
+                     <div className ={style.left_container_1}>
+                       <div className={style.text_3}>
+                       Marketing Insights & Analytical Reports
 
                        </div>
-                       <div className= "text-2-wrap">
-                       <div className= "text-2">
+                       <div className= {style.text_2_wrap}>
+                       <div className= {style.text_2}>
                        <br/>  <br/>
                              With online bookings you can round the clock at 
                             any time without leaving home. Find out more about
@@ -261,10 +263,10 @@ const about: NextPage = () => {
             </div>   
             </div>
     
-                <div className ="top-container"> 
-                       <div className ="footer">
-                          <div className ="aboutus">
-                            <h2 className ="h2">About us</h2>
+                <div className ={style.top_container}> 
+                       <div className ={style.footer}>
+                          <div className ={style.aboutus}>
+                            <h2 className ={style.h2}>About us</h2>
                             <p>TickBid is a powerful online event ticketing platform to 
                                sell  your event tickets and grow your events
                                & revenue without spending much time on 
@@ -275,26 +277,26 @@ const about: NextPage = () => {
                               <GitHubIcon sx={{ color: grey[300] }}/>
                               </IconButton>
                           </div>
-                          <div className ="Quicklinks">
-                            <h2 className ="h2">Quick Links</h2>
+                          <div className ={style.Quicklinks}>
+                            <h2 className ={style.h2}>Quick Links</h2>
                             <ul>
                             <li><a href = "/" color="#a688a7">About Us</a></li>
                              <li> <a href = "#">Contact</a></li>
                             </ul>  
                           </div>
-                          <div className ="contact">
-                            <h2 className ="h2">Contact info</h2>
-                            <div className ="row">
+                          <div className ={style.contact}>
+                            <h2 className ={style.h2}>Contact info</h2>
+                            <div className ={style.row}>
                               <div> <LocationOnIcon sx={{ color: grey[300] }}/></div>
-                              <div className="text-4">fhjsfhjdhjshfjsfhjdf</div> 
+                              <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
                             </div>
-                            <div className ="row">
+                            <div className ={style.row}>
                               <div> <PhoneInTalkRoundedIcon sx={{ color: grey[300] }}/></div>
-                              <div className="text-4"> +94 779384983  <br/> +94 779384983 </div> 
+                              <div className={style.text_4}> +94 779384983  <br/> +94 779384983 </div> 
                             </div>
-                            <div className ="row">
+                            <div className ={style.row}>
                               <div> <AlternateEmailIcon sx={{ color: grey[300] }}/></div>
-                              <div className="text-4">fhjsfhjdhjshfjsfhjdf</div> 
+                              <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
                             </div>
                           </div>   
                        </div> 

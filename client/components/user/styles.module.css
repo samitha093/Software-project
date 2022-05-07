@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@100;300&display=swap');
+
+
+
+
+/*start - forgotpwd component*/
+
+.box_1{
+    width: 100%;
+    background-color: #E3E3ED;
+    border-bottom-right-radius: 10px;
+  
+}
+
+.head_password{
+    font-size: x-large;
+    font: weight 700px ;
+    color: slategrey;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+.pwd_container{
+    padding: 50px 0px;
+    align-content: center;
+    width: 100%;
+    min-height: 600px;
+    
+}
+
+@media only screen and (max-width: 400px) {
+    .pwd_container{
+        display: flex;
+        display: block;
+                
+    }
+    .box_1{
+       width: 0px;
+       display: none;
+    
+}
+    .head_password{ 
+        display: flex;
+        font-size:large;
+
+    }
+}
+
+/*end- forgotpwd component*/
+
+
