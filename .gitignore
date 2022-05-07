@@ -4,13 +4,13 @@
 /database/
 
 #remove Library Files from Client
-/client/node_dmodules
-/client/coverage
+/client/node_modules/
+/client/coverage/
 /client/.next/
 /client/.idea/
 /client/.vscode/
 /client/out/
-/client/build
+/client/build/
 
 #remove Library Files From Server
 /server/.vs/
