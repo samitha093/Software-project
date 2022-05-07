@@ -3,7 +3,6 @@ import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import {Box,Grid,} from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
-import styles from './styles.module.css'
 
 interface ForgotpwdProps {
 
@@ -21,18 +20,18 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
     login_setEmailError(!valid);
   }
     return(
-        <div className={styles.container} id="container" >
+        <div className="container" id="container" >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
-                <Grid item md={6} className = {styles.pwd_container} >
-                <div className={styles.form_wrapper}>
-                        <form className={styles.modern_form} action="#">
-                         <h1 className = {styles.head_password} >Forgot Password</h1>
-                         {login_emailHasError && (<p className={styles.error_message}> * Invalid email</p>)}
-                        <div className ={styles.input_box_container}> 
-                        <div className ={styles.icn}><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
+                <Grid item md={6} className = "pwd_container" >
+                <div className="form_wrapper">
+                        <form className="modern_form" action="#">
+                         <h1 className = "head_password" >Forgot Password</h1>
+                         {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+                        <div className ="input_box_container"> 
+                        <div className ="icn"><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
                         <input 
-                         className={styles.inputbox_modern} 
+                         className="inputbox_modern"
                          type="email" 
                          placeholder="Your Email"
                          value={login_email}
@@ -41,13 +40,13 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                           />
                           </div>
                           <br/><br/>
-                          <button className={styles.modern_btn}>Send Email</button>
+                          <button className="modern_btn">Send Email</button>
                           </form>
                           
                    </div>
                     
                 </Grid>
-                <Grid item xs className = {styles.box_1} >
+                <Grid item xs className = "box_1" >
                 <Image
                      src = {lock}
                      layout = "responsive"
