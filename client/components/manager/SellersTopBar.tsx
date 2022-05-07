@@ -2,9 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-
-import styles from './styles.module.css'
-import classnames from 'classnames';
+import styles from './styles.module.css';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
