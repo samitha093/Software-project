@@ -30,7 +30,7 @@ const index: NextPage = () => {
                     <div className={styles.buyer_index}>
                         <Sidebar id="1"/>
                         <div className={styles.buyer_index_container_parent}>
-                            <h1>Tickets</h1>
+                            <h1 className={styles.buyer_index_container_title}>Tickets</h1>
                             <div className={styles.buyer_index_container_d2}>
                                 <div className={styles.buyer_index_container}>
                                     <Ticketvalid level="1" type="1"/>

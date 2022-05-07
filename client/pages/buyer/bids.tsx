@@ -14,7 +14,7 @@ const bids: NextPage = () => {
                 <div className={styles.buyer_index}>
                     <Sidebar id="3" />
                     <div className={styles.buyer_index_container_parent}>
-                       <h1>Pending Bids</h1> 
+                       <h1 className={styles.buyer_index_container_title}>Pending Bids</h1> 
                        <div className={styles.buyer_index_container_d2}>
                             <div className={styles.buyer_index_container}>
                                 <Ticketvalid level="1" type="3"/>

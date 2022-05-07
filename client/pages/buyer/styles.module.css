@@ -2,9 +2,10 @@
 .buyer_bg{
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
+    height: 100vh;
 }
 .buyer_index{
-    padding-top: 63px;
+    padding-top: 90px;
     display: flex;
     max-height: 100%;
     position: relative;
@@ -12,8 +13,10 @@
 .buyer_index_container_parent{
     position:relative;
     width: 100%;
-    height: 90vh;
-    overflow: auto;
+    height: auto;
+}
+.buyer_index_container_title{
+    padding-left: 100px;
 }
 .buyer_index_container_d2{
     position: absolute;
@@ -25,12 +28,12 @@
 
 .buyer_index_container{
     width: 100%;
-    padding-left: 30px;
+    padding-left: 120px;
     position: relative;
     display: flex;
     box-sizing: border-box;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
 }
 @media only screen and (max-width: 600px) {
     .buyer_index{

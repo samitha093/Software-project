@@ -3,9 +3,11 @@
 {
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
+    background-repeat: repeat;
     height:100vh;
     position: absolute;
     width:100%;
+    
 }
 .manager_index
 {
@@ -73,5 +75,6 @@
     .manager_index_container{
         padding-left: 0px;
         display: flex;
+        justify-content: center;
     }
 }

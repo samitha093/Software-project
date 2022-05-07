@@ -38,6 +38,26 @@ const pendingevents: NextPage = () => {
                             <Pendingtickets/>
                             <Pendingtickets/>
                             <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
+                            <Pendingtickets/>
                         </div>
                     </div>
                 </div>
