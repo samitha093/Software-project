@@ -523,9 +523,9 @@ button.ghost {
 
 /*start - manager seller topbar*/
 
-.manager_seller_c_topbar_item {
+.manager-seller-c-topbar-item {
   margin-top: 0px;
-  width: 25%;
+  width: 40%;
   text-align: center;
   margin: 0px 10px 0px;
   height: auto;
@@ -535,13 +535,14 @@ button.ghost {
   border-style: solid;
   cursor: pointer;
 }
-.manager_seller_c_topbar_item.active {
+.manager-seller-c-topbar-item.active {
   border-color: #752E9E;
   background-color: #752E9E;
   color: white;
 }
-
 /*end - manager seller topbar*/
+
+
 
 .seller_c_sidebar_item.active{
   border-color: white;

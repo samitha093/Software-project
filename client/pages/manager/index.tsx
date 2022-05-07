@@ -2,6 +2,7 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import axios from 'axios'
+
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Homepage from '../../components/manager/Homepage'
