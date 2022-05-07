@@ -480,6 +480,22 @@
     margin-left: 20px;
 }
 
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    position: relative;
+    overflow: hidden;
+    width: 1000px;
+    max-width: 100%;
+    min-height: 550px;
+    margin-left: 25%;
+}
+.manager_reset_password_submit_button{
+    margin-left: 45%;
+}
+
 /*start - seller approval*/
 .manager_c_sellerapprovaltable {
     width: 100%;
@@ -531,14 +547,14 @@
 }
 
 .dashboardIcon_up {
-    color: rgb(0, 200, 30);
-    font-size: 20px;
+    color: rgb(0, 168, 30);
+    font-size: 30px;
     display: none;
 }
 
 .dashboardIcon_down {
-    color: rgb(200, 0, 30);
-    font-size: 20px;
+    color: rgb(168, 0, 30);
+    font-size: 30px;
     display: flex;
 }
 

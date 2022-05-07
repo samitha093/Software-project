@@ -19,7 +19,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
     const [cnewpwd, setcnewpwdpw] = React.useState("");
 
     return (
-        <div className="container" id="container">
+        <div className={styles.container} id="container">
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
                     <Grid item md={7} className={styles.pwd_container}>
@@ -51,9 +51,11 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
                                 <br /><br />
-                                <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd">
-                                    SUBMIT
-                                </Fab>
+                                <div className={styles.manager_reset_password_submit_button}>
+                                    <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd" margin-left="40%">
+                                        SUBMIT
+                                    </Fab>
+                                </div>
                             </form>
 
                         </div>

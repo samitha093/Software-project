@@ -17,14 +17,14 @@ const activesellers: NextPage = () => {
             })
     }, [])
     return (
-        <div className={styles.manager_bg}>
+        <div className={styles.manager_settings_bg}>
             <Navbar />
             <div className={styles.manager_index}>
                 <Sidebar id='3' />
                 <SellersTopBar id3='1' />
                 <div>
                     <h1>Active Sellers</h1>
-                    <div className={styles.manager_index_container}>
+                    <div className={styles.manager_settings_main_container}>
                         <SellerActions />
                     </div>
                 </div>

@@ -169,15 +169,13 @@ const Homepage: React.FC<HomepageProps> = ({ }) => {
                     <div>
                         <span className={styles.dashboardTitle}>Total Sold Tickets</span>
                         <div className={styles.dashboardContainer}>
-                            <span className={styles.dashboardMoney}>21</span>
+                            <span id="dashboardMoney-f" className={styles.dashboardMoney}>578</span>
                             <span className={styles.dashboardRate}>
-                                35
+                                <ArrowUpwardIcon className={styles.dashboardIcon_up} />
+                                <ArrowDownwardIcon className={styles.dashboardIcon_down} />
                             </span>
                         </div>
                         <span className={styles.dashboardSub}>Compared to Lastweek</span>
-                    </div>
-                    <div className={styles.manager_progressbar}>
-                        <Progressbar />
                     </div>
                 </div>
                 <div className={styles.dashboardItem}>
