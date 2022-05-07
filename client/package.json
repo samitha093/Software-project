@@ -32,6 +32,7 @@
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.27.0",
+    "formik": "^2.2.9",
     "fortawesome": "0.0.1-security",
     "next": "11.1.2",
     "qrcode": "^1.4.4",
@@ -46,8 +47,10 @@
     "recharts": "^2.1.8",
     "sass": "^1.45.1",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.1.9",
-    "swiper": "^7.4.1"
+    "sweetalert2": "^11.4.9",
+    "swiper": "^7.4.1",
+    "ts-form-validation": "^2.2.0"
+
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",

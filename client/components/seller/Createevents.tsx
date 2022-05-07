@@ -25,6 +25,7 @@ import carnival from '../../assets/carnival.jpeg'
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import Styles from './Styles.module.css'
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -37,8 +38,7 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   },
 }));
 
-interface CreateeventProps {
-
+interface CreateeventProps {     
 }
 
 const currencies = [
@@ -410,9 +410,9 @@ export default function MaxWidthDialog() {
 
   return (
     <React.Fragment >
-      <div className="btn-class">
+      <div className={Styles.btn_class}>
       <BootstrapTooltip title="Publish an Event">
-        <Box onClick={handleClickOpen} className="seller-index-float" sx={{ '& > :not(style)': { m: 1 } }}>
+        <Box onClick={handleClickOpen} className={Styles.seller_index_float} sx={{ '& > :not(style)': { m: 1 } }}>
           <Fab color="secondary" aria-label="add">
             <AddIcon />
           </Fab>
@@ -424,15 +424,15 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={openevent}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" className="manager-c-ticketsinfo-top-head-right" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized_dialog_title1" className={Styles.seller_c_ticketsinfo_top_head_right} onClose={handleClose}>
           Create Event
         </BootstrapDialogTitle>
-        <DialogContent className="seller-c-create-table-pos-c">
+        <DialogContent className={Styles.seller_c_create_table_pos_c}>
         <DialogContent dividers>
         
       <Grid container spacing={2}>
-        <Grid className="seller-c-create-img-in" item xs={6}>
-            <div className="seller-c-create-img-in">
+        <Grid className={Styles.seller_c_create_img_in} item xs={6}>
+            <div className={Styles.seller_c_create_img_in}>
             <Img alt="complex" src="/test.jpg" />
             </div>
         </Grid>
@@ -446,6 +446,7 @@ export default function MaxWidthDialog() {
       noValidate
       autoComplete="off"
     >
+
       <div>
         <TextField
           required
@@ -522,14 +523,14 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={openticket}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" className="manager-c-ticketsinfo-top-head-right" onClose={handleCloseticket}>
+        <BootstrapDialogTitle id="customized_dialog_title1" className={Styles.seller_c_ticketsinfo_top_head_right} onClose={handleCloseticket}>
           Create Tickets
         </BootstrapDialogTitle>
-        <DialogContent className="seller-c-create-table-pos-p">
-        <DialogContent className="seller-c-create-table-pos" dividers>
-      <Grid className="seller-c-create-table" container spacing={2} >
-      <Grid className="seller-c-create-img" item xs={6}>
-            <div className="seller-c-create-img">
+        <DialogContent className={Styles.seller_c_create_table_pos_p}>
+        <DialogContent className={Styles.seller_c_create_table_pos} dividers>
+      <Grid className={Styles.seller_c_create_table} container spacing={2} >
+      <Grid className={Styles.seller_c_create_img} item xs={6}>
+            <div className={Styles.seller_c_create_img}>
             <Img alt="complex" src="/test.jpg" />
             </div>
         </Grid>
@@ -598,7 +599,7 @@ export default function MaxWidthDialog() {
       </Grid>
     <div>
       <Stack direction="row" justifyContent="right" >
-      <Button onClick={handleClickSubmitticket} className="seller-btn-pos" variant="contained"  >Submit Tickets</Button>
+      <Button onClick={handleClickSubmitticket} className={Styles.seller_btn_pos} variant="contained"  >Submit Tickets</Button>
       </Stack>
           </div>
         </DialogContent>
