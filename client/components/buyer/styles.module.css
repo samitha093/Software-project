@@ -1,87 +1,61 @@
 /*start - sidebar component*/
-.buyer-c-sidebar{
-    width:130px;
-    height: calc(100vh - 70px);
-    min-height: 800px;
-    padding: 60px 10px;
+.buyer_c_sidebar{
+    z-index: 10;
+    position: fixed;
+    left: 0%;
+    top: calc(55vh - 325px);
+    height: 600px;
+    width: 180px;
+    padding: 35px 35px;
+    margin-top: 50px;
     
 }
-.buyer-c-sidebar-container{
+.buyer_c_sidebar_container{
     width: 100%;
     height:100%;
     background-color: white;
     border-radius: 30px;
-    padding: 30px 23px;
+    padding: 10px 23px;
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
 }
-.buyer-c-sidebar-item{
-    width:60px;
-    height:60px;
-    border: 1px;
-    border-color: black;
-    border-radius: 10px;
-    border-style:solid;
-    margin-top: 35px;
-    cursor: pointer;
-}
-.buyer-c-sidebar-item.active{
-    border-color: white;
-    background-color: #752E9E;
-}
-.buyer-c-sidebar-item-icon.active{
-    color: white;
-}
-.buyer-c-sidebar-item:hover{
-    border-color: white;
-    background-color: #752E9E;
-    color: white;
-}
-.buyer-c-sidebar-item-icon:hover{
-    color: white;
-}
-.buyer-c-sidebar-item-icon{
-    padding: 10px;
-    color: black;
-}
 @media only screen and (max-width: 600px) {
-    .buyer-c-sidebar{
+    .buyer_c_sidebar{
         position: fixed;
         z-index: 10;
         width: 100%;
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
+        top: 70px;
+        height: auto;
         
     }
-    .buyer-c-sidebar-container{
+    .buyer_c_sidebar_container{
         display: flex;
         height: auto;
         width: 100%;
         padding: 10px;
         border-radius: 15px;
     }
-    .buyer-c-sidebar-item{
+    .buyer_c_sidebar_item{
         margin-top: 0px;
         width: 15%;
         margin: 0 1%;
         height: auto;
     }
-    .buyer-index-container-parent{
+    .buyer_index_container_parent{
         margin-top: 100px;
         
     }
-    .buyer-index-container-parent h1{
+    .buyer_index_container_parent h1{
         text-align: center;
     }
 }
 /*end - sidebar component*/
 
 /*start - valid ticket component*/
-:root {
-    --parent-height: 220px;
-  }
-.buyer-c-ticketvalid{
+.buyer_c_ticketvalid{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -89,14 +63,14 @@
     position: relative;
     margin: 10px;
 }
-.buyer-c-ticketvalid-cardstatus{
+.buyer_c_ticketvalid_cardstatus{
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-.buyer-c-ticketvalid-top{
+.buyer_c_ticketvalid_top{
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
@@ -104,7 +78,7 @@
     height:calc(var(--parent-height)*0.8);
     position: relative;
 }
-.buyer-c-ticketvalid-top-info{
+.buyer_c_ticketvalid_top_info{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     height:calc(var(--parent-height)*0.2);
@@ -112,35 +86,35 @@
     bottom: 0;
     display: flex;
 }
-.buyer-c-ticketvalid-top-info-left{
+.buyer_c_ticketvalid_top_info_left{
     width: 75%;
     padding-left: 6px;
     color: white;
 }
-.buyer-c-ticketvalid-top-info-right{
+.buyer_c_ticketvalid_top_info_right{
     padding-right: 6px;
     color: white;
     position: relative;
     width: 25%;
     text-align: center;
 }
-.buyer-c-ticketvalid-top-info-right-nooftickets{
+.buyer_c_ticketvalid_top_info_right_nooftickets{
     position: block;
     width: 100%;
 }
-.buyer-c-ticketvalid-top-info-right-tickets{
+.buyer_c_ticketvalid_top_info_right_tickets{
     font-size: 10px;
 }
-.buyer-c-ticketvalid-top-head{
+.buyer_c_ticketvalid_top_head{
     display: flex;
     padding-left: 10px;
 }
-.buyer-c-ticketvalid-top-head-left{
+.buyer_c_ticketvalid_top_head_left{
     padding-top: 10px;
     color: white;
     width: 60%;
 }
-.buyer-c-ticketvalid-top-head-right{
+.buyer_c_ticketvalid_top_head_right{
     width: 40%;
     display: flex;
     justify-content: flex-end;
@@ -151,48 +125,48 @@
     border-bottom-left-radius: 40px;
     color: white;
 }
-.buyer-c-ticketvalid-top-head-right-1{
+.buyer_c_ticketvalid_top_head_right_1{
     font-size: 12px;
     padding-right: 5px;
     bottom: 0;
 }
-.buyer-c-ticketvalid-top-head-right-2{
+.buyer_c_ticketvalid_top_head_right_2{
     font-size: 18px;
 }
-#customized-dialog-title{
+#customized_dialog_title{
     background-color: #752E9E;
     color: white;
 }
 @media only screen and (max-width: 550px) {
-    .buyer-c-ticketvalid{
+    .buyer_c_ticketvalid{
         width: 230px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 450px) {
-    .buyer-c-ticketvalid{
+    .buyer_c_ticketvalid{
         width: 170px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 400px) {
-    .buyer-c-ticketvalid{
+    .buyer_c_ticketvalid{
         width: 155px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 350px) {
-    .buyer-c-ticketvalid{
+    .buyer_c_ticketvalid{
         width: 135px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 330px) {
-    .buyer-c-ticketvalid{
+    .buyer_c_ticketvalid{
         width: 90vw;
         border-radius: 20px;
         margin: 10px;
@@ -201,10 +175,10 @@
 /*end - valid ticket component*/
 
 /*start - unvalid ticket component*/
-:root {
+.root {
     --parent-height: 220px;
   }
-.buyer-c-ticketunvalid{
+.buyer_c_ticketunvalid{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -213,14 +187,14 @@
     position: relative;
     margin: 10px;
 }
-.buyer-c-ticketunvalid-cardstatus{
+.buyer_c_ticketunvalid_cardstatus{
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-.buyer-c-ticketunvalid-top{
+.buyer_c_ticketunvalid_top{
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
@@ -229,7 +203,7 @@
     height:calc(var(--parent-height)*0.8);
     position: relative;
 }
-.buyer-c-ticketunvalid-top-info{
+.buyer_c_ticketunvalid_top_info{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     height:calc(var(--parent-height)*0.2);
@@ -237,35 +211,35 @@
     bottom: 0;
     display: flex;
 }
-.buyer-c-ticketunvalid-top-info-left{
+.buyer_c_ticketunvalid_top_info_left{
     width: 75%;
     padding-left: 6px;
     color: white;
 }
-.buyer-c-ticketunvalid-top-info-right{
+.buyer_c_ticketunvalid_top_info_right{
     padding-right: 6px;
     color: white;
     position: relative;
     width: 25%;
     text-align: center;
 }
-.buyer-c-ticketunvalid-top-info-right-nooftickets{
+.buyer_c_ticketunvalid_top_info_right_nooftickets{
     position: block;
     width: 100%;
 }
-.buyer-c-ticketunvalid-top-info-right-tickets{
+.buyer_c_ticketunvalid_top_info_right_tickets{
     font-size: 10px;
 }
-.buyer-c-ticketunvalid-top-head{
+.buyer_c_ticketunvalid_top_head{
     display: flex;
     padding-left: 10px;
 }
-.buyer-c-ticketunvalid-top-head-left{
+.buyer_c_ticketunvalid_top_head_left{
     padding-top: 10px;
     color: white;
     width: 60%;
 }
-.buyer-c-ticketunvalid-top-head-right{
+.buyer_c_ticketunvalid_top_head_right{
     width: 40%;
     display: flex;
     background-color: #FEC200;
@@ -277,48 +251,48 @@
     border-bottom-left-radius: 40px;
     color: white;
 }
-.buyer-c-ticketunvalid-top-head-right-1{
+.buyer_c_ticketunvalid_top_head_right_1{
     font-size: 12px;
     padding-right: 5px;
     bottom: 0;
 }
-.buyer-c-ticketunvalid-top-head-right-2{
+.buyer_c_ticketunvalid_top_head_right_2{
     font-size: 18px;
 }
-#customized-dialog-title{
+#customized_dialog_title{
     background-color: #752E9E;
     color: white;
 }
 @media only screen and (max-width: 550px) {
-    .buyer-c-ticketunvalid{
+    .buyer_c_ticketunvalid{
         width: 230px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 450px) {
-    .buyer-c-ticketunvalid{
+    .buyer_c_ticketunvalid{
         width: 170px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 400px) {
-    .buyer-c-ticketunvalid{
+    .buyer_c_ticketunvalid{
         width: 155px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 350px) {
-    .buyer-c-ticketunvalid{
+    .buyer_c_ticketunvalid{
         width: 135px;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 330px) {
-    .buyer-c-ticketunvalid{
+    .buyer_c_ticketunvalid{
         width: 90vw;
         border-radius: 20px;
         margin: 10px;
@@ -340,7 +314,7 @@ div.MuiFormControl-root.MuiFormControl-fullWidth.css-1w4vsez-MuiFormControl-root
 /*start -  ticket popup*/
 
 /*start -  ticket component*/
-.buyer-c-ticket{
+.buyer_c_ticket{
     text-align: center;
     min-width: 500px;
     cursor: pointer;
@@ -352,14 +326,14 @@ div.MuiFormControl-root.MuiFormControl-fullWidth.css-1w4vsez-MuiFormControl-root
 box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
 }
 @media only screen and (max-width: 450px) {
-    .buyer-c-ticket{
+    .buyer_c_ticket{
         min-width: 100px;
         text-align: left;
     }
 }
 /*end -  ticket component*/
 /*start -  cart card full component*/
-.cartitem-card{
+.cartitem_card{
     padding: 10px;
     width: 100%;
     border: 1px rgb(221, 221, 221);
@@ -369,40 +343,40 @@ box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
 }
 /*end -  cart card full component*/
 /*start -  cart card component*/
-.cartprice-card{
+.cartprice_card{
     font-size: medium;
     display: flex;
 }
-.cartprice-card-left{
+.cartprice_card_left{
     display: flex;
     width:50%;
 }
-.cartprice-card-right{
+.cartprice_card_right{
     text-align: end;
     width:50%;
 }
-.cartitem-card-img{
+.cartitem_card_img{
     width: 25%;
 }
-.cartitem-card-eventname{
+.cartitem_card_eventname{
     width:50%;
     overflow: hidden;
 }
-.cartitem-card-price{
+.cartitem_card_price{
     width:25%;
 }
-.cartitem-card{
+.cartitem_card{
     display: flex;
 }
 /*end -  cart card component*/
 /*end -  checkout card component*/
-.checkout-card{
+.checkout_card{
     width: 100%;
     margin-bottom: 10px;
     padding: 18px;
     height: 130px;
 }
-.checkout-card-container{
+.checkout_card_container{
     padding: 10px;
     height: 100%;
     width: 100%;
@@ -410,49 +384,49 @@ box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.57);
     box-shadow: 0px 0px 16px -3px rgba(0,0,0,0.48);
     display: flex;
 }
-.checkout-card-container-left{
+.checkout_card_container_left{
     display: flex;
  width: 80%;
 }
-.checkout-card-container-right{
+.checkout_card_container_right{
     cursor: pointer;
     width:20%;
     text-align: center;
     font-size: 50px;
     color: rgb(102, 101, 101);
 }
-.checkout-card-container-left-name{
+.checkout_card_container_left_name{
     padding: 10px 25px;
     overflow: hidden;
 }
-.checkout-card-container-left-price{
+.checkout_card_container_left_price{
     padding: 20px 25px;
     font-size: 25px;
 }
 @media only screen and (max-width: 550px) {
-    .checkout-card-container-left-price{
+    .checkout_card_container_left_price{
         padding: 27px 9px;
         font-size: 15px;
     }
-    .checkout-card-container-right{
+    .checkout_card_container_right{
         padding-top: 12px;
         font-size: 30px;
     }
-    .checkout-card-container-left-name{
+    .checkout_card_container_left_name{
         overflow: hidden;
         padding: 5px 8px;
     }
 }
 @media only screen and (max-width: 800px) {
-    .checkout-card-container-left-price{
+    .checkout_card_container_left_price{
         padding: 27px 9px;
         font-size: 15px;
     }
-    .checkout-card-container-right{
+    .checkout_card_container_right{
         padding-top: 12px;
         font-size: 30px;
     }
-    .checkout-card-container-left-name{
+    .checkout_card_container_left_name{
         overflow: hidden;
         padding: 5px 8px;
     }

@@ -11,6 +11,7 @@ import {endsession} from '../../session/Session';
 import {useRouter} from 'next/router';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import styles from './styles.module.css'
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -72,8 +73,8 @@ React.useEffect(() => {
         router.push('/user');
     }
         return (
-            <div className="buyer-c-sidebar">
-                    <div className="buyer-c-sidebar-container">
+            <div className={styles.buyer_c_sidebar}>
+                    <div className={styles.buyer_c_sidebar_container}>
                         <Link href="/buyer">
                             <BootstrapTooltip title="My Tickets">
                                 <div className={buyersidebar1 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>

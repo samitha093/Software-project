@@ -11,6 +11,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Ticket from '../../components/buyer/Ticket'
 
+import styles from './styles.module.css'
+
 interface TicketvalidProps {
   level : string,
   type : string
@@ -96,38 +98,38 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type}) => {
   
   return (
     <div>
-        <div style={{backgroundColor: Ticketcolor}}  className="buyer-c-ticketvalid"  onClick={handleClickOpen}>
+        <div style={{backgroundColor: Ticketcolor}}  className={styles.buyer_c_ticketvalid}  onClick={handleClickOpen}>
             <div>
-                <div  style={{backgroundImage: Ticketimg}} className="buyer-c-ticketvalid-top">
-                    <div className="buyer-c-ticketvalid-top-head">
-                        <div className="buyer-c-ticketvalid-top-head-left">
+                <div  style={{backgroundImage: Ticketimg}} className={styles.buyer_c_ticketvalid_top}>
+                    <div className={styles.buyer_c_ticketvalid_top_head}>
+                        <div className={styles.buyer_c_ticketvalid_top_head_left}>
                             13:30:00
                         </div>
-                        <div style={{backgroundColor: Ticketlevelcolor}} className="buyer-c-ticketvalid-top-head-right" id="ticket-level" >
-                            <div className="buyer-c-ticketvalid-top-head-right-1">
+                        <div style={{backgroundColor: Ticketlevelcolor}} className={styles.buyer_c_ticketvalid_top_head_right} id="ticket-level" >
+                            <div className={styles.buyer_c_ticketvalid_top_head_right_1}>
                                 Level
                             </div>
-                            <div className="buyer-c-ticketvalid-top-head-right-2" >
+                            <div className={styles.buyer_c_ticketvalid_top_head_right_2} >
                                 {Ticketlevel}
                             </div>
                         </div>
                     </div>
-                    <div className="buyer-c-ticketvalid-top-info">
-                        <div className="buyer-c-ticketvalid-top-info-left">
-                            <div className="buyer-c-ticketvalid-top-info-left-name">
+                    <div className={styles.buyer_c_ticketvalid_top_info}>
+                        <div className={styles.buyer_c_ticketvalid_top_info_left}>
+                            <div className={styles.buyer_c_ticketvalid_top_info_left_name}>
                                 Event name
                             </div>
-                            <div className="buyer-c-ticketvalid-top-info-left-date">
+                            <div className={styles.buyer_c_ticketvalid_top_info_left_date}>
                                 2021-08-23
                             </div>
                         </div>
-                        <div className="buyer-c-ticketvalid-top-info-right">
-                            <div className="buyer-c-ticketvalid-top-info-right-nooftickets">460</div>
-                            <div className="buyer-c-ticketvalid-top-info-right-tickets">tickets</div>
+                        <div className={styles.buyer_c_ticketvalid_top_info_right}>
+                            <div className={styles.buyer_c_ticketvalid_top_info_right_nooftickets}>460</div>
+                            <div className={styles.buyer_c_ticketvalid_top_info_right_tickets}>tickets</div>
                         </div>
                     </div>
                 </div>
-                <h5 className="buyer-c-ticketvalid-cardstatus">card status</h5>
+                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>card status</h5>
             </div>
         </div>
 
@@ -144,7 +146,7 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type}) => {
           <Ticket id="766756 343545 766688 67678 876668"/>
           <Ticket id="464666 776766 765757 86868 787686"/>
           {pay?
-              <div className='paynow'><Button fullWidth style={{backgroundColor: '#752E9E', borderRadius:'20px'}} variant="contained" size="medium">Pay Now (LKR 14 600)</Button></div>
+              <div className={styles.paynow}><Button fullWidth style={{backgroundColor: '#752E9E', borderRadius:'20px'}} variant="contained" size="medium">Pay Now (LKR 14 600)</Button></div>
           :null}  
           
         </DialogContent>

@@ -20,8 +20,6 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
-    "@material-ui/core": "^5.0.0-beta.5",
-    "@material-ui/lab": "^5.0.0-alpha.44",
     "@mdi/font": "^6.2.95",
     "@mdi/js": "^6.2.95",
     "@mdi/react": "^1.5.0",
@@ -32,6 +30,7 @@
     "@zeit/next-sass": "^1.0.1",
     "aos": "^2.3.4",
     "axios": "^0.24.0",
+    "classnames": "^2.3.1",
     "date-fns": "^2.27.0",
     "formik": "^2.2.9",
     "fortawesome": "0.0.1-security",
@@ -51,6 +50,7 @@
     "sweetalert2": "^11.4.9",
     "swiper": "^7.4.1",
     "ts-form-validation": "^2.2.0"
+
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
