@@ -1,0 +1,47 @@
+/.idea
+/.vscode
+#remove Database Backup file
+/database/
+
+#remove Library Files from Client
+/client/node_dmodules
+/client/coverage
+/client/.next/
+/client/.idea/
+/client/.vscode/
+/client/out/
+/client/build
+
+#remove Library Files From Server
+/server/.vs/
+/server/.vscode/
+/server/node_dmodules/
+
+# ependencies
+/.pnp
+.pnp.js
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+
+/server/logs
+/server/*.log
+/server/npm-debug.log*
+/server/yarn-debug.log*
+/server/yarn-error.log*
+/server/lerna-debug.log*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel

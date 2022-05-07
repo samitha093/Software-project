@@ -4,16 +4,19 @@ import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
 import Ticketvalid from '../../components/buyer/Ticketvalid'
 import Ticketunvalid from '../../components/buyer/Ticketunvalid'
+
+import styles from './styles.module.css'
+
 const bids: NextPage = () => {
         return (
-            <div className="buyer-bg">
+            <div className={styles.buyer_bg}>
                 <Navbar/>
-                <div className="buyer-index">
+                <div className={styles.buyer_index}>
                     <Sidebar id="3" />
-                    <div className='buyer-index-container-parent'>
+                    <div className={styles.buyer_index_container_parent}>
                        <h1>Pending Bids</h1> 
-                       <div className="buyer-index-container-d2">
-                            <div className="buyer-index-container">
+                       <div className={styles.buyer_index_container_d2}>
+                            <div className={styles.buyer_index_container}>
                                 <Ticketvalid level="1" type="3"/>
                                 <Ticketvalid level="2" type="3"/>
                                 <Ticketvalid level="3" type="3"/>
