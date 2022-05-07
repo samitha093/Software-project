@@ -6,13 +6,14 @@ import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
 import Ticketvalid from '../../components/buyer/Ticketvalid'
 import {getuser } from '../../session/Session';
+import styles from './styles.module.css'
 
 const index: NextPage = () => {
     const [open, setopen] = React.useState(false);
     const router = useRouter();
     React.useEffect(()=>{
         console.log(getuser());
-        if(getuser() != null){
+        if(getuser() == null){
             setopen(true);
         }else{
             if(!open){
@@ -22,16 +23,16 @@ const index: NextPage = () => {
        
     },[])
         return (
-            <div className="buyer-bg">
+            <div className={styles.buyer_bg}>
                 {open?
                     <div>
                         <Navbar/>
-                    <div className="buyer-index">
+                    <div className={styles.buyer_index}>
                         <Sidebar id="1"/>
-                        <div className="buyer-index-content buyer-index-container-parent">
+                        <div className={styles.buyer_index_container_parent}>
                             <h1>Tickets</h1>
-                            <div className="buyer-index-container-d2">
-                                <div className="buyer-index-container">
+                            <div className={styles.buyer_index_container_d2}>
+                                <div className={styles.buyer_index_container}>
                                     <Ticketvalid level="1" type="1"/>
                                     <Ticketvalid level="2" type="1"/>
                                     <Ticketvalid level="3" type="1"/>
@@ -60,7 +61,6 @@ const index: NextPage = () => {
                                     <Ticketvalid level="2" type="1"/>
                                     <Ticketvalid level="3" type="1"/>
                                     <Ticketvalid level="4" type="1"/>
-                                    <Ticketvalid level="5" type="1"/>
                                     <Ticketvalid level="5" type="1"/>
                                 </div>
                             </div>

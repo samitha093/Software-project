@@ -11,10 +11,15 @@ const index: NextPage = () => {
 
     const [items, setitem] = React.useState([])
     React.useEffect(()=>{
-      axios.get(gethost()+'seller/active/61842a1e0ec95f011fdc3bcf')
-      .then(async (res)=>{
-        await setitem(res.data)
-      })
+        try{
+            axios.get(gethost()+'seller/active/61842a1e0ec95f011fdc3bcf')
+                .then(async (res)=>{
+                    await setitem(res.data)
+                })
+        }catch{
+
+        }
+
         
     },[])
 
