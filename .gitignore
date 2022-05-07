@@ -15,7 +15,7 @@
 #remove Library Files From Server
 /server/.vs/
 /server/.vscode/
-/server/node_dmodules/
+/server/node_modules/
 
 # ependencies
 /.pnp
