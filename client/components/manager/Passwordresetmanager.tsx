@@ -2,8 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
-import Sellerapproval from '../../components/manager/Sellerapproval'
 import Fab from '@mui/material/Fab';
+
+import styles from './styles.module.css'
+import classnames from 'classnames';
 
 interface ResetPwdProps {
 
@@ -17,15 +19,15 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
     const [cnewpwd, setcnewpwdpw] = React.useState("");
 
     return (
-        <div className="container" id="container" >
+        <div className={styles.container} id="container">
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
-                    <Grid item md={7} className="pwd_container">
-                        <div className="form-wrapper">
-                            <form className='modern-form' action="#">
-                                <h1 className="head-password" >Reset Password</h1>
+                    <Grid item md={7} className={styles.pwd_container}>
+                        <div className={styles.form_wrapper}>
+                            <form className={styles.modern_form} action="#">
+                                <h1 className={styles.head_password} >Reset Password</h1>
                                 <input
-                                    className='inputbox-modern'
+                                    className={styles.inputbox_modern}
                                     type="password"
                                     placeholder="Current password"
                                     value={currentpwd}
@@ -33,7 +35,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
                                 <input
-                                    className='inputbox-modern'
+                                    className={styles.inputbox_modern}
                                     type="password"
                                     placeholder="New Password"
                                     value={newpwd}
@@ -41,7 +43,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
                                 <input
-                                    className='inputbox-modern'
+                                    className={styles.inputbox_modern}
                                     type="password"
                                     placeholder="Confirm New Password"
                                     value={cnewpwd}
@@ -49,16 +51,18 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 // onBlur={emailBlurHandler} 
                                 />
                                 <br /><br />
-                                <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd">
-                                    SUBMIT
-                                </Fab>
+                                <div className={styles.manager_reset_password_submit_button}>
+                                    <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd" margin-left="40%">
+                                        SUBMIT
+                                    </Fab>
+                                </div>
                             </form>
 
                         </div>
 
                     </Grid>
-                    <Grid item xs className="box-1" >
-                        <div className="content-1">
+                    <Grid item xs className={styles.box_1} >
+                        <div className={styles.content_1}>
                             <Image
                                 src={lock}
                                 layout="responsive"
@@ -66,7 +70,6 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 alt='Invalid Format'
                             >
                             </Image>
-                            <Sellerapproval />
 
                         </div>
                     </Grid>
