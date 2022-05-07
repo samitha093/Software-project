@@ -13,7 +13,8 @@
 .buyer_index_container_parent{
     position:relative;
     width: 100%;
-    height: auto;
+    height: 90vh;
+    overflow: auto;
 }
 .buyer_index_container_title{
     padding-left: 100px;
