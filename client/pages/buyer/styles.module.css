@@ -30,6 +30,7 @@
     display: flex;
     box-sizing: border-box;
     flex-wrap: wrap;
+    justify-content: center;
 }
 @media only screen and (max-width: 600px) {
     .buyer_index{
@@ -42,7 +43,7 @@
     .buyer_index_container{
         padding-left: 0px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
     .buyer_index_container_d2{
         position: relative;
