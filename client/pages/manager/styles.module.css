@@ -3,8 +3,11 @@
 {
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
+    background-repeat: repeat;
     height:100vh;
     position: absolute;
+    width:100%;
+    
 }
 .manager_index
 {
@@ -12,6 +15,12 @@
     overflow: auto;
     padding-top: 80px;
     padding-left: 30px;
+}
+.manager_setting_fix{
+    position:relative;
+    width: 100%;
+    height: 90vh;
+    overflow: auto;
 }
 .manager_index_content
 {
@@ -24,7 +33,7 @@
     position: relative;
     display: flex;
     box-sizing: border-box;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -66,5 +75,6 @@
     .manager_index_container{
         padding-left: 0px;
         display: flex;
+        justify-content: center;
     }
 }

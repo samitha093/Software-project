@@ -1,9 +1,13 @@
 /*start - sidebar component*/
 .buyer_c_sidebar{
-    width:130px;
-    height: calc(100vh - 70px);
-    min-height: 800px;
-    padding: 60px 10px;
+    z-index: 10;
+    position: fixed;
+    left: 0%;
+    top: calc(55vh - 325px);
+    height: 600px;
+    width: 180px;
+    padding: 35px 35px;
+    margin-top: 50px;
     
 }
 .buyer_c_sidebar_container{
@@ -11,7 +15,7 @@
     height:100%;
     background-color: white;
     border-radius: 30px;
-    padding: 30px 23px;
+    padding: 10px 23px;
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
 }
@@ -23,6 +27,8 @@
         height: auto;
         min-height: 0px;
         padding: 10px 10px 0px;
+        top: 70px;
+        height: auto;
         
     }
     .buyer_c_sidebar_container{
@@ -49,9 +55,6 @@
 /*end - sidebar component*/
 
 /*start - valid ticket component*/
-.root {
-    --parent-height: 220px;
-  }
 .buyer_c_ticketvalid{
     cursor: pointer;
     width: 250px;

@@ -14,7 +14,7 @@ const tickets: NextPage = () => {
                 <div className={styles.buyer_index}>
                     <Sidebar id="4"/>
                     <div className={styles.buyer_index_container_parent}>
-                       <h1>Validated Tickets</h1> 
+                       <h1 className={styles.buyer_index_container_title}>Validated Tickets</h1> 
                        <div className={styles.buyer_index_container_d2}>
                         <div className={styles.buyer_index_container}>
                                 <Ticketvalid level="1" type="4"/>

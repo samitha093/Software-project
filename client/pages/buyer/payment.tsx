@@ -13,7 +13,7 @@ const payment: NextPage = () => {
                 <div className={styles.buyer_index}>
                     <Sidebar id="2"/>
                     <div className={styles.buyer_index_container_parent}>
-                       <h1>Pending Payment</h1> 
+                       <h1 className={styles.buyer_index_container_title}>Pending Payment</h1> 
                        <div className={styles.buyer_index_container_d2}>
                             <div className={styles.buyer_index_container}>
                                 <Ticketvalid level="1" type="2"/>

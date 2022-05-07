@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
-import Resetpw from '../../components/buyer/Resetpw'
+
 
 import styles from './styles.module.css'
 
@@ -14,7 +14,7 @@ const settings: NextPage = () => {
                     <Sidebar id="5"/>
                     <div className={'${styles.buyer_setting} ${buyer_index_container_parent}'}>
                        <h1>Settings</h1>
-                       <div className={styles.buyer_setting_container}><Resetpw /></div>
+                       <div className={styles.buyer_setting_container}></div>
                        
                     </div>
                 </div>
