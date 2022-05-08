@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
-
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
 /**
  * @swagger
  *  components:
@@ -12,7 +13,7 @@ const User = require('../models/users');
  *                  - name
  *                  - email
  *                  - password
- *                  - user-type
+ *                  - usertype
  *              properties:
  *                  name:
  *                      type: string
@@ -20,28 +21,63 @@ const User = require('../models/users');
  *                  email:
  *                      type: string
  *                      description: Validated email Format
- *                  contact-number:
+ *                  contactnumber:
  *                      type: string
  *                      description: Validated Phone number Format With 10 Digits
  *                  password:
  *                      type: string
  *                      description: Validated Password & Same Password 
- *                  user-type:
+ *                  usertype:
  *                      type: string
  *                      description: Should validated if admin 
  *              example:
  *                  name: "?"
  *                  email: "?"
- *                  contact-number: "?"
+ *                  contactnumber: "?"
  *                  password: "?"
- *                  user-type: "?"
+ *                  usertype: "?"
+ *          email:
+ *              type: object
+ *              required:
+ *                  - name
+ *                  - email
+ *                  - usertype
+ *              properties:
+ *                  name:
+ *                      type: string
+ *                      description: validated number of charactors
+ *                  email:
+ *                      type: string
+ *                      description: Validated email Format
+ *                  usertype:
+ *                      type: string
+ *                      description: Should validated if admin 
+ *              example:
+ *                  name: "?"
+ *                  email: "?"
+ *                  usertype: "?"
+ *          otpactivate:
+ *              type: object
+ *              required:
+ *                  - email
+ *                  - otp
+ *              properties:
+ *                  email:
+ *                      type: string
+ *                      description: Validated email Format
+ *                  otp:
+ *                      type: string
+ *                      description: Should validated With Number Count = 10
+ *              example:
+ *                  email: "?"
+ *                  otp: "?"
  */
 
 /**
   * @swagger
   * tags:
   *   name: User-guest
-  *   description: Private Routes
+  *   description: PublicRoutes
   */
 
   /**
@@ -67,34 +103,65 @@ const User = require('../models/users');
    */
 
 router.route('/register').post((req,res) => {
-    const user_name = req.body.name;
+    const username = req.body.name;
     const email = req.body.email;
     const contact = req.body.contact;
     const password = req.body.password;
-    const user_type = req.body.userType;
-    const status = true;
-
+    const usertype = req.body.usertype;
     User.find({email:email},(err,data) => {
         if(data.length>0){
             res.status(400).json("User alreadyt exist");
             return 0;
         } 
         const newuser = new User({
-            user_name,
+            username,
             email,
             contact,
             password,
-            user_type,
-            status,
-            
+            usertype,
             });
-        console.log(newuser);
         newuser.save()
             .then(()=> res.status(200).json("Registration success"))
             .catch(err => res.status(400).json(err + "Registration failed"))   
     })
  
 });
+
+/**
+   * @swagger
+   * '/g/activate':
+   *  post:
+   *     tags:
+   *     - User-guest
+   *     summary: Activate User Account With OTP
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/otpactivate'
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Wrong OTP
+   *      500:
+   *        description: Server failure
+   */
+
+ router.route('/activate').post((req,res) => {
+    User.find({email:req.body.email,otp:req.body.otp, status:false})
+        .then(data =>{
+            data[0].status = true;
+            data[0].otp = "0";
+            data[0].save()
+                .then(()=> res.status(200).json("validated"))
+                .catch(err => res.status(500).json(err))
+        })
+        .catch(err => res.status(400).json("Wrong OTP"))
+});
+
+
 
 router.route('/login').post((req,res) => {
     
@@ -128,5 +195,94 @@ function authtoken(req, res, next){
  
 }
 
+/**
+  * @swagger
+  * tags:
+  *   name: Email-Sender
+  *   description: Public Routes
+  */
+
+  /**
+   * @swagger
+   * '/g/verify':
+   *  post:
+   *     tags:
+   *     - Email-Sender
+   *     summary: Send OTP For useraccount Activation
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/email'
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Notregisted user
+   *      500:
+   *        description: Server failure
+   */
+  
+    router.route('/verify').post((req,res) => {
+        const user_name = req.body.name;
+        User.find({email:req.body.email,usertype:req.body.usertype, status:false})
+            .then(data =>{
+                var otpid = makeid(10)
+                data[0].otp = otpid;
+                data[0].save()
+                    .then(async()=>{
+                        const to = "egment.eu@gmail.com";
+                        await notification(to);
+                        res.status(200).json("ok");
+                    })
+                    .catch(err => res.status(500).json(err))
+            })
+            .catch(err => res.status(400).json("Not Found User Accout For this email"))
+    });
+
+    function makeid(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * 
+     charactersLength));
+       }
+       return result;
+    }
+
+    //email notifications
+function notification(email){
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'tickbid.mail@gmail.com',
+          pass: 'mutumsqbqhngurnw'
+        }
+    });
+
+    transporter.use('compile',hbs({
+        viewEngine:'express-handlebars',
+        viewPath: './emails/'
+    }));
+      
+    var mailOptions = {
+        from: 'Tickbid Team<tickbid.mail@gmail.com>',
+        to: email,
+        subject: 'TickBid Team',
+        template: 'otp'
+    };
+      
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+            return;
+        } else {
+            console.log('Email sent: ' + info.response);
+            return;
+        }
+    });
+}
 
 module.exports = router;
