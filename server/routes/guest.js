@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
+const {a, b, c} = require('../views/otp')
 /**
  * @swagger
  *  components:
@@ -225,15 +226,15 @@ function authtoken(req, res, next){
    */
   
     router.route('/verify').post((req,res) => {
-        const user_name = req.body.name;
+        const username = req.body.name;
         User.find({email:req.body.email,usertype:req.body.usertype, status:false})
             .then(data =>{
                 var otpid = makeid(10)
                 data[0].otp = otpid;
                 data[0].save()
                     .then(async()=>{
-                        const to = "egment.eu@gmail.com";
-                        await notification(to);
+                        const to = req.body.email;
+                        await notification(to, username, otpid);
                         res.status(200).json("ok");
                     })
                     .catch(err => res.status(500).json(err))
@@ -253,7 +254,7 @@ function authtoken(req, res, next){
     }
 
     //email notifications
-function notification(email){
+function notification(email, username, otp){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -262,16 +263,11 @@ function notification(email){
         }
     });
 
-    transporter.use('compile',hbs({
-        viewEngine:'express-handlebars',
-        viewPath: './emails/'
-    }));
-      
     var mailOptions = {
         from: 'Tickbid Team<tickbid.mail@gmail.com>',
         to: email,
         subject: 'TickBid Team',
-        template: 'otp'
+        html: a + username +b + otp + c
     };
       
     transporter.sendMail(mailOptions, function(error, info){
