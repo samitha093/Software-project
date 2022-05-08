@@ -19,7 +19,8 @@
     "nodemailer": "^6.7.0",
     "nodemailer-express-handlebars": "^5.0.0",
     "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.3.0"
+    "swagger-ui-express": "^4.3.0",
+    "yan": "^0.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"

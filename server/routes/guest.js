@@ -72,6 +72,28 @@ const {a, b, c} = require('../views/otp')
  *              example:
  *                  email: "?"
  *                  otp: "?"
+ *          passwordreset:
+ *              type: object
+ *              required:
+ *                  - otp
+ *                  - email
+ *                  - password
+ *              properties:
+ *                  otp:
+ *                      type: string
+ *                      description: validated number of charactors
+ *                  email:
+ *                      type: string
+ *                      description: Validated email Format
+ *                  password:
+ *                      type: string
+ *                      description: Should validated format
+ *              example:
+ *                  otp: "?"
+ *                  email: "?"
+ *                  password: "?"
+ * 
+ * 
  */
 
 /**
@@ -153,7 +175,14 @@ router.route('/register').post((req,res) => {
  router.route('/activate').post((req,res) => {
     User.find({email:req.body.email,otp:req.body.otp, status:false})
         .then(data =>{
-            data[0].status = true;
+            if(data[0].usertype === "BUYER"){
+                data[0].status = true;
+            }else if(data[0].usertype === "SELLER"){
+                data[0].status = true;
+            }else{
+                data[0].status = false;
+            }
+            
             data[0].otp = "0";
             data[0].save()
                 .then(()=> res.status(200).json("validated"))
@@ -162,7 +191,63 @@ router.route('/register').post((req,res) => {
         .catch(err => res.status(400).json("Wrong OTP"))
 });
 
+/**
+   * @swagger
+   * '/g/managercount':
+   *  get:
+   *     tags:
+   *     - User-guest
+   *     summary: Get Count Of Manager Account
+   *     requestBody:
+   *      required: false
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Wrong User Format
+   *      500:
+   *        description: Server failure
+   */
 
+ router.route('/managercount').get((req,res) => {
+    User.find({usertype:"MANAGER"},(err,data) => {
+        res.status(200).json(data.length) 
+    })
+});
+
+/**
+   * @swagger
+   * '/g/passwordreset':
+   *  post:
+   *     tags:
+   *     - User-guest
+   *     summary: Password Reset
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/passwordreset'
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Wrong OTP
+   *      500:
+   *        description: Server failure
+   */
+
+ router.route('/passwordreset').post((req,res) => {
+    User.find({email:req.body.email,otp:req.body.otp})
+        .then(data =>{
+            data[0].password = req.body.password;
+            data[0].otp = "0";
+            data[0].save()
+                .then(()=> res.status(200).json("validated"))
+                .catch(err => res.status(500).json(err))
+        })
+        .catch(err => res.status(400).json("Wrong OTP"))
+});
 
 router.route('/login').post((req,res) => {
     
@@ -209,7 +294,7 @@ function authtoken(req, res, next){
    *  post:
    *     tags:
    *     - Email-Sender
-   *     summary: Send OTP For useraccount Activation
+   *     summary: Send OTP For useraccount Verification
    *     requestBody:
    *      required: true
    *      content:
@@ -227,7 +312,7 @@ function authtoken(req, res, next){
   
     router.route('/verify').post((req,res) => {
         const username = req.body.name;
-        User.find({email:req.body.email,usertype:req.body.usertype, status:false})
+        User.find({email:req.body.email,usertype:req.body.usertype})
             .then(data =>{
                 var otpid = makeid(10)
                 data[0].otp = otpid;
