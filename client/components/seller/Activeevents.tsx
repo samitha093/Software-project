@@ -19,6 +19,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios'
 import {gethost} from '../../session/Session'
+import Styles from './Styles.module.css'
+import Swal from 'sweetalert2'
 
 interface ActiveeventProps {
   data:any,
@@ -82,7 +84,14 @@ const Activeevents: React.FC<ActiveeventProps> = ({data}) => {
       .then(async (res)=>{
         await setitem(res.data)
       })
-        
+      .catch(()=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Database connection error!'
+          })
+        }
+      ) 
     },[])
 
     function createData(
@@ -103,42 +112,42 @@ const Activeevents: React.FC<ActiveeventProps> = ({data}) => {
 
     return (
         <div>
-            <div className="manager-c-tickets" onClick={handleClickOpen}>
+            <div className={Styles.seller_c_tickets} onClick={handleClickOpen}>
                 <div>
-                    <div className="manager-c-tickets-top">
-                        <div className="manager-c-tickets-top-info">
-                            <div className="manager-c-tickets-top-info-left">
-                                <div className="manager-c-tickets-top-info-left-name">
+                    <div className={Styles.seller_c_tickets_top}>
+                        <div className={Styles.seller_c_tickets_top_info}>
+                            <div className={Styles.seller_c_tickets_top_info_left}>
+                                <div className={Styles.seller_c_tickets_top_info_left_name}>
                                     {data.event_name}
                                 </div>
-                                <div className="manager-c-tickets-top-info-left-date">
+                                <div className={Styles.seller_c_tickets_top_info_left_date}>
                                     {data.event_date}
                                 </div>
                             </div>
-                            <div className="manager-c-tickets-top-info-right">
-                                <div className="manager-c-tickets-top-info-right-nooftickets">460</div>
-                                <div className="manager-c-tickets-top-info-right-tickets">tickets</div>
+                            <div className={Styles.seller_c_tickets_top_info_right}>
+                                <div className={Styles.seller_c_tickets_top_info_right_nooftickets}>460</div>
+                                <div className={Styles.seller_c_tickets_top_info_right_tickets}>tickets</div>
                             </div>
                         </div>
                     </div>
-                    <h5 className="manager-c-tickets-cardstatus">Info</h5>
+                    <h5 className={Styles.seller_c_tickets_cardstatus}>Info</h5>
                 </div>
             </div>
             <BootstrapDialog 
-        aria-labelledby="customized-dialog-title"
+        aria-labelledby={Styles.customized_dialog_title1}
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle id={Styles.customized_dialog_title1} onClose={handleClose}>
           Active Event
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <div className="ticketview">
+          <div className={Styles.ticketview}>
             <h1>{data.event_name}</h1>  
           </div>  
           <Grid sx={{ maxWidth: 480 }}>
             <Grid margin-top="20px">
               <Box sx={{ flexGrow: 1 }}>
-                <Grid  className="manager-eventinfo-font" container spacing={1}>
+                <Grid  className={Styles.seller_eventinfo_font} container spacing={1}>
                   <Grid item xs={6}>
                     <Typography> Event Venue: {data.event_venue}</Typography>
                   </Grid>
@@ -153,13 +162,13 @@ const Activeevents: React.FC<ActiveeventProps> = ({data}) => {
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell id="customized-dialog-title">Ticket Level</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
-            <TableCell id="customized-dialog-title" align="right">FSell</TableCell>
-            <TableCell id="customized-dialog-title" align="right">FSold</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Total Bid</TableCell>
-            <TableCell id="customized-dialog-title" align="right">Available Bid</TableCell>
+            <TableCell id={Styles.customized_dialog_title1}>Ticket Level</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Fix Price&nbsp;(Rs)</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">FSell</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">FSold</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Bid Price&nbsp;(Rs)</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Total Bid</TableCell>
+            <TableCell id={Styles.customized_dialog_title1} align="right">Available Bid</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

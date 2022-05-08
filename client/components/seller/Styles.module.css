@@ -1,4 +1,4 @@
-.seller-c-sidebar{
+.seller_c_sidebar{
     z-index: 10;
     position: fixed;
     left: 0%;
@@ -7,7 +7,7 @@
     width:130px;
     padding: 60px 10px;
 }
-.seller-c-sidebar-container{
+.seller_c_sidebar_container{
     width: 100%;
     height:100%;
     background-color: white;
@@ -17,7 +17,7 @@
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
 }
-.seller-c-sidebar-item{
+.seller_c_sidebar_item{
     width:60px;
     height:60px;
     border: 1px;
@@ -28,7 +28,7 @@
     padding: 0px;
     cursor: pointer;
 }
-.seller-c-topbar{
+.seller_c_topbar{
     z-index: 10;
     position: fixed;
     top: 70px;
@@ -39,7 +39,7 @@
     padding: 10px 10px 10px;
 
 }
-.seller-c-topbar-container{
+.seller_c_topbar_container{
     display: flex;
     height: auto;
     width: 400px;
@@ -50,7 +50,7 @@
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
     box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
 }
-.seller-c-topbar-item{
+.seller_c_topbar_item{
     margin-top: 0px;
     width: 25%;
     text-align: center;
@@ -62,31 +62,31 @@
     border-style:solid;
     cursor: pointer;
 }
-.seller-c-sidebar-item.active{
+.seller_c_sidebar_item.active{
     border-color: white;
     background-color: #752E9E;
 }
-.seller-c-sidebar-item-icon.active{
+.seller_c_sidebar_item_icon.active{
     color: white;
 }
-.seller-c-topbar-item.active{
+.seller_c_topbar_item.active{
     border-color: #752E9E;
     background-color: #752E9E;
     color: white;
 }
-.seller-c-sidebar-item:hover{
+.seller_c_sidebar_item:hover{
     border-color: white;
     background-color: #752E9E;
     color: white;
 }
-.seller-c-sidebar-item-icon:hover{
+.seller_c_sidebar_item_icon:hover{
     color: white;
 }
-.seller-c-sidebar-item-icon{
+.seller_c_sidebar_item_icon{
     padding: 10px;
     color: black;
 }
-.seller-c-topbar-item:hover{
+.seller_c_topbar_item:hover{
     border-color:#752E9E;
     background-color: #752E9E;
     color: white;
@@ -94,10 +94,7 @@
 .centername{
     text-align: center!important;
 }
-:root {
-    --parent-height: 220px;
-  }
-.seller-c-pendingevents{
+.seller_c_pendingevents{
     cursor: pointer;
     width: 250px;
     height: var(--parent-height);
@@ -106,14 +103,14 @@
     position: relative;
     margin: 10px;
 }
-.seller-c-pendingevents-cardstatus{
+.seller_c_pendingevents_cardstatus{
     color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
 }
-.seller-c-pendingevents-top{
+.seller_c_pendingevents_top{
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
     width: 100%;
@@ -122,7 +119,7 @@
     height:calc(var(--parent-height)*0.8);
     position: relative;
 }
-.seller-c-pendingevents-top-info{
+.seller_c_pendingevents_top_info{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     height:calc(var(--parent-height)*0.2);
@@ -130,35 +127,35 @@
     bottom: 0;
     display: flex;
 }
-.seller-c-pendingevents-top-info-left{
+.seller_c_pendingevents_top_info_left{
     width: 75%;
     padding-left: 6px;
     color: white;
 }
-.seller-c-pendingevents-top-info-right{
+.seller_c_pendingevents_top_info_right{
     padding-right: 6px;
     color: white;
     position: relative;
     width: 25%;
     text-align: center;
 }
-.seller-c-pendingevents-top-info-right-nooftickets{
+.seller_c_pendingevents_top_info_right_nooftickets{
     position: block;
     width: 100%;
 }
-.seller-c-pendingevents-top-info-right-tickets{
+.seller_c_pendingevents_top_info_right_tickets{
     font-size: 10px;
 }
-.seller-c-events-top-head{
+.seller_c_events_top_head{
     display: flex;
     padding-left: 10px;
 }
-.seller-c-evens-top-head-left{
+.seller_c_evens_top_head_left{
     padding-top: 10px;
     color: white;
     width: 60%;
 }
-.seller-c-events-top-head-right{
+.seller_c_events_top_head_right{
     width: 40%;
     display: flex;
     background-color: #752E9E;
@@ -170,19 +167,19 @@
     border-bottom-left-radius: 40px;
     color: white;
 }
-.seller-c-events-top-head-right-1{
+.seller_c_events_top_head_right_1{
     font-size: 12px;
     padding-right: 5px;
     bottom: 0;
 }
-.seller-c-events-top-head-right-2{
+.seller_c_events_top_head_right_2{
     font-size: 18px;
 }
-#customized-dialog-title{
+#customized_dialog_title{
     background-color: #752E9E;
     color: white;
 }
-.seller-head-password {
+.seller_head_password {
     font-size: x-large;
     font: weight 700px;
     color: slategrey;
@@ -191,7 +188,7 @@
     text-align: center;
     font-family: 'Open Sans', sans-serif;
 }
-.seller-inputbox-modern {
+.seller_inputbox_modern {
     background-color: rgba(238, 238, 238, 0.733);
     border: none;
     outline: none;
@@ -201,26 +198,40 @@
     width: 100%;
     font-family: 'Open Sans', sans-serif;
 }
-.seller-r-setting{
+.seller_modern_form{
+    display: -moz-box;
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+.seller_r_setting{
     display: flex;
     background: transparent;
     height: 100%;
 }
-.seller-r-setting-con{
+.seller_r_setting_con{
     width: 100%;
     justify-content: center;
     background: transparent;
 }
-.seller-r-setting-con-box{
+.seller_r_setting_con_box{
     justify-content: center;
     background: transparent;
     width: 100%;
 }
-.seller-r-setting-con-box-text{
+.seller_r_setting_con_box_text{
     display: flex;
     flex-direction: column;
 }
-.seller-modern-btn{
+.seller_modern_btn{
     border-radius: 20px;
     border: 1px solid #BB9CD1;
     background-color: #BB9CD1;
@@ -237,7 +248,7 @@
     transition: transform 80ms ease-in;
     transition: transform 80ms ease-in, -webkit-transform 80ms ease-in;
 }
-.seller-dashboard{
+.seller_dashboard{
     flex: 15;
     width: 100%;
     height: calc(100vh - 150px);
@@ -273,12 +284,12 @@
     align-items: center;
     margin-left: 20px;
 }
-.dashboardIcon-up{
+.dashboardIcon_up{
     color: rgb(0, 168, 22);
     font-size: 20px;
     display: none;
 }
-.dashboardIcon-down{
+.dashboardIcon_down{
     color: rgb(168, 0, 22);
     font-size: 20px;
     display: flex;
@@ -300,18 +311,93 @@
 .chartTitle{
     margin-bottom: 20px;
 }
-.seller-progressbar {
+.seller_progressbar{
     margin: auto;
     justify-content: center;
     width: 75px;
 }
+.seller_c_ticketsinfo_top_head_right{
+    width: 100%;
+    display: flex;
+    background-color: #752E9E;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: auto;
+    padding-left: auto;
+    color: white;
+}
+#customized_dialog_title1{
+    background-color: #752E9E;
+    color: white;
+}
+.seller_c_tickets{
+    cursor: pointer;
+    width: 250px;
+    height: var(--parent-height);
+    border-radius: 20px;
+    background-color: #752E9E;
+    position: relative;
+    margin: 10px;
+}
+.seller_c_tickets_top{
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    width: 100%;
+    background-image: url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg");
+    height:calc(var(--parent-height)*0.8);
+    position: relative;
+    background-size: cover;
+}
+.seller_c_tickets_top_info{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    height:calc(var(--parent-height)*0.2);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+}
+.seller_c_tickets_top_info_left{
+    width: 75%;
+    padding-left: 6px;
+    color: white;
+}
+.seller_c_tickets_top_info_right{
+    padding-right: 6px;
+    color: white;
+    position: relative;
+    width: 25%;
+    text-align: center;
+}
+.seller_c_tickets_top_info_right_nooftickets{
+    position: block;
+    width: 100%;
+}
+.seller_c_tickets_top_info_right_tickets{
+    font-size: 10px;
+}
+.seller_c_tickets_cardstatus{
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.seller_eventinfo_font{
+    color:black
+}
+.ticketview{
+    color:#752E9E;
+    font-family: 'Palanquin', sans-serif;
+    margin-top: -30px;
+}
 @media only screen and (max-width: 1550px) {
-    .seller-progressbar {
+    .seller_progressbar {
         width: 70px;
     }
 }
 @media only screen and (max-width: 1270px) {
-    .seller-progressbar {
+    .seller_progressbar {
         width: 65px;
     }
     .dashboardItem{
@@ -344,7 +430,7 @@
 }
 @media only screen and (min-width: 600px) {
     @media only screen and (max-height: 415px) {
-        .seller-c-sidebar {
+        .seller_c_sidebar {
             z-index: 10;
             position: fixed;
             left: 0%;
@@ -354,22 +440,22 @@
             width: 130px;
             padding: 60px 10px;
         }
-        .seller-c-sidebar-item {
+        .seller_c_sidebar_item {
             width: 50px;
             height: 50px;
             border-radius: 10px;
             margin-top: 6px;
             padding: 0px;
         }
-        .seller-c-sidebar-container {
+        .seller_c_sidebar_container {
             padding: 30px 30px;
         }
-        .seller-c-topbar{
+        .seller-c_topbar{
             left: calc(57% - 207px);
         }
     }
     @media only screen and (min-height: 530px) {
-        .seller-c-sidebar {
+        .seller_c_sidebar {
             z-index: 10;
             position: fixed;
             left: 0%;
@@ -379,29 +465,29 @@
             width: 130px;
             padding: 0px 10px;
         }
-        .seller-c-sidebar-item {
+        .seller_c_sidebar_item {
             width: 55px;
             height: 55px;
             border-radius: 10px;
             margin-top: 30px;
             padding: 0px;
         }
-        .seller-c-sidebar-container {
+        .seller_c_sidebar_container {
             padding: 27px 27px;
         }
     }
     @media only screen and (max-height: 1000px) {
-        .seller-dashboard{
+        .seller_dashboard{
             height: calc(100vh - 100px);
         }
     }
-    .seller-c-create-img-in{
+    .seller_c_create_img_in{
         margin: auto;
         width: 100%;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-img{
+    .seller_c_create_img{
         margin: auto;
         width: 100%;
         padding-left: 0%;
@@ -409,36 +495,36 @@
     }
 }
 @media only screen and (max-width: 600px) {
-    .seller-dashboard {
+    .seller_dashboard {
         padding-left: 0px;
     }
-    .seller-c-create-img-in{
+    .seller_c_create_img_in{
         width: 288px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-img{
+    .seller_c_create_img{
         width: 325px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-table-pos-c{
+    .seller_c_create_table_pos_c{
         padding: 10px;
     }
-    .seller-c-create-table-pos-p{
+    .seller_c_create_table_pos_p{
         padding: 0px;
     }
-    .seller-c-create-table-pos{
+    .seller_c_create_table_pos{
         overflow-x: hidden;
         padding: 10px;
     }
-    .seller-c-create-table{
+    .seller_c_create_table{
         width: 515px;
         padding-left: 0%;
     }
-    .seller-c-sidebar{
+    .seller_c_sidebar{
         width: 100%;
         top: 70px;
         height: auto;
@@ -446,20 +532,20 @@
         padding: 10px 10px 0px;
         
     }
-    .seller-c-sidebar-container{
+    .seller_c_sidebar_container{
         display: flex;
         height:  70px;
         width: 100%;
         padding: 10px;
         border-radius: 15px;
     }
-    .seller-c-sidebar-item{
+    .seller_c_sidebar_item{
         margin-top: 0px;
         width: 50px;
         margin: 0% 8%;
         height: auto;
     }
-    .seller-c-topbar{
+    .seller_c_topbar{
         width: 100%;
         top: 145px;
         height: auto;
@@ -469,12 +555,12 @@
     }
 }
 @media only screen and (max-width: 568px) {
-    .seller-c-events{
+    .seller_c_events{
         width: 230px;
         border-radius: 20px;
         margin: 10px;
     }
-    .seller-r-setting{
+    .seller_r_setting{
         display: flex;
         flex-direction: column;
         background: transparent;
@@ -488,23 +574,28 @@
         margin: 20px 5px;
         padding: 5px;
     }
+    .seller-c-tickets{
+        width: 230px;
+        border-radius: 20px;
+        margin: 10px;
+    }
 }
 @media only screen and (max-width: 500px) {
-    .seller-c-sidebar-item{
+    .seller_c_sidebar_item{
         margin: 0% 6%;
     }
-    .seller-c-create-img-in{
+    .seller_c_create_img_in{
         width: 255px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-table-pos-c{
+    .seller_c_create_table_pos_c{
         padding: 24px;
     }
 }
 @media only screen and (max-width: 450px) {
-    .seller-c-events{
+    .seller_c_events{
         width: 170px;
         border-radius: 20px;
         margin: 10px;
@@ -524,23 +615,28 @@
     .dashboardRate {
         font-size: 15px;
     }
+    .seller-c-tickets{
+        width: 170px;
+        border-radius: 20px;
+        margin: 10px;
+    }
 }
 @media only screen and (max-width: 400px) {
-    .seller-c-events{
+    .seller_c_events{
         width: 155px;
         border-radius: 20px;
         margin: 10px;
     }
-    .seller-c-sidebar-item{
+    .seller_c_sidebar_item{
         margin: 0% 5%;
     }
-    .seller-c-topbar-container{
+    .seller_c_topbar_container{
         display: flex;
         height: auto;
         width: 360px;
         padding: 10px;
     }
-    .seller-c-topbar{
+    .seller_c_topbar{
         width: 360px;
         left: calc(50% - 51%);
         height: auto;
@@ -548,31 +644,36 @@
         padding: 10px 10px 10px;
     
     }
+    .seller-c-tickets{
+        width: 155px;
+        border-radius: 20px;
+        margin: 10px;
+    }
 }
 @media only screen and (max-width: 380px) {
-    .seller-c-create-img{
+    .seller_c_create_img{
         width: 288px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-img-in{
+    .seller_c_create_img_in{
         width: 215px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-table-pos-c{
+    .seller_c_create_table_pos_c{
         padding: 24px;
     }
-    .seller-c-create-table-pos-p{
+    .seller_c_create_table_pos_p{
         padding: 0px;
     }
-    .seller-c-create-table-pos{
+    .seller_c_create_table_pos{
         overflow-x: hidden;
         padding: 10px;
     }
-    .seller-c-create-table{
+    .seller_c_create_table{
         width: 455px;
         padding-left: 0%;
     }
@@ -587,35 +688,35 @@
     } 
 }
 @media only screen and (max-width: 360px) {
-    .seller-c-topbar{
+    .seller_c_topbar{
         left: calc(50% - 53%);
     }
-    .seller-c-topbar-item{
+    .seller_c_topbar_item{
         margin: 0px 5px 0px;
     }
-    .seller-c-create-table-pos-c{
+    .seller_c_create_table_pos_c{
         padding: 20px;
     }
-    .seller-c-create-table-pos-p{
+    .seller_c_create_table_pos_p{
         padding: 0px;
     }
-    .seller-c-create-img-in{
+    .seller_c_create_img_in{
         width: 215px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-img{
+    .seller_c_create_img{
         width: 277px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-table-pos{
+    .seller_c_create_table_pos{
         overflow-x: hidden;
         padding: 10px;
     }
-    .seller-c-create-table{
+    .seller_c_create_table{
         width: 435px;
         padding-left: 0%;
     }
@@ -624,7 +725,7 @@
     }
 }
 @media only screen and (max-width: 350px) {
-    .seller-c-events{
+    .seller_c_events{
         width: 135px;
         border-radius: 20px;
         margin: 10px;
@@ -638,61 +739,70 @@
     .dashboardRate {
         font-size: 10px;
     }
+    .seller-c-tickets{
+        width: 135px;
+        border-radius: 20px;
+        margin: 10px;
+    }
 }
 @media only screen and (max-width: 330px) {
-    .seller-c-events{
+    .seller_c_events{
+        width: 90vw;
+        border-radius: 20px;
+        margin: 10px;
+    }
+    .seller-c-tickets{
         width: 90vw;
         border-radius: 20px;
         margin: 10px;
     }
 }
 @media only screen and (max-width: 320px) {
-    .seller-c-topbar-container {
+    .seller_c_topbar_container {
         width: 318px;
     }
-    .seller-c-topbar-item{
+    .seller_c_topbar_item{
         margin: 0px 3px 0px;
     }
-    .seller-c-create-img-in{
+    .seller_c_create_img_in{
         width: 215px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-img{
+    .seller_c_create_img{
         width: 236px;
         height: 150px;
         padding-left: 0%;
         justify-content: center;
     }
-    .seller-c-create-table-pos{
+    .seller_c_create_table_pos{
         overflow-x: hidden;
         padding: 10px;
     }
-    .seller-c-create-table-pos-c{
+    .seller_c_create_table_pos_c{
         padding: 0px;
     }
-    .seller-c-create-table-pos-p{
+    .seller_c_create_table_pos_p{
         padding: 0px;
     }
-    .seller-c-create-table{
+    .seller_c_create_table{
         width: 380px;
         padding-left: 0%;
     }
 }
 @media only screen and (max-width: 300px) {
-    .seller-c-sidebar-item{
+    .seller_c_sidebar_item{
         margin: 0% 4%;
     }
-    .seller-c-topbar{
+    .seller_c_topbar{
         left: calc(50% - 68%);
         width: 280px;
     }
-    .seller-c-topbar-item{
+    .seller_c_topbar_item{
         margin: 0px;
     }
-    .seller-c-sidebar-container{
+    .seller_c_sidebar_container{
         width: 280px;
     }
 }
-
