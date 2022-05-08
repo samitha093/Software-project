@@ -34,23 +34,26 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-const sellerrout = require('./routes/seller');
-app.use('/seller',sellerrout);
+const allroute = require('./routes/all');
+app.use('/a',allroute);
 
-const userrout = require('./routes/user');
-app.use('/user',userrout);
+const sellerrout = require('./routes/seller');
+app.use('/s',sellerrout);
 
 const managerroute = require('./routes/manager');
-app.use('/manager',managerroute);
+app.use('/m',managerroute);
 
 const buyerroute = require('./routes/buyer');
-app.use('/buyer',buyerroute);
+app.use('/b',buyerroute);
 
-const allroute = require('./routes/all');
-app.use('/all',allroute);
+const guestrout = require('./routes/guest');
+app.use('/g',guestrout);
 
-const publicroute = require('./routes/public');
-app.use('/public',publicroute);
+const eventroute = require('./routes/events');
+app.use('/e',eventroute);
+
+const ticketroute = require('./routes/tickets');
+app.use('/t',ticketroute);
 
 app.listen(port, async ()=>{
   console.log('------------------------------ Staring Server ---------------------------------')

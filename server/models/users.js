@@ -10,7 +10,6 @@ const userschema = new schema({
     password:{type:String , require:true},
     user_type:{type:String , require:true},
     status:{type:Boolean , default:true},
-    user_id: {type:String, required:true}
 
 },{
     timestamps:true
