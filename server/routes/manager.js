@@ -2,6 +2,7 @@ const router = require('express').Router();
 const events = require('../models/events');
 const ticketLevels = require('../models/ticketLevels');
 const User = require('../models/users');
+const {verifyAccessToken} = require('./jwt');
 
 /**
  * @swagger
@@ -48,7 +49,7 @@ const User = require('../models/users');
    *        description: Server failure
    */
   
- router.route('/selleractivate').post((req,res) => {
+ router.route('/selleractivate').post(verifyAccessToken,(req,res) => {
     User.find({email:req.body.email,otp:"0", status:false})
         .then(data =>{
             data[0].status = true;
@@ -76,7 +77,7 @@ const User = require('../models/users');
    *      500:
    *        description: Server failure
    */
- router.route('/pendingsellerlist').get((req,res) => {
+ router.route('/pendingsellerlist').get(verifyAccessToken,(req,res) => {
     User.find({usertype:"SELLER",otp:"0", status:false},(err,data) => {
         res.status(200).json(data) 
     })

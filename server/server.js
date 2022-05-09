@@ -27,9 +27,26 @@ const swaggerOptions = {
 				url: "http://localhost:8000",
 			},
 		],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "apiKey",
+          name: "authorization",
+          scheme: "Bearer",
+          in: "header",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    
 	},
 	apis: ["./routes/*.js"],
 };
+
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
