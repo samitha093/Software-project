@@ -3,6 +3,9 @@ import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
 import Fab from '@mui/material/Fab';
+import Typography from '@mui/material/Typography';
+
+import Categorylist from '../../components/manager/Categorylist'
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
@@ -25,7 +28,11 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                     <Grid item md={7} className={styles.pwd_container}>
                         <div className={styles.form_wrapper}>
                             <form className={styles.modern_form} action="#">
-                                <h1 className={styles.head_password} >Reset Password</h1>
+                                <div className={styles.manager_password_text}>
+                                <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                                    Reset Password
+                                </Typography>
+                                </div>
                                 <input
                                     className={styles.inputbox_modern}
                                     type="password"
@@ -61,16 +68,9 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                         </div>
 
                     </Grid>
-                    <Grid item xs className={styles.box_1} >
+                    <Grid item md={5} className={styles.pwd_container}>
                         <div className={styles.content_1}>
-                            <Image
-                                src={lock}
-                                layout="responsive"
-                                m-50='true'
-                                alt='Invalid Format'
-                            >
-                            </Image>
-
+                            <Categorylist />
                         </div>
                     </Grid>
 
