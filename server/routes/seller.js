@@ -3,6 +3,26 @@ const events = require('../models/events');
 const ticketLevels = require('../models/ticketLevels');
 const users = require('../models/users');
 const jwt = require('jsonwebtoken');
+const path = require('path')
+const multer  = require('multer');
+
+const  storage = multer.diskStorage({
+    destination: (req, file, cb)=>{
+        cb(null, "uploads");
+    },
+    filename: (req, file, cb) =>{
+        const name = Date.now() + path.extname(file.originalname)
+        console.log(name);
+        cb(null, name);
+    },
+});
+const upload = multer({storage: storage});
+
+router.route("/upload").post (upload.single('Img'),(req, res) => {
+    res.status(200).json(`img/${req.file.filename}`);
+
+});
+
 
 function authtoken(req, res, next){
     const authHeader = req.headers['authorization']

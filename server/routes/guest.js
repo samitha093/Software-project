@@ -116,7 +116,7 @@ const {secretGenerator} = require('./jwt')
   * @swagger
   * tags:
   *   name: User-guest
-  *   description: PublicRoutes
+  *   description: Public Routes
   */
 
   /**
@@ -193,7 +193,7 @@ router.route('/register').post((req,res) => {
         .then(data =>{
             if(data[0].usertype === "BUYER"){
                 data[0].status = true;
-            }else if(data[0].usertype === "SELLER"){
+            }else if(data[0].usertype === "MANAGER"){
                 data[0].status = true;
             }else{
                 data[0].status = false;

@@ -47,6 +47,7 @@ const swaggerOptions = {
 	apis: ["./routes/*.js"],
 };
 
+app.use("/img",express.static('uploads'));
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));

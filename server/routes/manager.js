@@ -41,12 +41,16 @@ const {verifyAccessToken} = require('./jwt');
    *           schema:
    *              $ref: '#/components/schemas/selleractivate'
    *     responses:
-   *      200:
-   *        description: Activation Success
-   *      400:
-   *        description: User Account not found
-   *      500:
-   *        description: Server failure
+   *        200:
+   *            description: Activation Success
+   *        400:
+   *            description: User Account not found
+   *        403:
+   *            description: Authentication Failed
+   *        401:
+   *            description: NULL Header
+   *        500:
+   *            description: Server failure
    */
   
  router.route('/selleractivate').post(verifyAccessToken,(req,res) => {
@@ -70,15 +74,25 @@ const {verifyAccessToken} = require('./jwt');
    *     requestBody:
    *      required: false
    *     responses:
-   *      200:
-   *        description: Pending Seller List
-   *      400:
-   *        description: No Pending Sellers
-   *      500:
-   *        description: Server failure
+   *        200:
+   *            description: Pending Seller List
+   *        400:
+   *            description: No Pending Sellers
+   *        403:
+   *            description: Authentication Failed
+   *        401:
+   *            description: NULL Header
+   *        500:
+   *            description: Server failure
    */
  router.route('/pendingsellerlist').get(verifyAccessToken,(req,res) => {
-    User.find({usertype:"SELLER",otp:"0", status:false},(err,data) => {
+    var Projection = { 
+        status: false,
+        otp: false,
+        password: false,
+        usertype: false
+    };
+    User.find({usertype:"SELLER",otp:"0", status:false},Projection,(err,data) => {
         res.status(200).json(data) 
     })
 });
