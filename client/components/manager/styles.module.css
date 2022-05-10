@@ -454,7 +454,7 @@
     padding: 12px 15px;
     margin-bottom: 15px;
     margin-left: 15px;
-    width: 100%;
+    width: 85%;
     font-family: 'Open Sans', sans-serif;
 
 }
@@ -472,11 +472,43 @@
     overflow: hidden;
     width: 1000px;
     max-width: 100%;
-    min-height: 550px;
+    min-height: 400px;
     margin-left: 25%;
 }
 .manager_reset_password_submit_button{
-    margin-left: 45%;
+    margin-left: 33%;
+}
+.modern_form{
+    margin-right: 10px;
+}
+.manager_password_text{
+    margin-left: 20px;
+}
+
+/*Start - Catergorylist Component*/
+.manager_settings_catergory_add_button{
+    margin-left: 82%;
+}
+.css-3vt552-MuiGrid-root {
+    -webkit-flex-basis: 50% !important;
+    -ms-flex-preferred-size: 50% !important;
+    flex-basis: 50% !important;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 50% !important;
+}
+.inputbox_modern_catergory{
+    background-color: rgba(238, 238, 238, 0.733);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*start - seller approval*/
