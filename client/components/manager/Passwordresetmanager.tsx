@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import Categorylist from '../../components/manager/Categorylist'
 
@@ -16,10 +18,39 @@ interface ResetPwdProps {
 
 const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
 
-    /*const [login_email,login_setEmail] = React.useState<string>("");*/
-    const [currentpwd, setcurrentpwd] = React.useState("");
-    const [newpwd, setnewpwdpw] = React.useState("");
-    const [cnewpwd, setcnewpwdpw] = React.useState("");
+    const router = useRouter()
+    
+    const [currentpassword, setCurrentpassword] = React.useState<string>("");
+    const [currentpasswordHasError, setCurrentpasswordError] = React.useState<boolean>(false);
+
+    const [newpassword, setNewpassword] = React.useState("");
+    const [newpasswordError, setNewpasswordError] = React.useState<boolean>(false);
+
+    const [confirmPassword, setConfirmpassword] = React.useState("");
+    const [validationError, setvalidationerror] = React.useState<boolean>(false);
+
+    //Need a function to retrieve and store current password
+
+    async function passwordReset() {
+        const datapack = {
+            password: newpassword
+        }
+        //There should be routing part here. (Refer USER)
+    }
+
+    const newpasswordChangeHandler = (e: any) => {
+        setNewpassword(e.target.value);
+        const valid = e.target.value.trim().length >= 5;
+        setNewpasswordError(!valid);
+    }
+
+    const confirmPasswordChangeHandler = async (event: any) => {
+        var np = new String(newpassword);
+        var cp = new String(confirmPassword);
+        var isEquel = JSON.stringify(np) === JSON.stringify(cp);
+        setvalidationerror(!isEquel);
+    }
+
 
     return (
         <div className={styles.container} id="container">
@@ -29,42 +60,50 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                         <div className={styles.form_wrapper}>
                             <form className={styles.modern_form} action="#">
                                 <div className={styles.manager_password_text}>
-                                <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-                                    Reset Password
-                                </Typography>
+                                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                                        Reset Password
+                                    </Typography>
                                 </div>
-                                <input
-                                    className={styles.inputbox_modern}
-                                    type="password"
-                                    placeholder="Current password"
-                                    value={currentpwd}
-                                    onChange={(e) => setcurrentpwd(e.target.value)}
-                                // onBlur={emailBlurHandler} 
-                                />
-                                <input
-                                    className={styles.inputbox_modern}
-                                    type="password"
-                                    placeholder="New Password"
-                                    value={newpwd}
-                                    onChange={(e) => setnewpwdpw(e.target.value)}
-                                // onBlur={emailBlurHandler} 
-                                />
-                                <input
-                                    className={styles.inputbox_modern}
-                                    type="password"
-                                    placeholder="Confirm New Password"
-                                    value={cnewpwd}
-                                    onChange={(e) => setcnewpwdpw(e.target.value)}
-                                // onBlur={emailBlurHandler} 
-                                />
+                                <div>
+                                    <input
+                                        className={styles.inputbox_modern}
+                                        type="password"
+                                        placeholder="Current password"
+                                        value={currentpassword}
+                                        onChange={(e) => setCurrentpassword(e.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        className={styles.inputbox_modern}
+                                        type="password"
+                                        placeholder="New Password"
+                                        value={newpassword}
+                                        onChange={(e) => setNewpassword(e.target.value)}
+                                    //onChange = {newpasswordChangeHandler}
+                                    />
+                                </div>
+                                {newpasswordError && (<p className="error_message"> * Password can not be empty</p>)}
+
+                                <div>
+                                    <input
+                                        className={styles.inputbox_modern}
+                                        type="password"
+                                        placeholder="Confirm New Password"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmpassword(e.target.value)}
+                                    //onChange={confirmPasswordChangeHandler}
+                                    />
+                                </div>
+                                {validationError && (<p className="error_message"> * Confirm password should match with new password</p>)}
+
                                 <br /><br />
                                 <div className={styles.manager_reset_password_submit_button}>
-                                    <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd" margin-left="40%">
+                                    <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd" margin-left="40%" onClick={passwordReset}>
                                         SUBMIT
                                     </Fab>
                                 </div>
                             </form>
-
                         </div>
 
                     </Grid>
