@@ -4,6 +4,7 @@ const User = require('../models/users');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
 const {a, b, c} = require('../views/otp')
+const {secretGenerator} = require('./jwt')
 /**
  * @swagger
  *  components:
@@ -90,6 +91,21 @@ const {a, b, c} = require('../views/otp')
  *                      description: Should validated format
  *              example:
  *                  otp: "?"
+ *                  email: "?"
+ *                  password: "?"
+ *          login:
+ *              type: object
+ *              required:
+ *                  - email
+ *                  - password
+ *              properties:
+ *                  email:
+ *                      type: string
+ *                      description: Validated email Format
+ *                  password:
+ *                      type: string
+ *                      description: Should validated format
+ *              example:
  *                  email: "?"
  *                  password: "?"
  * 
@@ -249,37 +265,60 @@ router.route('/register').post((req,res) => {
         .catch(err => res.status(400).json("Wrong OTP"))
 });
 
+/**
+   * @swagger
+   * '/g/login':
+   *  post:
+   *     tags:
+   *     - User-guest
+   *     summary: User Login
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/login'
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Wrong OTP
+   *      500:
+   *        description: Server failure
+   */
+
+
 router.route('/login').post((req,res) => {
     
     const email = req.body.email;
     const password = req.body.password;
 
-    User.find({email:email, password:password, status:true},(err,data)=>{
+    User.find({email:email, password:password, status:true},async(err,data)=>{
     if(data.length>0){
-        const token = jwt.sign(email,"eb01a367e696551962e1b8b659e643b59f6f21c8eb6c42657fede6be6d509c93fc9282f6643c7ce00c723fbb810955656203867676b819efbfa6653316db42da")
+        const payload = {"emai" : email, "type":data[0].usertype}
+        const secret = await secretGenerator(250)
+        const token = await jwt.sign(payload,secret)
         let datapack = {
             tokenkey: token,
-            type: data[0].user_type, 
+            type: data[0].usertype, 
         }
-        res.json(datapack);
+        User.find({email:email})
+        .then(datas =>{
+            datas[0].secret = secret;
+            datas[0].token = token;
+            datas[0].save()
+                .then(()=> res.status(200).json(datapack))
+                .catch(err => res.status(500).json(err))
+                return 0;
+        })
+        .catch(err => res.status(400).json("Wrong OTP"))
+        return 0;
     }else{
         res.status(400).json("User does not exist");
     }
   })
     
 });
-
-function authtoken(req, res, next){
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-    if(token == null) return res.sendStatus(401)
-
-    jwt.verify(token, "eb01a367e696551962e1b8b659e643b59f6f21c8eb6c42657fede6be6d509c93fc9282f6643c7ce00c723fbb810955656203867676b819efbfa6653316db42da" , (err, data)=>{
-        if(err) return res.sendStatus(403)
-        next();
-    } )
- 
-}
 
 /**
   * @swagger

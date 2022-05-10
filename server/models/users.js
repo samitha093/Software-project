@@ -11,6 +11,8 @@ const userschema = new schema({
     usertype:{type:String },
     status:{type:Boolean , default:false},
     otp:{type:String, default:0},
+    secret:{type:String, default:"secret"},
+    token:{type:String, default:"token"}
 
 },{
     timestamps:true
