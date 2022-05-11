@@ -37,15 +37,15 @@ const Demo = styled('div')(({ theme }) => ({
 
 export default function Categorylist() {
     const router = useRouter()
-    
+
     const [newcatergory, setNewcatergory] = React.useState<string>("");
-    const [newcatergoryHasError, setNewcatergoryError] = React.useState<boolean>(false);
+    const [newcatergoryError, setNewcatergoryError] = React.useState<boolean>(false);
 
     //Need a function to retrieve and store privioulsy entered catergories
 
     async function addCatergory() { //This fuction is to store new catergory in the database
         const datapack = {
-            catergory: newcatergory        
+            catergory: newcatergory
         }
         //There should be routing part here. (Refer USER)
         //Also check whether there is same catergory already in  the database. If not newly add, else error msg
@@ -64,14 +64,18 @@ export default function Categorylist() {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Add Catergories
                     </Typography>
-                    <input
-                        className={styles.inputbox_modern_catergory}
-                        type="text"
-                        placeholder="Enter New Catergory"
-                        value={newcatergory}
-                        //onChange={(e) => setNewcatergory(e.target.value)}
-                        onChange = {newcatergoryChangeHandler}
-                    />
+                    <div>
+                        <input
+                            className={styles.inputbox_modern_catergory}
+                            type="text"
+                            placeholder="Enter New Catergory"
+                            value={newcatergory}
+                            //onChange={(e) => setNewcatergory(e.target.value)}
+                            onChange={newcatergoryChangeHandler}
+                        />
+                    </div>
+                    {newcatergoryError && (<p className="error_message"> * Catergory should be less than 20 characters</p>)}
+
                     <Button className={styles.manager_settings_catergory_add_button} variant="contained" size="small" onClick={addCatergory}>
                         Add
                     </Button>

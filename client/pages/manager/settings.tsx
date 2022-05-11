@@ -24,7 +24,7 @@ const settings: NextPage = () => {
                 <Sidebar id='4' />
                 <div>
                     <h1>Settings</h1>
-                    <div className={styles.manager_index_container}>
+                    <div className={styles.manager_settings_container}>
                         <Passwordresetmanager />
                     </div>
                 </div>

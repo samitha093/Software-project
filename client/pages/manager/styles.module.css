@@ -37,9 +37,21 @@
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
-
+.manager_settings_container
+{
+    width: 100%;
+    padding-left: 120px;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
 
 /*end- manager index page*/
+
+/*start- manager settings page*/
 
 .manager_settings_bg
 {
@@ -79,3 +91,16 @@
         justify-content: center;
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    .manager_settings_container{
+        padding-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .manager_settings_container{
+        padding-left: 0px;
+    }
+}
+/*end- manager settings page*/

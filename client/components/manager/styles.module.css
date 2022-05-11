@@ -54,12 +54,6 @@
     box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
 
-/*.manager_c_topbar_item.active {
-    border-color: #752E9E;
-    background-color: #752E9E;
-    color: white;
-}*/
-
 .manager_c_topbar_item:hover {
     border-color: #752E9E;
     background-color: #752E9E;
@@ -402,7 +396,7 @@
     color: black
 }
 
-/*end-pendig tikcets info component*/
+/*end-pending tikcets info component*/
 
 /*start-active events component*/
 .manager_c_tickets_active {
@@ -486,8 +480,12 @@
 }
 
 /*Start - Catergorylist Component*/
+
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+    padding-left: 0px;
+}
 .manager_settings_catergory_add_button{
-    margin-left: 82%;
+    margin-left: 76%;
 }
 .css-3vt552-MuiGrid-root {
     -webkit-flex-basis: 50% !important;
