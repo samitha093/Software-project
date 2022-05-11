@@ -4,7 +4,7 @@ const User = require('../models/users');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
 const {a, b, c} = require('../views/otp')
-const {secretGenerator} = require('./jwt')
+const {secretGenerator} = require('../auth/jwt')
 /**
  * @swagger
  *  components:
