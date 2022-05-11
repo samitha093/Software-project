@@ -117,23 +117,28 @@
    justify-content: center;
    padding: 10px;
 }
-.trending-board-container{
- text-align: center;
-}
-.trending-board{
-	font-size: 40px;
-	color: #3b1c4e;
-	width: auto;
-	font-family: 'Handlee', cursive;
-}
+
+
 .svgstyle{
-	margin-bottom: -10px;
+	margin-bottom: -20px;
+}
+@media only screen and (max-width: 550px) {
+    
+	.svgstyle{
+		margin-bottom: -200px;
+	}
+}
+@media only screen and (max-width: 450px) {
+    
+	.svgstyle{
+		margin-bottom: -20px;
+	}
 }
 	
 @media only screen and (max-width: 900px) {
-    .btn_create{
-     font-size: 0;
-    }
+	.btn_create{
+		font-size: 0;
+	   }
 }
 
 @media only screen and (max-width: 1000px) {

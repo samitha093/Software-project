@@ -23,6 +23,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusSquare} from "@fortawesome/free-regular-svg-icons";
+import styles from './styles.module.css'
+import classnames from 'classnames';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -85,11 +87,11 @@ const events: NextPage = () => {
 
     
         return (
-            <div className="buyer-bg shop-home">
+            <div className={classnames(styles.buyer_bg, styles.shop_home)}>
                 <Navbar/>
-                <div className='event-container'>
-                    <div className='event-container-left'>
-                        <div className='event-container-left-content'>
+                <div className={styles.event_container}>
+                    <div className={styles.event_container_left}>
+                        <div className={styles.event_container_left_content}>
                         <Paper
                             component="form"
                             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%' }}
@@ -103,15 +105,15 @@ const events: NextPage = () => {
                                 <SearchIcon />
                             </IconButton>
                         </Paper>
-                        <div className='advance-options'>
-                            <div className='advance-options-left'>
+                        <div className={styles.advance_options}>
+                            <div className={styles.advance_options_left}>
                                 Advance Options
                             </div>
-                            <div className='advance-options-right'>
-                                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faPlusSquare} className='font-icon' onClick={advanceclick}/>
+                            <div className={styles.advance_options_right}>
+                                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faPlusSquare} className={styles.font_icon} onClick={advanceclick}/>
                             </div>
                         </div>
-                        <div className='auto-hide' id="advance-opt">
+                        <div className={styles.auto_hide} id="advance-opt">
                         <div>
                             <h4>
                                 Event Date
@@ -208,7 +210,7 @@ const events: NextPage = () => {
                         
                         </div>
                     </div>
-                    <div className='event-container-Right'>
+                    <div className={styles.event_container_Right}>
                         <Shop/>
                     </div>
                 </div>
