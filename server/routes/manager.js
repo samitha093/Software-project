@@ -2,7 +2,7 @@ const router = require('express').Router();
 const events = require('../models/events');
 const ticketLevels = require('../models/ticketLevels');
 const User = require('../models/users');
-const {verifyAccessToken} = require('./jwt');
+const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
  * @swagger
@@ -41,15 +41,19 @@ const {verifyAccessToken} = require('./jwt');
    *           schema:
    *              $ref: '#/components/schemas/selleractivate'
    *     responses:
-   *      200:
-   *        description: Activation Success
-   *      400:
-   *        description: User Account not found
-   *      500:
-   *        description: Server failure
+   *        200:
+   *            description: Activation Success
+   *        400:
+   *            description: User Account not found
+   *        403:
+   *            description: Authentication Failed
+   *        401:
+   *            description: NULL Header
+   *        500:
+   *            description: Server failure
    */
   
- router.route('/selleractivate').post(verifyAccessToken,(req,res) => {
+ router.route('/selleractivate').post(verifyAccessToken,managerverification,(req,res) => {
     User.find({email:req.body.email,otp:"0", status:false})
         .then(data =>{
             data[0].status = true;
@@ -70,15 +74,25 @@ const {verifyAccessToken} = require('./jwt');
    *     requestBody:
    *      required: false
    *     responses:
-   *      200:
-   *        description: Pending Seller List
-   *      400:
-   *        description: No Pending Sellers
-   *      500:
-   *        description: Server failure
+   *        200:
+   *            description: Pending Seller List
+   *        400:
+   *            description: No Pending Sellers
+   *        403:
+   *            description: Authentication Failed
+   *        401:
+   *            description: NULL Header
+   *        500:
+   *            description: Server failure
    */
- router.route('/pendingsellerlist').get(verifyAccessToken,(req,res) => {
-    User.find({usertype:"SELLER",otp:"0", status:false},(err,data) => {
+ router.route('/pendingsellerlist').get(verifyAccessToken,managerverification,(req,res) => {
+    var Projection = { 
+        status: false,
+        otp: false,
+        password: false,
+        usertype: false
+    };
+    User.find({usertype:"SELLER",otp:"0", status:false},Projection,(err,data) => {
         res.status(200).json(data) 
     })
 });
