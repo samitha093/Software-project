@@ -2,6 +2,7 @@
 /.vscode
 
 #remove Library Files from Client
+/node_modules/
 /client/node_modules/
 /client/coverage/
 /client/.next/
@@ -18,6 +19,7 @@
 # ependencies
 /.pnp
 .pnp.js
+.json
 
 # misc
 .DS_Store
