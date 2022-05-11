@@ -21,9 +21,13 @@ function verifyAccessToken(req, res, next){
         .catch(err =>{
             return res.sendStatus(403)
         })
-        
-    
-
+};
+function managerverification (req, res, next){
+    if(req.userdata.type === "MANAGER"){
+        next();
+    }else{
+        return res.sendStatus(403);
+    }
 };
 function secretGenerator (length){
     var result           = '';
@@ -38,5 +42,6 @@ function secretGenerator (length){
 
 module.exports={
     verifyAccessToken,
-    secretGenerator
+    secretGenerator,
+    managerverification
 };
