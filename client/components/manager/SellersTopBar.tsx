@@ -35,13 +35,13 @@ const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
     <div className={styles.manager_seller_c_topbar}>
       <div className={styles.manager_seller_c_topbar_container}>
         <Link href="/manager/pendingsellers">
-          <div className={sellerstopbar1 ? 'manager-seller-c-topbar-item active' : 'manager-seller-c-topbar-item'}>
+          <div className={sellerstopbar1 ? 'manager-seller-c-topbar-item' : 'manager-seller-c-topbar-item active'}>
             Pending
           </div>
         </Link>
 
         <Link href="/manager/activesellers">
-          <div className={sellerstopbar2 ? 'manager-seller-c-topbar-item active' : 'manager-seller-c-topbar-item'}>
+          <div className={sellerstopbar2 ? 'manager-seller-c-topbar-item' : 'manager-seller-c-topbar-item active'}>
             Active
           </div>
         </Link>

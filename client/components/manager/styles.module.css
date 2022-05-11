@@ -54,12 +54,6 @@
     box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
 
-.manager_c_topbar_item.active {
-    border-color: #752E9E;
-    background-color: #752E9E;
-    color: white;
-}
-
 .manager_c_topbar_item:hover {
     border-color: #752E9E;
     background-color: #752E9E;
@@ -74,7 +68,7 @@
     position: fixed;
     top: 70px;
     left: calc(50% - 207px);
-    width: 260px;
+    width: 250px;
     height: auto;
     min-height: 0px;
     padding: 10px 10px 10px;
@@ -84,7 +78,7 @@
 .manager_seller_c_topbar_container {
     display: flex;
     height: auto;
-    width: 110px;
+    width: 230px;
     padding: 10px;
     align-items: center;
     background-color: white;
@@ -402,7 +396,7 @@
     color: black
 }
 
-/*end-pendig tikcets info component*/
+/*end-pending tikcets info component*/
 
 /*start-active events component*/
 .manager_c_tickets_active {
@@ -454,7 +448,7 @@
     padding: 12px 15px;
     margin-bottom: 15px;
     margin-left: 15px;
-    width: 100%;
+    width: 85%;
     font-family: 'Open Sans', sans-serif;
 
 }
@@ -472,11 +466,47 @@
     overflow: hidden;
     width: 1000px;
     max-width: 100%;
-    min-height: 550px;
+    min-height: 400px;
     margin-left: 25%;
 }
 .manager_reset_password_submit_button{
-    margin-left: 45%;
+    margin-left: 33%;
+}
+.modern_form{
+    margin-right: 10px;
+}
+.manager_password_text{
+    margin-left: 20px;
+}
+
+/*Start - Catergorylist Component*/
+
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+    padding-left: 0px;
+}
+.manager_settings_catergory_add_button{
+    margin-left: 76%;
+}
+.css-3vt552-MuiGrid-root {
+    -webkit-flex-basis: 50% !important;
+    -ms-flex-preferred-size: 50% !important;
+    flex-basis: 50% !important;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 50% !important;
+}
+.inputbox_modern_catergory{
+    background-color: rgba(238, 238, 238, 0.733);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*start - seller approval*/
