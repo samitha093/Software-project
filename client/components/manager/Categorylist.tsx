@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -17,6 +17,8 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
@@ -34,7 +36,26 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 export default function Categorylist() {
-    const [nwcatergory, setnwcatergory] = React.useState("");
+    const router = useRouter()
+    
+    const [newcatergory, setNewcatergory] = React.useState<string>("");
+    const [newcatergoryHasError, setNewcatergoryError] = React.useState<boolean>(false);
+
+    //Need a function to retrieve and store privioulsy entered catergories
+
+    async function addCatergory() { //This fuction is to store new catergory in the database
+        const datapack = {
+            catergory: newcatergory        
+        }
+        //There should be routing part here. (Refer USER)
+        //Also check whether there is same catergory already in  the database. If not newly add, else error msg
+    }
+
+    const newcatergoryChangeHandler = (e: any) => {
+        setNewcatergory(e.target.value);
+        const valid = e.target.value.trim().length <= 20;
+        setNewcatergoryError(!valid);
+    }
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 600 }}>
@@ -45,12 +66,13 @@ export default function Categorylist() {
                     </Typography>
                     <input
                         className={styles.inputbox_modern_catergory}
-                        type="string"
+                        type="text"
                         placeholder="Enter New Catergory"
-                        value={nwcatergory}
-                        onChange={(e) => setnwcatergory(e.target.value)}
+                        value={newcatergory}
+                        //onChange={(e) => setNewcatergory(e.target.value)}
+                        onChange = {newcatergoryChangeHandler}
                     />
-                    <Button className={styles.manager_settings_catergory_add_button} variant="contained" size="small">
+                    <Button className={styles.manager_settings_catergory_add_button} variant="contained" size="small" onClick={addCatergory}>
                         Add
                     </Button>
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
