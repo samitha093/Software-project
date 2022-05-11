@@ -349,6 +349,7 @@ router.route('/login').post((req,res) => {
    *        description: Server failure
    */
   
+  
     router.route('/verify').post((req,res) => {
         const username = req.body.name;
         User.find({email:req.body.email,usertype:req.body.usertype})
