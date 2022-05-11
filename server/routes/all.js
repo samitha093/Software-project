@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {verifyAccessToken} = require('./jwt');
+const {verifyAccessToken} = require('../auth/jwt');
 const User = require('../models/users');
 
 

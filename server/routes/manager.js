@@ -2,7 +2,7 @@ const router = require('express').Router();
 const events = require('../models/events');
 const ticketLevels = require('../models/ticketLevels');
 const User = require('../models/users');
-const {verifyAccessToken,managerverification} = require('./jwt');
+const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
  * @swagger
