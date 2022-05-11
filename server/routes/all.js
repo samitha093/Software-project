@@ -2,21 +2,6 @@ const router = require('express').Router();
 const {verifyAccessToken} = require('./jwt');
 const User = require('../models/users');
 
-/**
- * @swagger
- *  components:
- *      schemas:
- *          logout:
- *              type: object
- *              required:
- *                  - email
- *              properties:
- *                  email:
- *                      type: string
- *                      description: Validated email Format
- *              example:
- *                  email: "?"
- */
 
 /**
   * @swagger
@@ -33,11 +18,7 @@ const User = require('../models/users');
    *     - All-logout
    *     summary: All type of Users logout
    *     requestBody:
-   *      required: true
-   *      content:
-   *        application/json:
-   *           schema:
-   *              $ref: '#/components/schemas/logout'
+   *      required: false
    *     responses:
    *        200:
    *            description: logout Success
@@ -51,7 +32,8 @@ const User = require('../models/users');
    *            description: Server failure
    */
  router.route('/logout').post(verifyAccessToken,(req,res) => {
-    User.find({email:req.body.email, status:true})
+   //console.log(req.userdata.email);
+    User.find({email:req.userdata.email, status:true})
         .then(data =>{
             data[0].secret = "";
             data[0].token = "";

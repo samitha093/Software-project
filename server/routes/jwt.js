@@ -4,21 +4,18 @@ const User = require('../models/users');
 function verifyAccessToken(req, res, next){
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
+    
     if(token == null) return res.sendStatus(401)
     User.find({token: token})
         .then(data =>{
             jwt.verify(token, data[0].secret, (err, datas)=>{
                 if(err) return res.sendStatus(403)
-                if(datas.type === "MANAGER"){
                     if(datas.type === data[0].usertype){
+                        req.userdata = { "email" : data[0].email , "type" : data[0].usertype};
                         next();
                     }else{
                         return res.sendStatus(403)
-                    } 
-                }else{
-                    return res.sendStatus(403)
-                }
-                
+                    }                 
             })
         })
         .catch(err =>{
