@@ -2,9 +2,9 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 const nodemailer = require('nodemailer');
-const hbs = require('nodemailer-express-handlebars');
 const {a, b, c} = require('../views/otp')
-const {secretGenerator} = require('../auth/jwt')
+const {secretGenerator, otpgenerator} = require('../auth/jwt')
+const {emailnotifications} = require('../smtp/mail')
 /**
  * @swagger
  *  components:
@@ -108,7 +108,26 @@ const {secretGenerator} = require('../auth/jwt')
  *              example:
  *                  email: "?"
  *                  password: "?"
- * 
+ *          emailnotification:
+ *              type: object
+ *              required:
+ *                  - email
+ *                  - subject
+ *                  - html
+ *              properties:
+ *                  email:
+ *                      type: string
+ *                      description: validated email format
+ *                  subject:
+ *                      type: string
+ *                      description: subject char > 0
+ *                  html:
+ *                      type: string
+ *                      description: use only HTML & CSS
+ *              example:
+ *                  email: "?"
+ *                  subject: "?"
+ *                  html: "?" 
  * 
  */
 
@@ -354,56 +373,45 @@ router.route('/login').post((req,res) => {
         const username = req.body.name;
         User.find({email:req.body.email,usertype:req.body.usertype})
             .then(data =>{
-                var otpid = makeid(10)
+                var otpid = otpgenerator(10)
                 data[0].otp = otpid;
                 data[0].save()
                     .then(async()=>{
-                        const to = req.body.email;
-                        await notification(to, username, otpid);
-                        res.status(200).json("ok");
+                        const email = req.body.email;
+                        const subject = "OTP for your TickBid Account";
+                        const html = a + username +b + otp + c
+                        await emailnotifications(email, subject, html);
+                        res.status(200).json("Email Sended");
                     })
                     .catch(err => res.status(500).json(err))
             })
             .catch(err => res.status(400).json("Not Found User Accout For this email"))
     });
 
-    function makeid(length) {
-        var result           = '';
-        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-          result += characters.charAt(Math.floor(Math.random() * 
-     charactersLength));
-       }
-       return result;
-    }
-
-    //email notifications
-function notification(email, username, otp){
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'tickbid.mail@gmail.com',
-          pass: 'mutumsqbqhngurnw'
-        }
-    });
-
-    var mailOptions = {
-        from: 'Tickbid Team<tickbid.mail@gmail.com>',
-        to: email,
-        subject: 'TickBid Team',
-        html: a + username +b + otp + c
-    };
-      
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-            return;
-        } else {
-            console.log('Email sent: ' + info.response);
-            return;
-        }
-    });
-}
+  /**
+   * @swagger
+   * '/g/notification':
+   *  post:
+   *     tags:
+   *     - Email-Sender
+   *     summary: Send Email Notifications
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/emailnotification'
+   *     responses:
+   *      200:
+   *        description: Send to Global Email Server
+   */
+  
+   router.route('/notification').post(async(req,res) => {
+    const email = req.body.email;
+    const subject = req.body.subject;
+    const html = req.body.html;
+    const emails = await  emailnotifications(email, subject, html)
+    res.status(200).json("Sended email");
+});
 
 module.exports = router;
