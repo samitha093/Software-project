@@ -2,6 +2,21 @@ const router = require('express').Router();
 const {verifyAccessToken} = require('../auth/jwt');
 const User = require('../models/users');
 
+/**
+ * @swagger
+ *  components:
+ *      schemas:
+ *          allpasswordreset:
+ *              type: object
+ *              required:
+ *                  - password
+ *              properties:
+ *                  email:
+ *                      type: string
+ *                      description: Validated Passwordformat And same conform-passwords
+ *              example:
+ *                  password: "?"
+ */
 
 /**
   * @swagger
@@ -31,58 +46,49 @@ const User = require('../models/users');
    *        500:
    *            description: Server failure
    */
+
+
  router.route('/logout').post(verifyAccessToken,(req,res) => {
-   //console.log(req.userdata.email);
     User.find({email:req.userdata.email, status:true})
         .then(data =>{
-            data[0].secret = "";
-            data[0].token = "";
+          data[0].secret = "";
+          data[0].token = "";
             data[0].save()
                 .then(()=> res.status(200).json("logout"))
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json(err))
 });
-/**
-  * @swagger
-  * tags:
-  *   name: All-Users
-  *   description: Private Routes
-  */
-
 
 /**
    * @swagger
-   * '/s/upload':
-   *    post:
-   *        tags:
-   *            - All-Users
-   *        summary: Register a user
-   *        consumes:
-   *            - multipart/form-data
-   *        parameters:
-   *            - in: formData
-   *              name: upfile
-   *              type: file
-   *              required: true
-   *              description: The file to upload.
-   *        responses:
-   *            200:
-   *                description: Success
-   *            400:
-   *                description: Exist user account
-   *            500:
-   *                description: Server failure
+   * '/a/resetpassword':
+   *  post:
+   *     tags:
+   *     - All-User
+   *     summary: User Password reset
+   *     requestBody:
+   *      required: true
+   *      content:
+   *        application/json:
+   *           schema:
+   *              $ref: '#/components/schemas/allpasswordreset'
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Wrong OTP
+   *      500:
+   *        description: Server failure
    */
- router.route('/').post(verifyAccessToken,(req,res) => {
+ router.route('/resetpassword').post(verifyAccessToken,(req,res) => {
   //console.log(req.userdata.email);
    User.find({email:req.userdata.email, status:true})
        .then(data =>{
-           data[0].secret = "";
-           data[0].token = "";
-           data[0].save()
-               .then(()=> res.status(200).json("logout"))
-               .catch(err => res.status(500).json(err))
+          data[0].password = req.body.password;
+          data[0].save()
+              .then(()=> res.status(200).json("Password updated"))
+              .catch(err => res.status(500).json(err))
        })
        .catch(err => res.status(400).json(err))
 });
