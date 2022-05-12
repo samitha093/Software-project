@@ -37,7 +37,6 @@ const swaggerOptions = {
         },
       },
     },
-    docExpansion: "none",
     security: [
       {
         bearerAuth: [],
