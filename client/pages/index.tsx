@@ -9,8 +9,7 @@ import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
 import Shop from '../components/Shop'
 import style from './user/style.module.css'
-import Carosaltop from '../components/store/Carosaltop'
-import { color } from '@mui/system';
+import styles from './styles.module.css'
 
 const index: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -61,8 +60,8 @@ const index: NextPage = () => {
                     </svg>
                 </div>
                 <div>
-                    <div className={style.trending_board_container}><h2 className={style.trending_board}>Trending Events</h2></div>
-                    <Shop />
+                    <div className={styles.trending_board_container}><h2 className={styles.trending_board}>Trending Events</h2></div>
+                    <Shop/>
                 </div>
                 
             </div>

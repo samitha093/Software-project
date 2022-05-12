@@ -6,6 +6,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 require('dotenv').config();
+const uri = process.env.MONGO_URI;
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -26,41 +27,63 @@ const swaggerOptions = {
 				url: "http://localhost:8000",
 			},
 		],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "apiKey",
+          name: "authorization",
+          scheme: "Bearer",
+          in: "header",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    
 	},
 	apis: ["./routes/*.js"],
 };
 
+app.use("/img",express.static('uploads'));
+
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-const sellerrout = require('./routes/seller');
-app.use('/seller',sellerrout);
+const allroute = require('./routes/all');
+app.use('/a',allroute);
 
-const userrout = require('./routes/user');
-app.use('/user',userrout);
+const sellerrout = require('./routes/seller');
+app.use('/s',sellerrout);
 
 const managerroute = require('./routes/manager');
-app.use('/manager',managerroute);
+app.use('/m',managerroute);
 
 const buyerroute = require('./routes/buyer');
-app.use('/buyer',buyerroute);
+app.use('/b',buyerroute);
 
-const allroute = require('./routes/all');
-app.use('/all',allroute);
+const guestrout = require('./routes/guest');
+app.use('/g',guestrout);
 
-const publicroute = require('./routes/public');
-app.use('/public',publicroute);
+const eventroute = require('./routes/events');
+app.use('/e',eventroute);
+
+const ticketroute = require('./routes/tickets');
+app.use('/t',ticketroute);
 
 app.listen(port, async ()=>{
   console.log('------------------------------ Staring Server ---------------------------------')
   console.log(`Lisning With port No : ${port}`);
+  console.log("DB Concting With : "+uri);
   try {
-    await mongoose.connect('mongodb://root:password@mongo:27017/tickbid', {
+    await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       authSource: "admin",
     });
-    console.log("Connected to mongo db Sever");
+    console.log("Connected to mongodb Sever");
   } catch (error) {
     console.error("Error connecting to mongodb", error);
   }
