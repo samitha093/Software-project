@@ -470,7 +470,8 @@
     margin-left: 25%;
 }
 .manager_reset_password_submit_button{
-    margin-left: 33%;
+    margin-left: 36%;
+    height: 38px;
 }
 .modern_form{
     margin-right: 10px;
@@ -485,7 +486,7 @@
     padding-left: 0px;
 }
 .manager_settings_catergory_add_button{
-    margin-left: 76%;
+    height: 38px;
 }
 .css-3vt552-MuiGrid-root {
     -webkit-flex-basis: 50% !important;
@@ -504,7 +505,7 @@
     border-radius: 8px;
     padding: 12px 15px;
     margin-bottom: 10px;
-    margin-left: 15px;
+    margin-left: 0px;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
 }

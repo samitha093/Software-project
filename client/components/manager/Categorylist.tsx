@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -64,7 +65,8 @@ export default function Categorylist() {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Add Catergories
                     </Typography>
-                    <div>
+                    <Stack direction="row" spacing={2}>
+
                         <input
                             className={styles.inputbox_modern_catergory}
                             type="text"
@@ -73,12 +75,12 @@ export default function Categorylist() {
                             //onChange={(e) => setNewcatergory(e.target.value)}
                             onChange={newcatergoryChangeHandler}
                         />
-                    </div>
-                    {newcatergoryError && (<p className="error_message"> * Catergory should be less than 20 characters</p>)}
+                        {newcatergoryError && (<p className="error_message"> * Catergory should be less than 20 characters</p>)}
 
-                    <Button className={styles.manager_settings_catergory_add_button} variant="contained" size="small" onClick={addCatergory}>
-                        Add
-                    </Button>
+                        <Button className={styles.manager_settings_catergory_add_button} variant="contained" size="small" onClick={addCatergory}>
+                            Add
+                        </Button>
+                    </Stack>
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Active Catergories
                     </Typography>
@@ -86,11 +88,11 @@ export default function Categorylist() {
                         <List
                             sx={{
                                 width: '100%',
-                                maxWidth: 360,
+                                maxWidth: 400,
                                 bgcolor: 'background.paper',
                                 position: 'relative',
                                 overflow: 'auto',
-                                maxHeight: 200,
+                                maxHeight: 300,
                                 '& ul': { padding: 0 },
                             }}
                         >

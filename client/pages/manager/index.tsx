@@ -17,6 +17,7 @@ const index: NextPage = () => {
                 <Navbar/>
                 <div className={styles.manager_index}>
                     <Sidebar id="1"/>
+                    <h1>Insights</h1>
                     <div className={styles.manager_setting_fix}>
                     <Homepage />
                     </div>

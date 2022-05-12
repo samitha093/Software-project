@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import lock from '../../assets/lock.png'
 import { Box, Grid, } from '@mui/material';
-import Fab from '@mui/material/Fab';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -19,7 +19,7 @@ interface ResetPwdProps {
 const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
 
     const router = useRouter()
-    
+
     const [currentpassword, setCurrentpassword] = React.useState<string>("");
     const [currentpasswordHasError, setCurrentpasswordError] = React.useState<boolean>(false);
 
@@ -31,7 +31,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
 
     //Need a function to retrieve and store current password
 
-    async function passwordReset() {
+    async function passwordResetHandler() {
         const datapack = {
             password: newpassword
         }
@@ -97,15 +97,14 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 </div>
                                 {validationError && (<p className="error_message"> * Confirm password should match with new password</p>)}
 
-                                <br /><br />
+                                <br />
                                 <div className={styles.manager_reset_password_submit_button}>
-                                    <Fab variant="extended" size="medium" background-color="#752E9E" aria-label="newpwd" margin-left="40%" onClick={passwordReset}>
-                                        SUBMIT
-                                    </Fab>
+                                    <Button variant="contained" size="small" onClick={passwordResetHandler}>
+                                        Submit
+                                    </Button>
                                 </div>
                             </form>
                         </div>
-
                     </Grid>
                     <Grid item md={5} className={styles.pwd_container}>
                         <div className={styles.content_1}>
