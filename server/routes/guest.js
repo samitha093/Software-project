@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
-const nodemailer = require('nodemailer');
 const {a, b, c} = require('../views/otp')
 const {secretGenerator, otpgenerator} = require('../auth/jwt')
 const {emailnotifications} = require('../smtp/mail')
@@ -161,6 +160,7 @@ const {emailnotifications} = require('../smtp/mail')
    */
 
 router.route('/register').post((req,res) => {
+    var response = {};
     const username = req.body.name;
     const email = req.body.email;
     const contact = req.body.contact;
@@ -179,8 +179,8 @@ router.route('/register').post((req,res) => {
             usertype,
             });
         newuser.save()
-            .then(()=> res.status(200).json("Registration success"))
-            .catch(err => res.status(400).json(err + "Registration failed"))   
+            .then((result)=> res.status(200).json(result._id))
+            .catch(err => res.status(500).json(err)) 
     })
  
 });
