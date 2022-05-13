@@ -31,6 +31,20 @@ function managerverification (req, res, next){
         return res.sendStatus(403);
     }
 };
+function sellerverification (req, res, next){
+    if(req.userdata.type === "MANAGER"){
+        next();
+    }else{
+        return res.sendStatus(403);
+    }
+};
+function buyerverification (req, res, next){
+    if(req.userdata.type === "MANAGER"){
+        next();
+    }else{
+        return res.sendStatus(403);
+    }
+};
 function secretGenerator (length){
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -57,5 +71,7 @@ module.exports={
     verifyAccessToken,
     secretGenerator,
     managerverification,
-    otpgenerator
+    otpgenerator,
+    sellerverification,
+    buyerverification
 };

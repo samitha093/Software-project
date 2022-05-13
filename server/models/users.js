@@ -3,6 +3,13 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const schema = mongoose.Schema;
 
+const qrschema = new schema({
+    qrcode:{type:String },
+    qrid:{type:String},
+},{
+    timestamps:true
+});
+
 const ticketschema = new schema({
     eventname:{type:String },
     event_venue:{type:String },
@@ -10,10 +17,16 @@ const ticketschema = new schema({
     event_time:{type:String },
     ticket_level:{type:String },
     image_url:{type:String},
-    amount:{type:String, default:0},
+    amount:{type:Number, default:0},
+    ticketscount :{type:Number},
+    bid_amount:{type:number, default:0},
+    bid_status:{type:Boolean, default:false},
     payment_status:{type:Boolean, default:false},
-    ticket_status:{type:Boolean, default:false}
-
+    ticket_status:{type:Boolean, default:false},
+    qr:[qrschema],
+    eventid:{type:String},
+    ticketid: {type:string},
+    userid:{type:String},
 },{
     timestamps:true
 });
@@ -25,11 +38,11 @@ const userschema = new schema({
     contact:{type:String },
     password:{type:String },
     usertype:{type:String },
-    status:{type:Boolean , default:false},
     otp:{type:String, default:0},
     secret:{type:String},
     token:{type:String},
-    tickets: [ticketschema]
+    tickets: [ticketschema],
+    status:{type:Boolean , default:false},
 },{
     timestamps:true
 });

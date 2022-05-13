@@ -3,16 +3,39 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const schema = mongoose.Schema;
 
+const ticketschema = new schema({
+    ticket_level: {type:Number},
+    buy_quantity: {type:Number},
+    buy_amount: {type:Number},
+    bid_quantity: {type:Number},
+    min_bid_amount: {type:Number},
+    ticketid: {type:string},
+},{
+    timestamps:true
+});
+
+const commentschema = new schema({
+    comment: {type:string},
+},{
+    timestamps:true
+});
+
 const eventschema = new schema({
-    event_name: {type:String, required:true},
-    event_venue: {type:String, required:true},
-    event_date: {type:String, required:true},
-    event_time: {type:String, required:true},
-    ticket_level: {type:Number, required:true},
-    image_url : {type:String, required:true},
+    username:{type:String },
+    event_name: {type:String},
+    event_venue: {type:String},
+    event_date: {type:String},
+    event_time: {type:String},
+    image_url : {type:String},
+    publishevent_date: {type:String},
+    endevent_date: {type:String},
+    event_category: {type:String},
+    total_tickets : {type:Number},
+    area: {type:String},
+    comments: [commentschema],
+    tickets: [ticketschema],
     status: {type:String, default:'pending'},
-    comment: {type:String,},
-    user_id: {type:String, required:true}
+    userid:{type:String},
 },{
     timestamps:true
 });
