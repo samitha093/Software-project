@@ -52,7 +52,7 @@ router.route("/upload").post (upload.single('Img'),(req, res) => {
     res.status(200).json(`img/${req.file.filename}`);
 
 });
-
+///--------------------------------------------------------------
 
 function authtoken(req, res, next){
     const authHeader = req.headers['authorization']
