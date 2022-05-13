@@ -27,7 +27,7 @@ const ticketschema = new schema({
     event_category: {type:String},
     area: {type:String},
     bids : [bidschema],
-    status: {type:String},
+    status: {type:Boolean, default:true},
     eventid:{type:String},
     userid:{type:String},
 },{

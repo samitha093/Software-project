@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const qrschema = new schema({
-    qr: {type:Number},
+    qr: {type:String},
     validity:{type:Boolean, default:false},
     status: {type:Boolean, default:false},
     userid:{type:String},
