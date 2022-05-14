@@ -219,11 +219,11 @@ const Homepage: React.FC<HomepageProps> = ({ }) => {
                     <Table sx={{ minWidth: 400 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell id="customized-dialog-title">Ticket Level</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title">Ticket Level</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Quantity</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Quantity</TableCell>
                             </TableRow>
                         </TableHead>
                     </Table>

@@ -11,17 +11,19 @@ import styles from './styles.module.css'
 import classnames from 'classnames';
 
 const index: NextPage = () => {
-    
+
     return (
         <div className={styles.manager_bg}>
-                <Navbar/>
-                <div className={styles.manager_index}>
-                    <Sidebar id="1"/>
-                    <h1>Insights</h1>
+            <Navbar />
+            <div className={styles.manager_index}>
+                <Sidebar id="1" />
+                <div className={styles.manager_index_scroll_set}>
+                    <h1>Insigths</h1>
                     <div className={styles.manager_setting_fix}>
-                    <Homepage />
+                        <Homepage />
                     </div>
                 </div>
+            </div>
         </div>
     );
 }
