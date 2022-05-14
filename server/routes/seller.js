@@ -312,7 +312,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
 
 /**
  * @swagger
- *  '/s/udateaticket/{eventid}/{ticketid}':
+ *  '/s/updateaticket/{eventid}/{ticketid}':
  *      put:
  *          tags:
  *              - User-seller
@@ -343,7 +343,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *                  description: Server failure
  */
 
-router.route('/udateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerverification,(req,res) => {
+router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerverification,(req,res) => {
     events.findOne({_id:req.params.eventid})
     .then(data =>{
         const subdoc = data.tickets;

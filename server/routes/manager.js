@@ -17,6 +17,21 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  *                      description: Validated email Format
  *              example:
  *                  email: "?"
+ *          updateaevent:
+ *              type: object
+ *              required:
+ *                  - status
+ *                  - comment
+ *              properties:
+ *                  status:
+ *                      type: string
+ *                      description: Should be in Capital
+ *                  comment:
+ *                      type: string
+ *                      description: Validated comment
+ *              example:
+ *                  status: "?"
+ *                  comment: "?"
  */
 
 /**
@@ -166,6 +181,47 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
           }
       })
       .catch(err => res.status(500).json("Server error"))
+});
+
+/**
+ * @swagger
+ *  '/m/approveaevent/{eventid}':
+ *      put:
+ *          tags:
+ *              - User-Manager
+ *          summary: approve a Event
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/updateaevent'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: approval Error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/approveaevent/:eventid').put(verifyAccessToken,managerverification,(req,res) => {
+  //console.log(req.userdata.email);
+   events.findById(req.params.eventid)
+       .then(data =>{
+          data.status = req.body.status;
+          data.comments.push(req.body.comment);
+          data.save()
+              .then(()=> res.status(200).json("Event updated"))
+              .catch(err => res.status(500).json(err))
+       })
+       .catch(err => res.status(400).json(err))
 });
 
 module.exports = router;

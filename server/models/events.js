@@ -14,12 +14,6 @@ const ticketschema = new schema({
     timestamps:true
 });
 
-const commentschema = new schema({
-    comment: {type:String}, //get fro manager side 
-},{
-    timestamps:true
-});
-
 const eventschema = new schema({
     username:{type:String }, // get from middle-ware
     event_name: {type:String},
@@ -33,7 +27,7 @@ const eventschema = new schema({
     endevent_date: {type:String},
     event_category: {type:String},
     area: {type:String},
-    comments: [commentschema],//can be null in begining
+    comments: [String],//can be null in begining
     tickets: [ticketschema],
     status: {type:String, default:'PENDING'},//set from back-end
     userid:{type:String}, //get from middle-ware
