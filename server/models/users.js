@@ -19,13 +19,13 @@ const ticketschema = new schema({
     image_url:{type:String},
     amount:{type:Number, default:0},
     ticketscount :{type:Number},
-    bid_amount:{type:number, default:0},
+    bid_amount:{type:Number, default:0},
     bid_status:{type:Boolean, default:false},
     payment_status:{type:Boolean, default:false},
     ticket_status:{type:Boolean, default:false},
     qr:[qrschema],
     eventid:{type:String},
-    ticketid: {type:string},
+    ticketid: {type:String},
     userid:{type:String},
 },{
     timestamps:true

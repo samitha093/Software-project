@@ -9,13 +9,13 @@ const ticketschema = new schema({
     buy_amount: {type:Number},
     bid_quantity: {type:Number},
     min_bid_amount: {type:Number},
-    ticketid: {type:string},
+    ticketid: {type:String},
 },{
     timestamps:true
 });
 
 const commentschema = new schema({
-    comment: {type:string},
+    comment: {type:String},
 },{
     timestamps:true
 });
