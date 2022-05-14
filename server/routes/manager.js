@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const events = require('../models/events');
-const ticketLevels = require('../models/ticketLevels');
 const User = require('../models/users');
+const events = require('../models/events');
 const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
@@ -18,6 +17,21 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  *                      description: Validated email Format
  *              example:
  *                  email: "?"
+ *          updateaevent:
+ *              type: object
+ *              required:
+ *                  - status
+ *                  - comment
+ *              properties:
+ *                  status:
+ *                      type: string
+ *                      description: Should be in Capital
+ *                  comment:
+ *                      type: string
+ *                      description: Validated comment
+ *              example:
+ *                  status: "?"
+ *                  comment: "?"
  */
 
 /**
@@ -70,7 +84,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
    *  get:
    *     tags:
    *     - User-Manager
-   *     summary: Get Pending Seller List
+   *     summary: Get Pending Seller List (data-out*)
    *     requestBody:
    *      required: false
    *     responses:
@@ -90,101 +104,124 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
         status: false,
         otp: false,
         password: false,
-        usertype: false
+        usertype: false,
+        secret: false,
+        token: false,
+        tickets: false
     };
     User.find({usertype:"SELLER",otp:"0", status:false},Projection,(err,data) => {
         res.status(200).json(data) 
     })
 });
 
-/*Routing to Search Pending Events*/
-router.route('/pending').get((req,res) => {
-    events.find({status: "pending"})
-        .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
-
+/**
+   * @swagger
+   * '/m/activesellerlist':
+   *  get:
+   *     tags:
+   *     - User-Manager
+   *     summary: Get Active Seller List (data-out*)
+   *     requestBody:
+   *      required: false
+   *     responses:
+   *        200:
+   *            description: Pending Seller List
+   *        400:
+   *            description: No Pending Sellers
+   *        403:
+   *            description: Authentication Failed
+   *        401:
+   *            description: NULL Header
+   *        500:
+   *            description: Server failure
+   */
+ router.route('/activesellerlist').get(verifyAccessToken,managerverification,(req,res) => {
+  var Projection = { 
+      status: false,
+      otp: false,
+      password: false,
+      usertype: false,
+      secret: false,
+      token: false,
+      tickets: false
+  };
+  User.find({usertype:"SELLER", status:true},Projection,(err,data) => {
+      res.status(200).json(data) 
+  })
 });
 
-/*Routing to Search Active Events*/
-router.route('/active').get((req,res) => {
-    events.find({status: "active"})
-        .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
-
+/**
+ * @swagger
+ *  '/m/getevent/{type}':
+ *      get:
+ *          tags:
+ *              - User-Manager
+ *          summary: get event by type
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: type
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/getevent/:type').get(verifyAccessToken,managerverification,(req,res) => {
+  events.find({status:req.params.type})
+      .then(data =>{
+          if(data.length>0){
+              res.status(200).json(data)
+          }else{
+              res.status(404).json("No data Found")
+          }
+      })
+      .catch(err => res.status(500).json("Server error"))
 });
 
-/*Routing to Search Declined Events*/
-router.route('/declined').get((req,res) => {
-    events.find({status: "declined"})
-        .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+/**
+ * @swagger
+ *  '/m/approveaevent/{eventid}':
+ *      put:
+ *          tags:
+ *              - User-Manager
+ *          summary: approve a Event
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/updateaevent'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: approval Error
+ *              500:
+ *                  description: Server failure
+ */
 
+ router.route('/approveaevent/:eventid').put(verifyAccessToken,managerverification,(req,res) => {
+  //console.log(req.userdata.email);
+   events.findById(req.params.eventid)
+       .then(data =>{
+          data.status = req.body.status;
+          data.comments.push(req.body.comment);
+          data.save()
+              .then(()=> res.status(200).json("Event updated"))
+              .catch(err => res.status(500).json(err))
+       })
+       .catch(err => res.status(400).json(err))
 });
-
-/*Taking Ticket Info Table Details in Pending/Active/Declined Events Tabs*/
-router.route('/ticketdetails/:id').get((req,res) => {
-    ticketLevels.find({event_id:req.params.id})
-        .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
-});
-
-
-/*Taking User Details to Get the Organizer Name in Pending/Active/Declined Events Tabs*/
-router.route('/organizer/:id').get((req,res) => {
-    users.find({user_id:req.params.id})
-        .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
-});
-
-
-/*Routing to Search Seller Data to Approve*/
-router.route('/sellerapprove').get((req,res) => {
-    users.find({status: "false"})
-        .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
-
-});
-
-/*Update Seller Status to "True"*/
-router.route('/sellerapproveupdate/:id').put((req,res) => {
-    users.findById(req.params.id)
-        .then(data =>{
-            data.status = true;
-
-            data.save()
-                .then(()=> res.status(200).json("data updated"))
-                .catch(err => res.status(400).json(err))
-        })
-        .catch(err => res.status(400).json(err))
-});
-
-
-/*Update Ticket Status to "Active"*/
-router.route('/activeticket/:id').put((req,res) => {
-    events.findById(req.params.id)
-        .then(data =>{
-            data.status = 'active';
-            data.save()
-                .then(()=> res.status(200).json("data updated"))
-                .catch(err => res.status(400).json(err))
-        })
-        .catch(err => res.status(400).json(err))
-});
-
-
-/*Update Ticket Status to "Declined"*/
-router.route('/declinedticket/:id').put((req,res) => {
-    events.findById(req.params.id)
-        .then(data =>{
-            data.status = 'declined';
-            data.comment = 'Your event has been declined'; /*this is a tempory message, it may taken from message box later*/
-            data.save()
-                .then(()=> res.status(200).json("data updated"))
-                .catch(err => res.status(400).json(err))
-        })
-        .catch(err => res.status(400).json(err))
-});
-
-
 
 module.exports = router;

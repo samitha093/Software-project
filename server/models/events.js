@@ -3,16 +3,34 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const schema = mongoose.Schema;
 
+const ticketschema = new schema({
+    ticket_level: {type:Number},
+    buy_quantity: {type:Number},
+    buy_amount: {type:Number},
+    bid_quantity: {type:Number},
+    min_bid_amount: {type:Number},
+    ticketid: {type:String},//can be null , submit from manager
+},{
+    timestamps:true
+});
+
 const eventschema = new schema({
-    event_name: {type:String, required:true},
-    event_venue: {type:String, required:true},
-    event_date: {type:String, required:true},
-    event_time: {type:String, required:true},
-    ticket_level: {type:Number, required:true},
-    image_url : {type:String, required:true},
-    status: {type:String, default:'pending'},
-    comment: {type:String,},
-    user_id: {type:String, required:true}
+    username:{type:String }, // get from middle-ware
+    event_name: {type:String},
+    event_venue: {type:String},
+    event_date: {type:String},
+    event_time: {type:String},
+    levelcount: {type:Number},
+    image_url : {type:String},
+    total_tickets : {type:Number,default: 0 },// not in form
+    publishevent_date: {type:String},
+    endevent_date: {type:String},
+    event_category: {type:String},
+    area: {type:String},
+    comments: [String],//can be null in begining
+    tickets: [ticketschema],
+    status: {type:String, default:'PENDING'},//set from back-end
+    userid:{type:String}, //get from middle-ware
 },{
     timestamps:true
 });
