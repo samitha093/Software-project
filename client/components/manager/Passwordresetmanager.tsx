@@ -36,14 +36,16 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
     }
 
     const newpasswordChangeHandler = (e: any) => {
-        const valid = e.target.value.trim().length >= 5;
-        setNewpasswordError(!valid);
+        const newpassword_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+        const valid = !!e.target.value.match(newpassword_regex);
         setNewpassword(e.target.value);
+        setNewpasswordError(!valid);
         
     }
 
-    const confirmPasswordChangeHandler = async (event: any) => {
+    const confirmPasswordChangeHandler = async (e: any) => {
         var np = new String(newpassword);
+        var confirmPassword = setConfirmpassword(e.target.value);
         var cp = new String(confirmPassword);
         var isEquel = JSON.stringify(np) === JSON.stringify(cp);
         setvalidationerror(!isEquel);
@@ -69,11 +71,11 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         type="password"
                                         placeholder="New Password"
                                         value={newpassword}
-                                        onChange={(e) => setNewpassword(e.target.value)}
-                                    //onChange = {newpasswordChangeHandler}
+                                        //onChange={(e) => setNewpassword(e.target.value)}
+                                        onChange={newpasswordChangeHandler}
                                     />
                                 </div>
-                                {newpasswordError && (<p className="error_message"> * Password can not be empty</p>)}
+                                {newpasswordError && (<p className={styles.manager_error_message}> * Password must contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</p>)}
 
                                 <div>
                                     <input
@@ -85,7 +87,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         onChange={confirmPasswordChangeHandler}
                                     />
                                 </div>
-                                {validationError && (<p className="error_message"> * Confirm password should match with new password</p>)}
+                                {validationError && (<p className={styles.manager_error_message}> * Confirm password should match with new password</p>)}
 
                                 <br />
                                 <div className={styles.manager_reset_password_submit_button}>
