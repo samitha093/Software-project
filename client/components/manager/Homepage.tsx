@@ -13,15 +13,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import axios from 'axios'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { PieChart, Pie } from 'recharts';
+
 import Progressbar from '../../components/manager/Progressbar'
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,

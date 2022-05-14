@@ -5,10 +5,11 @@ import { Box, Grid, } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+
 
 import Categorylist from '../../components/manager/Categorylist'
 
+import axios from 'axios';
 import styles from './styles.module.css'
 import classnames from 'classnames';
 
@@ -29,8 +30,13 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
     //Need a function to retrieve and store current password
 
     async function passwordResetHandler() {
-        const datapack = {
-            password: newpassword
+        if (validationError == false) {
+            const datapack = {
+                password: newpassword
+            }
+        }
+        else{
+            {newpasswordError && (<p className={styles.manager_error_message}> Please check again</p>)} 
         }
         //There should be routing part here. (Refer USER)
     }
@@ -40,7 +46,6 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
         const valid = !!e.target.value.match(newpassword_regex);
         setNewpassword(e.target.value);
         setNewpasswordError(!valid);
-        
     }
 
     const confirmPasswordChangeHandler = async (e: any) => {
@@ -87,7 +92,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         onChange={confirmPasswordChangeHandler}
                                     />
                                 </div>
-                                {validationError && (<p className={styles.manager_error_message}> * Confirm password should match with new password</p>)}
+                                {validationError && (<p className={styles.manager_error_message}> * Confirm password must match with new password</p>)}
 
                                 <br />
                                 <div className={styles.manager_reset_password_submit_button}>

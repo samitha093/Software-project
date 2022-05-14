@@ -17,8 +17,6 @@ import Pendingeventstable from '../../components/manager/Pendingeventstable'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-//import FormControl from '@mui/material/FormControl';
-//import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -26,6 +24,7 @@ import { Fab } from '@mui/material';
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
 
 
 //Line 80 space for the image box
