@@ -53,8 +53,9 @@ export default function Categorylist() {
     }
 
     const newcatergoryChangeHandler = (e: any) => {
+        const newpcatergory_regex = /^[A-Z].{3,20}$/;
+        const valid = !!e.target.value.match(newpcatergory_regex);
         setNewcatergory(e.target.value);
-        const valid = e.target.value.trim().length <= 20;
         setNewcatergoryError(!valid);
     }
 
@@ -75,12 +76,13 @@ export default function Categorylist() {
                             //onChange={(e) => setNewcatergory(e.target.value)}
                             onChange={newcatergoryChangeHandler}
                         />
-                        {newcatergoryError && (<p className="error_message"> * Catergory should be less than 20 characters</p>)}
 
                         <Button className={styles.manager_settings_catergory_add_button} variant="contained" size="small" onClick={addCatergory}>
                             Add
                         </Button>
                     </Stack>
+                    {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Catergory must be 4-20 characters and first letter capital</p>)}
+
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                         Active Catergories
                     </Typography>
