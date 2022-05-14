@@ -1,65 +1,82 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
-const nodemailer = require("nodemailer");
-const orders = require('../models/orders');
-const tickets = require('../models/tickets');
-const bids = require('../models/bids');
+const User = require('../models/users');
+const {verifyAccessToken} = require('../auth/jwt');
 
-//Authentificat tokens
-function authtoken(req, res, next){
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-    if(token == null) return res.sendStatus(401)
+/**
+ * @swagger
+ *  components:
+ *      schemas:
+ *          addtickets:
+ *              type: object
+ *              required:
+ *                  - eventname
+ *                  - event_venue
+ *                  - event_date
+ *                  - event_time
+ *                  - ticket_level
+ *                  - image_url
+ *                  - amount
+ *              properties:
+ *                  eventname:
+ *                      type: string
+ *                  event_venue:
+ *                      type: string
+ *                  event_date:
+ *                      type: string
+ *                  event_time:
+ *                      type: string
+ *                  ticket_level:
+ *                      type: string
+ *                  image_url:
+ *                      type: string
+ *                  amount:
+ *                      type: string
+ *              example:
+ *                  eventname: "?"
+ *                  event_venue: "?"
+ *                  event_date: "?"
+ *                  event_time: "?"
+ *                  ticket_level: "?"
+ *                  image_url: "?"
+ *                  amount: "?"
+ */
 
-    jwt.verify(token, "hjfhsahf282714ndflsd8we0" , (err, data)=>{
-        if(err) return res.sendStatus(403)
-        next();
-    } )
-}
-//email notifications
-function notification(to, subject, body){
-    const host_ = "in-v3.mailjet.com";
-    const port_ = 465;
-    const user_ = "1b7e8743391668430fc079c96f2c12ed";
-    const passs_ = "39d279b737fb3515a4c19c4a37e2845b";
-    const security_ = "SSL"; 
-    const from_email = "Tickbid Team<no-reply@tickbid.ml>";
-    const to_email = to;
-    const sublect_email = subject;
-    const body_email = body;
-    const transporter = nodemailer.createTransport({
-        host: host_,
-        port: port_,
-        secure: security_,
-        auth: {
-            user: user_,
-            pass: passs_,
-        },
-    });
-    let mainOptions = {
-        from: from_email,
-        to: to_email, 
-        subject: sublect_email,
-        html: body_email,
-    }
-    transporter.sendMail(mainOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            console.log(`mail sent ${info.response}`);
-            return;
-        }
-    })
-}
-//routes
-router.route('/').post(async(req, res) => {
-    
-    const to = "slakshan@ieee.org";
-    const subject = "test Subject2";
-    const body = "test body2";
-    await notification(to, subject, body);
-    res.status(200).json("ok");
+/**
+  * @swagger
+  * tags:
+  *   name: User-buyer
+  *   description: Private Routes
+  */
+
+/**
+ * @swagger
+ * '/b/addticket':
+ *  post:
+ *     tags:
+ *     - User-buyer
+ *     summary: add ticket for user
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/addtickets'
+ *     responses:
+ *      200:
+ *        description: Send to Global Email Server
+ *      400:
+ *        description: Send to Global Email Server
+ *      500:
+ *        description: Send to Global Email Server
+ */
+ router.route('/addticket').post(verifyAccessToken,(req,res) => {
+    User.find({email:req.userdata.email, status:true})
+        .then(data =>{
+            data[0].tickets.push(req.body);
+            data[0].save()
+                .then((result)=> res.status(200).json("Ticket Added"))
+              .catch(err => res.status(500).json(err))
+        })
+        .catch(err => res.status(400).json(err))
 });
-
 module.exports = router;
