@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/users');
-const {verifyAccessToken} = require('../auth/jwt');
+const {verifyAccessToken,buyerverification} = require('../auth/jwt');
 
 /**
  * @swagger
@@ -54,7 +54,7 @@ const {verifyAccessToken} = require('../auth/jwt');
  *  post:
  *     tags:
  *     - User-buyer
- *     summary: add ticket for user
+ *     summary: add ticket for user (data-in*)
  *     requestBody:
  *      required: true
  *      content:
@@ -69,7 +69,7 @@ const {verifyAccessToken} = require('../auth/jwt');
  *      500:
  *        description: Send to Global Email Server
  */
- router.route('/addticket').post(verifyAccessToken,(req,res) => {
+ router.route('/addticket').post(verifyAccessToken,buyerverification,(req,res) => {
     User.find({email:req.userdata.email, status:true})
         .then(data =>{
             data[0].tickets.push(req.body);
