@@ -4,6 +4,7 @@ import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Declinedevents from '../../components/manager/Declinedevents'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
+
 import axios from 'axios'
 import {gethost} from '../../session/Session';
 import styles from './styles.module.css'

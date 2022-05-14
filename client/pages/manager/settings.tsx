@@ -4,9 +4,9 @@ import Sidebar from '../../components/manager/Sidebar'
 import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
 import Categorylist from '../../components/manager/Categorylist'
 import Navbar from '../../components/Navbar'
+
 import axios from 'axios'
 import { gethost } from '../../session/Session';
-
 import styles from './styles.module.css'
 import classnames from 'classnames';
 
