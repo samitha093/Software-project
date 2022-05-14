@@ -427,6 +427,8 @@
 
 /*start-manager password reset component*/
 
+
+
 .manager_settings_head {
     font-size: x-large !important;
     font-weight: bolder !important;
@@ -610,9 +612,6 @@
     background-color: #752E9E !important;
 }
 
-.css-1azl6jz-MuiTableCell-root {
-    background-color: #752E9E !important;
-}
 
 @media only screen and (max-width: 1550px) {
     .manager_progressbar {

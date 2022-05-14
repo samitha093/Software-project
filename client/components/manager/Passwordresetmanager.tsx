@@ -20,9 +20,6 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
 
     const router = useRouter()
 
-    const [currentpassword, setCurrentpassword] = React.useState<string>("");
-    const [currentpasswordHasError, setCurrentpasswordError] = React.useState<boolean>(false);
-
     const [newpassword, setNewpassword] = React.useState("");
     const [newpasswordError, setNewpasswordError] = React.useState<boolean>(false);
 
@@ -39,9 +36,10 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
     }
 
     const newpasswordChangeHandler = (e: any) => {
-        setNewpassword(e.target.value);
         const valid = e.target.value.trim().length >= 5;
         setNewpasswordError(!valid);
+        setNewpassword(e.target.value);
+        
     }
 
     const confirmPasswordChangeHandler = async (event: any) => {
@@ -64,15 +62,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         Reset Password
                                     </Typography>
                                 </div>
-                                <div>
-                                    <input
-                                        className={styles.inputbox_modern}
-                                        type="password"
-                                        placeholder="Current password"
-                                        value={currentpassword}
-                                        onChange={(e) => setCurrentpassword(e.target.value)}
-                                    />
-                                </div>
+
                                 <div>
                                     <input
                                         className={styles.inputbox_modern}
@@ -91,8 +81,8 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         type="password"
                                         placeholder="Confirm New Password"
                                         value={confirmPassword}
-                                        onChange={(e) => setConfirmpassword(e.target.value)}
-                                    //onChange={confirmPasswordChangeHandler}
+                                        //onChange={(e) => setConfirmpassword(e.target.value)}
+                                        onChange={confirmPasswordChangeHandler}
                                     />
                                 </div>
                                 {validationError && (<p className="error_message"> * Confirm password should match with new password</p>)}
