@@ -57,15 +57,12 @@ const {getusername, getuserid} = require('../middlewares/user');
  *          createaticket:
  *              type: object
  *              required:
- *                  - eventid
  *                  - ticket_level
  *                  - buy_quantity
  *                  - buy_amount
  *                  - bid_quantity
  *                  - min_bid_amount
  *              properties:
- *                  eventid:
- *                      type: String
  *                  ticket_level:
  *                      type: Number
  *                  buy_quantity:
@@ -77,7 +74,6 @@ const {getusername, getuserid} = require('../middlewares/user');
  *                  min_bid_amount:
  *                      type: Number
  *              example:
- *                  eventid: "?"
  *                  ticket_level: 0
  *                  buy_quantity: 0
  *                  buy_amount: 0
@@ -196,11 +192,17 @@ router.route("/upload").post (upload.single('Img'),(req, res) => {
 
 /**
  * @swagger
- *  '/s/createaticket':
+ *  '/s/createaticket/{eventid}':
  *      post:
  *          tags:
  *              - User-seller
- *          summary: Create a Ticket
+ *          summary: Create a Ticket (one by one link *)
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
  *          requestBody:
  *              required: true
  *              content:
@@ -215,8 +217,8 @@ router.route("/upload").post (upload.single('Img'),(req, res) => {
  *              500:
  *                  description: Server failure
  */
-router.route('/createaticket').post(verifyAccessToken,sellerverification,(req,res) => {
-    events.findById(req.body.eventid)
+router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverification,(req,res) => {
+    events.findById(req.params.eventid)
         .then(data =>{
             data.tickets.push(req.body);
             data.save()
@@ -232,7 +234,7 @@ router.route('/createaticket').post(verifyAccessToken,sellerverification,(req,re
  *      get:
  *          tags:
  *              - User-seller
- *          summary: Create a Ticket
+ *          summary: get event by type
  *          parameters:
  *              - in: path
  *                required: false
@@ -258,4 +260,186 @@ router.route('/createaticket').post(verifyAccessToken,sellerverification,(req,re
         })
         .catch(err => res.status(500).json("Server error"))
 });
+
+/**
+ * @swagger
+ *  '/s/updateaevent/{eventid}':
+ *      put:
+ *          tags:
+ *              - User-seller
+ *          summary: Update a Event
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/createaevent'
+ *          responses:
+ *              200:
+ *                  description: Success(Event id)
+ *              400:
+ *                  description: Registration Error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/updateaevent/:eventid').put(verifyAccessToken,sellerverification,(req,res) => {
+    //console.log(req.userdata.email);
+     events.findById(req.params.eventid)
+         .then(data =>{
+            data.event_name = req.body.event_name;
+            data.event_venue = req.body.event_venue;
+            data.event_date = req.body.event_date;
+            data.event_time = req.body.event_time;
+            data.levelcount = req.body.levelcount;
+            data.image_url = req.body.image_url;
+            data.publishevent_date = req.body.publishevent_date;
+            data.endevent_date = req.body.endevent_date;
+            data.event_category = req.body.event_category;
+            data.area = req.body.area;
+            data.save()
+                .then(()=> res.status(200).json("Event updated"))
+                .catch(err => res.status(500).json(err))
+         })
+         .catch(err => res.status(400).json(err))
+  });
+
+/**
+ * @swagger
+ *  '/s/udateaticket/{eventid}/{ticketid}':
+ *      put:
+ *          tags:
+ *              - User-seller
+ *          summary: Update a Ticket (one by one link *)
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *              - in: path
+ *                required: false
+ *                name: ticketid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: false
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/createaticket'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: Update Error
+ *              500:
+ *                  description: Server failure
+ */
+
+router.route('/udateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerverification,(req,res) => {
+    events.findOne({_id:req.params.eventid})
+    .then(data =>{
+        const subdoc = data.tickets;
+        if(subdoc){
+            subdoc.map((dt)=>{
+                if(dt._id == req.params.ticketid){
+                    dt.ticket_level = req.body.ticket_level;
+                    dt.buy_quantity = req.body.buy_quantity;
+                    dt.buy_amount = req.body.buy_amount;
+                    dt.bid_quantity = req.body.bid_quantity;
+                    dt.min_bid_amount = req.body.min_bid_amount;
+                }
+            })
+        }else{
+            res.status(400).json("not found tickets")
+        }
+        data.save()
+                .then(()=> res.status(200).json("ticket updated"))
+                .catch(err => res.status(500).json(err))
+    })
+    .catch(err => res.status(400).json(err))
+});
+
+/**
+ * @swagger
+ *  '/s/deleteaticket/{eventid}':
+ *      delete:
+ *          tags:
+ *              - User-seller
+ *          summary: delete a Event
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: false
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: delete Error
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/deleteaticket/:eventid').delete(verifyAccessToken,sellerverification,async (req,res) => {
+    events.findByIdAndRemove(req.params.eventid, function(err){
+        if(err){
+            res.status(500).json(err);
+        } else {
+            res.status(200).json("event deleted");
+        }  
+    });
+});
+
+/**
+ * @swagger
+ *  '/s/deleteaticket/{eventid}/{ticketid}':
+ *      delete:
+ *          tags:
+ *              - User-seller
+ *          summary: delete a Ticket
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *              - in: path
+ *                required: false
+ *                name: ticketid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: false
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: delete Error
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/deleteaticket/:eventid/:ticketid').delete(verifyAccessToken,sellerverification,async (req,res) => {
+    events.findOne({_id:req.params.eventid})
+    .then(data =>{
+        var subdoc = data.tickets;
+        subdoc = subdoc.filter(val => !(val._id == req.params.ticketid))
+        data.tickets = subdoc;
+        data.save()
+                .then(()=> res.status(200).json("ticket deleted"))
+                .catch(err => res.status(500).json(err))
+    })
+    .catch(err => res.status(400).json(err))
+
+});
+
 module.exports = router;
