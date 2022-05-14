@@ -68,7 +68,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
    *  get:
    *     tags:
    *     - User-Manager
-   *     summary: Get Pending Seller List
+   *     summary: Get Pending Seller List(data-out*)
    *     requestBody:
    *      required: false
    *     responses:
@@ -88,7 +88,10 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
         status: false,
         otp: false,
         password: false,
-        usertype: false
+        usertype: false,
+        secret: false,
+        token: false,
+        tickets: false
     };
     User.find({usertype:"SELLER",otp:"0", status:false},Projection,(err,data) => {
         res.status(200).json(data) 

@@ -54,7 +54,7 @@ const {verifyAccessToken,buyerverification} = require('../auth/jwt');
  *  post:
  *     tags:
  *     - User-buyer
- *     summary: add ticket for user
+ *     summary: add ticket for user(data-in*)
  *     requestBody:
  *      required: true
  *      content:

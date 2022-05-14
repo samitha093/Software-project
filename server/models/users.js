@@ -17,7 +17,7 @@ const ticketschema = new schema({
     event_time:{type:String },
     ticket_level:{type:String },
     image_url:{type:String},
-    amount:{type:Number, default:0},
+    amount:{type:String, default:0},
     ticketscount :{type:Number},
     bid_amount:{type:Number, default:0},
     bid_status:{type:Boolean, default:false},

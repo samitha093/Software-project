@@ -32,14 +32,14 @@ function managerverification (req, res, next){
     }
 };
 function sellerverification (req, res, next){
-    if(req.userdata.type === "MANAGER"){
+    if(req.userdata.type === "SELLER"){
         next();
     }else{
         return res.sendStatus(403);
     }
 };
 function buyerverification (req, res, next){
-    if(req.userdata.type === "MANAGER"){
+    if(req.userdata.type === "BUYER"){
         next();
     }else{
         return res.sendStatus(403);

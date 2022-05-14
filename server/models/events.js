@@ -9,33 +9,34 @@ const ticketschema = new schema({
     buy_amount: {type:Number},
     bid_quantity: {type:Number},
     min_bid_amount: {type:Number},
-    ticketid: {type:String},
+    ticketid: {type:String},//can be null , submit from manager
 },{
     timestamps:true
 });
 
 const commentschema = new schema({
-    comment: {type:String},
+    comment: {type:String}, //get fro manager side 
 },{
     timestamps:true
 });
 
 const eventschema = new schema({
-    username:{type:String },
+    username:{type:String }, // get from middle-ware
     event_name: {type:String},
     event_venue: {type:String},
     event_date: {type:String},
     event_time: {type:String},
+    levelcount: {type:Number},
     image_url : {type:String},
+    total_tickets : {type:Number,default: 0 },// not in form
     publishevent_date: {type:String},
     endevent_date: {type:String},
     event_category: {type:String},
-    total_tickets : {type:Number},
     area: {type:String},
-    comments: [commentschema],
+    comments: [commentschema],//can be null in begining
     tickets: [ticketschema],
-    status: {type:String, default:'pending'},
-    userid:{type:String},
+    status: {type:String, default:'PENDING'},//set from back-end
+    userid:{type:String}, //get from middle-ware
 },{
     timestamps:true
 });
