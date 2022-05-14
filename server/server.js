@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const schedule = require('node-schedule')
 
 require('dotenv').config();
 const uri = process.env.MONGO_URI;
@@ -46,6 +47,19 @@ const swaggerOptions = {
 	},
 	apis: ["./routes/*.js"],
 };
+
+schedule.scheduleJob('* * * * *',()=>{
+  console.log("running every 1 minute :00")
+})
+
+schedule.scheduleJob('0 * * * *',()=>{
+  console.log("running every 1 hour 00:00")
+})
+
+schedule.scheduleJob('0 0 * * *',()=>{
+  console.log("running every day mid night 00:00:00")
+})
+
 
 app.use("/img",express.static('uploads'));
 
