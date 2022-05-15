@@ -4,11 +4,11 @@ import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Activeevents from '../../components/manager/Activeevents'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
-import axios from 'axios'
 import {gethost} from '../../session/Session';
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
 
 const activeevents: NextPage = () => {
     React.useEffect(() => {
