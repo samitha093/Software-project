@@ -1,5 +1,6 @@
 /.idea
 /.vscode
+/database/
 
 #remove Library Files from Client
 /node_modules/
