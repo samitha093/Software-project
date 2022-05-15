@@ -4,10 +4,11 @@ import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import SellersTopBar from '../../components/manager/SellersTopBar'
 import SellerActions from '../../components/manager/SellerActions'
-import axios from 'axios'
-import { gethost } from '../../session/Session';
+
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
+import { gethost } from '../../session/Session';
 
 const activesellers: NextPage = () => {
     React.useEffect(() => {

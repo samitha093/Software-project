@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -17,23 +18,33 @@ import Pendingeventstable from '../../components/manager/Pendingeventstable'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-//import FormControl from '@mui/material/FormControl';
-//import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { Fab } from '@mui/material';
-
+import { useRouter } from 'next/router';
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
 
 
 //Line 80 space for the image box
 
 export default function PendingEvents() {
+    const router = useRouter()
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const [declinemessage, setdeclinemessage] = React.useState<string>("");
+    const [declinemessageError, setdeclinemessageError] = React.useState<boolean>(false);
+
+    const declinemessageChangeHandler = (e: any) => {
+        const declinemessage_regex = /^.{1,50}$/;
+        const valid = !!e.target.value.match(declinemessage_regex);
+        setdeclinemessage(e.target.value);
+        setdeclinemessageError(!valid);
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -149,12 +160,16 @@ export default function PendingEvents() {
                             variant="standard"
                             fullWidth
                             error
+                            onChange={declinemessageChangeHandler}
                         />
                         <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" margin-left="30px">
                             SUBMIT
                         </Fab>
                     </Stack>
                 </DialogActions>
+                <Stack direction="column">
+                        {declinemessageError && (<p className={styles.manager_error_message}> * Reason for declining message is required and it can contain maximum 50 characters</p>)}
+                    </Stack>
             </Dialog>
         </div>
     );
