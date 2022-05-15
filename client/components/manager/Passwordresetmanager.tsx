@@ -50,9 +50,9 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
 
     const confirmPasswordChangeHandler = async (e: any) => {
         var np = new String(newpassword);
-        var confirmPassword = setConfirmpassword(e.target.value);
-        var cp = new String(confirmPassword);
-        var isEquel = JSON.stringify(np) === JSON.stringify(cp);
+        await setConfirmpassword(e.target.value);
+        var cp = new String(e.target.value);
+        var isEquel = JSON.stringify(np) == JSON.stringify(cp);
         setvalidationerror(!isEquel);
     }
 
@@ -89,6 +89,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         placeholder="Confirm New Password"
                                         value={confirmPassword}
                                         //onChange={(e) => setConfirmpassword(e.target.value)}
+                                        //onKeyDown={confirmPasswordChangeHandler}
                                         onChange={confirmPasswordChangeHandler}
                                     />
                                 </div>

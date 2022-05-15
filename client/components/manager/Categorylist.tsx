@@ -30,16 +30,15 @@ const Demo = styled('div')(({ theme }) => ({
 
 export default function Categorylist() {
     const router = useRouter()
-
     const [newcatergory, setNewcatergory] = React.useState<string>("");
     const [newcatergoryError, setNewcatergoryError] = React.useState<boolean>(false);
 
     //Need a function to retrieve and store privioulsy entered catergories
 
     async function addCatergory() { //This fuction is to store new catergory in the database
-        const datapack = {
-            catergory: newcatergory
-        }
+        // const datapack = {
+        //     catergory: newcatergory
+        // }
         //There should be routing part here. (Refer USER)
         //Also check whether there is same catergory already in  the database. If not newly add, else error msg
     }
@@ -49,9 +48,9 @@ export default function Categorylist() {
         const valid = !!e.target.value.match(newpcatergory_regex);
         setNewcatergory(e.target.value);
         setNewcatergoryError(!valid);
-
+        console.log(newcatergoryError);
         //Check below line
-        document.getElementById('manager_catergory_add')?.removeAttribute('disabled');
+        //document.getElementById('manager_catergory_add')?.removeAttribute('disabled');
     }
 
     return (
@@ -72,7 +71,7 @@ export default function Categorylist() {
                             onChange={newcatergoryChangeHandler}
                         />
 
-                        <Button disabled className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
+                        <Button disabled={newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
                             Add
                         </Button>
                     </Stack>
