@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const schedule = require('node-schedule')
+const {createtickets} = require('./jobprofiles/cronjobs')
 
 require('dotenv').config();
 const uri = process.env.MONGO_URI;
@@ -48,8 +49,8 @@ const swaggerOptions = {
 	apis: ["./routes/*.js"],
 };
 
-schedule.scheduleJob('* * * * *',()=>{
-  console.log("running every 1 minute :00")
+schedule.scheduleJob('* * * * * *',()=>{
+  createtickets()
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
