@@ -89,7 +89,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         onChange={newpasswordChangeHandler}
                                     />
                                 </div>
-                                {newpasswordError && (<p className={styles.manager_error_message}> * Password doesn't follow given standards. Please check and enter new password</p>)}
+                                {newpasswordError && (<p className={styles.manager_error_message}> * Password doesn't follow given standards. Please check and enter the password again</p>)}
 
                                 <div>
                                     <input
@@ -101,11 +101,11 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         onChange={confirmPasswordChangeHandler}
                                     />
                                 </div>
-                                {validationError && (<p className={styles.manager_error_message}> * Confirm password must match with new password</p>)}
+                                {validationError && (<p className={styles.manager_error_message}> * Confirm password must match with the new password</p>)}
 
                                 <br />
                                 <div className={styles.manager_reset_password_submit_button}>
-                                    <Button variant="contained" size="small" onClick={passwordResetHandler}>
+                                    <Button disabled = {validationError} variant="contained" size="small" onClick={passwordResetHandler}>
                                         Submit
                                     </Button>
                                 </div>
