@@ -69,6 +69,15 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         Reset Password
                                     </Typography>
                                 </div>
+                                <div>
+                                    <p className={styles.manager_passwordreset_list_topic}>Password must contain,</p>
+                                <ul className={styles.manager_passwordreset_list}>
+                                        <li>Minimum 8 characters</li>
+                                        <li>At least one uppercase letter</li>
+                                        <li>At least one lowercase letter</li>
+                                        <li>At least one special character</li>
+                                    </ul>
+                                </div>
 
                                 <div>
                                     <input
@@ -80,7 +89,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                         onChange={newpasswordChangeHandler}
                                     />
                                 </div>
-                                {newpasswordError && (<p className={styles.manager_error_message}> * Password must contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</p>)}
+                                {newpasswordError && (<p className={styles.manager_error_message}> * Password doesn't follow given standards. Please check and enter new password</p>)}
 
                                 <div>
                                     <input

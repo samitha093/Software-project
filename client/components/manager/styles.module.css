@@ -493,6 +493,16 @@
     text-align: justify;
 }
 
+.manager_passwordreset_list{
+    margin-left: 20px;
+    font-size: 12px;
+}
+.manager_passwordreset_list_topic{
+    margin-left: 20px;
+    margin-bottom: 3px;
+    font-size: 16px;
+}
+
 /*Start - Catergorylist Component*/
 
 .css-mhc70k-MuiGrid-root>.MuiGrid-item {
