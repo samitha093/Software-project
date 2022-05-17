@@ -52,9 +52,7 @@ export default function Categorylist() {
         //document.getElementById('manager_catergory_add')?.removeAttribute('disabled');
     }
 
-    return (
-        <Box sx={{ flexGrow: 1, maxWidth: 600 }}>
-            <Grid container spacing={2}>
+    return (  
                 <Grid item>
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                         Add Catergories
@@ -84,7 +82,6 @@ export default function Categorylist() {
                             sx={{
                                 width: '100%',
                                 maxWidth: 400,
-                                bgcolor: 'background.paper',
                                 position: 'relative',
                                 overflow: 'auto',
                                 maxHeight: 300,
@@ -108,7 +105,5 @@ export default function Categorylist() {
                         </List>
                     </Demo>
                 </Grid>
-            </Grid>
-        </Box>
     );
 }

@@ -509,6 +509,18 @@
 
 /*Start - Catergorylist Component*/
 
+.css-1rki8sg-MuiListItem-root {
+    background-color: transparent !important;
+}
+
+.css-1b7fp8k-MuiList-root {
+    width: 100%;
+    max-width: 400px;
+    background-color: transparent !important;
+}
+.css-1k9ek97 {
+    background-color: transparent !important;
+}
 .css-mhc70k-MuiGrid-root>.MuiGrid-item {
     padding-left: 0px;
 }
@@ -553,7 +565,7 @@
     padding: 12px 15px;
     margin-bottom: 10px;
     margin-left: 0px;
-    width: 100%;
+    width: 55%;
     font-family: 'Open Sans', sans-serif;
 }
 
