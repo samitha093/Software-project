@@ -4,18 +4,29 @@ import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import SellersTopBar from '../../components/manager/SellersTopBar'
 import SellerActions from '../../components/manager/SellerActions'
-
 import styles from './styles.module.css'
 import classnames from 'classnames';
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import { gethost } from '../../session/Session';
 
 const activesellers: NextPage = () => {
+
+    const [items, setitem] = React.useState([])
+
     React.useEffect(() => {
         axios.get(gethost() + 'manager/activesellers')
-            .then((res) => {
-                console.log(res.data);
+            .then(async (res) => {
+                await setitem(res.data)
             })
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Database connection error!'
+                })
+            }
+            )
     }, [])
     return (
         <div className={styles.manager_settings_bg}>

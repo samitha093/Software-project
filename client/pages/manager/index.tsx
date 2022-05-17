@@ -5,7 +5,7 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import Homepage from '../../components/manager/Homepage'
-
+import Swal from 'sweetalert2'
 import styles from './styles.module.css'
 import classnames from 'classnames';
 import axios from 'axios'
