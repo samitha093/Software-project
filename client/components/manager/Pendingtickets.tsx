@@ -54,7 +54,7 @@ export default function PendingEvents() {
             > Decline message box should remain disabled
             > Submit button should be enabled
         If Decline radio button clicked
-            > Decline message box should enable
+            > Decline message box should be enabled
             > Submit button should be remain disabled
             
             If the decline message is in the given criteria (already implemented criteria)

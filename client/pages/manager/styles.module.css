@@ -1,44 +1,33 @@
 /*start - manager index pg*/
-.manager_bg
-{
+.manager_bg {
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
     background-repeat: repeat;
-    height:100vh;
+    height: 100vh;
     position: absolute;
-    width:100%;
-    
+    width: 100%;
+
 }
-.manager_index
-{
+
+.manager_index {
     display: flex;
     overflow: auto;
     padding-top: 80px;
     padding-left: 30px;
 }
-.manager_setting_fix{
-    position:relative;
+
+.manager_setting_fix {
+    position: relative;
     width: 100%;
     height: 91vh;
     overflow: auto;
 }
-.manager_index_content
-{
+
+.manager_index_content {
     width: 100%;
 }
-.manager_index_container
-{
-    width: 100%;
-    padding-left: 120px;
-    position: relative;
-    display: flex;
-    box-sizing: border-box;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-.manager_settings_container
-{
+
+.manager_index_container {
     width: 100%;
     padding-left: 120px;
     position: relative;
@@ -48,28 +37,47 @@
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
+
 
 /*end- manager index page*/
 
 /*start- manager settings page*/
 
-.manager_settings_bg
-{
+.manager_settings_bg {
     background-image: url("../../assets/dashbord-bg.png");
     background-size: cover;
-    height:100vh;
+    height: 100vh;
     position: absolute;
     width: -webkit-fill-available;
 }
-.manager_settings_main_container
-{
+
+.manager_settings_container {
+    width: 100%;
+    padding-left: 12%;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.manager_settings_index {
+    width: 100%;
+    margin-top: 100px;
+    padding-left: 32px;
+    height: 100%;
+}
+
+.manager_settings_main_container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     margin-left: 45%;
 }
-.manager_setting{
+
+.manager_setting {
     width: 100%;
     display: flex;
     align-items: center;
@@ -77,30 +85,37 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .manager_index{
+    .manager_index {
         display: block;
         overflow: auto;
         margin-top: 120px;
     }
-    .manager_index_content h1{
+
+    .manager_index_content h1 {
         padding-left: 30px;
     }
-    .manager_index_container{
+
+    .manager_index_container {
         padding-left: 0px;
         display: flex;
         justify-content: center;
     }
+
+    .manager_settings_container {
+        padding-left: 5%;
+    }
 }
 
 @media only screen and (max-width: 1200px) {
-    .manager_settings_container{
+    .manager_settings_container {
         padding-left: 50px;
     }
 }
 
 @media only screen and (max-width: 1100px) {
-    .manager_settings_container{
+    .manager_settings_container {
         padding-left: 0px;
     }
 }
+
 /*end- manager settings page*/

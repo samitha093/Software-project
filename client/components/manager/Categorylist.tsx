@@ -56,7 +56,7 @@ export default function Categorylist() {
         <Box sx={{ flexGrow: 1, maxWidth: 600 }}>
             <Grid container spacing={2}>
                 <Grid item>
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                    <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                         Add Catergories
                     </Typography>
                     <Stack direction="row" spacing={2}>
@@ -76,7 +76,7 @@ export default function Categorylist() {
                     </Stack>
                     {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Catergory must containe 4-20 characters and first letter must be capital</p>)}
 
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                    <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                         Active Catergories
                     </Typography>
                     <Demo>

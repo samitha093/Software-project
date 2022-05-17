@@ -20,9 +20,9 @@ const settings: NextPage = () => {
     return (
         <div className={styles.manager_settings_bg}>
             <Navbar />
-            <div className={styles.manager_index}>
+            <div className={styles.manager_settings_index}>
                 <Sidebar id='4' />
-                <div>
+                <div className={styles.manager_index_scroll_set}>
                     <h1>Settings</h1>
                     <div className={styles.manager_settings_container}>
                         <Passwordresetmanager />
