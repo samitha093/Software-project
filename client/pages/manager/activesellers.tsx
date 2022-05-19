@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import SellersTopBar from '../../components/manager/SellersTopBar'
-import SellerActions from '../../components/manager/SellerActions'
+import Activesellerstable from '../../components/manager/Activesellerstable'
 import styles from './styles.module.css'
 import classnames from 'classnames';
 import axios from 'axios'
@@ -37,7 +37,7 @@ const activesellers: NextPage = () => {
                 <div>
                     <h1>Active Sellers</h1>
                     <div className={styles.manager_settings_main_container}>
-                        <SellerActions />
+                        <Activesellerstable />
                     </div>
                 </div>
             </div>

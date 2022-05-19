@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import SellersTopBar from '../../components/manager/SellersTopBar'
-import SellerActions from '../../components/manager/SellerActions'
+import Pendingsellerstable from '../../components/manager/Pendingsellerstable'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import { gethost } from '../../session/Session';
@@ -37,7 +37,7 @@ const pendingsellers: NextPage = () => {
                 <div>
                     <h1>Pending Sellers</h1>
                     <div className={styles.manager_settings_main_container}>
-                        <SellerActions />
+                        <Pendingsellerstable />
                     </div>
                 </div>
             </div>
