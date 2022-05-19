@@ -13,14 +13,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
 import styles from './styles.module.css'
@@ -199,16 +193,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 }),
             }}
         >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
+            {(
                 <Typography className ={styles.manager_settings_head}
                     sx={{ flex: '1 1 100%' }}
                     variant="h6"
@@ -218,36 +203,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     Approved Sellers
                 </Typography>
             )}
-            {numSelected > 0 ? (
-                <Tooltip title="Approve and Publish Seller">
-                    <IconButton>
-                        <AddTaskIcon />
-                    </IconButton>
-                </Tooltip>
-
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
-
-            {numSelected > 0 ? (
-                <Tooltip title="Decline and Delete Seller">
-                    <IconButton>
-                        <DeleteForeverSharpIcon />
-                    </IconButton>
-                </Tooltip>
-
-            ) : (
-                <Tooltip title="Seller can't sell items until you approve">
-                    <IconButton>
-                        <InfoOutlinedIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
-
         </Toolbar>
     );
 };
