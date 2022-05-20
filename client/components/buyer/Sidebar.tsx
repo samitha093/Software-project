@@ -11,7 +11,7 @@ import {endsession} from '../../session/Session';
 import {useRouter} from 'next/router';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />

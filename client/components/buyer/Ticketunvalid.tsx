@@ -14,7 +14,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 interface TicketunvalidProps {
   level : string,

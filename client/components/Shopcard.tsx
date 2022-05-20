@@ -12,7 +12,7 @@ import Image from 'next/image'
 import remove from '../assets/icons/minus.png'
 import add from '../assets/icons/plus.png'
 import style from './styles.module.css'
-import styles from './buyer/styles.module.css'
+import styles from './buyer/styles.module.scss'
 import classnames from 'classnames';
 interface ShopcardProps {
   level : string,
