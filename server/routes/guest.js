@@ -380,8 +380,10 @@ router.route('/login').post((req,res) => {
                 data[0].save()
                     .then(async()=>{
                         const email = req.body.email;
-                        const subject = "OTP for your TickBid Account";
-                        const html = a + username +b + otp + c
+                        const subject = "OTP for Activate your TickBid Account";
+                        console.log("ddA");
+                        const html = a + username +b + otpid + c
+                        console.log("dds");
                         await emailnotifications(email, subject, html);
                         res.status(200).json("Email Sended");
                     })
