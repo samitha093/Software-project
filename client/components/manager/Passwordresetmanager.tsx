@@ -53,6 +53,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
         await setConfirmpassword(e.target.value);
         var cp = new String(e.target.value);
         var isEquel = JSON.stringify(np) === JSON.stringify(cp);
+
         setvalidationerror(!isEquel);
     }
 
@@ -66,6 +67,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                             <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                                 Reset Password
                             </Typography>
+
                         </div>
                         <div>
                             <p className={styles.manager_passwordreset_list_topic}>Password must contain,</p>

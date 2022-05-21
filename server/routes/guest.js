@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
+const util_area = require('../models/util_area');
+const util_category = require('../models/util_category');
 const {a, b, c} = require('../views/otp')
 const {secretGenerator, otpgenerator} = require('../auth/jwt')
 const {emailnotifications} = require('../smtp/mail')
@@ -388,25 +390,25 @@ router.route('/login').post((req,res) => {
             .catch(err => res.status(400).json("Not Found User Accout For this email"))
     });
 
-  /**
-   * @swagger
-   * '/g/notification':
-   *  post:
-   *     tags:
-   *     - Email-Sender
-   *     summary: Send Email Notifications
-   *     requestBody:
-   *      required: true
-   *      content:
-   *        application/json:
-   *           schema:
-   *              $ref: '#/components/schemas/emailnotification'
-   *     responses:
-   *      200:
-   *        description: Send to Global Email Server
-   */
+/**
+ * @swagger
+ * '/g/notification':
+ *  post:
+ *     tags:
+ *     - Email-Sender
+ *     summary: Send Email Notifications
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/emailnotification'
+ *     responses:
+ *      200:
+ *        description: Send to Global Email Server
+ */
   
-   router.route('/notification').post(async(req,res) => {
+router.route('/notification').post(async(req,res) => {
     const email = req.body.email;
     const subject = req.body.subject;
     const html = req.body.html;
@@ -414,4 +416,54 @@ router.route('/login').post((req,res) => {
     res.status(200).json("Sended email");
 });
 
+/**
+  * @swagger
+  * tags:
+  *   name: Util
+  *   description: Public Routes
+  */
+/**
+ * @swagger
+ * '/g/areas':
+ *  get:
+ *     tags:
+ *     - Util
+ *     summary: Get System areas
+ *     requestBody:
+ *      required: false
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: error
+ *      500:
+ *        description: Server failure
+ */
+router.route('/areas').get(async(req,res) => {
+    util_area.find({})
+        .then(data =>{res.status(200).json(data)})
+        .catch(err => res.status(400).json("Wrong db connection"))
+});
+/**
+ * @swagger
+ * '/g/categories':
+ *  get:
+ *     tags:
+ *     - Util
+ *     summary: Get System categories
+ *     requestBody:
+ *      required: false
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: error
+ *      500:
+ *        description: Server failure
+ */
+router.route('/categories').get(async(req,res) => {
+    util_category.find({})
+        .then(data =>{res.status(200).json(data)})
+        .catch(err => res.status(400).json("Wrong db connection"))
+});
 module.exports = router;

@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar'
 import Cartcardfull from '../../components/buyer/Cartcardfull'
 import Cartcard from '../../components/buyer/Cartcard'
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 import classnames from 'classnames';
 
 const cart: NextPage = () => {

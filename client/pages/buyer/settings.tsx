@@ -4,7 +4,7 @@ import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
 
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 const settings: NextPage = () => {
         return (

@@ -11,7 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Ticket from '../../components/buyer/Ticket'
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 interface TicketvalidProps {
   level : string,

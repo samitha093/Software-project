@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const User = require('../models/users');
 const events = require('../models/events');
+const crons = require('../models/cron');
+const util_area = require('../models/util_area');
+const util_category = require('../models/util_category');
 const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
@@ -32,6 +35,16 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  *              example:
  *                  status: "?"
  *                  comment: "?"
+ *          util:
+ *              type: object
+ *              required:
+ *                  - name
+ *              properties:
+ *                  name:
+ *                      type: string
+ *                      description: no Validated
+ *              example:
+ *                  name: "?"
  */
 
 /**
@@ -222,6 +235,162 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
               .catch(err => res.status(500).json(err))
        })
        .catch(err => res.status(400).json(err))
+
+        const job_type = "A";
+        const job_name = "CREATE_TICKETS_MANAGER";
+        const job_id = req.params.eventid;
+        const job_status = true;         
+        const newcrons = new crons({
+            job_type,
+            job_name,
+            job_id,
+            job_status,
+            });
+        newcrons.save()
 });
 
+/**
+ * @swagger
+ *  '/m/utilcategory':
+ *      post:
+ *          tags:
+ *              - User-Manager
+ *          summary: Add Util - category
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/util'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: approval Error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/utilcategory').post(verifyAccessToken,managerverification,(req,res) => {
+   const name = req.body.name;
+    const newutil = new util_category({
+        name,
+    });
+    newutil.save()
+        .then((result)=> res.status(200).json(result._id))
+        .catch(err => res.status(500).json(err)) 
+});
+/**
+ * @swagger
+ *  '/m/utilarea':
+ *      post:
+ *          tags:
+ *              - User-Manager
+ *          summary: Add Util - Area
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/util'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: approval Error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/utilarea').post(verifyAccessToken,managerverification,(req,res) => {
+    const name = req.body.name;
+    const newutil = new util_area({
+        name,
+    });
+    newutil.save()
+        .then((result)=> res.status(200).json(result._id))
+        .catch(err => res.status(500).json(err)) 
+});
+
+/**
+ * @swagger
+ *  '/m/getcount/{type}':
+ *      get:
+ *          tags:
+ *              - User-Manager
+ *          summary: get no of event for this catogery
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: type
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/getcount/:type').get(verifyAccessToken,managerverification,async(req,res) => {
+    res.status(500).json("undefine body")
+});
+/**
+ * @swagger
+ *  '/m/updatecategory/{id}':
+ *      put:
+ *          tags:
+ *              - User-Manager
+ *          summary: update catogery
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: id
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: false
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/util'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/updatecategory/:id').put(verifyAccessToken,managerverification,async(req,res) => {
+    res.status(500).json("undefine body")
+});
+/**
+ * @swagger
+ *  '/m/deletecategory/{id}':
+ *      delete:
+ *          tags:
+ *              - User-Manager
+ *          summary: delete category
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: id
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: error
+ *              500:
+ *                  description: Server failure
+ */
+
+ router.route('/deletecategory/:id').delete(verifyAccessToken,managerverification,async(req,res) => {
+    res.status(500).json("undefine body")
+});
 module.exports = router;

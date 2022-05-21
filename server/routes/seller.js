@@ -289,23 +289,27 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *                  description: Server failure
  */
 
- router.route('/updateaevent/:eventid').put(verifyAccessToken,sellerverification,(req,res) => {
+ router.route('/updateaevent/:eventid').put(verifyAccessToken,sellerverification,getuserid,(req,res) => {
     //console.log(req.userdata.email);
      events.findById(req.params.eventid)
          .then(data =>{
-            data.event_name = req.body.event_name;
-            data.event_venue = req.body.event_venue;
-            data.event_date = req.body.event_date;
-            data.event_time = req.body.event_time;
-            data.levelcount = req.body.levelcount;
-            data.image_url = req.body.image_url;
-            data.publishevent_date = req.body.publishevent_date;
-            data.endevent_date = req.body.endevent_date;
-            data.event_category = req.body.event_category;
-            data.area = req.body.area;
-            data.save()
-                .then(()=> res.status(200).json("Event updated"))
-                .catch(err => res.status(500).json(err))
+            if(data[0].userid == req.userid){
+                data.event_name = req.body.event_name;
+                data.event_venue = req.body.event_venue;
+                data.event_date = req.body.event_date;
+                data.event_time = req.body.event_time;
+                data.levelcount = req.body.levelcount;
+                data.image_url = req.body.image_url;
+                data.publishevent_date = req.body.publishevent_date;
+                data.endevent_date = req.body.endevent_date;
+                data.event_category = req.body.event_category;
+                data.area = req.body.area;
+                data.save()
+                    .then(()=> res.status(200).json("Event updated"))
+                    .catch(err => res.status(500).json(err))
+            }else{
+                return res.sendStatus(403);
+            }
          })
          .catch(err => res.status(400).json(err))
   });
@@ -343,26 +347,30 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *                  description: Server failure
  */
 
-router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerverification,(req,res) => {
+router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerverification,getuserid.apply,(req,res) => {
     events.findOne({_id:req.params.eventid})
     .then(data =>{
-        const subdoc = data.tickets;
-        if(subdoc){
-            subdoc.map((dt)=>{
-                if(dt._id == req.params.ticketid){
-                    dt.ticket_level = req.body.ticket_level;
-                    dt.buy_quantity = req.body.buy_quantity;
-                    dt.buy_amount = req.body.buy_amount;
-                    dt.bid_quantity = req.body.bid_quantity;
-                    dt.min_bid_amount = req.body.min_bid_amount;
-                }
-            })
+        if(data[0].userid == req.userid){
+            const subdoc = data.tickets;
+            if(subdoc){
+                subdoc.map((dt)=>{
+                    if(dt._id == req.params.ticketid){
+                        dt.ticket_level = req.body.ticket_level;
+                        dt.buy_quantity = req.body.buy_quantity;
+                        dt.buy_amount = req.body.buy_amount;
+                        dt.bid_quantity = req.body.bid_quantity;
+                        dt.min_bid_amount = req.body.min_bid_amount;
+                    }
+                })
+            }else{
+                res.status(400).json("not found tickets")
+            }
+            data.save()
+                    .then(()=> res.status(200).json("ticket updated"))
+                    .catch(err => res.status(500).json(err))
         }else{
-            res.status(400).json("not found tickets")
+            return res.sendStatus(403);
         }
-        data.save()
-                .then(()=> res.status(200).json("ticket updated"))
-                .catch(err => res.status(500).json(err))
     })
     .catch(err => res.status(400).json(err))
 });
@@ -390,14 +398,21 @@ router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerve
  *              500:
  *                  description: Server failure
  */
- router.route('/deleteaticket/:eventid').delete(verifyAccessToken,sellerverification,async (req,res) => {
-    events.findByIdAndRemove(req.params.eventid, function(err){
-        if(err){
-            res.status(500).json(err);
-        } else {
-            res.status(200).json("event deleted");
-        }  
-    });
+ router.route('/deleteaticket/:eventid').delete(verifyAccessToken,sellerverification,getuserid,async (req,res) => {
+    events.findOne({_id:req.params.eventid})
+    .then(data =>{
+        if(data[0].userid == req.userid){
+            events.findByIdAndRemove(req.params.eventid, function(err){
+                if(err){
+                    res.status(500).json(err);
+                } else {
+                    res.status(200).json("event deleted");
+                }  
+            });
+        }else{
+            return res.sendStatus(403);
+        }
+    })
 });
 
 /**
@@ -428,15 +443,19 @@ router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerve
  *              500:
  *                  description: Server failure
  */
- router.route('/deleteaticket/:eventid/:ticketid').delete(verifyAccessToken,sellerverification,async (req,res) => {
+ router.route('/deleteaticket/:eventid/:ticketid').delete(verifyAccessToken,sellerverification,getuserid,async (req,res) => {
     events.findOne({_id:req.params.eventid})
     .then(data =>{
-        var subdoc = data.tickets;
-        subdoc = subdoc.filter(val => !(val._id == req.params.ticketid))
-        data.tickets = subdoc;
-        data.save()
-                .then(()=> res.status(200).json("ticket deleted"))
-                .catch(err => res.status(500).json(err))
+        if(data[0].userid == req.userid){
+            var subdoc = data.tickets;
+            subdoc = subdoc.filter(val => !(val._id == req.params.ticketid))
+            data.tickets = subdoc;
+            data.save()
+                    .then(()=> res.status(200).json("ticket deleted"))
+                    .catch(err => res.status(500).json(err))
+        }else{
+            return res.sendStatus(403);
+        }
     })
     .catch(err => res.status(400).json(err))
 
