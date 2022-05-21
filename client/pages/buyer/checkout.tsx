@@ -7,7 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcVisa, faCcMastercard, faCcAmex, faCcDinersClub, faCcDiscover, faCcJcb} from "@fortawesome/free-brands-svg-icons";
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 import classnames from 'classnames';
 
 const checkout: NextPage = () => {

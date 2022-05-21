@@ -6,7 +6,7 @@ import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
 import Ticketvalid from '../../components/buyer/Ticketvalid'
 import {getuser } from '../../session/Session';
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 const index: NextPage = () => {
     const [open, setopen] = React.useState(false);

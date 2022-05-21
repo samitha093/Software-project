@@ -9,7 +9,6 @@ const ticketschema = new schema({
     buy_amount: {type:Number},
     bid_quantity: {type:Number},
     min_bid_amount: {type:Number},
-    ticketid: {type:String},//can be null , submit from manager
 },{
     timestamps:true
 });

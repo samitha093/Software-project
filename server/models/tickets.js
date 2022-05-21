@@ -13,20 +13,20 @@ const bidschema = new schema({
 });
 
 const ticketschema = new schema({
-    ticket_level: {type:Number},
-    buy_quantity: {type:Number},
-    buy_amount: {type:Number},
-    nosold: {type:Number,},
-    bid_quantity: {type:Number,},
-    min_bid_amount: {type:Number,},
-    nobids: {type:Number,},
-    total_tickets : {type:Number,},
+    ticket_level: {type:Number},// in ticket
+    buy_quantity: {type:Number}, //in ticket
+    buy_amount: {type:Number},//in ticket
+    nosold: {type:Number,default: 0},
+    bid_quantity: {type:Number,},//in ticket
+    min_bid_amount: {type:Number,},//in ticket
+    nobids: {type:Number,default: 0},
+    total_tickets : {type:Number,}, //calcutaed
     event_name: {type:String},
     event_venue: {type:String},
     event_date: {type:String},
     event_category: {type:String},
     area: {type:String},
-    bids : [bidschema],
+    bids : [bidschema], // null in the begin
     status: {type:Boolean, default:true},
     eventid:{type:String},
     userid:{type:String},

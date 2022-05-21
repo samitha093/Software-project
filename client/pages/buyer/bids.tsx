@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar'
 import Ticketvalid from '../../components/buyer/Ticketvalid'
 import Ticketunvalid from '../../components/buyer/Ticketunvalid'
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 const bids: NextPage = () => {
         return (

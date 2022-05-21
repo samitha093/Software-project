@@ -1,6 +1,6 @@
 import React from 'react'
 import QRCode from 'qrcode'
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 interface TicketProps {
  id : string
 }
