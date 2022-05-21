@@ -215,7 +215,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     id="tableTitle"
                     component="div"
                 >
-                    Seller Approval
+                     Sellers to Approve
                 </Typography>
             )}
             {numSelected > 0 ? (
