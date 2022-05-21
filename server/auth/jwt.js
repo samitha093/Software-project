@@ -4,25 +4,22 @@ const User = require('../models/users');
 function verifyAccessToken(req, res, next){
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
+    const activesecret = process.env.SECRET;
     //console.log(token);
     if(token == null) return res.sendStatus(401)
-    User.find({token: token})
-        .then(data =>{
-            jwt.verify(token, data[0].secret, (err, datas)=>{
-                //console.log(datas);
-                if(err) return res.sendStatus(403)
-                if(datas.type === data[0].usertype){
-                    req.userdata = { "email" : data[0].email , "type" : data[0].usertype};
-                    //console.log(req.userdata);
-                    next();
-                }else{
-                    return res.sendStatus(403)
-                }                 
-            })
-        })
-        .catch(err =>{
-            return res.sendStatus(403)
-        })
+    jwt.verify(token, activesecret, (err, datas)=>{
+        //console.log(datas);
+        if(err) return res.sendStatus(403)
+        User.find({email:datas.email, status:true},async(err,data)=>{
+            if(data.length>0){
+                req.userdata = { "email" : datas.email , "type" : datas.type};
+                next();
+            }else{
+                return res.sendStatus(403)
+            }
+        })               
+    })
+    
 };
 function managerverification (req, res, next){
     if(req.userdata.type === "MANAGER"){

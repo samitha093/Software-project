@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const {verifyAccessToken} = require('../auth/jwt');
 const User = require('../models/users');
+const jwt = require('jsonwebtoken');
+const {secretGenerator} = require('../auth/jwt')
 
 /**
  * @swagger
@@ -24,6 +26,68 @@ const User = require('../models/users');
   *   name: All-User
   *   description: Private Routes
   */
+
+/**
+ * @swagger
+ * '/a/refreshtoken':
+ *  get:
+ *     tags:
+ *     - All-User
+ *     summary: Get Access Token for 5min
+ *     responses:
+ *      200:
+ *        description: Success(Access Token For 5min)
+ *      400:
+ *        description: Wrong auth Token
+ *      500:
+ *        description: Server failure
+ */
+ router.route('/refreshtoken').get((req,res) => {
+  var mytoken = req.cookies.TickBid;
+  if(mytoken == null) return res.sendStatus(401)
+    User.find({token: mytoken})
+        .then(data =>{
+            jwt.verify(mytoken, data[0].secret, async(err, datas)=>{
+              if(err) {
+                console.log(err);
+                return res.sendStatus(403)
+              }else{
+                const payload = {"email" : datas.email, "type":datas.type}
+                console.log(payload);
+                const activesecret = process.env.SECRET;
+                const accesstoken = await jwt.sign(payload,activesecret,{expiresIn: "300s"});
+                console.log(accesstoken);
+                const secret = await secretGenerator(250)
+                console.log(secret);
+                const token = await jwt.sign(payload,secret)
+                console.log(token);
+                let datapack = {
+                  accesstoken: accesstoken,
+                  type: datas.type, 
+                }
+                User.find({email:datas.email})
+                  .then(datas =>{
+                      datas[0].secret = secret;
+                      datas[0].token = token;
+                      datas[0].save()
+                  })
+                console.log("------------------------------------------------");
+                res.status(200).cookie(
+                  "TickBid",
+                  token,
+                  {
+                     sameSite : 'strict',
+                     httpOnly:true,
+                     //secure:true
+                  }
+              ).json(datapack);
+              }                   
+            })
+        })
+        .catch(err =>{
+            return res.sendStatus(403)
+        })
+});
 
 /**
    * @swagger
@@ -53,10 +117,11 @@ router.route('/logout').post(verifyAccessToken,(req,res) => {
         data[0].secret = "";
         data[0].token = "";
           data[0].save()
-              .then(()=> res.status(200).json("logout"))
+              .then(()=> res.status(200).clearCookie("TickBid").send("logout"))
               .catch(err => res.status(500).json(err))
       })
       .catch(err => res.status(400).json(err))
+      res.status(200).clearCookie("TickBid").send("logout")
 });
 
 /**
