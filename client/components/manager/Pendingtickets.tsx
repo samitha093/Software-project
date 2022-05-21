@@ -46,22 +46,6 @@ export default function PendingEvents() {
 
     const [radiovalue, setradiovalue] = React.useState<string>("");
 
-    /*
-    LOGIC OF RADIO BUTTTONS AND DECLINE MESSAGE
-        At the beginning decline message box and SUBMIT button should be in disabled mode
-        If Approve radio button clicked
-            > Decline message box should remain disabled
-            > Submit button should be enabled
-        If Decline radio button clicked
-            > Decline message box should be enabled
-            > Submit button should be remain disabled
-            
-            If the decline message is in the given criteria (already implemented criteria)
-                > Submit button should be enabled
-            Else
-                > Error message (already implemented) 
-    */
-
     const declinemessageChangeHandler = (e: any) => {
         const declinemessage_regex = /^.{1,50}$/;
         const valid = !!e.target.value.match(declinemessage_regex);
@@ -70,12 +54,19 @@ export default function PendingEvents() {
     }
 
     const radiovalueChangeHandler = async (e: any) => {
-        const radiovalueexp = "decline";
-        const valid = !!e.target.value.match(radiovalueexp);
+        const radiovalue_regex = "decline";
+        const valid = !!e.target.value.match(radiovalue_regex);
         setradiovalue(e.target.value);
-        console.log(e.target.value);
         setreasonmessagebox(!valid);
         setsubmitbuttonactive(valid);
+        if (e.target.value == "approve")
+        {
+            setdeclinemessageError(valid);
+        }
+        else
+        {
+            setdeclinemessageError(!valid);
+        }
     }
 
     const handleClickOpen = () => {
