@@ -40,12 +40,11 @@ export default function PendingEvents() {
     const [declinemessage, setdeclinemessage] = React.useState<string>("");
     const [declinemessageError, setdeclinemessageError] = React.useState<boolean>(false);
 
-    const declinemessageChangeHandler = (e: any) => {
-        const declinemessage_regex = /^.{1,50}$/;
-        const valid = !!e.target.value.match(declinemessage_regex);
-        setdeclinemessage(e.target.value);
-        setdeclinemessageError(!valid);
-    }
+    const [reasonmessagebox, setreasonmessagebox] = React.useState<boolean>(true);
+
+    const [submitbuttonactive, setsubmitbuttonactive] = React.useState<boolean>(true);
+
+    const [radiovalue, setradiovalue] = React.useState<string>("");
 
     /*
     LOGIC OF RADIO BUTTTONS AND DECLINE MESSAGE
@@ -62,6 +61,22 @@ export default function PendingEvents() {
             Else
                 > Error message (already implemented) 
     */
+
+    const declinemessageChangeHandler = (e: any) => {
+        const declinemessage_regex = /^.{1,50}$/;
+        const valid = !!e.target.value.match(declinemessage_regex);
+        setdeclinemessage(e.target.value);
+        setdeclinemessageError(!valid);
+    }
+
+    const radiovalueChangeHandler = async (e: any) => {
+        const radiovalueexp = "decline";
+        const valid = !!e.target.value.match(radiovalueexp);
+        setradiovalue(e.target.value);
+        console.log(e.target.value);
+        setreasonmessagebox(!valid);
+        setsubmitbuttonactive(valid);
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -162,7 +177,7 @@ export default function PendingEvents() {
                 </DialogContent>
                 <DialogActions>
                     <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
-                        <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+                        <RadioGroup row aria-label="gender" aria-labelledby="demo-controlled-radio-buttons-group" name="controlled-radio-buttons-group" value={radiovalue} onChange={radiovalueChangeHandler} >
                             <FormControlLabel value="approve" control={<Radio />} label="Approve" />
                             <FormControlLabel value="decline" control={<Radio />} label="Decline" />
                         </RadioGroup>
@@ -171,6 +186,7 @@ export default function PendingEvents() {
                         <TextField
                             id="standard-multiline-static"
                             placeholder="Reason for declining"
+                            disabled={reasonmessagebox}
                             multiline
                             maxRows="1"
                             variant="standard"
@@ -178,14 +194,14 @@ export default function PendingEvents() {
                             error
                             onChange={declinemessageChangeHandler}
                         />
-                        <Button variant="contained" size="medium" aria-label="add" margin-left="30px">
+                        <Button disabled={declinemessageError && submitbuttonactive} variant="contained" size="medium" aria-label="add" margin-left="30px">
                             SUBMIT
                         </Button>
                     </Stack>
                 </DialogActions>
                 <Stack direction="column">
-                        {declinemessageError && (<p className={styles.manager_error_message}> * Reason for declining message is required and it can contain maximum 50 characters</p>)}
-                    </Stack>
+                    {declinemessageError && (<p className={styles.manager_error_message}> * Reason for declining message is required and it can contain maximum 50 characters</p>)}
+                </Stack>
             </Dialog>
         </div>
     );
