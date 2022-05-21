@@ -42,6 +42,8 @@ export default function PendingEvents() {
 
     const [reasonmessagebox, setreasonmessagebox] = React.useState<boolean>(true);
 
+    const [submitbuttonError, setsubmitbuttonError] = React.useState<boolean>(true);
+
     const [submitbuttonactive, setsubmitbuttonactive] = React.useState<boolean>(true);
 
     const [radiovalue, setradiovalue] = React.useState<string>("");
@@ -59,13 +61,34 @@ export default function PendingEvents() {
         setradiovalue(e.target.value);
         setreasonmessagebox(!valid);
         setsubmitbuttonactive(valid);
-        if (e.target.value == "approve")
-        {
+        if (e.target.value == "approve") {
             setdeclinemessageError(valid);
         }
-        else
-        {
+        else {
             setdeclinemessageError(!valid);
+        }
+    }
+
+    const submitbuttonHandler = async (e: any) => {
+        console.log({ radiovalue });
+        if (radiovalue == "approve") {
+            //Code for approve events
+            console.log("Ready to approve");
+        }
+        else if (radiovalue == "decline") {
+            const declinemessagesubmit_regex = /^.{1,}$/;
+            const valid = !!declinemessage.match(declinemessagesubmit_regex);
+            await setsubmitbuttonError(!valid);
+            if (submitbuttonError == false) {
+                //Code for decline events
+                console.log("Ready to decline");
+            }
+            else
+            {
+                //Code for error message
+                console.log("ERROR!!!");
+                
+            }
         }
     }
 
@@ -185,7 +208,7 @@ export default function PendingEvents() {
                             error
                             onChange={declinemessageChangeHandler}
                         />
-                        <Button disabled={declinemessageError && submitbuttonactive} variant="contained" size="medium" aria-label="add" margin-left="30px">
+                        <Button disabled={declinemessageError && submitbuttonactive} variant="contained" size="medium" aria-label="add" margin-left="30px" onClick={submitbuttonHandler}>
                             SUBMIT
                         </Button>
                     </Stack>
