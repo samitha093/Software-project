@@ -6,15 +6,19 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const schedule = require('node-schedule')
 const {createtickets} = require('./jobprofiles/cronjobs')
+const cookieParser = require('cookie-parser')
 
 require('dotenv').config();
 const uri = process.env.MONGO_URI;
+const next = process.env.NEXT_HOST;
+const api = process.env.API_HOST;
 
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors());
+app.use(cors({credentials:true, origin: next}));
 app.use(express.json());
+app.use(cookieParser())
 
 const swaggerOptions = {
   definition: {
@@ -26,7 +30,7 @@ const swaggerOptions = {
 		},
 		servers: [
 			{
-				url: "http://localhost:8000",
+				url: api,
 			},
 		],
     components: {

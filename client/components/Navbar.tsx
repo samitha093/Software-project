@@ -17,15 +17,15 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
     const [navbar,setNavbar] = React.useState(false);
     async function navclick (){
       const type = getuser();
-      if(type == 'buyer'){
-        router.push('/buyer');
-      }else if(type == 'manager'){
-        router.push('/manager');
-      }else if(type == 'seller'){
-        router.push('/seller');
-      }else{
-        router.push('/user');
-      }
+      // if(type == 'buyer'){
+      //   router.push('/buyer');
+      // }else if(type == 'manager'){
+      //   router.push('/manager');
+      // }else if(type == 'seller'){
+      //   router.push('/seller');
+      // }else{
+      //   router.push('/user');
+      // }
     }
     const closeminicart = () => {
       //console.log('cart');

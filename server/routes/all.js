@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {verifyAccessToken} = require('../auth/jwt');
 const User = require('../models/users');
+const jwt = require('jsonwebtoken');
 
 /**
  * @swagger
@@ -24,6 +25,47 @@ const User = require('../models/users');
   *   name: All-User
   *   description: Private Routes
   */
+
+/**
+ * @swagger
+ * '/a/refreshtoken':
+ *  get:
+ *     tags:
+ *     - All-User
+ *     summary: Get Access Token for 5min
+ *     responses:
+ *      200:
+ *        description: Success(Access Token For 5min)
+ *      400:
+ *        description: Wrong auth Token
+ *      500:
+ *        description: Server failure
+ */
+ router.route('/refreshtoken').get((req,res) => {
+  var mytoken = req.cookies.TickBid;
+  if(mytoken == null) return res.sendStatus(401)
+    User.find({token: mytoken})
+        .then(data =>{
+            jwt.verify(mytoken, data[0].secret, (err, datas)=>{
+              if(err) {
+                console.log(err);
+                return res.sendStatus(403)
+              }else{
+                const payload = {"emai" : datas.email, "type":datas.type}
+                const activesecret = process.env.SECRET;
+                const accesstoken = await jwt.sign(payload,activesecret,{expiresIn: "300s"});
+                let datapack = {
+                  accesstoken: accesstoken,
+                  type: datas.type, 
+                }
+                res.status(200).json(datapack);
+              }                   
+            })
+        })
+        .catch(err =>{
+            return res.sendStatus(403)
+        })
+});
 
 /**
    * @swagger

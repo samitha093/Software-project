@@ -45,25 +45,29 @@ async function signinformn(){
     email:login_email,
     password:login_password
   }
-  //console.log(datapack);
-  axios.post(gethost() + 'user/login',datapack)
+  axios.post(gethost() + 'g/login',datapack,{withCredentials:true})
   .then(async (res)=>{
     //console.log(res.data);
-      await startsession(res.data.tokenkey,res.data.type)
       await login_setEmail('');
       await login_setPassword('');
-      //alert('Login success')
-      const type = getuser();
-      if(type == 'buyer'){
+      if(res.data.type == 'BUYER'){
         router.push('/buyer');
-      }else if(type == 'manager'){
+      }else if(res.data.type == 'MANAGER'){
         router.push('/manager');
-      }else if(type == 'seller'){
+      }else if(res.data.type == 'SELLER'){
         router.push('/seller');
       }else{
-        router.push('/user');
+        router.push('/');
       }
-
+  })
+  .catch((err)=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Authentication Failed',
+      text: 'Please Check again your Email and Password',
+      showConfirmButton: false,
+      timer: 2500
+    })
   })
 };
 async function signUpformn(){
