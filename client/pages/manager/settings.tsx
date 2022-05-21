@@ -9,20 +9,32 @@ import axios from 'axios'
 import { gethost } from '../../session/Session';
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import Swal from 'sweetalert2'
 
 const settings: NextPage = () => {
+
+    const [items, setitem] = React.useState([])
+
     React.useEffect(() => {
         axios.get(gethost() + 'manager/sellers')
-            .then((res) => {
-                console.log(res.data);
+            .then(async (res) => {
+                await setitem(res.data)
             })
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Database connection error!'
+                })
+            }
+            )
     }, [])
     return (
         <div className={styles.manager_settings_bg}>
             <Navbar />
-            <div className={styles.manager_index}>
+            <div className={styles.manager_settings_index}>
                 <Sidebar id='4' />
-                <div>
+                <div className={styles.manager_index_scroll_set}>
                     <h1>Settings</h1>
                     <div className={styles.manager_settings_container}>
                         <Passwordresetmanager />

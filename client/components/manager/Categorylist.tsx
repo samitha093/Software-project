@@ -48,16 +48,14 @@ export default function Categorylist() {
         const valid = !!e.target.value.match(newpcatergory_regex);
         setNewcatergory(e.target.value);
         setNewcatergoryError(!valid);
-        console.log(newcatergoryError);
+
         //Check below line
         //document.getElementById('manager_catergory_add')?.removeAttribute('disabled');
     }
 
-    return (
-        <Box sx={{ flexGrow: 1, maxWidth: 600 }}>
-            <Grid container spacing={2}>
+    return (  
                 <Grid item>
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                    <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                         Add Catergories
                     </Typography>
                     <Stack direction="row" spacing={2}>
@@ -71,13 +69,14 @@ export default function Categorylist() {
                             onChange={newcatergoryChangeHandler}
                         />
 
-                        <Button disabled={newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
+                        <Button disabled = {newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
+
                             Add
                         </Button>
                     </Stack>
                     {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Catergory must containe 4-20 characters and first letter must be capital</p>)}
 
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                    <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                         Active Catergories
                     </Typography>
                     <Demo>
@@ -85,7 +84,6 @@ export default function Categorylist() {
                             sx={{
                                 width: '100%',
                                 maxWidth: 400,
-                                bgcolor: 'background.paper',
                                 position: 'relative',
                                 overflow: 'auto',
                                 maxHeight: 300,
@@ -109,7 +107,5 @@ export default function Categorylist() {
                         </List>
                     </Demo>
                 </Grid>
-            </Grid>
-        </Box>
     );
 }

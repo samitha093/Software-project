@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Paper from '@mui/material/Paper';
 import Fab from '@mui/material/Fab';
-import SellerActions from '../../components/manager/SellerActions'
+import Pendingsellerstable from './Pendingsellerstable'
 import AddTaskIcon from '@mui/icons-material/AddTask';
 
 import styles from './styles.module.css'
@@ -99,7 +99,7 @@ export default function MaxWidthDialog() {
         <DialogContent>
           <DialogContent dividers>
             <Paper sx={{ p: 2, margin: 'auto', maxWidth: 1300, flexGrow: 1 }}>
-              <SellerActions/>
+              <Pendingsellerstable/>
             </Paper>
           </DialogContent>
         </DialogContent>
