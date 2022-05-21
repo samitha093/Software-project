@@ -71,7 +71,7 @@ async function signUpformn(){
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Something went wrong. try again.',
+      text: 'Something  to wrong. try again.',
       showConfirmButton: false,
       timer: 2500
     })
@@ -81,7 +81,7 @@ async function signUpformn(){
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Something went wrong. try again.',
+      text: 'Something went to wrong. try again.',
       showConfirmButton: false,
       timer: 2500
     })
@@ -96,6 +96,13 @@ async function signUpformn(){
       }
     })
     if(exit){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Already existing Admin in System',
+        showConfirmButton: false,
+        timer: 2500
+      })
       return;
     }
   }
@@ -210,7 +217,7 @@ async function signUpformn(){
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Something went wrong. try again.',
+          text: 'Something went to wrong. try again.',
           showConfirmButton: false,
           timer: 2500
         })

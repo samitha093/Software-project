@@ -1,25 +1,34 @@
+import React, { useState } from 'react';
+
+const [token,setToken] = React.useState<string>("");
+const [type,setType] = React.useState<string>("");
+const [Session,setSession] = React.useState<boolean>(false);
+
 export const startsession = (token: string, usertype: string) =>{
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("usertype", usertype);
+    setToken(token);
+    setType(usertype);
+    if(token === ""){
+        setSession(false);
+    }else{
+        setSession(true);
+    }
 }
 
 export const endsession = ()=>{
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("usertype");
+    setSession(false);
+    //should be delete refresh token aswell
 }
 
 export const gettoken = () =>{
-    const token = sessionStorage.getItem("token");
-    if(token){
+    if(Session){
         return token;
     }else{
         return null;
     }
 }
 export const getuser = () =>{
-    const user = sessionStorage.getItem("usertype");
-    if(user){
-        return user;
+    if(Session){
+        return type;
     }else{
         return null;
     }
