@@ -4,7 +4,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import axios from 'axios';
 import Swal from 'sweetalert2'
-import {startsession, gethost, getuser } from '../../session/Session';
+import {gethost} from '../../session/Session';
 
 interface LoginProps {
 

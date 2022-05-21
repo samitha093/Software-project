@@ -335,7 +335,8 @@ router.route('/login').post((req,res) => {
                         token,
                         {
                            sameSite : 'strict',
-                           httpOnly:true
+                           httpOnly:true,
+                           //secure:true
                         }
                     ).json(datapack)
                     //res.status(200).json(datapack)

@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
+import axios from 'axios';
 import {useRouter} from 'next/router';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
-import { getuser } from '../session/Session';
 import CloseIcon from '@mui/icons-material/Close';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars} from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2'
+import {gethost} from '../session/Session';
 import style from './styles.module.css'
 interface NavbarProps {
 
@@ -16,16 +18,28 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
     const router = useRouter()
     const [navbar,setNavbar] = React.useState(false);
     async function navclick (){
-      const type = getuser();
-      // if(type == 'buyer'){
-      //   router.push('/buyer');
-      // }else if(type == 'manager'){
-      //   router.push('/manager');
-      // }else if(type == 'seller'){
-      //   router.push('/seller');
-      // }else{
-      //   router.push('/user');
-      // }
+      axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+        .then(async (res)=>{
+            if(res.data.type == 'BUYER'){
+              router.push('/buyer');
+            }else if(res.data.type == 'MANAGER'){
+              router.push('/manager');
+            }else if(res.data.type == 'SELLER'){
+              router.push('/seller');
+            }else{
+              router.push('/user');
+            }
+        })
+        .catch((err)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Authentication Failed',
+            text: 'Please Login to your account',
+            showConfirmButton: false,
+            timer: 2500
+          })
+          router.push('/user');
+        })
     }
     const closeminicart = () => {
       //console.log('cart');
