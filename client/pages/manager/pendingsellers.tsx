@@ -3,19 +3,30 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
 import SellersTopBar from '../../components/manager/SellersTopBar'
-import SellerActions from '../../components/manager/SellerActions'
-
+import Pendingsellerstable from '../../components/manager/Pendingsellerstable'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 import { gethost } from '../../session/Session';
 import styles from './styles.module.css'
 import classnames from 'classnames';
 
 const pendingsellers: NextPage = () => {
+
+    const [items, setitem] = React.useState([])
+
     React.useEffect(() => {
         axios.get(gethost() + 'manager/pendingsellers')
-            .then((res) => {
-                console.log(res.data);
+            .then(async (res) => {
+                await setitem(res.data)
             })
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Database connection error!'
+                })
+            }
+            )
     }, [])
     return (
         <div className={styles.manager_settings_bg}>
@@ -25,8 +36,8 @@ const pendingsellers: NextPage = () => {
                 <SellersTopBar id3='2' />
                 <div>
                     <h1>Pending Sellers</h1>
-                    <div className={styles.manager_settings_main_container}>
-                        <SellerActions />
+                    <div className={styles.manager_sellers_main_container}>
+                        <Pendingsellerstable />
                     </div>
                 </div>
             </div>

@@ -94,8 +94,6 @@
     color: white;
 }
 
-
-
 /*end - seller topbar component*/
 
 @media only screen and (max-width: 600px) {
@@ -106,7 +104,6 @@
         min-height: 0px;
         padding: 10px 10px 0px;
         margin-top: 10px;
-        /*delete if not work*/
 
     }
 
@@ -449,7 +446,7 @@
     padding: 12px 15px;
     margin-bottom: 15px;
     margin-left: 15px;
-    width: 85%;
+    width: 80%;
     font-family: 'Open Sans', sans-serif;
 
 }
@@ -471,9 +468,13 @@
     margin-left: 25%;
 }
 
+.manager_pwd_container{
+    margin-left: 150px;
+}
+
 .manager_reset_password_submit_button {
     margin-left: 36%;
-    height: 38px;
+    height: 40px;
 }
 
 .modern_form {
@@ -489,12 +490,34 @@
     color: red;
     font-size: 12px;
     margin-left: 15px;
-    margin-right: 50px;
+    margin-right: 70px;
     text-align: justify;
+}
+
+.manager_passwordreset_list{
+    margin-left: 20px;
+    font-size: 14px;
+}
+.manager_passwordreset_list_topic{
+    margin-left: 20px;
+    margin-bottom: 3px;
+    font-size: 16px;
 }
 
 /*Start - Catergorylist Component*/
 
+.css-1rki8sg-MuiListItem-root {
+    background-color: transparent !important;
+}
+
+.css-1b7fp8k-MuiList-root {
+    width: 100%;
+    max-width: 400px;
+    background-color: transparent !important;
+}
+.css-1k9ek97 {
+    background-color: transparent !important;
+}
 .css-mhc70k-MuiGrid-root>.MuiGrid-item {
     padding-left: 0px;
 }
@@ -539,7 +562,7 @@
     padding: 12px 15px;
     margin-bottom: 10px;
     margin-left: 0px;
-    width: 100%;
+    width: 55%;
     font-family: 'Open Sans', sans-serif;
 }
 

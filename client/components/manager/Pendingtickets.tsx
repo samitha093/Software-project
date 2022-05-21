@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-//import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
 
@@ -21,11 +21,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { Fab } from '@mui/material';
+import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import styles from './styles.module.css'
 import classnames from 'classnames';
 import axios from 'axios'
+import { isValid } from 'date-fns';
 
 
 //Line 80 space for the image box
@@ -45,6 +46,22 @@ export default function PendingEvents() {
         setdeclinemessage(e.target.value);
         setdeclinemessageError(!valid);
     }
+
+    /*
+    LOGIC OF RADIO BUTTTONS AND DECLINE MESSAGE
+        At the beginning decline message box and SUBMIT button should be in disabled mode
+        If Approve radio button clicked
+            > Decline message box should remain disabled
+            > Submit button should be enabled
+        If Decline radio button clicked
+            > Decline message box should be enabled
+            > Submit button should be remain disabled
+            
+            If the decline message is in the given criteria (already implemented criteria)
+                > Submit button should be enabled
+            Else
+                > Error message (already implemented) 
+    */
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -152,7 +169,6 @@ export default function PendingEvents() {
                     </Stack>
                     <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
                         <TextField
-                            required
                             id="standard-multiline-static"
                             placeholder="Reason for declining"
                             multiline
@@ -162,9 +178,9 @@ export default function PendingEvents() {
                             error
                             onChange={declinemessageChangeHandler}
                         />
-                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" margin-left="30px">
+                        <Button variant="contained" size="medium" aria-label="add" margin-left="30px">
                             SUBMIT
-                        </Fab>
+                        </Button>
                     </Stack>
                 </DialogActions>
                 <Stack direction="column">

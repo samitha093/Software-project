@@ -37,9 +37,6 @@ export default function ActiveEvents() {
             <div className={styles.manager_c_tickets_active} onClick={handleClickOpen}>
                 <div>
                     <div className={styles.manager_c_tickets_top}>
-
-
-
                         <div className={styles.manager_c_tickets_top_info}>
                             <div className={styles.manager_c_tickets_top_info_left}>
                                 <div className={styles.manager_c_tickets_top_info_left_name}>
