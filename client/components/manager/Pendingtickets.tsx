@@ -83,11 +83,10 @@ export default function PendingEvents() {
                 //Code for decline events
                 console.log("Ready to decline");
             }
-            else
-            {
+            else {
                 //Code for error message
-                console.log("ERROR!!!");
-                
+                console.log("ERROR!!! Reason is required!!!");
+
             }
         }
     }
