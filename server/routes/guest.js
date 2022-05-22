@@ -181,7 +181,9 @@ router.route('/register').post((req,res) => {
             usertype,
             });
         newuser.save()
-            .then((result)=> res.status(200).json(result._id))
+            .then((result)=> {
+                res.status(200).json(result._id)
+            })
             .catch(err => res.status(500).json(err)) 
     })
  
@@ -316,11 +318,10 @@ router.route('/login').post((req,res) => {
 
     User.find({email:email, password:password, status:true},async(err,data)=>{
     if(data.length>0){
-        const payload = {"emai" : email, "type":data[0].usertype}
+        const payload = {"email" : email, "type":data[0].usertype}
         const secret = await secretGenerator(250)
         const token = await jwt.sign(payload,secret)
         let datapack = {
-            tokenkey: token,
             type: data[0].usertype, 
         }
         User.find({email:email})
@@ -328,7 +329,18 @@ router.route('/login').post((req,res) => {
             datas[0].secret = secret;
             datas[0].token = token;
             datas[0].save()
-                .then(()=> res.status(200).json(datapack))
+                .then(()=> {
+                    res.status(200).cookie(
+                        "TickBid",
+                        token,
+                        {
+                           sameSite : 'strict',
+                           httpOnly:true,
+                           //secure:true
+                        }
+                    ).json(datapack)
+                    //res.status(200).json(datapack)
+                })
                 .catch(err => res.status(500).json(err))
                 return 0;
         })
@@ -380,8 +392,8 @@ router.route('/login').post((req,res) => {
                 data[0].save()
                     .then(async()=>{
                         const email = req.body.email;
-                        const subject = "OTP for your TickBid Account";
-                        const html = a + username +b + otp + c
+                        const subject = "OTP for Activate your TickBid Account";
+                        const html = a + username +b + otpid + c
                         await emailnotifications(email, subject, html);
                         res.status(200).json("Email Sended");
                     })
