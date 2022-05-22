@@ -145,7 +145,7 @@ const {emailnotifications} = require('../smtp/mail')
    *  get:
    *     tags:
    *     - User-guest
-   *     summary: Get Count Of Manager Account
+   *     summary: Get Tickets
    *     requestBody:
    *      required: false
    *     responses:

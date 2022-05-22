@@ -424,7 +424,8 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={openevent}
       >
-        <BootstrapDialogTitle id="customized_dialog_title1" className={Styles.seller_c_ticketsinfo_top_head_right} onClose={handleClose}>
+        {/* className={Styles.seller_c_ticketsinfo_top_head_right}  remove this class from below*/}
+        <BootstrapDialogTitle id="customized_dialog_title1" onClose={handleClose}>
           Create Event
         </BootstrapDialogTitle>
         <DialogContent className={Styles.seller_c_create_table_pos_c}>
@@ -523,7 +524,8 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={openticket}
       >
-        <BootstrapDialogTitle id="customized_dialog_title1" className={Styles.seller_c_ticketsinfo_top_head_right} onClose={handleCloseticket}>
+        {/* className={Styles.seller_c_ticketsinfo_top_head_right} removed that class from below*/}
+        <BootstrapDialogTitle id="customized_dialog_title1" onClose={handleCloseticket}>
           Create Tickets
         </BootstrapDialogTitle>
         <DialogContent className={Styles.seller_c_create_table_pos_p}>
