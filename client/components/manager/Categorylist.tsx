@@ -48,9 +48,6 @@ export default function Categorylist() {
         const valid = !!e.target.value.match(newpcatergory_regex);
         setNewcatergory(e.target.value);
         setNewcatergoryError(!valid);
-
-        //Check below line
-        //document.getElementById('manager_catergory_add')?.removeAttribute('disabled');
     }
 
     return (  
