@@ -93,8 +93,9 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" className={styles.manager_c_ticketsinfo_top_head_right} onClose={handleClose}>
-          Approve Sellers
+        {/* classnames={styles.manager_c_ticketsinfo_top_head_right} removed from  below tag*/}
+        <BootstrapDialogTitle id={'customized-dialog-title'} onClose={handleClose}>
+            Approve Sellers
         </BootstrapDialogTitle>
         <DialogContent>
           <DialogContent dividers>
