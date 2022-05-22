@@ -40,6 +40,14 @@ export default function PendingEvents() {
     const [declinemessage, setdeclinemessage] = React.useState<string>("");
     const [declinemessageError, setdeclinemessageError] = React.useState<boolean>(false);
 
+    const [reasonmessagebox, setreasonmessagebox] = React.useState<boolean>(true);
+
+    const [submitbuttonError, setsubmitbuttonError] = React.useState<boolean>(true);
+
+    const [submitbuttonactive, setsubmitbuttonactive] = React.useState<boolean>(true);
+
+    const [radiovalue, setradiovalue] = React.useState<string>("");
+
     const declinemessageChangeHandler = (e: any) => {
         const declinemessage_regex = /^.{1,50}$/;
         const valid = !!e.target.value.match(declinemessage_regex);
@@ -47,21 +55,41 @@ export default function PendingEvents() {
         setdeclinemessageError(!valid);
     }
 
-    /*
-    LOGIC OF RADIO BUTTTONS AND DECLINE MESSAGE
-        At the beginning decline message box and SUBMIT button should be in disabled mode
-        If Approve radio button clicked
-            > Decline message box should remain disabled
-            > Submit button should be enabled
-        If Decline radio button clicked
-            > Decline message box should be enabled
-            > Submit button should be remain disabled
-            
-            If the decline message is in the given criteria (already implemented criteria)
-                > Submit button should be enabled
-            Else
-                > Error message (already implemented) 
-    */
+    const radiovalueChangeHandler = async (e: any) => {
+        const radiovalue_regex = "decline";
+        const valid = !!e.target.value.match(radiovalue_regex);
+        setradiovalue(e.target.value);
+        setreasonmessagebox(!valid);
+        setsubmitbuttonactive(valid);
+        if (e.target.value == "approve") {
+            setdeclinemessageError(valid);
+        }
+        else {
+            setdeclinemessageError(!valid);
+        }
+    }
+
+    const submitbuttonHandler = async (e: any) => {
+        console.log({ radiovalue });
+        if (radiovalue == "approve") {
+            //Code for approve events
+            console.log("Ready to approve");
+        }
+        else if (radiovalue == "decline") {
+            const declinemessagesubmit_regex = /^.{1,}$/;
+            const valid = !!declinemessage.match(declinemessagesubmit_regex);
+            await setsubmitbuttonError(!valid);
+            if (submitbuttonError == false) {
+                //Code for decline events
+                console.log("Ready to decline");
+            }
+            else {
+                //Code for error message
+                console.log("ERROR!!! Reason is required!!!");
+
+            }
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -162,7 +190,7 @@ export default function PendingEvents() {
                 </DialogContent>
                 <DialogActions>
                     <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
-                        <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+                        <RadioGroup row aria-label="gender" aria-labelledby="demo-controlled-radio-buttons-group" name="controlled-radio-buttons-group" value={radiovalue} onChange={radiovalueChangeHandler} >
                             <FormControlLabel value="approve" control={<Radio />} label="Approve" />
                             <FormControlLabel value="decline" control={<Radio />} label="Decline" />
                         </RadioGroup>
@@ -171,6 +199,7 @@ export default function PendingEvents() {
                         <TextField
                             id="standard-multiline-static"
                             placeholder="Reason for declining"
+                            disabled={reasonmessagebox}
                             multiline
                             maxRows="1"
                             variant="standard"
@@ -178,14 +207,14 @@ export default function PendingEvents() {
                             error
                             onChange={declinemessageChangeHandler}
                         />
-                        <Button variant="contained" size="medium" aria-label="add" margin-left="30px">
+                        <Button disabled={declinemessageError && submitbuttonactive} variant="contained" size="medium" aria-label="add" margin-left="30px" onClick={submitbuttonHandler}>
                             SUBMIT
                         </Button>
                     </Stack>
                 </DialogActions>
                 <Stack direction="column">
-                        {declinemessageError && (<p className={styles.manager_error_message}> * Reason for declining message is required and it can contain maximum 50 characters</p>)}
-                    </Stack>
+                    {declinemessageError && (<p className={styles.manager_error_message}> * Reason for declining message is required and it can contain maximum 50 characters</p>)}
+                </Stack>
             </Dialog>
         </div>
     );
