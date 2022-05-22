@@ -1,5 +1,5 @@
 
-# TickBid Ticket Bid Web APP
+# TickBid Ticketing Web APP
 
 A brief description of what this project does and who it's for
 
