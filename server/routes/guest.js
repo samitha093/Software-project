@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
+const tickets = require('../models/tickets');
 const util_area = require('../models/util_area');
 const util_category = require('../models/util_category');
 const {a, b, c} = require('../views/otp')
@@ -138,6 +139,29 @@ const {emailnotifications} = require('../smtp/mail')
   *   name: User-guest
   *   description: Public Routes
   */
+ /**
+   * @swagger
+   * '/g/tickets':
+   *  get:
+   *     tags:
+   *     - User-guest
+   *     summary: Get Tickets
+   *     requestBody:
+   *      required: false
+   *     responses:
+   *      200:
+   *        description: Success
+   *      400:
+   *        description: Wrong User Format
+   *      500:
+   *        description: Server failure
+   */
+
+  router.route('/tickets').get((req,res) => {
+    tickets.find({},(err,data) => {
+        res.status(200).json(data) 
+    })
+});
 
   /**
    * @swagger

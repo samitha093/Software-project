@@ -78,7 +78,7 @@ const Declinedevents: React.FC<DeclinedeventProps> = ({data}) => {
         setOpen(false);
     };
 
-    const [items, setitem] = React.useState([])
+    const [items, setitem] = React.useState<any[]>([])
     React.useEffect(()=>{
       axios.get(gethost()+'seller/details/'+data.id)
       .then(async (res)=>{

@@ -12,19 +12,19 @@ import Ticketunvalid from '../../components/buyer/Ticketunvalid'
 import styles from './styles.module.scss'
 
 const bids: NextPage = () => {
-    const [open, setopen] = React.useState(false);
-    const router = useRouter();
+    const [Open, setopen] = React.useState(false);
+    const Router = useRouter();
     React.useEffect(()=>{
         axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
             if(res.data.type == 'BUYER'){
               setopen(true);
             }else if(res.data.type == 'MANAGER'){
-              router.push('/manager');
+              Router.push('/manager');
             }else if(res.data.type == 'SELLER'){
-              router.push('/seller');
+              Router.push('/seller');
             }else{
-              router.push('/user');
+              Router.push('/user');
             }
         })
         .catch((err)=>{
@@ -35,12 +35,12 @@ const bids: NextPage = () => {
             showConfirmButton: false,
             timer: 2500
           })
-          router.push('/user');
+          Router.push('/user');
         })       
     },[])
         return (
             <div className={styles.buyer_bg}>
-                {open?<div>
+                {Open?<div>
                 <Navbar/>
                 <div className={styles.buyer_index}>
                     <Sidebar id="3" />

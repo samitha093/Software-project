@@ -20,7 +20,6 @@ import Box from '@mui/material/Box';
 import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusSquare} from "@fortawesome/free-regular-svg-icons";
 import styles from './styles.module.css'

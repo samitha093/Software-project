@@ -24,7 +24,8 @@ const Resetpassword: React.FC<ForgotpwdProps> = ({}) => {
   const [newpw, setnewpwpw] = React.useState("");
   const [cnewpw, setcnewpwpw] = React.useState("");
 
-  const [item, setitem] = React.useState([])
+  const [item, setitem] = React.useState<any[]>([])
+
     React.useEffect(()=>{
       axios.get('http://localhost:8000/seller/userdetails/61842a1e0ec95f011fdc3bcf')
       .then(async (res)=>{
@@ -47,9 +48,10 @@ const Resetpassword: React.FC<ForgotpwdProps> = ({}) => {
             <form className={Styles.seller_modern_form} action="#">
               <Box className={Styles.seller_r_setting_con_box} component="form" sx={{'& .MuiTextField-root': { m: 1, width: '100%' },}}noValidate autoComplete="off" >
                 <div className={Styles.seller_r_setting_con_box_text}>
-                  <TextField id="outlined-read-only-input" label="Name" value={item.user_name} InputProps={{readOnly: true,}} focused/>
-                  <TextField id="outlined-read-only-input" label="Email" value={item.email} InputProps={{readOnly: true,}} focused/>
-                  <TextField id="outlined-read-only-input" label="Contact number" value={item.contact} InputProps={{readOnly: true,}} focused/>
+                {/* romoved this : value={item.user_name} due to some of errors  */}
+                  <TextField id="outlined-read-only-input" label="Name" InputProps={{readOnly: true,}} focused/>
+                  <TextField id="outlined-read-only-input" label="Email" InputProps={{readOnly: true,}} focused/>
+                  <TextField id="outlined-read-only-input" label="Contact" InputProps={{readOnly: true,}} focused/>
                 </div>
               </Box>
             </form>

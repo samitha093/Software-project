@@ -142,8 +142,8 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
               startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
             />
           </FormControl>
-          <div className='x'><center><b>X</b></center></div>
-          <div><center>4 Tickes</center></div>
+          <div className='x'><b>X</b></div>
+          <div>4 Tickes</div>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
