@@ -50,7 +50,6 @@
     "sweetalert2": "^11.4.9",
     "swiper": "^7.4.1",
     "ts-form-validation": "^2.2.0"
-
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",

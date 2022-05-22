@@ -3,7 +3,9 @@ services:
   #Nextjs APP
   react-app:
     image: react-app
-    build: ./client/
+    build: 
+      context:  ./client/
+      dockerfile:  Dockerfile
     stdin_open: true
     ports: 
       - "3000:3000"
@@ -17,7 +19,9 @@ services:
   #API Service
   api-server:
     image: api-servers
-    build: ./server/
+    build: 
+      context:  ./server/
+      dockerfile:  Dockerfile
     ports: 
       - "8000:8000"
     volumes: 
