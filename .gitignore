@@ -20,8 +20,6 @@
 # ependencies
 /.pnp
 .pnp.js
-package.json
-package-lock.json
 
 # misc
 .DS_Store
