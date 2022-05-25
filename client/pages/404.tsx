@@ -15,7 +15,7 @@ const NotFound = () => {
                             />
                 </div>
                 <div><h1>Look like you're lost</h1></div>
-                <div><h4>The page you are looking for not avaible!</h4></div>
+                <div><h4>The page you are looking for not avaible</h4></div>
             </div>
         </div>
     );
