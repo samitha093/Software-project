@@ -11,8 +11,8 @@
     display: flex;
 }
 .navbar.active,.navbar_active{
-    background-color:#752E9E;
-    color: rgb(255, 255, 255);
+    background-color:#752E9E!important;
+    color: rgb(255, 255, 255)!important;
 }
 .navbar_left{
     width: 30%;

@@ -64,14 +64,14 @@
 
   
 .btn_create{
-	  width :auto;
-	  margin-top: 20px;
-	  text-size-adjust: small;
-	  background-color: #533964;
-	  resize: both;
-	  border-radius: 20px;
-	  padding: 10px 40px;
-	  margin: 20px;
+	  width :auto !important;
+	  margin-top: 20px !important;
+	  text-size-adjust: small !important;
+	  background-color: #533964 !important;
+	  resize: both !important;
+	  border-radius: 20px !important;
+	  padding: 10px 40px !important;
+	  margin: 20px !important;
 	}
 .btn_create:hover {background-color:#905f91 }
 	
