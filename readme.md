@@ -1,7 +1,8 @@
 
-# TickBid Ticketing Web APP
+# Event Ticketing Web APP
 
-A brief description of what this project does and who it's for
+Event Organizers can Sell their tickets And Event
+Lovers Can get their chance with our platform.
 
 
 ## Deployment
