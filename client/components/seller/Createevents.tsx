@@ -26,6 +26,8 @@ import axios from 'axios'
 import {gethost} from '../../session/Session'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import Styles from './Styles.module.css'
+import { Blob } from 'buffer'
+import Upload from './components/Upload'
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -128,11 +130,12 @@ export default function MaxWidthDialog() {
     setValue(newValue);
   };
 
-  const [currency,setCurrency] = React.useState("");
+  const [levels,setlevels] = React.useState("");
   const [event_name,setname] = React.useState<string>("");
   const [event_venue,setvenue] = React.useState<string>("");
   const [event_date,setdate] = React.useState<string>("");
   const [event_time,settime] = React.useState<string>("");
+  const [event_img,setimg] = React.useState<string>("");
 
   const [buy_quantity1,setbuyquantity1] = React.useState<string>("");
   const [buy_amount1,setbuyamount1] = React.useState<string>("");
@@ -160,7 +163,7 @@ export default function MaxWidthDialog() {
   const [bid_amount5,setbidamount5] = React.useState<string>("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrency(event.target.value);
+    setlevels(event.target.value);
     const valuee = event.target.value;
     if(valuee=="1"){
       setlevel1(true);
@@ -306,14 +309,13 @@ export default function MaxWidthDialog() {
       EventDate:event_date,
       EventVenue:event_venue,
       EventTime:event_time,
-      TicketLevel:currency,
-      ImageUrl:"fehgjngjfgd",
-      UserId:"61842a1e0ec95f011fdc3bcf"
+      TicketLevel:levels,
+      ImageUrl:event_img,
     }
     axios.post(gethost()+'seller/events',datapack)
           .then(async (res)=>{
               console.log(res.data)
-              setCurrency("");
+              setlevels("");
               setname("");
               setvenue("");
               setdate("");
@@ -321,6 +323,22 @@ export default function MaxWidthDialog() {
           })
   };
 
+//const [image,setimage] = React.useState({});
+let formdata = new FormData();
+const uploadedFileData = async(file:any)=>{
+  if(file){
+    await formdata.append('Img',file);
+    if(formdata){
+  axios.post(gethost()+'s/upload',formdata)
+  .then(async (res)=>{
+      //console.log(res.data)
+      setimg(res.data)
+  }).catch((err)=>{
+      console.log(err)
+  })
+    }
+  }
+};
   const submitticket = () => {
     const ticketpack1 = {
       TicketLevel: 1,
@@ -433,8 +451,8 @@ export default function MaxWidthDialog() {
         
       <Grid container spacing={2}>
         <Grid className={Styles.seller_c_create_img_in} item xs={6}>
-            <div className={Styles.seller_c_create_img_in}>
-            <Img alt="complex" src="/test.jpg" />
+            <div className={Styles.seller_c_create_img_in_R}>
+             <Upload data={{change: uploadedFileData}}/>
             </div>
         </Grid>
         <Grid item xs={8} sm container>
@@ -461,39 +479,113 @@ export default function MaxWidthDialog() {
           label="Event Venue"
           onChange={eventVenueChangeHandler}
         />
-        <TextField
-        required
-        id="date"
-        label="Event Date"
-        type="date"
-        defaultValue="2020-02-02"
-        sx={{ width: 220 }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        onChange={eventDateChangeHandler}
-      />
-      <TextField
-        required
-        id="time"
-        label="Event Time"
-        type="time"
-        defaultValue="00:00"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          step: 300, // 5 min
-        }}
-        sx={{ width: 150 }}
-        onChange={eventTimeChangeHandler}
-      />
-        <TextField
+        <div className={Styles.seller_c_create_event_date_time}>
+          <div className={Styles.seller_c_create_event_date_time_left}>
+          <TextField
+            required
+            id="date"
+            label="Event Date"
+            type="date"
+            defaultValue="2020-02-02"
+            sx={{ width: 220 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={eventDateChangeHandler}
+          />                    
+          </div>
+          <div className={Styles.seller_c_create_event_date_time_right}>
+          <TextField
+            required
+            id="time"
+            label="Event Time"
+            type="time"
+            defaultValue="00:00"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+            sx={{ width: 150 }}
+            onChange={eventTimeChangeHandler}
+          />
+          </div>
+        </div>
+        <div className={Styles.seller_c_create_event_date_time}>
+          <div className={Styles.seller_c_create_event_date_time_left}>
+          <TextField
+            required
+            id="date"
+            label="Start Selling Date"
+            type="date"
+            defaultValue="2020-02-02"
+            sx={{ width: 220 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={eventDateChangeHandler}
+          />                    
+          </div>
+          <div className={Styles.seller_c_create_event_date_time_right}>
+          <TextField
+            required
+            id="time"
+            label="Start Selling Time"
+            type="time"
+            defaultValue="00:00"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+            sx={{ width: 150 }}
+            onChange={eventTimeChangeHandler}
+          />
+          </div>
+        </div>
+        <div className={Styles.seller_c_create_event_date_time}>
+          <div className={Styles.seller_c_create_event_date_time_left}>
+          <TextField
+            required
+            id="date"
+            label="Stop Selling Date"
+            type="date"
+            defaultValue="2020-02-02"
+            sx={{ width: 220 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={eventDateChangeHandler}
+          />                    
+          </div>
+          <div className={Styles.seller_c_create_event_date_time_right}>
+          <TextField
+            required
+            id="time"
+            label="Stop Selling Time"
+            type="time"
+            defaultValue="00:00"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+            sx={{ width: 150 }}
+            onChange={eventTimeChangeHandler}
+          />
+          </div>
+        </div>
+        <div className={Styles.seller_c_create_event_date_time}>
+          <div className={Styles.seller_c_create_event_date_time_left}>
+          <TextField
           required
           id="outlined-select-currency"
           select
           label="Ticket Levels"
-          value={currency}
+          value={levels}
           onChange={handleChange}
           helperText="Please select ticket levels"
         >
@@ -502,7 +594,26 @@ export default function MaxWidthDialog() {
               {option.label}
             </MenuItem>
           ))}
+        </TextField>         
+          </div>
+          <div className={Styles.seller_c_create_event_date_time_right}>
+          <TextField
+          required
+          id="outlined-select-currency"
+          select
+          label="Area"
+          value={levels}
+          onChange={handleChange}
+          helperText="Please select Event Area"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
+          </div>
+        </div>
       </div>
     </Box>
           </Grid>
