@@ -487,6 +487,24 @@
         padding-left: 0%;
         justify-content: center;
     }
+    .seller_c_create_img_in_R{
+        margin: auto;
+        width: 100%;
+        padding: 20px;
+        justify-content: center;
+        margin-bottom: 30px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .seller_c_create_event_date_time{
+        display: flex;
+    }
+    .seller_c_create_event_date_time_left{
+        width:49%;
+        margin-right: 1%;
+    }
+    .seller_c_create_event_date_time_right{
+        width:50%;
+    }
     .seller_c_create_img{
         margin: auto;
         width: 100%;
