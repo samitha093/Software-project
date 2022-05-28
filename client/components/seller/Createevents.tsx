@@ -28,6 +28,7 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import Styles from './Styles.module.css'
 import { Blob } from 'buffer'
 import Upload from './components/Upload'
+import Swal from 'sweetalert2'
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -114,11 +115,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 export default function MaxWidthDialog() {
   const [openevent, setOpenevent] = React.useState(false);
   const [openticket, setOpenticket] = React.useState(false);
-  const [level1, setlevel1] = React.useState(false);
-  const [level2, setlevel2] = React.useState(false);
-  const [level3, setlevel3] = React.useState(false);
-  const [level4, setlevel4] = React.useState(false);
-  const [level5, setlevel5] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('lg');
 
@@ -136,6 +132,16 @@ export default function MaxWidthDialog() {
   const [event_date,setdate] = React.useState<string>("");
   const [event_time,settime] = React.useState<string>("");
   const [event_img,setimg] = React.useState<string>("");
+  const [start_event_date,setstart_event_date] = React.useState<string>("");
+  const [endevent_date,setendevent_date] = React.useState<string>("");
+  const [area,setarea] = React.useState("");
+  const [category,setcategory] = React.useState("");
+
+  const [level1, setlevel1] = React.useState(false);
+  const [level2, setlevel2] = React.useState(false);
+  const [level3, setlevel3] = React.useState(false);
+  const [level4, setlevel4] = React.useState(false);
+  const [level5, setlevel5] = React.useState(false);
 
   const [buy_quantity1,setbuyquantity1] = React.useState<string>("");
   const [buy_amount1,setbuyamount1] = React.useState<string>("");
@@ -201,6 +207,14 @@ export default function MaxWidthDialog() {
       setlevel5(true);
     }
   };
+//For Area
+  const areahandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setarea(event.target.value);
+  }
+  //For category
+  const categoryhandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setcategory(event.target.value);
+  }
 
   const handleClickOpen = () => {
     setOpenevent(true);
@@ -237,93 +251,63 @@ export default function MaxWidthDialog() {
   const eventTimeChangeHandler = (event:any)=>{
     settime(event.target.value);
   };
-
-  const buyquantity1ChangeHandler = (event:any)=>{
-    setbuyquantity1(event.target.value);
+  //starting date handler
+  const startDateChangeHandler = (event:any)=>{
+    setstart_event_date(event.target.value);
   };
-  const buyamount1ChangeHandler = (event:any)=>{
-    setbuyamount1(event.target.value);
+  //closing date handler
+  const endDateChangeHandler = (event:any)=>{
+    setendevent_date(event.target.value);
   };
-  const bidquantity1ChangeHandler = (event:any)=>{
-    setbidquantity1(event.target.value);
+  var initial = 0;
+  const createnewticket = (event:any)=>{
+    var newinitial = (initial = initial + 1);
+    console.log(arr)
+    arr.push(newinitial); 
   };
-  const bidamount1ChangeHandler = (event:any)=>{
-    setbidamount1(event.target.value);
+  const submitevent = async() => {
+    //get access from gatway for 5min
+    await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+        .then(async (res)=>{
+            //create a headet pack
+            const config = {
+              headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            //create a body pack
+            const datapack = {
+              event_name:event_name,
+              event_date:event_date,
+              event_venue:event_venue,
+              event_time:event_time,
+              levelcount:levels,
+              image_url:event_img,
+              publishevent_date:start_event_date,
+              endevent_date:endevent_date,
+              event_category:category,
+              area:area,
+            }
+            axios.post(gethost()+'s/createaevent',datapack,config)
+              .then(async (res)=>{
+                  console.log(res.data)
+                  setlevels("");
+                  setname("");
+                  setvenue("");
+                  setdate("");
+                  settime("");
+              })
+              .catch((err)=>{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Authentication Failed',
+                  text: 'Please Login to your account',
+                  showConfirmButton: false,
+                  timer: 2500
+                })
+              })
+          //end connection
+        })
   };
-
-  const buyquantity2ChangeHandler = (event:any)=>{
-    setbuyquantity2(event.target.value);
-  };
-  const buyamount2ChangeHandler = (event:any)=>{
-    setbuyamount2(event.target.value);
-  };
-  const bidquantity2ChangeHandler = (event:any)=>{
-    setbidquantity2(event.target.value);
-  };
-  const bidamount2ChangeHandler = (event:any)=>{
-    setbidamount2(event.target.value);
-  };
-
-  const buyquantity3ChangeHandler = (event:any)=>{
-    setbuyquantity3(event.target.value);
-  };
-  const buyamount3ChangeHandler = (event:any)=>{
-    setbuyamount3(event.target.value);
-  };
-  const bidquantity3ChangeHandler = (event:any)=>{
-    setbidquantity3(event.target.value);
-  };
-  const bidamount3ChangeHandler = (event:any)=>{
-    setbidamount3(event.target.value);
-  };
-
-  const buyquantity4ChangeHandler = (event:any)=>{
-    setbuyquantity4(event.target.value);
-  };
-  const buyamount4ChangeHandler = (event:any)=>{
-    setbuyamount4(event.target.value);
-  };
-  const bidquantity4ChangeHandler = (event:any)=>{
-    setbidquantity4(event.target.value);
-  };
-  const bidamount4ChangeHandler = (event:any)=>{
-    setbidamount4(event.target.value);
-  };
-
-  const buyquantity5ChangeHandler = (event:any)=>{
-    setbuyquantity5(event.target.value);
-  };
-  const buyamount5ChangeHandler = (event:any)=>{
-    setbuyamount5(event.target.value);
-  };
-  const bidquantity5ChangeHandler = (event:any)=>{
-    setbidquantity5(event.target.value);
-  };
-  const bidamount5ChangeHandler = (event:any)=>{
-    setbidamount5(event.target.value);
-  };
-
-  const submitevent = () => {
-    const datapack = {
-      EventName:event_name,
-      EventDate:event_date,
-      EventVenue:event_venue,
-      EventTime:event_time,
-      TicketLevel:levels,
-      ImageUrl:event_img,
-    }
-    axios.post(gethost()+'seller/events',datapack)
-          .then(async (res)=>{
-              console.log(res.data)
-              setlevels("");
-              setname("");
-              setvenue("");
-              setdate("");
-              settime("");
-          })
-  };
-
-//const [image,setimage] = React.useState({});
+//file upload workflow submision
 let formdata = new FormData();
 const uploadedFileData = async(file:any)=>{
   if(file){
@@ -339,92 +323,68 @@ const uploadedFileData = async(file:any)=>{
     }
   }
 };
-  const submitticket = () => {
-    const ticketpack1 = {
-      TicketLevel: 1,
-      BuyQuantity:buy_quantity1,
-      BuyAmount:buy_amount1,
-      BidQuantity:bid_quantity1,
-      BidAmount:bid_amount1,
-      EventId:"6189137cf4bff50043c3c220"
-    }
-    axios.post(gethost()+'seller/ticketlevels',ticketpack1)
-          .then(async (res)=>{
-              console.log(res.data)
-              setbuyquantity1("");
-              setbuyamount1("");
-              setbidquantity1("");
-              setbidamount1("");
-          })
+//submit tickets for workflow
+const submitticket = () => {
+  const ticketpack1 = {
+    TicketLevel: 1,
+    BuyQuantity:buy_quantity1,
+    BuyAmount:buy_amount1,
+    BidQuantity:bid_quantity1,
+    BidAmount:bid_amount1,
+    EventId:"6189137cf4bff50043c3c220"
+  }
+  axios.post(gethost()+'seller/ticketlevels',ticketpack1)
+    .then(async (res)=>{
+        console.log(res.data)
+        setbuyquantity1("");
+        setbuyamount1("");
+        setbidquantity1("");
+        setbidamount1("");
+    })
+    .catch((err)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Authentication Failed',
+        text: 'Please Login to your account',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    }) 
+};
 
-    const ticketpack2 = {
-      TicketLevel: 2,
-      BuyQuantity:buy_quantity2,
-      BuyAmount:buy_amount2,
-      BidQuantity:bid_quantity2,
-      BidAmount:bid_amount2,
-      EventId:"6189137cf4bff50043c3c220"
-    }
-    axios.post(gethost()+'seller/ticketlevels',ticketpack2)
-          .then(async (res)=>{
-              console.log(res.data)
-              setbuyquantity2("");
-              setbuyamount2("");
-              setbidquantity2("");
-              setbidamount2("");
-          })
+const [arealist,setarealist] = React.useState<any>([]);
+const [categorylist,setcategorylist] = React.useState([]);
+React.useEffect(()=>{
+  axios.get(gethost() + 'g/areas',{withCredentials:false})
+    .then(async (res)=>{
+        await setarealist(res.data);
+    })
+    .catch((err)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Please try again later',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    })  
+    axios.get(gethost() + 'g/categories',{withCredentials:false})
+    .then(async (res)=>{
+      await setcategorylist(res.data);
+    })
+    .catch((err)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Please try again later',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    }) 
+},[])
 
-    const ticketpack3 = {
-      TicketLevel: 3,
-      BuyQuantity:buy_quantity3,
-      BuyAmount:buy_amount3,
-      BidQuantity:bid_quantity3,
-      BidAmount:bid_amount3,
-      EventId:"6189137cf4bff50043c3c220"
-    }
-    axios.post(gethost()+'seller/ticketlevels',ticketpack3)
-          .then(async (res)=>{
-              console.log(res.data)
-              setbuyquantity3("");
-              setbuyamount3("");
-              setbidquantity3("");
-              setbidamount3("");
-          })
-
-    const ticketpack4 = {
-      TicketLevel: 4,
-      BuyQuantity:buy_quantity4,
-      BuyAmount:buy_amount4,
-      BidQuantity:bid_quantity4,
-      BidAmount:bid_amount4,
-      EventId:"6189137cf4bff50043c3c220"
-    }
-    axios.post(gethost()+'seller/ticketlevels',ticketpack4)
-          .then(async (res)=>{
-              console.log(res.data)
-              setbuyquantity4("");
-              setbuyamount4("");
-              setbidquantity4("");
-              setbidamount4("");
-          })
-
-    const ticketpack5 = {
-      TicketLevel: 5,
-      BuyQuantity:buy_quantity5,
-      BuyAmount:buy_amount5,
-      BidQuantity:bid_quantity5,
-      BidAmount:bid_amount5,
-      EventId:"6189137cf4bff50043c3c220"
-    }
-    axios.post(gethost()+'seller/ticketlevels',ticketpack5)
-          .then(async (res)=>{
-              console.log(res.data)
-              setbuyquantity5("");
-              setbuyamount5("");
-              setbidquantity5("");
-              setbidamount5("");
-          })
-  };
+var arr = [1, 2, 3];
+const listItems = [{}];
 
   return (
     <React.Fragment >
@@ -467,6 +427,20 @@ const uploadedFileData = async(file:any)=>{
     >
 
       <div>
+      <TextField
+          required
+          id="outlined-select-currency"
+          select
+          label="Category"
+          value={category}
+          onChange={categoryhandleChange}
+        >
+          {categorylist.map((option:any) => (
+            <MenuItem key={option.id} value={option.id}>
+              {option.name}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           required
           id="outlined-required"
@@ -524,29 +498,10 @@ const uploadedFileData = async(file:any)=>{
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={eventDateChangeHandler}
+            onChange={startDateChangeHandler}
           />                    
           </div>
           <div className={Styles.seller_c_create_event_date_time_right}>
-          <TextField
-            required
-            id="time"
-            label="Start Selling Time"
-            type="time"
-            defaultValue="00:00"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-            sx={{ width: 150 }}
-            onChange={eventTimeChangeHandler}
-          />
-          </div>
-        </div>
-        <div className={Styles.seller_c_create_event_date_time}>
-          <div className={Styles.seller_c_create_event_date_time_left}>
           <TextField
             required
             id="date"
@@ -557,27 +512,11 @@ const uploadedFileData = async(file:any)=>{
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={eventDateChangeHandler}
-          />                    
-          </div>
-          <div className={Styles.seller_c_create_event_date_time_right}>
-          <TextField
-            required
-            id="time"
-            label="Stop Selling Time"
-            type="time"
-            defaultValue="00:00"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-            sx={{ width: 150 }}
-            onChange={eventTimeChangeHandler}
-          />
+            onChange={endDateChangeHandler}
+          /> 
           </div>
         </div>
+        
         <div className={Styles.seller_c_create_event_date_time}>
           <div className={Styles.seller_c_create_event_date_time_left}>
           <TextField
@@ -602,13 +541,13 @@ const uploadedFileData = async(file:any)=>{
           id="outlined-select-currency"
           select
           label="Area"
-          value={levels}
-          onChange={handleChange}
+          value={area}
+          onChange={areahandleChange}
           helperText="Please select Event Area"
         >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {arealist.map((option:any) => (
+            <MenuItem key={option.id} value={option.id}>
+              {option.name}
             </MenuItem>
           ))}
         </TextField>
@@ -642,72 +581,13 @@ const uploadedFileData = async(file:any)=>{
         <DialogContent className={Styles.seller_c_create_table_pos_p}>
         <DialogContent className={Styles.seller_c_create_table_pos} dividers>
       <Grid className={Styles.seller_c_create_table} container spacing={2} >
-      <Grid className={Styles.seller_c_create_img} item xs={6}>
-            <div className={Styles.seller_c_create_img}>
-            <Img alt="complex" src="/test.jpg" />
-            </div>
-        </Grid>
-        <Grid item xs={8} sm container>
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 180 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Ticket Level</TableCell>
-            <TableCell align="right">Fix Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Fix Amount</TableCell>
-            <TableCell align="right">Bid Price&nbsp;(Rs)</TableCell>
-            <TableCell align="right">Bid Amount</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {level1?
-            <TableRow >
-            <TableCell>Level 1</TableCell>
-            <TableCell><TextField onChange={buyamount1ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={buyquantity1ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidamount1ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidquantity1ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-          </TableRow>
-          :null}
-          {level2?
-            <TableRow >
-            <TableCell>Level 2</TableCell>
-            <TableCell><TextField onChange={buyamount2ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={buyquantity2ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidamount2ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidquantity2ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-          </TableRow>
-          :null}
-          {level3?
-            <TableRow >
-            <TableCell>Level 3</TableCell>
-            <TableCell><TextField onChange={buyamount3ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={buyquantity3ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidamount3ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidquantity3ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-          </TableRow>
-          :null}
-          {level4?
-            <TableRow >
-            <TableCell>Level 4</TableCell>
-            <TableCell><TextField onChange={buyamount4ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={buyquantity4ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidamount4ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidquantity4ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-          </TableRow>
-          :null}
-          {level5?
-            <TableRow >
-            <TableCell>Level 5</TableCell>
-            <TableCell><TextField onChange={buyamount5ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={buyquantity5ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidamount5ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-            <TableCell><TextField onChange={bidquantity5ChangeHandler} id="outlined-number" type="number" InputLabelProps={{shrink: true,}} variant="standard"/></TableCell>
-          </TableRow>
-          :null}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <Grid item xs={12} sm container>
+        <div>
+        {arr.map((option:any) => (
+          <div><div>header 1</div></div>
+        ))}
+        <button onClick={createnewticket}>+</button>
+        </div>
         </Grid>
       </Grid>
     <div>
