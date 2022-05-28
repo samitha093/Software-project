@@ -8,25 +8,16 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import ButtonBase from '@mui/material/ButtonBase';
+import Ticket from './components/ticket';
 import TextField from '@mui/material/TextField';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
-import carnival from '../../assets/carnival.jpeg'
 import axios from 'axios'
 import {gethost} from '../../session/Session'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import Styles from './Styles.module.css'
-import { Blob } from 'buffer'
 import Upload from './components/Upload'
 import Swal from 'sweetalert2'
 
@@ -137,75 +128,13 @@ export default function MaxWidthDialog() {
   const [area,setarea] = React.useState("");
   const [category,setcategory] = React.useState("");
 
-  const [level1, setlevel1] = React.useState(false);
-  const [level2, setlevel2] = React.useState(false);
-  const [level3, setlevel3] = React.useState(false);
-  const [level4, setlevel4] = React.useState(false);
-  const [level5, setlevel5] = React.useState(false);
-
   const [buy_quantity1,setbuyquantity1] = React.useState<string>("");
   const [buy_amount1,setbuyamount1] = React.useState<string>("");
   const [bid_quantity1,setbidquantity1] = React.useState<string>("");
   const [bid_amount1,setbidamount1] = React.useState<string>("");
 
-  const [buy_quantity2,setbuyquantity2] = React.useState<string>("");
-  const [buy_amount2,setbuyamount2] = React.useState<string>("");
-  const [bid_quantity2,setbidquantity2] = React.useState<string>("");
-  const [bid_amount2,setbidamount2] = React.useState<string>("");
-
-  const [buy_quantity3,setbuyquantity3] = React.useState<string>("");
-  const [buy_amount3,setbuyamount3] = React.useState<string>("");
-  const [bid_quantity3,setbidquantity3] = React.useState<string>("");
-  const [bid_amount3,setbidamount3] = React.useState<string>("");
-
-  const [buy_quantity4,setbuyquantity4] = React.useState<string>("");
-  const [buy_amount4,setbuyamount4] = React.useState<string>("");
-  const [bid_quantity4,setbidquantity4] = React.useState<string>("");
-  const [bid_amount4,setbidamount4] = React.useState<string>("");
-
-  const [buy_quantity5,setbuyquantity5] = React.useState<string>("");
-  const [buy_amount5,setbuyamount5] = React.useState<string>("");
-  const [bid_quantity5,setbidquantity5] = React.useState<string>("");
-  const [bid_amount5,setbidamount5] = React.useState<string>("");
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setlevels(event.target.value);
-    const valuee = event.target.value;
-    if(valuee=="1"){
-      setlevel1(true);
-      setlevel2(false);
-      setlevel3(false);
-      setlevel4(false);
-      setlevel5(false);
-    }
-    else if(valuee=="2"){
-      setlevel1(true);
-      setlevel2(true);
-      setlevel3(false);
-      setlevel4(false);
-      setlevel5(false);
-    }
-    else if(valuee=="3"){
-      setlevel1(true);
-      setlevel2(true);
-      setlevel3(true);
-      setlevel4(false);
-      setlevel5(false);
-    }
-    else if(valuee=="4"){
-      setlevel1(true);
-      setlevel2(true);
-      setlevel3(true);
-      setlevel4(true);
-      setlevel5(false);
-    }
-    else{
-      setlevel1(true);
-      setlevel2(true);
-      setlevel3(true);
-      setlevel4(true);
-      setlevel5(true);
-    }
   };
 //For Area
   const areahandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -227,13 +156,11 @@ export default function MaxWidthDialog() {
 
   const handleClickOpenticket = async() => {
     await submitevent();
-    setOpenticket(true);
-    setOpenevent(false);
   };
 
   const handleClickSubmitticket = async() =>{
     await submitticket();
-    setOpenticket(false);
+    //setOpenticket(false);
   }
 
   const handleCloseticket = () => {
@@ -259,13 +186,9 @@ export default function MaxWidthDialog() {
   const endDateChangeHandler = (event:any)=>{
     setendevent_date(event.target.value);
   };
-  var initial = 0;
-  const createnewticket = (event:any)=>{
-    var newinitial = (initial = initial + 1);
-    console.log(arr)
-    arr.push(newinitial); 
-  };
+  const [eventid,seteventid] = React.useState<string>("");
   const submitevent = async() => {
+
     //get access from gatway for 5min
     await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
@@ -288,12 +211,17 @@ export default function MaxWidthDialog() {
             }
             axios.post(gethost()+'s/createaevent',datapack,config)
               .then(async (res)=>{
-                  console.log(res.data)
+                await seteventid(res.data);
+                for(let i = 1; i <= parseInt(levels, 10); i++){
+                  await arr.push(i)
+                }
                   setlevels("");
                   setname("");
                   setvenue("");
                   setdate("");
                   settime("");
+                  setOpenticket(true);
+                  setOpenevent(false);
               })
               .catch((err)=>{
                 Swal.fire({
@@ -325,6 +253,8 @@ const uploadedFileData = async(file:any)=>{
 };
 //submit tickets for workflow
 const submitticket = () => {
+  console.log(eventid)
+  return;
   const ticketpack1 = {
     TicketLevel: 1,
     BuyQuantity:buy_quantity1,
@@ -352,6 +282,12 @@ const submitticket = () => {
     }) 
 };
 
+const createticketjson = async(data:any)=>{
+  console.log(data)
+  if(data){
+    //console.log(data)
+  }
+};
 const [arealist,setarealist] = React.useState<any>([]);
 const [categorylist,setcategorylist] = React.useState([]);
 React.useEffect(()=>{
@@ -382,9 +318,8 @@ React.useEffect(()=>{
       })
     }) 
 },[])
-
-var arr = [1, 2, 3];
-const listItems = [{}];
+const [arr,setarr] = React.useState<number[]>([]);
+var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:item}}/></div>);
 
   return (
     <React.Fragment >
@@ -580,19 +515,32 @@ const listItems = [{}];
         </BootstrapDialogTitle>
         <DialogContent className={Styles.seller_c_create_table_pos_p}>
         <DialogContent className={Styles.seller_c_create_table_pos} dividers>
-      <Grid className={Styles.seller_c_create_table} container spacing={2} >
-        <Grid item xs={12} sm container>
         <div>
-        {arr.map((option:any) => (
-          <div><div>header 1</div></div>
-        ))}
-        <button onClick={createnewticket}>+</button>
+          <div className={Styles.seller_c_create_table_header}>
+            <div className={Styles.seller_c_create_table_header_item}>
+              Ticket Level
+            </div>
+            <div className={Styles.seller_c_create_table_header_item}>
+              No of Buying Tickets
+            </div>
+            <div className={Styles.seller_c_create_table_header_item}>
+              Buying Ticket Amount
+            </div>
+            <div className={Styles.seller_c_create_table_header_item}>
+              No of bidding Tickets
+            </div>
+            <div className={Styles.seller_c_create_table_header_item}>
+              bidding Start Amount
+            </div>
+            <div className={Styles.seller_c_create_table_header_item}>
+              Action
+            </div>
+          </div>
+        {listItems}
         </div>
-        </Grid>
-      </Grid>
     <div>
       <Stack direction="row" justifyContent="right" >
-      <Button onClick={handleClickSubmitticket} className={Styles.seller_btn_pos} variant="contained"  >Submit Tickets</Button>
+      {/* <Button onClick={handleClickSubmitticket} className={Styles.seller_btn_pos} variant="contained"  >Submit Tickets</Button> */}
       </Stack>
           </div>
         </DialogContent>

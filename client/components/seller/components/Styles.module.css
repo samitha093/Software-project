@@ -32,3 +32,18 @@
     max-width: 200px!important;
     max-height: 200px !important;
 }
+.ticket_bg{
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    border-radius: 15px;
+    padding: 40px 20px;
+}
+.ticket_container{
+    width: 100%;
+    display: flex;
+}
+.ticket_data{
+    width: 16%;
+    text-align: center;
+    padding-left: 15px;
+}

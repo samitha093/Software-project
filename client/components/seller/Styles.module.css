@@ -824,3 +824,12 @@
         width: 280px;
     }
 }
+.seller_c_create_table_header{
+    width:100%;
+    display: flex;
+    text-align: center;
+}
+.seller_c_create_table_header_item{
+    width:16%;
+    text-align: center;
+}
