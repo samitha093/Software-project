@@ -20,5 +20,15 @@
     cursor: pointer;
 }
 .drop_file_input_label{
-    padding: 50px 0px;
+    padding: 25px 0px;
+    min-width:300px
+}
+.drop_file_input_label p{
+    text-align: center;
+}
+.drop_file_input_label_image{
+    min-width: 200px!important;
+    min-height: 200px !important;
+    max-width: 200px!important;
+    max-height: 200px !important;
 }
