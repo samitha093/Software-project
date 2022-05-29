@@ -80,10 +80,9 @@ export default function Categorylist() {
                         <List
                             sx={{
                                 width: '100%',
-                                maxWidth: 400,
                                 position: 'relative',
                                 overflow: 'auto',
-                                maxHeight: 300,
+                                maxHeight: 400,
                                 '& ul': { padding: 0 },
                             }}
                         >

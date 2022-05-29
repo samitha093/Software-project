@@ -7,8 +7,10 @@ import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
 import Tooltip from '@mui/material/Tooltip';
-import { endsession } from '../../session/Session';
 import { useRouter } from 'next/router';
+import {gethost } from '../../session/Session';
+import axios from 'axios';
+import Swal from 'sweetalert2'
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
@@ -19,10 +21,6 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ id }) => {
     const router = useRouter()
-    async function logout() {
-        endsession();
-        router.push('/user');
-    }
     const [managersellersidebar1, setmanagersellersidebar1] = React.useState(true);
     const [managersellersidebar2, setmanagersellersidebar2] = React.useState(false);
     const [managersellersidebar3, setmanagersellersidebar3] = React.useState(false);
@@ -50,6 +48,39 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
             setmanagersellersidebar4(true);
         }
     }, []);
+    async function logout(){
+
+        axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+            .then(async (res)=>{
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                const bodyParameters = {};
+                axios.post(gethost() + 'a/logout',bodyParameters,config)
+                .then(async (res2)=>{
+                    router.push('/user');
+                })
+                .catch((err)=>{
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Authentication Failed',
+                    text: 'Please Login to your account',
+                    showConfirmButton: false,
+                    timer: 2500
+                  })
+                })
+            })
+            .catch((err)=>{
+              Swal.fire({
+                icon: 'error',
+                title: 'Authentication Failed',
+                text: 'Please Login to your account',
+                showConfirmButton: false,
+                timer: 2500
+              })
+              router.push('/user');
+            })
+        }
 
     return (
         <div className={styles.manager_c_sidebar}>

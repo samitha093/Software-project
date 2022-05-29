@@ -1,0 +1,90 @@
+@import '../../styles/config.module.scss';
+
+.profile_container{
+    width:100%;
+    padding: 0px 40px;
+}
+.profile_container_bg{
+    border-radius: 30px;
+    background-color: rgb(245, 243, 252);
+    width: 100%;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    padding: 20px;
+    display: flex;
+}
+.profile_container_bg_left{
+    width:50%;
+    padding: 0px 10px;
+}
+.profile_container_bg_right{
+    width:50%;
+    padding: 0px 10px;
+}
+.profile_card{
+    background-color: $themecolour;
+    padding: 30px;
+    border-radius: 20px;
+}
+.profile_card_container{
+    width:100%;
+    display:flex;
+}
+.profile_card_left{
+    width:40%
+}
+.profile_card_right{
+    color: white;
+}
+.profile_card_container_footer{
+    background-color: white;
+    border-radius: 20px;
+    padding: 0.2px;
+    margin: 0px 50px;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+}
+.profile_card_menu_container{
+    padding: 20px 10px;
+}
+.profile_card_menu_item{
+    width:100%;
+    display: flex;
+    padding: 20px 100px;
+    cursor: pointer;
+    border-radius: 40px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.profile_card_menu_item:hover{
+    background-color: $lightselectcolour;
+}
+.profile_card_menu_item_left{
+    position: relative;
+    top: 50%;
+    margin-right: 30px;
+}
+.profile_card_menu_item_center{
+    width:65%;
+}
+.profile_card_menu_item_center h3{
+    margin: 0px;
+    padding: 0px;
+}
+.profile_card_menu_item_right{
+    width: 30px;
+    opacity: 0.5;
+}
+@media only screen and (max-width: 900px) {
+    .profile_container_bg{
+        display: block;
+    }
+    .profile_container_bg_left{
+        width: 100%;
+    }
+    .profile_container_bg_right{
+        width:100%;
+    }
+}

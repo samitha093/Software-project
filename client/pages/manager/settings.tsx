@@ -4,7 +4,7 @@ import Sidebar from '../../components/manager/Sidebar'
 import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
 import Categorylist from '../../components/manager/Categorylist'
 import Navbar from '../../components/Navbar'
-
+import Profile from '../../components/profile/Profile'
 import axios from 'axios'
 import { gethost } from '../../session/Session';
 import styles from './styles.module.css'
@@ -60,7 +60,15 @@ const settings: NextPage = () => {
                 <div className={styles.manager_index_scroll_set}>
                     <h1>Settings</h1>
                     <div className={styles.manager_settings_container}>
-                        <Passwordresetmanager />
+                        <Profile/>
+                        <div className={styles.manager_settings_container_listinput_container}>
+                        <div className={styles.manager_settings_container_listinput_container_left}>
+                            <Categorylist />
+                        </div>
+                        <div className={styles.manager_settings_container_listinput_container_right}>
+                            <Categorylist />
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
