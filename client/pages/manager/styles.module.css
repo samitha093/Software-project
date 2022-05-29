@@ -94,7 +94,26 @@
     align-items: center;
     justify-content: center;
 }
-
+.manager_settings_container_listinput_container{
+    width: 100%;
+    display: flex;
+    padding: 40px;
+}
+.manager_settings_container_listinput_container_left{
+    width:50%;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    margin-right: 50px;
+    padding: 30px 30px;
+    border-radius: 30px;
+    background-color: rgb(245, 243, 252);
+}
+.manager_settings_container_listinput_container_right{
+    width:50%;
+    padding: 30px 30px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border-radius: 30px;
+    background-color: rgb(245, 243, 252);
+}
 @media only screen and (max-width: 600px) {
     .manager_index {
         display: block;
@@ -150,6 +169,16 @@
 @media only screen and (max-width: 940px) {
     .manager_sellers_main_container {
         margin-left: 15%;
+    }
+    .manager_settings_container_listinput_container{
+        display: block;
+    }
+    .manager_settings_container_listinput_container_left{
+        width:100%;
+        margin-bottom: 40px;
+    }
+    .manager_settings_container_listinput_container_right{
+        width:100%
     }
 }
 

@@ -8,7 +8,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
-import Ticket from './components/ticket';
+import Ticket from './components/Ticket';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';

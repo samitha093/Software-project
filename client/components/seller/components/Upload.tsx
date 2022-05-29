@@ -1,7 +1,5 @@
 import React from 'react'
 import Image from 'next/image';
-import axios from 'axios'
-import {gethost} from '../../../session/Session'
 import bgupload from '../../../assets/icons/upload.png'
 import png from '../../../assets/icons/png.png'
 import jpg from '../../../assets/icons/jpg.png'
