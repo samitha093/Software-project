@@ -57,8 +57,8 @@ const activesellers: NextPage = () => {
             <div className={styles.manager_index}>
                 <Sidebar id='3' />
                 <SellersTopBar id3='1' />
-                <div>
-                    <h1>Active Sellers</h1>
+                <div className={styles.manager_sellers_main_container}>
+                    <h1>User Account Managment</h1>
                     <div className={styles.manager_sellers_main_container}>
                         <Activesellerstable />
                     </div>
