@@ -57,7 +57,7 @@ const pendingsellers: NextPage = () => {
             <div className={styles.manager_index}>
                 <Sidebar id='3' />
                 <SellersTopBar id3='2' />
-                <div>
+                <div className={styles.manager_sellers_main_container}>
                     <h1>Pending Sellers</h1>
                     <div className={styles.manager_sellers_main_container}>
                         <Pendingsellerstable />

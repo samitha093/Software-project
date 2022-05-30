@@ -1,7 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
-import Passwordresetmanager from '../../components/manager/Passwordresetmanager'
 import Categorylist from '../../components/manager/Categorylist'
 import Navbar from '../../components/Navbar'
 import Profile from '../../components/profile/Profile'
