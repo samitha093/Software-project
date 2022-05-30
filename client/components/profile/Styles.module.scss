@@ -1,5 +1,5 @@
 @import '../../styles/config.module.scss';
-
+/* start profile Section*/
 .profile_container{
     width:100%;
     padding: 0px 40px;
@@ -77,6 +77,14 @@
     width: 30px;
     opacity: 0.5;
 }
+@media only screen and (max-width: 1400px) {
+    .profile_card_left{
+        width:55%;
+    }
+    .profile_card_left{
+        width:45%
+    }
+}
 @media only screen and (max-width: 900px) {
     .profile_container_bg{
         display: block;
@@ -88,3 +96,84 @@
         width:100%;
     }
 }
+/* end profile Section*/
+
+/* Start Account settings Section*/
+.account_profile_card{
+    width: 100%;
+}
+.account_profile_card_container{
+    width: 100%;
+    display: flex;
+}
+.account_profile_card_container_left{
+    position: relative;
+    width:40%;
+    min-height: 150px;
+}
+.account_profile_card_container_right{
+    width:60%;
+}
+.account_profile_card_container_right h1{
+    padding: 0;
+    margin: 0;
+}
+.account_profile_container_form{
+    width: 100%;
+}
+.account_profile_container_form_section1{
+    width: 100%;
+    display: flex;
+    margin: 20px 0px;
+}
+.account_profile_container_form_section1_left{
+    width:50%;
+    padding-right: 20px;
+}
+.account_profile_container_form_section1_right{
+    width:50%;
+}
+.account_profile_container_form_section2{
+    width:100%;
+    margin-bottom: 30px;
+}
+.account_profile_container_form_section3{
+    width:100%;
+    display: flex;
+    position: relative;
+}
+.account_profile_container_form_section3_left{
+    width:50%;
+}
+.account_profile_container_form_section3_right{
+    display: flex;
+    width:50%;
+    position: relative;
+}
+.account_profile_container_form_section3_right_btn{
+    position: absolute;
+    right: 0;
+    float: right;
+    background-color: $themecolour;
+    color:white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-right: 30px;
+}
+.account_profile_card_container_left_img{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: 0;
+    left:0;
+    top:0;
+    bottom:0;
+    margin: auto;
+    border: 3px solid rgba(156, 60, 247, 0.589);
+    border-radius: 50%;
+}
+.account_profile_card_container_left_img_icon{
+    border-radius: 50%;
+}
+/* End Account settings Section*/
