@@ -27,26 +27,26 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
-export default function Categorylist() {
+export default function Arealist() {
     const router = useRouter()
-    const [newcatergory, setNewcatergory] = React.useState<string>("");
-    const [newcatergoryError, setNewcatergoryError] = React.useState<boolean>(false);
+    const [newarea, setNewarea] = React.useState<string>("");
+    const [newareaError, setNewareaError] = React.useState<boolean>(false);
 
     //Need a function to retrieve and store privioulsy entered catergories
 
-    async function addCatergory() { //This fuction is to store new catergory in the database
+    async function addArea() { //This fuction is to store new area in the database
         // const datapack = {
         //     catergory: newcatergory
         // }
         //There should be routing part here. (Refer USER)
-        //Also check whether there is same catergory already in  the database. If not newly add, else error msg
+        //Also check whether there is same area already in  the database. If not newly add, else error msg
     }
 
-    const newcatergoryChangeHandler = (e: any) => {
+    const newareaChangeHandler = (e: any) => {
         const newpcatergory_regex = /^[A-Z].{3,15}$/;
         const valid = !!e.target.value.match(newpcatergory_regex);
-        setNewcatergory(e.target.value);
-        setNewcatergoryError(!valid);
+        setNewarea(e.target.value);
+        setNewareaError(!valid);
     }
 
     return (
@@ -60,16 +60,16 @@ export default function Categorylist() {
                     className={styles.inputbox_modern_catergory}
                     type="text"
                     placeholder="Enter New Area"
-                    value={newcatergory}
+                    value={newarea}
                     //onChange={(e) => setNewcatergory(e.target.value)}
-                    onChange={newcatergoryChangeHandler}
+                    onChange={newareaChangeHandler}
                 />
 
-                <Button disabled={newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
+                <Button disabled={newareaError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addArea}>
                     Add
                 </Button>
             </Stack>
-            {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Area must contain 4-15 characters and first letter must be capital</p>)}
+            {newareaError && (<p className={styles.manager_catergory_error_message}> * Area must contain 4-15 characters and first letter must be capital</p>)}
 
             <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
                 Active Areas
