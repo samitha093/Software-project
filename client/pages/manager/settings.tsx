@@ -2,6 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Categorylist from '../../components/manager/Categorylist'
+import Arealist from '../../components/manager/Arealist'
 import Navbar from '../../components/Navbar'
 import Profile from '../../components/profile/Profile'
 import axios from 'axios'
@@ -62,7 +63,7 @@ const settings: NextPage = () => {
                         <Profile/>
                         <div className={styles.manager_settings_container_listinput_container}>
                         <div className={styles.manager_settings_container_listinput_container_left}>
-                            <Categorylist />
+                            <Arealist />
                         </div>
                         <div className={styles.manager_settings_container_listinput_container_right}>
                             <Categorylist />
