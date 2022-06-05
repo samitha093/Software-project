@@ -358,7 +358,7 @@ router.route('/login').post((req,res) => {
                         "TickBid",
                         token,
                         {
-                           sameSite : 'strict',
+                           //sameSite : 'strict',
                            httpOnly:true,
                            //secure:true
                         }
