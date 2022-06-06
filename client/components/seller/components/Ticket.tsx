@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 import axios from 'axios'
 import {gethost} from '../../../session/Session'
-import styles from './styles.module.css'
+import styles from './Styles.module.css'
 
 function Ticket({data}:any) {
     const [loading, setLoading] = React.useState(false);

@@ -17,7 +17,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
+// import { DateRangePicker} from '@mui/x-date-pickers-pro'
+// import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -70,7 +71,7 @@ const advanceclick = () => {
   };
 
 const events: NextPage = () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+    // const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
     const theme = useTheme();
     const [personName, setPersonName] = React.useState<string[]>([]);
   
@@ -118,21 +119,21 @@ const events: NextPage = () => {
                                 Event Date
                             </h4>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DateRangePicker
+                            {/* <DateRangePicker
                                 startText="Check-in"
                                 endText="Check-out"
                                 value={value}
-                                onChange={(newValue) => {
+                                onChange={(newValue:any) => {
                                 setValue(newValue);
                                 }}
-                                renderInput={(startProps, endProps) => (
+                                renderInput={(startProps:any, endProps:any) => (
                                 <React.Fragment>
                                     <TextField {...startProps} />
                                     <Box sx={{ mx: 2 }}> to </Box>
                                     <TextField {...endProps} />
                                 </React.Fragment>
                                 )}
-                            />
+                            /> */}
                             </LocalizationProvider>
                         </div>
                         <div>

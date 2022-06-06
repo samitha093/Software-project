@@ -4,7 +4,7 @@ import bgupload from '../../../assets/icons/upload.png'
 import png from '../../../assets/icons/png.png'
 import jpg from '../../../assets/icons/jpg.png'
 import other from '../../../assets/icons/undefine.png'
-import styles from './styles.module.css'
+import styles from './Styles.module.css'
 const Upload = ({data}:any) => {
     const [icon,seticon] = React.useState<boolean>(true);
     const [pngtype,setpngtype] = React.useState<boolean>(false);
