@@ -7,12 +7,16 @@ Lovers Can get their chance with our platform.
 
 ## Deployment
 
-To Start this project on Docker
+To Deploy Dev. mode on Docker
 
 ```bash
   docker-compose up -d --build
 ```
+To Deploy Production mode on Docker
 
+```bash
+  docker-compose -f docker-compose.production.yml  up -d --build
+```
 
 ## Development User-Guid
 
@@ -42,7 +46,7 @@ Mongodb Compass Login
 ```bash
   mongodb://root:password@localhost:27017/
 ```
-Server has Port 22, 80 & 443 , others are blocked to public network from iptable.
+Server has Port 22, 80, 443 & 27017 , others are blocked to public network from iptable.
 All incomming Trafics are Acccept.
 ## Tests For Next APP
 
