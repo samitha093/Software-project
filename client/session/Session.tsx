@@ -15,6 +15,6 @@ export const getuser = () =>{
  
 }
 export const gethost = () =>{
-    const host = 'http://35.172.185.255:8000/';
+    const host = 'http://localhost/api/';
     return host;
 }
