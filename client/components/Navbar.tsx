@@ -1,15 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import axios from 'axios';
 import {useRouter} from 'next/router';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
-import { getuser } from '../session/Session';
 import CloseIcon from '@mui/icons-material/Close';
-import { textAlign } from '@mui/system';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars} from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2'
+import {gethost} from '../session/Session';
+import style from './styles.module.css'
 interface NavbarProps {
 
 }
@@ -18,16 +18,28 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
     const router = useRouter()
     const [navbar,setNavbar] = React.useState(false);
     async function navclick (){
-      const type = getuser();
-      if(type == 'buyer'){
-        router.push('/buyer');
-      }else if(type == 'manager'){
-        router.push('/manager');
-      }else if(type == 'seller'){
-        router.push('/seller');
-      }else{
-        router.push('/user');
-      }
+      axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+        .then(async (res)=>{
+            if(res.data.type == 'BUYER'){
+              router.push('/buyer');
+            }else if(res.data.type == 'MANAGER'){
+              router.push('/manager');
+            }else if(res.data.type == 'SELLER'){
+              router.push('/seller');
+            }else{
+              router.push('/user');
+            }
+        })
+        .catch((err)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Authentication Failed',
+            text: 'Please Login to your account',
+            showConfirmButton: false,
+            timer: 2500
+          })
+          router.push('/user');
+        })
     }
     const closeminicart = () => {
       //console.log('cart');
@@ -83,53 +95,53 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
         return (
           <div>
             <div className={navbar ? 'navbar active' : 'navbar'}>
-              <div className='navbar-mobile'>
-                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faBars} className='font-icon-mobilenave' onClick={openminimenu}/>
+              <div className={style.navbar_mobile}>
+                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faBars} className={style.font_icon_mobilenave} onClick={openminimenu}/>
               </div>
-                <div className="navbar-left" >
-                  <div className='navbar-name'>
+                <div className={style.navbar_left} >
+                  <div className={style.navbar_name}>
                     TickBid
                   </div>
                 </div>
-                <div className="navbar-right" >
-                    <ul className="main-menu">
+                <div className={style.navbar_right} >
+                    <ul className={style.main_menu}>
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/events">Events </Link></li>
                         <li ><Link href ="/user/about">About us</Link></li>
                         <li onClick={navclick}>My Account</li>
                     </ul>
-                    <div className="cart">
-                        <IconButton onClick={openminicart} className="navbar-active" size="large" aria-label="add to shopping cart">
+                    <div className={style.cart}>
+                        <IconButton onClick={openminicart} className={style.navbar_active} size="large" aria-label="add to shopping cart">
                             <ShoppingCartOutlinedIcon fontSize="inherit" />
                         </IconButton>
                     </div>
                 </div>
             </div>
-            <div className='cart-drower' id='minicart'>
-                <CloseIcon fontSize='large' className='cart-close'  onClick={closeminicart}/>
-                <div className='cart-drower-content'> 
-                  <div className='cart-drower-content-list'>
-                    <div className='cart-drower-content-list-items'>
+            <div className={style.cart_drower} id='minicart'>
+                <CloseIcon fontSize='large' className={style.cart_close}  onClick={closeminicart}/>
+                <div className={style.cart_drower_content}> 
+                  <div className={style.cart_drower_content_list}>
+                    <div className={style.cart_drower_content_list_items}>
                       jdskhfkjhdsfkhdsk
                     </div>
                   </div>
-                  <div className='cart-drower-content-btn'>
-                    <div className='cart-drower-content-btn-flex'>
-                    <div className='text-left'>Total </div><div className='text-right' >50007.00 LKR</div>
+                  <div className={style.cart_drower_content_btn}>
+                    <div className={style.cart_drower_content_btn_flex}>
+                    <div className={style.text_left}>Total </div><div className={style.text_right} >50007.00 LKR</div>
                     </div>
-                    <div className='gotocheckout'>
+                    <div className={style.gotocheckout}>
                     <Link href ="/buyer/checkout">
-                      <div className='gotocheckout-btn'>Go to checkout</div>
+                      <div className={style.gotocheckout_btn}>Go to checkout</div>
                     </Link>
                     </div>
                   </div>
                   
                 </div>
             </div>
-            <div className='menu-drower' id='minimenu'>
-                <CloseIcon fontSize='large' className='menu-close'  onClick={closeminimenu}/>
-                <div className='minimenu-drower-content'> 
-                  <ul className='mobile-drower-menu'>
+            <div className={style.menu_drower} id='minimenu'>
+                <CloseIcon fontSize='large' className={style.menu_close}  onClick={closeminimenu}/>
+                <div className={style.minimenu_drower_content}> 
+                  <ul className={style.mobile_drower_menu}>
                     <li><Link href="/">Home</Link></li>
                     <li><Link href="/events">Events </Link></li>
                     <li><Link href ="/user/about">About us</Link></li>

@@ -18,6 +18,28 @@ a {
   --parent-height: 220px;
 }
 
+.navbar{
+  position: fixed;
+  top: 0;
+  z-index: 100!important;
+  width:100%;
+  height:75px;
+  padding-top: 20px;
+  padding-left: 50px;
+  display: flex;
+}
+.navbar.active,.navbar-active{
+  background-color:#752E9E;
+  color: rgb(255, 255, 255);
+}
+.css-mf1cb5-MuiButtonBase-root-MuiIconButton-root:hover{
+  background-color:#58038a!important;
+}
+css-mf1cb5-MuiButtonBase-root-MuiIconButton-root{
+  background-color:#752E9E;
+  color: rgb(255, 255, 255);
+}
+
 /*start-Login component*/
 .mainbackground{
 	display: flex;
@@ -523,9 +545,9 @@ button.ghost {
 
 /*start - manager seller topbar*/
 
-.manager_seller_c_topbar_item {
+.manager-seller-c-topbar-item {
   margin-top: 0px;
-  width: 25%;
+  width: 40%;
   text-align: center;
   margin: 0px 10px 0px;
   height: auto;
@@ -535,13 +557,14 @@ button.ghost {
   border-style: solid;
   cursor: pointer;
 }
-.manager_seller_c_topbar_item.active {
+.manager-seller-c-topbar-item.active {
   border-color: #752E9E;
   background-color: #752E9E;
   color: white;
 }
-
 /*end - manager seller topbar*/
+
+
 
 .seller_c_sidebar_item.active{
   border-color: white;

@@ -1,0 +1,91 @@
+$themecolour:#553d6b;
+$lightselectcolour:#ede0fa;
+$vpalue : 60;
+.progressbar_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.progressbar_container_bg{
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+.progressbar_outer{
+    height: 160px;
+    width:160px;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+                -6px -6px 10px -1px rgba(105, 77, 139, 0.7)
+}
+.progressbar_inner{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+                inset -4px -4px 6px -1px rgba(105, 77, 139, 0.7),
+                0.5px 0.5px 0px rgba(0,0,0,0.15),
+                0px 12px 10px -10px rgba(0,0,0,0.05)
+}
+.progressbar_progress{
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+}
+.progressbar_svgcircle{
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+} 
+.progressbar_svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.bg{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom:0;
+    margin: auto;
+    width: 100%;
+    height: auto;
+
+}
+.progressbar_progress_new{
+    color: rgb(90, 89, 89);
+    font-weight: 700;
+    font-size: 30px;
+}
+.progressbar_outer_new{
+    height: 160px;
+    width:160px;
+    border-radius: 50%;
+    padding: 20px;
+}
+.progressbar_inner_new{
+    margin: 20px;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.progressbar_inner_newmiddle{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import QRCode from 'qrcode'
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 interface TicketProps {
  id : string
 }
@@ -26,7 +26,7 @@ const Ticket: React.FC<TicketProps> = ({id}) => {
                     </div>
                 :
                     <div>
-                        <center><img src={imag} alt="" width="200" height="200"/></center>
+                        <img src={imag} alt="" width="200" height="200"/>
                     </div>
                 }  
             </div>

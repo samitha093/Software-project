@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-//import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -9,12 +8,10 @@ import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-//import { styled } from '@mui/material/styles';
-import Pendingeventstable from '../../components/manager/Pendingeventstable'
-//import FormControl from '@mui/material/FormControl';
-//import FormLabel from '@mui/material/FormLabel';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+
+import Pendingeventstable from '../../components/manager/Pendingeventstable'
 
 import styles from './styles.module.css'
 import classnames from 'classnames';

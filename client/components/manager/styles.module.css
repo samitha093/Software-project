@@ -12,19 +12,23 @@
 
 .manager_c_sidebar_container {
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color: white;
     border-radius: 30px;
     padding: 16px 23px;
-    -webkit-box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69); 
-    box-shadow: 0px 0px 35px -11px rgba(0,0,0,0.69);
+    -webkit-box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
+    box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
+
 .manager_c_sidebar_item_icon.active {
     color: white;
 }
 
 .centername {
     text-align: center !important;
+}
+.css-1k9ek97{
+    background-color: none!important;
 }
 
 /*end - sidebar component*/
@@ -54,12 +58,6 @@
     box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
 
-.manager_c_topbar_item.active {
-    border-color: #752E9E;
-    background-color: #752E9E;
-    color: white;
-}
-
 .manager_c_topbar_item:hover {
     border-color: #752E9E;
     background-color: #752E9E;
@@ -74,17 +72,17 @@
     position: fixed;
     top: 70px;
     left: calc(50% - 207px);
-    width: 260px;
+    width: 250px;
     height: auto;
     min-height: 0px;
     padding: 10px 10px 10px;
     margin-left: 10%;
-  }
+}
 
 .manager_seller_c_topbar_container {
     display: flex;
     height: auto;
-    width: 110px;
+    width: 230px;
     padding: 10px;
     align-items: center;
     background-color: white;
@@ -99,8 +97,6 @@
     color: white;
 }
 
-
-
 /*end - seller topbar component*/
 
 @media only screen and (max-width: 600px) {
@@ -111,7 +107,6 @@
         min-height: 0px;
         padding: 10px 10px 0px;
         margin-top: 10px;
-        /*delete if not work*/
 
     }
 
@@ -402,7 +397,7 @@
     color: black
 }
 
-/*end-pendig tikcets info component*/
+/*end-pending tikcets info component*/
 
 /*start-active events component*/
 .manager_c_tickets_active {
@@ -454,7 +449,7 @@
     padding: 12px 15px;
     margin-bottom: 15px;
     margin-left: 15px;
-    width: 100%;
+    width: 80%;
     font-family: 'Open Sans', sans-serif;
 
 }
@@ -472,11 +467,106 @@
     overflow: hidden;
     width: 1000px;
     max-width: 100%;
-    min-height: 550px;
+    min-height: 400px;
     margin-left: 25%;
 }
-.manager_reset_password_submit_button{
-    margin-left: 45%;
+
+.manager_pwd_container{
+    margin-left: 150px;
+}
+
+.manager_reset_password_submit_button {
+    margin-left: 36%;
+    height: 40px;
+}
+
+.modern_form {
+    margin-right: 10px;
+}
+
+.manager_password_text {
+    margin-left: 20px;
+}
+
+.manager_error_message {
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    font-size: 12px;
+    margin-left: 15px;
+    margin-right: 70px;
+    text-align: justify;
+}
+
+.manager_passwordreset_list{
+    margin-left: 20px;
+    font-size: 14px;
+}
+.manager_passwordreset_list_topic{
+    margin-left: 20px;
+    margin-bottom: 3px;
+    font-size: 16px;
+}
+
+/*Start - Catergorylist Component*/
+
+.css-1rki8sg-MuiListItem-root {
+    background-color: transparent !important;
+}
+
+.css-1b7fp8k-MuiList-root {
+    width: 100%;
+    max-width: 400px;
+    background-color: transparent !important;
+}
+.css-1k9ek97 {
+    background-color: transparent !important;
+}
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+    padding-left: 0px;
+}
+
+.manager_settings_catergory_add_button {
+    height: 38px;
+}
+
+.manager_catergory_error_message {
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-left: 0px;
+    margin-right: 80px;
+    text-align: justify;
+}
+
+.css-13i4rnv-MuiGrid-root {
+    box-sizing: border-box;
+    margin: 15px !important;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.css-3vt552-MuiGrid-root {
+    -webkit-flex-basis: 50% !important;
+    -ms-flex-preferred-size: 50% !important;
+    flex-basis: 50% !important;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 50% !important;
+}
+
+.inputbox_modern_catergory {
+    background-color: rgba(238, 238, 238, 0.733);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    width: 55%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*start - seller approval*/
@@ -486,7 +576,7 @@
 
 /*end - seller approval*/
 
-/*start - manager dashboard */
+/*start - manager home */
 .manager_dashboard {
     flex: 15;
     width: 100%;
@@ -567,6 +657,11 @@
     justify-content: center;
     width: 75px;
 }
+
+.manager_homepage_table {
+    background-color: #752E9E !important;
+}
+
 
 @media only screen and (max-width: 1550px) {
     .manager_progressbar {

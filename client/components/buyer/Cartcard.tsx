@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './styles.module.scss'
 
 interface CartcardProps {
 
@@ -6,9 +7,9 @@ interface CartcardProps {
 
 const Cartcard: React.FC<CartcardProps> = ({}) => {
         return (
-            <div className='cartprice-card'>
-                <div className='cartprice-card-left'>Event Name</div>
-                <div className='cartprice-card-right'>LKR 123456</div>
+            <div className={styles.cartprice_card}>
+                <div className={styles.cartprice_card_left}>Event Name</div>
+                <div className={styles.cartprice_card_right}>LKR 123456</div>
             </div>
         );
 }

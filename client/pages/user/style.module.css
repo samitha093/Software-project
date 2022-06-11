@@ -64,14 +64,14 @@
 
   
 .btn_create{
-	  width :auto;
-	  margin-top: 20px;
-	  text-size-adjust: small;
-	  background-color: #533964;
-	  resize: both;
-	  border-radius: 20px;
-	  padding: 10px 40px;
-	  margin: 20px;
+	  width :auto !important;
+	  margin-top: 20px !important;
+	  text-size-adjust: small !important;
+	  background-color: #533964 !important;
+	  resize: both !important;
+	  border-radius: 20px !important;
+	  padding: 10px 40px !important;
+	  margin: 20px !important;
 	}
 .btn_create:hover {background-color:#905f91 }
 	
@@ -117,23 +117,28 @@
    justify-content: center;
    padding: 10px;
 }
-.trending-board-container{
- text-align: center;
-}
-.trending-board{
-	font-size: 40px;
-	color: #3b1c4e;
-	width: auto;
-	font-family: 'Handlee', cursive;
-}
+
+
 .svgstyle{
-	margin-bottom: -10px;
+	margin-bottom: -20px;
+}
+@media only screen and (max-width: 550px) {
+    
+	.svgstyle{
+		margin-bottom: -200px;
+	}
+}
+@media only screen and (max-width: 450px) {
+    
+	.svgstyle{
+		margin-bottom: -20px;
+	}
 }
 	
 @media only screen and (max-width: 900px) {
-    .btn_create{
-     font-size: 0;
-    }
+	.btn_create{
+		font-size: 0;
+	   }
 }
 
 @media only screen and (max-width: 1000px) {
