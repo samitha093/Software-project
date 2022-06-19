@@ -13,6 +13,7 @@ function createtickets (){
                 const event_date = data_event.event_date;
                 const event_category = data_event.event_category;
                 const area = data_event.area;
+                const img = data_event.image_url;
                 const eventid = data_crone[0].job_id[0];
                 const userid = data_event.userid;
                 const subdata = data_event.tickets;
@@ -36,6 +37,7 @@ function createtickets (){
                             event_date,
                             event_category,
                             area,
+                            img,
                             eventid,
                             userid,
                             });

@@ -15,6 +15,7 @@
     width: 100%;
     height: 88vh;
     overflow: auto;
+    padding-left: 30px;
 }
 .buyer_index_container_title{
     padding-left: 100px;
@@ -64,7 +65,8 @@
 .buyer_setting_container{
     display: flex;
     justify-content: center;
-    width: 85vw;
+    width: 100%;
+    padding-left: 100px;
 }
 /*end- Buyer settings pg*/
 /*start- Cart pg*/

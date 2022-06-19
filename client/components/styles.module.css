@@ -115,12 +115,18 @@
     background-color: white;
     border-bottom-left-radius: 19px;
 }
+.shop_card_controler_left:hover{
+    background-color: #efe2f5;
+}
 .shop_card_controler_right{
     color: black;
     display: flex;
     width: 50%;
     background-color: white;
     border-bottom-right-radius: 19px;
+}
+.shop_card_controler_right:hover{
+    background-color: #efe2f5;
 }
 .icon_card{
     display: flex;
@@ -227,7 +233,7 @@
 /*end - Shop*/
 /*end - mini cart*/
 .cart_drower{
-
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     background-color: white;
     position: fixed;
     top: 0;
@@ -276,7 +282,7 @@
     color: #533964;
 }
 .cart_drower_content_list_items{
-    height: 1000px;
+    height: auto;
 }
 .cart_drower_content_list::-webkit-scrollbar {
     background-color: #b9b9b9;
@@ -310,9 +316,27 @@
         font-size: 20px;
     }
 }
-
+.cart_drower_empty_cart_container{
+    width: 100%;
+    height: calc(100vh - 310px);
+    position: relative;
+}
+.cart_drower_empty_cart_container_img{
+    width: 150px;
+    height: 150px;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+}
+.cart_drower_empty_cart{
+    opacity: 0.5;
+    
+}
 /*end - mini cart*/
-/*start - mobile mudu drower*/
+/*start - mobile mini drower*/
 .menu_drower{
     background-color: white;
     position: fixed;
@@ -340,4 +364,4 @@
     margin-top: 20px;
 
 }
-/*end - mobile mudu drower*/
+/*end - mobile mini drower*/
