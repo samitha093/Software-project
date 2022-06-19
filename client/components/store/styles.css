@@ -1,0 +1,38 @@
+.top-events{
+    padding: 50px 0;
+    height: 500px;
+}
+.swiper-slide.swiper-slide-active{
+    height: 90% !important;
+    transition: 0.5s !important;
+}
+.swiper-slide{
+    background-color: black;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 70% !important;
+}
+.card-image{
+    width: 100%;
+}
+.swiper-wrapper{
+    height: 500px !important;
+}
+.swiper-card-design{
+    height: 100%;
+    object-fit: cover;
+}
+.swiper-pagination.swiper-pagination-fraction.swiper-pagination-horizontal{
+    display: none;
+}
+.swiper-button-next{
+    background-color: rgba(250, 235, 215, 0.295);
+    padding: 20px;
+}
+.swiper-button-prev{
+    background-color: rgba(250, 235, 215, 0.295);
+    padding: 20px;
+}

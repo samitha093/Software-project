@@ -131,6 +131,17 @@ const {emailnotifications} = require('../smtp/mail')
  *                  subject: "?"
  *                  html: "?" 
  * 
+ *          cartamount:
+ *              type: object
+ *              required:
+ *                  - cart
+ *              properties:
+ *                  cart:
+ *                      type: string
+ *                      description: validated cart data
+ *              example:
+ *                  cart: "?"
+ * 
  */
 
 /**
@@ -502,4 +513,72 @@ router.route('/categories').get(async(req,res) => {
         .then(data =>{res.status(200).json(data)})
         .catch(err => res.status(400).json("Wrong db connection"))
 });
+/**
+ * @swagger
+ * '/g/ticketbyid/{ticketid}':
+ *  get:
+ *     tags:
+ *     - User-buyer
+ *     summary: Get ticket data by id(Public Link*)
+ *     parameters:
+ *      - in: path
+ *        name: ticketid
+ *        schema:
+ *          type: String
+ *     requestBody:
+ *      required: false
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: error
+ *      500:
+ *        description: Server failure
+ */
+ router.route('/ticketbyid/:ticketid').get(async(req,res) => {
+    tickets.findById(req.params.ticketid)
+        .then(data =>{res.status(200).json(data)})
+        .catch(err => res.status(400).json("Wrong db connection"))
+});
+
+/**
+ * @swagger
+ * '/g/cartamount':
+ *  post:
+ *     tags:
+ *     - User-buyer
+ *     summary: Calculate cart amount (public link*)
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/cartamount'
+ *     responses:
+ *      200:
+ *        description: calculated
+ */
+  
+ router.route('/cartamount').post(async(req,res) => {
+    if(!req.body.cart){
+       return res.status(200).json(0);
+    }
+    const cart = req.body.cart;
+    console.log(cart);
+    var Amount = 0;
+    for (let item of cart) {
+    var data = await tickets.findById(item.itemid)
+        .then(data =>{
+            return Amount += data.buy_amount*item.qty;
+        })
+    }
+    console.log(data);
+    if(data){
+        res.status(200).json(data);
+    }else{
+        res.status(200).json(0);
+    }
+    
+});
+
 module.exports = router;

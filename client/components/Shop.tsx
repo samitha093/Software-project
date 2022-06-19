@@ -24,16 +24,13 @@ const Shop: React.FC<ShopProps> = ({}) => {
             })
             return;
         }) 
-        .finally(()=>{
-            console.log(items);
-        })
         
       },[])
 
         return (
             <div className={style.buyer_index_container} >
                 {items.map((itemdata)=>{
-                   return(<div key={itemdata.id}><Shopcard level='5'/></div>)
+                   return(<div key={itemdata.id}><Shopcard ticketid={itemdata.id} level='5'/></div>)
                 })}
             </div>
         );

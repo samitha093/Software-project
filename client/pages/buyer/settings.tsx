@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 import {gethost} from '../../session/Session';
 import Sidebar from '../../components/buyer/Sidebar'
 import Navbar from '../../components/Navbar'
+import Profile from '../../components/profile/Profile'
+import classnames from 'classnames';
 
 
 import styles from './styles.module.scss'
@@ -43,9 +45,11 @@ const settings: NextPage = () => {
                 <Navbar/>
                 <div className={styles.buyer_index}>
                     <Sidebar id="5"/>
-                    <div className={'${styles.buyer_setting} ${buyer_index_container_parent}'}>
+                    <div className={classnames(styles.buyer_setting, styles.buyer_index_container_parent)}>
                        <h1>Settings</h1>
-                       <div className={styles.buyer_setting_container}></div>
+                       <div className={styles.buyer_setting_container}>
+                         <Profile/>
+                       </div>
                        
                     </div>
                 </div>
