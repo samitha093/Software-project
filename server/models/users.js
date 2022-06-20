@@ -4,7 +4,7 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 const schema = mongoose.Schema;
 
 const qrschema = new schema({
-    qrcode:{type:String },
+    ticketid:{type:String },
     qrid:{type:String},
 },{
     timestamps:true

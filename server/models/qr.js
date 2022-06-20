@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 mongoose.plugin(require('@meanie/mongoose-to-json'));
 
+const schema = mongoose.Schema;
+
 const qrschema = new schema({
-    qr: {type:String},
-    validity:{type:Boolean, default:false},
-    status: {type:Boolean, default:false},
     userid:{type:String},
+    ticketid:{type:String},
+    qty:{type:Number},
+    validity:{type:Boolean, default:true},
+    status: {type:Boolean, default:true},
+    
 },{
     timestamps:true
 });
 
 const qr = mongoose.model('qr',qrschema);
-module.exports = tickets
+module.exports = qr

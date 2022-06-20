@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const schedule = require('node-schedule')
-const {createtickets} = require('./jobprofiles/cronjobs')
+const {createtickets, createQR, createQRguest} = require('./jobprofiles/cronjobs')
 const cookieParser = require('cookie-parser')
 
 require('dotenv').config();
@@ -55,7 +55,10 @@ const swaggerOptions = {
 };
 
 schedule.scheduleJob('* * * * * *',()=>{
+  //every second
   createtickets()
+  createQR()
+  createQRguest()
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
