@@ -1,6 +1,9 @@
 const crons = require('../models/cron');
 const events = require('../models/events');
 const tickets = require('../models/tickets');
+const orders = require('../models/orders');
+const qr = require('../models/qr');
+const User = require('../models/users');
 
 function createtickets (){
     crons.find({job_type:"A", job_status:true},(err,data_crone)=>{
@@ -49,9 +52,140 @@ function createtickets (){
                 }
             });
         }
-      })
+    })
+    return;
+};
+
+function createQR (){
+    //console.log("B")
+    crons.find({job_type:"B", job_status:true},(err,data_crone)=>{
+        if(data_crone.length>0){
+            data_crone[0].job_status = false;
+            data_crone[0].save()
+            //job
+            orders.findById(data_crone[0].job_id[0],(err,data_event)=>{
+                const subdata = data_event.tickets;
+                if(subdata){
+                    subdata.map(async(dt)=>{
+                        //console.log(dt.itemid)
+                        //console.log(dt.qty)
+                        const userid = data_event.userid;
+                        const ticketid = dt.itemid;
+                        const qty = dt.qty;        
+                        const newqr = new qr({
+                            userid,
+                            ticketid,
+                            qty,
+                        });
+                        var qrid = await newqr.save().then((result)=>{return result._id})
+                        const ticketqr ={
+                            "ticketid": ticketid,
+                            "qrid":qrid,
+                        }
+                        const ticket ={
+                            "eventname": "A",
+                            "event_venue": "A",
+                            "event_date": "A",
+                            "event_time": "A",
+                            "ticket_level": "A",
+                            "image_url": "A",
+                            "amount": "A",
+                            "qr":ticketqr,
+                        }
+                        await User.findById(data_event.userid).then(async(userdata)=> {
+                        userdata.tickets.push(ticket);
+                        userdata.save()
+                            .then(()=> console.log("Ticket Added to user profile"))
+                            .catch(err => console.log(err))
+                        })
+                    }
+                )}
+                
+            })
+        }
+    })
+    return;
+};
+
+
+
+function createQRguest (){
+    //console.log("B")
+    crons.find({job_type:"C", job_status:true},async(err,data_crone)=>{
+        if(data_crone.length>0){
+            data_crone[0].job_status = false;
+            data_crone[0].save()
+            //job
+            orders.findById(data_crone[0].job_id[0],async(err,data_event)=>{
+                const subdata = data_event.tickets;
+                const username = data_event.userid;
+                const usertype = data_event.usertype;
+                const newuser = new User({
+                    username,
+                    usertype,
+                    });
+                var userid = await newuser.save().then((result)=>{return result._id})
+                if(subdata){
+                    subdata.map(async(dt)=>{
+                        //console.log(dt.itemid)
+                        //console.log(dt.qty)
+                        const ticketid = dt.itemid;
+                        const qty = dt.qty;        
+                        const newqr = new qr({
+                            userid,
+                            ticketid,
+                            qty,
+                        });
+                        var qrid = await newqr.save().then((result)=>{return result._id})
+                        const ticketqr ={
+                            "ticketid": ticketid,
+                            "qrid":qrid,
+                        }
+                        const ticket ={
+                            "eventname": "A",
+                            "event_venue": "A",
+                            "event_date": "A",
+                            "event_time": "A",
+                            "ticket_level": "A",
+                            "image_url": "A",
+                            "amount": "A",
+                            "qr":ticketqr,
+                        }
+                        console.log(qrid)
+                        await User.findById(userid).then(async(userdata)=> {
+                        userdata.tickets.push(ticket);
+                        userdata.save()
+                            .then(()=> console.log("Ticket Added to user profile"))
+                            .catch(err => console.log(err))
+                        })
+                    }
+                )}
+                data_event.userid = userid;
+                data_event.save()
+                    .then(()=> console.log("oder updated"))
+                    .catch(err => console.log(err))
+
+            })
+
+        }
+    })
+    return;
+};
+
+function  testjob (){
+    crons.find({job_type:"D", job_status:true},(err,data_crone)=>{
+        if(data_crone.length>0){
+            data_crone[0].job_status = false;
+            data_crone[0].save()
+            //job
+
+        }
+    })
+    return;
 };
 
 module.exports={
     createtickets,
+    createQR,
+    createQRguest,
 };

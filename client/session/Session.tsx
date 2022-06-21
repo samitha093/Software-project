@@ -66,6 +66,11 @@ export const removecart = (itemid: string) =>{
         window.localStorage.removeItem('cart');
     }
 }
+
+export const dropcart = () =>{
+    window.localStorage.removeItem('cart');
+}
+
 export const syncdbcart = () =>{
 
 }

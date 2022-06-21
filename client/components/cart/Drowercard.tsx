@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import Swal from 'sweetalert2'
-import {gethost, removecart} from '../../session/Session';
+import {gethost, removecart, dropcart} from '../../session/Session';
 import styles from './styles.module.scss'
 
 interface DrowercardProps {

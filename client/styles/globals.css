@@ -17,7 +17,9 @@ a {
 :root {
   --parent-height: 220px;
 }
-
+.paypal-button-number-1{
+  display: none!important;
+}
 .navbar{
   position: fixed;
   top: 0;
