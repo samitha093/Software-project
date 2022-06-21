@@ -15,16 +15,19 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 // import { DateRangePicker} from '@mui/x-date-pickers-pro'
 // import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// import AdapterDateFns from '@mui/lab/AdapterDateFns';
+// import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusSquare} from "@fortawesome/free-regular-svg-icons";
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import {gethost } from '../session/Session';
+import axios from 'axios';
+import Swal from 'sweetalert2'
+
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -51,6 +54,7 @@ function getStyles(name: string, personName: string[], theme: Theme) {
         : theme.typography.fontWeightMedium,
   };
 }
+
 
 const advanceclick = () => {
     if (process.browser) {
@@ -84,9 +88,41 @@ const events: NextPage = () => {
         typeof value === 'string' ? value.split(',') : value,
       );
     };
-
-    
+    const [category, setCategory] = React.useState<any[]>([])
+    const [areaitems, setArea] = React.useState<any[]>([])
+    React.useEffect(()=>{
+        //get data
+        axios.get(gethost() + 'g/areas')
+        .then(async (res)=>{
+          await setArea(res.data);
+        })
+        .catch(()=>{
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'server is not Responding, please try again later!'
+            })
+            return;
+        }) 
+        axios.get(gethost() + 'g/categories')
+        .then(async (res)=>{
+          await setCategory(res.data);
+        })
+        .catch(()=>{
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'server is not Responding, please try again later!'
+            })
+            return;
+        }) 
+        
+      },[])
+    const nameChangeHandler = (event:any) =>{
+        console.log(event.target.value)
+    }
         return (
+            
             <div className={classnames(styles.buyer_bg, styles.shop_home)}>
                 <Navbar/>
                 <div className={styles.event_container}>
@@ -100,6 +136,7 @@ const events: NextPage = () => {
                                 sx={{ ml: 1, flex: 1 }}
                                 placeholder="Search Your Event"
                                 inputProps={{ 'aria-label': 'search google maps' }}
+                                onChange={nameChangeHandler}
                             />
                             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
                                 <SearchIcon />
@@ -116,25 +153,32 @@ const events: NextPage = () => {
                         <div className={styles.auto_hide} id="advance-opt">
                         <div>
                             <h4>
-                                Event Date
+                                Event Category 
                             </h4>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            {/* <DateRangePicker
-                                startText="Check-in"
-                                endText="Check-out"
-                                value={value}
-                                onChange={(newValue:any) => {
-                                setValue(newValue);
-                                }}
-                                renderInput={(startProps:any, endProps:any) => (
-                                <React.Fragment>
-                                    <TextField {...startProps} />
-                                    <Box sx={{ mx: 2 }}> to </Box>
-                                    <TextField {...endProps} />
-                                </React.Fragment>
-                                )}
-                            /> */}
-                            </LocalizationProvider>
+                            <div>
+                                <FormControl sx={{ m: 1, width: '90%' }}>
+                                    <InputLabel id="demo-multiple-name-label">Select Category</InputLabel>
+                                    <Select
+                                    labelId="demo-multiple-name-label"
+                                    id="demo-multiple-name"
+                                    multiple
+                                    value={personName}
+                                    onChange={handleChange}
+                                    input={<OutlinedInput label="Select Category" />}
+                                    MenuProps={MenuProps}
+                                    >
+                                    {category.map((name) => (
+                                        <MenuItem
+                                        key={name.id}
+                                        value={name.name}
+                                        style={getStyles(name, personName, theme)}
+                                        >
+                                        {name.name}
+                                        </MenuItem>
+                                    ))}
+                                    </Select>
+                                </FormControl>
+                            </div>
                         </div>
                         <div>
                             <h4>
@@ -152,13 +196,14 @@ const events: NextPage = () => {
                                     input={<OutlinedInput label="Select Category" />}
                                     MenuProps={MenuProps}
                                     >
-                                    {names.map((name) => (
+                                    {areaitems.map((name) => (
+                                        // console.log(name.name)
                                         <MenuItem
-                                        key={name}
-                                        value={name}
+                                        key={name.id}
+                                        value={name.name}
                                         style={getStyles(name, personName, theme)}
                                         >
-                                        {name}
+                                        {name.name}
                                         </MenuItem>
                                     ))}
                                     </Select>
@@ -177,35 +222,7 @@ const events: NextPage = () => {
                                 <FormControlLabel control={<Checkbox defaultChecked />} label="Level 5 Tickets" />
                             </FormGroup>
                         </div>
-                        <div>
-                            <h4>
-                                Event Category 
-                            </h4>
-                            <div>
-                                <FormControl sx={{ m: 1, width: '90%' }}>
-                                    <InputLabel id="demo-multiple-name-label">Select Category</InputLabel>
-                                    <Select
-                                    labelId="demo-multiple-name-label"
-                                    id="demo-multiple-name"
-                                    multiple
-                                    value={personName}
-                                    onChange={handleChange}
-                                    input={<OutlinedInput label="Select Category" />}
-                                    MenuProps={MenuProps}
-                                    >
-                                    {names.map((name) => (
-                                        <MenuItem
-                                        key={name}
-                                        value={name}
-                                        style={getStyles(name, personName, theme)}
-                                        >
-                                        {name}
-                                        </MenuItem>
-                                    ))}
-                                    </Select>
-                                </FormControl>
-                            </div>
-                        </div>
+                        
                         </div>
                         
                         </div>

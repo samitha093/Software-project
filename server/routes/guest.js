@@ -143,6 +143,21 @@ const {emailnotifications} = require('../smtp/mail')
  *                      description: validated cart data
  *              example:
  *                  cart: "?"
+ *          filter:
+ *              type: object
+ *              required:
+ *                  - dataarray
+ *                  - tag
+ *              properties:
+ *                  dataarray:
+ *                      type: string
+ *                      description: validated data data
+ *                  tag:
+ *                      type: string
+ *                      description: validated tag data
+ *              example:
+ *                  dataarray: "?"
+ *                  tag: "?"
  * 
  */
 
@@ -657,5 +672,32 @@ function usernamegenerator(length) {
    return result;
 }
 
+ /**
+ * @swagger
+ * '/g/tickets':
+ *  post:
+ *     tags:
+ *     - User-guest
+ *     summary: get tickts via filter
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/filter'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
+
+  router.route('/tickets').post((req,res) => {
+    tickets.find({},(err,data) => {
+        res.status(200).json(data) 
+    })
+});
 
 module.exports = router;
