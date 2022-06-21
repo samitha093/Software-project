@@ -160,8 +160,13 @@ function createQRguest (){
                         })
                     }
                 )}
-                
+                data_event.userid = userid;
+                data_event.save()
+                    .then(()=> console.log("oder updated"))
+                    .catch(err => console.log(err))
+
             })
+
         }
     })
     return;

@@ -145,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
             console.log(res);
             await dropcart();
             await uploadedData();
-            Router.push('/holder');
+            Router.push('/holder/'+res.data);
         }).catch((err)=>{
           console.log(err)
         })
