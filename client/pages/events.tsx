@@ -81,15 +81,20 @@ const events: NextPage = () => {
     const [personName, setPersonName] = React.useState<string[]>([]);
     const [personName2, setPersonName2] = React.useState<string[]>([]);
   
-    const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const handleChange = async(event: SelectChangeEvent<typeof personName>) => {
       const {
         target: { value },
       } = event;
-      setPersonName(
+      await setPersonName(
         // On autofill we get a the stringified value.
         typeof value === 'string' ? value.split(',') : value,
       );
-      console.log(value)
+      //console.log(value)
+      const reqData ={
+        tag:'category',
+        data:value
+      }
+      getdatafromfilter(reqData);
     };
     const handleChange2 = (event2: SelectChangeEvent<typeof personName2>) => {
         const {
@@ -99,7 +104,12 @@ const events: NextPage = () => {
           // On autofill we get a the stringified value.
           typeof value === 'string' ? value.split(',') : value,
         );
-        console.log(value)
+        //console.log(value)
+        const reqData ={
+          tag:'area',
+          data:value
+        }
+        getdatafromfilter(reqData);
       };
     const [category, setCategory] = React.useState<any[]>([])
     const [areaitems, setArea] = React.useState<any[]>([])
@@ -131,8 +141,14 @@ const events: NextPage = () => {
         }) 
         
       },[])
+    const [evntname, setevntname] = React.useState<string>("")
     const nameChangeHandler = (event:any) =>{
-        console.log(event.target.value)
+        setevntname(event.target.value);
+        const reqData ={
+          tag:'name',
+          data:event.target.value
+        }
+        getdatafromfilter(reqData);
     }
     const [l1, setL1] = React.useState<boolean>(true)
     const [l2, setL2] = React.useState<boolean>(true)
@@ -140,7 +156,7 @@ const events: NextPage = () => {
     const [l4, setL4] = React.useState<boolean>(true)
     const [l5, setL5] = React.useState<boolean>(true)
     const levelChangeHandler = (event:any,value:string) =>{
-      console.log(value);
+      //console.log(value);
       if(value == 'l1'){
         if(l1 == true){
           setL1(false);
@@ -176,7 +192,47 @@ const events: NextPage = () => {
           setL5(true);
         }
       }
+      const TicketTypes={
+        l1:value=='l1'?l1==true?false:true:l1,
+        l2:value=='l2'?l2==true?false:true:l2,
+        l3:value=='l3'?l3==true?false:true:l3,
+        l4:value=='l4'?l4==true?false:true:l4,
+        l5:value=='l5'?l5==true?false:true:l5,
+      }
+      const reqData ={
+        tag:'ticketTypes',
+        data:TicketTypes
+      }
+      getdatafromfilter(reqData);
   }
+  const [tickerarray, settickerarray] = React.useState<any>([])
+  const getdatafromfilter = (data:any) =>{
+    //console.log(event.target.value)
+    const TicketTypes={
+      l1:l1,
+      l2:l2,
+      l3:l3,
+      l4:l4,
+      l5:l5
+    }
+    const reqDataset ={
+      name: data.tag=='name'?data.data:evntname,
+      category:data.tag=='category'?data.data:personName,
+      area:data.tag=='area'?data.data:personName2,
+      ticketTypes:data.tag=='ticketTypes'?data.data:TicketTypes
+    }
+    const reqData ={
+      dataarray:reqDataset
+    }
+    axios.post(gethost() + 'g/tickets',reqData)
+    .then(async (res)=>{
+      settickerarray(res.data)
+    })
+    .catch((err)=>{
+     console.log(err);
+    }) 
+}
+
         return (
             
             <div className={classnames(styles.buyer_bg, styles.shop_home)}>
@@ -283,7 +339,7 @@ const events: NextPage = () => {
                         </div>
                     </div>
                     <div className={styles.event_container_Right}>
-                        <Shop/>
+                        <Shop tickets={tickerarray}/>
                     </div>
                 </div>
             </div>
