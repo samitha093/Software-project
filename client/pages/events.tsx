@@ -26,6 +26,7 @@ import classnames from 'classnames';
 import {gethost } from '../session/Session';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import id from 'date-fns/esm/locale/id/index.js';
 
 
 
@@ -78,6 +79,7 @@ const events: NextPage = () => {
     // const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
     const theme = useTheme();
     const [personName, setPersonName] = React.useState<string[]>([]);
+    const [personName2, setPersonName2] = React.useState<string[]>([]);
   
     const handleChange = (event: SelectChangeEvent<typeof personName>) => {
       const {
@@ -87,7 +89,18 @@ const events: NextPage = () => {
         // On autofill we get a the stringified value.
         typeof value === 'string' ? value.split(',') : value,
       );
+      console.log(value)
     };
+    const handleChange2 = (event2: SelectChangeEvent<typeof personName2>) => {
+        const {
+          target: { value },
+        } = event2;
+        setPersonName2(
+          // On autofill we get a the stringified value.
+          typeof value === 'string' ? value.split(',') : value,
+        );
+        console.log(value)
+      };
     const [category, setCategory] = React.useState<any[]>([])
     const [areaitems, setArea] = React.useState<any[]>([])
     React.useEffect(()=>{
@@ -121,6 +134,49 @@ const events: NextPage = () => {
     const nameChangeHandler = (event:any) =>{
         console.log(event.target.value)
     }
+    const [l1, setL1] = React.useState<boolean>(true)
+    const [l2, setL2] = React.useState<boolean>(true)
+    const [l3, setL3] = React.useState<boolean>(true)
+    const [l4, setL4] = React.useState<boolean>(true)
+    const [l5, setL5] = React.useState<boolean>(true)
+    const levelChangeHandler = (event:any,value:string) =>{
+      console.log(value);
+      if(value == 'l1'){
+        if(l1 == true){
+          setL1(false);
+        }else{
+          setL1(true);
+        }
+      }
+      if(value == 'l2'){
+        if(l2 == true){
+          setL2(false);
+        }else{
+          setL2(true);
+        }
+      }
+      if(value == 'l3'){
+        if(l3 == true){
+          setL3(false);
+        }else{
+          setL3(true);
+        }
+      }
+      if(value == 'l4'){
+        if(l4 == true){
+          setL4(false);
+        }else{
+          setL4(true);
+        }
+      }
+      if(value == 'l5'){
+        if(l5 == true){
+          setL5(false);
+        }else{
+          setL5(true);
+        }
+      }
+  }
         return (
             
             <div className={classnames(styles.buyer_bg, styles.shop_home)}>
@@ -171,7 +227,6 @@ const events: NextPage = () => {
                                         <MenuItem
                                         key={name.id}
                                         value={name.name}
-                                        style={getStyles(name, personName, theme)}
                                         >
                                         {name.name}
                                         </MenuItem>
@@ -191,8 +246,8 @@ const events: NextPage = () => {
                                     labelId="demo-multiple-name-label"
                                     id="demo-multiple-name"
                                     multiple
-                                    value={personName}
-                                    onChange={handleChange}
+                                    value={personName2}
+                                    onChange={handleChange2}
                                     input={<OutlinedInput label="Select Category" />}
                                     MenuProps={MenuProps}
                                     >
@@ -201,7 +256,7 @@ const events: NextPage = () => {
                                         <MenuItem
                                         key={name.id}
                                         value={name.name}
-                                        style={getStyles(name, personName, theme)}
+                                        style={getStyles(name, personName2, theme)}
                                         >
                                         {name.name}
                                         </MenuItem>
@@ -215,11 +270,11 @@ const events: NextPage = () => {
                                 Ticket Types
                             </h4>
                             <FormGroup>
-                                <FormControlLabel control={<Checkbox defaultChecked />} label="Level 1 Tickets" />
-                                <FormControlLabel control={<Checkbox defaultChecked />} label="Level 2 Tickets" />
-                                <FormControlLabel control={<Checkbox defaultChecked />} label="Level 3 Tickets" />
-                                <FormControlLabel control={<Checkbox defaultChecked />} label="Level 4 Tickets" />
-                                <FormControlLabel control={<Checkbox defaultChecked />} label="Level 5 Tickets" />
+                                <FormControlLabel control={<Checkbox checked={l1} />} label="Level 1 Tickets" onChange={(e)=>levelChangeHandler(e,'l1')}/>
+                                <FormControlLabel control={<Checkbox checked={l2} />} label="Level 2 Tickets" onChange={(e)=>levelChangeHandler(e,'l2')}/>
+                                <FormControlLabel control={<Checkbox checked={l3} />} label="Level 3 Tickets" onChange={(e)=>levelChangeHandler(e,'l3')}/>
+                                <FormControlLabel control={<Checkbox checked={l4} />} label="Level 4 Tickets" onChange={(e)=>levelChangeHandler(e,'l4')}/>
+                                <FormControlLabel control={<Checkbox checked={l5} />} label="Level 5 Tickets" onChange={(e)=>levelChangeHandler(e,'l5')}/>
                             </FormGroup>
                         </div>
                         
