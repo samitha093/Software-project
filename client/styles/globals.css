@@ -53,6 +53,11 @@ a {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
+
+.modern_btn:hover{
+	background-color: transparent;
+	color: #BB9CD1;
+}
 .modern_btn:active {
 	transform: scale(0.95);
 }

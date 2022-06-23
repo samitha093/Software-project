@@ -104,7 +104,7 @@ async function signUpformn(){
 
   const passwordChangeHandler = (e:any)=>{
       setPassword(e.target.value);
-      const isValid = e.target.value.length > 5;
+      const isValid = e.target.value.length > 8;
       setPasswordError(!isValid);
   }
   
