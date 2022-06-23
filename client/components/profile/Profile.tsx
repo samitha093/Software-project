@@ -7,11 +7,16 @@ import styles from './Styles.module.scss'
 import Account from './Account'
 import Security from './Security'
 import Advance from './Advance'
+import axios from 'axios'
 
 function Profile() {
     const [openAccount, setopenAccount] = React.useState(true);
     const [openSecurity, setopenSecurity] = React.useState(false);
     const [openAdvance, setopenAdvance] = React.useState(false);
+    const submitotp = () => {
+        console.log('otp');
+    };
+
   return (
     <div className={styles.profile_container}>
         <div className={styles.profile_container_bg}>
@@ -29,7 +34,7 @@ function Profile() {
                         </div>                      
                     </div>
                     <div className={styles.profile_card_container_footer}>
-                        <h3>Complete My Profile</h3>
+                        <h3><div onClick={submitotp}>Verify My Account</div></h3>
                     </div>
                 </div>
                 <div className={styles.profile_card_menu}>

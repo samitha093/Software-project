@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@meanie/mongoose-to-json": "^2.6.0",
+    "@mui/x-date-pickers-pro": "^5.0.0-alpha.6",
     "axios": "^0.24.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

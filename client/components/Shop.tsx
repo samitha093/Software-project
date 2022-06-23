@@ -5,13 +5,13 @@ import {gethost } from '../session/Session';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 interface ShopProps {
-
+ tickets:any
 }
 
-const Shop: React.FC<ShopProps> = ({}) => {
+const Shop: React.FC<ShopProps> = ({tickets}) => {
     const [items, setitems] = React.useState<any[]>([])
     React.useEffect(()=>{
-        //get data
+
         axios.get(gethost() + 'g/tickets')
         .then(async (res)=>{
           await setitems(res.data);
@@ -24,16 +24,17 @@ const Shop: React.FC<ShopProps> = ({}) => {
             })
             return;
         }) 
-        .finally(()=>{
-            console.log(items);
-        })
         
       },[])
+      React.useEffect(()=>{
+        setitems(tickets)
+        console.log(tickets)
+      },[tickets])
 
         return (
             <div className={style.buyer_index_container} >
                 {items.map((itemdata)=>{
-                   return(<div key={itemdata.id}><Shopcard level='5'/></div>)
+                   return(<div key={itemdata.id}><Shopcard ticketid={itemdata.id} level='5'/></div>)
                 })}
             </div>
         );

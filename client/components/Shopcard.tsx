@@ -14,8 +14,13 @@ import add from '../assets/icons/plus.png'
 import style from './styles.module.css'
 import styles from './buyer/styles.module.scss'
 import classnames from 'classnames';
+import {addcart} from '../session/Session';
+import Swal from 'sweetalert2'
+import axios from 'axios';
+import {gethost} from '../session/Session';
 interface ShopcardProps {
   level : string,
+  ticketid:string
  }
  const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
@@ -55,7 +60,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-const Shopcard: React.FC<ShopcardProps> = ({level}) => {
+const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
@@ -63,7 +68,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
   const [openbid, setOpenbid] = React.useState(false);
   const [ticketpricet, setticketprice] = React.useState(1495);
   const [ticketbidpricet, setticketbidprice] = React.useState(ticketpricet);
-  const [ticketcount, setticketcount] = React.useState(0);
+  const [ticketcount, setticketcount] = React.useState(1);
   useEffect(()=>{
     setTicketcolor("#881700");
     setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
@@ -83,6 +88,38 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
     setOpenbid(false);
   };
 
+  const paynow = () => {
+    axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+    .then(async (res)=>{
+        if(res.data.type == 'MANAGER' ||  res.data.type == 'SELLER'){
+          setOpenbuy(false);
+          Swal.fire({
+            icon: 'error',
+            title: 'Insufficient Permissions',
+            text: 'You do not have permission to buy Tickets'
+            })
+        }else{
+          addcart(ticketid,ticketcount)
+          setOpenbuy(false);
+          Swal.fire({
+            icon: 'success',
+            title: 'successfull',
+            text: 'Ticket Added To Your Cart'
+            })
+        }
+    })
+    .catch((err)=>{
+      addcart(ticketid,ticketcount)
+      setOpenbuy(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'successfull',
+        text: 'Ticket Added To Your Cart'
+        })
+    })  
+
+  };
+
   const handleClickadd = () => {
     var i = ticketcount;
     i += 1;
@@ -90,7 +127,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
   };
   const handleClickremove = () => {
     var i = ticketcount;
-    if(i>0){
+    if(i>1){
       i -= 1;
     }
     setticketcount(i);
@@ -175,8 +212,8 @@ const Shopcard: React.FC<ShopcardProps> = ({level}) => {
               <div className={style.ticketview_count_number_b} ><Image className={style.button_img} src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
             </div>
           </div>
-          <div className={style.ticketview_price_btn}>
-            PAY NOW ( LKR {ticketpricet*ticketcount}.00 )
+          <div className={style.ticketview_price_btn} onClick={paynow}>
+            ADD TO CART ( LKR {ticketpricet*ticketcount}.00 )
           </div>
         </DialogContent>
       </BootstrapDialog>

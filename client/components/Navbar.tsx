@@ -8,15 +8,22 @@ import CloseIcon from '@mui/icons-material/Close';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars} from "@fortawesome/free-solid-svg-icons";
 import Swal from 'sweetalert2'
-import {gethost} from '../session/Session';
+import {gethost, getcart, dropcart} from '../session/Session';
 import style from './styles.module.css'
+import Drowercard from './cart/Drowercard'
+import Image from 'next/image';
+import emptycart from '../assets/emptycart.png'
+import { PayPalButton } from "react-paypal-button-v2";
 interface NavbarProps {
 
 }
 
 const Navbar: React.FC<NavbarProps> = ({}) => {
+  const Router = useRouter();
     const router = useRouter()
     const [navbar,setNavbar] = React.useState(false);
+    const [cart,setcart] = React.useState([]);
+    const [Amount,setAmount] = React.useState(0);
     async function navclick (){
       axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
@@ -52,18 +59,20 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
        }
        }
     };
-    const openminicart = () => {
-       if (process.browser) {
-         const container = document.getElementById("minicart");
-       if (container !== null) {
-        if(window.innerWidth < 500){
-          container.style.width ='300px';
-        }
-      //     container.classList.add("right-panel-active");
-      container.style.right ='0px';
-       }
-       }
-    };
+  const openminicart = async() => {
+      if (process.browser) {
+        const container = document.getElementById("minicart");
+      if (container !== null) {
+      if(window.innerWidth < 500){
+        container.style.width ='300px';
+      }
+    //     container.classList.add("right-panel-active");
+    container.style.right ='0px';
+    await setcart(getcart());
+    //await timeout(2000);
+    await uploadeAmount();
+      }}
+  };
     const openminimenu = () => {
       if (process.browser) {
         const container = document.getElementById("minimenu");
@@ -88,10 +97,112 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
         setNavbar(false);
       }
     }
+    const uploadedData = async()=>{
+      await setcart(getcart());
+      //await timeout(2000);
+      await uploadeAmount();
+    };
     //window.addEventListener('scroll',changebg);
     React.useEffect(() => {
     window.addEventListener('scroll',changebg);
+    setcart(getcart());
+    uploadeAmount();
     },[]);
+
+    function timeout(delay: number) {
+      return new Promise( res => setTimeout(res, delay) );
+  }
+    const uploadeAmount = async()=>{
+      const  cartpack = {
+        cart:getcart()
+      }
+      await axios.post(gethost() + 'g/cartamount/',cartpack)
+        .then((res)=>{
+          setAmount(res.data);
+        })
+    };
+    const [scriptLoaded, setScriptLoaded] = React.useState(false);
+    const addPaypalScript = () => {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=Ab1vtggVo25O2zON_sOrXYtdkyJwnI_xYgT622XhTcOmqNiy_T_8yTMbZSw81X8-JHubAprU6wdNfMub&disable-funding=card`;
+      script.async = true;
+
+      script.onload = () => setScriptLoaded(true);
+
+      document.body.appendChild(script);
+    };
+
+    React.useEffect(() => {
+      addPaypalScript();
+    }, []);
+
+    const checkoutcartguest = async() =>{
+      const  cartpack = {
+        cart:getcart()
+        }
+        await axios.post(gethost() + 'g/order',cartpack).then(async (res)=>{
+            console.log(res);
+            await dropcart();
+            await uploadedData();
+            Router.push('/holder/'+res.data);
+        }).catch((err)=>{
+          console.log(err)
+        })
+    }
+
+    const checkoutcart = async() =>{
+      await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true}).then(async (res)=>{
+        if(res.data.type == 'BUYER'){
+          // route to account
+          const config = {
+            headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+          };
+          const  cartpack = {
+              cart:getcart()
+          }
+          axios.post(gethost() + 'b/order',cartpack,config).then(async (res)=>{
+              console.log(res);
+              await dropcart();
+              await uploadedData();
+          })
+          .catch((err)=>{
+            Swal.fire({
+                icon: 'error',
+                title: 'Payment Failed',
+                text: 'Please try again',
+                showConfirmButton: false,
+                timer: 2500
+            })
+          }) 
+        }else if(res.data.type == 'MANAGER'){
+          //not acess
+          Swal.fire({
+            icon: 'error',
+            title: 'Permission Denied',
+            text: 'Manager account havenot permission to Buy Tickets ',
+            showConfirmButton: false,
+            timer: 2500
+          })
+        }else if(res.data.type == 'SELLER'){
+          //not access
+          Swal.fire({
+            icon: 'error',
+            title: 'Permission Denied',
+            text: 'Seller account havenot permission to Buy Tickets ',
+            showConfirmButton: false,
+            timer: 2500
+          })
+        }else{
+         // guest user
+         checkoutcartguest();
+        }
+      })
+      .catch((err)=>{
+        checkoutcartguest();
+      }) 
+  };
+
         return (
           <div>
             <div className={navbar ? 'navbar active' : 'navbar'}>
@@ -122,17 +233,40 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                 <div className={style.cart_drower_content}> 
                   <div className={style.cart_drower_content_list}>
                     <div className={style.cart_drower_content_list_items}>
-                      jdskhfkjhdsfkhdsk
+                    {cart !==null ? cart.map((itemdata:any)=>{
+                      return(<div key={itemdata.itemid}>
+                        <Drowercard ticketid={itemdata.itemid} qty={itemdata.qty} data={{change: uploadedData}}/>
+                      </div>)
+                    }):<div className={style.cart_drower_empty_cart_container}>
+                      <div className={style.cart_drower_empty_cart_container_img}> 
+                        <Image className={style.cart_drower_empty_cart} src = {emptycart} layout = "responsive" m-50="true" alt=''/>
+                      </div>
+                      </div>}
                     </div>
                   </div>
                   <div className={style.cart_drower_content_btn}>
                     <div className={style.cart_drower_content_btn_flex}>
-                    <div className={style.text_left}>Total </div><div className={style.text_right} >50007.00 LKR</div>
+                    <div className={style.text_left}>Total </div><div className={style.text_right} >{Amount}.00 LKR</div>
                     </div>
                     <div className={style.gotocheckout}>
-                    <Link href ="/buyer/checkout">
+                    {/* <Link href ="/buyer/checkout">
                       <div className={style.gotocheckout_btn}>Go to checkout</div>
-                    </Link>
+                    </Link> */}
+                    {scriptLoaded ? <PayPalButton
+                      amount={(Amount/360).toFixed(2)}
+                      onSuccess={async(details:any, data:any) => {
+                        //save the transaction
+                        //console.log(details);
+                        await checkoutcart();
+                        Swal.fire({
+                          icon: 'success',
+                          title: 'Payment SucessFull',
+                          text: 'Thank You Join With Us',
+                          showConfirmButton: false,
+                          timer: 2500
+                        })
+                      }}
+                    />: (<span>Loading...</span>)}
                     </div>
                   </div>
                   
@@ -153,5 +287,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
             
         );
 }
+
+//Ab1vtggVo25O2zON_sOrXYtdkyJwnI_xYgT622XhTcOmqNiy_T_8yTMbZSw81X8-JHubAprU6wdNfMub
 
 export default Navbar;

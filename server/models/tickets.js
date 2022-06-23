@@ -26,6 +26,7 @@ const ticketschema = new schema({
     event_date: {type:String},
     event_category: {type:String},
     area: {type:String},
+    img: {type:String},
     bids : [bidschema], // null in the begin
     status: {type:Boolean, default:true},
     eventid:{type:String},

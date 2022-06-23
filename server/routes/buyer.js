@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const User = require('../models/users');
+const tickets = require('../models/tickets');
+const orders = require('../models/orders')
+const crons = require('../models/cron');
 const {verifyAccessToken,buyerverification} = require('../auth/jwt');
+const {getusername, getuserid} = require('../middlewares/user');
 
 /**
  * @swagger
@@ -9,16 +13,12 @@ const {verifyAccessToken,buyerverification} = require('../auth/jwt');
  *          addtickets:
  *              type: object
  *              required:
- *                  - id
- *                  - ticketscount
+ *                  - cart
  *              properties:
- *                  id:
- *                      type: string
- *                  ticketscount:
+ *                  cart:
  *                      type: string
  *              example:
- *                  id: "?"
- *                  ticketscount: "?"
+ *                  cart: "?"
  */
 
 /**
@@ -49,15 +49,35 @@ const {verifyAccessToken,buyerverification} = require('../auth/jwt');
  *              500:
  *                  description: Server failure
  */
+ router.route('/gettickets/:type').get(verifyAccessToken,buyerverification,getuserid,async(req,res) => {
+  const userid = req.userid;
+  const type = req.params.type;
+  await User.findById(userid).then(async(data) =>{
+    var subdata = data.tickets;
+    if(type == 'MT'){
+      subdata = await subdata.filter(val => (val.ticket_status == false && val.bid_status == false))
+    }else if(type == 'PP'){
+      subdata = await subdata.filter(val => (val.payment_status == true && val.bid_status == true))
+    }else if(type == 'PB'){
+      subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
+    }else if(type == 'OT'){
+      subdata = await subdata.filter(val => (val.ticket_status == true && val.bid_status == false))
+    }else{
+      res.status(200).json("not found data")
+      return;
+    }
+  res.status(200).json(subdata)
+  })
 
+ })
 
 /**
  * @swagger
- * '/b/buy':
+ * '/b/order':
  *  post:
  *     tags:
  *     - User-buyer
- *     summary: add ticket for user (data-in*)
+ *     summary: add ticket for user (Web-hook*)
  *     requestBody:
  *      required: true
  *      content:
@@ -72,24 +92,49 @@ const {verifyAccessToken,buyerverification} = require('../auth/jwt');
  *      500:
  *        description: server error
  */
- router.route('/buy').post(verifyAccessToken,buyerverification,(req,res) => {
-   const ticket ={
-    "eventname": "A",
-    "event_venue": "A",
-    "event_date": "A",
-    "event_time": "A",
-    "ticket_level": "A",
-    "image_url": "A",
-    "amount": "A"
-   }
-    User.find({email:req.userdata.email, status:true})
-        .then(data =>{
-            data[0].tickets.push(ticket);
-            data[0].save()
-                .then((result)=> res.status(200).json("Ticket Added"))
-              .catch(err => res.status(500).json(err))
-        })
-        .catch(err => res.status(400).json(err))
+ router.route('/order').post(verifyAccessToken,buyerverification,getuserid,async(req,res) => {
+    const userid = req.userid;
+    const usertype = req.userdata.type;
+
+   const neworder = new orders({
+    userid,
+    usertype
+   });
+   var orderid = await neworder.save().then((result)=>{return result._id})
+   //console.log(orderid);
+  //console.log(req.body.cart)
+  const cart = req.body.cart;
+  for (let item of cart) {
+    await tickets.findById(item.itemid)
+      .then(async(data) =>{
+        data.buy_quantity -= item.qty;
+        data.save()
+          .then(()=> console.log("ticket updated"))
+          .catch(err => console.log(err))
+        //console.log(req.userid);
+        //console.log(req.userdata.type);
+      })
+    }
+    await orders.findById(orderid)
+    .then(async(ordersata)=> {
+      ordersata.tickets = cart;
+      ordersata.save()
+          .then(()=> console.log("oder updated"))
+          .catch(err => console.log(err))
+    })
+
+    const job_type = "B";
+    const job_name = "CREATE_QR";
+    const job_id = orderid;
+    const job_status = true;         
+    const newcrons = new crons({
+        job_type,
+        job_name,
+        job_id,
+        job_status,
+        });
+    newcrons.save()
+    res.status(200).json("Sys Prop Enabled")
 });
 
 /**

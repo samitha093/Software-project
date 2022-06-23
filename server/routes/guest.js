@@ -4,6 +4,8 @@ const User = require('../models/users');
 const tickets = require('../models/tickets');
 const util_area = require('../models/util_area');
 const util_category = require('../models/util_category');
+const orders = require('../models/orders')
+const crons = require('../models/cron');
 const {a, b, c} = require('../views/otp')
 const {secretGenerator, otpgenerator} = require('../auth/jwt')
 const {emailnotifications} = require('../smtp/mail')
@@ -130,6 +132,27 @@ const {emailnotifications} = require('../smtp/mail')
  *                  email: "?"
  *                  subject: "?"
  *                  html: "?" 
+ * 
+ *          cartamount:
+ *              type: object
+ *              required:
+ *                  - cart
+ *              properties:
+ *                  cart:
+ *                      type: string
+ *                      description: validated cart data
+ *              example:
+ *                  cart: "?"
+ *          filter:
+ *              type: object
+ *              required:
+ *                  - dataarray
+ *              properties:
+ *                  dataarray:
+ *                      type: string
+ *                      description: validated data data
+ *              example:
+ *                  dataarray: "?"
  * 
  */
 
@@ -502,4 +525,248 @@ router.route('/categories').get(async(req,res) => {
         .then(data =>{res.status(200).json(data)})
         .catch(err => res.status(400).json("Wrong db connection"))
 });
+/**
+ * @swagger
+ * '/g/ticketbyid/{ticketid}':
+ *  get:
+ *     tags:
+ *     - User-buyer
+ *     summary: Get ticket data by id(Public Link*)
+ *     parameters:
+ *      - in: path
+ *        name: ticketid
+ *        schema:
+ *          type: String
+ *     requestBody:
+ *      required: false
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: error
+ *      500:
+ *        description: Server failure
+ */
+ router.route('/ticketbyid/:ticketid').get(async(req,res) => {
+    tickets.findById(req.params.ticketid)
+        .then(data =>{res.status(200).json(data)})
+        .catch(err => res.status(400).json("Wrong db connection"))
+});
+
+/**
+ * @swagger
+ * '/g/cartamount':
+ *  post:
+ *     tags:
+ *     - User-buyer
+ *     summary: Calculate cart amount (public link*)
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/cartamount'
+ *     responses:
+ *      200:
+ *        description: calculated
+ */
+  
+ router.route('/cartamount').post(async(req,res) => {
+    if(!req.body.cart){
+       return res.status(200).json(0);
+    }
+    const cart = req.body.cart;
+    console.log(cart);
+    var Amount = 0;
+    for (let item of cart) {
+    var data = await tickets.findById(item.itemid)
+        .then(data =>{
+            return Amount += data.buy_amount*item.qty;
+        })
+    }
+    console.log(data);
+    if(data){
+        res.status(200).json(data);
+    }else{
+        res.status(200).json(0);
+    }
+    
+});
+
+/**
+ * @swagger
+ * '/g/order':
+ *  post:
+ *     tags:
+ *     - User-buyer
+ *     summary: add ticket for guest user (Web-hook*)-public carefull
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/addtickets'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
+ router.route('/order').post(async(req,res) => {
+    const userid = usernamegenerator(20);
+    const usertype = "GUEST";
+   const neworder = new orders({
+    userid,
+    usertype
+   });
+    var orderid = await neworder.save().then((result)=>{return result._id})
+    //console.log(neworder);
+    const cart = req.body.cart;
+    for (let item of cart) {
+      await tickets.findById(item.itemid)
+        .then(async(data) =>{
+          data.buy_quantity -= item.qty;
+          data.save()
+            .then(()=> console.log("ticket updated"))
+            .catch(err => console.log(err))
+          //console.log(req.userid);
+          //console.log(req.userdata.type);
+        })
+      }
+    await orders.findById(orderid).then(async(ordersata)=> {
+    ordersata.tickets = cart;
+    ordersata.save()
+        .then(()=> console.log("oder updated"))
+        .catch(err => console.log(err))
+    })
+    const job_type = "C";
+    const job_name = "CREATE_QR";
+    const job_id = orderid;
+    const job_status = true;         
+    const newcrons = new crons({
+        job_type,
+        job_name,
+        job_id,
+        job_status,
+        });
+    newcrons.save()
+    res.status(200).json(orderid)
+
+});
+
+function usernamegenerator(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
+
+ /**
+ * @swagger
+ * '/g/tickets':
+ *  post:
+ *     tags:
+ *     - User-guest
+ *     summary: get tickts via filter
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/filter'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
+
+  router.route('/tickets').post(async(req,res) => {
+    // tickets.find({},(err,data) => {
+    //     res.status(200).json(data) 
+    // })
+    var dataset1 = [];
+    if(!(req.body.dataarray.name =='')){
+        //console.log(req.body.dataarray.name)
+        var userRegex = new RegExp(req.body.dataarray.name, 'i')
+        dataset1 = await tickets.find({event_name: userRegex},(err,data) => {return data})
+    }else{
+        dataset1 = await tickets.find({},(err,data) => {return data})
+    }
+    //console.log(dataset)
+    var dataset2 = [];
+    if(req.body.dataarray.category.length>0){
+        var subdoc = req.body.dataarray.category;
+        dataset2 = dataset1.filter(val => (
+            val.event_category == subdoc[0] 
+            || val.event_category == subdoc[1]
+            || val.event_category == subdoc[2]
+            || val.event_category == subdoc[3]
+            || val.event_category == subdoc[4]
+            || val.event_category == subdoc[5]
+            || val.event_category == subdoc[6]
+            || val.event_category == subdoc[7]
+            || val.event_category == subdoc[8]
+            || val.event_category == subdoc[9]
+            || val.event_category == subdoc[10]
+            || val.event_category == subdoc[11]
+            || val.event_category == subdoc[12]
+            || val.event_category == subdoc[13]
+            || val.event_category == subdoc[14]
+        ));
+    }else{
+        dataset2 = dataset1;
+    }
+    //console.log(dataset2)
+    var dataset3 = [];
+    if(req.body.dataarray.area.length>0){
+        var subdoc = req.body.dataarray.area;
+        dataset3 = dataset2.filter(val => (
+            val.area == subdoc[0] 
+            || val.area == subdoc[1]
+            || val.area == subdoc[2]
+            || val.area == subdoc[3]
+            || val.area == subdoc[4]
+            || val.area == subdoc[5]
+            || val.area == subdoc[6]
+            || val.area == subdoc[7]
+            || val.area == subdoc[8]
+            || val.area == subdoc[9]
+            || val.area == subdoc[10]
+            || val.area == subdoc[11]
+            || val.area == subdoc[12]
+            || val.area == subdoc[13]
+            || val.area == subdoc[14]
+        ));
+    }else{
+        dataset3 = dataset2;
+    }
+    //console.log(dataset3)
+    //console.log(req.body.dataarray.ticketTypes.l1)
+    if(!req.body.dataarray.ticketTypes.l1){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 1))
+    }
+    if(!req.body.dataarray.ticketTypes.l2){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 2))
+    }
+    if(!req.body.dataarray.ticketTypes.l3){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 3))
+    }
+    if(!req.body.dataarray.ticketTypes.l4){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 4))
+    }
+    if(!req.body.dataarray.ticketTypes.l5){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 5))
+    }
+    res.status(200).json(dataset3) 
+});
+
 module.exports = router;
