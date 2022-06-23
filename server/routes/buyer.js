@@ -54,13 +54,13 @@ const {getusername, getuserid} = require('../middlewares/user');
   const type = req.params.type;
   await User.findById(userid).then(async(data) =>{
     var subdata = data.tickets;
-    if(type == 'MT'){
+    if(type == 'mt'){
       subdata = await subdata.filter(val => (val.ticket_status == false && val.bid_status == false))
-    }else if(type == 'PP'){
+    }else if(type == 'pp'){
       subdata = await subdata.filter(val => (val.payment_status == true && val.bid_status == true))
-    }else if(type == 'PB'){
+    }else if(type == 'pb'){
       subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
-    }else if(type == 'OT'){
+    }else if(type == 'ot'){
       subdata = await subdata.filter(val => (val.ticket_status == true && val.bid_status == false))
     }else{
       res.status(200).json("not found data")
