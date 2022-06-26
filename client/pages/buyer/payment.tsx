@@ -16,6 +16,14 @@ const payment: NextPage = () => {
     React.useEffect(()=>{
         axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
+          //create a headet pack
+          const config = {
+            headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+          };
+          axios.get(gethost() + 'b/gettickets/pp',config).then(async (res)=>{
+            setitems(res.data)
+            console.log(res.data)
+          })
             if(res.data.type == 'BUYER'){
               setopen(true);
             }else if(res.data.type == 'MANAGER'){
@@ -37,6 +45,7 @@ const payment: NextPage = () => {
           router.push('/user');
         })       
     },[])
+    const [items, setitems] = React.useState<any[]>([])
         return (
             <div className={styles.buyer_bg}>
                 {open?<div>
@@ -47,25 +56,9 @@ const payment: NextPage = () => {
                        <h1 className={styles.buyer_index_container_title}>Pending Payment</h1> 
                        <div className={styles.buyer_index_container_d2}>
                             <div className={styles.buyer_index_container}>
-                                <Ticketvalid level="1" type="2"/>
-                                <Ticketvalid level="2" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
-                                <Ticketvalid level="4" type="2"/>
-                                <Ticketvalid level="5" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
-                                <Ticketvalid level="4" type="2"/>
-                                <Ticketvalid level="5" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
-                                <Ticketvalid level="4" type="2"/>
-                                <Ticketvalid level="5" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
-                                <Ticketvalid level="4" type="2"/>
-                                <Ticketvalid level="5" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
-                                <Ticketvalid level="4" type="2"/>
-                                <Ticketvalid level="5" type="2"/>
-                                <Ticketvalid level="3" type="2"/>
+                            {items.map((itemdata)=>{
+                                      return(<div key={itemdata.id}><Ticketvalid level={itemdata.ticket_level} type="2" data={itemdata}/></div>)
+                                    })}
                             </div>
                         </div>
                     </div>

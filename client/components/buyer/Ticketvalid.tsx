@@ -15,7 +15,8 @@ import styles from './styles.module.scss'
 
 interface TicketvalidProps {
   level : string,
-  type : string
+  type : string,
+  data:any
  }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -56,7 +57,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     </DialogTitle>
   );
 };
-const Ticketvalid: React.FC<TicketvalidProps> = ({level , type}) => {
+const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
   const [open, setOpen] = React.useState(false);
   const [pay, setpay] = React.useState(false);
   const [Ticketcolor, setTicketcolor] =  React.useState("");
@@ -103,7 +104,7 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type}) => {
                 <div  style={{backgroundImage: Ticketimg}} className={styles.buyer_c_ticketvalid_top}>
                     <div className={styles.buyer_c_ticketvalid_top_head}>
                         <div className={styles.buyer_c_ticketvalid_top_head_left}>
-                            13:30:00
+                            {data.event_time}
                         </div>
                         <div style={{backgroundColor: Ticketlevelcolor}} className={styles.buyer_c_ticketvalid_top_head_right} id="ticket-level" >
                             <div className={styles.buyer_c_ticketvalid_top_head_right_1}>
@@ -117,10 +118,10 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type}) => {
                     <div className={styles.buyer_c_ticketvalid_top_info}>
                         <div className={styles.buyer_c_ticketvalid_top_info_left}>
                             <div className={styles.buyer_c_ticketvalid_top_info_left_name}>
-                                Event name
+                              {data.eventname}
                             </div>
                             <div className={styles.buyer_c_ticketvalid_top_info_left_date}>
-                                2021-08-23
+                                {data.event_date}
                             </div>
                         </div>
                         <div className={styles.buyer_c_ticketvalid_top_info_right}>
@@ -129,7 +130,7 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type}) => {
                         </div>
                     </div>
                 </div>
-                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>card status</h5>
+                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>{data.event_venue}</h5>
             </div>
         </div>
 

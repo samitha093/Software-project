@@ -61,7 +61,7 @@ const index: NextPage = () => {
                 </div>
                 <div>
                     <div className={styles.trending_board_container}><h2 className={styles.trending_board}>Trending Events</h2></div>
-                    <Shop/>
+                    
                 </div>
                 
             </div>

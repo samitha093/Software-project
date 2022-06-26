@@ -49,7 +49,27 @@ const {getusername, getuserid} = require('../middlewares/user');
  *              500:
  *                  description: Server failure
  */
+ router.route('/gettickets/:type').get(verifyAccessToken,buyerverification,getuserid,async(req,res) => {
+  const userid = req.userid;
+  const type = req.params.type;
+  await User.findById(userid).then(async(data) =>{
+    var subdata = data.tickets;
+    if(type == 'mt'){
+      subdata = await subdata.filter(val => (val.ticket_status == false && val.bid_status == false))
+    }else if(type == 'pp'){
+      subdata = await subdata.filter(val => (val.payment_status == true && val.bid_status == true))
+    }else if(type == 'pb'){
+      subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
+    }else if(type == 'ot'){
+      subdata = await subdata.filter(val => (val.ticket_status == true && val.bid_status == false))
+    }else{
+      res.status(200).json("not found data")
+      return;
+    }
+  res.status(200).json(subdata)
+  })
 
+ })
 
 /**
  * @swagger

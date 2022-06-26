@@ -7,16 +7,40 @@ import styles from './Styles.module.scss'
 import Account from './Account'
 import Security from './Security'
 import Advance from './Advance'
-import axios from 'axios'
+import axios from 'axios';
+import Swal from 'sweetalert2'
+import {gethost} from '../../session/Session';
 
 function Profile() {
     const [openAccount, setopenAccount] = React.useState(true);
     const [openSecurity, setopenSecurity] = React.useState(false);
     const [openAdvance, setopenAdvance] = React.useState(false);
+    const [items, setitems] = React.useState<any[]>([])
     const submitotp = () => {
         console.log('otp');
     };
-
+    React.useEffect(()=>{
+        axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+        .then(async (res)=>{
+          //create a headet pack
+          const config = {
+            headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+          };
+          await axios.get(gethost() + 'a/mydata',config).then(async (res)=>{
+            await setitems(res.data)
+            console.log(res.data)
+          })
+        })
+        .catch((err)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Authentication Failed',
+            text: err,
+            showConfirmButton: false,
+            timer: 2500
+          })
+        })
+      },[])
   return (
     <div className={styles.profile_container}>
         <div className={styles.profile_container_bg}>
@@ -80,7 +104,7 @@ function Profile() {
             </div>
             
             <div className={styles.profile_container_bg_right}>
-                {openAccount?<Account/>:null}
+                {openAccount?<Account data={items}/>:null}
                 {openSecurity?<Security/>:null}
                 {openAdvance?<Advance/>:null}
             </div>

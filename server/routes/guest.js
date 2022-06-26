@@ -143,6 +143,16 @@ const {emailnotifications} = require('../smtp/mail')
  *                      description: validated cart data
  *              example:
  *                  cart: "?"
+ *          filter:
+ *              type: object
+ *              required:
+ *                  - dataarray
+ *              properties:
+ *                  dataarray:
+ *                      type: string
+ *                      description: validated data data
+ *              example:
+ *                  dataarray: "?"
  * 
  */
 
@@ -657,5 +667,106 @@ function usernamegenerator(length) {
    return result;
 }
 
+ /**
+ * @swagger
+ * '/g/tickets':
+ *  post:
+ *     tags:
+ *     - User-guest
+ *     summary: get tickts via filter
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/filter'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
+
+  router.route('/tickets').post(async(req,res) => {
+    // tickets.find({},(err,data) => {
+    //     res.status(200).json(data) 
+    // })
+    var dataset1 = [];
+    if(!(req.body.dataarray.name =='')){
+        //console.log(req.body.dataarray.name)
+        var userRegex = new RegExp(req.body.dataarray.name, 'i')
+        dataset1 = await tickets.find({event_name: userRegex},(err,data) => {return data})
+    }else{
+        dataset1 = await tickets.find({},(err,data) => {return data})
+    }
+    //console.log(dataset)
+    var dataset2 = [];
+    if(req.body.dataarray.category.length>0){
+        var subdoc = req.body.dataarray.category;
+        dataset2 = dataset1.filter(val => (
+            val.event_category == subdoc[0] 
+            || val.event_category == subdoc[1]
+            || val.event_category == subdoc[2]
+            || val.event_category == subdoc[3]
+            || val.event_category == subdoc[4]
+            || val.event_category == subdoc[5]
+            || val.event_category == subdoc[6]
+            || val.event_category == subdoc[7]
+            || val.event_category == subdoc[8]
+            || val.event_category == subdoc[9]
+            || val.event_category == subdoc[10]
+            || val.event_category == subdoc[11]
+            || val.event_category == subdoc[12]
+            || val.event_category == subdoc[13]
+            || val.event_category == subdoc[14]
+        ));
+    }else{
+        dataset2 = dataset1;
+    }
+    //console.log(dataset2)
+    var dataset3 = [];
+    if(req.body.dataarray.area.length>0){
+        var subdoc = req.body.dataarray.area;
+        dataset3 = dataset2.filter(val => (
+            val.area == subdoc[0] 
+            || val.area == subdoc[1]
+            || val.area == subdoc[2]
+            || val.area == subdoc[3]
+            || val.area == subdoc[4]
+            || val.area == subdoc[5]
+            || val.area == subdoc[6]
+            || val.area == subdoc[7]
+            || val.area == subdoc[8]
+            || val.area == subdoc[9]
+            || val.area == subdoc[10]
+            || val.area == subdoc[11]
+            || val.area == subdoc[12]
+            || val.area == subdoc[13]
+            || val.area == subdoc[14]
+        ));
+    }else{
+        dataset3 = dataset2;
+    }
+    //console.log(dataset3)
+    //console.log(req.body.dataarray.ticketTypes.l1)
+    if(!req.body.dataarray.ticketTypes.l1){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 1))
+    }
+    if(!req.body.dataarray.ticketTypes.l2){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 2))
+    }
+    if(!req.body.dataarray.ticketTypes.l3){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 3))
+    }
+    if(!req.body.dataarray.ticketTypes.l4){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 4))
+    }
+    if(!req.body.dataarray.ticketTypes.l5){
+        dataset3 = dataset3.filter(val => !(val.ticket_level == 5))
+    }
+    res.status(200).json(dataset3) 
+});
 
 module.exports = router;

@@ -8,6 +8,7 @@ import {useRouter} from 'next/router'
 import Swal from 'sweetalert2'
 import {gethost} from '../../session/Session';
 import axios from 'axios'
+import Profile from '../../components/profile/Profile'
 
 const Settings: NextPage = () => {
     const [open, setopen] = React.useState(false);
@@ -45,7 +46,7 @@ const Settings: NextPage = () => {
                     <div className={Styles.seller_setting_fix}>
                         <div className={Styles.seller_setting_con}>
                             <h1>Settings</h1>
-                            <div className={Styles.seller_setting_con_in}><Resetpassword /></div> 
+                            <div className={Styles.seller_setting_con_in}><Profile/></div> 
                         </div>
                     </div>
                 </div>
