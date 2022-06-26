@@ -4,11 +4,12 @@ import type { NextPage } from 'next'
 import axios from 'axios'
 import Sidebar from '../../components/seller/Sidebar'
 import Navbar from '../../components/Navbar'
-import Homepage from '../../components/seller/Homepage'
+//import Homepage from '../../components/seller/Homepage'
 import Styles from './Styles.module.css'
 import {useRouter} from 'next/router'
 import Swal from 'sweetalert2'
 import {gethost} from '../../session/Session';
+import Homepage from '../../components/seller/dashboard/index'
 
 const index: NextPage = () => {
     const [open, setopen] = React.useState(false);
@@ -45,6 +46,7 @@ const index: NextPage = () => {
                     <Sidebar id="1"/>
                     <div className={Styles.seller_setting_fix}>
                     <Homepage />
+
                     </div>
                 </div>
             </div>:null}

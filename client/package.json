@@ -29,6 +29,7 @@
     "@mui/material": "^5.0.1",
     "@mui/styles": "^5.0.1",
     "@mui/x-date-pickers-pro": "^5.0.0-alpha.6",
+    "@ramonak/react-progress-bar": "^5.0.0",
     "aos": "^2.3.4",
     "apexcharts": "^3.35.3",
     "axios": "^0.24.0",
