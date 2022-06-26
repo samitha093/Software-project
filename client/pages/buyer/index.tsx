@@ -37,7 +37,7 @@ const index: NextPage = () => {
           Swal.fire({
             icon: 'error',
             title: 'Authentication Failed',
-            text: 'Please Login to your account',
+            text: err,
             showConfirmButton: false,
             timer: 2500
           })
