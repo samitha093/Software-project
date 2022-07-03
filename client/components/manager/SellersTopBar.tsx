@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
-import styles from './styles.module.css';
+import styles from './styles.module.css'
 import classnames from 'classnames';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -22,29 +22,42 @@ interface TopbarProps {
 }
 
 const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
-  const [sellerstopbar1, setsellerstopbar1] = React.useState(true);
-  const [sellerstopbar2, setsellerstopbar2] = React.useState(false);
+  const [sellertopbar1, setsellertopbar1] = React.useState(true);
+  const [sellertopbar2, setsellertopbar2] = React.useState(false);
+  const [sellertopbar3, setsellertopbar3] = React.useState(false);
   React.useEffect(() => {
     if (id3 == "1") {
-      setsellerstopbar1(true);
-      setsellerstopbar2(false);
+      setsellertopbar1(true);
+      setsellertopbar2(false);
+      setsellertopbar3(false);
     } else if (id3 == "2") {
-      setsellerstopbar1(false);
-      setsellerstopbar2(true);
+      setsellertopbar1(false);
+      setsellertopbar2(true);
+      setsellertopbar3(false);
+    } else if (id3 == "3") {
+      setsellertopbar1(false);
+      setsellertopbar2(false);
+      setsellertopbar3(true);
     }
   }, []);
   return (
-    <div className={styles.manager_seller_c_topbar}>
-      <div className={styles.manager_seller_c_topbar_container}>
-        <Link href="/manager/pendingsellers">
-          <div className={sellerstopbar1 ? 'manager-seller-c-topbar-item' : 'manager-seller-c-topbar-item active'}>
+    <div className={styles.manager_c_topbar}>
+      <div className={styles.manager_c_topbar_container}>
+        <Link href="/manager/pendingevents">
+          <div className={sellertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
             Pending
           </div>
         </Link>
 
-        <Link href="/manager/activesellers">
-          <div className={sellerstopbar2 ? 'manager-seller-c-topbar-item' : 'manager-seller-c-topbar-item active'}>
+        <Link href="/manager/activeevents">
+          <div className={sellertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
             Active
+          </div>
+        </Link>
+
+        <Link href="/manager/declinedevents">
+          <div className={sellertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+            Declined
           </div>
         </Link>
       </div>
