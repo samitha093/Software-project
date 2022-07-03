@@ -43,23 +43,19 @@ const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
   return (
     <div className={styles.manager_c_topbar}>
       <div className={styles.manager_c_topbar_container}>
-        <Link href="/manager/pendingevents">
-          <div className={sellertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
-            Pending
-          </div>
-        </Link>
 
-        <Link href="/manager/activeevents">
-          <div className={sellertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
-            Active
-          </div>
-        </Link>
+        <div className={sellertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+          Pending
+        </div>
 
-        <Link href="/manager/declinedevents">
-          <div className={sellertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
-            Declined
-          </div>
-        </Link>
+        <div className={sellertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+          Active
+        </div>
+
+        <div className={sellertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+          Declined
+        </div>
+
       </div>
     </div>
   );

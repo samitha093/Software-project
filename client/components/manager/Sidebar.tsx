@@ -101,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
                     </Tooltip>
                 </Link>
 
-                <Link href="/manager/activesellers">
+                <Link href="/manager/pendingsellers">
                     <Tooltip title="Sellers" placement="bottom-end">
                         <div className={managersellersidebar3 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
                             <Icon className={managersellersidebar3 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiAccountGroup} />

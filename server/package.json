@@ -24,7 +24,6 @@
     "nodemailer": "^6.7.0",
     "nodemailer-express-handlebars": "^5.0.0",
     "path": "^0.12.7",
-    "react-paypal-button-v2": "^2.6.3",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.3.0",
     "yan": "^0.0.1"
