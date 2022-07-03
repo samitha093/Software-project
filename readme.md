@@ -6,7 +6,7 @@
 Event Organizers can Sell their tickets And Event
 Lovers Can get their chance with our platform.
 ## System Design
-![Test Image 4](https://i.postimg.cc/2Sqf9tdf/Untitled-Diagram-drawio.png)
+![Test Image 4](https://i.postimg.cc/Y28q3kGs/Untitled-Diagram-drawio-1.png)
 
 ## Deployment
 
@@ -49,6 +49,12 @@ To run tests, run the following command On client Directory
 
 ```bash
   npm run Dev
+```
+## Database login
+Mongodb Compass
+
+```bash
+  mongodb://root:password@localhost:27017/
 ```
 ## Features
 

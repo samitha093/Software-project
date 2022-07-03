@@ -43,6 +43,8 @@ services:
     image: mongo:latest
     container_name: mongo
     restart: on-failure:3
+    ports:
+      - 27017:27017
     environment: 
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
