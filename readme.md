@@ -5,8 +5,6 @@
 
 Event Organizers can Sell their tickets And Event
 Lovers Can get their chance with our platform.
-## System Design
-![Test Image 4](https://i.postimg.cc/Y28q3kGs/Untitled-Diagram-drawio-1.png)
 
 ## Deployment
 
