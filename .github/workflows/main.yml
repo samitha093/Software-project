@@ -67,6 +67,7 @@ jobs:
           cache-to: type=gha,mode=max
           tags: |
             httpsdom/tickbid:latest
+            httpsdom/tickbid:api
           labels: |
             org.opencontainers.image.authors=${{ github.repository_owner }}
             org.opencontainers.image.created=${{ env.BUILD_DATE }}
