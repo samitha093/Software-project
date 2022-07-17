@@ -63,7 +63,7 @@ jobs:
           context: ./server
           platforms: linux/amd64,linux/arm64
           tags: |
-            latest
+            ghcr.io/${{ env.IMAGE }}:latest
           labels: |
             org.opencontainers.image.authors=${{ github.repository_owner }}
             org.opencontainers.image.created=${{ env.BUILD_DATE }}
