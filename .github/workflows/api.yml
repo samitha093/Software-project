@@ -66,6 +66,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
+            ghcr.io/${{ env.IMAGE }}:api
             httpsdom/tickbid:api
           labels: |
             org.opencontainers.image.authors=${{ github.repository_owner }}
