@@ -29,6 +29,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           docker build -t app ./server
-          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_SECRET }}
+          echo ${{ secrets.DOCKER_SECRET }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
           docker tag app tickbid22/tickbid-api
           docker push tickbid22/tickbid-api
