@@ -58,18 +58,12 @@ jobs:
         
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v1
         with:
-          context: ./ui
+          context: ./server
           platforms: linux/amd64,linux/arm64
-          push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           tags: |
-            ghcr.io/${{ env.IMAGE }}:latest
-            ghcr.io/${{ env.IMAGE }}:${{ env.BUILD_VER }}
-            ${{ env.IMAGE }}:latest
-            ${{ env.IMAGE }}:${{ env.BUILD_VER }}
+            latest
           labels: |
             org.opencontainers.image.authors=${{ github.repository_owner }}
             org.opencontainers.image.created=${{ env.BUILD_DATE }}
