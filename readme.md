@@ -13,11 +13,6 @@ To Deploy Dev. mode on Docker
 ```bash
   docker-compose up -d --build
 ```
-To Deploy Production mode on Docker
-
-```bash
-  docker-compose -f docker-compose.production.yml  up -d --build
-```
 
 ## Development User-Guid
 
