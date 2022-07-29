@@ -80,3 +80,9 @@ $lightselectcolour:#ede0fa;
     border-radius: 30px;
     text-align: center;  
 }
+
+@media only screen and (max-width: 600px) {
+    .table_seller_container{
+        padding: 20px 10px 10px 0px;
+    }
+}

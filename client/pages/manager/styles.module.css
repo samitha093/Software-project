@@ -140,35 +140,17 @@
     .manager_settings_container {
         padding-left: 50px;
     }
-    .manager_sellers_main_container {
-        margin-left: 35%;
-    }
 }
 
 @media only screen and (max-width: 1100px) {
     .manager_settings_container {
         padding-left: 0px;
     }
-    .manager_sellers_main_container {
-        margin-left: 30%;
-    }
-}
-
-@media only screen and (max-width: 1050px) {
-    .manager_sellers_main_container {
-        margin-left: 25%;
-    }
-}
-
-@media only screen and (max-width: 970px) {
-    .manager_sellers_main_container {
-        margin-left: 20%;
-    }
 }
 
 @media only screen and (max-width: 940px) {
-    .manager_sellers_main_container {
-        margin-left: 15%;
+    .manager_sellers_main_container{
+        margin-top: 20px;
     }
     .manager_settings_container_listinput_container{
         display: block;
