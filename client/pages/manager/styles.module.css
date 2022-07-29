@@ -149,6 +149,10 @@
 }
 
 @media only screen and (max-width: 940px) {
+
+    .manager_index_scroll_set{
+        margin-top: 20px;
+    }
     .manager_sellers_main_container{
         margin-top: 20px;
     }
