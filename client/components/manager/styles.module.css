@@ -128,7 +128,7 @@
     }
 
     .manager_c_topbar_container {
-        margin-top: 20px;
+        margin-top: 45px;
     }
 
     .manager_manager_c_topbar {
@@ -151,6 +151,9 @@
     .manager_c_sidebar_item {
         margin: 0% 4%;
     }
+    .manager_c_topbar_container {
+        margin-top: 35px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -172,6 +175,9 @@
         min-height: 0px;
         padding: 10px 10px 10px;
 
+    }
+    .manager_c_topbar_container {
+        margin-top: 25px;
     }
 }
 
