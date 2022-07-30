@@ -32,7 +32,6 @@ const pendingsellers: NextPage = function ActiveEvents() {
                     };
                     await axios.get(gethost() + itemURL,config)
                         .then(async (res) => {
-                            console.log(res.data);
                             setitem(res.data); 
                             setopen(true);
                         })
@@ -72,7 +71,7 @@ const pendingsellers: NextPage = function ActiveEvents() {
                 <Navbar />
                 <div className={styles.manager_index}>
                     <Sidebar id='3' />
-                    <div onClick={changeSellerList}><SellersTopBar id3='2' /></div>
+                    <div onClick={changeSellerList}><SellersTopBar id3='1' /></div>
                     <div className={styles.manager_sellers_main_container}>
                         <h1>Pending Sellers</h1>
                         <div className={styles.manager_sellers_main_container}>

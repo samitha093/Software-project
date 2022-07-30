@@ -13,7 +13,9 @@ import { faCcVisa, faCcMastercard, faCcAmex, faCcDinersClub, faCcDiscover, faCcJ
 import styles from './styles.module.scss'
 import classnames from 'classnames';
 
-const checkout: NextPage = () => {
+
+const checkout: NextPage = function ActiveEvents() {
+
     const [Amount,setAmount] = React.useState([]);
 
     const checkoutcart = async() =>{
