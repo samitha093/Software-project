@@ -119,28 +119,6 @@
     background-color: rgb(245, 243, 252);
 }
 
-@media only screen and (max-width: 600px) {
-    .manager_index {
-        display: block;
-        overflow: auto;
-        margin-top: 120px;
-    }
-
-    .manager_index_content h1 {
-        padding-left: 30px;
-    }
-
-    .manager_index_container {
-        padding-left: 0px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .manager_settings_container {
-        padding-left: 5%;
-    }
-}
-
 @media only screen and (max-width: 1200px) {
     .manager_settings_container {
         padding-left: 50px;
@@ -154,7 +132,6 @@
 }
 
 @media only screen and (max-width: 940px) {
-
     .manager_index_scroll_set {
         margin-top: 20px;
     }
@@ -178,9 +155,50 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .manager_index {
+        display: block;
+        overflow: auto;
+        margin-top: 120px;
+    }
+
+    .manager_index_content h1 {
+        padding-left: 30px;
+    }
+
+    .manager_index_container {
+        padding-left: 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .manager_settings_container {
+        padding-left: 5%;
+    }
+
+    .manager_sellers_main_container {
+        margin-top: 50px;
+    }
 
     .manager_index_scroll_set {
         margin-top: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .manager_sellers_main_container {
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .manager_sellers_main_container {
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .manager_sellers_main_container {
+        margin-top: 20px;
     }
 }
 
