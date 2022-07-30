@@ -15,8 +15,8 @@ import TabContext from '@mui/lab/TabContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import SellIcon from '@mui/icons-material/Sell';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
@@ -124,20 +124,18 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabContext value={value}>
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
-                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"2"}/>
-                        <Tab icon={<SellIcon />} iconPosition="start" label="Buyer List" value={"3"}/>
-                        <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
-                        <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
-                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"6"}/>
+                        <Tab icon={<VerifiedUserIcon />} iconPosition="start" label="Approval" value={"2"}/>
+                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"3"}/>
+                        <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"4"}/>
+                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"5"}/>
                     </Tabs>  
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="4">{data.status=="END"?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="6">{data.status=="END"?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="2"></TabPanel>
+                    <TabPanel value="3">{data.status=="ACTIVE"?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="4">{data.status=="ACTIVE"?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{data.status=="ACTIVE"?null:<Nopermission/>}</TabPanel>
                     </TabContext>
                     
                 </DialogContent>

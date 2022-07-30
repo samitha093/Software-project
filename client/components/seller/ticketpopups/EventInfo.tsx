@@ -26,6 +26,7 @@ const EventInfo: React.FC<EventInfoProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([])
     React.useEffect(()=>{
       setitem(data.tickets);
+      console.log(data)
     },[])
 
     function createData(
@@ -49,13 +50,22 @@ const EventInfo: React.FC<EventInfoProps> = ({data}) => {
                     <Box sx={{ flexGrow: 1 }}>
                         <Grid  className={Styles.seller_eventinfo_font} container spacing={1}>
                             <Grid item xs={6}>
-                                <Typography>Event Venue : {data.event_venue}</Typography>
+                                <Typography> Organaizer: {data.username}</Typography>
                             </Grid>
                             <Grid item xs={6}>
-                                <Typography>Event Date : {data.event_date}</Typography>
+                                <Typography> Venue: {data.event_venue}</Typography>
                             </Grid>
                             <Grid item xs={6}>
-                                <Typography>Event Time : {data.event_time}</Typography>
+                                <Typography> Date: {data.event_date}</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography> Time: {data.event_time}</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography> Starting Date: {data.publishevent_date}</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography> Ending Date: {data.endevent_date}</Typography>
                             </Grid>
                         </Grid>
                         <TableContainer component={Paper}>
@@ -71,7 +81,7 @@ const EventInfo: React.FC<EventInfoProps> = ({data}) => {
                                 </TableHead>
                                 <TableBody>{rows.map((row) => (
                                     <TableRow key={row.level} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                        <TableCell component="th" scope="row">{row.level}</TableCell>
+                                        <TableCell component="th" scope="row">Level : {row.level}</TableCell>
                                         <TableCell align="right">{row.fixprice}</TableCell>
                                         <TableCell align="right">{row.fquantity}</TableCell>
                                         <TableCell align="right">{row.bidprice}</TableCell>
