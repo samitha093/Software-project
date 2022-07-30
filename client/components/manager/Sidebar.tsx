@@ -93,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
                     </Tooltip>
                 </Link>
 
-                <Link href="/manager/pendingevents">
+                <Link href="/manager/events">
                     <Tooltip title="Events" placement="bottom-end">
                         <div className={managersellersidebar2 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
                             <Icon className={managersellersidebar2 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCalendarSearch} />
@@ -101,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
                     </Tooltip>
                 </Link>
 
-                <Link href="/manager/pendingsellers">
+                <Link href="/manager/sellers">
                     <Tooltip title="Sellers" placement="bottom-end">
                         <div className={managersellersidebar3 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
                             <Icon className={managersellersidebar3 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiAccountGroup} />

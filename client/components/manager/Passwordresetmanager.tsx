@@ -89,7 +89,7 @@ const Passwordresetmanager: React.FC<ResetPwdProps> = ({ }) => {
                                 onChange={newpasswordChangeHandler}
                             />
                         </div>
-                        {newpasswordError && (<p className={styles.manager_error_message}> * Password doesn't follow given standards. Please check and enter the password again</p>)}
+                        {newpasswordError && (<p className={styles.manager_error_message}> * Password does not follow given standards. Please check and enter the password again</p>)}
 
                         <div>
                             <input

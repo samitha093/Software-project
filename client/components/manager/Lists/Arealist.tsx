@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
-import styles from './styles.module.css'
+import styles from '../styles.module.css'
 import classnames from 'classnames';
 
 function generate(element: React.ReactElement) {
