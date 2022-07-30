@@ -10,10 +10,16 @@ import styles from './styles.module.css'
 import { useRouter } from 'next/router'
 import Seller from '../../components/manager/tables/Seller'
 
-const pendingsellers: NextPage = () => {
+interface pendingsellersProps {
+
+}
+
+const pendingsellers: NextPage = function ActiveEvents() {
     const [open, setopen] = React.useState(false);
+    const [items, setitem] = React.useState([]);
+    const [itemURL, setitemURL] = React.useState('m/pendingsellerlist');
     const router = useRouter();
-    const [items, setitem] = React.useState([])
+   
 
     React.useEffect(() => {
         axios.get(gethost() + 'a/refreshtoken', { withCredentials: true })
@@ -21,15 +27,14 @@ const pendingsellers: NextPage = () => {
                 if (res.data.type == 'BUYER') {
                     router.push('/buyer');
                 } else if (res.data.type == 'MANAGER') {
-                    setopen(true);
-                    //create a headet pack
                     const config = {
                         headers: { Authorization: `Bearer ${res.data.accesstoken}` }
                     };
-                    axios.get(gethost() + 'm/pendingsellerlist',config)
+                    await axios.get(gethost() + itemURL,config)
                         .then(async (res) => {
-                            await setitem(res.data)
                             console.log(res.data);
+                            setitem(res.data); 
+                            setopen(true);
                         })
                         .catch(() => {
                             Swal.fire({
@@ -54,29 +59,24 @@ const pendingsellers: NextPage = () => {
                 })
                 router.push('/user');
             })
-    }, [])
+    }, [itemURL])
+
+
     const changeSellerList = () => {
         console.log("fsdfj");
     };
-    const rows = [
-        { "id": "14gsd54a3sfdc", "name": "Ram", "email": "ram@gmail.com", "type": "SELLER", "status": "PENDING", "date": "23-04-2022" },
-        { "id": "14gsd54e3sfdc", "name": "Shyam", "email": "shyam23@gmail.com", "type": "SELLER", "status": "ACTIVE", "date": "23-04-2022" },
-        { "id": "14gsd54a3shdc", "name": "John", "email": "john@gmail.com", "type": "BUYER", "status": "DEACTIVE", "date": "23-04-2022" },
-        { "id": "14gsd54a6sfdc", "name": "Bob", "email": "bob32@gmail.com", "type": "SELLER", "status": "ACTIVE", "date": "23-04-2022" },
-        { "id": "14gsd54a6sfdc", "name": "Bob", "email": "bob32@gmail.com", "type": "SELLER", "status": "PENDING", "date": "23-04-2022" },
-        { "id": "14gsd54a6sfdc", "name": "Bob", "email": "bob32@gmail.com", "type": "SELLER", "status": "PENDING", "date": "23-04-2022" }
-    ];
+    
     return (
         <div className={styles.manager_settings_bg}>
             {open ? <div>
                 <Navbar />
                 <div className={styles.manager_index}>
                     <Sidebar id='3' />
-                    <div onClick={changeSellerList}><SellersTopBar id3='1' /></div>
+                    <div onClick={changeSellerList}><SellersTopBar id3='2' /></div>
                     <div className={styles.manager_sellers_main_container}>
                         <h1>Pending Sellers</h1>
                         <div className={styles.manager_sellers_main_container}>
-                            <Seller data={rows} />
+                            <Seller data={items} />
                         </div>
                     </div>
                 </div>
@@ -84,5 +84,7 @@ const pendingsellers: NextPage = () => {
         </div>
     );
 }
+
+
 
 export default pendingsellers;

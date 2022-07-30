@@ -133,13 +133,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="2">Item Two</TabPanel>
-                    <TabPanel value="3">Item Three</TabPanel>
-                    <TabPanel value="4">Item One</TabPanel>
-                    <TabPanel value="5">Item Two</TabPanel>
-                    <TabPanel value="6">
-                        <Nopermission/>
-                    </TabPanel>
+                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="4">{data.status=="END"?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="6">{data.status=="END"?null:<Nopermission/>}</TabPanel>
                     </TabContext>
                     
                 </DialogContent>

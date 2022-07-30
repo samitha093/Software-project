@@ -40,7 +40,8 @@ const EventInfo: React.FC<EventInfoProps> = ({data}) => {
 
     const rows = items.map((item)=>(
         createData(item.ticket_level,item.buy_amount, item.buy_quantity, item.min_bid_amount, item.bid_quantity,)
-      ));
+    ));
+    
     return (
         <div className={Styles.bg}>
             <Grid sx={{ maxWidth: 1 }}>
