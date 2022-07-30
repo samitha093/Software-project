@@ -55,21 +55,27 @@ const Seller: React.FC<SellerProps> = ({data}) => {
                             
                         </TableCell>
                         <TableCell align="right">
-                            {(row.status == false)&&(row.suspendstatus == false)?
+                            {(row.status == false)&&(row.suspendstatus == false )&& row.otp == 'verified'?
                             <div className={styles.table_seller_status_pending}>
                                 PENDING
                             </div>
                             :null}
                             
-                            {(row.status == true)&&(row.suspendstatus == false)?
+                            {(row.status == true)&&(row.suspendstatus == false)&& row.otp == 'verified'?
                             <div className={styles.table_seller_status_active}>
                                 ACTIVE
                             </div>
                             :null}
                             
-                            {row.suspendstatus == true?
+                            {row.suspendstatus == true && row.otp == 'verified'?
                             <div className={styles.table_seller_status_deactive}>
                                 SUSPENDED
+                            </div>
+                            :null}
+
+                            {row.otp == 'unverified'?
+                            <div className={styles.table_seller_status_unverified}>
+                                UNVERIFIED
                             </div>
                             :null}
                             
