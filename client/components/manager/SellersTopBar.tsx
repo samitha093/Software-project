@@ -19,9 +19,10 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
 
 interface TopbarProps {
   id3: string;
+  data:any;
 }
 
-const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
+const SellersTopBar: React.FC<TopbarProps> = ({ id3 , data }) => {
   const [sellertopbar1, setsellertopbar1] = React.useState(true);
   const [sellertopbar2, setsellertopbar2] = React.useState(false);
   const [sellertopbar3, setsellertopbar3] = React.useState(false);
@@ -42,13 +43,16 @@ const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
     }
   }, [sellertopbarID]);
 
-  function changeID(id:any){
+  async function changeID(id:any, data:any){
     if(id.target.childNodes[0].nodeValue == 'Pending'){
       setsellertopbarID("1");
+      await data.change("1")
     }else if(id.target.childNodes[0].nodeValue == 'Active'){
       setsellertopbarID("2");
+      data.change("2")
     }else if(id.target.childNodes[0].nodeValue == 'Declined'){
       setsellertopbarID("3");
+      data.change("3")
     }
   }
 
@@ -56,15 +60,15 @@ const SellersTopBar: React.FC<TopbarProps> = ({ id3 }) => {
     <div className={styles.manager_c_topbar}>
       <div className={styles.manager_c_topbar_container}>
 
-        <div className={sellertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={changeID}>
+        <div className={sellertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={(e)=>changeID( e, data)}>
           Pending
         </div>
 
-        <div className={sellertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={changeID}>
+        <div className={sellertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={(e)=>changeID( e, data)}>
           Active
         </div>
 
-        <div className={sellertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={changeID}>
+        <div className={sellertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={(e)=>changeID( e, data)}>
           Declined
         </div>
 

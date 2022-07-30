@@ -18,10 +18,12 @@ const pendingsellers: NextPage = function ActiveEvents() {
     const [open, setopen] = React.useState(false);
     const [items, setitem] = React.useState([]);
     const [itemURL, setitemURL] = React.useState('m/pendingsellerlist');
+    const [itemID, setitemID] = React.useState("1");
     const router = useRouter();
    
 
     React.useEffect(() => {
+        setopen(false);
         axios.get(gethost() + 'a/refreshtoken', { withCredentials: true })
             .then(async (res) => {
                 if (res.data.type == 'BUYER') {
@@ -61,17 +63,25 @@ const pendingsellers: NextPage = function ActiveEvents() {
     }, [itemURL])
 
 
-    const changeSellerList = () => {
-        console.log("fsdfj");
-    };
-    
+    const changeSellerList = async(e:any)=>{
+        if(e == 1){
+            setitemURL('m/pendingsellerlist');
+            setitemID("1")
+        }else if(e == 2){
+            setitemURL('m/activesellerlist');
+            setitemID("2")
+        }else if(e == 3){
+            setitemURL('m/pendingsellerlist');
+            setitemID("3")
+        }
+      };
     return (
         <div className={styles.manager_settings_bg}>
             {open ? <div>
                 <Navbar />
                 <div className={styles.manager_index}>
                     <Sidebar id='3' />
-                    <div onClick={changeSellerList}><SellersTopBar id3='1' /></div>
+                    <div onClick={changeSellerList}><SellersTopBar id3={itemID} data={{change: changeSellerList}}/></div>
                     <div className={styles.manager_sellers_main_container}>
                         <h1>Pending Sellers</h1>
                         <div className={styles.manager_sellers_main_container}>
