@@ -112,10 +112,11 @@
 
     .manager_c_sidebar_container {
         display: flex;
-        height: 70px;
+        height: auto;
         width: 100%;
         padding: 10px;
         border-radius: 15px;
+        justify-content: center;
     }
 
     .manager_c_topbar {
@@ -127,7 +128,7 @@
     }
 
     .manager_c_topbar_container {
-        margin-top: 20px;
+        margin-top: 45px;
     }
 
     .manager_manager_c_topbar {
@@ -141,11 +142,17 @@
     .manager_manager_c_topbar_container {
         margin-top: 20px;
     }
+    .manager_c_sidebar_item {
+        margin: 0% 5%;
+    }
 }
 
 @media only screen and (max-width: 500px) {
     .manager_c_sidebar_item {
         margin: 0% 4%;
+    }
+    .manager_c_topbar_container {
+        margin-top: 35px;
     }
 }
 
@@ -168,6 +175,9 @@
         min-height: 0px;
         padding: 10px 10px 10px;
 
+    }
+    .manager_c_topbar_container {
+        margin-top: 25px;
     }
 }
 
