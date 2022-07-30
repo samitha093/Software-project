@@ -35,43 +35,44 @@ const [sellertopbar2,setsellertopbar2] = React.useState(false);
 const [sellertopbar3,setsellertopbar3] = React.useState(false);
 const [sellertopbar4,setsellertopbar4] = React.useState(false);
 const [sellertopbarID, setsellertopbarID] = React.useState(id);
+
     React.useEffect(() => {
-        if(id == "1"){
+        if(sellertopbarID == "1"){
             setsellertopbar1(true);  
             setsellertopbar2(false);
             setsellertopbar3(false);
             setsellertopbar4(false);
-        }else if(id == "2"){
+        }else if(sellertopbarID == "2"){
             setsellertopbar1(false);  
             setsellertopbar2(true);
             setsellertopbar3(false);
             setsellertopbar4(false);
-        }else if(id == "3"){
+        }else if(sellertopbarID == "3"){
             setsellertopbar1(false);  
             setsellertopbar2(false);
             setsellertopbar3(true);
             setsellertopbar4(false);
-        }else if(id == "4"){
+        }else if(sellertopbarID == "4"){
             setsellertopbar1(false);  
             setsellertopbar2(false);
             setsellertopbar3(false);
             setsellertopbar4(true);
         }     
-    },[]);
+    },[sellertopbarID]);
 
     async function changeID(id:any, data:any){
         if(id.target.childNodes[0].nodeValue == 'Pending'){
           setsellertopbarID("1");
-          await data.change("1")
+          data.change("1")
         }else if(id.target.childNodes[0].nodeValue == 'Active'){
           setsellertopbarID("2");
           data.change("2")
-        }else if(id.target.childNodes[0].nodeValue == 'Declined'){
+        }else if(id.target.childNodes[0].nodeValue == 'End'){
           setsellertopbarID("3");
           data.change("3")
-        }else if(id.target.childNodes[0].nodeValue == 'All'){
-          setsellertopbarID("0");
-          data.change("0")
+        }else if(id.target.childNodes[0].nodeValue == 'Declined'){
+          setsellertopbarID("4");
+          data.change("4")
         }
       }
         return (

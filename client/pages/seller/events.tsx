@@ -58,7 +58,7 @@ const Pendingevents: NextPage = () => {
           })
           router.push('/user');
         })   
-    },[])
+    },[itemURL])
 
     const listitem = items.map((item:any)=>(
       <Popup data={item} key={item.id}/>
@@ -95,7 +95,9 @@ const Pendingevents: NextPage = () => {
           </div>
         </div>
         <div className={Styles.seller_index_float}>
+          {itemID=='1'?
             <Createevent/>
+          :null}
         </div>
         </div>:null}
       </div>

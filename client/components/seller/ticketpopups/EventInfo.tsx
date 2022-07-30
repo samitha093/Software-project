@@ -26,7 +26,6 @@ const EventInfo: React.FC<EventInfoProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([])
     React.useEffect(()=>{
       setitem(data.tickets);
-      console.log(data)
     },[])
 
     function createData(
