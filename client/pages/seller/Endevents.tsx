@@ -3,14 +3,15 @@ import type { NextPage } from 'next'
 import Sidebar from '../../components/seller/Sidebar'
 import Navbar from '../../components/Navbar'
 import Topbar from '../../components/seller/Topbar'
-import Endevents from '../../components/seller/Endevents'
 import axios from 'axios'
 import {useRouter} from 'next/router'
 import {gethost} from '../../session/Session'
 import Styles from './Styles.module.css'
 import Swal from 'sweetalert2'
+import Popup from '../../components/seller/ticketpopups/Popup'
 
-const index: NextPage = () => {
+
+const Endevents: NextPage = () => {
     const [open, setopen] = React.useState(false);
     const router = useRouter();       
     const [items, setitem] = React.useState([])
@@ -23,17 +24,23 @@ const index: NextPage = () => {
                 router.push('/manager');
             }else if(res.data.type == 'SELLER'){
                 setopen(true);
-                axios.get(gethost()+'seller/end/61842a1e0ec95f011fdc3bcf')
-                .then(async (res)=>{
-                await setitem(res.data)
+                await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true}).then(async (res)=>{
+                  //create a headet pack
+                  const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                  };
+
+                  axios.get(gethost()+'s/getevent/END',config).then(async (res)=>{
+                    await setitem(res.data)
+                  }).catch(()=>{
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Database connection error!'
+                      })
+                  }) 
+
                 })
-                .catch(()=>{
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Database connection error!'
-                    })
-                  })
             }else{
               router.push('/user');
             }
@@ -47,11 +54,11 @@ const index: NextPage = () => {
             timer: 2500
           })
           router.push('/user');
-        })  
+        })   
     },[])
 
-    const listitem = items.map((item)=>(
-      <Endevents data={item}/>
+    const listitem = items.map((item:any)=>(
+      <Popup data={item} key={item.id}/>
     ));
 
     return (
@@ -75,4 +82,4 @@ const index: NextPage = () => {
     );
 }
 
-export default index;
+export default Endevents;

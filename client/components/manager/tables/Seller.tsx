@@ -27,7 +27,6 @@ const Seller: React.FC<SellerProps> = ({data}) => {
                         <TableCell align="right">Email</TableCell>
                         <TableCell align="center">User Type</TableCell>
                         <TableCell align="center">User Satus</TableCell>
-                        <TableCell align="center">Request Date</TableCell>
                         <TableCell align="center">Action</TableCell>
                     </TableRow>
                     </TableHead>
@@ -38,47 +37,52 @@ const Seller: React.FC<SellerProps> = ({data}) => {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell component="th" scope="row">
-                            {row.name}
+                            {row.username}
                         </TableCell>
                         <TableCell align="right">{row.email}</TableCell>
                         <TableCell align="right">
-                            {row.type === "BUYER"?
+                            {row.usertype === "BUYER"?
                             <div className={styles.table_seller_type_buyer}>
-                                {row.type}
+                                {row.usertype}
                             </div>
                             :
                             <div className={styles.table_seller_type_seller}>
-                                {row.type}
+                                {row.usertype}
                             </div>
                             }
                             
                             
                         </TableCell>
                         <TableCell align="right">
-                            {row.status === "PENDING"?
+                            {(row.status == false)&&(row.suspendstatus == false )&& row.otp == 'verified'?
                             <div className={styles.table_seller_status_pending}>
-                                {row.status}
+                                PENDING
                             </div>
                             :null}
                             
-                            {row.status === "ACTIVE"?
+                            {(row.status == true)&&(row.suspendstatus == false)&& row.otp == 'verified'?
                             <div className={styles.table_seller_status_active}>
-                                {row.status}
+                                ACTIVE
                             </div>
                             :null}
                             
-                            {row.status === "DEACTIVE"?
+                            {row.suspendstatus == true && row.otp == 'verified'?
                             <div className={styles.table_seller_status_deactive}>
-                                {row.status}
+                                SUSPENDED
+                            </div>
+                            :null}
+
+                            {row.otp == 'unverified'?
+                            <div className={styles.table_seller_status_unverified}>
+                                UNVERIFIED
                             </div>
                             :null}
                             
                         </TableCell>
-                        <TableCell align="right">{row.date}</TableCell>
                         <TableCell>
                             <div className={styles.table_seller_action}>
                                 <div className={styles.table_seller_action_verify}>Re-verification</div>
-                                {row.status === "PENDING"?
+                                {(row.suspendstatus == true)||row.status == false?
                                 <div className={styles.table_seller_action_activate}>Activate</div>
                                 :
                                 <div className={styles.table_seller_action_deactivate}>Deactivate</div>
