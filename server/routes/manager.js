@@ -116,7 +116,6 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  router.route('/userlist/:type').get(verifyAccessToken,managerverification,(req,res) => {
   var userType = req.params.type;
   var Projection = { 
-      otp: false,
       password: false,
       secret: false,
       token: false,
@@ -124,27 +123,49 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
   };
   if(userType == 'pending'){
     User.find({usertype:["SELLER","BUYER"],otp: '0', status:false, suspendstatus: false},Projection,(err,data) => {
-        res.status(200).json(data) 
+        res.status(200).json(masking(data)) 
     })
   }else if(userType == 'active'){
     User.find({usertype:["SELLER","BUYER"],otp: '0', status:true, suspendstatus: false},Projection,(err,data) => {
-        res.status(200).json(data) 
+        res.status(200).json(masking(data)) 
     })
   }else if(userType == 'declined'){
     User.find({usertype:["SELLER","BUYER"],otp: '0', suspendstatus: true},Projection,(err,data) => {
-        res.status(200).json(data) 
+        res.status(200).json(masking(data)) 
     })
   }else if(userType == 'unverified'){
     User.find({usertype:["SELLER","BUYER"],otp: { "$ne": '0' }},Projection,(err,data) => {
-        res.status(200).json(data) 
+        res.status(200).json(masking(data)) 
     })
   }else{
     User.find({usertype:["SELLER","BUYER"]},Projection,(err,data) => {
-        res.status(200).json(data) 
+        res.status(200).json(masking(data)) 
     })
   }
   
 });
+const masking = (data)=>{
+    var j = 0;
+    for(var i in data){
+        if(data[j].otp == '0'){
+            data[j].otp = "verified"
+        }else{
+            data[j].otp = "unverified"
+        }        
+        let str = data[j].email
+        str = str.split('');
+        let finalArr=[];
+        let len = str.indexOf('@');
+        str.forEach((item,pos)=>{
+        (pos>=1 && pos<=len-2) ? finalArr.push('*') : finalArr.push(str[pos]);
+        }) 
+        var newEmail = finalArr.join('');
+        data[j].email = newEmail;
+        j = j+1;
+    }
+    
+    return(data);
+}
 
 /**
  * @swagger
