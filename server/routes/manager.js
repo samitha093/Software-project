@@ -189,7 +189,7 @@ const masking = (data)=>{
  *                  description: Server failure
  */
  router.route('/getevent/:type').get(verifyAccessToken,managerverification,(req,res) => {
-  events.find({status:req.params.type})
+  events.find({status:req.params.type.toUpperCase()})
       .then(data =>{
           if(data.length>0){
               res.status(200).json(data)

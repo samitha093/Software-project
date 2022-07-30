@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
-import Pendingtickets from '../../components/manager/Pendingtickets'
+import Popup from '../../components/manager/ticketpopups/Popup'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -11,21 +11,28 @@ import {useRouter} from 'next/router'
 import styles from './styles.module.css'
 import classnames from 'classnames';
 
-const pendingevents: NextPage = () => {
+
+const events: NextPage = function ActiveEvents() {
     const [open, setopen] = React.useState(false);
     const router = useRouter();
     const [items, setitem] = React.useState([])
+    const [itemID, setitemID] = React.useState("1");
+    const [itemURL, setitemURL] = React.useState('m/getevent/pending');
 
     React.useEffect(() => {
+        setopen(false);
         axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
             if(res.data.type == 'BUYER'){
                 router.push('/buyer');
             }else if(res.data.type == 'MANAGER'){
-                setopen(true);
-                axios.get(gethost() + 'manager/pendingevents')
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                  };
+                axios.get(gethost() + itemURL ,config)
                     .then(async (res) => {
                         await setitem(res.data)
+                        setopen(true);
                     })
                     .catch(() => {
                         Swal.fire({
@@ -50,49 +57,36 @@ const pendingevents: NextPage = () => {
           })
           router.push('/user');
         }) 
-    }, [])
+    }, [itemURL])
+
+    const listitem = items.map((item:any)=>(
+        <Popup data={item} key={item.id}/>
+      ));
+      
+      const changeSellerList = async(e:any)=>{
+        if(e == 1){
+            setitemURL('m/getevent/pending');
+            setitemID("1")
+        }else if(e == 2){
+            setitemURL('m/getevent/active');
+            setitemID("2")
+        }else if(e == 3){
+            setitemURL('m/getevent/declined');
+            setitemID("3")
+        }
+      };
+
     return (
         <div className={styles.manager_bg}>
             {open?<div>
             <Navbar />
             <div className={styles.manager_index}>
                 <Sidebar id='2' />
-                <ManagerTopBar id2='1' />
+                <ManagerTopBar id2={itemID} data={{change: changeSellerList}} />
                 <div className={styles.manager_index_scroll_set}>
                     <h1>Pending Events</h1>
                     <div className={styles.manager_index_container}>
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
+                        {listitem}
                     </div>
                 </div>
             </div>
@@ -101,4 +95,4 @@ const pendingevents: NextPage = () => {
     );
 }
 
-export default pendingevents;
+export default events;

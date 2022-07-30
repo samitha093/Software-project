@@ -16,19 +16,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import SellIcon from '@mui/icons-material/Sell';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import EventInfo from './EventInfo'
+import EventInfo from '../../seller/ticketpopups/EventInfo'
+import SellingInfo from '../../seller/ticketpopups/SellingInfo'
+import Tickets from '../../seller/ticketpopups/Tickets'
+import Analitics from '../../seller/ticketpopups/Analitics'
 import Nopermission from './Nopermission'
 import Styles from './styles.module.scss'
 
-import SellingInfo from './SellingInfo'
-import Tickets from './Tickets'
-import Analitics from './Analitics'
-import Buyers from './Buyers'
-import Bidders from './Bidders'
 
 interface PopupProps {
     data:any,
@@ -95,6 +92,53 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         setValue(newValue);
     };
 
+    const declined = ()=>{
+      setOpen(false);
+      Swal.fire({
+        title: 'Are you sure?',
+        input: 'text',
+        text: "You won't be able to decline this Event!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, decline it!',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setOpen(true);
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          setOpen(true);
+        }
+      })
+    }
+
+    const approval = ()=>{
+      setOpen(false);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to approve this Event!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setOpen(true);
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          setOpen(true);
+        }
+      })
+    }
+
     return (
         <div className={Styles.bg}>
             <div className={Styles.seller_c_tickets} onClick={handleClickOpen}>
@@ -129,27 +173,30 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabContext value={value}>
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
-                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"2"}/>
-                        <Tab icon={<SellIcon />} iconPosition="start" label="Buyer List" value={"3"}/>
-                        <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
-                        <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
-                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"6"}/>
+                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"3"}/>
+                        <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"4"}/>
+                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"5"}/>
                     </Tabs>  
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?<SellingInfo/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?<Tickets/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="4">{(data.status=="END")||(data.status=="ACTIVE")?<Analitics/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?<Buyers/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="6">{data.status=="END"?<Bidders/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="3">{data.status=="ACTIVE"?<SellingInfo/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="4">{data.status=="ACTIVE"?<Tickets/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{data.status=="ACTIVE"?<Analitics/>:<Nopermission/>}</TabPanel>
                     </TabContext>
                     
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
-                        Save changes
+                  {data.status == 'PENDING' || data.status == 'DECLINED'?
+                  <Button variant="outlined" color="success" onClick={approval}>
+                      Approve
+                  </Button>
+                  :null}
+                  {data.status == 'PENDING' || data.status == 'ACTIVE'?
+                    <Button variant="outlined" color="error" onClick={declined}>
+                        Decline
                     </Button>
+                  :null}
                 </DialogActions>
             </BootstrapDialog>   
         </div>
