@@ -2,7 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
 import Navbar from '../../components/Navbar'
-import Pendingtickets from '../../components/manager/Pendingtickets'
+import Popup from '../../components/manager/ticketpopups/Popup'
 import ManagerTopBar from '../../components/manager/ManagerTopBar'
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -11,7 +11,8 @@ import {useRouter} from 'next/router'
 import styles from './styles.module.css'
 import classnames from 'classnames';
 
-const pendingevents: NextPage = () => {
+
+const events: NextPage = function ActiveEvents() {
     const [open, setopen] = React.useState(false);
     const router = useRouter();
     const [items, setitem] = React.useState([])
@@ -23,7 +24,7 @@ const pendingevents: NextPage = () => {
                 router.push('/buyer');
             }else if(res.data.type == 'MANAGER'){
                 setopen(true);
-                axios.get(gethost() + 'manager/pendingevents')
+                axios.get(gethost() + 'm/getevent/pending')
                     .then(async (res) => {
                         await setitem(res.data)
                     })
@@ -51,6 +52,11 @@ const pendingevents: NextPage = () => {
           router.push('/user');
         }) 
     }, [])
+
+    const listitem = items.map((item:any)=>(
+        <Popup data={item} key={item.id}/>
+      ));
+      
     return (
         <div className={styles.manager_bg}>
             {open?<div>
@@ -61,38 +67,7 @@ const pendingevents: NextPage = () => {
                 <div className={styles.manager_index_scroll_set}>
                     <h1>Pending Events</h1>
                     <div className={styles.manager_index_container}>
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
-                        <Pendingtickets />
+                        {listitem}
                     </div>
                 </div>
             </div>
@@ -101,4 +76,4 @@ const pendingevents: NextPage = () => {
     );
 }
 
-export default pendingevents;
+export default events;
