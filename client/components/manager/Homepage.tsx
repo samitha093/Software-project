@@ -18,7 +18,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { PieChart, Pie } from 'recharts';
 
-import Progressbar from '../../components/manager/Progressbar'
+import Progressbar from './dashboard/Progressbar'
 
 import styles from './styles.module.css'
 import classnames from 'classnames';

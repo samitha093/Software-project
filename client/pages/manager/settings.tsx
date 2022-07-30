@@ -1,8 +1,8 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../../components/manager/Sidebar'
-import Categorylist from '../../components/manager/Categorylist'
-import Arealist from '../../components/manager/Arealist'
+import Categorylist from '../../components/manager/Lists/Categorylist'
+import Arealist from '../../components/manager/Lists/Arealist'
 import Navbar from '../../components/Navbar'
 import Profile from '../../components/profile/Profile'
 import axios from 'axios'
@@ -11,7 +11,7 @@ import styles from './styles.module.css'
 import {useRouter} from 'next/router'
 import Swal from 'sweetalert2'
 
-const settings: NextPage = () => {
+const settings: NextPage = function ActiveEvents() {
     const [open, setopen] = React.useState(false);
     const router = useRouter();
     const [items, setitem] = React.useState([])

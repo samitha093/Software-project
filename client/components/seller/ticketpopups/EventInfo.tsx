@@ -67,6 +67,9 @@ const EventInfo: React.FC<EventInfoProps> = ({data}) => {
                             <Grid item xs={6}>
                                 <Typography> Ending Date: {data.endevent_date}</Typography>
                             </Grid>
+                            <Grid item xs={6}>
+                                <Typography> Ending Status: {data.status}</Typography>
+                            </Grid>
                         </Grid>
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 400 }} aria-label="simple table">
