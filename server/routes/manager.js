@@ -93,7 +93,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
    * @swagger
-   * '/m/pendingsellerlist':
+   * '/m/userlist/{type}':
    *  get:
    *     tags:
    *     - User-Manager
@@ -112,55 +112,38 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
    *        500:
    *            description: Server failure
    */
- router.route('/pendingsellerlist').get(verifyAccessToken,managerverification,(req,res) => {
-    var Projection = { 
-        status: false,
-        otp: false,
-        password: false,
-        usertype: false,
-        secret: false,
-        token: false,
-        tickets: false
-    };
-    User.find({usertype:"SELLER",otp:"0", status:false},Projection,(err,data) => {
-        res.status(200).json(data) 
-    })
-});
-
-/**
-   * @swagger
-   * '/m/activesellerlist':
-   *  get:
-   *     tags:
-   *     - User-Manager
-   *     summary: Get Active Seller List (data-out*)
-   *     requestBody:
-   *      required: false
-   *     responses:
-   *        200:
-   *            description: Pending Seller List
-   *        400:
-   *            description: No Pending Sellers
-   *        403:
-   *            description: Authentication Failed
-   *        401:
-   *            description: NULL Header
-   *        500:
-   *            description: Server failure
-   */
- router.route('/activesellerlist').get(verifyAccessToken,managerverification,(req,res) => {
+ 
+ router.route('/userlist/:type').get(verifyAccessToken,managerverification,(req,res) => {
+  var userType = req.params.type;
   var Projection = { 
-      status: false,
       otp: false,
       password: false,
-      usertype: false,
       secret: false,
       token: false,
       tickets: false
   };
-  User.find({usertype:"SELLER", status:true},Projection,(err,data) => {
-      res.status(200).json(data) 
-  })
+  if(userType == 'pending'){
+    User.find({usertype:["SELLER","BUYER"],otp: '0', status:false, suspendstatus: false},Projection,(err,data) => {
+        res.status(200).json(data) 
+    })
+  }else if(userType == 'active'){
+    User.find({usertype:["SELLER","BUYER"],otp: '0', status:true, suspendstatus: false},Projection,(err,data) => {
+        res.status(200).json(data) 
+    })
+  }else if(userType == 'declined'){
+    User.find({usertype:["SELLER","BUYER"],otp: '0', suspendstatus: true},Projection,(err,data) => {
+        res.status(200).json(data) 
+    })
+  }else if(userType == 'unverified'){
+    User.find({usertype:["SELLER","BUYER"],otp: { "$ne": '0' }},Projection,(err,data) => {
+        res.status(200).json(data) 
+    })
+  }else{
+    User.find({usertype:["SELLER","BUYER"]},Projection,(err,data) => {
+        res.status(200).json(data) 
+    })
+  }
+  
 });
 
 /**

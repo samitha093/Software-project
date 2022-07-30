@@ -17,8 +17,8 @@ interface pendingsellersProps {
 const pendingsellers: NextPage = function ActiveEvents() {
     const [open, setopen] = React.useState(false);
     const [items, setitem] = React.useState([]);
-    const [itemURL, setitemURL] = React.useState('m/pendingsellerlist');
-    const [itemID, setitemID] = React.useState("1");
+    const [itemURL, setitemURL] = React.useState('m/userlist/all');
+    const [itemID, setitemID] = React.useState("0");
     const router = useRouter();
    
 
@@ -64,15 +64,21 @@ const pendingsellers: NextPage = function ActiveEvents() {
 
 
     const changeSellerList = async(e:any)=>{
-        if(e == 1){
-            setitemURL('m/pendingsellerlist');
+        if(e == 0){
+            setitemURL('m/userlist/all');
+            setitemID("0")
+        }else if(e == 1){
+            setitemURL('m/userlist/pending');
             setitemID("1")
         }else if(e == 2){
-            setitemURL('m/activesellerlist');
+            setitemURL('m/userlist/active');
             setitemID("2")
         }else if(e == 3){
-            setitemURL('m/pendingsellerlist');
+            setitemURL('m/userlist/declined');
             setitemID("3")
+        }else if(e == 4){
+            setitemURL('m/userlist/unverified');
+            setitemID("4")
         }
       };
     return (
