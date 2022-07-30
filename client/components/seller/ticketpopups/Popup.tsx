@@ -24,6 +24,11 @@ import EventInfo from './EventInfo'
 import Nopermission from './Nopermission'
 import Styles from './styles.module.scss'
 
+import SellingInfo from './SellingInfo'
+import Tickets from './Tickets'
+import Analitics from './Analitics'
+import Buyers from './Buyers'
+import Bidders from './Bidders'
 
 interface PopupProps {
     data:any,
@@ -133,11 +138,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="4">{data.status=="END"?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?null:<Nopermission/>}</TabPanel>
-                    <TabPanel value="6">{data.status=="END"?null:<Nopermission/>}</TabPanel>
+                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?<SellingInfo/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?<Tickets/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="4">{(data.status=="END")||(data.status=="ACTIVE")?<Analitics/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?<Buyers/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="6">{data.status=="END"?<Bidders/>:<Nopermission/>}</TabPanel>
                     </TabContext>
                     
                 </DialogContent>
