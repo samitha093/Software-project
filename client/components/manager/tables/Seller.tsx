@@ -16,7 +16,6 @@ const Seller: React.FC<SellerProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([])
     React.useEffect(() => {
         setitem(data);
-        console.log(data)
         }, [])
     return (
         <div className={styles.table_seller_container}>
