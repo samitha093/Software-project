@@ -9,7 +9,7 @@ const qr: NextPage = () => {
     const [data, setData] = useState('No result');
     return (
         <div className={styles.bg}>
-            <QrReader
+            {/* <QrReader
                 onResult={(result, error) => {
                 if (!!result) {
                     setData(result?.text);
@@ -20,7 +20,7 @@ const qr: NextPage = () => {
                 }
                 }}
                 style={{ width: '100%' }}
-            />
+            /> */}
       <p>{data}</p>
         </div>
     );
