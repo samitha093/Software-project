@@ -15,25 +15,20 @@ function build(opts) {
       const ua = parser(request.headers["user-agent"]);
       const uagent = useragent.parse(request.headers["user-agent"]);
       const result = detector.detect(request.headers["user-agent"]);
-
+      reply.header("Access-Control-Allow-Origin", "*");
       return { ua: ua, uagent: uagent, ndd: result };
     }
   });
 
-  app.get(
-    "/hello",
-    {
-      query: {
-        name: {
-          type: "string"
-        }
-      }
-    },
-    async (request, reply) => {
-      const { name } = request.query;
-      return { hello: name || "no name!" };
+  app.get("/fastify", {
+    handler: async (request, reply) => {
+      const ua = parser(request.headers["user-agent"]);
+      const uagent = useragent.parse(request.headers["user-agent"]);
+      const result = detector.detect(request.headers["user-agent"]);
+      reply.header("Access-Control-Allow-Origin", "*");
+      return { ua: ua, uagent: uagent, ndd: result };
     }
-  );
+  });
 
   return app;
 }

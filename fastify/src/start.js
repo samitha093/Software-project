@@ -6,7 +6,7 @@ const { build } = require("./build");
 async function start() {
   const app = build({ logger: true });
   try {
-    await app.listen(5000);
+    await app.listen(5000, '0.0.0.0');
   } catch (err) {
     app.log.error(err);
     process.exit(1);
