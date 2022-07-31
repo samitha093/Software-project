@@ -26,6 +26,13 @@ For API Service
 ```bash
   http://localhost/api/
 ```
+
+For fastify Device tracker Service
+
+```bash
+  http://localhost/fastify
+```
+
 For API Document (Swagger)
 
 ```bash
