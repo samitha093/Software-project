@@ -23,7 +23,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
     restart: on-failure:3
     command: npm run dev
-  #API Service
+  #Express API Service
   api-server:
     image: api-servers
     build: 
@@ -38,6 +38,17 @@ services:
     command: npm run dev
     depends_on:
       - mongo
+  #fastify API Service
+  fastify-server:
+    image: fastify-servers
+    build: 
+      context:  ./fastify/
+      dockerfile:  Dockerfile
+    volumes: 
+      - ./fastify:/app
+      - /app/node_modules
+    restart: on-failure:3
+    command: yarn dev
   #mongo db database
   mongo:
     image: mongo:latest

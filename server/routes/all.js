@@ -175,15 +175,37 @@ router.route('/logout').post(verifyAccessToken,(req,res) => {
  router.route('/mydata').get(verifyAccessToken,(req,res) => {
   var Projection = { 
     status: false,
-    otp: false,
     password: false,
-    usertype: false,
     secret: false,
     token: false,
     tickets: false
   };
   User.find({email:req.userdata.email},Projection,(err,data) => {
-    res.status(200).json(data) 
+    res.status(200).json(masking(data)) 
   })
 });
+
+const masking = (data)=>{
+  var j = 0;
+  for(var i in data){
+      if(data[j].otp == '0'){
+          data[j].otp = "verified"
+      }else{
+          data[j].otp = "unverified"
+      }        
+      let str = data[j].email
+      str = str.split('');
+      let finalArr=[];
+      let len = str.indexOf('@');
+      str.forEach((item,pos)=>{
+      (pos>=1 && pos<=len-2) ? finalArr.push('*') : finalArr.push(str[pos]);
+      }) 
+      var newEmail = finalArr.join('');
+      data[j].email = newEmail;
+      j = j+1;
+  }
+  
+  return(data);
+}
+
 module.exports = router;

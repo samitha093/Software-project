@@ -17,6 +17,9 @@
 /server/.vscode/
 /server/node_modules/
 
+#remove Library Files From Fastify
+/fastify/node_modules/
+
 # ependencies
 /.pnp
 .pnp.js

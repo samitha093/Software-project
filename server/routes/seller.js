@@ -250,12 +250,12 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *                  description: Server failure
  */
  router.route('/getevent/:type').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
-    events.find({userid:req.userid, status:req.params.type})
+    events.find({userid:req.userid, status:req.params.type.toUpperCase()})
         .then(data =>{
             if(data.length>0){
                 res.status(200).json(data)
             }else{
-                res.status(404).json("No data Found")
+                res.status(200).json("No data Found")
             }
         })
         .catch(err => res.status(500).json("Server error"))

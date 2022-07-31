@@ -75,7 +75,8 @@ const advanceclick = () => {
      }
   };
 
-const events: NextPage = () => {
+
+  const events: NextPage = function ActiveEvents() {
     // const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
     const theme = useTheme();
     const [personName, setPersonName] = React.useState<string[]>([]);

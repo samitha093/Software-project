@@ -92,7 +92,7 @@ const [sellersidebar3,setsellersidebar3] = React.useState(false);
                             </div>
                         </Link>
 
-                        <Link href="/seller/Pendingevents">
+                        <Link href="/seller/events">
                             <div className={sellersidebar2 ? 'seller_c_sidebar_item active' : 'seller_c_sidebar_item'}>
                             <BootstrapTooltip title="Events">
                                 <Icon className={sellersidebar2 ? 'seller_c_sidebar_item_icon active' : 'seller_c_sidebar_item_icon'} path={mdiCalendarSearch}/>
