@@ -526,12 +526,6 @@ button.ghost {
 
 /*start - manager topbar*/
 
-.manager-c-topbar-item.active {
-  border-color: #752E9E;
-  background-color: #752E9E;
-  color: white;
-}
-
 .manager-c-topbar-item {
   margin-top: 0px;
   width: 40%;
@@ -544,6 +538,17 @@ button.ghost {
   border-style: solid;
   cursor: pointer;
 }
+.manager-c-topbar-item.active {
+  border-color: #752E9E;
+  background-color: #752E9E;
+  color: white;
+}
+.manager-c-topbar-item:hover {
+  border-color: #d4c8db;
+  background-color: #d4c8db;
+  color: black;
+}
+
 /*end - manager topbar*/
 
 /*start - manager seller topbar*/
@@ -564,6 +569,11 @@ button.ghost {
   border-color: #752E9E;
   background-color: #752E9E;
   color: white;
+}
+.manager-seller-c-topbar-item:hover {
+  border-color: #d4c8db;
+  background-color: #d4c8db;
+  color: black;
 }
 /*end - manager seller topbar*/
 

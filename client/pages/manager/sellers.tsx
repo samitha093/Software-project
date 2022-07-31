@@ -89,7 +89,7 @@ const pendingsellers: NextPage = function ActiveEvents() {
                     <Sidebar id='3' />
                     <div onClick={changeSellerList}><SellersTopBar id3={itemID} data={{change: changeSellerList}}/></div>
                     <div className={styles.manager_sellers_main_container}>
-                        <h1>Pending Sellers</h1>
+                        <h1>Sellers</h1>
                         <div className={styles.manager_sellers_main_container}>
                             <Seller data={items} />
                         </div>
