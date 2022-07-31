@@ -15,6 +15,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  fallback: {
+    "fs": false,
+    "path": false,
+    "os": false,
+  }
 }
 
 module.exports = nextConfig
