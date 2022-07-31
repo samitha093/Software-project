@@ -84,7 +84,7 @@ const events: NextPage = function ActiveEvents() {
                 <Sidebar id='2' />
                 <ManagerTopBar id2={itemID} data={{change: changeSellerList}} />
                 <div className={styles.manager_index_scroll_set}>
-                    <h1>Pending Events</h1>
+                    <h1>Events</h1>
                     <div className={styles.manager_index_container}>
                         {listitem}
                     </div>

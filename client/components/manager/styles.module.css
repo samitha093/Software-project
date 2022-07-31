@@ -58,14 +58,6 @@
     box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
 }
 
-.manager_c_topbar_item:hover {
-    border-color: #752E9E;
-    background-color: #752E9E;
-    color: white;
-}
-
-/*end - topbar component*/
-
 /*start - seller topbar component*/
 .manager_seller_c_topbar {
     z-index: 10;
@@ -89,12 +81,6 @@
     border-radius: 30px;
     -webkit-box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
     box-shadow: 0px 0px 35px -11px rgba(0, 0, 0, 0.69);
-}
-
-.manager_seller_c_topbar_item:hover {
-    border-color: #752E9E;
-    background-color: #752E9E;
-    color: white;
 }
 
 /*end - seller topbar component*/
