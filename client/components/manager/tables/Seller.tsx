@@ -7,11 +7,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper';
 import styles from './styles.module.scss'
+import Swal from 'sweetalert2'
 
 interface SellerProps {
  data:any
 }
  
+async function PopupConfirm(){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, activate this seller!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Activated!',
+            'New seller has been activated.',
+            'success'
+          )
+        }
+      })
+  }
+
 const Seller: React.FC<SellerProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([])
     React.useEffect(() => {
@@ -81,7 +102,7 @@ const Seller: React.FC<SellerProps> = ({data}) => {
                         </TableCell>
                         <TableCell>
                             <div className={styles.table_seller_action}>
-                                <div className={styles.table_seller_action_verify}>Re-verification</div>
+                                <div className={styles.table_seller_action_verify} onClick={PopupConfirm} >Re-verification</div>
                                 {(row.suspendstatus == true)||row.status == false?
                                 <div className={styles.table_seller_action_activate}>Activate</div>
                                 :
