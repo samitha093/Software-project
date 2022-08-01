@@ -79,6 +79,9 @@ app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const allroute = require('./routes/all');
 app.use('/a',allroute);
 
+const devices = require('./routes/links');
+app.use('/d',devices);
+
 const sellerrout = require('./routes/seller');
 app.use('/s',sellerrout);
 

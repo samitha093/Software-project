@@ -14,11 +14,18 @@ export const gettoken = () =>{
 export const getuser = () =>{
  
 }
+export const getmyhost = () =>{
+    const host = 'http://192.168.1.198/';
+    return host;
+}
 export const gethost = () =>{
     const host = 'http://localhost/api/';
     return host;
 }
-//cart session
+export const getfastify = () =>{
+    const host = 'http://localhost/fastify';
+    return host;
+}
 
 
 export const addcart = (itemid: string, qty: number) =>{
