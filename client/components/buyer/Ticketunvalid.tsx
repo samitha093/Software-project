@@ -18,6 +18,8 @@ import styles from './styles.module.scss'
 
 interface TicketunvalidProps {
   level : string,
+  type:string,
+  data:any,
  }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -58,7 +60,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     </DialogTitle>
   );
 };
-const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
+const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
   const [open, setOpen] = React.useState(false);
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");

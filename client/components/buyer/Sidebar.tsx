@@ -113,21 +113,21 @@ React.useEffect(() => {
                                 </div>
                             </BootstrapTooltip>
                         </Link>
-                        <Link href="/buyer/payment">
+                        <Link href="/buyer">
                         <BootstrapTooltip title="Pending Payment Tickets">
                             <div className={buyersidebar2 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
                                 <Icon className={buyersidebar2 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'} path={mdiCreditCardMarkerOutline} />
                             </div>
                             </BootstrapTooltip>
                         </Link>
-                        <Link href="/buyer/bids">
+                        <Link href="/buyer">
                         <BootstrapTooltip title="Pending Bids">
                             <div className={buyersidebar3 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
                                 <Icon path={mdiCameraTimer} className={buyersidebar3 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
                             </div>
                             </BootstrapTooltip>
                         </Link>
-                        <Link href="/buyer/tickets">
+                        <Link href="/buyer">
                         <BootstrapTooltip title="My Old Tickets">
                             <div className={buyersidebar4 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
                                 <Icon path={ mdiTicketPercentOutline} className={buyersidebar4 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>

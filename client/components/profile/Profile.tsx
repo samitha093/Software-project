@@ -114,7 +114,7 @@ function Profile() {
             <div className={styles.profile_container_bg_right}>
                 {openAccount?<Account data={items}/>:null}
                 {openSecurity?<Security/>:null}
-                {openAdvance?<Advance/>:null}
+                {openAdvance?<Advance userdata={items}/>:null}
             </div>
         </div>
     </div>

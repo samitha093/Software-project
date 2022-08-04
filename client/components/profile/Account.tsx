@@ -15,7 +15,6 @@ const Account: React.FC<AccountProps> = ({data}) => {
   const [items, setitems] = React.useState<any>()
   React.useEffect(()=>{
    setitems(data);
-   console.log(data)
   },[])
   return (
     <div>

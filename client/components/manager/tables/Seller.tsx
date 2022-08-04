@@ -13,7 +13,8 @@ interface SellerProps {
  data:any
 }
  
-async function PopupConfirm(){
+async function PopupConfirm(data:any){
+    console.log(data);
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -23,6 +24,7 @@ async function PopupConfirm(){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, activate this seller!'
       }).then((result) => {
+        //axios with if
         if (result.isConfirmed) {
           Swal.fire(
             'Activated!',
@@ -102,11 +104,11 @@ const Seller: React.FC<SellerProps> = ({data}) => {
                         </TableCell>
                         <TableCell>
                             <div className={styles.table_seller_action}>
-                                <div className={styles.table_seller_action_verify} onClick={PopupConfirm} >Re-verification</div>
+                                <div className={styles.table_seller_action_verify}>Re-verification</div>
                                 {(row.suspendstatus == true)||row.status == false?
-                                <div className={styles.table_seller_action_activate}>Activate</div>
+                                <div className={styles.table_seller_action_activate} onClick={PopupConfirm}>Activate</div>
                                 :
-                                <div className={styles.table_seller_action_deactivate}>Deactivate</div>
+                                <div className={styles.table_seller_action_deactivate} onClick={PopupConfirm}>Deactivate</div>
                                 }
                             </div>
                         </TableCell>
