@@ -1,12 +1,12 @@
 const express = require('express');
-const router = express.Router()
 const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const schedule = require('node-schedule')
-const {createtickets, createQR, createQRguest} = require('./jobprofiles/cronjobs')
-const cookieParser = require('cookie-parser')
+const schedule = require('node-schedule');
+const cookieParser = require('cookie-parser');
+
+const {createtickets, createQR, createQRguest} = require('./jobprofiles/cronjobs');
 
 require('dotenv').config();
 const uri = process.env.MONGO_URI;
@@ -15,6 +15,8 @@ const api = process.env.API_HOST;
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+
 
 //app.use(cors({credentials:true, origin: next}));
 //app.use(cors({credentials:true}));

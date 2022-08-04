@@ -9,15 +9,24 @@ import AddIcon from '@mui/icons-material/Add';
 import {getfastify, getmyhost, gethost} from '../../session/Session';
 import Qrcard from './qrcard';
 
-interface AdvanceProps {
 
+import Socket from '../../websocket/Socket'
+interface AdvanceProps {
+  userdata:any
 }
 
-const Advance: React.FC<AdvanceProps> = ({}) => {
+const Advance: React.FC<AdvanceProps> = ({userdata}) => {
   const [data, setData] = React.useState([]);
   const [rtn, setrtn] = React.useState();
+
+  const [roomid, setroomid] = React.useState<string>('');
+  const [roomstatus, setroomstatus] = React.useState<boolean>(false);
+
+  
   
     React.useEffect(()=>{
+      setroomstatus(false);
+      setroomid(userdata.id);
       axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
       .then(async (res)=>{
         const config = {
@@ -25,6 +34,7 @@ const Advance: React.FC<AdvanceProps> = ({}) => {
         };
         axios.get(gethost() + 'd/links',config).then(async (res)=>{
           setData(res.data);
+          setroomstatus(true);
         }).catch(()=>{
           Swal.fire({
             icon: 'error',
@@ -74,10 +84,12 @@ const Advance: React.FC<AdvanceProps> = ({}) => {
     }
 
     const listitem = data.map((item:any)=>(
-      <div className={styles.device_card} key={item.id}>
-        <Qrcard data={item}/>
-      </div>
+        <Qrcard data={item} key={item.id}/>
     ));
+
+      const outputdatat = async(data:any)=>{
+        setrtn(data.message);
+      }
 
   return (
     <div className={styles.bg}>
@@ -89,6 +101,10 @@ const Advance: React.FC<AdvanceProps> = ({}) => {
         <Fab size="small" color="secondary" aria-label="add" onClick={newDevice}>
           <AddIcon />
         </Fab>
+        <Socket.Output data={{output: outputdatat}}/>
+        {roomstatus?
+          <Socket.Room data={roomid}/>
+        :null}
       </div>
     </div>
   );

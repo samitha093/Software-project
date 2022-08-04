@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import { useRouter } from "next/router";
 import type { NextPage } from 'next'
 import Swal from 'sweetalert2'
@@ -6,69 +6,57 @@ import axios from 'axios'
 import Button from '@mui/material/Button';
 import styles from './styles.module.scss'
 import {getfastify, getmyhost, gethost} from '../session/Session';
+import Socket from '../websocket/Socket'
+
 
 const qr: NextPage = function ActiveEvents() {
     const { query } = useRouter();
     const [data, setData] = useState([]);
 
-    const [osName, setosName] = React.useState();
-    const [osVersion, setosVersion] = React.useState();
-    const [clientName, setclientName] = React.useState();
-    const [clientType, setclientType] = React.useState();
-    const [deviceModel, setdeviceModel] = React.useState();
-    const [deviceBrand, setdeviceBrand] = React.useState();
-    const [deviceType, setdeviceType] = React.useState();
-    const [deviceId, setdeviceId] = React.useState();
+    const [roomid, setroomid] = React.useState<string>('');
+    const [roomstatus, setroomstatus] = React.useState<boolean>(false);
 
     React.useEffect(()=>{
-        axios.get(getmyhost() +'fastify').then(async (res)=>{
-            setclientName(res.data.ndd.client.name);
-            setclientType(res.data.ndd.client.type);
-            setosName(res.data.ndd.os.name);
-            setosVersion(res.data.ndd.os.version);
-            setdeviceModel(res.data.ndd.device.model);
-            setdeviceBrand(res.data.ndd.device.brand);
-            setdeviceType(res.data.ndd.device.type);
-            setdeviceId(res.data.ndd.device.id);
-
-        }).catch(()=>{
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Database connection error!'
-            })
-        }) 
-
-    },[])
-
-    const updatedevice = ()=>{
-        const datapack = {
-            osName:osName,
-            osVersion:osVersion,
-            clientName:clientName,
-            clientType:clientType,
-            deviceModel:deviceModel,
-            deviceBrand:deviceBrand,
-            deviceType:deviceType,
-            deviceId:deviceId,
+        if(query.id){
+            axios.get(getmyhost() +'fastify').then(async (res)=>{
+                const datapack = {
+                    osName:res.data.ndd.os.name,
+                    osVersion:res.data.ndd.os.version,
+                    clientName:res.data.ndd.client.name,
+                    clientType:res.data.ndd.client.type,
+                    deviceModel:res.data.ndd.device.model,
+                    deviceBrand:res.data.ndd.device.brand,
+                    deviceType:res.data.ndd.device.type,
+                    deviceId:res.data.ndd.device.id,
+                }
+                axios.put(gethost()+'d/update/'+query.id,datapack)
+                .then(async (res)=>{
+                    await setroomid(res.data)
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Device conected successfully'
+                    })
+                    await setroomstatus(true);
+                })
+                .catch((err)=>{
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Connetion Failed',
+                    text: err.response.data,
+                    showConfirmButton: false,
+                    timer: 2500
+                    })
+                })
+            }).catch(()=>{
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Database connection error!'
+                })
+            }) 
+            
         }
-        axios.put(gethost()+'d/update/'+query.id,datapack)
-        .then(async (res)=>{
-            Toast.fire({
-                icon: 'success',
-                title: 'Device conected successfully'
-              })
-        })
-        .catch((err)=>{
-            Swal.fire({
-            icon: 'error',
-            title: 'Connetion Failed',
-            text: err.response.data,
-            showConfirmButton: false,
-            timer: 2500
-            })
-        })
-    }
+    },[query.id])
 
     const Toast = Swal.mixin({
         toast: true,
@@ -82,14 +70,11 @@ const qr: NextPage = function ActiveEvents() {
         }
       })
 
+
     return (
         <div className={styles.bg}>
-            {query.id == null?
-                null
-            :
-                <Button variant="contained" onClick={updatedevice}>Connect With : {query.id}</Button>
-            }
-      <p>{data}</p>
+           
+            {roomstatus?<Socket.Input data={roomid}/>:null}
         </div>
     );
 }

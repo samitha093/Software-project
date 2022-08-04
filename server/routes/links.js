@@ -121,7 +121,7 @@ const {getusername, getuserid} = require('../middlewares/user');
           data.deviceId = req.body.deviceId;
           data.deviceStatus = "CONECTED"
           data.save()
-              .then(()=> res.status(200).json("Link updated"))
+              .then((result)=> res.status(200).json(result.sellerid))
               .catch(err => res.status(500).json(err))
         }
     })

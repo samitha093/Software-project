@@ -15,15 +15,15 @@ export const getuser = () =>{
  
 }
 export const getmyhost = () =>{
-    const host = 'http://192.168.1.198/';
+    const host = 'http://192.168.1.150/';
     return host;
 }
 export const gethost = () =>{
-    const host = 'http://localhost/api/';
+    const host = 'http://192.168.1.150/api/';
     return host;
 }
 export const getfastify = () =>{
-    const host = 'http://localhost/fastify';
+    const host = 'http://192.168.1.150/fastify';
     return host;
 }
 

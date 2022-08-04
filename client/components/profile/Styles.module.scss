@@ -178,12 +178,17 @@
 }
 /* End Account settings Section*/
 .device_card{
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     margin: 20px;
+    display: flex;
+    width: 100%;
 }
 .device_card_qr{
     margin: 0px;
     padding: 0px;
+    width: 40%;
+}
+.device_card_data{
+    width: 60%;
 }
 .addMoreEndDevices{
    width: 100%;
