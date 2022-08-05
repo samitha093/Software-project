@@ -1,9 +1,11 @@
 import React from 'react'
 import Shopcard from './Shopcard';
-import style from './styles.module.css'
-import {gethost } from '../session/Session';
+import {gethost } from '../../session/Session';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+
+import style from '../styles.module.scss'
+
 interface ShopProps {
  tickets:any
 }

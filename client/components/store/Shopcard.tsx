@@ -9,15 +9,18 @@ import CloseIcon from '@mui/icons-material/Close';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import PanToolOutlinedIcon from '@mui/icons-material/PanToolOutlined';
 import Image from 'next/image'
-import remove from '../assets/icons/minus.png'
-import add from '../assets/icons/plus.png'
-import style from './styles.module.css'
-import styles from './buyer/styles.module.scss'
 import classnames from 'classnames';
-import {addcart} from '../session/Session';
 import Swal from 'sweetalert2'
 import axios from 'axios';
-import {gethost} from '../session/Session';
+
+import {gethost, addcart} from '../../session/Session';
+
+import remove from '../../assets/icons/minus.png'
+import add from '../../assets/icons/plus.png'
+
+import style from '../styles.module.scss'
+import styles from '../buyer/styles.module.scss'
+
 interface ShopcardProps {
   level : string,
   ticketid:string
