@@ -217,7 +217,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                     <ul className={style.main_menu}>
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/events">Events </Link></li>
-                        <li ><Link href ="/user/about">About us</Link></li>
+                        <li ><Link href ="/about">About us</Link></li>
                         <li onClick={navclick}>My Account</li>
                     </ul>
                     <div className={style.cart}>

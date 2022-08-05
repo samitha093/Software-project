@@ -15,6 +15,7 @@ import ManagerTopBar from '../../components/manager/ManagerTopBar'
 import Popup from '../../components/manager/ticketpopups/Popup'
 import Seller from '../../components/manager/tables/Seller'
 import SellersTopBar from '../../components/manager/SellersTopBar'
+import Auth from '../../components/auth/Auth'
 //Session and local storage data
 import {gethost} from '../../session/Session';
 //stylesheet
@@ -54,9 +55,7 @@ const index: NextPage = function ActiveEvents() {
                 })
             })
         })
-        .catch((err)=>{
-          Swal.fire({})
-        }) 
+        .catch((err)=>{}) 
              
     },[itemURL])
 
@@ -80,9 +79,7 @@ const index: NextPage = function ActiveEvents() {
                     })
                 })
             })
-            .catch((err) => {
-                Swal.fire({})
-            })
+            .catch((err) => {})
     }, [selleritemURL])
 
       //component changer
@@ -137,7 +134,7 @@ const index: NextPage = function ActiveEvents() {
           
 
     return (
-        <div >
+        <Auth type={"MANAGER"} >
             <div className={styles.manager_bg}>
             <Navbar />
             <div className={styles.manager_index}>
@@ -197,7 +194,7 @@ const index: NextPage = function ActiveEvents() {
                 </div>
             </div>
             </div>
-        </div>
+        </Auth>
     );
 }
 
