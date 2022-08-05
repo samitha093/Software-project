@@ -25,7 +25,7 @@ Install Project (docker composer require*)
 ```bash
   docker-compose up -d --build
 ```
-## Documentation
+## Documentation (Use your network ip instead of localhost)
 
 index 
 ```bash
