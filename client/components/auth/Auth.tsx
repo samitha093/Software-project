@@ -20,15 +20,18 @@ const Auth: React.FC<AuthProps> = ({type, children}) => {
         axios.get(gethost() + 'a/refreshtoken',{withCredentials:true}).then(async (res)=>{
             if(res.data.type == type){
               setopen(true);
+            }else{
+                if(res.data.type == 'BUYER'){
+                    router.push('/buyer');
+                }else if(res.data.type == 'MANAGER'){
+                    router.push('/manager');
+                }else if(res.data.type == 'SELLER'){
+                    router.push('/seller');
+                }else{
+                  router.push('/user');
+                }
             }
         }).catch((err)=>{
-          Swal.fire({
-            icon: 'error',
-            title: 'Authentication Failed',
-            text: err,
-            showConfirmButton: false,
-            timer: 2500
-          })
           router.push('/user');
         })       
     },[])
