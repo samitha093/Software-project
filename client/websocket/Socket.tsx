@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@mui/material/Button';
 
 import io from 'socket.io-client';
-const socket = io("http://192.168.1.150:7000/");
+const socket = io("http://192.168.1.150/");
 
 
 interface InputProps {
