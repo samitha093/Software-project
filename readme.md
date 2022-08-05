@@ -6,19 +6,38 @@
 Event Organizers can Sell their tickets And Event
 Lovers Can get their chance with our platform.
 
-## Deployment
+## Local Deployment Guid
 
-To Deploy Dev. mode on Docker
+Clone the project
+
+```bash
+  git clone https://github.com/samitha093/Software-project.git
+```
+
+Go to the project directory
+
+```bash
+  cd Software-project
+```
+
+Install Project (docker composer require*)
 
 ```bash
   docker-compose up -d --build
 ```
+## Documentation
 
-## Development User-Guid
-
-For Nextjs App
+index 
 ```bash
   http://localhost/
+```
+User Login
+```bash
+  http://localhost/user
+```
+Remote Access
+```bash
+  http://localhost/qr
 ```
 
 For API Service
@@ -32,23 +51,21 @@ For fastify Device tracker Service
 ```bash
   http://localhost/fastify
 ```
+For web socket
+
+```bash
+  http://localhost/socket.io
+```
 
 For API Document (Swagger)
 
 ```bash
   http://localhost/swagger/
 ```
-For Mongodb Database (Mongo express)
+For Mongodb Database (Mongo express)- Dev. use only
 
 ```bash
   http://localhost:8081/
-```
-## Tests For Next.js APP
-
-To run tests, run the following command On client Directory
-
-```bash
-  npm run Dev
 ```
 ## Database login
 Mongodb Compass
