@@ -16,6 +16,8 @@ const qr: NextPage = function ActiveEvents() {
     const [roomid, setroomid] = React.useState<string>('');
     const [roomstatus, setroomstatus] = React.useState<boolean>(false);
 
+    const name = process.env.HOST_IP;
+
     React.useEffect(()=>{
         if(query.id){
             axios.get(getmyhost() +'fastify').then(async (res)=>{
@@ -75,6 +77,7 @@ const qr: NextPage = function ActiveEvents() {
         <div className={styles.bg}>
            
             {roomstatus?<Socket.Input data={roomid}/>:null}
+            {name}
         </div>
     );
 }

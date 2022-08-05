@@ -47,6 +47,7 @@ const {secretGenerator} = require('../auth/jwt')
   if(mytoken == null) return res.sendStatus(401)
     User.find({token: mytoken})
         .then(data =>{
+            //issure a new jwt
             jwt.verify(mytoken, data[0].secret, async(err, datas)=>{
               if(err) {
                 console.log(err);
@@ -57,35 +58,27 @@ const {secretGenerator} = require('../auth/jwt')
                 const activesecret = process.env.SECRET;
                 const accesstoken = await jwt.sign(payload,activesecret,{expiresIn: "300s"});
                 console.log(accesstoken);
-                const secret = await secretGenerator(250)
-                console.log(secret);
-                const token = await jwt.sign(payload,secret)
-                console.log(token);
+                // const secret = await secretGenerator(250)
+                // console.log(secret);
+                // const token = await jwt.sign(payload,secret)
+                // console.log(token);
                 let datapack = {
                   accesstoken: accesstoken,
                   type: datas.type, 
                 }
-                User.find({email:datas.email})
-                  .then(datas =>{
-                      datas[0].secret = secret;
-                      datas[0].token = token;
-                      datas[0].save()
-                  })
+                // User.find({email:datas.email})
+                //   .then(datas =>{
+                //       datas[0].secret = secret;
+                //       datas[0].token = token;
+                //       datas[0].save()
+                //   })
                 console.log("------------------------------------------------");
-                res.status(200).cookie(
-                  "TickBid",
-                  token,
-                  {
-                     sameSite : 'strict',
-                     httpOnly:true,
-                     //secure:true
-                  }
-              ).json(datapack);
+                res.status(200).json(datapack);
               }                   
             })
         })
         .catch(err =>{
-            return res.sendStatus(403)
+            return res.sendStatus(403).json(err);
         })
 });
 

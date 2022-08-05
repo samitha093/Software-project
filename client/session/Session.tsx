@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+const name = process.env.HOST_IP;
 
 export const startsession = (token: string, usertype: string) =>{
 
@@ -15,15 +16,15 @@ export const getuser = () =>{
  
 }
 export const getmyhost = () =>{
-    const host = 'http://192.168.1.150/';
+    const host = 'http://'+name+'/';
     return host;
 }
 export const gethost = () =>{
-    const host = 'http://192.168.1.150/api/';
+    const host = 'http://'+name+'/api/';
     return host;
 }
 export const getfastify = () =>{
-    const host = 'http://192.168.1.150/fastify';
+    const host = 'http://'+name+'/fastify';
     return host;
 }
 

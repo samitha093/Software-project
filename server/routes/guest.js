@@ -363,7 +363,7 @@ router.route('/login').post((req,res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    User.find({email:email, password:password, status:true},async(err,data)=>{
+    User.find({email:email, password:password, status:true, suspendstatus:false},async(err,data)=>{
     if(data.length>0){
         const payload = {"email" : email, "type":data[0].usertype}
         const secret = await secretGenerator(250)
