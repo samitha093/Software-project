@@ -27,8 +27,6 @@ const index: NextPage = () => {
   const [pbticket, setpbticket] = React.useState<any[]>([]);
   const [moticket, setmoticket] = React.useState<any[]>([]);
 
-  const router = useRouter();
-
   React.useEffect(()=>{
     axios.get(gethost() + 'a/refreshtoken',{withCredentials:true}).then(async (res)=>{
       //create a headet pack
@@ -37,25 +35,17 @@ const index: NextPage = () => {
       };
       axios.get(gethost() + 'b/gettickets/mt',config).then(async (res)=>{
         setmticket(res.data);
-      })
+      }).catch((err)=>{})
       axios.get(gethost() + 'b/gettickets/pp',config).then(async (res)=>{
         setppticket(res.data);
-      })
+      }).catch((err)=>{})
       axios.get(gethost() + 'b/gettickets/pb',config).then(async (res)=>{
         setpbticket(res.data);
-      })
+      }).catch((err)=>{})
       axios.get(gethost() + 'b/gettickets/ot',config).then(async (res)=>{
         setmoticket(res.data);
-      })
-    }).catch((err)=>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Authentication Failed',
-        text: err,
-        showConfirmButton: false,
-        timer: 2500
-      })
-    })       
+      }).catch((err)=>{})
+    }).catch((err)=>{})        
   },[])
   //valid ticket list
   const mytickets = mticket.map((itemdata:any)=>(
