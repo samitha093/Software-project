@@ -20,7 +20,9 @@ const nextConfig = {
     "path": false,
     "os": false,
   },
-
+  env: {
+    HOST_IP: process.env.HOST_IP,
+  },
 }
 
 module.exports = nextConfig
