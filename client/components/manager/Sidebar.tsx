@@ -1,3 +1,4 @@
+//node packages
 import React from 'react'
 import Link from 'next/link'
 import Icon from '@mdi/react';
@@ -8,45 +9,26 @@ import { mdiLogout } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
 import Tooltip from '@mui/material/Tooltip';
 import { useRouter } from 'next/router';
-import {gethost } from '../../session/Session';
 import axios from 'axios';
 import Swal from 'sweetalert2'
-
-import styles from './styles.module.css'
 import classnames from 'classnames';
+//Session and local storage data
+import {gethost } from '../../session/Session';
+//stylesheet
+import styles from './styles.module.scss'
+
 
 interface SidebarProps {
     id: string;
+    data:any;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ id }) => {
+const Sidebar: React.FC<SidebarProps> = ({ id , data}) => {
     const router = useRouter()
-    const [managersellersidebar1, setmanagersellersidebar1] = React.useState(true);
-    const [managersellersidebar2, setmanagersellersidebar2] = React.useState(false);
-    const [managersellersidebar3, setmanagersellersidebar3] = React.useState(false);
-    const [managersellersidebar4, setmanagersellersidebar4] = React.useState(false);
+    const [buyersidebar,setbuyersidebar] = React.useState([{status:true},{status:false},{status:false},{status:false}]);
+
     React.useEffect(() => {
-        if (id == "1") {
-            setmanagersellersidebar1(true);
-            setmanagersellersidebar2(false);
-            setmanagersellersidebar3(false);
-            setmanagersellersidebar4(false);
-        } else if (id == "2") {
-            setmanagersellersidebar1(false);
-            setmanagersellersidebar2(true);
-            setmanagersellersidebar3(false);
-            setmanagersellersidebar4(false);
-        } else if (id == "3") {
-            setmanagersellersidebar1(false);
-            setmanagersellersidebar2(false);
-            setmanagersellersidebar3(true);
-            setmanagersellersidebar4(false);
-        } else if (id == "4") {
-            setmanagersellersidebar1(false);
-            setmanagersellersidebar2(false);
-            setmanagersellersidebar3(false);
-            setmanagersellersidebar4(true);
-        }
+       
     }, []);
     async function logout(){
 
@@ -81,42 +63,45 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
               router.push('/user');
             })
         }
+        async function tabchange(id:any,data:any){
+            data.change(id);
+            var datapack = [
+                {status:id=='1'?true:false},
+                {status:id=='2'?true:false},
+                {status:id=='3'?true:false},
+                {status:id=='4'?true:false},
+                {status:id=='5'?true:false}
+            ]
+            setbuyersidebar(datapack);  
+        }
 
     return (
         <div className={styles.manager_c_sidebar}>
             <div className={styles.manager_c_sidebar_container}>
-                <Link href="/manager">
+
                     <Tooltip title="Home Page" placement="bottom-end">
-                        <div className={managersellersidebar1 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
-                            <Icon className={managersellersidebar1 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiHomeOutline} />
+                        <div className={buyersidebar[0].status ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'} onClick={()=>tabchange('1',data)}>
+                            <Icon className={buyersidebar[0].status ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiHomeOutline} />
                         </div>
                     </Tooltip>
-                </Link>
 
-                <Link href="/manager/events">
                     <Tooltip title="Events" placement="bottom-end">
-                        <div className={managersellersidebar2 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
-                            <Icon className={managersellersidebar2 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCalendarSearch} />
+                        <div className={buyersidebar[1].status ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'} onClick={()=>tabchange('2',data)}>
+                            <Icon className={buyersidebar[1].status ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCalendarSearch} />
                         </div>
                     </Tooltip>
-                </Link>
 
-                <Link href="/manager/sellers">
                     <Tooltip title="Sellers" placement="bottom-end">
-                        <div className={managersellersidebar3 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
-                            <Icon className={managersellersidebar3 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiAccountGroup} />
+                        <div className={buyersidebar[2].status ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'} onClick={()=>tabchange('3',data)}>
+                            <Icon className={buyersidebar[2].status ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiAccountGroup} />
                         </div>
                     </Tooltip>
-                </Link>
 
-
-                <Link href="/manager/settings">
                     <Tooltip title="Manager Settings" placement="bottom-end">
-                        <div className={managersellersidebar4 ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'}>
-                            <Icon className={managersellersidebar4 ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCogs} />
+                        <div className={buyersidebar[3].status ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'} onClick={()=>tabchange('4',data)}>
+                            <Icon className={buyersidebar[3].status ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiCogs} />
                         </div>
                     </Tooltip>
-                </Link>
 
                 <Tooltip title="Logout from Manager" placement="bottom-end">
                     <div onClick={logout} className="manager-c-sidebar-item">
