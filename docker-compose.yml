@@ -49,6 +49,17 @@ services:
       - /app/node_modules
     restart: on-failure:3
     command: yarn dev
+  #ws Socket API
+  ws-socket:
+    image: ws-socket
+    build: 
+      context:  ./websocket/
+      dockerfile:  Dockerfile
+    volumes: 
+      - ./websocket:/app
+      - /app/node_modules
+    restart: on-failure:3
+    command: yarn dev
   #mongo db database
   mongo:
     image: mongo:latest
