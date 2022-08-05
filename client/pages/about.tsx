@@ -2,18 +2,8 @@ import React  from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import Navbar from '../../components/Navbar'
+import Navbar from '../components/Navbar'
 import Image from 'next/dist/client/image';
-import seat from '../../assets/seat.png'
-import social_distance from '../../assets/social.jpg'
-import aud from '../../assets/aud.jpeg'
-import mock from '../../assets/mock.png'
-import payment from '../../assets/payment.jpeg'
-import bid from '../../assets/bid.jpg'
-import stat from '../../assets/stat.png'
-import virus from '../../assets/virus.png'
-import chair from '../../assets/office-chair.png'
-import money from '../../assets/money.png'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
@@ -24,7 +14,19 @@ import { grey } from '@mui/material/colors';
 import {Button} from '@mui/material';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import style from './style.module.css'
+
+import seat from '../assets/seat.png'
+import social_distance from '../assets/social.jpg'
+import aud from '../assets/aud.jpeg'
+import mock from '../assets/mock.png'
+import payment from '../assets/payment.jpeg'
+import bid from '../assets/bid.jpg'
+import stat from '../assets/stat.png'
+import virus from '../assets/virus.png'
+import chair from '../assets/office-chair.png'
+import money from '../assets/money.png'
+
+import style from './user/style.module.css'
 
 
 const about: NextPage = () => {

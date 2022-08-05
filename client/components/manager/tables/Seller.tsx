@@ -14,7 +14,6 @@ interface SellerProps {
 }
  
 async function PopupConfirm(data:any){
-    console.log(data);
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
