@@ -20,6 +20,8 @@ Lovers Can get their chance with our platform.
   NEXT_HOST=http:///{Your Static Ip or Local Ip Address}/
   API_HOST=http://{Your Static Ip or Local Ip Address}/api
   SECRET= {Replace With Your Secreat key}
+  GMAIL={comapy email}
+  KEY={gmail app key without space}
 ```
 
 
