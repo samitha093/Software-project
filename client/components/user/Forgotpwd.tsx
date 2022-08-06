@@ -4,14 +4,22 @@ import lock from '../../assets/lock.png'
 import {Box,Grid,} from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import Swal from 'sweetalert2'
+import axios from 'axios'
+
+import {getfastify, getmyhost, gethost} from '../../session/Session';
 
 import LockIcon from '@mui/icons-material/Lock';
+import { useRouter } from "next/router";
 
 interface ForgotpwdProps {
-
+  email:any,
+  otp:any
 }
 
-const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
+const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
+
+  const { query } = useRouter();
 
   const [login_email,login_setEmail] = React.useState<string>("");
   const [login_emailHasError,login_setEmailError] = React.useState<boolean>(false);
@@ -22,13 +30,56 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
     const valid = !!event.target.value.match(email_regex);
     login_setEmailError(!valid);
   }
+
+  const [newpassword,setnewpassword] = React.useState<string>("");
+  const newpasswordset = (event:any)=>{
+    setnewpassword(event.target.value)
+  }
+
+  const changepassword = (event:any)=>{
+    const datapack = {
+      otp:otp,
+      email:email,
+      password:newpassword,
+    }
+    axios.post(gethost()+'g/passwordreset',datapack)
+    .then(async (res)=>{
+        Toast.fire({
+            icon: 'success',
+            title: "Password updated"
+        })
+    })
+    .catch((err)=>{
+      Toast.fire({
+        icon: 'warning',
+        title: err.response.data
+    })
+    })
+  }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  React.useEffect(()=>{
+    // console.log(email)
+    // console.log(otp)
+  })
     return(
         <div className="container" id="container" >
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item md={6} className = "pwd_container" >
                 <div className="form_wrapper">
-                        <form className="modern_form" action="#">
+                        <div className="modern_form" >
 
                           <h1 className = "head_password" >Reset Password</h1>
                           {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
@@ -39,7 +90,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                           className="inputbox_modern"
                           type="email" 
                           placeholder="Your Email"
-                          // value={login_email}
+                          value={email}
                           // onChange={login_emailChangeHandler}
                           // onBlur={emailBlurHandler} 
                           /></div>
@@ -50,7 +101,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                           className="inputbox_modern_otp"
                           type="text" 
                           placeholder="OTP"
-                          // value={login_email}
+                          value={otp}
                           // onChange={login_emailChangeHandler}
                           // onBlur={emailBlurHandler} 
                           /></div>
@@ -61,9 +112,9 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                             className="inputbox_modern_1"
                             type="password" 
                             placeholder="New Password" 
-                            // value={login_password}
-                            // onChange={login_passwordChangeHandler}
-                            // onBlur={login_passwordChangeHandler}
+                            value={newpassword}
+                            onChange={(e)=>newpasswordset(e)}
+                            onBlur={(e)=>newpasswordset(e)}
                             // onBlur={emailBlurHandler}
                             />
                           </div>
@@ -82,8 +133,8 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({}) => {
                           </div>
 
                           <br/><br/>
-                          <button className="modern_btn">Change Password</button>
-                        </form>
+                          <button className="modern_btn" onClick={changepassword}>Change Password</button>
+                        </div>
                           
                    </div>
                     
