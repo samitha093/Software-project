@@ -135,6 +135,16 @@ button.ghost {
 	font-family: 'Open Sans', sans-serif;
 
 }
+.inputbox_modern_otp{
+	background-color: rgba(238, 238, 238, 0.733);
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	padding: 12px 15px;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+}
 .inputbox_modern_1{
 	background-color: rgba(238, 238, 238, 0.733);
 	border: none;
