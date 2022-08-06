@@ -25,7 +25,16 @@ Lovers Can get their chance with our platform.
 ```
 
 
-## Local Deployment Guid
+## Deployment for production
+
+for docker composer with DockerHub
+
+```bash
+https://hub.docker.com/repository/docker/httpsdom/tickbid
+```
+
+
+## Local Deployment Guid - Dev
 
 Clone the project
 
