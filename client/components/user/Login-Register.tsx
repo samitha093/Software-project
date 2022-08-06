@@ -242,6 +242,33 @@ async function signUpformn(){
       setNameHasError(!isValid);
   }
 
+  const sendresetemail = (event:any) =>{
+    const verifydatapack = {
+      name:"",
+      email:login_email,
+      usertype:"reset"
+    }
+    axios.post(gethost() + 'g/verify',verifydatapack)
+    .then(async (res)=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'successful Send Reset link',
+        text: 'Please check your email inbox',
+        //showConfirmButton: false,
+        //timer: 2500
+      })
+    }) .catch((err)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.response.data,
+        showConfirmButton: false,
+        timer: 2500
+      })
+    })
+    
+}
+
   const passwordChangeHandler = (e:any)=>{
       setPassword(e.target.value);
       const isValid = e.target.value.length > 5;
@@ -332,7 +359,7 @@ async function signUpformn(){
             <Grid container spacing={0}>
                 <Grid item md={6} className = "pwd_container" >
                 <div className="form_wrapper">
-                        <form className="modern_form" action="#">
+                        <div className="modern_form">
                          <h1 className = "head_password" >Forgot Password</h1>
                          {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
                         <div className ="input_box_container"> 
@@ -347,8 +374,8 @@ async function signUpformn(){
                           />
                           </div>
                           <br/><br/>
-                          <button className="modern_btn">Send Email</button>
-                          </form>
+                          <button className="modern_btn" onClick={sendresetemail}>Send Email</button>
+                          </div>
                         <div className="modern_a" onClick={backtosignin}>Back to sign in</div>  
                    </div>
                     

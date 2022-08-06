@@ -6,9 +6,14 @@ const util_area = require('../models/util_area');
 const util_category = require('../models/util_category');
 const orders = require('../models/orders')
 const crons = require('../models/cron');
-const {a, b, c} = require('../views/otp')
+const {a, b, c, d} = require('../views/otp')
 const {secretGenerator, otpgenerator} = require('../auth/jwt')
 const {emailnotifications} = require('../smtp/mail')
+
+
+require('dotenv').config();
+const next = process.env.NEXT_HOST;
+
 /**
  * @swagger
  *  components:
@@ -415,7 +420,7 @@ router.route('/login').post((req,res) => {
    *     - Email-Sender
    *     summary: Send OTP For useraccount Verification
    *     requestBody:
-   *      required: true
+   *      required: false
    *      content:
    *        application/json:
    *           schema:
@@ -432,7 +437,8 @@ router.route('/login').post((req,res) => {
   
     router.route('/verify').post((req,res) => {
         const username = req.body.name;
-        User.find({email:req.body.email,usertype:req.body.usertype})
+        const type = req.body.usertype;
+        User.find({email:req.body.email})
             .then(data =>{
                 var otpid = otpgenerator(10)
                 data[0].otp = otpid;
@@ -440,11 +446,21 @@ router.route('/login').post((req,res) => {
                     .then(async()=>{
                         const email = req.body.email;
                         const subject = "OTP for Activate your TickBid Account";
-                        const html = a + username +b + otpid + c
-                        await emailnotifications(email, subject, html);
+                        if (type == "reset"){
+                            const restlink = next + "user/resetpwd?email="+req.body.email+"&otp="+otpid;
+                            const restlinktitle = "We received a request to reset the password for the Tickbid account , use below link to reset password <br>";
+                            const html = a + username +b + otpid + c + restlinktitle + restlink + d
+                            await emailnotifications(email, subject, html);
+                        }else{
+                            const html = a + username +b + otpid + c  + d
+                            await emailnotifications(email, subject, html);
+                        }
                         res.status(200).json("Email Sended");
                     })
-                    .catch(err => res.status(500).json(err))
+                    .catch((err )=> {
+                        console.log(err);
+                        res.status(500).json(err)
+                    })
             })
             .catch(err => res.status(400).json("Not Found User Accout For this email"))
     });
