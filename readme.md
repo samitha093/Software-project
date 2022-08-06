@@ -6,49 +6,85 @@
 Event Organizers can Sell their tickets And Event
 Lovers Can get their chance with our platform.
 
-## Deployment
+## Environment variable
 
-To Deploy Dev. mode on Docker
+{root}/client
+
+```bash
+  HOST_IP={Your Static Ip or Local Ip Address}
+```
+{root}/server
+
+```bash
+  MONGO_URI=mongodb://root:password@mongo:27017/tickbid
+  NEXT_HOST=http:///{Your Static Ip or Local Ip Address}/
+  API_HOST=http://{Your Static Ip or Local Ip Address}/api
+  SECRET= {Replace With Your Secreat key}
+  GMAIL={comapy email}
+  KEY={gmail app key without space}
+```
+
+
+## Local Deployment Guid
+
+Clone the project
+
+```bash
+  git clone https://github.com/samitha093/Software-project.git
+```
+
+Go to the project directory
+
+```bash
+  cd Software-project
+```
+
+Install Project (docker composer require*)
 
 ```bash
   docker-compose up -d --build
 ```
+## Documentation (Use your network ip instead of localhost)
 
-## Development User-Guid
-
-For Nextjs App
+index 
 ```bash
-  http://localhost/
+  http://{IP or localhost}/
+```
+User Login
+```bash
+  http://{IP or localhost}/user
+```
+Remote Access
+```bash
+  http://{IP or localhost}/qr
 ```
 
 For API Service
 
 ```bash
-  http://localhost/api/
+  http://{IP or localhost}/api/
 ```
 
 For fastify Device tracker Service
 
 ```bash
-  http://localhost/fastify
+  http://{IP or localhost}/fastify
+```
+For web socket
+
+```bash
+  http://{IP or localhost}/socket.io
 ```
 
 For API Document (Swagger)
 
 ```bash
-  http://localhost/swagger/
+  http://{IP or localhost}/swagger/
 ```
-For Mongodb Database (Mongo express)
+For Mongodb Database (Mongo express)- Dev. use only
 
 ```bash
-  http://localhost:8081/
-```
-## Tests For Next.js APP
-
-To run tests, run the following command On client Directory
-
-```bash
-  npm run Dev
+  http://{IP or localhost}:8081/
 ```
 ## Database login
 Mongodb Compass
