@@ -1,33 +1,39 @@
 
-# TickBid Ticket Bid Web APP
+# Event Ticketing Web APP
 
-A brief description of what this project does and who it's for
+Event Organizers can Sell their tickets And Event
+Lovers Can get their chance with our platform.
 
 
 ## Deployment
 
-To Start this project on Docker
+To Deploy Dev. mode on Docker
 
 ```bash
   docker-compose up -d --build
 ```
+To Deploy Production mode on Docker
 
+```bash
+  docker-compose -f docker-compose.production.yml  up -d --build
+```
 
 ## Development User-Guid
 
 For Nextjs App
 ```bash
-  http://localhost:3000/
+  http://localhost/
 ```
+
 For API Service
 
 ```bash
-  http://localhost:8000/
+  http://localhost/api/
 ```
 For API Document (Swagger)
 
 ```bash
-  http://localhost:8000/swagger/
+  http://localhost/swagger/
 ```
 For Mongodb Database (Mongo express)
 
@@ -40,6 +46,8 @@ Mongodb Compass Login
 ```bash
   mongodb://root:password@localhost:27017/
 ```
+Server has Port 22, 80, 443 & 27017 , others are blocked to public network from iptable.
+All incomming Trafics are Acccept.
 ## Tests For Next APP
 
 To run tests, run the following command On client Directory

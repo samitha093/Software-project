@@ -1,0 +1,82 @@
+$themecolour:#553d6b;
+$lightselectcolour:#ede0fa;
+
+.table_seller_container{
+    padding: 20px 50px 50px 200px;
+    width:100%;
+}
+.table_seller_action{
+    width:100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+.table_seller_action_verify{
+    background-color: rgb(247, 221, 138);
+    padding: 4px 30px;
+    border-radius: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+.table_seller_action_verify:hover{
+    background-color: rgb(247, 197, 33);
+}
+.table_seller_action_activate{
+    background-color: rgb(177, 243, 182);
+    padding: 4px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+}
+.table_seller_action_activate:hover{
+    background-color: rgb(5, 255, 25);
+}
+.table_seller_action_deactivate{
+    background-color: rgb(243, 177, 193);
+    padding: 4px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+}
+.table_seller_action_deactivate:hover{
+    background-color: rgb(247, 97, 135);
+}
+.table_seller_status_pending{
+    background-color: rgb(255, 248, 206);
+    color: rgb(235, 180, 0);
+    padding: 5px 10px;
+    border-radius: 30px;
+    text-align: center;
+}
+.table_seller_status_active{
+    background-color: rgb(206, 255, 210);
+    color: rgb(5, 209, 39);
+    padding: 5px 10px;
+    border-radius: 30px;
+    text-align: center;
+}
+.table_seller_status_deactive{
+    background-color: rgb(255, 209, 206);
+    color: rgb(201, 1, 1);
+    padding: 5px 10px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.table_seller_type_seller{
+    background-color: rgb(206, 215, 255);
+    color: rgb(54, 1, 201);
+    padding: 5px 10px;
+    border-radius: 30px;
+    text-align: center;
+}
+.table_seller_type_buyer{
+    background-color: rgb(255, 206, 243);
+    color: rgb(201, 1, 158);
+    padding: 5px 10px;
+    border-radius: 30px;
+    text-align: center;  
+}

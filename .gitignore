@@ -1,9 +1,9 @@
 /.idea
 /.vscode
-#remove Database Backup file
 /database/
 
 #remove Library Files from Client
+/node_modules/
 /client/node_modules/
 /client/coverage/
 /client/.next/

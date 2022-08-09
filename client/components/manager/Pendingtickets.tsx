@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,28 +11,85 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-//import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+
 import Pendingeventstable from '../../components/manager/Pendingeventstable'
+
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-//import FormControl from '@mui/material/FormControl';
-//import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { Fab } from '@mui/material';
-
+import { Button } from '@mui/material';
+import { useRouter } from 'next/router';
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
+import { isValid } from 'date-fns';
 
 
 //Line 80 space for the image box
 
 export default function PendingEvents() {
+    const router = useRouter()
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const [declinemessage, setdeclinemessage] = React.useState<string>("");
+    const [declinemessageError, setdeclinemessageError] = React.useState<boolean>(false);
+
+    const [reasonmessagebox, setreasonmessagebox] = React.useState<boolean>(true);
+
+    const [submitbuttonError, setsubmitbuttonError] = React.useState<boolean>(true);
+
+    const [submitbuttonactive, setsubmitbuttonactive] = React.useState<boolean>(true);
+
+    const [radiovalue, setradiovalue] = React.useState<string>("");
+
+    const declinemessageChangeHandler = (e: any) => {
+        const declinemessage_regex = /^.{1,50}$/;
+        const valid = !!e.target.value.match(declinemessage_regex);
+        setdeclinemessage(e.target.value);
+        setdeclinemessageError(!valid);
+    }
+
+    const radiovalueChangeHandler = async (e: any) => {
+        const radiovalue_regex = "decline";
+        const valid = !!e.target.value.match(radiovalue_regex);
+        setradiovalue(e.target.value);
+        setreasonmessagebox(!valid);
+        setsubmitbuttonactive(valid);
+        if (e.target.value == "approve") {
+            setdeclinemessageError(valid);
+        }
+        else {
+            setdeclinemessageError(!valid);
+        }
+    }
+
+    const submitbuttonHandler = async (e: any) => {
+        console.log({ radiovalue });
+        if (radiovalue == "approve") {
+            //Code for approve events
+            console.log("Ready to approve");
+        }
+        else if (radiovalue == "decline") {
+            const declinemessagesubmit_regex = /^.{1,}$/;
+            const valid = !!declinemessage.match(declinemessagesubmit_regex);
+            await setsubmitbuttonError(!valid);
+            if (submitbuttonError == false) {
+                //Code for decline events
+                console.log("Ready to decline");
+            }
+            else {
+                //Code for error message
+                console.log("ERROR!!! Reason is required!!!");
+
+            }
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -132,27 +190,31 @@ export default function PendingEvents() {
                 </DialogContent>
                 <DialogActions>
                     <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
-                        <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+                        <RadioGroup row aria-label="gender" aria-labelledby="demo-controlled-radio-buttons-group" name="controlled-radio-buttons-group" value={radiovalue} onChange={radiovalueChangeHandler} >
                             <FormControlLabel value="approve" control={<Radio />} label="Approve" />
                             <FormControlLabel value="decline" control={<Radio />} label="Decline" />
                         </RadioGroup>
                     </Stack>
                     <Stack spacing={2} direction="row" className={styles.manager_c_ticketspublishdecline_buttons_stack}>
                         <TextField
-                            required
                             id="standard-multiline-static"
                             placeholder="Reason for declining"
+                            disabled={reasonmessagebox}
                             multiline
                             maxRows="1"
                             variant="standard"
                             fullWidth
                             error
+                            onChange={declinemessageChangeHandler}
                         />
-                        <Fab variant="extended" size="medium" background-color="#8F7F98" aria-label="add" margin-left="30px">
+                        <Button disabled={declinemessageError && submitbuttonactive} variant="contained" size="medium" aria-label="add" margin-left="30px" onClick={submitbuttonHandler}>
                             SUBMIT
-                        </Fab>
+                        </Button>
                     </Stack>
                 </DialogActions>
+                <Stack direction="column">
+                    {declinemessageError && (<p className={styles.manager_error_message}> * Reason for declining message is required and it can contain maximum 50 characters</p>)}
+                </Stack>
             </Dialog>
         </div>
     );

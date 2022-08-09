@@ -13,15 +13,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import axios from 'axios'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { PieChart, Pie } from 'recharts';
+
 import Progressbar from '../../components/manager/Progressbar'
 
 import styles from './styles.module.css'
 import classnames from 'classnames';
+import axios from 'axios'
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -219,11 +220,11 @@ const Homepage: React.FC<HomepageProps> = ({ }) => {
                     <Table sx={{ minWidth: 400 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell id="customized-dialog-title">Ticket Level</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
-                                <TableCell id="customized-dialog-title" align="right">Quantity</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title">Ticket Level</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Fix Price&nbsp;(Rs)</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Quantity</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Bid Price&nbsp;(Rs)</TableCell>
+                                <TableCell className={styles.manager_homepage_table} id="customized-dialog-title" align="right">Quantity</TableCell>
                             </TableRow>
                         </TableHead>
                     </Table>

@@ -7,11 +7,13 @@ import { mdiCameraTimer } from '@mdi/js';
 import { mdiTicketPercentOutline } from '@mdi/js';
 import { mdiCogs } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
-import {endsession} from '../../session/Session';
 import {useRouter} from 'next/router';
+import axios from 'axios';
+import Swal from 'sweetalert2'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
+import {gethost } from '../../session/Session';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -69,8 +71,37 @@ React.useEffect(() => {
     }
 },[]);
     async function logout(){
-        endsession();
-        router.push('/user');
+
+    axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+        .then(async (res)=>{
+            const config = {
+                headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            const bodyParameters = {};
+            axios.post(gethost() + 'a/logout',bodyParameters,config)
+            .then(async (res2)=>{
+                router.push('/user');
+            })
+            .catch((err)=>{
+              Swal.fire({
+                icon: 'error',
+                title: 'Authentication Failed',
+                text: 'Please Login to your account',
+                showConfirmButton: false,
+                timer: 2500
+              })
+            })
+        })
+        .catch((err)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Authentication Failed',
+            text: 'Please Login to your account',
+            showConfirmButton: false,
+            timer: 2500
+          })
+          router.push('/user');
+        })
     }
         return (
             <div className={styles.buyer_c_sidebar}>
