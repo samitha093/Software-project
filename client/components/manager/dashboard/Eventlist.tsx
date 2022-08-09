@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper';
 import styles from './styles.module.scss'
+import ProgressBar from "@ramonak/react-progress-bar";
 
 interface EventlistProps {
     data:any
@@ -24,11 +25,11 @@ const Eventlist: React.FC<EventlistProps> = ({data}) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>User Name</TableCell>
-                        <TableCell align="right">Email</TableCell>
-                        <TableCell align="center">User Type</TableCell>
-                        <TableCell align="center">User Satus</TableCell>
-                        <TableCell align="center">Request Date</TableCell>
+                        <TableCell>Event Name</TableCell>
+                        <TableCell align="right">Seller</TableCell>
+                        <TableCell align="center">Total Revenue</TableCell>
+                        <TableCell align="center">No Of Sold Tickets</TableCell>
+                        <TableCell align="center">No Of Bids</TableCell>
                         <TableCell align="center">Action</TableCell>
                     </TableRow>
                     </TableHead>
@@ -41,45 +42,21 @@ const Eventlist: React.FC<EventlistProps> = ({data}) => {
                         <TableCell component="th" scope="row">
                             {row.name}
                         </TableCell>
-                        <TableCell align="right">{row.email}</TableCell>
-                        <TableCell align="right">
-                            {row.type === "BUYER"?
-                            <div className={styles.table_seller_type_buyer}>
-                                {row.type}
-                            </div>
-                            :
-                            <div className={styles.table_seller_type_seller}>
-                                {row.type}
-                            </div>
-                            }
-                            
-                            
+                        <TableCell align="right">{row.seller}</TableCell>
+                        <TableCell align="center">
+                            LKR {row.revenue}
                         </TableCell>
-                        <TableCell align="right">
-                            {row.status === "PENDING"?
-                            <div className={styles.table_seller_status_pending}>
-                                {row.status}
-                            </div>
-                            :null}
-                            
-                            {row.status === "ACTIVE"?
-                            <div className={styles.table_seller_status_active}>
-                                {row.status}
-                            </div>
-                            :null}
-                            
-                            {row.status === "DEACTIVE"?
-                            <div className={styles.table_seller_status_deactive}>
-                                {row.status}
-                            </div>
-                            :null}
-                            
+                        <TableCell align="center">
+                            <ProgressBar completed={row.p1} maxCompleted={row.p2}  customLabel={row.p3} labelAlignment="outside" labelColor='#000000'/>
                         </TableCell>
-                        <TableCell align="right">{row.date}</TableCell>
-                        <TableCell>
+                        <TableCell align="center">
+                            <div className={row.b3==1?styles.table_bid_l1:row.b3==2?styles.table_bid_l2:row.b3==3?styles.table_bid_l3:styles.table_bid_l4}>
+                            {row.b1+'/'+row.b2}
+                            </div>
+                        </TableCell>
+                        <TableCell align="center">
                             <div className={styles.table_seller_action}>
-                                <div className={styles.table_seller_action_verify}>Re-verification</div>
-                                {row.status === "PENDING"?
+                                {row.status === "DEACTIVE"?
                                 <div className={styles.table_seller_action_activate}>Activate</div>
                                 :
                                 <div className={styles.table_seller_action_deactivate}>Deactivate</div>

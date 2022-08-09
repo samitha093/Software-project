@@ -11,11 +11,19 @@
 /client/.vscode/
 /client/out/
 /client/build/
+/client/.env
 
 #remove Library Files From Server
 /server/.vs/
 /server/.vscode/
 /server/node_modules/
+/server/.env
+
+#remove Library Files From Fastify
+/fastify/node_modules/
+
+#remove Library Files From http proxy
+/websocket/node_modules/
 
 # ependencies
 /.pnp

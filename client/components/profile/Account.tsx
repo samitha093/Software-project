@@ -3,8 +3,19 @@ import Image from 'next/image';
 import user from '../../assets/icons/man.png'
 import TextField from '@mui/material/TextField';
 import styles from './Styles.module.scss'
+import axios from 'axios';
+import Swal from 'sweetalert2'
+import {gethost} from '../../session/Session';
 
-function Account() {
+interface AccountProps {
+  data:any,
+}
+
+const Account: React.FC<AccountProps> = ({data}) => {
+  const [items, setitems] = React.useState<any>()
+  React.useEffect(()=>{
+   setitems(data);
+  },[])
   return (
     <div>
       <h3>Account Settings</h3>
@@ -14,8 +25,8 @@ function Account() {
               <div className={styles.account_profile_card_container_left_img}><Image className={styles.account_profile_card_container_left_img_icon} src = {user} layout = "responsive" objectFit="cover" m-50="true" alt=''/></div>
           </div>
           <div className={styles.account_profile_card_container_right}>
-            <h1>Lakshan Pathiraja</h1>
-            asdasdsad@gmail.com
+            <h1>{data.username}</h1>
+            {data.email}
           </div>
         </div>
       </div>
@@ -30,7 +41,7 @@ function Account() {
                     <br></br>
                     <TextField fullWidth
                       id="filled-read-only-input"
-                      defaultValue="Lakshan"
+                      defaultValue={data.username}
                       InputProps={{
                         readOnly: true,
                       }}
@@ -42,7 +53,7 @@ function Account() {
                     <br></br>
                     <TextField fullWidth
                       id="filled-read-only-input"
-                      defaultValue="aPathiraja"
+                      defaultValue=""
                       InputProps={{
                         readOnly: true,
                       }}
@@ -55,7 +66,7 @@ function Account() {
               <br></br>
               <TextField fullWidth
                 id="filled-read-only-input"
-                defaultValue="abc@gmail.com"
+                defaultValue={data.email}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -75,7 +86,12 @@ function Account() {
           </div>
       </div>
     </div>
-  )
+  );
 }
 
+
+
 export default Account
+
+
+

@@ -356,7 +356,9 @@ var a = `
                         <p>Use the following one-time password (OTP) to verify your email address. You can use this email address to sign-in or recover your TickBid account. This OTP is valid for 30 minutes</p>
                         <div><h1>` 
                         var c = `</h1></div>
-                        <p>Please contact TickBid Developer Support if you have any queries.</p>
+                        <br>`
+
+                        var d = `<p>Please contact TickBid Developer Support if you have any queries.</p>
                         <p>Thank You</p>
                       </td>
                     </tr>
@@ -395,4 +397,4 @@ var a = `
 </html>
 `;
 
-module.exports = {a, b, c};
+module.exports = {a, b, c,d};

@@ -43,6 +43,7 @@ const userschema = new schema({
     token:{type:String},
     tickets: [ticketschema],
     status:{type:Boolean , default:false},
+    suspendstatus:{type:Boolean , default:false},
 },{
     timestamps:true
 });
