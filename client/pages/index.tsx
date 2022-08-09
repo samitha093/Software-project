@@ -7,9 +7,8 @@ import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
-import Shop from '../components/Shop'
 import style from './user/style.module.css'
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 const index: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks

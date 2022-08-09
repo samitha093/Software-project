@@ -15,6 +15,14 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  fallback: {
+    "fs": false,
+    "path": false,
+    "os": false,
+  },
+  env: {
+    HOST_IP: process.env.HOST_IP,
+  },
 }
 
 module.exports = nextConfig

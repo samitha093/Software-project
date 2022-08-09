@@ -16,8 +16,6 @@ services:
       context:  ./client/
       dockerfile:  Dockerfile
     stdin_open: true
-    ports: 
-      - "3000:3000"
     volumes: 
       - ./client:/app
       - /app/node_modules
@@ -25,14 +23,12 @@ services:
       - CHOKIDAR_USEPOLLING=true
     restart: on-failure:3
     command: npm run dev
-  #API Service
+  #Express API Service
   api-server:
     image: api-servers
     build: 
       context:  ./server/
       dockerfile:  Dockerfile
-    ports: 
-      - "8000:8000"
     volumes: 
       - ./server:/app
       - /app/node_modules
@@ -42,16 +38,38 @@ services:
     command: npm run dev
     depends_on:
       - mongo
+  #fastify API Service
+  fastify-server:
+    image: fastify-servers
+    build: 
+      context:  ./fastify/
+      dockerfile:  Dockerfile
+    volumes: 
+      - ./fastify:/app
+      - /app/node_modules
+    restart: on-failure:3
+    command: yarn dev
+  #ws Socket API
+  ws-socket:
+    image: ws-socket
+    build: 
+      context:  ./websocket/
+      dockerfile:  Dockerfile
+    volumes: 
+      - ./websocket:/app
+      - /app/node_modules
+    restart: on-failure:3
+    command: yarn dev
   #mongo db database
   mongo:
     image: mongo:latest
     container_name: mongo
     restart: on-failure:3
+    ports:
+      - 27017:27017
     environment: 
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
-    ports:
-      - 27017:27017
     volumes:
       - database:/data/db
   # Mongo Express DB Ui
@@ -71,4 +89,9 @@ volumes:
   database: {}
 networks: 
   Tickbid-webapp:
+    name: Tickbid-webapp
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16

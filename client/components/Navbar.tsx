@@ -1,3 +1,4 @@
+////node packages
 import React from 'react';
 import Link from 'next/link';
 import axios from 'axios';
@@ -6,14 +7,19 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faBars} from "@fortawesome/free-solid-svg-icons";
 import Swal from 'sweetalert2'
-import {gethost, getcart, dropcart} from '../session/Session';
-import style from './styles.module.css'
-import Drowercard from './cart/Drowercard'
 import Image from 'next/image';
-import emptycart from '../assets/emptycart.png'
 import { PayPalButton } from "react-paypal-button-v2";
+//Session and local storage data
+import {gethost, getcart, dropcart} from '../session/Session';
+//custom components
+import Drowercard from './cart/Drowercard'
+//resources
+import emptycart from '../assets/emptycart.png'
+//stylesheet
+import style from './styles.module.scss'
 interface NavbarProps {
 
 }
@@ -38,13 +44,6 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
             }
         })
         .catch((err)=>{
-          Swal.fire({
-            icon: 'error',
-            title: 'Authentication Failed',
-            text: 'Please Login to your account',
-            showConfirmButton: false,
-            timer: 2500
-          })
           router.push('/user');
         })
     }
@@ -207,7 +206,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
           <div>
             <div className={navbar ? 'navbar active' : 'navbar'}>
               <div className={style.navbar_mobile}>
-                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faBars} className={style.font_icon_mobilenave} onClick={openminimenu}/>
+                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faBars as IconProp} className={style.font_icon_mobilenave} onClick={openminimenu}/>
               </div>
                 <div className={style.navbar_left} >
                   <div className={style.navbar_name}>
@@ -218,7 +217,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                     <ul className={style.main_menu}>
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/events">Events </Link></li>
-                        <li ><Link href ="/user/about">About us</Link></li>
+                        <li ><Link href ="/about">About us</Link></li>
                         <li onClick={navclick}>My Account</li>
                     </ul>
                     <div className={style.cart}>

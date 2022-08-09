@@ -1,3 +1,4 @@
+
 .bg{
     width: 100%;
     padding: 30px 30px 30px 150px;
@@ -256,3 +257,57 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 30px;
 }
+.table_seller_action{
+    width:100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+.table_seller_action_activate{
+    background-color: rgb(177, 243, 182);
+    padding: 4px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+}
+.table_seller_action_activate:hover{
+    background-color: rgb(5, 255, 25);
+}
+.table_seller_action_deactivate{
+    background-color: rgb(243, 177, 193);
+    padding: 4px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+}
+.table_seller_action_deactivate:hover{
+    background-color: rgb(247, 97, 135);
+}
+.table_bid_l1{
+    background-color: rgb(247, 224, 223);
+    border-radius: 5px;
+    color: rgb(241, 51, 45);
+    padding: 5px;
+}
+.table_bid_l2{
+    background-color: rgb(247, 243, 223);
+    border-radius: 5px;
+    color: rgb(209, 178, 0);
+    padding: 5px;
+}
+.table_bid_l3{
+    background-color: rgb(228, 247, 223);
+    border-radius: 5px;
+    color: rgb(26, 141, 3);
+    padding: 5px;
+}
+.table_bid_l4{
+    background-color: rgb(240, 223, 247);
+    border-radius: 5px;
+    color: rgb(99, 2, 211);
+    padding: 5px;
+}
+
