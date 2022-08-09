@@ -184,6 +184,7 @@ button.ghost {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
   0 10px 10px rgba(0,0,0,0.22);
   background-color: #fff;
+  width: 100%;
 }
 .maincontainer.testmainshifter .container{
   transform: translateY(100%);
@@ -206,12 +207,7 @@ button.ghost {
 	width: 50%;
 	z-index: 2;
 }
-.fogotpasswordbox{
 
-}
-.loginbox{
-
-}
 
 .container.right_panel_active .sign_in_container {
 	transform: translateX(100%);
