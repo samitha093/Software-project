@@ -1,65 +1,183 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
-const nodemailer = require("nodemailer");
-const orders = require('../models/orders');
+const User = require('../models/users');
 const tickets = require('../models/tickets');
-const bids = require('../models/bids');
+const orders = require('../models/orders')
+const crons = require('../models/cron');
+const {verifyAccessToken,buyerverification} = require('../auth/jwt');
+const {getusername, getuserid} = require('../middlewares/user');
 
-//Authentificat tokens
-function authtoken(req, res, next){
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
-    if(token == null) return res.sendStatus(401)
+/**
+ * @swagger
+ *  components:
+ *      schemas:
+ *          addtickets:
+ *              type: object
+ *              required:
+ *                  - cart
+ *              properties:
+ *                  cart:
+ *                      type: string
+ *              example:
+ *                  cart: "?"
+ */
 
-    jwt.verify(token, "hjfhsahf282714ndflsd8we0" , (err, data)=>{
-        if(err) return res.sendStatus(403)
-        next();
-    } )
-}
-//email notifications
-function notification(to, subject, body){
-    const host_ = "in-v3.mailjet.com";
-    const port_ = 465;
-    const user_ = "1b7e8743391668430fc079c96f2c12ed";
-    const passs_ = "39d279b737fb3515a4c19c4a37e2845b";
-    const security_ = "SSL"; 
-    const from_email = "Tickbid Team<no-reply@tickbid.ml>";
-    const to_email = to;
-    const sublect_email = subject;
-    const body_email = body;
-    const transporter = nodemailer.createTransport({
-        host: host_,
-        port: port_,
-        secure: security_,
-        auth: {
-            user: user_,
-            pass: passs_,
-        },
-    });
-    let mainOptions = {
-        from: from_email,
-        to: to_email, 
-        subject: sublect_email,
-        html: body_email,
+/**
+  * @swagger
+  * tags:
+  *   name: User-buyer
+  *   description: Private Routes
+  */
+
+/**
+ * @swagger
+ *  '/b/gettickets/{type}':
+ *      get:
+ *          tags:
+ *              - User-buyer
+ *          summary: get tickets by type
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: type
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/gettickets/:type').get(verifyAccessToken,buyerverification,getuserid,async(req,res) => {
+  const userid = req.userid;
+  const type = req.params.type;
+  await User.findById(userid).then(async(data) =>{
+    var subdata = data.tickets;
+    if(type == 'mt'){
+      subdata = await subdata.filter(val => (val.ticket_status == false && val.bid_status == false))
+    }else if(type == 'pp'){
+      subdata = await subdata.filter(val => (val.payment_status == true && val.bid_status == true))
+    }else if(type == 'pb'){
+      subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
+    }else if(type == 'ot'){
+      subdata = await subdata.filter(val => (val.ticket_status == true && val.bid_status == false))
+    }else{
+      res.status(200).json("not found data")
+      return;
     }
-    transporter.sendMail(mainOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            console.log(`mail sent ${info.response}`);
-            return;
-        }
+  res.status(200).json(subdata)
+  })
+
+ })
+
+/**
+ * @swagger
+ * '/b/order':
+ *  post:
+ *     tags:
+ *     - User-buyer
+ *     summary: add ticket for user (Web-hook*)
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/addtickets'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
+ router.route('/order').post(verifyAccessToken,buyerverification,getuserid,async(req,res) => {
+    const userid = req.userid;
+    const usertype = req.userdata.type;
+
+   const neworder = new orders({
+    userid,
+    usertype
+   });
+   var orderid = await neworder.save().then((result)=>{return result._id})
+   //console.log(orderid);
+  //console.log(req.body.cart)
+  const cart = req.body.cart;
+  for (let item of cart) {
+    await tickets.findById(item.itemid)
+      .then(async(data) =>{
+        data.buy_quantity -= item.qty;
+        data.save()
+          .then(()=> console.log("ticket updated"))
+          .catch(err => console.log(err))
+        //console.log(req.userid);
+        //console.log(req.userdata.type);
+      })
+    }
+    await orders.findById(orderid)
+    .then(async(ordersata)=> {
+      ordersata.tickets = cart;
+      ordersata.save()
+          .then(()=> console.log("oder updated"))
+          .catch(err => console.log(err))
     })
-}
-//routes
-router.route('/').post(async(req, res) => {
-    
-    const to = "slakshan@ieee.org";
-    const subject = "test Subject2";
-    const body = "test body2";
-    await notification(to, subject, body);
-    res.status(200).json("ok");
+
+    const job_type = "B";
+    const job_name = "CREATE_QR";
+    const job_id = orderid;
+    const job_status = true;         
+    const newcrons = new crons({
+        job_type,
+        job_name,
+        job_id,
+        job_status,
+        });
+    newcrons.save()
+    res.status(200).json("Sys Prop Enabled")
 });
 
+/**
+ * @swagger
+ * '/b/bid':
+ *  post:
+ *     tags:
+ *     - User-buyer
+ *     summary: add ticket for user with bid(data-in*)
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/addtickets'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
+
+/**
+ * @swagger
+ * '/b/rebid':
+ *  put:
+ *     tags:
+ *     - User-buyer
+ *     summary: add a new bid for older ticket(data-in*)
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/addtickets'
+ *     responses:
+ *      200:
+ *        description: added to account
+ *      400:
+ *        description: error for adding
+ *      500:
+ *        description: server error
+ */
 module.exports = router;

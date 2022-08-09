@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
-mongoose.plugin(require('meanie-mongoose-to-json'));
+mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const schema = mongoose.Schema;
 
+const ticketschema = new schema({
+    itemid:{type:String },
+    qty:{type:String},
+},{
+    timestamps:true
+});
+
 const orderschema = new schema({
-    order_status: {type:Boolean, required:true},
-    no_of_tickets: {type:Number, required:true},
-    paid_amount:{type:Number, required:true},
-    user_id:{type:String, required:true}
+    usertype: {type:String},//Guest or buyer
+    userid:{type:String},//if guest auto generate id and assign it 
+    tickets:[ticketschema],
 },{
     timestamps:true
 });

@@ -7,15 +7,12 @@ import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 import {Button} from '@mui/material';
 import Navbar from '../components/Navbar'
-import Shop from '../components/Shop'
 import style from './user/style.module.css'
-
-
+import styles from './styles.module.scss'
 
 const index: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter()
-
     function create(event: any) {
         event.preventDefault();
         router.push('/user');
@@ -62,8 +59,8 @@ const index: NextPage = () => {
                     </svg>
                 </div>
                 <div>
-                    <div className={style.trending_board_container}><h2 className={style.trending_board}>Trending Events</h2></div>
-                    <Shop />
+                    <div className={styles.trending_board_container}><h2 className={styles.trending_board}>Trending Events</h2></div>
+                    
                 </div>
                 
             </div>

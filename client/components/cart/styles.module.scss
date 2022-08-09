@@ -1,0 +1,43 @@
+.Drowercardbg{
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 10px;
+    margin-bottom:10px ;
+    border-radius: 10px;
+    display: flex;
+    position: relative;
+}
+.Drowercard_left{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(228, 228, 228);
+    background-position: center;
+    background-size: cover;
+}
+.Drowercard_right{
+    width: calc(100% - 100px);
+    height: auto;
+    padding: 10px;
+}
+.Drowercard_right_left_container{
+    display: flex;
+}
+.Drowercard_right_left{
+    width:50%;
+}
+.Drowercard_right_right{
+    width:50%;
+    text-align: end;
+    font-weight: 500;
+}
+.Drowercard_exit{
+   padding-right: 10px;
+    right: 0;
+    position: absolute;
+    color: rgb(177, 177, 177);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+}
+.Drowercard_exit:hover{
+    color: rgb(88, 0, 170);
+}

@@ -14,8 +14,12 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 
+import styles from './styles.module.scss'
+
 interface TicketunvalidProps {
   level : string,
+  type:string,
+  data:any,
  }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -56,7 +60,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     </DialogTitle>
   );
 };
-const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
+const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
   const [open, setOpen] = React.useState(false);
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");
@@ -88,38 +92,38 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
 
   return (
     <div>
-        <div style={{backgroundColor: Ticketcolor}} className="buyer-c-ticketunvalid" onClick={handleClickOpen}>
+        <div style={{backgroundColor: Ticketcolor}} className={styles.buyer_c_ticketunvalid} onClick={handleClickOpen}>
             <div>
-                <div style={{backgroundImage: Ticketimg}} className="buyer-c-ticketunvalid-top">
-                    <div className="buyer-c-ticketunvalid-top-head">
-                        <div className="buyer-c-ticketunvalid-top-head-left">
+                <div style={{backgroundImage: Ticketimg}} className={styles.buyer_c_ticketunvalid_top}>
+                    <div className={styles.buyer_c_ticketunvalid_top_head}>
+                        <div className={styles.buyer_c_ticketunvalid_top_head_left}>
                             13:30:00
                         </div>
-                        <div style={{backgroundColor: Ticketlevelcolor}} className="buyer-c-ticketunvalid-top-head-right">
-                            <div className="buyer-c-ticketunvalid-top-head-right-1">
+                        <div style={{backgroundColor: Ticketlevelcolor}} className={styles.buyer_c_ticketunvalid_top_head_right}>
+                            <div className={styles.buyer_c_ticketunvalid_top_head_right_1}>
                                 Level
                             </div>
-                            <div className="buyer-c-ticketunvalid-top-head-right-2" id="ticket-level">
+                            <div className={styles.buyer_c_ticketunvalid_top_head_right_2} id="ticket-level">
                                 {Ticketlevel}
                             </div>
                         </div>
                     </div>
-                    <div className="buyer-c-ticketunvalid-top-info">
-                        <div className="buyer-c-ticketunvalid-top-info-left">
-                            <div className="buyer-c-ticketunvalid-top-info-left-name">
+                    <div className={styles.buyer_c_ticketunvalid_top_info}>
+                        <div className={styles.buyer_c_ticketunvalid_top_info_left}>
+                            <div className={styles.buyer_c_ticketunvalid_top_info_left_name}>
                                 Event name
                             </div>
-                            <div className="buyer-c-ticketunvalid-top-info-left-date">
+                            <div className={styles.buyer_c_ticketunvalid_top_info_left_date}>
                                 2021-08-23
                             </div>
                         </div>
-                        <div className="buyer-c-ticketunvalid-top-info-right">
-                            <div className="buyer-c-ticketunvalid-top-info-right-nooftickets">460</div>
-                            <div className="buyer-c-ticketunvalid-top-info-right-tickets">tickets</div>
+                        <div className={styles.buyer_c_ticketunvalid_top_info_right}>
+                            <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>460</div>
+                            <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>tickets</div>
                         </div>
                     </div>
                 </div>
-                <h5 className="buyer-c-ticketunvalid-cardstatus">card status</h5>
+                <h5 className={styles.buyer_c_ticketunvalid_cardstatus}>card status</h5>
             </div>
         </div>
 
@@ -140,8 +144,8 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level}) => {
               startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
             />
           </FormControl>
-          <div className='x'><center><b>X</b></center></div>
-          <div><center>4 Tickes</center></div>
+          <div className='x'><b>X</b></div>
+          <div>4 Tickes</div>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
