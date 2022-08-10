@@ -48,33 +48,29 @@ export default function Arealist() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, add this area!'
           }).then((result) => {
-            if (result.isConfirmed) {
-                if (result.isConfirmed) {
-                    axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
-                        const config = {
-                            headers: { Authorization: `Bearer ${res.data.accesstoken}` }
-                        };
-                        const datapack = {
-                            id: data,
-                            name: newarea
-                        };
-                        axios.post(gethost() +'m/utilarea',datapack ,config).then(async (res) => {
-                            // await setitem(res.data)
-                            refresh.change(res.data);
-                        })
-                            .catch(() => {
-                                Swal.fire(
-                                    'Successfully Added!',
-                                    'this area has been Added.',
-                                    'success'
-                                  )
-                            })
+            if (result.isConfirmed) { 
+            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                const datapack = {
+                    name: newarea
+                };
+                axios.post(gethost() +'m/utilarea',datapack ,config).then(async (res) => {
+                    console.log(res.data);
+                })
+                    .catch(() => {
+                        Swal.fire(
+                            'Successfully Added!',
+                            'this area has been Added.',
+                            'success'
+                            )
                     })
-                    .catch((err) => { })
-                }
+            })
+            .catch((err) => { })
             }
           })
-      }
+    }
 
     const newareaChangeHandler = (e: any) => {
         const newpcatergory_regex = /^[A-Z].{3,15}$/;
