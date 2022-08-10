@@ -11,10 +11,14 @@ import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
+import Swal from 'sweetalert2'
 
 import axios from 'axios';
 import styles from '../styles.module.css'
 import classnames from 'classnames';
+
+//Session and local storage data
+import { gethost } from '../../../session/Session';
 
 function generate(element: React.ReactElement) {
     return [0, 1, 2, 3, 4, 5, 6].map((value) =>
@@ -35,19 +39,45 @@ export default function Categorylist() {
 
     //Need a function to retrieve and store privioulsy entered catergories
 
-    async function addCatergory() { //This fuction is to store new catergory in the database
-        // const datapack = {
-        //     catergory: newcatergory
-        // }
-        //There should be routing part here. (Refer USER)
-        //Also check whether there is same catergory already in  the database. If not newly add, else error msg
-    }
-
     const newcatergoryChangeHandler = (e: any) => {
         const newpcatergory_regex = /^[A-Z].{3,20}$/;
         const valid = !!e.target.value.match(newpcatergory_regex);
         setNewcatergory(e.target.value);
         setNewcatergoryError(!valid);
+    }
+
+    async function addCatergory(data:any, refresh:any){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Once you added, you can delete again if need!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, add this catergory!'
+          }).then((result) => {
+            if (result.isConfirmed) { 
+            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                const datapack = {
+                    name: newcatergory
+                };
+                axios.post(gethost() +'m/utilcatergory',datapack ,config).then(async (res) => {
+                    console.log(res.data);
+                })
+                    .catch(() => {
+                        Swal.fire(
+                            'Successfully Added!',
+                            'this area has been Added.',
+                            'success'
+                            )
+                    })
+            })
+            .catch((err) => { })
+            }
+          })
     }
 
     return (  
