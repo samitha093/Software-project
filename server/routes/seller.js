@@ -255,7 +255,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
             if(data.length>0){
                 res.status(200).json(data)
             }else{
-                res.status(200).json("No data Found")
+                res.status(400).json("No data Found")
             }
         })
         .catch(err => res.status(500).json("Server error"))
