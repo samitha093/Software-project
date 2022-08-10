@@ -524,13 +524,13 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
               No of Buying Tickets
             </div>
             <div className={Styles.seller_c_create_table_header_item}>
-              Buying Ticket Amount
+              Fixed Price
             </div>
             <div className={Styles.seller_c_create_table_header_item}>
-              No of bidding Tickets
+              No of Bidding Tickets
             </div>
             <div className={Styles.seller_c_create_table_header_item}>
-              bidding Start Amount
+              Starting Bid
             </div>
             <div className={Styles.seller_c_create_table_header_item}>
               Action
