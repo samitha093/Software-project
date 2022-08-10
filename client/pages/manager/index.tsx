@@ -145,7 +145,9 @@ const index: NextPage = function ActiveEvents() {
 
                         {buyersidebar[0].status ?
                             <div>
-                                <h1>Insigths</h1>
+                                <div className={styles.manager_c_header}>
+                                    <h1 >Insigths</h1>
+                                </div>
                                 <div className={styles.manager_setting_fix}>
                                     <Homepage />
                                 </div>
@@ -156,7 +158,9 @@ const index: NextPage = function ActiveEvents() {
                             <div>
                                 <ManagerTopBar id2={itemID} data={{ change: changeEventList }} />
                                 <div className={styles.manager_index_scroll_set}>
-                                    <h1>Events</h1>
+                                <div className={styles.manager_c_header}>
+                                    <h1 >Events</h1>
+                                </div>
                                     <div className={styles.manager_index_container}>
                                         {listitem}
                                     </div>
@@ -168,7 +172,9 @@ const index: NextPage = function ActiveEvents() {
                             <div>
                                 <div onClick={changeSellerList}><SellersTopBar id3={selleritemID} data={{ change: changeSellerList }} /></div>
                                 <div className={styles.manager_sellers_main_container}>
-                                    <h1>Sellers</h1>
+                                <div className={styles.manager_c_header}>
+                                    <h1 >Sellers</h1>
+                                </div>
                                     <div className={styles.manager_sellers_main_container}>
                                         {loader ? null : <Seller data={selleritems} />}
                                     </div>
@@ -178,7 +184,9 @@ const index: NextPage = function ActiveEvents() {
 
                         {buyersidebar[3].status ?
                             <div className={styles.manager_index_scroll_set}>
-                                <h1>Settings</h1>
+                                <div className={styles.manager_c_header}>
+                                    <h1 >Settings</h1>
+                                </div>
                                 <div className={styles.manager_settings_container}>
                                     <Profile />
                                     <div className={styles.manager_settings_container_listinput_container}>
