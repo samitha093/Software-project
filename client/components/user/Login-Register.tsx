@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import {useRouter} from 'next/router';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
@@ -271,7 +270,8 @@ async function signUpformn(){
 
   const passwordChangeHandler = (e:any)=>{
       setPassword(e.target.value);
-      const isValid = e.target.value.length > 5;
+      const newpassword_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      const isValid = !!e.target.value.match(newpassword_regex);
       setPasswordError(!isValid);
   }
   
@@ -309,7 +309,8 @@ async function signUpformn(){
 
   const login_passwordChangeHandler =(event:any)=>{
       login_setPassword(event.target.value);
-      const valid = event.target.value.trim().length >= 5;
+      const newpassword_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      const valid = !!event.target.value.match(newpassword_regex);
       login_setPasswordError(!valid);
     }
      
@@ -409,7 +410,7 @@ async function signUpformn(){
                 value={name}
                 onChange={nameChangeHandler}
                  /></div>
-                {nameHasError && (<p className="error_message"> * Name cannot be empty</p>)}
+                {nameHasError && (<p className="error_message"> *Name cannot be empty</p>)}
               
                <div className ="input_box_container" > 
               <input
@@ -437,8 +438,8 @@ async function signUpformn(){
               type="password" 
               placeholder="Password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)} 
-             //onChange={passwordChangeHandler}
+              //onChange={(e)=>setPassword(e.target.value)} 
+              onChange={passwordChangeHandler}
                /></div>
               {passwordError && (<p className="error_message"> * Password can not be empty</p>)}
 
@@ -523,7 +524,7 @@ async function signUpformn(){
               // onBlur={emailBlurHandler}
               />
               </div>
-              {login_passwordError && (<p className="error_message"> * Password can not be empty</p>)}
+              {login_passwordError && (<p className="error_message"> *Invalid password</p>)}
               <div className="modern_a" onClick={fogotpassword}>Forgot your password?</div>
               <button className="modern_btn" onClick={signinformn}>Sign In</button>
             </div>
