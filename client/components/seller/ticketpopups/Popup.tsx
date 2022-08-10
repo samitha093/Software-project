@@ -87,6 +87,8 @@ const Popup: React.FC<PopupProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([])
     React.useEffect(()=>{
       setitem(data.tickets);
+      //setTicketImg()
+      console.log(data.ticket)
     },[])
 
     const [value, setValue] = React.useState("1");
@@ -95,11 +97,14 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         setValue(newValue);
     };
 
+    const [ticketImg,setTicketImg] = React.useState("")
+    
+
     return (
         <div className={Styles.bg}>
             <div className={Styles.seller_c_tickets} onClick={handleClickOpen}>
                 <div>
-                    <div className={Styles.seller_c_tickets_top}>
+                    <div className={Styles.seller_c_tickets_top} style={{backgroundColor:ticketImg}}>
                         <div className={Styles.seller_c_tickets_top_info}>
                             <div className={Styles.seller_c_tickets_top_info_left}>
                                 <div className={Styles.seller_c_tickets_top_info_left_name}>
