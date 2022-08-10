@@ -111,6 +111,28 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       }).then((result) => {
         if (result.isConfirmed) {
           setOpen(true);
+          //call to api
+          axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+            const config = {
+                headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            const datapack = {
+                status: "DECLINED",
+                comment:"",
+            };
+            axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
+                console.log(res.data)
+                // refresh.change(res.data);
+            })
+                .catch(() => {
+                    // Swal.fire(
+                    //     'Activated!',
+                    //     'New seller has been activated.',
+                    //     'success'
+                    //   )
+                })
+            })
+            .catch((err) => { })
         } else if (
           result.dismiss === Swal.DismissReason.cancel
         ) {
@@ -140,7 +162,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 headers: { Authorization: `Bearer ${res.data.accesstoken}` }
             };
             const datapack = {
-                status: "active",
+                status: "ACTIVE",
                 comment:"",
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
@@ -148,11 +170,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 // refresh.change(res.data);
             })
                 .catch(() => {
-                    Swal.fire(
-                        'Activated!',
-                        'New seller has been activated.',
-                        'success'
-                      )
+                    // Swal.fire(
+                    //     'Activated!',
+                    //     'New seller has been activated.',
+                    //     'success'
+                    //   )
                 })
             })
             .catch((err) => { })
