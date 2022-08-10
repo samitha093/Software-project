@@ -82,8 +82,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
     };
 
     const [items, setitem] = React.useState<any[]>([])
+    const [ticketImg,setTicketImg] = React.useState("")
     React.useEffect(()=>{
       setitem(data.tickets);
+      var asd = gethost()+data.image_url
+      setTicketImg(`url("`+asd+`")`);
     },[])
 
     const [value, setValue] = React.useState("1");
@@ -116,7 +119,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       })
     }
 
-    const approval = ()=>{
+    const approval = (data:any)=>{
       setOpen(false);
       Swal.fire({
         title: 'Are you sure?',
@@ -131,6 +134,28 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       }).then((result) => {
         if (result.isConfirmed) {
           setOpen(true);
+          //call to api
+          axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+            const config = {
+                headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            const datapack = {
+                status: "active",
+                comment:"",
+            };
+            axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
+                console.log(res.data)
+                // refresh.change(res.data);
+            })
+                .catch(() => {
+                    Swal.fire(
+                        'Activated!',
+                        'New seller has been activated.',
+                        'success'
+                      )
+                })
+            })
+            .catch((err) => { })
         } else if (
           result.dismiss === Swal.DismissReason.cancel
         ) {
@@ -141,9 +166,9 @@ const Popup: React.FC<PopupProps> = ({data}) => {
 
     return (
         <div className={Styles.bg}>
-            <div className={Styles.seller_c_tickets} onClick={handleClickOpen}>
+            <div className={Styles.seller_c_tickets} onClick={handleClickOpen} >
                 <div>
-                    <div className={Styles.seller_c_tickets_top}>
+                    <div className={Styles.seller_c_tickets_top} style={{backgroundImage:ticketImg}}>
                         <div className={Styles.seller_c_tickets_top_info}>
                             <div className={Styles.seller_c_tickets_top_info_left}>
                                 <div className={Styles.seller_c_tickets_top_info_left_name}>
@@ -188,7 +213,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 </DialogContent>
                 <DialogActions>
                   {data.status == 'PENDING' || data.status == 'DECLINED'?
-                  <Button variant="outlined" color="success" onClick={approval}>
+                  <Button variant="outlined" color="success" onClick={(e)=>approval(data)}>
                       Approve
                   </Button>
                   :null}

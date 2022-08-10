@@ -239,7 +239,7 @@ const masking = (data)=>{
  */
 
  router.route('/approveaevent/:eventid').put(verifyAccessToken,managerverification,(req,res) => {
-  //console.log(req.userdata.email);
+  console.log(req.userdata.email);
    events.findById(req.params.eventid)
        .then(data =>{
           data.status = req.body.status;
@@ -287,6 +287,7 @@ const masking = (data)=>{
 
  router.route('/utilcategory').post(verifyAccessToken,managerverification,(req,res) => {
    const name = req.body.name;
+   console.log(name);
     const newutil = new util_category({
         name,
     });
