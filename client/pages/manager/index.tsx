@@ -49,11 +49,7 @@ const index: NextPage = function ActiveEvents() {
                 await setitem(res.data)
             })
                 .catch(() => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Database connection error!'
-                    })
+                   
                 })
         })
             .catch((err) => { })
@@ -68,16 +64,11 @@ const index: NextPage = function ActiveEvents() {
             };
             await axios.get(gethost() + selleritemURL, config)
                 .then(async (res) => {
-                    console.log(res.data)
                     setselleritem(res.data);
                     setloader(false);
                 })
                 .catch(() => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Database connection error!'
-                    })
+                   
                 })
         })
             .catch((err) => { })
@@ -88,6 +79,25 @@ const index: NextPage = function ActiveEvents() {
         tabchange(e);
     };
 
+
+    //component crefresh
+    const refresh = async (e: any) => {
+        axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+            const config = {
+                headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            await axios.get(gethost() + selleritemURL, config)
+                .then(async (res) => {
+                    setselleritem(res.data);
+                    setloader(false);
+                })
+                .catch(() => {
+                   
+                })
+        })
+            .catch((err) => { })
+    };
+    
     async function tabchange(id: any) {
         var datapack = [
             { status: id == '1' ? true : false },
@@ -176,7 +186,7 @@ const index: NextPage = function ActiveEvents() {
                                     <h1 >Sellers</h1>
                                 </div>
                                     <div className={styles.manager_sellers_main_container}>
-                                        {loader ? null : <Seller data={selleritems} />}
+                                        {loader ? null : <Seller data={selleritems}  refresh={{ change: refresh }}/>}
                                     </div>
                                 </div>
                             </div>

@@ -8,12 +8,16 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper';
 import styles from './styles.module.scss'
 import Swal from 'sweetalert2'
+import axios from 'axios'
+//Session and local storage data
+import { gethost } from '../../../session/Session';
 
 interface SellerProps {
  data:any
+ refresh:any
 }
  
-async function PopupConfirm(data:any){
+async function PopupConfirm(data:any, refresh:any){
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -23,22 +27,80 @@ async function PopupConfirm(data:any){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, activate this seller!'
       }).then((result) => {
-        //axios with if
         if (result.isConfirmed) {
-          Swal.fire(
-            'Activated!',
-            'New seller has been activated.',
-            'success'
-          )
+            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                const datapack = {
+                    id: data,
+                    status:true,
+                    suspendstatus:false
+                };
+                axios.post(gethost() +'m/Useractivate',datapack ,config).then(async (res) => {
+                    // await setitem(res.data)
+                    refresh.change(res.data);
+                })
+                    .catch(() => {
+                        Swal.fire(
+                            'Activated!',
+                            'New seller has been activated.',
+                            'success'
+                          )
+                    })
+            })
+            .catch((err) => { })
         }
       })
   }
 
-const Seller: React.FC<SellerProps> = ({data}) => {
+  async function PopupDeactivation(data:any, refresh:any){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to Disable this account!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, activate this seller!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            if (result.isConfirmed) {
+                axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                    const config = {
+                        headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                    };
+                    const datapack = {
+                        id: data,
+                        status:true,
+                        suspendstatus:true
+                    };
+                    axios.post(gethost() +'m/Useractivate',datapack ,config).then(async (res) => {
+                        // await setitem(res.data)
+                        refresh.change(res.data);
+                    })
+                        .catch(() => {
+                            Swal.fire(
+                                'Deactivated!',
+                                'this seller has been Deactivated.',
+                                'success'
+                              )
+                        })
+                })
+                .catch((err) => { })
+            }
+
+          
+        }
+      })
+  }
+
+const Seller: React.FC<SellerProps> = ({data,refresh}) => {
     const [items, setitem] = React.useState<any[]>([])
+
     React.useEffect(() => {
         setitem(data);
-        }, [])
+        }, [data])
     return (
         <div className={styles.table_seller_container}>
             <TableContainer component={Paper}>
@@ -105,9 +167,9 @@ const Seller: React.FC<SellerProps> = ({data}) => {
                             <div className={styles.table_seller_action}>
                                 <div className={styles.table_seller_action_verify}>Re-verification</div>
                                 {(row.suspendstatus == true)||row.status == false?
-                                <div className={styles.table_seller_action_activate} onClick={PopupConfirm}>Activate</div>
+                                <div className={styles.table_seller_action_activate} onClick={(e)=>PopupConfirm(row.id,refresh)}>Activate</div>
                                 :
-                                <div className={styles.table_seller_action_deactivate} onClick={PopupConfirm}>Deactivate</div>
+                                <div className={styles.table_seller_action_deactivate} onClick={(e)=>PopupDeactivation(row.id,refresh)}>Deactivate</div>
                                 }
                             </div>
                         </TableCell>

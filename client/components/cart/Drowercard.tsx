@@ -36,7 +36,9 @@ const Drowercard: React.FC<DrowercardProps> = ({ticketid,qty,data}) => {
     React.useEffect(()=>{
         axios.get(gethost() + 'g/ticketbyid/'+ticketid,{withCredentials:false})
         .then(async (res)=>{
-            setticket(res.data)
+            if(res.data){
+              setticket(res.data)
+            }
         })
         .catch((err)=>{
           Swal.fire({

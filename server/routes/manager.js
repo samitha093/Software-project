@@ -14,12 +14,20 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  *              type: object
  *              required:
  *                  - email
+ *                  - status
+ *                  - suspendstatus
  *              properties:
  *                  email:
  *                      type: string
  *                      description: Validated email Format
+ *                  status:
+ *                      type: boolean
+ *                  suspendstatus:
+ *                      type: boolean
  *              example:
- *                  email: "?"
+ *                  id: "?"
+ *                  status: true
+ *                  type:   false
  *          updateaevent:
  *              type: object
  *              required:
@@ -56,7 +64,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
    * @swagger
-   * '/m/selleractivate':
+   * '/m/Useractivate':
    *  post:
    *     tags:
    *     - User-Manager
@@ -80,16 +88,18 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
    *            description: Server failure
    */
   
- router.route('/selleractivate').post(verifyAccessToken,managerverification,(req,res) => {
-    User.find({email:req.body.email,otp:"0", status:false})
+ router.route('/Useractivate').post(verifyAccessToken,managerverification,(req,res) => {
+    User.findById(req.body.id)
         .then(data =>{
-            data[0].status = true;
-            data[0].save()
-                .then(()=> res.status(200).json("validated"))
+            data.status = req.body.status;
+            data.suspendstatus = req.body.suspendstatus;
+            data.save()
+                .then(()=> res.status(200).json(req.body.id))
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json(err))
 });
+
 
 /**
    * @swagger
