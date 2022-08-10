@@ -48,18 +48,6 @@ const Account: React.FC<AccountProps> = ({data}) => {
                       variant="filled"
                     />
                 </div>
-                <div className={styles.account_profile_container_form_section1_right}>
-                    Last Name
-                    <br></br>
-                    <TextField fullWidth
-                      id="filled-read-only-input"
-                      defaultValue=""
-                      InputProps={{
-                        readOnly: true,
-                      }}
-                      variant="filled"
-                    />
-                </div>
             </div>
             <div className={styles.account_profile_container_form_section2}>
               Email Address
