@@ -57,12 +57,12 @@ async function PopupConfirm(data:any, refresh:any){
   async function PopupDeactivation(data:any, refresh:any){
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to Disable this account!",
+        text: "Once you deactiveted, you can activate again if need!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, activate this seller!'
+        confirmButtonText: 'Yes, deactivate this seller!'
       }).then((result) => {
         if (result.isConfirmed) {
             if (result.isConfirmed) {

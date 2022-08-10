@@ -9,11 +9,15 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
+import Swal from 'sweetalert2'
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
 import styles from '../styles.module.css'
 import classnames from 'classnames';
+
+//Session and local storage data
+import { gethost } from '../../../session/Session';
 
 function generate(element: React.ReactElement) {
     return [0, 1, 2, 3, 4, 5, 6].map((value) =>
@@ -34,13 +38,43 @@ export default function Arealist() {
 
     //Need a function to retrieve and store privioulsy entered catergories
 
-    async function addArea() { //This fuction is to store new area in the database
-        // const datapack = {
-        //     catergory: newcatergory
-        // }
-        //There should be routing part here. (Refer USER)
-        //Also check whether there is same area already in  the database. If not newly add, else error msg
-    }
+    async function addArea(data:any, refresh:any){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Once you added, you can delete again if need!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, add this area!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                if (result.isConfirmed) {
+                    axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                        const config = {
+                            headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                        };
+                        const datapack = {
+                            id: data,
+                            name: newarea
+                        };
+                        axios.post(gethost() +'m/utilarea',datapack ,config).then(async (res) => {
+                            // await setitem(res.data)
+                            refresh.change(res.data);
+                        })
+                            .catch(() => {
+                                Swal.fire(
+                                    'Successfully Added!',
+                                    'this area has been Added.',
+                                    'success'
+                                  )
+                            })
+                    })
+                    .catch((err) => { })
+                }
+            }
+          })
+      }
 
     const newareaChangeHandler = (e: any) => {
         const newpcatergory_regex = /^[A-Z].{3,15}$/;
