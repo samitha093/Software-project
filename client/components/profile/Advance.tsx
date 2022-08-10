@@ -25,7 +25,8 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
   
   
     React.useEffect(()=>{
-      setroomstatus(false);
+      if(userdata.usertype=='SELLER'){
+        setroomstatus(false);
       setroomid(userdata.id);
       axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
       .then(async (res)=>{
@@ -52,6 +53,8 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
           timer: 2500
         })
       })
+      }
+      
     },[rtn])
 
     const newDevice = async()=>{
@@ -67,7 +70,7 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'API connection error!'
+              text: 'Unauthorized login'
               })
           })       
         })
@@ -97,6 +100,7 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
       <div className={styles.device_list}>
         {listitem}
       </div>
+
       <div className={styles.addMoreEndDevices}>
         <Fab size="small" color="secondary" aria-label="add" onClick={newDevice}>
           <AddIcon />
@@ -106,6 +110,7 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
           <Socket.Room data={roomid}/>
         :null}
       </div>
+
     </div>
   );
 }
