@@ -395,6 +395,7 @@ async function signUpformn(){
 
           </div>
         {/* login and register window */}
+        
         <div className="container" id="container">
 
           <div className="form_container sign_up_container">
@@ -441,7 +442,8 @@ async function signUpformn(){
               //onChange={(e)=>setPassword(e.target.value)} 
               onChange={passwordChangeHandler}
                /></div>
-              {passwordError && (<p className="error_message"> * Password can not be empty</p>)}
+              {passwordError && (<p className="error_message"> *  Minimum 8 characters, at least one Upper case,Lowercase,digit,special character
+              </p>)}
 
               <div className ="input_box_container" >  
               <input 
@@ -498,7 +500,6 @@ async function signUpformn(){
           <div className="form_container sign_in_container">
             <div className="modern_form">
               <h1 className ="head_signin" >Sign in</h1>
-              <span className="new_span">or use your account</span>
             
             <div className ="input_box_container" > 
              <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
