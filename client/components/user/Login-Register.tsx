@@ -74,8 +74,7 @@ async function signinformn(){
       timer: 2500
     })
   })
-      await login_setEmail('');
-      await login_setPassword('');
+      
 };
 async function signUpformn(){
   if(name==="" || email==="" || password==="" || confirmPassword==="" || contact==="" || selectedRadiobtn===""){
@@ -165,14 +164,10 @@ async function signUpformn(){
                 icon: 'success',
                 title: 'Registration successful',
                 text: 'Now You can Login With Your Email and password',
+
                 //showConfirmButton: false,
                 //timer: 2500
               })
-              await setName('');
-              await setEmail('');
-              await setContact('');
-              await setPassword('');
-              await setconfirmpassword('');
               
             } 
           })
