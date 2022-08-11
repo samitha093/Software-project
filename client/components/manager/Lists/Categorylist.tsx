@@ -65,6 +65,7 @@ export default function Categorylist() {
                     name: newcatergory
                 };
                 axios.post(gethost() +'m/utilcatergory',datapack ,config).then(async (res) => {
+                    setNewcatergory ("");
                 })
                     .catch(() => {
                         Swal.fire(
@@ -82,7 +83,7 @@ export default function Categorylist() {
     return (  
                 <Grid item>
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
-                        Add Catergories
+                        Add Categories
                     </Typography>
                     <Stack direction="row" spacing={2}>
 
@@ -99,10 +100,10 @@ export default function Categorylist() {
                             Add
                         </Button>
                     </Stack>
-                    {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Catergory must containe 4-20 characters and first letter must be capital</p>)}
+                    {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Category must containe 4-20 characters and first letter must be capital</p>)}
 
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
-                        Active Catergories
+                        Active Categories
                     </Typography>
                     <Demo>
                         <List
