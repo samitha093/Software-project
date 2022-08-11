@@ -74,6 +74,8 @@ async function signinformn(){
       timer: 2500
     })
   })
+      await login_setEmail('');
+      await login_setPassword('');
 };
 async function signUpformn(){
   if(name==="" || email==="" || password==="" || confirmPassword==="" || contact==="" || selectedRadiobtn===""){
@@ -155,6 +157,7 @@ async function signUpformn(){
                 text: 'System Admin Will Review Your Account',
                 //showConfirmButton: false,
                 //timer: 2500
+
               })
             }else{
               //delete account Api needed
@@ -165,6 +168,12 @@ async function signUpformn(){
                 //showConfirmButton: false,
                 //timer: 2500
               })
+              await setName('');
+              await setEmail('');
+              await setContact('');
+              await setPassword('');
+              await setconfirmpassword('');
+              
             } 
           })
           .catch((err)=>{
@@ -233,6 +242,8 @@ async function signUpformn(){
     }
 
   })
+
+
 }
 
   const nameChangeHandler = (event:any) =>{
@@ -267,6 +278,8 @@ async function signUpformn(){
     })
     
 }
+
+
 
   const passwordChangeHandler = (e:any)=>{
       setPassword(e.target.value);
