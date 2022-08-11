@@ -36,6 +36,8 @@ function Security() {
                         password: confirmPassword
                     };
                     axios.post(gethost() + 'a/resetpassword', datapack, config).then(async (res) => {
+                        setNewpassword ("");
+                        setConfirmpassword ("");
                     })
                         .catch(() => {
                             Swal.fire(
