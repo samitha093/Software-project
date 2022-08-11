@@ -23,7 +23,7 @@ import styles from '../buyer/styles.module.scss'
 
 interface ShopcardProps {
   level : string,
-  ticketid:string
+  ticketdata:any
  }
  const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
@@ -63,18 +63,19 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
+const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
   const [Ticketcolor, setTicketcolor] =  React.useState("");
   const [Ticketlevel, setTicketlevel] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
   const [openbuy, setOpenbuy] = React.useState(false);
   const [openbid, setOpenbid] = React.useState(false);
-  const [ticketpricet, setticketprice] = React.useState(1495);
+  const [ticketpricet, setticketprice] = React.useState(ticketdata.min_bid_amount);
   const [ticketbidpricet, setticketbidprice] = React.useState(ticketpricet);
   const [ticketcount, setticketcount] = React.useState(1);
   useEffect(()=>{
     setTicketcolor("#881700");
-    setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
+    var asd = gethost()+ticketdata.img
+    setTicketimg(`url("`+asd+`")`);
     setTicketlevel(level);
     
   },[])
@@ -102,7 +103,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
             text: 'You do not have permission to buy Tickets'
             })
         }else{
-          addcart(ticketid,ticketcount)
+          addcart(ticketdata.id,ticketcount)
           setOpenbuy(false);
           Swal.fire({
             icon: 'success',
@@ -112,7 +113,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
         }
     })
     .catch((err)=>{
-      addcart(ticketid,ticketcount)
+      addcart(ticketdata.id,ticketcount)
       setOpenbuy(false);
       Swal.fire({
         icon: 'success',
@@ -148,21 +149,21 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
                             Level
                         </div>
                         <div className={styles.buyer_c_ticketunvalid_top_head_right_2} id="ticket-level">
-                            {Ticketlevel}
+                            {ticketdata.ticket_level}
                         </div>
                     </div>
                 </div>
                 <div className={styles.buyer_c_ticketunvalid_top_info}>
                     <div className={styles.buyer_c_ticketunvalid_top_info_left}>
                         <div className={styles.buyer_c_ticketunvalid_top_info_left_name}>
-                            Event name
+                            {ticketdata.event_venue}
                         </div>
                         <div className={styles.buyer_c_ticketunvalid_top_info_left_date}>
-                            2021-08-23
+                            {ticketdata.event_date}
                         </div>
                     </div>
                     <div className={styles.buyer_c_ticketunvalid_top_info_right}>
-                        <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>460</div>
+                        <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>{ticketdata.total_tickets}</div>
                         <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>tickets</div>
                     </div>
                 </div>
@@ -195,17 +196,17 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <div className={style.ticketview}>
-            <h1>Evante Name - Evante Name Evante Name</h1>  
+            <h1>{ticketdata.event_name}</h1>  
           </div>
           <div className={style.ticketview_data}>
-            <div>Event Location : jhfhshhashkashghlkhLKHFS</div>
-            <div>Event Date : 2021 JAN 23</div>
+            <div>Event Location : {ticketdata.event_venue}</div>
+            <div>Event Date : {ticketdata.event_date}</div>
             <div>Event Time :  07 : 00 pm</div>
-            <div>Ticket Type :  LEVEL 2</div>
-            <div>In Stock : 400 Tickets</div>
+            <div>Ticket Type :  LEVEL {ticketdata.ticket_level}</div>
+            <div>In Stock : {ticketdata.buy_quantity} Tickets</div>
           </div>  
           <div className={style.ticketview_price}>
-            LKR {ticketpricet}.00
+            LKR {ticketdata.buy_amount}.00
           </div>
           <div className={style.ticketview_count}>
             <div className={style.ticketview_count_text}><div className={style.ticketview_count_text_item}>No. Of Tickets : </div></div>
@@ -216,7 +217,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
             </div>
           </div>
           <div className={style.ticketview_price_btn} onClick={paynow}>
-            ADD TO CART ( LKR {ticketpricet*ticketcount}.00 )
+            ADD TO CART ( LKR {ticketdata.buy_amount*ticketcount}.00 )
           </div>
         </DialogContent>
       </BootstrapDialog>
@@ -230,18 +231,18 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
         <div className={style.ticketview}>
-            <h1>Evante Name - Evante Name Evante Name</h1>  
+            <h1>{ticketdata.event_name}</h1>  
           </div>
           <div className={style.ticketview_data}>
-            <div>Event Location : jhfhshhashkashghlkhLKHFS</div>
-            <div>Event Date : 2021 JAN 23</div>
+            <div>Event Location : {ticketdata.event_venue}</div>
+            <div>Event Date : {ticketdata.event_date}</div>
             <div>Event Time :  07 : 00 pm</div>
-            <div>Ticket Type :  LEVEL 2</div>
-            <div>In Stock : 400 Tickets</div>
+            <div>Ticket Type :  LEVEL {ticketdata.ticket_level}</div>
+            <div>In Stock : {ticketdata.bid_quantity} Tickets</div>
           </div>
 
           <div className={style.ticketview_price}>
-            LKR <input className={style.priceboxforbid} type={'number'} value={ticketbidpricet} onChange={(e)=>setticketbidprice(Number(e.target.value))} min={ticketpricet}/>
+            LKR <input className={style.priceboxforbid} type={'number'} value={ticketbidpricet} onChange={(e)=>setticketbidprice(Number(e.target.value))} min={ticketdata.min_bid_amount}/>
           </div>
           <div className={style.ticketview_count}>
             <div className={style.ticketview_count_text}><div className={style.ticketview_count_text_item}>No. Of Tickets : </div></div>
@@ -252,7 +253,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketid}) => {
             </div>
           </div>
           <div className={style.ticketview_price_btn}>
-            Bid NOW ( LKR {ticketpricet*ticketcount}.00 )
+            Bid NOW ( LKR {ticketbidpricet*ticketcount}.00 )
           </div>         
         </DialogContent>
       </BootstrapDialog>
