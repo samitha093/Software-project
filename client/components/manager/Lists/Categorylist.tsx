@@ -64,7 +64,7 @@ export default function Categorylist() {
                 const datapack = {
                     name: newcatergory
                 };
-                axios.post(gethost() +'m/utilcatergory',datapack ,config).then(async (res) => {
+                axios.post(gethost() +'m/utilcategory',datapack ,config).then(async (res) => {
                     setNewcatergory ("");
                 })
                     .catch(() => {
