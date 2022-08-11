@@ -50,7 +50,7 @@ css-mf1cb5-MuiButtonBase-root-MuiIconButton-root{
 	align-items: center;
 	flex-direction: column;
 	padding-top: 70px;
-	height: 90vh;
+
 }
 .new_span{
 	font-size: 12px;
@@ -259,7 +259,7 @@ button.ghost {
       width:100%;
     }
     
-}
+  }
 
 .container.right_panel_active .overlay_container{
 	transform: translateX(-100%);
