@@ -38,7 +38,7 @@ export default function Arealist() {
 
     //Need a function to retrieve and store privioulsy entered catergories
 
-    async function addArea(data:any, refresh:any){
+    async function addArea(){
         Swal.fire({
             title: 'Are you sure?',
             text: "Once you added, you can delete again if need!",

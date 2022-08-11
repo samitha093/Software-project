@@ -46,7 +46,7 @@ export default function Categorylist() {
         setNewcatergoryError(!valid);
     }
 
-    async function addCatergory(data:any, refresh:any){
+    async function addCatergory(){
         Swal.fire({
             title: 'Are you sure?',
             text: "Once you added, you can delete again if need!",
@@ -64,8 +64,7 @@ export default function Categorylist() {
                 const datapack = {
                     name: newcatergory
                 };
-                axios.post(gethost() +'m/utilcategory',datapack ,config).then(async (res) => {
-                    console.log(res.data);
+                axios.post(gethost() +'m/utilcatergory',datapack ,config).then(async (res) => {
                 })
                     .catch(() => {
                         Swal.fire(
@@ -97,7 +96,6 @@ export default function Categorylist() {
                         />
 
                         <Button disabled = {newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
-
                             Add
                         </Button>
                     </Stack>
