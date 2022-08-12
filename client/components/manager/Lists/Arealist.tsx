@@ -36,7 +36,7 @@ export default function Arealist() {
     const [newarea, setNewarea] = React.useState<string>("");
     const [newareaError, setNewareaError] = React.useState<boolean>(false);
 
-    async function addArea(){
+    async function addArea() {
         Swal.fire({
             title: 'Are you sure?',
             text: "Once you added, you can delete again if need!",
@@ -45,29 +45,32 @@ export default function Arealist() {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, add this area!'
-          }).then((result) => {
-            if (result.isConfirmed) { 
-            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
-                const config = {
-                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
-                };
-                const datapack = {
-                    name: newarea
-                };
-                axios.post(gethost() +'m/utilarea',datapack ,config).then(async (res) => {
-                    setNewarea ("");
-                })
-                    .catch(() => {
-                        Swal.fire(
-                            'Successfully Added!',
-                            'this area has been Added.',
-                            'success'
-                            )
-                    })
-            })
-            .catch((err) => { })
+        }).then((result) => {
+            if (newarea == "") {
+                return;
             }
-          })
+            if (result.isConfirmed) {
+                axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                    const config = {
+                        headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                    };
+                    const datapack = {
+                        name: newarea
+                    };
+                    axios.post(gethost() + 'm/utilarea', datapack, config).then(async (res) => {
+                        setNewarea("");
+                    })
+                        .catch(() => {
+                            Swal.fire(
+                                'Successfully Added!',
+                                'this area has been Added.',
+                                'success'
+                            )
+                        })
+                })
+                    .catch((err) => { })
+            }
+        })
     }
 
     const newareaChangeHandler = (e: any) => {
