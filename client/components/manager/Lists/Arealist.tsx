@@ -47,6 +47,11 @@ export default function Arealist() {
             confirmButtonText: 'Yes, add this area!'
         }).then((result) => {
             if (newarea == "") {
+                Swal.fire(
+                    'Oops!!!',
+                    'Area can not be empty',
+                    'warning'
+                  )
                 return;
             }
             if (result.isConfirmed) {

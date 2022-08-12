@@ -58,6 +58,11 @@ export default function Categorylist() {
         }).then((result) => {
             if (result.isConfirmed) {
                 if (newcatergory == "") {
+                    Swal.fire(
+                        'Oops!!!',
+                        'Area can not be empty',
+                        'warning'
+                      )
                     return;
                 }
                 axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
