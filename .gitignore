@@ -18,6 +18,7 @@
 /server/.vscode/
 /server/node_modules/
 /server/.env
+/server/uploads/
 
 #remove Library Files From Fastify
 /fastify/node_modules/
