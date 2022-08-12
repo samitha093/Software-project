@@ -46,7 +46,7 @@ export default function Categorylist() {
         setNewcatergoryError(!valid);
     }
 
-    async function addCatergory(){
+    async function addCatergory() {
         Swal.fire({
             title: 'Are you sure?',
             text: "Once you added, you can delete again if need!",
@@ -55,82 +55,85 @@ export default function Categorylist() {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, add this catergory!'
-          }).then((result) => {
-            if (result.isConfirmed) { 
-            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
-                const config = {
-                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
-                };
-                const datapack = {
-                    name: newcatergory
-                };
-                axios.post(gethost() +'m/utilcategory',datapack ,config).then(async (res) => {
-                    setNewcatergory ("");
-                })
-                    .catch(() => {
-                        Swal.fire(
-                            'Successfully Added!',
-                            'this area has been Added.',
-                            'success'
-                            )
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (newcatergory == "") {
+                    return;
+                }
+                axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                    const config = {
+                        headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                    };
+                    const datapack = {
+                        name: newcatergory
+                    };
+                    axios.post(gethost() + 'm/utilcategory', datapack, config).then(async (res) => {
+                        setNewcatergory("");
                     })
-            })
-            .catch((err) => { })
+                        .catch(() => {
+                            Swal.fire(
+                                'Successfully Added!',
+                                'this area has been Added.',
+                                'success'
+                            )
+                        })
+                })
+                    .catch((err) => { })
             }
-          })
+        })
     }
 
-    return (  
-                <Grid item>
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
-                        Add Categories
-                    </Typography>
-                    <Stack direction="row" spacing={2}>
+    return (
+        <Grid item>
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
+                Add Categories
+            </Typography>
+            <Stack direction="row" spacing={2}>
 
-                        <input
-                            className={styles.inputbox_modern_catergory}
-                            type="text"
-                            placeholder="Enter New Catergory"
-                            value={newcatergory}
-                            //onChange={(e) => setNewcatergory(e.target.value)}
-                            onChange={newcatergoryChangeHandler}
-                        />
+                <input
+                    className={styles.inputbox_modern_catergory}
+                    type="text"
+                    placeholder="Enter New Catergory"
+                    value={newcatergory}
+                    //onChange={(e) => setNewcatergory(e.target.value)}
+                    onChange={newcatergoryChangeHandler}
+                />
 
-                        <Button disabled = {newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
-                            Add
-                        </Button>
-                    </Stack>
-                    {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Category must containe 4-20 characters and first letter must be capital</p>)}
+                <Button disabled={newcatergoryError} className={styles.manager_settings_catergory_add_button} id="manager_catergory_add" variant="contained" size="small" onClick={addCatergory}>
+                    Add
+                </Button>
+            </Stack>
+            {newcatergoryError && (<p className={styles.manager_catergory_error_message}> * Category must containe 4-20 characters and first letter must be capital</p>)}
 
-                    <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
-                        Active Categories
-                    </Typography>
-                    <Demo>
-                        <List
-                            sx={{
-                                width: '100%',
-                                position: 'relative',
-                                overflow: 'auto',
-                                maxHeight: 400,
-                                '& ul': { padding: 0 },
-                            }}
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
+                Active Categories
+            </Typography>
+            <Demo>
+                <List
+                    sx={{
+                        width: '100%',
+                        position: 'relative',
+                        overflow: 'auto',
+                        maxHeight: 400,
+                        '& ul': { padding: 0 },
+                    }}
+                >
+                    {generate(
+                        <ListItem
+                            secondaryAction={
+                                <IconButton edge="end" aria-label="delete">
+                                    <DeleteIcon />
+                                </IconButton>
+                            }
                         >
-                            {generate(
-                                <ListItem
-                                    secondaryAction={
-                                        <IconButton edge="end" aria-label="delete">
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    }
-                                >
 
-                                    <ListItemText
-                                        primary="Single-line item"
-                                    />
-                                </ListItem>,
-                            )}
-                        </List>
-                    </Demo>
-                </Grid>
+                            <ListItemText
+                                primary="Single-line item"
+                            />
+                        </ListItem>,
+                    )}
+                </List>
+            </Demo>
+        </Grid>
     );
 }
