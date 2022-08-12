@@ -46,6 +46,10 @@ export default function Arealist() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, add this area!'
           }).then((result) => {
+            if (newarea == "")
+            {
+                return;
+            }
             if (result.isConfirmed) { 
             axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
                 const config = {
