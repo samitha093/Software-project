@@ -37,45 +37,50 @@ export default function Arealist() {
     const [newareaError, setNewareaError] = React.useState<boolean>(false);
 
     async function addArea() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Once you added, you can delete again if need!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, add this area!'
-        }).then((result) => {
-            if (newarea == "") {
-                Swal.fire(
-                    'Oops!!!',
-                    'Area can not be empty',
-                    'warning'
-                  )
-                return;
-            }
-            if (result.isConfirmed) {
-                axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
-                    const config = {
-                        headers: { Authorization: `Bearer ${res.data.accesstoken}` }
-                    };
-                    const datapack = {
-                        name: newarea
-                    };
-                    axios.post(gethost() + 'm/utilarea', datapack, config).then(async (res) => {
-                        setNewarea("");
-                    })
-                        .catch(() => {
-                            Swal.fire(
-                                'Successfully Added!',
-                                'this area has been Added.',
-                                'success'
-                            )
-                        })
+
+        if (newarea == "") {
+            Swal.fire(
+                'Oops!!!',
+                'Area can not be empty',
+                'warning'
+              )
+            return;
+        }
+
+        // Swal.fire({
+        //     title: 'Are you sure?',
+        //     text: "Once you added, you can delete again if need!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes, add this area!'
+        // }).then((result) => {
+           
+        //     if (result.isConfirmed) {
+
+        //     }
+        // })
+        //
+        axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+            const config = {
+                headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            const datapack = {
+                name: newarea
+            };
+            axios.post(gethost() + 'm/utilarea', datapack, config).then(async (res) => {
+                setNewarea("");
+            })
+                .catch(() => {
+                    Swal.fire(
+                        'Successfully Added!',
+                        'this area has been Added.',
+                        'success'
+                    )
                 })
-                    .catch((err) => { })
-            }
         })
+            .catch((err) => { })
     }
 
     const newareaChangeHandler = (e: any) => {
