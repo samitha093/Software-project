@@ -65,13 +65,18 @@ export default function Categorylist() {
                     };
                     axios.post(gethost() + 'm/utilcategory', datapack, config).then(async (res) => {
                         setNewcatergory("");
+                        Swal.fire(
+                            'Successfully Added!',
+                            'this area has been Added.',
+                            'success'
+                        )
                     })
                         .catch(() => {
-                            Swal.fire(
-                                'Successfully Added!',
-                                'this area has been Added.',
-                                'success'
-                            )
+                            // Swal.fire(
+                            //     'Successfully Added!',
+                            //     'this area has been Added.',
+                            //     'success'
+                            // )
                         })
                 })
                     .catch((err) => { })
