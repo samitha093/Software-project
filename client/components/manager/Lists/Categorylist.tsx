@@ -47,16 +47,7 @@ export default function Categorylist() {
     }
 
     async function addCatergory() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Once you added, you can delete again if need!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, add this catergory!'
-        }).then((result) => {
-            if (result.isConfirmed) {
+        {
                 if (newcatergory == "") {
                     Swal.fire(
                         'Oops!!!',
@@ -85,7 +76,6 @@ export default function Categorylist() {
                 })
                     .catch((err) => { })
             }
-        })
     }
 
     return (
