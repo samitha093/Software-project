@@ -50,7 +50,7 @@ css-mf1cb5-MuiButtonBase-root-MuiIconButton-root{
 	align-items: center;
 	flex-direction: column;
 	padding-top: 70px;
-	height: 90vh;
+
 }
 .new_span{
 	font-size: 12px;
@@ -250,16 +250,22 @@ button.ghost {
 	z-index: 100;
 }
 
-
+@media only screen and (max-width: 900px) {
+  .maincontainer{
+    width: 90%;
+  }
+  
+  }
+  
 @media only screen and (max-width: 600px) {
     .overlay_container{
      display: block;
     }
     .maincontainer{
-      width:100%;
+      width:90%;
     }
     
-}
+  }
 
 .container.right_panel_active .overlay_container{
 	transform: translateX(-100%);
@@ -375,19 +381,15 @@ button.ghost {
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     
-    .head_signup{
-    font-size: medium;
-    }
-
     .new_span{
     display: none;
     }
     .modern_btn{
      font-size: 9px;
      height: max-content;
-	 padding: 8px 10px;
+	  padding: 8px 10px;
     }
 	
     .content_1{
@@ -406,6 +408,13 @@ button.ghost {
        .radio-label{
        padding: 0;
        }
+}
+
+.head_signup{
+  font-size: medium;
+  margin-bottom: 10px;
+  
+ 
 }
 @media only screen and (max-width: 300px) {
     

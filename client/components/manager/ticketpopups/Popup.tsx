@@ -234,12 +234,12 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     
                 </DialogContent>
                 <DialogActions>
-                  {data.status == 'PENDING' || data.status == 'DECLINED'?
+                  {data.status == 'PENDING'?
                   <Button variant="outlined" color="success" onClick={(e)=>approval(data)}>
                       Approve
                   </Button>
                   :null}
-                  {data.status == 'PENDING' || data.status == 'ACTIVE'?
+                  {data.status == 'PENDING'?
                     <Button variant="outlined" color="error" onClick={declined}>
                         Decline
                     </Button>

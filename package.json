@@ -1,0 +1,24 @@
+{
+    "dependencies": {
+      "yarn": "^1.22.18"
+    },
+    "scripts": {
+      "commit": "cz"
+    },
+    "devDependencies": {
+      "cz-conventional-changelog": "^3.3.0",
+      "git-cz": "^4.9.0"
+    },
+    "config": {
+      "commitizen": {
+        "path": "git-cz"
+      }
+    },
+    "name": "TickBid",
+    "version": "1.0.0",
+    "main": "Makefile",
+    "repository": "https://github.com/samitha093/Software-project",
+    "author": "Lakshan Pathiraja",
+    "license": "MIT",
+    "private": null
+  }

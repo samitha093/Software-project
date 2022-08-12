@@ -74,6 +74,7 @@ async function signinformn(){
       timer: 2500
     })
   })
+      
 };
 async function signUpformn(){
   if(name==="" || email==="" || password==="" || confirmPassword==="" || contact==="" || selectedRadiobtn===""){
@@ -155,6 +156,7 @@ async function signUpformn(){
                 text: 'System Admin Will Review Your Account',
                 //showConfirmButton: false,
                 //timer: 2500
+
               })
             }else{
               //delete account Api needed
@@ -162,9 +164,11 @@ async function signUpformn(){
                 icon: 'success',
                 title: 'Registration successful',
                 text: 'Now You can Login With Your Email and password',
+
                 //showConfirmButton: false,
                 //timer: 2500
               })
+              
             } 
           })
           .catch((err)=>{
@@ -233,6 +237,8 @@ async function signUpformn(){
     }
 
   })
+
+
 }
 
   const nameChangeHandler = (event:any) =>{
@@ -267,6 +273,8 @@ async function signUpformn(){
     })
     
 }
+
+
 
   const passwordChangeHandler = (e:any)=>{
       setPassword(e.target.value);

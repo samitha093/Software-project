@@ -36,7 +36,7 @@ const Shop: React.FC<ShopProps> = ({tickets}) => {
         return (
             <div className={style.buyer_index_container} >
                 {items.map((itemdata)=>{
-                   return(<div key={itemdata.id}><Shopcard ticketid={itemdata.id} level='5'/></div>)
+                   return(<div key={itemdata.id}><Shopcard ticketdata={itemdata} level='5'/></div>)
                 })}
             </div>
         );
