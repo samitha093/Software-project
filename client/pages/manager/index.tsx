@@ -48,11 +48,9 @@ const index: NextPage = function ActiveEvents() {
             axios.get(gethost() + itemURL, config).then(async (res) => {
                 await setitem(res.data)
             })
-                .catch(() => {
-                   
-                })
+                .catch(() => {})
         })
-            .catch((err) => { })
+            .catch((err) => {})
 
     }, [itemURL])
 
@@ -67,11 +65,9 @@ const index: NextPage = function ActiveEvents() {
                     setselleritem(res.data);
                     setloader(false);
                 })
-                .catch(() => {
-                   
-                })
+                .catch(() => {})
         })
-            .catch((err) => { })
+            .catch((err) => {})
     }, [selleritemURL])
 
     //component changer
@@ -91,11 +87,9 @@ const index: NextPage = function ActiveEvents() {
                     setselleritem(res.data);
                     setloader(false);
                 })
-                .catch(() => {
-                   
-                })
+                .catch(() => {})
         })
-            .catch((err) => { })
+            .catch((err) => {})
     };
     
     async function tabchange(id: any) {
