@@ -100,7 +100,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       Swal.fire({
         title: 'Are you sure?',
         input: 'text',
-        text: "You won't be able to decline this Event!",
+        text: "You will decline this Event!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -118,11 +118,10 @@ const Popup: React.FC<PopupProps> = ({data}) => {
             };
             const datapack = {
                 status: "DECLINED",
-                comment:"",
+                comment:result.value,
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
                 // console.log(res.data)
-                // refresh.change(res.data);
             })
                 .catch(() => {
                     // Swal.fire(
@@ -166,7 +165,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 comment:"",
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
-                console.log(res.data)
+                //console.log(res.data)
                 // refresh.change(res.data);
             })
                 .catch(() => {
