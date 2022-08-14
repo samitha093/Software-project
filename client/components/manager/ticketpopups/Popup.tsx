@@ -110,7 +110,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowEscapeKey: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          setOpen(true);
+          //setOpen(true);
           //call to api
           axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
             const config = {
@@ -121,7 +121,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 comment:"",
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 // refresh.change(res.data);
             })
                 .catch(() => {
@@ -155,7 +155,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowEscapeKey: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          setOpen(true);
+          // setOpen(true);
           //call to api
           axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
             const config = {
