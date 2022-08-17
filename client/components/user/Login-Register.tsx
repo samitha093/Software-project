@@ -362,6 +362,50 @@ async function signUpformn(){
     
     return(
         <div className="maincontainer" id="maincontainer">
+
+        <div className='subcontainer' id = 'subcontainer' > 
+        
+        
+        <div className="modern_form">
+              <h1 className ="head_signin" >Sign in</h1>
+            
+            <div className ="input_box_container" > 
+             <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
+              <input 
+              className="inputbox_modern_1"
+              type="email" 
+              placeholder="User email"
+              value={login_email}
+              onChange={login_emailChangeHandler}
+            // onBlur={emailBlurHandler} 
+             />
+             </div>
+             {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+            <div className ="input_box_container"> 
+            <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
+              <input 
+              className="inputbox_modern_1"
+              type="password" 
+              placeholder="Password" 
+              value={login_password}
+              onChange={login_passwordChangeHandler}
+              onBlur={login_passwordChangeHandler}
+              // onBlur={emailBlurHandler}
+              />
+              </div>
+              {login_passwordError && (<p className="error_message"> *Invalid password</p>)}
+              <div className="modern_a" onClick={fogotpassword}>Forgot your password?</div>
+              <button className="modern_btn" onClick={signinformn}>Sign In</button>
+            </div>
+        
+        
+        
+        
+        
+        
+        </div>
+
+
           <div className="restpassword" id="restpassword">
             
           <Box sx={{ flexGrow: 1 }}>
@@ -402,6 +446,7 @@ async function signUpformn(){
         </Box>  
 
           </div>
+          
         {/* login and register window */}
         
         <div className="container" id="container">
