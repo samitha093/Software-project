@@ -109,7 +109,6 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowOutsideClick: false,
         allowEscapeKey: false,
       }).then((result) => {
-        // console.log(result);
         if (result.isConfirmed) {
           //setOpen(true);
           //call to api
@@ -122,12 +121,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 comment:result.value,
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
-                // console.log(res.data)
             })
                 .catch(() => {
                     // Swal.fire(
                     //     'Activated!',
-                    //     'New seller has been activated.',
+                    //     'New event has been declined.',
                     //     'success'
                     //   )
                 })
@@ -145,7 +143,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       setOpen(false);
       Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to approve this Event!",
+        text: "You won't be declined this event again!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -166,13 +164,12 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 comment:"",
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
-                //console.log(res.data)
                 // refresh.change(res.data);
             })
                 .catch(() => {
                     // Swal.fire(
                     //     'Activated!',
-                    //     'New seller has been activated.',
+                    //     'New event has been approved.',
                     //     'success'
                     //   )
                 })

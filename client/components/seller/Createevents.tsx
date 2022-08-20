@@ -181,7 +181,7 @@ export default function MaxWidthDialog() {
     setNewnameError(!valid);
   };
   const eventVenueChangeHandler = (event:any)=>{
-    const newpcatergory_regex = /^[A-Z].{3,19}$/;
+    const newpcatergory_regex = /^[A-Z].{3,29}$/;
     const valid = !!event.target.value.match(newpcatergory_regex);
     setvenue(event.target.value);
     setNewvenueError(!valid);
@@ -453,7 +453,7 @@ const [activate, setactive] = React.useState(false);
           label="Event Venue"
           onChange={eventVenueChangeHandler}
         />
-        {venueError && (<p className={Styles.seller_catergory_error_message}> * Event Venue must contain 4-20 characters and first letter must be capital</p>)}
+        {venueError && (<p className={Styles.seller_catergory_error_message}> * Event Venue must contain 4-30 characters and first letter must be capital</p>)}
         <div className={Styles.seller_c_create_event_date_time}>
           <div className={Styles.seller_c_create_event_date_time_left}>
           <TextField
