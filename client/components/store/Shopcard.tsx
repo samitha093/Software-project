@@ -156,7 +156,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
                 <div className={styles.buyer_c_ticketunvalid_top_info}>
                     <div className={styles.buyer_c_ticketunvalid_top_info_left}>
                         <div className={styles.buyer_c_ticketunvalid_top_info_left_name}>
-                            {ticketdata.event_venue}
+                            {ticketdata.event_name}
                         </div>
                         <div className={styles.buyer_c_ticketunvalid_top_info_left_date}>
                             {ticketdata.event_date}
