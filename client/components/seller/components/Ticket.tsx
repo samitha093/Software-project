@@ -5,8 +5,12 @@ import SaveIcon from '@mui/icons-material/Save';
 import axios from 'axios'
 import {gethost} from '../../../session/Session'
 import styles from './Styles.module.css'
+interface TicketProps {
+data:any
+array:any
+}
 
-function Ticket({data}:any) {
+const Ticket: React.FC<TicketProps> = ({data,array}) => {
     const [loading, setLoading] = React.useState(false);
     const [activate, setactive] = React.useState(false);
 
@@ -44,28 +48,30 @@ function Ticket({data}:any) {
       setactive(true);
       setLoading(false);
     }
+    const buyTickets = (e:any,id:any) => {
+      setbuytickets(e.target.value);
+      array.change(e,"A",id);
+    };
+    const buyAmount = (e:any,id:any) => {
+      setamount(e.target.value);
+      array.change(e,"B",id);
+    };
+    const bidTickets = (e:any,id:any) => {
+      setbidtickets(e.target.value);
+      array.change(e,"C",id);
+    };
+    const bidAmounts = (e:any,id:any) => {
+      setbidamount(e.target.value);
+      array.change(e,"D",id);
+    };
   return (
     <div className={styles.ticket_bg}>
         <div className={styles.ticket_container}>
             <div className={styles.ticket_data}>{data.rid}</div>
-            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>setbuytickets(e.target.value)}  variant="standard" /></div>
-            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>setamount(e.target.value)} variant="standard" /></div>
-            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>setbidtickets(e.target.value)} variant="standard" /></div>
-            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>setbidamount(e.target.value)} variant="standard" /></div>
-            <div className={styles.ticket_data}>
-                <LoadingButton
-                    size="small"
-                    color="secondary"
-                    onClick={handleClick}
-                    loading={loading}
-                    loadingPosition="start"
-                    startIcon={<SaveIcon />}
-                    variant="contained"
-                    disabled={activate}
-                    >
-                    Save
-                </LoadingButton>
-            </div>
+            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>buyTickets(e,data.rid)}  variant="standard" /></div>
+            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>buyAmount(e,data.rid)} variant="standard" /></div>
+            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>bidTickets(e,data.rid)} variant="standard" /></div>
+            <div className={styles.ticket_data}><TextField id="standard-basic" onChange={(e)=>bidAmounts(e,data.rid)} variant="standard" /></div>
         </div>
     </div>
   )

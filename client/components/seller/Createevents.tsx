@@ -20,6 +20,9 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import Styles from './Styles.module.css'
 import Upload from './components/Upload'
 import Swal from 'sweetalert2'
+import DialogActions from '@mui/material/DialogActions';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -109,6 +112,8 @@ export default function MaxWidthDialog() {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('lg');
 
+  const [arr,setarr] = React.useState<number[]>([]);
+
   const [value, setValue] = React.useState<Date | null>(
     new Date('2014-08-18T21:11:54'),
   );
@@ -158,10 +163,6 @@ export default function MaxWidthDialog() {
     await submitevent();
   };
 
-  const handleClickSubmitticket = async() =>{
-    await submitticket();
-    //setOpenticket(false);
-  }
 
   const handleCloseticket = () => {
     setOpenticket(false);
@@ -253,41 +254,81 @@ const uploadedFileData = async(file:any)=>{
 };
 //submit tickets for workflow
 const submitticket = () => {
-  console.log(eventid)
-  return;
-  const ticketpack1 = {
-    TicketLevel: 1,
-    BuyQuantity:buy_quantity1,
-    BuyAmount:buy_amount1,
-    BidQuantity:bid_quantity1,
-    BidAmount:bid_amount1,
-    EventId:"6189137cf4bff50043c3c220"
+  // console.log(ticket,arr.length)
+  setLoading(true);
+  arr.forEach(submittodatabase);
+  setactive(true);
+  setLoading(false);
+  setOpenticket(false);
+  Toast.fire({
+    icon: 'success',
+    title: 'Device conected successfully'
+  })
+  setarr([]);
+  setactive(false);
+};
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
-  axios.post(gethost()+'seller/ticketlevels',ticketpack1)
-    .then(async (res)=>{
-        console.log(res.data)
-        setbuyquantity1("");
-        setbuyamount1("");
-        setbidquantity1("");
-        setbidamount1("");
-    })
-    .catch((err)=>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Authentication Failed',
-        text: 'Please Login to your account',
-        showConfirmButton: false,
-        timer: 2500
+})
+const submittodatabase =(id:any)=>{
+  //get access from gatway for 5min
+  axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+  .then(async (res)=>{
+      //create a headet pack
+      const config = {
+      headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+      };
+      //create a body pack
+      const datapack = {
+          ticket_level:1,
+          buy_quantity:ticket[id-1].buyCount,
+          buy_amount:ticket[id-1].buyAmount,
+          bid_quantity:ticket[id-1].bidCount,
+          min_bid_amount:ticket[id-1].bidAmount,
+      }
+      axios.post(gethost()+'s/createaticket/'+ eventid ,datapack,config)
+      .then(async (res)=>{
+         // console.log("saved");
       })
-    }) 
+      .catch((err)=>{
+          console.log(err);
+      })
+  })
+  //end connection
+}
+const [ticket,setticket] = React.useState([
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+]);
+const submitIntoArray = (e:any,tag:any,id:any) => {
+  if(id=="1"){
+    tag=="A"?ticket[0].buyCount=e.target.value:tag=="B"?ticket[0].buyAmount=e.target.value:tag=="C"?ticket[0].bidCount=e.target.value:ticket[0].bidAmount=e.target.value;
+  }
+  if(id=="2"){
+    tag=="A"?ticket[1].buyCount=e.target.value:tag=="B"?ticket[1].buyAmount=e.target.value:tag=="C"?ticket[1].bidCount=e.target.value:ticket[1].bidAmount=e.target.value;
+  }
+  if(id=="3"){
+    tag=="A"?ticket[2].buyCount=e.target.value:tag=="B"?ticket[2].buyAmount=e.target.value:tag=="C"?ticket[2].bidCount=e.target.value:ticket[2].bidAmount=e.target.value;
+  }
+  if(id=="4"){
+    tag=="A"?ticket[3].buyCount=e.target.value:tag=="B"?ticket[3].buyAmount=e.target.value:tag=="C"?ticket[3].bidCount=e.target.value:ticket[3].bidAmount=e.target.value;
+  }
+  if(id=="5"){
+    tag=="A"?ticket[4].buyCount=e.target.value:tag=="B"?ticket[4].buyAmount=e.target.value:tag=="C"?ticket[4].bidCount=e.target.value:ticket[4].bidAmount=e.target.value;
+  }
 };
 
-const createticketjson = async(data:any)=>{
-  console.log(data)
-  if(data){
-    //console.log(data)
-  }
-};
 const [arealist,setarealist] = React.useState<any>([]);
 const [categorylist,setcategorylist] = React.useState([]);
 React.useEffect(()=>{
@@ -318,9 +359,10 @@ React.useEffect(()=>{
       })
     }) 
 },[])
-const [arr,setarr] = React.useState<number[]>([]);
-var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:item}}/></div>);
 
+var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:item}} array={{change: submitIntoArray}}/></div>);
+const [loading, setLoading] = React.useState(false);
+const [activate, setactive] = React.useState(false);
   return (
     <React.Fragment >
       <div className={Styles.btn_class}>
@@ -532,9 +574,6 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
             <div className={Styles.seller_c_create_table_header_item}>
               Starting Bid
             </div>
-            <div className={Styles.seller_c_create_table_header_item}>
-              Action
-            </div>
           </div>
         {listItems}
         </div>
@@ -545,6 +584,22 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
           </div>
         </DialogContent>
         </DialogContent>
+        <DialogActions>
+          <div className={Styles.seller_c_create_ticket_button}>
+          <LoadingButton
+              size="small"
+              color="secondary"
+              onClick={submitticket}
+              loading={loading}
+              loadingPosition="start"
+              startIcon={<SaveIcon />}
+              variant="contained"
+              disabled={activate}
+              >
+              Submit Event
+          </LoadingButton>
+          </div>
+        </DialogActions>
       </Dialog>
 
     </React.Fragment>

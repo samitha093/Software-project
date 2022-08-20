@@ -240,6 +240,7 @@ const masking = (data)=>{
 
  router.route('/approveaevent/:eventid').put(verifyAccessToken,managerverification,(req,res) => {
   console.log(req.userdata.email);
+  console.log(req.body);
    events.findById(req.params.eventid)
        .then(data =>{
           data.status = req.body.status;
