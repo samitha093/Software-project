@@ -362,51 +362,92 @@ async function signUpformn(){
     
     return(
         <div className="maincontainer" id="maincontainer">
+
+        <div className='subcontainer' id = 'subcontainer' > 
+        
+        <div className="modern_form">
+              <h1 className ="head_signin" >Sign in</h1>
+            
+            <div className ="input_box_container" > 
+             <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
+              <input 
+              className="inputbox_modern_1"
+              type="email" 
+              placeholder="User email"
+              value={login_email}
+              onChange={login_emailChangeHandler}
+            // onBlur={emailBlurHandler} 
+             />
+             </div>
+             {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+            <div className ="input_box_container"> 
+            <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
+              <input 
+              className="inputbox_modern_1"
+              type="password" 
+              placeholder="Password" 
+              value={login_password}
+              onChange={login_passwordChangeHandler}
+              onBlur={login_passwordChangeHandler}
+              // onBlur={emailBlurHandler}
+              />
+              </div>
+              {login_passwordError && (<p className="error_message"> *Invalid password</p>)}
+              <div className="modern_a" onClick={fogotpassword}>Forgot your password?</div>
+              <button className="modern_btn" onClick={signinformn}>Sign In</button>
+            </div>
+        
+        </div>
+        <div className='subcontainer-1' id = 'subcontainer-1' >
           
 
+
+         </div> 
+         
           <div className="restpassword" id="restpassword">
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container spacing={0}>
-                  <Grid item md={6} className = "pwd_container" >
-                  <div className="form_wrapper">
-                          <div className="modern_form">
-                          <h1 className = "head_password" >Forgot Password</h1>
-                          {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
-                          <div className ="input_box_container"> 
-                          <div className ="icn"><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
-                          <input 
-                          className="inputbox_modern"
-                          type="email" 
-                          placeholder="Your Email"
-                          value={login_email}
-                          onChange={login_emailChangeHandler}
-                          // onBlur={emailBlurHandler} 
-                            />
-                            </div>
-                            <br/><br/>
-                            <button className="modern_btn" onClick={sendresetemail}>Send Email</button>
-                            </div>
-                          <div className="modern_a" onClick={backtosignin}>Back to sign in</div>  
-                    </div>
-                      
-                  </Grid>
-                  <Grid item xs className = "box_1" >
-                  <Image
-                      src = {lock}
-                      layout = "responsive"
-                      m-50
-                      alt= " "
-                      ></Image>            
-                  </Grid>
-                          
-              </Grid>
-          </Box>  
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={0}>
+                <Grid item md={6} className = "pwd_container" >
+                <div className="form_wrapper">
+                        <div className="modern_form">
+                         <h1 className = "head_password" >Forgot Password</h1>
+                         {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+                        <div className ="input_box_container"> 
+                        <div className ="icn"><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
+                        <input 
+                         className="inputbox_modern"
+                         type="email" 
+                         placeholder="Your Email"
+                         value={login_email}
+                         onChange={login_emailChangeHandler}
+                        // onBlur={emailBlurHandler} 
+                          />
+                          </div>
+                          <br/><br/>
+                          <button className="modern_btn" onClick={sendresetemail}>Send Email</button>
+                          </div>
+                        <div className="modern_a" onClick={backtosignin}>Back to sign in</div>  
+                   </div>
+                    
+                </Grid>
+                <Grid item xs className = "box_1" >
+                <Image
+                     src = {lock}
+                     layout = "responsive"
+                     m-50
+                     alt= " "
+                    ></Image>            
+                </Grid>
+                        
+            </Grid>
+        </Box>  
 
           </div>
+        
+          
         {/* login and register window */}
         
         <div className="container" id="container">
-
           <div className="form_container sign_up_container">
             <div className="modern_form">
               <h1 className ="head_signup">Create Account</h1>

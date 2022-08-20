@@ -75,6 +75,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
   })
     return(
         <div className="container" id="container" >
+        
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item md={6} className = "pwd_container" >
