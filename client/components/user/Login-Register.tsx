@@ -365,7 +365,6 @@ async function signUpformn(){
 
         <div className='subcontainer' id = 'subcontainer' > 
         
-        
         <div className="modern_form">
               <h1 className ="head_signin" >Sign in</h1>
             
@@ -398,16 +397,14 @@ async function signUpformn(){
               <button className="modern_btn" onClick={signinformn}>Sign In</button>
             </div>
         
-        
-        
-        
-        
-        
         </div>
+        <div className='subcontainer-1' id = 'subcontainer-1' >
+          
 
 
+         </div> 
+         
           <div className="restpassword" id="restpassword">
-            
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0}>
                 <Grid item md={6} className = "pwd_container" >
@@ -446,11 +443,11 @@ async function signUpformn(){
         </Box>  
 
           </div>
+        
           
         {/* login and register window */}
         
         <div className="container" id="container">
-
           <div className="form_container sign_up_container">
             <div className="modern_form">
               <h1 className ="head_signup">Create Account</h1>
