@@ -33,13 +33,7 @@ const index: NextPage = function ActiveEvents() {
             };
             axios.get(gethost() + itemURL ,config).then(async (res)=>{
               await setitem(res.data)
-            }).catch(()=>{
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Database connection error!'
-                })
-            })
+            }).catch(()=>{})
         })
         .catch((err)=>{})       
     },[itemURL])

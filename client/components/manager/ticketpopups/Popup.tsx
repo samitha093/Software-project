@@ -109,6 +109,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowOutsideClick: false,
         allowEscapeKey: false,
       }).then((result) => {
+        // console.log(result);
         if (result.isConfirmed) {
           //setOpen(true);
           //call to api
@@ -118,7 +119,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
             };
             const datapack = {
                 status: "DECLINED",
-                comment:"",
+                comment:result.value,
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
                 // console.log(res.data)
