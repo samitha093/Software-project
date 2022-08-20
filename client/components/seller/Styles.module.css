@@ -391,6 +391,15 @@
     font-family: 'Palanquin', sans-serif;
     margin-top: -30px;
 }
+.seller_catergory_error_message {
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-left: 0px;
+    margin-right: 80px;
+    text-align: justify;
+}
 @media only screen and (max-width: 1550px) {
     .seller_progressbar {
         width: 70px;
