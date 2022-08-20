@@ -284,7 +284,7 @@ const submitticket = () => {
   setOpenticket(false);
   Toast.fire({
     icon: 'success',
-    title: 'Device conected successfully'
+    title: 'Pending Event Submited successfully'
   })
   setarr([]);
   setactive(false);
