@@ -48,7 +48,9 @@ const index: NextPage = function ActiveEvents() {
             axios.get(gethost() + itemURL, config).then(async (res) => {
                 await setitem(res.data)
             })
-                .catch(() => {})
+            .catch(async() => {
+                await setitem([])
+            })
         })
             .catch((err) => {})
 
