@@ -138,6 +138,13 @@ export default function MaxWidthDialog() {
   const [bid_quantity1,setbidquantity1] = React.useState<string>("");
   const [bid_amount1,setbidamount1] = React.useState<string>("");
 
+  const [nameError, setNewnameError] = React.useState<boolean>(false);
+  const [venueError, setNewvenueError] = React.useState<boolean>(false);
+  const [dateError, setNewdateError] = React.useState<boolean>(false);
+  const [stdateError, setNewstdateError] = React.useState<boolean>(false);
+  const [spdateError, setNewspdateError] = React.useState<boolean>(false);
+  const [alldateError, setdatesError] = React.useState<boolean>(false);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setlevels(event.target.value);
   };
@@ -168,12 +175,23 @@ export default function MaxWidthDialog() {
     setOpenticket(false);
   };
   const eventNameChangeHandler = (event:any)=>{
+    const newpcatergory_regex = /^[A-Z].{3,19}$/;
+    const valid = !!event.target.value.match(newpcatergory_regex);
     setname(event.target.value);
+    setNewnameError(!valid);
   };
   const eventVenueChangeHandler = (event:any)=>{
+    const newpcatergory_regex = /^[A-Z].{3,19}$/;
+    const valid = !!event.target.value.match(newpcatergory_regex);
     setvenue(event.target.value);
+    setNewvenueError(!valid);
   };
   const eventDateChangeHandler = (event:any)=>{
+    const date = new Date();
+    const days = 1
+    date.setDate(date.getDate() + days);
+    const valid = (new Date(event.target.value) > date);
+    setNewdateError(!valid);
     setdate(event.target.value);
   };
   const eventTimeChangeHandler = (event:any)=>{
@@ -181,10 +199,14 @@ export default function MaxWidthDialog() {
   };
   //starting date handler
   const startDateChangeHandler = (event:any)=>{
+    const valid = (new Date(event.target.value) > new Date());
+    setNewstdateError(!valid);
     setstart_event_date(event.target.value);
   };
   //closing date handler
   const endDateChangeHandler = (event:any)=>{
+    const valid = (new Date(event.target.value) > new Date());
+    setNewspdateError(!valid);
     setendevent_date(event.target.value);
   };
   const [eventid,seteventid] = React.useState<string>("");
@@ -424,12 +446,14 @@ const [activate, setactive] = React.useState(false);
           label="Event Name"
           onChange={eventNameChangeHandler}
         />
+        {nameError && (<p className={Styles.seller_catergory_error_message}> * Event Name must contain 4-20 characters and first letter must be capital</p>)}
         <TextField
           required
           id="outlined-required"
           label="Event Venue"
           onChange={eventVenueChangeHandler}
         />
+        {venueError && (<p className={Styles.seller_catergory_error_message}> * Event Venue must contain 4-20 characters and first letter must be capital</p>)}
         <div className={Styles.seller_c_create_event_date_time}>
           <div className={Styles.seller_c_create_event_date_time_left}>
           <TextField
@@ -437,13 +461,14 @@ const [activate, setactive] = React.useState(false);
             id="date"
             label="Event Date"
             type="date"
-            defaultValue="2020-02-02"
+            //defaultValue="2020-02-02"
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             onChange={eventDateChangeHandler}
-          />                    
+          />
+          {dateError && (<p className={Styles.seller_catergory_error_message}> * Event date must be Greater than the present date</p>)}                    
           </div>
           <div className={Styles.seller_c_create_event_date_time_right}>
           <TextField
@@ -470,13 +495,14 @@ const [activate, setactive] = React.useState(false);
             id="date"
             label="Start Selling Date"
             type="date"
-            defaultValue="2020-02-02"
+            //defaultValue="2020-02-02"
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             onChange={startDateChangeHandler}
-          />                    
+          />
+          {stdateError && (<p className={Styles.seller_catergory_error_message}> * Start Selling date must be Equal or Greater than the present date</p>)}                    
           </div>
           <div className={Styles.seller_c_create_event_date_time_right}>
           <TextField
@@ -484,13 +510,14 @@ const [activate, setactive] = React.useState(false);
             id="date"
             label="Stop Selling Date"
             type="date"
-            defaultValue="2020-02-02"
+            //defaultValue="2022-02-02"
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             onChange={endDateChangeHandler}
-          /> 
+          />
+          {spdateError && (<p className={Styles.seller_catergory_error_message}> * Stop Selling date must be Equal or Greater than the present date</p>)} 
           </div>
         </div>
         
@@ -537,9 +564,9 @@ const [activate, setactive] = React.useState(false);
       </Grid>
     <div >
     <Stack direction="row" justifyContent="right" >
-    <Button onClick={handleClickOpenticket} variant="contained"  >Submit Event & Next</Button>
+    <Button disabled={nameError||venueError||spdateError||stdateError||dateError||alldateError} onClick={handleClickOpenticket} variant="contained"  >Submit Event & Next</Button>
     </Stack>
-    
+    {alldateError && (<p className={Styles.seller_catergory_error_message}> * Start '&' Stop selling dates must be less than Event date and Start date must be less or equal than Stop date</p>)}
     </div>
     
         </DialogContent>
