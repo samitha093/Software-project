@@ -109,6 +109,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowOutsideClick: false,
         allowEscapeKey: false,
       }).then((result) => {
+        // console.log(result);
         if (result.isConfirmed) {
           //setOpen(true);
           //call to api

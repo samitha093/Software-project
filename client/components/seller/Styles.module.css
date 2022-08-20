@@ -839,6 +839,10 @@
     text-align: center;
 }
 .seller_c_create_table_header_item{
-    width:16%;
+    width:20%;
     text-align: center;
+}
+.seller_c_create_ticket_button{
+    padding-bottom: 20px!important;
+    padding-right: 30px!important;
 }

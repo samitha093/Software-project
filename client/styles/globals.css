@@ -199,6 +199,12 @@ button.ghost {
   display: none;
 }
 
+.subcontainer-1{
+  display: none;
+  transform: translateY(-100%);
+
+
+}
 .form_container {
 	position: absolute;
 	top: 0;
@@ -278,13 +284,16 @@ button.ghost {
 
     }
 
+    .subcontainer-1{
+      display: block;
+      padding: 10px;
+      transform: translateY(-100%);
+
+    }
     .container{
       display: none;
     }
-
-    .restpassword{
-      display: none;
-    }
+    
   }
 
 .container.right_panel_active .overlay_container{
@@ -492,7 +501,7 @@ button.ghost {
     margin-bottom: 70px;
     margin-top: 50px;
     text-align: center;
-	font-family: 'Open Sans', sans-serif;
+	  font-family: 'Open Sans', sans-serif;
 }
 .pwd_container{
     padding: 50px 0px;
