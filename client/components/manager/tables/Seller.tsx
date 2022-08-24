@@ -38,7 +38,6 @@ async function PopupConfirm(data:any, refresh:any){
                     suspendstatus:false
                 };
                 axios.post(gethost() +'m/Useractivate',datapack ,config).then(async (res) => {
-                    // await setitem(res.data)
                     refresh.change(res.data);
                 })
                     .catch(() => {
@@ -76,7 +75,6 @@ async function PopupConfirm(data:any, refresh:any){
                         suspendstatus:true
                     };
                     axios.post(gethost() +'m/Useractivate',datapack ,config).then(async (res) => {
-                        // await setitem(res.data)
                         refresh.change(res.data);
                     })
                         .catch(() => {

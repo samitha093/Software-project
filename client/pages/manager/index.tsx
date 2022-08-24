@@ -1,5 +1,5 @@
 //node packages
-import React from 'react'
+import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import Swal from 'sweetalert2'
 import { useRouter } from 'next/router'
@@ -20,6 +20,7 @@ import Auth from '../../components/auth/Auth'
 import { gethost } from '../../session/Session';
 //stylesheet
 import styles from './styles.module.css'
+import { Button } from '@mui/material'
 
 const index: NextPage = function ActiveEvents() {
 
@@ -33,7 +34,14 @@ const index: NextPage = function ActiveEvents() {
     const [selleritemURL, setselleritemURL] = React.useState('m/userlist/all');
     const [selleritems, setselleritem] = React.useState([])
 
+    //Load more
     const [loader, setloader] = React.useState(false);
+
+    const [visible, setVisible] = useState (15);
+
+    const showMoreItems = ()=>{
+        setVisible ((prevValue)=> prevValue + 5);
+    };
 
     React.useEffect(() => {
         console.log("loading call")
@@ -136,7 +144,7 @@ const index: NextPage = function ActiveEvents() {
         }
     };
 
-    const listitem = items.map((item: any) => (
+    const listitem = items.slice(0,visible).map((item: any) => (
         <Popup data={item} key={item.id} />
     ));
 
@@ -165,10 +173,11 @@ const index: NextPage = function ActiveEvents() {
                                 <ManagerTopBar id2={itemID} data={{ change: changeEventList }} />
                                 <div className={styles.manager_index_scroll_set}>
                                 <div className={styles.manager_c_header}>
-                                    <h1 >Events</h1>
+                                    <h1 >Event</h1>
                                 </div>
                                     <div className={styles.manager_index_container}>
                                         {listitem}
+                                        <Button onClick={showMoreItems}>Load More..</Button>
                                     </div>
                                 </div>
                             </div>
