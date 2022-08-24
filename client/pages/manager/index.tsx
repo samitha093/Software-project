@@ -1,7 +1,6 @@
 //node packages
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
-import Swal from 'sweetalert2'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 //custom components
@@ -37,14 +36,14 @@ const index: NextPage = function ActiveEvents() {
     //Load more
     const [loader, setloader] = React.useState(false);
 
-    const [visible, setVisible] = useState (15);
+    const [visible, setVisible] = useState(15);
 
-    const showMoreItems = ()=>{
-        setVisible ((prevValue)=> prevValue + 5);
+    const showMoreItems = () => {
+        setVisible((prevValue) => prevValue + 5);
     };
 
     React.useEffect(() => {
-        console.log("loading call")
+        //console.log("loading call")
 
     }, [loader])
 
@@ -56,11 +55,11 @@ const index: NextPage = function ActiveEvents() {
             axios.get(gethost() + itemURL, config).then(async (res) => {
                 await setitem(res.data)
             })
-            .catch(async() => {
-                await setitem([])
-            })
+                .catch(async () => {
+                    await setitem([])
+                })
         })
-            .catch((err) => {})
+            .catch((err) => { })
 
     }, [itemURL])
 
@@ -75,9 +74,9 @@ const index: NextPage = function ActiveEvents() {
                     setselleritem(res.data);
                     setloader(false);
                 })
-                .catch(() => {})
+                .catch(() => { })
         })
-            .catch((err) => {})
+            .catch((err) => { })
     }, [selleritemURL])
 
     //component changer
@@ -97,11 +96,11 @@ const index: NextPage = function ActiveEvents() {
                     setselleritem(res.data);
                     setloader(false);
                 })
-                .catch(() => {})
+                .catch(() => { })
         })
-            .catch((err) => {})
+            .catch((err) => { })
     };
-    
+
     async function tabchange(id: any) {
         var datapack = [
             { status: id == '1' ? true : false },
@@ -144,7 +143,7 @@ const index: NextPage = function ActiveEvents() {
         }
     };
 
-    const listitem = items.slice(0,visible).map((item: any) => (
+    const listitem = items.slice(0, visible).map((item: any) => (
         <Popup data={item} key={item.id} />
     ));
 
@@ -172,13 +171,16 @@ const index: NextPage = function ActiveEvents() {
                             <div>
                                 <ManagerTopBar id2={itemID} data={{ change: changeEventList }} />
                                 <div className={styles.manager_index_scroll_set}>
-                                <div className={styles.manager_c_header}>
-                                    <h1 >Event</h1>
-                                </div>
+                                    <div className={styles.manager_c_header}>
+                                        <h1 >Events</h1>
+                                    </div>
                                     <div className={styles.manager_index_container}>
                                         {listitem}
-                                        <Button onClick={showMoreItems}>Load More..</Button>
+                                        <div className={styles.manager_index_loadmore_button}>
+                                        <Button variant="text" onClick={showMoreItems}>..Load More..</Button>
                                     </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             : null}
@@ -187,11 +189,11 @@ const index: NextPage = function ActiveEvents() {
                             <div>
                                 <div onClick={changeSellerList}><SellersTopBar id3={selleritemID} data={{ change: changeSellerList }} /></div>
                                 <div className={styles.manager_sellers_main_container}>
-                                <div className={styles.manager_c_header}>
-                                    <h1 >Sellers</h1>
-                                </div>
+                                    <div className={styles.manager_c_header}>
+                                        <h1 >Sellers</h1>
+                                    </div>
                                     <div className={styles.manager_sellers_main_container}>
-                                        {loader ? null : <Seller data={selleritems}  refresh={{ change: refresh }}/>}
+                                        {loader ? null : <Seller data={selleritems} refresh={{ change: refresh }} />}
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +217,6 @@ const index: NextPage = function ActiveEvents() {
                                 </div>
                             </div>
                             : null}
-
                     </div>
                 </div>
             </div>

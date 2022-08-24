@@ -38,6 +38,15 @@
     margin-bottom: 20px;
 }
 
+.manager_index_loadmore_button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
+
 .manager_index_scroll_set {
     width: 100%
 }
