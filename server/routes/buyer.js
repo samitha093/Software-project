@@ -5,6 +5,7 @@ const orders = require('../models/orders')
 const crons = require('../models/cron');
 const {verifyAccessToken,buyerverification} = require('../auth/jwt');
 const {getusername, getuserid} = require('../middlewares/user');
+const Bids = require('../models/bid');
 
 /**
  * @swagger
@@ -19,6 +20,28 @@ const {getusername, getuserid} = require('../middlewares/user');
  *                      type: string
  *              example:
  *                  cart: "?"
+ *          bids:
+ *              type: object
+ *              required:
+ *                  - bid_amount
+ *                  - ticketcount
+ *                  - ticketid
+ *                  - userid
+ *              properties:
+ *                  bid_amount:
+ *                      type: Number
+ *                  ticketcount:
+ *                      type: Number
+ *                  ticketid:
+ *                      type: string
+ *                  userid:
+ *                      type: string
+ * 
+ *              example:
+ *                  bid_amount: 0
+ *                  ticketcount: 0
+ *                  ticketid: "?"
+ *                  userid: "?"
  */
 
 /**
@@ -149,7 +172,7 @@ const {getusername, getuserid} = require('../middlewares/user');
  *      content:
  *        application/json:
  *           schema:
- *              $ref: '#/components/schemas/addtickets'
+ *              $ref: '#/components/schemas/bids'
  *     responses:
  *      200:
  *        description: added to account
@@ -158,6 +181,24 @@ const {getusername, getuserid} = require('../middlewares/user');
  *      500:
  *        description: server error
  */
+ router.route('/bid').post((req,res) => {
+  var response = {};
+  const bid_amount = req.body.bid_amount;
+  const ticketcount = req.body.ticketcount;
+  const ticketid = req.body.ticketid;
+  const userid = req.body.userid; 
+      const newbid = new Bids({
+          bid_amount,
+          ticketcount,
+          ticketid,
+          userid,
+          });
+      newbid.save()
+          .then((result)=> {
+              res.status(200).json(result._id)
+          })
+          .catch(err => res.status(500).json(err))
+});
 
 /**
  * @swagger
@@ -180,4 +221,6 @@ const {getusername, getuserid} = require('../middlewares/user');
  *      500:
  *        description: server error
  */
+
+
 module.exports = router;
