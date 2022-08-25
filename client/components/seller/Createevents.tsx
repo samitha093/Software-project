@@ -310,7 +310,7 @@ const submittodatabase =(id:any)=>{
       };
       //create a body pack
       const datapack = {
-          ticket_level:1,
+          ticket_level:id,
           buy_quantity:ticket[id-1].buyCount,
           buy_amount:ticket[id-1].buyAmount,
           bid_quantity:ticket[id-1].bidCount,

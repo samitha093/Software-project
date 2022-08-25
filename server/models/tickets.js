@@ -4,10 +4,7 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 const schema = mongoose.Schema;
 
 const bidschema = new schema({
-    bid_amount: {type:Number},
-    bid_tickets: {type:Number},
-    total_amount: {type:Number},
-    userid: {type:String},
+    bid_amount: {type:String},
 },{
     timestamps:true
 });

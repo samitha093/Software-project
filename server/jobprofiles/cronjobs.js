@@ -57,7 +57,7 @@ function createtickets (){
 };
 
 function createQR (){
-    //console.log("B")
+    //buyer buy a ticket
     crons.find({job_type:"B", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
             data_crone[0].job_status = false;
@@ -79,18 +79,11 @@ function createQR (){
                         });
                         var qrid = await newqr.save().then((result)=>{return result._id})
                         const ticketqr ={
-                            "ticketid": ticketid,
                             "qrid":qrid,
                         }
                         const ticket ={
-                            "eventname": "A",
-                            "event_venue": "A",
-                            "event_date": "A",
-                            "event_time": "A",
-                            "ticket_level": "A",
-                            "image_url": "A",
-                            "amount": "A",
                             "qr":ticketqr,
+                            "ticketid": ticketid,
                         }
                         await User.findById(data_event.userid).then(async(userdata)=> {
                         userdata.tickets.push(ticket);
@@ -110,7 +103,7 @@ function createQR (){
 
 
 function createQRguest (){
-    //console.log("B")
+    //guest user buy a ticket
     crons.find({job_type:"C", job_status:true},async(err,data_crone)=>{
         if(data_crone.length>0){
             data_crone[0].job_status = false;
@@ -138,18 +131,11 @@ function createQRguest (){
                         });
                         var qrid = await newqr.save().then((result)=>{return result._id})
                         const ticketqr ={
-                            "ticketid": ticketid,
                             "qrid":qrid,
                         }
                         const ticket ={
-                            "eventname": "A",
-                            "event_venue": "A",
-                            "event_date": "A",
-                            "event_time": "A",
-                            "ticket_level": "A",
-                            "image_url": "A",
-                            "amount": "A",
                             "qr":ticketqr,
+                            "ticketid": ticketid,
                         }
                         console.log(qrid)
                         await User.findById(userid).then(async(userdata)=> {

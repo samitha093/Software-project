@@ -357,9 +357,9 @@ async function signUpformn(){
             container.classList.remove( "testmainshifter");
           }
         } 
+        
       };
 
-    
     return(
         <div className="maincontainer" id="maincontainer">
 
