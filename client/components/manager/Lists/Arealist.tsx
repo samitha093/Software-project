@@ -19,14 +19,11 @@ import classnames from 'classnames';
 //Session and local storage data
 import { gethost } from '../../../session/Session';
 
-//routings for area list view
+
 interface AreaProps {
     data: any
     refresh: any
 }
-
-
-
 
 const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
@@ -42,7 +39,6 @@ export default function Arealist() {
 
 React.useEffect(()=>{
     axios.get(gethost() +'g/areas').then(async (res)=>{
-        console.log (res.data);
         await setItem(res.data)
       }).catch(async()=>{
       })       
@@ -85,18 +81,15 @@ const generate = items.map((value) =>
             axios.post(gethost() + 'm/utilarea', datapack, config).then(async (res) => {
                 setRefresh2 (res.data);
                 setNewarea("");
-                Swal.fire(
-                    'Successfully Added!',
-                    'this area has been Added.',
-                    'success'
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'New area added',
+                    showConfirmButton: false,
+                    timer: 1500}
                 )
             })
                 .catch(() => {
-                    // Swal.fire(
-                    //     'Successfully Added!',
-                    //     'this area has been Added.',
-                    //     'success'
-                    // )
                 })
         })
             .catch((err) => { })
@@ -121,7 +114,6 @@ const generate = items.map((value) =>
                     type="text"
                     placeholder="Enter New Area"
                     value={newarea}
-                    //onChange={(e) => setNewcatergory(e.target.value)}
                     onChange={newareaChangeHandler}
                 />
 
