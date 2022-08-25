@@ -25,14 +25,6 @@ interface CategoryProps {
     refresh: any
 }
 
-// function generate(element: React.ReactElement) {
-//     return [0, 1, 2, 3, 4, 5, 6].map((value) =>
-//         React.cloneElement(element, {
-//             key: value,
-//         }),
-//     );
-// }
-
 const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
@@ -94,10 +86,12 @@ export default function Categorylist() {
                 axios.post(gethost() + 'm/utilcategory', datapack, config).then(async (res) => {
                     setRefresh2(res.data);
                     setNewcatergory("");
-                    Swal.fire(
-                        'Successfully Added!',
-                        'this area has been Added.',
-                        'success'
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'New category added',
+                        showConfirmButton: false,
+                        timer: 1500}
                     )
                 })
                     .catch(() => {
