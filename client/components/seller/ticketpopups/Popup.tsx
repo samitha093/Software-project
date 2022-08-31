@@ -116,11 +116,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                             </div>
                             <div className={Styles.seller_c_tickets_top_info_right}>
                                 <div className={Styles.seller_c_tickets_top_info_right_nooftickets}>460</div>
-                                <div className={Styles.seller_c_tickets_top_info_right_tickets}>tickets</div>
+                                <div className={Styles.seller_c_tickets_top_info_right_tickets}>views</div>
                             </div>
                         </div>
                     </div>
-                    <h5 className={Styles.seller_c_tickets_cardstatus}>Info</h5>
+                    <h5 className={Styles.seller_c_tickets_cardstatus}>400 Tickets Available</h5>
                 </div>
             </div>
             <BootstrapDialog aria-labelledby={Styles.customized_dialog_title1} open={Open} maxWidth={'lg'} fullWidth={true}>

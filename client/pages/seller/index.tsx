@@ -24,6 +24,7 @@ const index: NextPage = function ActiveEvents() {
     const [items, setitem] = React.useState([])
     const [itemURL, setitemURL] = React.useState('s/getevent/pending');
     const [itemID, setitemID] = React.useState("1");
+    const [refreshData, setrefreshData] = React.useState("");
 
     React.useEffect(()=>{
         axios.get(gethost() + 'a/refreshtoken',{withCredentials:true}).then(async (res)=>{
@@ -38,11 +39,14 @@ const index: NextPage = function ActiveEvents() {
             })
         })
         .catch((err)=>{})       
-    },[itemURL])
+    },[itemURL,refreshData])
 
     //component changer
     const selectcomponents = async(e:any)=>{
         tabchange(e);
+    };
+    const RefreshData = async(e:any)=>{
+        setrefreshData(e);
     };
     async function tabchange(id:any){
         var datapack = [
@@ -89,14 +93,14 @@ const index: NextPage = function ActiveEvents() {
                         <Topbar id="1" data={{change: changeSellerList}}/>
                         <div className={Styles.seller_index_parent_fix}>
                             <div className={Styles.seller_index_parent}>
-                                <h1 className={Styles.seller_index_container_name}>Pending Events</h1>
+                                <h1 className={Styles.seller_index_container_name}>Events</h1>
                                 <div className={Styles.seller_index_container}>
                                     {listitem}
                                 </div>
                             </div>
                         </div>
                         <div className={Styles.seller_index_float}>
-                            {itemID=='1'?<Createevent/>:null}
+                            {itemID=='1'?<Createevent refreshData={{change: RefreshData}}/>:null}
                         </div>
                     </div>
                 :null}
