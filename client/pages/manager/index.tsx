@@ -177,7 +177,7 @@ const index: NextPage = function ActiveEvents() {
                                     <div className={styles.manager_index_container}>
                                         {listitem}
                                         <div className={styles.manager_index_loadmore_button}>
-                                        <Button variant="text" onClick={showMoreItems}>..Load More..</Button>
+                                            {listitem.length >= visible?<Button variant="text" onClick={showMoreItems}>..Load More..</Button>:null}       
                                     </div>
                                     </div>
                                     
