@@ -36,14 +36,45 @@ const index: NextPage = function ActiveEvents() {
     //Load more
     const [loader, setloader] = React.useState(false);
 
-    const [visible, setVisible] = useState(15);
+    const [visible, setVisible] = useState(18);
+    const [nextCount, setNextCount] = useState(12);
 
     const showMoreItems = () => {
-        setVisible((prevValue) => prevValue + 5);
+        setVisible((prevValue) => prevValue + nextCount);
     };
 
+    //Load More Button Responsiveness
+    function screenSizeDetect()
+    {
+        if (window.matchMedia("(max-width : 1920px)").matches)
+        {
+            setVisible(15);
+            setNextCount(10);
+        }
+        if (window.matchMedia("(max-width : 1300px)").matches)
+        {
+            setVisible(12);
+            setNextCount(8);
+        }
+        if (window.matchMedia("(max-width : 1246px)").matches)
+        {
+            setVisible(9);
+            setNextCount(6);
+        }
+        if (window.matchMedia("(max-width : 976px)").matches)
+        {
+            setVisible(6);
+            setNextCount(6);
+        }
+        if (window.matchMedia("(max-width : 707px)").matches)
+        {
+            setVisible(3);
+            setNextCount(3);
+        }
+    }
+
     React.useEffect(() => {
-        //console.log("loading call")
+        screenSizeDetect();
 
     }, [loader])
 
@@ -146,7 +177,6 @@ const index: NextPage = function ActiveEvents() {
     const listitem = items.slice(0, visible).map((item: any) => (
         <Popup data={item} key={item.id} />
     ));
-
 
     return (
         <Auth type={"MANAGER"} >
