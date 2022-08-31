@@ -19,12 +19,10 @@ import classnames from 'classnames';
 //Session and local storage data
 import { gethost } from '../../../session/Session';
 
-function generate(element: React.ReactElement) {
-    return [0, 1, 2, 3, 4, 5, 6].map((value) =>
-        React.cloneElement(element, {
-            key: value,
-        }),
-    );
+
+interface AreaProps {
+    data: any
+    refresh: any
 }
 
 const Demo = styled('div')(({ theme }) => ({
@@ -36,6 +34,32 @@ export default function Arealist() {
     const [newarea, setNewarea] = React.useState<string>("");
     const [newareaError, setNewareaError] = React.useState<boolean>(false);
 
+    const [items, setItem] = React.useState<any[]>([{}]);
+    const [refresh2, setRefresh2] = React.useState<string>("");
+
+React.useEffect(()=>{
+    axios.get(gethost() +'g/areas').then(async (res)=>{
+        await setItem(res.data)
+      }).catch(async()=>{
+      })       
+},[refresh2])
+
+const generate = items.map((value) =>
+            <ListItem 
+                secondaryAction={
+                    <IconButton edge="end" aria-label="delete">
+                        <DeleteIcon />
+                    </IconButton>
+                }
+            >
+
+                <ListItemText
+                    primary={value.name}
+                />
+            </ListItem>
+    );
+
+
     async function addArea() {
 
         if (newarea == "") {
@@ -43,7 +67,7 @@ export default function Arealist() {
                 'Oops!!!',
                 'Area can not be empty',
                 'warning'
-              )
+            )
             return;
         }
 
@@ -55,20 +79,18 @@ export default function Arealist() {
                 name: newarea
             };
             axios.post(gethost() + 'm/utilarea', datapack, config).then(async (res) => {
+                setRefresh2 (res.data);
                 setNewarea("");
-                Swal.fire(
-                    'Successfully Added!',
-                    'this area has been Added.',
-                    'success'
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'New area added',
+                    showConfirmButton: false,
+                    timer: 1500}
                 )
             })
-            .catch(() => {
-                // Swal.fire(
-                //     'Successfully Added!',
-                //     'this area has been Added.',
-                //     'success'
-                // )
-            })
+                .catch(() => {
+                })
         })
             .catch((err) => { })
     }
@@ -92,7 +114,6 @@ export default function Arealist() {
                     type="text"
                     placeholder="Enter New Area"
                     value={newarea}
-                    //onChange={(e) => setNewcatergory(e.target.value)}
                     onChange={newareaChangeHandler}
                 />
 
@@ -115,20 +136,7 @@ export default function Arealist() {
                         '& ul': { padding: 0 },
                     }}
                 >
-                    {generate(
-                        <ListItem
-                            secondaryAction={
-                                <IconButton edge="end" aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
-                            }
-                        >
-
-                            <ListItemText
-                                primary="Single-line item"
-                            />
-                        </ListItem>,
-                    )}
+                    {generate}
                 </List>
             </Demo>
         </Grid>

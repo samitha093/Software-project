@@ -13,8 +13,8 @@ import axios from 'axios'
 import { gethost } from '../../../session/Session';
 
 interface SellerProps {
- data:any
- refresh:any
+    data: any
+    refresh: any
 }
  
 async function PopupConfirm(data:any, refresh:any){

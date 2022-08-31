@@ -20,12 +20,9 @@ import classnames from 'classnames';
 //Session and local storage data
 import { gethost } from '../../../session/Session';
 
-function generate(element: React.ReactElement) {
-    return [0, 1, 2, 3, 4, 5, 6].map((value) =>
-        React.cloneElement(element, {
-            key: value,
-        }),
-    );
+interface CategoryProps {
+    data: any
+    refresh: any
 }
 
 const Demo = styled('div')(({ theme }) => ({
@@ -37,7 +34,16 @@ export default function Categorylist() {
     const [newcatergory, setNewcatergory] = React.useState<string>("");
     const [newcatergoryError, setNewcatergoryError] = React.useState<boolean>(false);
 
+    const [items, setItem] = React.useState<any[]>([{}]);
+    const [refresh2, setRefresh2] = React.useState<string>("");
+
     //Need a function to retrieve and store privioulsy entered catergories
+    React.useEffect(() => {
+        axios.get(gethost() + 'g/categories').then(async (res) => {
+            await setItem(res.data)
+        }).catch(async () => {
+        })
+    }, [refresh2])
 
     const newcatergoryChangeHandler = (e: any) => {
         const newpcatergory_regex = /^[A-Z].{3,20}$/;
@@ -46,41 +52,53 @@ export default function Categorylist() {
         setNewcatergoryError(!valid);
     }
 
+    const generate = items.map((value) =>
+        <ListItem
+            secondaryAction={
+                <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon />
+                </IconButton>
+            }
+        >
+            <ListItemText
+                primary={value.name}
+            />
+        </ListItem>
+    );
+
     async function addCatergory() {
         {
-                if (newcatergory == "") {
-                    Swal.fire(
-                        'Oops!!!',
-                        'Area can not be empty',
-                        'warning'
-                      )
-                    return;
-                }
-                axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
-                    const config = {
-                        headers: { Authorization: `Bearer ${res.data.accesstoken}` }
-                    };
-                    const datapack = {
-                        name: newcatergory
-                    };
-                    axios.post(gethost() + 'm/utilcategory', datapack, config).then(async (res) => {
-                        setNewcatergory("");
-                        Swal.fire(
-                            'Successfully Added!',
-                            'this area has been Added.',
-                            'success'
-                        )
-                    })
-                        .catch(() => {
-                            // Swal.fire(
-                            //     'Successfully Added!',
-                            //     'this area has been Added.',
-                            //     'success'
-                            // )
-                        })
-                })
-                    .catch((err) => { })
+            if (newcatergory == "") {
+                Swal.fire(
+                    'Oops!!!',
+                    'Area can not be empty',
+                    'warning'
+                )
+                return;
             }
+            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                const datapack = {
+                    name: newcatergory
+                };
+                axios.post(gethost() + 'm/utilcategory', datapack, config).then(async (res) => {
+                    setRefresh2(res.data);
+                    setNewcatergory("");
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'New category added',
+                        showConfirmButton: false,
+                        timer: 1500}
+                    )
+                })
+                    .catch(() => {
+                    })
+            })
+                .catch((err) => { })
+        }
     }
 
     return (
@@ -95,7 +113,6 @@ export default function Categorylist() {
                     type="text"
                     placeholder="Enter New Catergory"
                     value={newcatergory}
-                    //onChange={(e) => setNewcatergory(e.target.value)}
                     onChange={newcatergoryChangeHandler}
                 />
 
@@ -118,20 +135,7 @@ export default function Categorylist() {
                         '& ul': { padding: 0 },
                     }}
                 >
-                    {generate(
-                        <ListItem
-                            secondaryAction={
-                                <IconButton edge="end" aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
-                            }
-                        >
-
-                            <ListItemText
-                                primary="Single-line item"
-                            />
-                        </ListItem>,
-                    )}
+                    {generate}
                 </List>
             </Demo>
         </Grid>
