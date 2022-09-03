@@ -115,11 +115,25 @@
     background-color: white;
     border-bottom-left-radius: 19px;
 }
+.shop_card_controler_left_nomore{
+    color: rgb(161, 161, 161);;
+    display: flex;
+    width: 50%;
+    background-color: white;
+    border-bottom-left-radius: 19px;
+}
 .shop_card_controler_left:hover{
     background-color: #efe2f5;
 }
 .shop_card_controler_right{
     color: black;
+    display: flex;
+    width: 50%;
+    background-color: white;
+    border-bottom-right-radius: 19px;
+}
+.shop_card_controler_right_nomore{
+    color: rgb(161, 161, 161);
     display: flex;
     width: 50%;
     background-color: white;
