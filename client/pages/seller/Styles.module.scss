@@ -77,6 +77,14 @@
     height: calc(100vh - 126px);
     overflow: auto;
 }
+.seller_index_loadmore_button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
 @media only screen and (min-width: 600px) {
     @media only screen and (max-height: 1000px) {
         .seller_setting_fix{
