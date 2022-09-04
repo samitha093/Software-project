@@ -63,7 +63,7 @@ const index: NextPage = () => {
   React.useEffect(() => {
     screenSizeDetect();
 
-  }, [])
+  }, [null])
 
   React.useEffect(() => {
     axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
@@ -94,19 +94,19 @@ const index: NextPage = () => {
     </div>
   ));
   //panding payment ticket list
-  const myppticket = ppticket.map((itemdata: any) => (
+  const myppticket = ppticket.slice(0, visible).map((itemdata: any) => (
     <div key={itemdata.id}>
       <Ticketvalid level={itemdata.ticket_level} type="2" data={itemdata} />
     </div>
   ));
   //pending bid ticket list
-  const mypbticket = pbticket.map((itemdata: any) => (
+  const mypbticket = pbticket.slice(0, visible).map((itemdata: any) => (
     <div key={itemdata.id}>
       <Ticketunvalid level={itemdata.ticket_level} type="3" data={itemdata} />
     </div>
   ));
   //old or expire ticket list
-  const myoldtickets = moticket.map((itemdata: any) => (
+  const myoldtickets = moticket.slice(0, visible).map((itemdata: any) => (
     <div key={itemdata.id}>
       <Ticketvalid level={itemdata.ticket_level} type="4" data={itemdata} />
     </div>
