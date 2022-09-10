@@ -1,13 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Shopcard from './Shopcard';
 import {gethost } from '../../session/Session';
 import axios from 'axios';
+import { Button } from '@mui/material'
 import Swal from 'sweetalert2'
 
 import style from '../styles.module.scss'
 
 interface ShopProps {
  tickets:any
+}
+
+//Load More Button Responsiveness
+//Load more
+
+const [visible, setVisible] = useState(18);
+const [nextCount, setNextCount] = useState(12);
+
+const showMoreItems = () => {
+  setVisible((prevValue) => prevValue + nextCount);
+};
+
+function screenSizeDetect() {
+  if (window.matchMedia("(max-width : 1775px)").matches) {
+      setVisible(15);
+      setNextCount(10);
+  }
+  if (window.matchMedia("(max-width : 1300px)").matches) {
+      setVisible(12);
+      setNextCount(8);
+  }
+  if (window.matchMedia("(max-width : 1246px)").matches) {
+      setVisible(9);
+      setNextCount(6);
+  }
+  if (window.matchMedia("(max-width : 976px)").matches) {
+      setVisible(6);
+      setNextCount(6);
+  }
+  if (window.matchMedia("(max-width : 707px)").matches) {
+      setVisible(3);
+      setNextCount(3);
+  }
 }
 
 const Shop: React.FC<ShopProps> = ({tickets}) => {
@@ -29,14 +63,18 @@ const Shop: React.FC<ShopProps> = ({tickets}) => {
         
       },[])
       React.useEffect(()=>{
+        screenSizeDetect();
         setitems(tickets)
-        console.log(tickets)
       },[tickets])
 
         return (
             <div className={style.buyer_index_container} >
-                {items.map((itemdata)=>{
-                   return(<div key={itemdata.id}><Shopcard ticketdata={itemdata} level='5'/></div>)
+                {items.slice(0, visible).map((itemdata)=>{
+                   return(<div key={itemdata.id}><Shopcard ticketdata={itemdata} level='5'/>
+                   <div className={style.events_index_loadmore_button}>
+                                        {itemdata.length >= visible ? <Button variant="text" onClick={showMoreItems}>..Load More..</Button> : null}
+                                    </div>
+                                    </div>)
                 })}
             </div>
         );
