@@ -244,6 +244,14 @@
     position: relative;
     box-sizing: border-box;
 }
+.events_index_loadmore_button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
 /*end - Shop*/
 /*end - mini cart*/
 .cart_drower{
