@@ -26,7 +26,7 @@ const Bids = require('../models/bid');
  *                  - bid_amount
  *                  - ticketcount
  *                  - ticketid
- *                  - userid
+ *                  - eventid
  *              properties:
  *                  bid_amount:
  *                      type: Number
@@ -34,14 +34,14 @@ const Bids = require('../models/bid');
  *                      type: Number
  *                  ticketid:
  *                      type: string
- *                  userid:
+ *                  eventid:
  *                      type: string
  * 
  *              example:
  *                  bid_amount: 0
  *                  ticketcount: 0
  *                  ticketid: "?"
- *                  userid: "?"
+ *                  eventid: "?"
  */
 
 /**
@@ -181,21 +181,39 @@ const Bids = require('../models/bid');
  *      500:
  *        description: server error
  */
- router.route('/bid').post((req,res) => {
+ router.route('/bid').post(verifyAccessToken,buyerverification,getuserid,(req,res) => {
   var response = {};
   const bid_amount = req.body.bid_amount;
   const ticketcount = req.body.ticketcount;
   const ticketid = req.body.ticketid;
-  const userid = req.body.userid; 
+  const eventid = req.body.eventId;
+  const userid = req.userid;
       const newbid = new Bids({
-          bid_amount,
-          ticketcount,
-          ticketid,
-          userid,
-          });
+        bid_amount,
+        ticketcount,
+        ticketid,
+        eventid,
+        userid,
+      });
+
       newbid.save()
           .then((result)=> {
-              res.status(200).json(result._id)
+              tickets.findById(ticketid).then(ticketdata =>{
+                ticketdata.bids.push(result._id);
+                ticketdata.save();
+                console.log(req.body.eventId);
+                User.findById(userid).then(userdata =>{
+                  const ticket ={
+                    "eventId":eventid,
+                    "ticketid": ticketid,
+                    "bidid":result._id,
+                    "bid_status":true,
+                  }
+                  userdata.tickets.push(ticket);
+                  userdata.save()
+                  res.status(200).json(result._id);
+                })
+              })
           })
           .catch(err => res.status(500).json(err))
 });

@@ -133,7 +133,21 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
             text: 'Please login with your buyer account'
             })
         }else{
-          setOpenbid(false);
+           //create a headet pack
+            const config = {
+              headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            //create a body pack
+            const datapack = {
+              bid_amount: ticketbidpricet,
+              ticketcount: ticketcount,
+              ticketid: ticketdata.id,
+              eventId: ticketdata.eventid
+            }
+            axios.post(gethost()+'b/bid',datapack,config)
+              .then(async (res)=>{              })
+              .catch((err)=>{})
+            setOpenbid(false);
           Toast.fire({
             icon: 'success',
             title: 'bid was Added for this ticket'
@@ -203,7 +217,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
                     </div>
                     <div className={styles.buyer_c_ticketunvalid_top_info_right}>
                         <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>{ticketdata.total_tickets}</div>
-                        <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>tickets</div>
+                        <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>Views</div>
                     </div>
                 </div>
             </div>

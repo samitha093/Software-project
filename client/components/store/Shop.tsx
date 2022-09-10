@@ -39,27 +39,30 @@ const Shop: React.FC<ShopProps> = ({ tickets }) => {
       setNextCount(3);
     }
   }
-  const [items, setitems] = React.useState<any[]>([])
-  React.useEffect(() => {
 
-    axios.get(gethost() + 'g/tickets')
-      .then(async (res) => {
-        await setitems(res.data);
-      })
-      .catch(() => {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Oops...',
-          text: 'server is not Responding, please try again later!'
+}
+
+const Shop: React.FC<ShopProps> = ({tickets}) => {
+    const [items, setitems] = React.useState<any[]>([])
+    React.useEffect(()=>{
+        axios.get(gethost() + 'g/tickets')
+        .then(async (res)=>{
+          await setitems(res.data);
         })
-        return;
-      })
+        .catch(()=>{
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'server is not Responding, please try again later!'
+            })
+            return;
+        }) 
+      },[])
+      React.useEffect(()=>{
+        screenSizeDetect();
+        setitems(tickets)
+      },[tickets])
 
-  }, [])
-  React.useEffect(() => {
-    screenSizeDetect();
-    setitems(tickets)
-  }, [tickets])
 
   return (
     <div className={style.buyer_index_container} >
