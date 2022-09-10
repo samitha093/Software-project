@@ -38,7 +38,7 @@ const index: NextPage = () => {
 
   //Load More Button Responsiveness
   function screenSizeDetect() {
-    if (window.matchMedia("(max-width : 1920px)").matches) {
+    if (window.matchMedia("(max-width : 1775px)").matches) {
       setVisible(15);
       setNextCount(10);
     }

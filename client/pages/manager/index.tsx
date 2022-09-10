@@ -1,7 +1,6 @@
 //node packages
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import axios from 'axios'
 //custom components
 import Sidebar from '../../components/manager/Sidebar'
@@ -45,7 +44,7 @@ const index: NextPage = function ActiveEvents() {
 
     //Load More Button Responsiveness
     function screenSizeDetect() {
-        if (window.matchMedia("(max-width : 1920px)").matches) {
+        if (window.matchMedia("(max-width : 1775px)").matches) {
             setVisible(15);
             setNextCount(10);
         }
