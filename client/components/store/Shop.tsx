@@ -13,8 +13,8 @@ interface ShopProps {
 
 
 const Shop: React.FC<ShopProps> = ({ tickets }) => {
-  const [visible, setVisible] = useState(18);
-  const [nextCount, setNextCount] = useState(12);
+  const [visible, setVisible] = useState(15);
+  const [nextCount, setNextCount] = useState(10);
 
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + nextCount);
