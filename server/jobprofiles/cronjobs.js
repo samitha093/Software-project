@@ -14,6 +14,7 @@ function createtickets (){
                 const event_name = data_event.event_name;
                 const event_venue = data_event.event_venue;
                 const event_date = data_event.event_date;
+                const event_time = data_event.event_time;
                 const event_category = data_event.event_category;
                 const area = data_event.area;
                 const img = data_event.image_url;
@@ -38,6 +39,7 @@ function createtickets (){
                             event_name,
                             event_venue,
                             event_date,
+                            event_time,
                             event_category,
                             area,
                             img,

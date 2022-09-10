@@ -10,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Ticket from '../../components/buyer/Ticket'
+import axios from 'axios';
+import {gethost, addcart} from '../../session/Session';
 
 import styles from './styles.module.scss'
 
@@ -64,7 +66,13 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
   const [Ticketlevel, setTicketlevel] =  React.useState("");
   const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
+  const [TicketData, setTicketData] =  React.useState<any>([]);
   useEffect(()=>{
+    axios.get(gethost()+'g/ticketbyid/'+data.ticketid).then(async (res)=>{
+      setTicketData(res.data);
+      var asd = gethost()+res.data.img
+      setTicketimg(`url("`+asd+`")`);
+    }).catch((err)=>{})
     if( type == "1"){
       setTicketcolor("#57B473");
     }else if(type == "2"){
@@ -75,7 +83,6 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
     }else{
       setTicketcolor("#AE6300");
     }
-    setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
     setTicketlevel(level);
     if( level == "1"){
       setTicketlevelcolor("#57B473");
@@ -88,7 +95,7 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
     }else{
       setTicketlevelcolor("#AE6300");
     }
-    
+
   },[])
   const handleClickOpen = () => {
     setOpen(true);
@@ -104,33 +111,33 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
                 <div  style={{backgroundImage: Ticketimg}} className={styles.buyer_c_ticketvalid_top}>
                     <div className={styles.buyer_c_ticketvalid_top_head}>
                         <div className={styles.buyer_c_ticketvalid_top_head_left}>
-                            {data.event_time}
+                            {TicketData.event_time}
                         </div>
                         <div style={{backgroundColor: Ticketlevelcolor}} className={styles.buyer_c_ticketvalid_top_head_right} id="ticket-level" >
                             <div className={styles.buyer_c_ticketvalid_top_head_right_1}>
                                 Level
                             </div>
                             <div className={styles.buyer_c_ticketvalid_top_head_right_2} >
-                                {Ticketlevel}
+                                {TicketData.ticket_level}
                             </div>
                         </div>
                     </div>
                     <div className={styles.buyer_c_ticketvalid_top_info}>
                         <div className={styles.buyer_c_ticketvalid_top_info_left}>
                             <div className={styles.buyer_c_ticketvalid_top_info_left_name}>
-                              {data.eventname}
+                              {TicketData.event_name}
                             </div>
                             <div className={styles.buyer_c_ticketvalid_top_info_left_date}>
-                                {data.event_date}
+                                {TicketData.event_date}
                             </div>
                         </div>
                         <div className={styles.buyer_c_ticketvalid_top_info_right}>
-                            <div className={styles.buyer_c_ticketvalid_top_info_right_nooftickets}>460</div>
+                            <div className={styles.buyer_c_ticketvalid_top_info_right_nooftickets}>3</div>
                             <div className={styles.buyer_c_ticketvalid_top_info_right_tickets}>tickets</div>
                         </div>
                     </div>
                 </div>
-                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>{data.event_venue}</h5>
+                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>{TicketData.event_venue}</h5>
             </div>
         </div>
 

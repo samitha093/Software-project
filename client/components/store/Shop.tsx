@@ -47,7 +47,6 @@ function screenSizeDetect() {
 const Shop: React.FC<ShopProps> = ({tickets}) => {
     const [items, setitems] = React.useState<any[]>([])
     React.useEffect(()=>{
-
         axios.get(gethost() + 'g/tickets')
         .then(async (res)=>{
           await setitems(res.data);
@@ -60,7 +59,6 @@ const Shop: React.FC<ShopProps> = ({tickets}) => {
             })
             return;
         }) 
-        
       },[])
       React.useEffect(()=>{
         screenSizeDetect();

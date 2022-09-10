@@ -8,9 +8,9 @@ const ticketschema = new schema({
     bid_status:{type:Boolean, default:false},
     payment_status:{type:Boolean, default:false},
     ticket_status:{type:Boolean, default:false},
-    eventid:[String],
+    eventId:{type:String},
     ticketid: {type:String},
-    bididList:{type:String},
+    bidid:{type:String},
     qridList:[String],
 },{
     timestamps:true

@@ -84,7 +84,7 @@ const index: NextPage = () => {
         setmoticket(res.data);
       }).catch((err) => { })
     }).catch((err) => { })
-  }, [])
+  }, [buyersidebar])
 
 
   //valid ticket list
