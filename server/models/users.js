@@ -3,26 +3,15 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const schema = mongoose.Schema;
 
-const qrschema = new schema({
-    qrid:{type:String},
-},{
-    timestamps:true
-});
-
-const bidschema = new schema({
-    bidid:{type:String},
-},{
-    timestamps:true
-});
 
 const ticketschema = new schema({
     bid_status:{type:Boolean, default:false},
     payment_status:{type:Boolean, default:false},
     ticket_status:{type:Boolean, default:false},
-    qr:[qrschema],
-    bid:[bidschema],
-    eventid:{type:String},
+    eventid:[String],
     ticketid: {type:String},
+    bididList:{type:String},
+    qridList:[String],
 },{
     timestamps:true
 });
