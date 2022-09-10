@@ -152,9 +152,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     
                 </DialogContent>
                 <DialogActions>
+                  {data.status=="PENDING"?
                     <Button autoFocus onClick={handleClose}>
-                        Save changes
+                        EDIT EVENT     
                     </Button>
+                  :null}
                 </DialogActions>
             </BootstrapDialog>   
         </div>
