@@ -1,7 +1,6 @@
 //node packages
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import axios from 'axios'
 //custom components
 import Sidebar from '../../components/manager/Sidebar'
@@ -44,30 +43,24 @@ const index: NextPage = function ActiveEvents() {
     };
 
     //Load More Button Responsiveness
-    function screenSizeDetect()
-    {
-        if (window.matchMedia("(max-width : 1920px)").matches)
-        {
+    function screenSizeDetect() {
+        if (window.matchMedia("(max-width : 1775px)").matches) {
             setVisible(15);
             setNextCount(10);
         }
-        if (window.matchMedia("(max-width : 1300px)").matches)
-        {
+        if (window.matchMedia("(max-width : 1300px)").matches) {
             setVisible(12);
             setNextCount(8);
         }
-        if (window.matchMedia("(max-width : 1246px)").matches)
-        {
+        if (window.matchMedia("(max-width : 1246px)").matches) {
             setVisible(9);
             setNextCount(6);
         }
-        if (window.matchMedia("(max-width : 976px)").matches)
-        {
+        if (window.matchMedia("(max-width : 976px)").matches) {
             setVisible(6);
             setNextCount(6);
         }
-        if (window.matchMedia("(max-width : 707px)").matches)
-        {
+        if (window.matchMedia("(max-width : 707px)").matches) {
             setVisible(3);
             setNextCount(3);
         }
@@ -207,10 +200,10 @@ const index: NextPage = function ActiveEvents() {
                                     <div className={styles.manager_index_container}>
                                         {listitem}
                                         <div className={styles.manager_index_loadmore_button}>
-                                            {listitem.length >= visible?<Button variant="text" onClick={showMoreItems}>..Load More..</Button>:null}       
+                                            {listitem.length >= visible ? <Button variant="text" onClick={showMoreItems}>..Load More..</Button> : null}
+                                        </div>
                                     </div>
-                                    </div>
-                                    
+
                                 </div>
                             </div>
                             : null}

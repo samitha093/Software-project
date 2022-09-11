@@ -35,9 +35,6 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   },
 }));
 
-interface CreateeventProps {     
-}
-
 const currencies = [
   {
     value: '1',
@@ -106,7 +103,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     );
   };
 
-export default function MaxWidthDialog() {
+export default function MaxWidthDialog(refreshData:any) {
   const [openevent, setOpenevent] = React.useState(false);
   const [openticket, setOpenticket] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
@@ -133,11 +130,6 @@ export default function MaxWidthDialog() {
   const [area,setarea] = React.useState("");
   const [category,setcategory] = React.useState("");
 
-  const [buy_quantity1,setbuyquantity1] = React.useState<string>("");
-  const [buy_amount1,setbuyamount1] = React.useState<string>("");
-  const [bid_quantity1,setbidquantity1] = React.useState<string>("");
-  const [bid_amount1,setbidamount1] = React.useState<string>("");
-
   const [nameError, setNewnameError] = React.useState<boolean>(false);
   const [venueError, setNewvenueError] = React.useState<boolean>(false);
   const [dateError, setNewdateError] = React.useState<boolean>(false);
@@ -148,7 +140,7 @@ export default function MaxWidthDialog() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setlevels(event.target.value);
   };
-//For Area
+  //For Area
   const areahandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setarea(event.target.value);
   }
@@ -258,48 +250,48 @@ export default function MaxWidthDialog() {
           //end connection
         })
   };
-//file upload workflow submision
-let formdata = new FormData();
-const uploadedFileData = async(file:any)=>{
-  if(file){
-    await formdata.append('Img',file);
-    if(formdata){
-  axios.post(gethost()+'s/upload',formdata)
-  .then(async (res)=>{
-      //console.log(res.data)
-      setimg(res.data)
-  }).catch((err)=>{
-      console.log(err)
-  })
+  //file upload workflow submision
+  let formdata = new FormData();
+  const uploadedFileData = async(file:any)=>{
+    if(file){
+      await formdata.append('Img',file);
+      if(formdata){
+    axios.post(gethost()+'s/upload',formdata)
+    .then(async (res)=>{
+        //console.log(res.data)
+        setimg(res.data)
+    }).catch((err)=>{
+        console.log(err)
+    })
+      }
     }
-  }
-};
-//submit tickets for workflow
-const submitticket = () => {
-  // console.log(ticket,arr.length)
-  setLoading(true);
-  arr.forEach(submittodatabase);
-  setactive(true);
-  setLoading(false);
-  setOpenticket(false);
-  Toast.fire({
-    icon: 'success',
-    title: 'Pending Event Submited successfully'
+  };
+  //submit tickets for workflow
+  const submitticket = (e:any,refreshData:any) => {
+    setLoading(true);
+    arr.forEach(submittodatabase);
+    setactive(true);
+    setLoading(false);
+    setOpenticket(false);
+    Toast.fire({
+      icon: 'success',
+      title: 'Pending Event Submited successfully'
+    })
+    setarr([]);
+    setactive(false);
+    refreshData.refreshData.change(eventid);
+  };
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
   })
-  setarr([]);
-  setactive(false);
-};
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
 const submittodatabase =(id:any)=>{
   //get access from gatway for 5min
   axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
@@ -616,7 +608,7 @@ const [activate, setactive] = React.useState(false);
           <LoadingButton
               size="small"
               color="secondary"
-              onClick={submitticket}
+              onClick={(e)=>submitticket(e,refreshData)}
               loading={loading}
               loadingPosition="start"
               startIcon={<SaveIcon />}

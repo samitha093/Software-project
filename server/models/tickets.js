@@ -3,12 +3,6 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 
 const schema = mongoose.Schema;
 
-const bidschema = new schema({
-    bid_amount: {type:String},
-},{
-    timestamps:true
-});
-
 const ticketschema = new schema({
     ticket_level: {type:Number},// in ticket
     buy_quantity: {type:Number}, //in ticket
@@ -21,13 +15,16 @@ const ticketschema = new schema({
     event_name: {type:String},
     event_venue: {type:String},
     event_date: {type:String},
+    event_time: {type:String},
     event_category: {type:String},
     area: {type:String},
     img: {type:String},
-    bids : [bidschema], // null in the begin
     status: {type:Boolean, default:true},
     eventid:{type:String},
     userid:{type:String},
+    bids : [String], // null in the begin
+    qrs : [String], // null in the begin
+    orders : [String], // null in the begin
 },{
     timestamps:true
 });

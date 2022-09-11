@@ -14,6 +14,9 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 
+import axios from 'axios';
+import {gethost, addcart} from '../../session/Session';
+
 import styles from './styles.module.scss'
 
 interface TicketunvalidProps {
@@ -66,9 +69,15 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
   const [Ticketlevel, setTicketlevel] =  React.useState("");
   const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
+  const [TicketData, setTicketData] =  React.useState<any>([]);
+
   useEffect(()=>{
+    axios.get(gethost()+'g/ticketbyid/'+data.ticketid).then(async (res)=>{
+      setTicketData(res.data);
+      var asd = gethost()+res.data.img
+      setTicketimg(`url("`+asd+`")`);
+    }).catch((err)=>{})
     setTicketcolor("#881700");
-    setTicketimg(`url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`);
     setTicketlevel(level);
     if( level == "1"){
       setTicketlevelcolor("#57B473");
@@ -97,33 +106,33 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
                 <div style={{backgroundImage: Ticketimg}} className={styles.buyer_c_ticketunvalid_top}>
                     <div className={styles.buyer_c_ticketunvalid_top_head}>
                         <div className={styles.buyer_c_ticketunvalid_top_head_left}>
-                            13:30:00
+                          {TicketData.event_time}
                         </div>
                         <div style={{backgroundColor: Ticketlevelcolor}} className={styles.buyer_c_ticketunvalid_top_head_right}>
                             <div className={styles.buyer_c_ticketunvalid_top_head_right_1}>
                                 Level
                             </div>
                             <div className={styles.buyer_c_ticketunvalid_top_head_right_2} id="ticket-level">
-                                {Ticketlevel}
+                              {TicketData.ticket_level}
                             </div>
                         </div>
                     </div>
                     <div className={styles.buyer_c_ticketunvalid_top_info}>
                         <div className={styles.buyer_c_ticketunvalid_top_info_left}>
                             <div className={styles.buyer_c_ticketunvalid_top_info_left_name}>
-                                Event name
+                              {TicketData.event_name}
                             </div>
                             <div className={styles.buyer_c_ticketunvalid_top_info_left_date}>
-                                2021-08-23
+                              {TicketData.event_date}
                             </div>
                         </div>
                         <div className={styles.buyer_c_ticketunvalid_top_info_right}>
-                            <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>460</div>
+                            <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>4</div>
                             <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>tickets</div>
                         </div>
                     </div>
                 </div>
-                <h5 className={styles.buyer_c_ticketunvalid_cardstatus}>card status</h5>
+                <h5 className={styles.buyer_c_ticketunvalid_cardstatus}>{TicketData.event_venue}</h5>
             </div>
         </div>
 

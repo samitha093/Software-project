@@ -105,24 +105,77 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
         }else{
           addcart(ticketdata.id,ticketcount)
           setOpenbuy(false);
-          Swal.fire({
+          Toast.fire({
             icon: 'success',
-            title: 'successfull',
-            text: 'Ticket Added To Your Cart'
-            })
+            title: 'Ticket Added To Your Cart'
+          })
         }
     })
     .catch((err)=>{
       addcart(ticketdata.id,ticketcount)
       setOpenbuy(false);
-      Swal.fire({
-        icon: 'success',
-        title: 'successfull',
-        text: 'Ticket Added To Your Cart'
+        Toast.fire({
+          icon: 'success',
+          title: 'Ticket Added To Your Cart'
         })
     })  
 
   };
+
+  const bidnow = () => {
+    axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+    .then(async (res)=>{
+        if(res.data.type == 'MANAGER' ||  res.data.type == 'SELLER'){
+          setOpenbid(false);
+          Swal.fire({
+            icon: 'error',
+            title: 'Insufficient Permissions',
+            text: 'Please login with your buyer account'
+            })
+        }else{
+           //create a headet pack
+            const config = {
+              headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+            };
+            //create a body pack
+            const datapack = {
+              bid_amount: ticketbidpricet,
+              ticketcount: ticketcount,
+              ticketid: ticketdata.id,
+              eventId: ticketdata.eventid
+            }
+            axios.post(gethost()+'b/bid',datapack,config)
+              .then(async (res)=>{              })
+              .catch((err)=>{})
+            setOpenbid(false);
+          Toast.fire({
+            icon: 'success',
+            title: 'bid was Added for this ticket'
+          })
+        }
+    })
+    .catch((err)=>{
+      setOpenbid(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Insufficient Permissions',
+        text: 'Please login with your buyer account'
+        })
+    })  
+
+  };
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   const handleClickadd = () => {
     var i = ticketcount;
@@ -164,27 +217,52 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
                     </div>
                     <div className={styles.buyer_c_ticketunvalid_top_info_right}>
                         <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>{ticketdata.total_tickets}</div>
-                        <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>tickets</div>
+                        <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>Views</div>
                     </div>
                 </div>
             </div>
             <div className={style.shop_card_controler}>
-                <div className={style.shop_card_controler_left} onClick={handleClickOpen_buy}>
-                    <div className={style.icon_card}>
-                    <AddShoppingCartOutlinedIcon />
-                    </div>
-                    <div className={style.text}>
-                        Buy
-                    </div>
-                </div>
-                <div className={style.shop_card_controler_right} onClick={handleClickOpen_bid}>
-                    <div className={style.icon_card}>
-                      <PanToolOutlinedIcon />
-                    </div>
-                    <div className={style.text}>
-                        Bid
-                    </div>
-                </div>
+            {ticketdata.buy_quantity>0?
+              <div className={style.shop_card_controler_left} onClick={handleClickOpen_buy}>
+                  <div className={style.icon_card}>
+                  <AddShoppingCartOutlinedIcon />
+                  </div>
+                  <div className={style.text}>
+                      Buy
+                  </div>
+              </div>
+            :
+              <div className={style.shop_card_controler_left}>
+                  <div className={style.icon_card}>
+                  <AddShoppingCartOutlinedIcon />
+                  </div>
+                  <div className={style.text}>
+                      Buy
+                  </div>
+              </div>
+            }
+                
+                {ticketdata.bid_quantity>0?
+                  <div className={style.shop_card_controler_right} onClick={handleClickOpen_bid}>
+                      <div className={style.icon_card}>
+                        <PanToolOutlinedIcon />
+                      </div>
+                      
+                      <div className={style.text}>
+                          Bid
+                      </div>
+                  </div>
+                :
+                <div className={style.shop_card_controler_right_nomore} >
+                      <div className={style.icon_card}>
+                        <PanToolOutlinedIcon />
+                      </div>
+                      
+                      <div className={style.text}>
+                          Bid
+                      </div>
+                  </div>
+                }
             </div>
         </div>
         <BootstrapDialog 
@@ -252,7 +330,7 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
               <div className={style.ticketview_count_number_b}><Image className={style.button_img} src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
             </div>
           </div>
-          <div className={style.ticketview_price_btn}>
+          <div className={style.ticketview_price_btn} onClick={bidnow}>
             Bid NOW ( LKR {ticketbidpricet*ticketcount}.00 )
           </div>         
         </DialogContent>
