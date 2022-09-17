@@ -197,10 +197,10 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                                     {data.event_date} 
                                 </div>
                             </div>
-                            <div className={Styles.seller_c_tickets_top_info_right}>
+                            {/* <div className={Styles.seller_c_tickets_top_info_right}>
                                 <div className={Styles.seller_c_tickets_top_info_right_nooftickets}>460</div>
                                 <div className={Styles.seller_c_tickets_top_info_right_tickets}>tickets</div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <h5 className={Styles.seller_c_tickets_cardstatus}>Info</h5>
