@@ -22,7 +22,7 @@ services:
     environment: 
       - CHOKIDAR_USEPOLLING=true
     restart: on-failure:3
-    command: npm run dev
+    command: yarn dev
   #Express API Service
   api-server:
     image: api-servers
@@ -35,7 +35,7 @@ services:
     environment: 
       - CHOKIDAR_USEPOLLING=true
     restart: on-failure:3
-    command: npm run dev
+    command: yarn dev
     depends_on:
       - mongo
   #fastify API Service
