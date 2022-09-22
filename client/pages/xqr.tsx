@@ -1,22 +1,37 @@
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, createContext, useContext, useRef } from 'react'
 import { useRouter } from "next/router";
 import type { NextPage } from 'next'
 import Swal from 'sweetalert2'
 import axios from 'axios'
-import Button from '@mui/material/Button';
 import styles from './styles.module.scss'
 import {getfastify, getmyhost, gethost} from '../session/Session';
-import Socket from '../websocket/Socket'
+import Socket from '../websocket/Socket';
 
 
 const qr: NextPage = function ActiveEvents() {
     const { query } = useRouter();
-    const [data, setData] = useState([]);
 
     const [roomid, setroomid] = React.useState<string>('');
     const [roomstatus, setroomstatus] = React.useState<boolean>(false);
 
     const name = process.env.HOST_IP;
+
+    const [result, setResult] = useState('No result');
+
+	const handleError = (err:any) => {
+		console.log(err)
+	}
+
+	const handleScan = (result:any) => {
+		if(result){
+			setResult(result)
+		}
+	}
+
+	const previewStyle = {
+		height: 240,
+		width: 320,
+	}
 
     React.useEffect(()=>{
         if(query.id){
@@ -72,13 +87,17 @@ const qr: NextPage = function ActiveEvents() {
         }
       })
 
-
     return (
         <div className={styles.bg}>
-           
+            {
+
+
+            }
+            <div id="reader" style={{width:"600px"}}></div>
             {roomstatus?<Socket.Input data={roomid}/>:null}
             {name}
         </div>
+
     );
 }
 

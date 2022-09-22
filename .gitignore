@@ -26,6 +26,9 @@
 #remove Library Files From http proxy
 /websocket/node_modules/
 
+#remove Library Files From QR interface
+/qr/node_modules/
+
 # ependencies
 /.pnp
 .pnp.js
