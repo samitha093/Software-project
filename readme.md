@@ -49,9 +49,13 @@ Go to the project directory
 ```
 
 Install Project (docker composer require*)
-
+(For Windows)
 ```bash
   docker-compose up -d --build
+```
+(For linux Distributions)
+```bash
+  Sudo docker-compose up -d --build
 ```
 ## Documentation (Use your network ip instead of localhost)
 
