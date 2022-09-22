@@ -8,6 +8,9 @@ services:
     ports:
       - 80:80
       #- 443:443
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.100
     restart: on-failure:3
   #Nextjs APP
   nextjs-app:
@@ -19,26 +22,13 @@ services:
     volumes: 
       - ./client:/app
       - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.101
     environment: 
       - CHOKIDAR_USEPOLLING=true
     restart: on-failure:3
     command: yarn dev
-  #react qr-APP
-  react-app:
-    image: react-app
-    build: 
-      context:  ./qr/
-      dockerfile:  Dockerfile
-    stdin_open: true
-    volumes: 
-      - ./qr:/app
-      - /app/node_modules
-    environment: 
-      - CHOKIDAR_USEPOLLING=true
-    restart: on-failure:3
-    ports:
-      - 4000:4000
-    command: npm run dev
   #Express API Service
   api-server:
     image: api-servers
@@ -48,6 +38,9 @@ services:
     volumes: 
       - ./server:/app
       - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.103
     environment: 
       - CHOKIDAR_USEPOLLING=true
     restart: on-failure:3
@@ -63,6 +56,9 @@ services:
     volumes: 
       - ./fastify:/app
       - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.104
     restart: on-failure:3
     command: yarn dev
   #ws Socket API
@@ -74,6 +70,9 @@ services:
     volumes: 
       - ./websocket:/app
       - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.105
     restart: on-failure:3
     command: yarn dev
   #mongo db database
@@ -83,6 +82,9 @@ services:
     restart: on-failure:3
     ports:
       - 27017:27017
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.106
     environment: 
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
@@ -95,6 +97,9 @@ services:
     restart: on-failure:3
     ports:
       - 8081:8081
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.107
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
@@ -104,10 +109,10 @@ services:
 volumes:
   database: {}
 networks: 
-  Tickbid-webapp:
-    name: Tickbid-webapp
+  Tickbidwebapp:
+    name: Tickbidwebapp
     driver: bridge
     ipam:
-      driver: default
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
