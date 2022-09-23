@@ -8,7 +8,7 @@ Lovers Can get their chance with our platform.
 
 ## Deployment for production
 
-for docker composer with DockerHub
+Follow official dockerhub page
 
 ```bash
 https://hub.docker.com/repository/docker/httpsdom/tickbid
