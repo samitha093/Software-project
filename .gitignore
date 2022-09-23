@@ -1,9 +1,10 @@
 /.idea
 /.vscode
 /database/
+/node_modules/
+.env
 
 #remove Library Files from Client
-/node_modules/
 /client/node_modules/
 /client/coverage/
 /client/.next/
@@ -26,8 +27,6 @@
 #remove Library Files From http proxy
 /websocket/node_modules/
 
-#remove Library Files From QR interface
-/qr/node_modules/
 
 # ependencies
 /.pnp
