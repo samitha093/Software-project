@@ -1,0 +1,7 @@
+FROM nginx:1.23.1-alpine
+COPY . .
+
+ARG DEV_DOMAIN
+ENV DEV_DOMAIN $DEV_DOMAIN
+
+run echo $DEV_DOMAIN
