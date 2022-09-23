@@ -6,25 +6,6 @@
 Event Organizers can Sell their tickets And Event
 Lovers Can get their chance with our platform.
 
-## Environment variable
-
-{root}/client
-
-```bash
-  HOST_IP={Your Static Ip or Local Ip Address}
-```
-{root}/server
-
-```bash
-  MONGO_URI=mongodb://root:password@mongo:27017/tickbid
-  NEXT_HOST=http:///{Your Static Ip or Local Ip Address}/
-  API_HOST=http://{Your Static Ip or Local Ip Address}/api
-  SECRET= {Replace With Your Secreat key}
-  GMAIL={comapy email}
-  KEY={gmail app key without space}
-```
-
-
 ## Deployment for production
 
 for docker composer with DockerHub
@@ -53,6 +34,22 @@ Install Project (docker composer require*)
 ```bash
   docker-compose up -d --build
 ```
+## Environment variable
+
+```bash
+  DEV_DOMAIN={Your Local Ip Address or domain}
+  NGINX_SSL=true
+
+  MONGO_URI=mongodb://root:password@mongo:27017/tickbid
+  NEXT_HOST=http://{Your Static Ip or Local Ip Address}/
+  API_HOST=http://{Your Static Ip or Local Ip Address}/api
+  SECRET= {Replace With Your Secreat key}
+  GMAIL={comapy email}
+  KEY={gmail app key without space}
+  
+  HOST_IP={Your Static Ip or Local Ip Address}
+```
+
 ## Documentation (Use your network ip instead of localhost)
 
 index 
