@@ -35,8 +35,8 @@ const Shop: React.FC<ShopProps> = ({ tickets }) => {
       setNextCount(6);
     }
     if (window.matchMedia("(max-width : 500px)").matches) {
-      setVisible(3);
-      setNextCount(3);
+      setVisible(4);
+      setNextCount(4);
     }
   }
   const [items, setitems] = React.useState<any[]>([])
