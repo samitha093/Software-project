@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import io from 'socket.io-client';
 
 const name = process.env.HOST_IP;
-const socket = io("http://"+name+"/");
+const socket = io("https://"+name+"/");
 
 
 interface InputProps {
