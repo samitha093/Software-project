@@ -68,6 +68,8 @@ services:
     build: 
       context:  ./fastify/
       dockerfile:  Dockerfile
+      args:
+        - NEXT_HOST=${NEXT_HOST}
     volumes: 
       - ./fastify:/app
       - /app/node_modules
@@ -82,6 +84,8 @@ services:
     build: 
       context:  ./websocket/
       dockerfile:  Dockerfile
+      args:
+        - NEXT_HOST=${NEXT_HOST}
     volumes: 
       - ./websocket:/app
       - /app/node_modules

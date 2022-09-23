@@ -4,8 +4,8 @@ const http = require ("http");
 const { Server } = require('socket.io');
 
 const app = express();
-
-app.use(cors());
+const next = process.env.NEXT_HOST;
+app.use(cors({origin: next}));
 
 const server = http.createServer(app);
 
