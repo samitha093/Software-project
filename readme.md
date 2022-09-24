@@ -41,8 +41,8 @@ Install Project (docker composer require*)
   NGINX_SSL=true
 
   MONGO_URI=mongodb://root:password@mongo:27017/tickbid
-  NEXT_HOST=http://{Your Static Ip or Local Ip Address}/
-  API_HOST=http://{Your Static Ip or Local Ip Address}/api
+  NEXT_HOST=https://{Your Static Ip or Local Ip Address}/
+  API_HOST=https://{Your Static Ip or Local Ip Address}/api
   SECRET= {Replace With Your Secreat key}
   GMAIL={comapy email}
   KEY={gmail app key without space}
@@ -54,43 +54,43 @@ Install Project (docker composer require*)
 
 index 
 ```bash
-  http://{IP or localhost}/
+  https://{IP or localhost}/
 ```
 User Login
 ```bash
-  http://{IP or localhost}/user
+  https://{IP or localhost}/user
 ```
 Remote Access
 ```bash
-  http://{IP or localhost}/qr
+  https://{IP or localhost}/qr
 ```
 
 For API Service
 
 ```bash
-  http://{IP or localhost}/api/
+  https://{IP or localhost}/api/
 ```
 
 For fastify Device tracker Service
 
 ```bash
-  http://{IP or localhost}/fastify
+  https://{IP or localhost}/fastify
 ```
 For web socket
 
 ```bash
-  http://{IP or localhost}/socket.io
+  https://{IP or localhost}/socket.io
 ```
 
 For API Document (Swagger)
 
 ```bash
-  http://{IP or localhost}/swagger/
+  https://{IP or localhost}/swagger/
 ```
 For Mongodb Database (Mongo express)- Dev. use only
 
 ```bash
-  http://{IP or localhost}:8081/
+  https://{IP or localhost}:8081/
 ```
 ## Database login
 Mongodb Compass
