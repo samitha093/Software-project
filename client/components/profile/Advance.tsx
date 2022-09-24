@@ -22,7 +22,35 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
   const [roomid, setroomid] = React.useState<string>('');
   const [roomstatus, setroomstatus] = React.useState<boolean>(false);
 
-  
+  function close(){
+    setroomstatus(false);
+    setroomid(userdata.id);
+    axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+      .then(async (res)=>{
+        const config = {
+          headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+        };
+        axios.get(gethost() + 'd/links',config).then(async (res)=>{
+          setData(res.data);
+          setroomstatus(true);
+        }).catch(()=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'API connection error!'
+            })
+        })       
+      })
+      .catch((err)=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Authentication Failed',
+          text: err,
+          showConfirmButton: false,
+          timer: 2500
+        })
+      })
+  }
   
     React.useEffect(()=>{
       if(userdata.usertype=='SELLER'){
@@ -87,7 +115,7 @@ const Advance: React.FC<AdvanceProps> = ({userdata}) => {
     }
 
     const listitem = data.map((item:any)=>(
-        <Qrcard data={item} key={item.id}/>
+        <Qrcard data={item} key={item.id} tigger={{ change: close }}/>
     ));
 
       const outputdatat = async(data:any)=>{

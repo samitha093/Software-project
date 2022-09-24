@@ -42,7 +42,7 @@ const {getusername, getuserid} = require('../middlewares/user');
    */
 
  router.route('/create').post(verifyAccessToken,sellerverification,getuserid,(req,res) => {
-    console.log("gitdata");
+    console.log("create a link for a device");
     var sellerid = req.userid;
     const newevent = new devices({
         sellerid
@@ -76,7 +76,8 @@ const {getusername, getuserid} = require('../middlewares/user');
    */
 
  router.route('/links').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
-    devices.find({sellerid:req.userid})
+  console.log("get link list for conect device");
+  devices.find({sellerid:req.userid})
     .then((result)=> res.status(200).json(result))
     .catch(err => res.status(400).json(err))
   });
@@ -106,6 +107,7 @@ const {getusername, getuserid} = require('../middlewares/user');
    */
 
  router.route('/update/:deviceid').put((req,res) => {
+  console.log("conected a device with links");
     devices.findById(req.params.deviceid)
     .then(data =>{
         if(data.deviceStatus == "CONECTED"){
@@ -127,6 +129,54 @@ const {getusername, getuserid} = require('../middlewares/user');
     })
     .catch(err => res.status(400).json("Connection branch Not exist"))
   });
+/**
+ * @swagger
+ *  '/d/deletelink/{linkid}':
+ *      delete:
+ *          tags:
+ *              - Device-list
+ *          summary: delete a link in a device
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: linkid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: false
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: delete Error
+ *              500:
+ *                  description: Server failure
+ */
+  router.route('/deletelink/:linkid').delete(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+    console.log("delete a linked device");
+
+    devices.findById(req.params.linkid).then(data =>{
+      if(data.sellerid == req.userid){
+        devices.findByIdAndRemove(req.params.linkid, function(err){
+          if(err){
+              res.status(500).json(err);
+          } else {
+              res.status(200).json("link deleted");
+          }  
+        });
+          // var subdoc = data.tickets;
+          // subdoc = subdoc.filter(val => !(val._id == req.params.ticketid))
+          // data.tickets = subdoc;
+          // data.save()
+          //         .then(()=> res.status(200).json("ticket deleted"))
+          //         .catch(err => res.status(500).json(err))
+      }else{
+          return res.sendStatus(403);
+      }
+  })
+  .catch(err => res.status(400).json(err))
+  });
+
   module.exports = router;
 
   
