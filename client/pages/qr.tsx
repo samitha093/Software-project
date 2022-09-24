@@ -6,10 +6,12 @@ import axios from 'axios'
 import styles from './styles.module.scss'
 import {getfastify, getmyhost, gethost} from '../session/Session';
 import Socket from '../websocket/Socket';
-import dynamic from "next/dynamic"
+import dynamic from "next/dynamic";
+import Button from '@mui/material/Button';
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 
 const qr: NextPage = function ActiveEvents() {
+    const router = useRouter()
     const [scanned, setScanned] = React.useState("");
 
     const onScan = (result: string | null) => {
@@ -39,6 +41,10 @@ const qr: NextPage = function ActiveEvents() {
 		height: 240,
 		width: 320,
 	}
+
+    function logout(){
+        router.push('/');
+    }
 
     React.useEffect(()=>{
         if(query.id){
@@ -106,7 +112,7 @@ const qr: NextPage = function ActiveEvents() {
     return (
         <div className={styles.bg}>
 
-            {roomstatus?<div>
+            {roomstatus?<div style={{width:"600px"}}>
                 <Socket.Input data={roomid}/>
                 <QrReader
                 delay={100}
@@ -115,10 +121,17 @@ const qr: NextPage = function ActiveEvents() {
                 className={styles.scanner}
                 facingMode="environment"
             />
-            <div id="reader" style={{width:"600px"}}></div>
+            <div id="reader" style={{width:"400px"}}></div>
+            <div className={styles.bg}>
+                <Button variant="outlined" color="error" onClick={logout}>
+                        logout
+                    </Button> 
+            </div>
             </div>
             :
-            <div>403 error</div>
+            <div>
+               403 Error 
+            </div>
             }
         </div>
     );

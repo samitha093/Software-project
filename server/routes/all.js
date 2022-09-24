@@ -51,10 +51,8 @@ const {secretGenerator} = require('../auth/jwt')
     User.find({token: mytoken})
         .then(data =>{
           if(!data[0]){
-            console.log(data[0])
             res.sendStatus(403)
           }else{
-            console.log("ok")
             //issure a new jwt
             jwt.verify(mytoken, data[0].secret, async(err, datas)=>{
               if(err) {
@@ -62,10 +60,8 @@ const {secretGenerator} = require('../auth/jwt')
                 return res.sendStatus(403)
               }else{
                 const payload = {"email" : datas.email, "type":datas.type}
-                console.log(payload);
                 const activesecret = process.env.SECRET;
                 const accesstoken = await jwt.sign(payload,activesecret,{expiresIn: "300s"});
-                console.log(accesstoken);
                 // const secret = await secretGenerator(250)
                 // console.log(secret);
                 // const token = await jwt.sign(payload,secret)
@@ -80,7 +76,6 @@ const {secretGenerator} = require('../auth/jwt')
                 //       datas[0].token = token;
                 //       datas[0].save()
                 //   })
-                console.log("------------------------------------------------");
                 res.status(200).json(datapack);
               }                   
             })
