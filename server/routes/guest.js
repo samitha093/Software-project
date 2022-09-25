@@ -588,6 +588,7 @@ router.route('/categories').get(async(req,res) => {
  */
   
  router.route('/cartamount').post(async(req,res) => {
+    console.log("cart amount check")
     if(!req.body.cart){
        return res.status(200).json(0);
     }

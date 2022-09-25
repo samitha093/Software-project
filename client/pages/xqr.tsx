@@ -6,18 +6,9 @@ import axios from 'axios'
 import styles from './styles.module.scss'
 import {getfastify, getmyhost, gethost} from '../session/Session';
 import Socket from '../websocket/Socket';
-import dynamic from "next/dynamic";
-import Button from '@mui/material/Button';
-const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
+
 
 const qr: NextPage = function ActiveEvents() {
-    const router = useRouter()
-    const [scanned, setScanned] = React.useState("");
-
-    const onScan = (result: string | null) => {
-        setScanned(result ? result : "");
-    };
-
     const { query } = useRouter();
 
     const [roomid, setroomid] = React.useState<string>('');
@@ -41,10 +32,6 @@ const qr: NextPage = function ActiveEvents() {
 		height: 240,
 		width: 320,
 	}
-
-    function logout(){
-        router.push('/');
-    }
 
     React.useEffect(()=>{
         if(query.id){
@@ -88,16 +75,6 @@ const qr: NextPage = function ActiveEvents() {
         }
     },[query.id])
 
-    React.useEffect(()=>{
-        if(scanned){
-            Toast.fire({
-                icon: 'success',
-                title: scanned
-            })
-        }
-        
-    },[scanned])
-
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -109,31 +86,18 @@ const qr: NextPage = function ActiveEvents() {
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
+
     return (
         <div className={styles.bg}>
+            {
 
-            {roomstatus?<div style={{width:"600px"}}>
-                <Socket.Input data={roomid}/>
-                <QrReader
-                delay={100}
-                onError={() => {}}
-                onScan={onScan}
-                className={styles.scanner}
-                facingMode="environment"
-            />
-            <div id="reader" style={{width:"400px"}}></div>
-            <div className={styles.bg}>
-                <Button variant="outlined" color="error" onClick={logout}>
-                        logout
-                    </Button> 
-            </div>
-            </div>
-            :
-            <div>
-               403 Error 
-            </div>
+
             }
+            <div id="reader" style={{width:"600px"}}></div>
+            {roomstatus?<Socket.Input data={roomid}/>:null}
+            {name}
         </div>
+
     );
 }
 
