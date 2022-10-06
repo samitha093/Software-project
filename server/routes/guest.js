@@ -186,7 +186,7 @@ const next = process.env.NEXT_HOST;
    */
 
   router.route('/tickets').get((req,res) => {
-    tickets.find({},(err,data) => {
+    tickets.find({status:true},(err,data) => {
         res.status(200).json(data) 
     })
 });
@@ -714,9 +714,9 @@ function usernamegenerator(length) {
     if(!(req.body.dataarray.name =='')){
         //console.log(req.body.dataarray.name)
         var userRegex = new RegExp(req.body.dataarray.name, 'i')
-        dataset1 = await tickets.find({event_name: userRegex},(err,data) => {return data})
+        dataset1 = await tickets.find({event_name: userRegex,status:true},(err,data) => {return data})
     }else{
-        dataset1 = await tickets.find({},(err,data) => {return data})
+        dataset1 = await tickets.find({status:true},(err,data) => {return data})
     }
     //console.log(dataset)
     var dataset2 = [];

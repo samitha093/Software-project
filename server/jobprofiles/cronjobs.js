@@ -23,13 +23,21 @@ const monitor = require('./tickets/monitor');
     // return;
 
 function  eventController (){
-    //Event Publish
+    //Event Activate
     crons.find({job_type:"A", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
             data_crone.map(async(dataSet)=>{
                 dataSet.job_status = false;
                 dataSet.save()
                 publishEvent.publishEvent(dataSet);
+            });
+        }
+    })
+    // Event End
+    crons.find({job_type:"D", job_status:true},(err,data_crone)=>{
+        if(data_crone.length>0){
+            data_crone.map(async(dataSet)=>{  
+                monitor.monitor(dataSet);
             });
         }
     })
@@ -61,10 +69,11 @@ function  orderController  (){
 };
 
 function  ticketController (){
-    crons.find({job_type:"D", job_status:true},(err,data_crone)=>{
+    //control user added tickets
+    crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
             data_crone.map(async(dataSet)=>{  
-                monitor.monitor()
+                
             });
         }
     })
@@ -72,10 +81,12 @@ function  ticketController (){
 };
 
 function  bidController (){
+    //control user added bids
     crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
-
-
+            data_crone.map(async(dataSet)=>{  
+                
+            });
         }
     })
 
@@ -84,8 +95,9 @@ function  bidController (){
 function  analiticBuilder1H (){
     crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
-
-
+            data_crone.map(async(dataSet)=>{  
+                
+            });
         }
     })
     return;
@@ -94,8 +106,9 @@ function  analiticBuilder1H (){
 function  analiticBuilder24H (){
     crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
-
-
+            data_crone.map(async(dataSet)=>{  
+                
+            });
         }
     })
     return;

@@ -67,10 +67,14 @@ const swaggerOptions = {
 schedule.scheduleJob('* * * * * *',()=>{
   //every second
   orderController() // create qr for sold ticket
-  bidController()
-  /////////
+})
+
+schedule.scheduleJob('* * * * *',()=>{
+  console.log('1min')
+  //every 1 min
   eventController() //publish event
   ticketController() // remove published ticket
+  bidController()
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
@@ -80,11 +84,7 @@ schedule.scheduleJob('0 * * * *',()=>{
 
 schedule.scheduleJob('0 0 * * *',()=>{
   //every day
-  eventController() //publish event
-  ticketController() // remove published ticket
   analiticBuilder24H()
-
-
 })
 
 
