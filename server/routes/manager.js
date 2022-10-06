@@ -250,7 +250,7 @@ const masking = (data)=>{
               .catch(err => res.status(500).json(err))
        })
        .catch(err => res.status(400).json(err))
-
+       if(req.body.status == 'ACTIVE'){
         const job_type = "A";
         const job_name = "CREATE_TICKETS_MANAGER";
         const job_id = req.params.eventid;
@@ -262,6 +262,8 @@ const masking = (data)=>{
             job_status,
             });
         newcrons.save()
+       }
+        
 });
 
 /**

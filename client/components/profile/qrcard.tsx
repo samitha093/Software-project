@@ -25,7 +25,6 @@ const Qrcard: React.FC<QrcardProps> = ({data,tigger}) => {
       }).then((result) => {
         if (result.isConfirmed) {
           request();
-          tigger.change();
           Swal.fire(
             'Deleted!',
             'Device Connections updated!',
@@ -43,6 +42,7 @@ const Qrcard: React.FC<QrcardProps> = ({data,tigger}) => {
         };
         axios.delete(gethost() + 'd/deletelink/'+data.id,config).then(async (res)=>{
           console.log(res);
+          tigger.change();
         }).catch(()=>{
           Swal.fire({
             icon: 'error',
