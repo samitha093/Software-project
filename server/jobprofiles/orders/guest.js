@@ -18,29 +18,31 @@ function guestOrder (dataSet){
         var userid = await newuser.save().then((result)=>{return result._id})
         if(subdata){
             subdata.map(async(dt)=>{
-                //console.log(dt.itemid)
-                //console.log(dt.qty)
                 const ticketid = dt.itemid;
+                var ticketqr = [];
                 const qty = dt.qty;        
-                const newqr = new qr({
-                    userid,
-                    ticketid,
-                    qty,
-                });
-                var qrid = await newqr.save().then((result)=>{return result._id})
-                const ticketqr ={
-                    "qrid":qrid,
+                for(var i = 0; i < qty ; i++){
+                    const newqr = new qr({
+                        userid,
+                        ticketid,
+                        "qty":1,
+                    });
+                    var qrid = await newqr.save().then((result)=>{return result._id})
+                    ticketqr.push(qrid);
                 }
-                const ticket ={
-                    "qr":ticketqr,
-                    "ticketid": ticketid,
-                }
-                console.log(qrid)
-                await User.findById(userid).then(async(userdata)=> {
-                userdata.tickets.push(ticket);
-                userdata.save()
-                    .then(()=> console.log("Ticket Added to user profile"))
-                    .catch(err => console.log(err))
+                await tickets.findById(ticketid).then(async(ticketdata)=> {
+                    const ticket ={
+                        "orderid":dataSet.job_id[0],
+                        "eventId":ticketdata.eventid,
+                        "ticketid": ticketid,
+                        "qridList":ticketqr,                        
+                    }
+                    await User.findById(userid).then(async(userdata)=> {
+                        userdata.tickets.push(ticket);
+                        userdata.save()
+                            .then(()=> console.log("Ticket Added to user profile"))
+                            .catch(err => console.log(err))
+                    })
                 })
             }
         )}
@@ -48,7 +50,17 @@ function guestOrder (dataSet){
         data_event.save()
             .then(()=> console.log("oder updated"))
             .catch(err => console.log(err))
-
+        const job_type = "E";
+        const job_name = "QR__MONITOR";
+        const job_id = ticketqr;
+        const job_status = true;         
+        const newcrons = new crons({
+            job_type,
+            job_name,
+            job_id,
+            job_status,
+            });
+        newcrons.save()
     })
     return;
 };

@@ -70,6 +70,8 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
   const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
   const [TicketData, setTicketData] =  React.useState<any>([]);
+  const [TicketbidData, setTicketbidData] =  React.useState<any>([]);
+  const [Ticketbidamount, setTicketbidamount] =  React.useState<number>(700);
 
   useEffect(()=>{
     axios.get(gethost()+'g/ticketbyid/'+data.ticketid).then(async (res)=>{
@@ -77,6 +79,12 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
       var asd = gethost()+res.data.img
       setTicketimg(`url("`+asd+`")`);
     }).catch((err)=>{})
+
+    axios.get(gethost()+'b/bidbyid/'+data.bidid).then(async (res)=>{
+      setTicketbidData(res.data);
+      setTicketbidamount(res.data.bid_amount);
+    }).catch((err)=>{})
+
     setTicketcolor("#881700");
     setTicketlevel(level);
     if( level == "1"){
@@ -127,7 +135,7 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
                             </div>
                         </div>
                         <div className={styles.buyer_c_ticketunvalid_top_info_right}>
-                            <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>4</div>
+                            <div className={styles.buyer_c_ticketunvalid_top_info_right_nooftickets}>{TicketbidData.ticketcount}</div>
                             <div className={styles.buyer_c_ticketunvalid_top_info_right_tickets}>tickets</div>
                         </div>
                     </div>
@@ -149,16 +157,17 @@ const Ticketunvalid: React.FC<TicketunvalidProps> = ({level , type, data}) => {
           <FormControl fullWidth sx={{ m: 1 }} variant="filled">
             <InputLabel htmlFor="filled-adornment-amount">Amount for a Ticket</InputLabel>
             <FilledInput
+              value={Ticketbidamount}
               id="filled-adornment-amount"
               startAdornment={<InputAdornment position="start">LKR</InputAdornment>}
             />
           </FormControl>
           <div className='x'><b>X</b></div>
-          <div>4 Tickes</div>
+          <div>{TicketbidData.ticketcount} Tickes</div>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Save changes
+            Submit new bid
           </Button>
         </DialogActions>
       </BootstrapDialog>

@@ -12,35 +12,38 @@ var request = require('request');
 const publishEvent = require('./events/publishevent');
 const buyer = require('./orders/buyer');
 const guest = require('./orders/guest');
-const monitor = require('./tickets/monitor');
+const monitor = require('./events/monitor');
+const ticketMonitor = require('./tickets/monitor')
 
-    // console.log("time and date checker start")
-    // request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
-    //     if (err) { return console.log(err); }
-    //     // console.log(body.url);
-    //     console.log(body.dateTime);
-    //   });
-    // return;
 
 function  eventController (){
-    //Event Activate
-    crons.find({job_type:"A", job_status:true},(err,data_crone)=>{
-        if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{
-                dataSet.job_status = false;
-                dataSet.save()
-                publishEvent.publishEvent(dataSet);
-            });
-        }
-    })
-    // Event End
-    crons.find({job_type:"D", job_status:true},(err,data_crone)=>{
-        if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{  
-                monitor.monitor(dataSet);
-            });
-        }
-    })
+    // date check
+    request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+            //Event Activate
+            crons.find({job_type:"A", job_status:true},(err,data_crone)=>{
+                if(data_crone.length>0){
+                    data_crone.map(async(dataSet)=>{
+                        dataSet.job_status = false;
+                        dataSet.save()
+                        publishEvent.publishEvent(dataSet);
+                    });
+                }
+            })
+            // Event End
+            crons.find({job_type:"D", job_status:true},(err,data_crone)=>{
+                if(data_crone.length>0){
+                    data_crone.map(async(dataSet)=>{  
+                        var result = await monitor.monitor(dataSet, body);
+                        if(result){
+                            dataSet.job_status = false;
+                            dataSet.save()
+                        }
+                    });
+                }
+            })
+    });
+
     return;
 };
 
@@ -69,14 +72,23 @@ function  orderController  (){
 };
 
 function  ticketController (){
-    //control user added tickets
-    crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
-        if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{  
-                
-            });
-        }
-    })
+    // date check
+    request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+            //control user added tickets
+            crons.find({job_type:"E", job_status:true},(err,data_crone)=>{
+                if(data_crone.length>0){
+                    data_crone.map(async(dataSet)=>{  
+                        var result = await ticketMonitor.ticketMonitor(dataSet, body);
+                        if(result){
+                            dataSet.job_status = false;
+                            dataSet.save()
+                        }
+                    });
+                }
+            })
+    });
+
     return;
 };
 
@@ -89,7 +101,7 @@ function  bidController (){
             });
         }
     })
-
+    return;
 };
 
 function  analiticBuilder1H (){

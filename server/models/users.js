@@ -8,6 +8,7 @@ const ticketschema = new schema({
     bid_status:{type:Boolean, default:false},
     payment_status:{type:Boolean, default:false},
     ticket_status:{type:Boolean, default:false},
+    orderid: {type:String},
     eventId:{type:String},
     ticketid: {type:String},
     bidid:{type:String},

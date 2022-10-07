@@ -11,30 +11,44 @@ function buyerOrder (dataSet){
         const subdata = data_event.tickets;
         if(subdata){
             subdata.map(async(dt)=>{
-                //console.log(dt.itemid)
-                //console.log(dt.qty)
                 const userid = data_event.userid;
                 const ticketid = dt.itemid;
-                const qty = dt.qty;        
-                const newqr = new qr({
-                    userid,
-                    ticketid,
-                    qty,
-                });
-                var qrid = await newqr.save().then((result)=>{return result._id})
-                const ticketqr ={
-                    "qrid":qrid,
+                var ticketqr = [];
+                const qty = dt.qty; 
+                for(var i = 0; i < qty ; i++){
+                    const newqr = new qr({
+                        userid,
+                        ticketid,
+                        "qty":1,
+                    });
+                    var qrid = await newqr.save().then((result)=>{return result._id})
+                    ticketqr.push(qrid);
                 }
-                const ticket ={
-                    "qr":ticketqr,
-                    "ticketid": ticketid,
-                }
-                await User.findById(data_event.userid).then(async(userdata)=> {
-                userdata.tickets.push(ticket);
-                userdata.save()
-                    .then(()=> console.log("Ticket Added to user profile"))
-                    .catch(err => console.log(err))
+                await tickets.findById(ticketid).then(async(ticketdata)=> {
+                    const ticket ={
+                        "orderid":dataSet.job_id[0],
+                        "eventId":ticketdata.eventid,
+                        "ticketid": ticketid,
+                        "qridList":ticketqr,                        
+                    }
+                    await User.findById(data_event.userid).then(async(userdata)=> {
+                        userdata.tickets.push(ticket);
+                        userdata.save()
+                            .then(()=> console.log("Ticket Added to user profile"))
+                            .catch(err => console.log(err))
+                    })
                 })
+                const job_type = "E";
+                const job_name = "QR__MONITOR";
+                const job_id = ticketqr;
+                const job_status = true;         
+                const newcrons = new crons({
+                    job_type,
+                    job_name,
+                    job_id,
+                    job_status,
+                    });
+                newcrons.save()
             }
         )}
         

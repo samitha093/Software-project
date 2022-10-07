@@ -70,7 +70,6 @@ schedule.scheduleJob('* * * * * *',()=>{
 })
 
 schedule.scheduleJob('* * * * *',()=>{
-  console.log('1min')
   //every 1 min
   eventController() //publish event
   ticketController() // remove published ticket
