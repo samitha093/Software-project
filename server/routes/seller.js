@@ -263,6 +263,81 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
 
 /**
  * @swagger
+ *  '/s/event/bid/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/bid/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+    res.status(200).json("ok")
+});
+
+/**
+ * @swagger
+ *  '/s/event/buy/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/buy/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+   
+});
+
+/**
+ * @swagger
+ *  '/s/event/ticket/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/ticket/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+   
+});
+
+/**
+ * @swagger
  *  '/s/updateaevent/{eventid}':
  *      put:
  *          tags:

@@ -84,7 +84,7 @@ const Bids = require('../models/bid');
     }else if(type == 'pb'){
       subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
     }else if(type == 'ot'){
-      subdata = await subdata.filter(val => (val.ticket_status == true && val.bid_status == false))
+      subdata = await subdata.filter(val => (val.ticket_status == true))
     }else{
       res.status(200).json("not found data")
       return;
@@ -240,5 +240,33 @@ const Bids = require('../models/bid');
  *        description: server error
  */
 
+
+/**
+ * @swagger
+ * '/b/bidbyid/{bidid}':
+ *  get:
+ *     tags:
+ *     - User-buyer
+ *     summary: Get bid data by id(Public Link*)
+ *     parameters:
+ *      - in: path
+ *        name: bidid
+ *        schema:
+ *          type: String
+ *     requestBody:
+ *      required: false
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: error
+ *      500:
+ *        description: Server failure
+ */
+ router.route('/bidbyid/:bidid').get(async(req,res) => {
+  Bids.findById(req.params.bidid)
+      .then(data =>{res.status(200).json(data)})
+      .catch(err => res.status(400).json("Wrong db connection"))
+});
 
 module.exports = router;

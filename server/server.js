@@ -6,7 +6,14 @@ const swaggerUi = require('swagger-ui-express');
 const schedule = require('node-schedule');
 const cookieParser = require('cookie-parser');
 
-const {createtickets, createQR, createQRguest} = require('./jobprofiles/cronjobs');
+const {
+  eventController,
+  orderController,
+  ticketController,
+  bidController,
+  analiticBuilder1H,
+  analiticBuilder24H
+} = require('./jobprofiles/cronjobs');
 
 require('dotenv').config();
 const uri = process.env.MONGO_URI;
@@ -59,17 +66,24 @@ const swaggerOptions = {
 
 schedule.scheduleJob('* * * * * *',()=>{
   //every second
-  createtickets()
-  createQR()
-  createQRguest()
+  orderController() // create qr for sold ticket
+})
+
+schedule.scheduleJob('* * * * *',()=>{
+  //every 1 min
+  eventController() //publish event
+  ticketController() // remove published ticket
+  bidController()
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
-  console.log("running every 1 hour 00:00")
+  //every 1 hr
+  analiticBuilder1H()
 })
 
 schedule.scheduleJob('0 0 * * *',()=>{
-  console.log("running every day mid night 00:00:00")
+  //every day
+  analiticBuilder24H()
 })
 
 
