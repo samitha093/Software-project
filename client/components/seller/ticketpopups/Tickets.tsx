@@ -9,12 +9,13 @@ import Paper from '@mui/material/Paper';
 import styles from '../../manager/tables/styles.module.scss'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import {gethost} from '../../../session/Session'
 
 interface TicketsProps {
-
+    data:any
 }
 
-const Tickets: React.FC<TicketsProps> = ({}) => {
+const Tickets: React.FC<TicketsProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([]);
     const rows = [    
         {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"VALIDATED",},    
@@ -26,8 +27,32 @@ const Tickets: React.FC<TicketsProps> = ({}) => {
     ];
 
     React.useEffect(() => {
-        setitem(rows);
+        eventbiddataget();
         }, [])
+        const eventbiddataget = async() => {
+            //get access from gatway for 5min
+            await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+                .then(async (res)=>{
+                    //create a headet pack
+                    const config = {
+                      headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                    };
+                    axios.get(gethost()+'s/event/buy/'+data.id,config).then(async (res)=>{
+                        console.log(res.data)
+                        setitem(res.data);
+                      })
+                      .catch((err)=>{
+                        Swal.fire({
+                          icon: 'error',
+                          title: 'Authentication Failed',
+                          text: 'Please Login to your account',
+                          showConfirmButton: false,
+                          timer: 2500
+                        })
+                      })
+                  //end connection
+                })
+        };
     return (
         <div className={styles.table_seller_container2}>
             <TableContainer component={Paper}>
@@ -48,7 +73,7 @@ const Tickets: React.FC<TicketsProps> = ({}) => {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell component="th" scope="row">
-                            {row.name}
+                            {row.username}
                         </TableCell>
                         <TableCell align="right">{row.email}</TableCell>
                         <TableCell align="right">
@@ -65,33 +90,33 @@ const Tickets: React.FC<TicketsProps> = ({}) => {
                             
                         </TableCell>
                         <TableCell align="right">
-                            {row.status === 'VALIDATED'?
+                            {row.validity == false?
                             <div className={styles.table_seller_status_pending}>
-                                {row.status}
+                                VALIDATED
                             </div>
                             :null}
                             
-                            {row.status === 'ACTIVE'?
+                            {row.status == true?
                             <div className={styles.table_seller_status_active}>
-                                {row.status}
+                                ACTIVE
                             </div>
                             :null}
                             
-                            {row.status ==='SUSPEND'?
+                            {row.status == false?
                             <div className={styles.table_seller_status_deactive}>
-                                {row.status}
+                                SUSPEND
                             </div>
                             :null}
                             
                         </TableCell>
                         <TableCell>
                             <div className={styles.table_seller_action}>
-                                {row.status == "SUSPEND"?
+                                {row.status == false?
                                 <div className={styles.table_seller_action_activate} >Activate</div>
                                 :
                                 null
                                 }
-                                {row.status == "ACTIVE"?
+                                {row.status == true?
                                 <div className={styles.table_seller_action_deactivate} >Deactivate</div>
                                 :
                                 null

@@ -8,12 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper';
 import ProgressBar from "@ramonak/react-progress-bar";
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import {gethost} from '../../../session/Session'
 
 interface BiddersProps {
-
+    data:any,
 }
 
-const Bidders: React.FC<BiddersProps> = ({}) => {
+const Bidders: React.FC<BiddersProps> = ({data}) => {
     const rows = [    
         {"id" : "14gsd54a3sfdc", "name":"1", "seller":"Seller1", "revenue":"12,454","p1":1,"p2":120,"p3":"1%","b1":0,"b2":150,'b3':1,"status":"DEACTIVE",},    
         {"id" : "14gsd54e3sfdc", "name":"2", "seller":"Seller1", "revenue":"14,156","p1":190,"p2":1500,"p3":"11%","b1":190,"b2":200,'b3':3, "status":"ACTIVE",},  
@@ -24,8 +27,31 @@ const Bidders: React.FC<BiddersProps> = ({}) => {
     ];
     const [items, setitem] = React.useState<any[]>([])
     React.useEffect(() => {
-        setitem(rows);
+        eventbiddataget();
     }, [])
+    const eventbiddataget = async() => {
+        //get access from gatway for 5min
+        await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+            .then(async (res)=>{
+                //create a headet pack
+                const config = {
+                  headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                axios.get(gethost()+'s/event/bid/'+data.id,config).then(async (res)=>{
+                    setitem(res.data);
+                  })
+                  .catch((err)=>{
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Authentication Failed',
+                      text: 'Please Login to your account',
+                      showConfirmButton: false,
+                      timer: 2500
+                    })
+                  })
+              //end connection
+            })
+      };
     return (
         <div className={styles.bg_tabel2}>
             <div className={styles.table_seller_container2}>
@@ -47,19 +73,19 @@ const Bidders: React.FC<BiddersProps> = ({}) => {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell component="th" scope="row">
-                            Level {row.name}
+                            {row.username}
                         </TableCell>
                         <TableCell align="center">
-                            email@email.com
+                            {row.email}
                         </TableCell>
                         <TableCell align="center">
-                            1
+                            {row.ticketLevel}
                         </TableCell>
                         <TableCell align="center">
-                            35
+                            {row.tickets}
                         </TableCell>
                         <TableCell align="center">
-                            LKR {row.revenue}
+                            LKR {row.amount}
                         </TableCell>
                         </TableRow>
                     ))}
