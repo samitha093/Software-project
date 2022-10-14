@@ -94,7 +94,7 @@ function  ticketController (){
 
 function  bidController (){
     //control user added bids
-    crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
+    crons.find({job_type:"F", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
             data_crone.map(async(dataSet)=>{  
                 
