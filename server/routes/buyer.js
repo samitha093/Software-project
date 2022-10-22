@@ -130,12 +130,10 @@ const Bids = require('../models/bid');
   for (let item of cart) {
     await tickets.findById(item.itemid)
       .then(async(data) =>{
-        data.buy_quantity -= item.qty;
+        data.nosold += 1;
         data.save()
           .then(()=> console.log("ticket updated"))
           .catch(err => console.log(err))
-        //console.log(req.userid);
-        //console.log(req.userdata.type);
       })
     }
     await orders.findById(orderid)
@@ -149,7 +147,7 @@ const Bids = require('../models/bid');
     const job_type = "B";
     const job_name = "CREATE_QR";
     const job_id = orderid;
-    const job_status = true;         
+    const job_status = true;
     const newcrons = new crons({
         job_type,
         job_name,
@@ -199,9 +197,9 @@ const Bids = require('../models/bid');
       newbid.save()
           .then((result)=> {
               tickets.findById(ticketid).then(ticketdata =>{
+                ticketdata.nobid += 1;
                 ticketdata.bids.push(result._id);
                 ticketdata.save();
-                console.log(req.body.eventId);
                 User.findById(userid).then(userdata =>{
                   const ticket ={
                     "eventId":eventid,
@@ -211,9 +209,21 @@ const Bids = require('../models/bid');
                   }
                   userdata.tickets.push(ticket);
                   userdata.save()
-                  res.status(200).json(result._id);
+
                 })
               })
+              const job_type = "F";
+              const job_name = "BID_MONITOR";
+              const job_id = result._id;
+              const job_status = true;
+              const newcrons = new crons({
+                  job_type,
+                  job_name,
+                  job_id,
+                  job_status,
+                  });
+              newcrons.save()
+              res.status(200).json(result._id);
           })
           .catch(err => res.status(500).json(err))
 });

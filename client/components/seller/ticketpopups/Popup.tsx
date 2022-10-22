@@ -135,7 +135,6 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
                         <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"2"}/>
-                        <Tab icon={<SellIcon />} iconPosition="start" label="Buyer List" value={"3"}/>
                         <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
                         <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
                         <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"6"}/>
@@ -143,11 +142,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?<SellingInfo/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?<Tickets/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="2">{(data.status=="ACTIVE")||(data.status=="END")?<SellingInfo data={data}/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{(data.status=="END")||(data.status=="ACTIVE")?<Tickets data={data}/>:<Nopermission/>}</TabPanel>
                     <TabPanel value="6">{(data.status=="END")||(data.status=="ACTIVE")?<Analitics/>:<Nopermission/>}</TabPanel>
                     <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?<Buyers/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="4">{(data.status=="END")||(data.status=="ACTIVE")?<Bidders/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="4">{(data.status=="END")||(data.status=="ACTIVE")?<Bidders data={data}/>:<Nopermission/>}</TabPanel>
                     </TabContext>
                     
                 </DialogContent>
