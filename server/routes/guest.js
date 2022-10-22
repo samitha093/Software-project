@@ -6,6 +6,7 @@ const util_area = require('../models/util_area');
 const util_category = require('../models/util_category');
 const orders = require('../models/orders')
 const crons = require('../models/cron');
+const events = require('../models/events');
 const {a, b, c, d} = require('../views/otp')
 const {secretGenerator, otpgenerator} = require('../auth/jwt')
 const {emailnotifications} = require('../smtp/mail')
@@ -186,7 +187,7 @@ const next = process.env.NEXT_HOST;
    */
 
   router.route('/tickets').get((req,res) => {
-    tickets.find({},(err,data) => {
+    tickets.find({status:true},(err,data) => {
         res.status(200).json(data) 
     })
 });
@@ -564,8 +565,15 @@ router.route('/categories').get(async(req,res) => {
  *        description: Server failure
  */
  router.route('/ticketbyid/:ticketid').get(async(req,res) => {
-    tickets.findById(req.params.ticketid)
-        .then(data =>{res.status(200).json(data)})
+    tickets.findById(req.params.ticketid).then(data =>{
+            events.findById(data.eventid).then(Edata =>{
+                var response ={
+                    ticket : data,
+                    event : Edata
+                }
+                res.status(200).json(response);
+            }).catch()
+        })
         .catch(err => res.status(400).json("Wrong db connection"))
 });
 
@@ -644,7 +652,7 @@ router.route('/categories').get(async(req,res) => {
     for (let item of cart) {
       await tickets.findById(item.itemid)
         .then(async(data) =>{
-          data.buy_quantity -= item.qty;
+          data.nosold += 1;
           data.save()
             .then(()=> console.log("ticket updated"))
             .catch(err => console.log(err))
@@ -714,9 +722,9 @@ function usernamegenerator(length) {
     if(!(req.body.dataarray.name =='')){
         //console.log(req.body.dataarray.name)
         var userRegex = new RegExp(req.body.dataarray.name, 'i')
-        dataset1 = await tickets.find({event_name: userRegex},(err,data) => {return data})
+        dataset1 = await tickets.find({event_name: userRegex,status:true},(err,data) => {return data})
     }else{
-        dataset1 = await tickets.find({},(err,data) => {return data})
+        dataset1 = await tickets.find({status:true},(err,data) => {return data})
     }
     //console.log(dataset)
     var dataset2 = [];

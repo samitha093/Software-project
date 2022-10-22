@@ -50,6 +50,7 @@ const index: NextPage = function ActiveEvents() {
     //component changer
     const selectcomponents = async (e: any) => {
         tabchange(e);
+        changeSellerList(1);
     };
     const RefreshData = async (e: any) => {
         setrefreshData(e);

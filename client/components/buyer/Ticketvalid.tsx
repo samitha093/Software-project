@@ -67,11 +67,14 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
   const [Ticketlevelcolor, setTicketlevelcolor] =  React.useState("");
   const [Ticketimg, setTicketimg] =  React.useState("");
   const [TicketData, setTicketData] =  React.useState<any>([]);
+
+  const [TicketQrId, setTicketQrId] =  React.useState<any>([]);
   useEffect(()=>{
     axios.get(gethost()+'g/ticketbyid/'+data.ticketid).then(async (res)=>{
       setTicketData(res.data);
-      var asd = gethost()+res.data.img
+      var asd = gethost()+res.data.ticket.img
       setTicketimg(`url("`+asd+`")`);
+      setTicketQrId(data.qridList);
     }).catch((err)=>{})
     if( type == "1"){
       setTicketcolor("#57B473");
@@ -95,7 +98,7 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
     }else{
       setTicketlevelcolor("#AE6300");
     }
-
+    
   },[])
   const handleClickOpen = () => {
     setOpen(true);
@@ -103,6 +106,12 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const qrlist = TicketQrId.map((itemdata: any) => (
+    <div key={itemdata}>
+      <Ticket id={itemdata}/>
+    </div>
+  ));
   
   return (
     <div>
@@ -111,33 +120,33 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
                 <div  style={{backgroundImage: Ticketimg}} className={styles.buyer_c_ticketvalid_top}>
                     <div className={styles.buyer_c_ticketvalid_top_head}>
                         <div className={styles.buyer_c_ticketvalid_top_head_left}>
-                            {TicketData.event_time}
+                            {TicketData.event?TicketData.event.event_time:null}
                         </div>
                         <div style={{backgroundColor: Ticketlevelcolor}} className={styles.buyer_c_ticketvalid_top_head_right} id="ticket-level" >
                             <div className={styles.buyer_c_ticketvalid_top_head_right_1}>
                                 Level
                             </div>
                             <div className={styles.buyer_c_ticketvalid_top_head_right_2} >
-                                {TicketData.ticket_level}
+                                {TicketData.ticket?TicketData.ticket.ticket_level:null}
                             </div>
                         </div>
                     </div>
                     <div className={styles.buyer_c_ticketvalid_top_info}>
                         <div className={styles.buyer_c_ticketvalid_top_info_left}>
                             <div className={styles.buyer_c_ticketvalid_top_info_left_name}>
-                              {TicketData.event_name}
+                              {TicketData.event?TicketData.event.event_name:null}
                             </div>
                             <div className={styles.buyer_c_ticketvalid_top_info_left_date}>
-                                {TicketData.event_date}
+                                {TicketData.event?TicketData.event.event_date:null}
                             </div>
                         </div>
                         <div className={styles.buyer_c_ticketvalid_top_info_right}>
-                            <div className={styles.buyer_c_ticketvalid_top_info_right_nooftickets}>3</div>
+                            <div className={styles.buyer_c_ticketvalid_top_info_right_nooftickets}>{data.qridList.length}</div>
                             <div className={styles.buyer_c_ticketvalid_top_info_right_tickets}>tickets</div>
                         </div>
                     </div>
                 </div>
-                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>{TicketData.event_venue}</h5>
+                <h5 className={styles.buyer_c_ticketvalid_cardstatus}>{TicketData.event?TicketData.event.event_venue:null}</h5>
             </div>
         </div>
 
@@ -150,9 +159,7 @@ const Ticketvalid: React.FC<TicketvalidProps> = ({level , type, data}) => {
           Event name
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Ticket id="123456 654321 345678 34567 987678"/>
-          <Ticket id="766756 343545 766688 67678 876668"/>
-          <Ticket id="464666 776766 765757 86868 787686"/>
+          {qrlist}
           {pay?
               <div className={styles.paynow}><Button fullWidth style={{backgroundColor: '#752E9E', borderRadius:'20px'}} variant="contained" size="medium">Pay Now (LKR 14 600)</Button></div>
           :null}  

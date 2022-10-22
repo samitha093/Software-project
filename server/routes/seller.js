@@ -2,6 +2,10 @@ const router = require('express').Router();
 const path = require('path')
 const multer  = require('multer');
 const events = require('../models/events');
+const tickets = require('../models/tickets');
+const User = require('../models/users');
+const Bids = require('../models/bid');
+const Qr = require('../models/qr');
 const {verifyAccessToken,sellerverification} = require('../auth/jwt');
 const {getusername, getuserid} = require('../middlewares/user');
 
@@ -259,6 +263,148 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
             }
         })
         .catch(err => res.status(500).json("Server error"))
+});
+
+/**
+ * @swagger
+ *  '/s/event/bid/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/bid/:eventid').get(verifyAccessToken,(req,res) => {
+    Bids.find({eventid:req.params.eventid}).then(async (Bdata) =>{
+        var jsondata = [];
+        for (i in Bdata) {
+            var response = await User.findById(Bdata[i].userid).then(async Udata =>{
+                return await events.findById(Bdata[i].eventid).then(async Edata =>{
+                    return await tickets.findById(Bdata[i].ticketid).then(async Tdata =>{
+                        var response = {
+                            bidid:Bdata[i].id,
+                            tickets:Bdata[i].ticketcount,
+                            amount:Bdata[i].bid_amount,
+                            username:Udata.username,
+                            email:Udata.email,
+                            ticketLevel:Tdata.ticket_level,
+                        }
+                        return response;
+                    })
+                })
+            })
+            jsondata.push(response);
+        };
+
+        await res.status(200).json(jsondata);
+    }).catch(err => res.status(200).json("Server error"))
+});
+
+/**
+ * @swagger
+ *  '/s/event/buy/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+//  router.route('/event/buy/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+ router.route('/event/buy/:eventid').get(verifyAccessToken,(req,res) => {
+    var jsondata = [];
+     tickets.find({eventid:req.params.eventid}).then(async Edata =>{
+        for (i in Edata) {
+            await Qr.find({ticketid:Edata[i].id}).then(async (Qrdata) =>{
+                for (j in Qrdata) {
+
+                    var json_j = await User.findById(Qrdata[j].userid).then(async Udata =>{
+
+                        var response = {
+                            qrid:Qrdata[j].id,
+                            validity:Qrdata[j].validity,
+                            status:Qrdata[j].status,
+                            ticketLevel:Edata[i].ticket_level,
+                            username:Udata.username,
+                            email:Udata.email,
+                            type:Udata.usertype,
+                        }
+                        return(response);
+                    })
+                    jsondata.push(json_j);
+                }
+            })
+        }
+        res.status(200).json(jsondata);
+    }).catch(err => res.status(500).json("Server error"))
+});
+
+/**
+ * @swagger
+ *  '/s/event/ticket/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event summary data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/ticket/:eventid').get((req,res) => {
+    var jsondata = [];
+    events.findById(req.params.eventid).then(async Edata => {
+        tickets.find({eventid:req.params.eventid}).then(async Tdata =>{
+            for (i in Tdata) {
+                var p3_cal = (Tdata[i].nosold/Tdata[i].buy_quantity)*100;
+                var b3_cal = (Tdata[i].nobids/Tdata[i].bid_quantity)*100;
+                var b3_any = b3_cal<100?b3_cal<50?b3_cal<30?1:2:3:4;
+                var response = {
+                    Abids:Tdata[i].nobids,
+                    Abuy:Tdata[i].nosold,
+                    bid:Tdata[i].bid_quantity,
+                    buy:Tdata[i].buy_quantity,
+                    level:Tdata[i].ticket_level,
+                    b3:b3_any,
+                    p3:p3_cal,
+                }
+                jsondata.push(response);
+            }
+            res.status(200).json(jsondata);
+         })
+    }).catch(err => res.status(500).json("Server error"))
 });
 
 /**

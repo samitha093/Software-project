@@ -38,8 +38,8 @@ const Drowercard: React.FC<DrowercardProps> = ({ticketid,qty,data}) => {
         axios.get(gethost() + 'g/ticketbyid/'+ticketid,{withCredentials:false})
         .then(async (res)=>{
             if(res.data){
-              setticket(res.data)
-              var asd = gethost()+res.data.img
+              setticket(res.data.ticket)
+              var asd = gethost()+res.data.ticket.img
               setimg(`url("`+asd+`")`);
             }
         })
