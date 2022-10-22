@@ -78,7 +78,7 @@ function  ticketController (){
             //control user added tickets
             crons.find({job_type:"E", job_status:true},(err,data_crone)=>{
                 if(data_crone.length>0){
-                    data_crone.map(async(dataSet)=>{  
+                    data_crone.map(async(dataSet)=>{
                         var result = await ticketMonitor.ticketMonitor(dataSet, body);
                         if(result){
                             dataSet.job_status = false;
@@ -96,8 +96,8 @@ function  bidController (){
     //control user added bids
     crons.find({job_type:"F", job_status:true},(err,data_crone)=>{
         if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{  
-                
+            data_crone.map(async(dataSet)=>{
+                console.log(dataSet);
             });
         }
     })

@@ -652,7 +652,7 @@ router.route('/categories').get(async(req,res) => {
     for (let item of cart) {
       await tickets.findById(item.itemid)
         .then(async(data) =>{
-          data.buy_quantity -= item.qty;
+          data.nosold += 1;
           data.save()
             .then(()=> console.log("ticket updated"))
             .catch(err => console.log(err))

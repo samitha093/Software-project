@@ -286,7 +286,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *              500:
  *                  description: Server failure
  */
- router.route('/event/bid/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+ router.route('/event/bid/:eventid').get(verifyAccessToken,(req,res) => {
     Bids.find({eventid:req.params.eventid}).then(async (Bdata) =>{
         var jsondata = [];
         for (i in Bdata) {
@@ -309,8 +309,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
         };
 
         await res.status(200).json(jsondata);
-    })
-    
+    }).catch(err => res.status(200).json("Server error"))
 });
 
 /**
@@ -335,16 +334,15 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *                  description: Server failure
  */
 //  router.route('/event/buy/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
- router.route('/event/buy/:eventid').get((req,res) => {
+ router.route('/event/buy/:eventid').get(verifyAccessToken,(req,res) => {
     var jsondata = [];
      tickets.find({eventid:req.params.eventid}).then(async Edata =>{
         for (i in Edata) {
-            console.log(Edata[i].id);
             await Qr.find({ticketid:Edata[i].id}).then(async (Qrdata) =>{
                 for (j in Qrdata) {
-                    console.log("--"+Qrdata[j].id);
+
                     var json_j = await User.findById(Qrdata[j].userid).then(async Udata =>{
-                        console.log("----"+Udata.id);
+
                         var response = {
                             qrid:Qrdata[j].id,
                             validity:Qrdata[j].validity,
@@ -361,7 +359,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
             })
         }
         res.status(200).json(jsondata);
-    })
+    }).catch(err => res.status(500).json("Server error"))
 });
 
 /**
@@ -370,7 +368,7 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *      get:
  *          tags:
  *              - User-seller
- *          summary: get event data
+ *          summary: get event summary data
  *          parameters:
  *              - in: path
  *                required: false
@@ -385,8 +383,28 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
  *              500:
  *                  description: Server failure
  */
- router.route('/event/ticket/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
-    res.status(200).json("ok")
+ router.route('/event/ticket/:eventid').get((req,res) => {
+    var jsondata = [];
+    events.findById(req.params.eventid).then(async Edata => {
+        tickets.find({eventid:req.params.eventid}).then(async Tdata =>{
+            for (i in Tdata) {
+                var p3_cal = (Tdata[i].nosold/Tdata[i].buy_quantity)*100;
+                var b3_cal = (Tdata[i].nobids/Tdata[i].bid_quantity)*100;
+                var b3_any = b3_cal<100?b3_cal<50?b3_cal<30?1:2:3:4;
+                var response = {
+                    Abids:Tdata[i].nobids,
+                    Abuy:Tdata[i].nosold,
+                    bid:Tdata[i].bid_quantity,
+                    buy:Tdata[i].buy_quantity,
+                    level:Tdata[i].ticket_level,
+                    b3:b3_any,
+                    p3:p3_cal,
+                }
+                jsondata.push(response);
+            }
+            res.status(200).json(jsondata);
+         })
+    }).catch(err => res.status(500).json("Server error"))
 });
 
 /**

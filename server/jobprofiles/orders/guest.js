@@ -20,7 +20,7 @@ function guestOrder (dataSet){
             subdata.map(async(dt)=>{
                 const ticketid = dt.itemid;
                 var ticketqr = [];
-                const qty = dt.qty;        
+                const qty = dt.qty;
                 for(var i = 0; i < qty ; i++){
                     const newqr = new qr({
                         userid,
@@ -52,12 +52,12 @@ function guestOrder (dataSet){
             .catch(err => console.log(err))
         const job_type = "E";
         const job_name = "QR__MONITOR";
-        const job_id = ticketqr;
+
         const job_status = true;         
         const newcrons = new crons({
             job_type,
             job_name,
-            job_id,
+            job_id:ticketqr,
             job_status,
             });
         newcrons.save()

@@ -17,13 +17,12 @@ interface TicketsProps {
 
 const Tickets: React.FC<TicketsProps> = ({data}) => {
     const [items, setitem] = React.useState<any[]>([]);
-    const rows = [    
-        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"VALIDATED",},    
-        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"GUEST", "status":"ACTIVE",},   
-        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"SUSPEND",},   
-        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"GUEST", "status":"VALIDATED",},   
-        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"ACTIVE",},   
-      
+    const rows = [
+        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"VALIDATED",},
+        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"GUEST", "status":"ACTIVE",},
+        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"SUSPEND",},
+        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"GUEST", "status":"VALIDATED",},
+        {"id" : "14gsd54a3sfdc", "name":"name test", "email":"mail@mail.com", "type":"BUYER", "status":"ACTIVE",},
     ];
 
     React.useEffect(() => {
@@ -86,8 +85,6 @@ const Tickets: React.FC<TicketsProps> = ({data}) => {
                                 {row.type}
                             </div>
                             }
-                            
-                            
                         </TableCell>
                         <TableCell align="right">
                             {row.validity == false?
@@ -95,19 +92,16 @@ const Tickets: React.FC<TicketsProps> = ({data}) => {
                                 VALIDATED
                             </div>
                             :null}
-                            
                             {row.status == true?
                             <div className={styles.table_seller_status_active}>
                                 ACTIVE
                             </div>
                             :null}
-                            
                             {row.status == false?
                             <div className={styles.table_seller_status_deactive}>
                                 SUSPEND
                             </div>
                             :null}
-                            
                         </TableCell>
                         <TableCell>
                             <div className={styles.table_seller_action}>
