@@ -27,6 +27,8 @@
 #remove Library Files From http proxy
 /websocket/node_modules/
 
+#remove SSL Files From nginx proxy
+/proxy/certificates/
 
 # ependencies
 /.pnp

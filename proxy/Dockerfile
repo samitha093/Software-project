@@ -11,6 +11,10 @@ RUN apk update && apk add \
     bash
 
 COPY ssl/generate-ssl.sh /etc/nginx/generate-ssl.sh
+
+# COPY certificates/ssl-cert.crt /etc/nginx/ssl-cert.crt
+# COPY certificates/ssl-cert.info /etc/nginx/ssl-cert.info
+# COPY certificates/ssl-cert.key /etc/nginx/ssl-cert.key
 RUN chmod +x /etc/nginx/generate-ssl.sh
 RUN cd /etc/nginx && ./generate-ssl.sh
 
