@@ -16,7 +16,44 @@ interface SellerProps {
     data: any
     refresh: any
 }
- 
+
+//Start Re-Verifivation
+async function PopupReVerification(data:any, refresh:any){
+    console.log("ffff");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, resend OTP!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
+                const config = {
+                    headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+                };
+                const datapack = {
+                    userid: data
+                };
+                axios.post(gethost() +'g/reverify',datapack, config).then(async (res) => {
+                    refresh.change(res.data);
+                })
+                    .catch(() => {
+                        Swal.fire(
+                            'Successful!',
+                            'Re-Verification OTP has been sent',
+                            'success'
+                          )
+                    })
+            })
+            .catch((err) => { })
+        }
+      })
+  }
+ //End Re-Verifivation
+
 async function PopupConfirm(data:any, refresh:any){
     Swal.fire({
         title: 'Are you sure?',
@@ -163,7 +200,7 @@ const Seller: React.FC<SellerProps> = ({data,refresh}) => {
                         </TableCell>
                         <TableCell>
                             <div className={styles.table_seller_action}>
-                                <div className={styles.table_seller_action_verify}>Re-verification</div>
+                                <div className={styles.table_seller_action_verify} onClick={(e)=>PopupReVerification(row.id,refresh)}>Re-verification</div>
                                 {(row.suspendstatus == true)||row.status == false?
                                 <div className={styles.table_seller_action_activate} onClick={(e)=>PopupConfirm(row.id,refresh)}>Activate</div>
                                 :
