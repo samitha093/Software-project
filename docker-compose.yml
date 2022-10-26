@@ -122,7 +122,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-      ME_CONFIG_MONGODB_URL: mongodb://root:password@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:password@10.5.0.106:27017/
     depends_on:
       - mongo
 volumes:
