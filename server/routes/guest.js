@@ -7,9 +7,9 @@ const util_category = require('../models/util_category');
 const orders = require('../models/orders')
 const crons = require('../models/cron');
 const events = require('../models/events');
-const {a, b, c, d} = require('../views/otp')
-const {secretGenerator, otpgenerator} = require('../auth/jwt')
-const {emailnotifications} = require('../smtp/mail')
+const { a, b, c, d } = require('../views/otp')
+const { secretGenerator, otpgenerator } = require('../auth/jwt')
+const { emailnotifications } = require('../smtp/mail')
 
 
 require('dotenv').config();
@@ -68,6 +68,16 @@ const next = process.env.NEXT_HOST;
  *                  name: "?"
  *                  email: "?"
  *                  usertype: "?"
+ *          reemail:
+ *              type: object
+ *              required:
+ *                  - userid
+ *              properties:
+ *                  userid:
+ *                      type: string
+ *                      description: validated number of charactors
+ *              example:
+ *                  userid: "?"
  *          otpactivate:
  *              type: object
  *              required:
@@ -168,78 +178,78 @@ const next = process.env.NEXT_HOST;
   *   name: User-guest
   *   description: Public Routes
   */
- /**
-   * @swagger
-   * '/g/tickets':
-   *  get:
-   *     tags:
-   *     - User-guest
-   *     summary: Get Tickets
-   *     requestBody:
-   *      required: false
-   *     responses:
-   *      200:
-   *        description: Success
-   *      400:
-   *        description: Wrong User Format
-   *      500:
-   *        description: Server failure
-   */
+/**
+  * @swagger
+  * '/g/tickets':
+  *  get:
+  *     tags:
+  *     - User-guest
+  *     summary: Get Tickets
+  *     requestBody:
+  *      required: false
+  *     responses:
+  *      200:
+  *        description: Success
+  *      400:
+  *        description: Wrong User Format
+  *      500:
+  *        description: Server failure
+  */
 
-  router.route('/tickets').get((req,res) => {
-    tickets.find({status:true},(err,data) => {
-        res.status(200).json(data) 
+router.route('/tickets').get((req, res) => {
+    tickets.find({ status: true }, (err, data) => {
+        res.status(200).json(data)
     })
 });
 
-  /**
-   * @swagger
-   * '/g/register':
-   *  post:
-   *     tags:
-   *     - User-guest
-   *     summary: Register a user
-   *     requestBody:
-   *      required: true
-   *      content:
-   *        application/json:
-   *           schema:
-   *              $ref: '#/components/schemas/CreateUsers'
-   *     responses:
-   *      200:
-   *        description: Success
-   *      400:
-   *        description: Exist user account
-   *      500:
-   *        description: Server failure
-   */
+/**
+ * @swagger
+ * '/g/register':
+ *  post:
+ *     tags:
+ *     - User-guest
+ *     summary: Register a user
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/CreateUsers'
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: Exist user account
+ *      500:
+ *        description: Server failure
+ */
 
-router.route('/register').post((req,res) => {
+router.route('/register').post((req, res) => {
     var response = {};
     const username = req.body.name;
     const email = req.body.email;
     const contact = req.body.contactnumber;
     const password = req.body.password;
     const usertype = req.body.usertype;
-    User.find({email:email},(err,data) => {
-        if(data.length>0){
+    User.find({ email: email }, (err, data) => {
+        if (data.length > 0) {
             res.status(400).json("User alreadyt exist");
             return 0;
-        } 
+        }
         const newuser = new User({
             username,
             email,
             contact,
             password,
             usertype,
-            });
+        });
         newuser.save()
-            .then((result)=> {
+            .then((result) => {
                 res.status(200).json(result._id)
             })
-            .catch(err => res.status(500).json(err)) 
+            .catch(err => res.status(500).json(err))
     })
- 
+
 });
 
 /**
@@ -264,20 +274,20 @@ router.route('/register').post((req,res) => {
    *        description: Server failure
    */
 
- router.route('/activate').post((req,res) => {
-    User.find({email:req.body.email,otp:req.body.otp, status:false})
-        .then(data =>{
-            if(data[0].usertype === "BUYER"){
+router.route('/activate').post((req, res) => {
+    User.find({ email: req.body.email, otp: req.body.otp, status: false })
+        .then(data => {
+            if (data[0].usertype === "BUYER") {
                 data[0].status = true;
-            }else if(data[0].usertype === "MANAGER"){
+            } else if (data[0].usertype === "MANAGER") {
                 data[0].status = true;
-            }else{
+            } else {
                 data[0].status = false;
             }
-            
+
             data[0].otp = "0";
             data[0].save()
-                .then(()=> res.status(200).json("validated"))
+                .then(() => res.status(200).json("validated"))
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json("Wrong OTP"))
@@ -301,9 +311,9 @@ router.route('/register').post((req,res) => {
    *        description: Server failure
    */
 
- router.route('/managercount').get((req,res) => {
-    User.find({usertype:"MANAGER"},(err,data) => {
-        res.status(200).json(data.length) 
+router.route('/managercount').get((req, res) => {
+    User.find({ usertype: "MANAGER" }, (err, data) => {
+        res.status(200).json(data.length)
     })
 });
 
@@ -329,13 +339,13 @@ router.route('/register').post((req,res) => {
    *        description: Server failure
    */
 
- router.route('/passwordreset').post((req,res) => {
-    User.find({email:req.body.email,otp:req.body.otp})
-        .then(data =>{
+router.route('/passwordreset').post((req, res) => {
+    User.find({ email: req.body.email, otp: req.body.otp })
+        .then(data => {
             data[0].password = req.body.password;
             data[0].otp = "0";
             data[0].save()
-                .then(()=> res.status(200).json("validated"))
+                .then(() => res.status(200).json("validated"))
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json("Wrong OTP"))
@@ -364,46 +374,46 @@ router.route('/register').post((req,res) => {
    */
 
 
-router.route('/login').post((req,res) => {
-    
+router.route('/login').post((req, res) => {
+
     const email = req.body.email;
     const password = req.body.password;
 
-    User.find({email:email, password:password, status:true, suspendstatus:false},async(err,data)=>{
-    if(data.length>0){
-        const payload = {"email" : email, "type":data[0].usertype}
-        const secret = await secretGenerator(250)
-        const token = await jwt.sign(payload,secret)
-        let datapack = {
-            type: data[0].usertype, 
-        }
-        User.find({email:email})
-        .then(datas =>{
-            datas[0].secret = secret;
-            datas[0].token = token;
-            datas[0].save()
-                .then(()=> {
-                    res.status(200).cookie(
-                        "TickBid",
-                        token,
-                        {
-                           //sameSite : 'strict',
-                           httpOnly:true,
-                           //secure:true
-                        }
-                    ).json(datapack)
-                    //res.status(200).json(datapack)
+    User.find({ email: email, password: password, status: true, suspendstatus: false }, async (err, data) => {
+        if (data.length > 0) {
+            const payload = { "email": email, "type": data[0].usertype }
+            const secret = await secretGenerator(250)
+            const token = await jwt.sign(payload, secret)
+            let datapack = {
+                type: data[0].usertype,
+            }
+            User.find({ email: email })
+                .then(datas => {
+                    datas[0].secret = secret;
+                    datas[0].token = token;
+                    datas[0].save()
+                        .then(() => {
+                            res.status(200).cookie(
+                                "TickBid",
+                                token,
+                                {
+                                    //sameSite : 'strict',
+                                    httpOnly: true,
+                                    //secure:true
+                                }
+                            ).json(datapack)
+                            //res.status(200).json(datapack)
+                        })
+                        .catch(err => res.status(500).json(err))
+                    return 0;
                 })
-                .catch(err => res.status(500).json(err))
-                return 0;
-        })
-        .catch(err => res.status(400).json("Wrong OTP"))
-        return 0;
-    }else{
-        res.status(400).json("User does not exist");
-    }
-  })
-    
+                .catch(err => res.status(400).json("Wrong OTP"))
+            return 0;
+        } else {
+            res.status(400).json("User does not exist");
+        }
+    })
+
 });
 
 /**
@@ -413,58 +423,112 @@ router.route('/login').post((req,res) => {
   *   description: Public Routes
   */
 
-  /**
-   * @swagger
-   * '/g/verify':
-   *  post:
-   *     tags:
-   *     - Email-Sender
-   *     summary: Send OTP For useraccount Verification
-   *     requestBody:
-   *      required: false
-   *      content:
-   *        application/json:
-   *           schema:
-   *              $ref: '#/components/schemas/email'
-   *     responses:
-   *      200:
-   *        description: Success
-   *      400:
-   *        description: Notregisted user
-   *      500:
-   *        description: Server failure
-   */
-  
-  
-    router.route('/verify').post((req,res) => {
-        const username = req.body.name;
-        const type = req.body.usertype;
-        User.find({email:req.body.email})
-            .then(data =>{
-                var otpid = otpgenerator(10)
-                data[0].otp = otpid;
-                data[0].save()
-                    .then(async()=>{
-                        const email = req.body.email;
-                        const subject = "OTP for Activate your TickBid Account";
-                        if (type == "reset"){
-                            const restlink = next + "user/resetpwd?email="+req.body.email+"&otp="+otpid;
-                            const restlinktitle = "We received a request to reset the password for the Tickbid account , use below link to reset password <br>";
-                            const html = a + username +b + otpid + c + restlinktitle + restlink + d
-                            await emailnotifications(email, subject, html);
-                        }else{
-                            const html = a + username +b + otpid + c  + d
-                            await emailnotifications(email, subject, html);
-                        }
-                        res.status(200).json("Email Sended");
-                    })
-                    .catch((err )=> {
-                        console.log(err);
-                        res.status(500).json(err)
-                    })
-            })
-            .catch(err => res.status(400).json("Not Found User Accout For this email"))
-    });
+/**
+ * @swagger
+ * '/g/verify':
+ *  post:
+ *     tags:
+ *     - Email-Sender
+ *     summary: Send OTP For useraccount Verification
+ *     requestBody:
+ *      required: false
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/email'
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: Notregisted user
+ *      500:
+ *        description: Server failure
+ */
+
+
+router.route('/verify').post((req, res) => {
+    const username = req.body.name;
+    const type = req.body.usertype;
+    User.find({ email: req.body.email })
+        .then(data => {
+            var otpid = otpgenerator(10)
+            data[0].otp = otpid;
+            data[0].save()
+                .then(async () => {
+                    const email = req.body.email;
+                    const subject = "OTP for Activate your TickBid Account";
+                    if (type == "reset") {
+                        const restlink = next + "user/resetpwd?email=" + req.body.email + "&otp=" + otpid;
+                        const restlinktitle = "We received a request to reset the password for the Tickbid account , use below link to reset password <br>";
+                        const html = a + username + b + otpid + c + restlinktitle + restlink + d
+                        await emailnotifications(email, subject, html);
+                    } else {
+                        const html = a + username + b + otpid + c + d
+                        await emailnotifications(email, subject, html);
+                    }
+                    res.status(200).json("Email Sended");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(500).json(err)
+                })
+        })
+        .catch(err => res.status(400).json("Not Found User Accout For this email"))
+});
+
+/**
+  * @swagger
+  * tags:
+  *   name: Email-Sender
+  *   description: Public Routes
+  */
+
+/**
+ * @swagger
+ * '/g/reverify':
+ *  post:
+ *     tags:
+ *     - Email-Sender
+ *     summary: Send OTP For useraccount reerification
+ *     requestBody:
+ *      required: false
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/reemail'
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: Notregisted user
+ *      500:
+ *        description: Server failure
+ */
+
+
+router.route('/reverify').post((req, res) => {
+    console.log(req.body.userid);
+    User.findById(req.body.userid)
+        .then(data => {
+            var otpid = otpgenerator(10)
+            data.otp = otpid;
+            data.save()
+                .then(async () => {
+                    const email = data.email;
+                    console.log(email);
+                    const subject = "OTP for Reverify your TickBid Account";
+                    const restlink = next + "user/resetpwd?email=" + data.email + "&otp=" + otpid;
+                    const restlinktitle = "We received a request to reverify your Tickbid account , use below link to reset password <br>";
+                    const html = a + data.username + b + otpid + c + restlinktitle + restlink + d
+                    await emailnotifications(email, subject, html);
+                    res.status(200).json("Email Sended");
+                })
+                .catch((err) => {
+                    res.status(500).json(err)
+                })
+        })
+        .catch(err => res.status(400).json("Not Found User Accout For this email"))
+});
 
 /**
  * @swagger
@@ -483,12 +547,12 @@ router.route('/login').post((req,res) => {
  *      200:
  *        description: Send to Global Email Server
  */
-  
-router.route('/notification').post(async(req,res) => {
+
+router.route('/notification').post(async (req, res) => {
     const email = req.body.email;
     const subject = req.body.subject;
     const html = req.body.html;
-    const emails = await  emailnotifications(email, subject, html)
+    const emails = await emailnotifications(email, subject, html)
     res.status(200).json("Sended email");
 });
 
@@ -515,9 +579,9 @@ router.route('/notification').post(async(req,res) => {
  *      500:
  *        description: Server failure
  */
-router.route('/areas').get(async(req,res) => {
+router.route('/areas').get(async (req, res) => {
     util_area.find({})
-        .then(data =>{res.status(200).json(data)})
+        .then(data => { res.status(200).json(data) })
         .catch(err => res.status(400).json("Wrong db connection"))
 });
 /**
@@ -537,9 +601,9 @@ router.route('/areas').get(async(req,res) => {
  *      500:
  *        description: Server failure
  */
-router.route('/categories').get(async(req,res) => {
+router.route('/categories').get(async (req, res) => {
     util_category.find({})
-        .then(data =>{res.status(200).json(data)})
+        .then(data => { res.status(200).json(data) })
         .catch(err => res.status(400).json("Wrong db connection"))
 });
 /**
@@ -564,16 +628,16 @@ router.route('/categories').get(async(req,res) => {
  *      500:
  *        description: Server failure
  */
- router.route('/ticketbyid/:ticketid').get(async(req,res) => {
-    tickets.findById(req.params.ticketid).then(data =>{
-            events.findById(data.eventid).then(Edata =>{
-                var response ={
-                    ticket : data,
-                    event : Edata
-                }
-                res.status(200).json(response);
-            }).catch()
-        })
+router.route('/ticketbyid/:ticketid').get(async (req, res) => {
+    tickets.findById(req.params.ticketid).then(data => {
+        events.findById(data.eventid).then(Edata => {
+            var response = {
+                ticket: data,
+                event: Edata
+            }
+            res.status(200).json(response);
+        }).catch()
+    })
         .catch(err => res.status(400).json("Wrong db connection"))
 });
 
@@ -594,28 +658,28 @@ router.route('/categories').get(async(req,res) => {
  *      200:
  *        description: calculated
  */
-  
- router.route('/cartamount').post(async(req,res) => {
+
+router.route('/cartamount').post(async (req, res) => {
     console.log("cart amount check")
-    if(!req.body.cart){
-       return res.status(200).json(0);
+    if (!req.body.cart) {
+        return res.status(200).json(0);
     }
     const cart = req.body.cart;
     console.log(cart);
     var Amount = 0;
     for (let item of cart) {
-    var data = await tickets.findById(item.itemid)
-        .then(data =>{
-            return Amount += data.buy_amount*item.qty;
-        })
+        var data = await tickets.findById(item.itemid)
+            .then(data => {
+                return Amount += data.buy_amount * item.qty;
+            })
     }
     console.log(data);
-    if(data){
+    if (data) {
         res.status(200).json(data);
-    }else{
+    } else {
         res.status(200).json(0);
     }
-    
+
 });
 
 /**
@@ -639,99 +703,99 @@ router.route('/categories').get(async(req,res) => {
  *      500:
  *        description: server error
  */
- router.route('/order').post(async(req,res) => {
+router.route('/order').post(async (req, res) => {
     const userid = usernamegenerator(20);
     const usertype = "GUEST";
-   const neworder = new orders({
-    userid,
-    usertype
-   });
-    var orderid = await neworder.save().then((result)=>{return result._id})
+    const neworder = new orders({
+        userid,
+        usertype
+    });
+    var orderid = await neworder.save().then((result) => { return result._id })
     //console.log(neworder);
     const cart = req.body.cart;
     for (let item of cart) {
-      await tickets.findById(item.itemid)
-        .then(async(data) =>{
-          data.nosold += 1;
-          data.save()
-            .then(()=> console.log("ticket updated"))
+        await tickets.findById(item.itemid)
+            .then(async (data) => {
+                data.nosold += 1;
+                data.save()
+                    .then(() => console.log("ticket updated"))
+                    .catch(err => console.log(err))
+                //console.log(req.userid);
+                //console.log(req.userdata.type);
+            })
+    }
+    await orders.findById(orderid).then(async (ordersata) => {
+        ordersata.tickets = cart;
+        ordersata.save()
+            .then(() => console.log("oder updated"))
             .catch(err => console.log(err))
-          //console.log(req.userid);
-          //console.log(req.userdata.type);
-        })
-      }
-    await orders.findById(orderid).then(async(ordersata)=> {
-    ordersata.tickets = cart;
-    ordersata.save()
-        .then(()=> console.log("oder updated"))
-        .catch(err => console.log(err))
     })
     const job_type = "C";
     const job_name = "CREATE_QR";
     const job_id = orderid;
-    const job_status = true;         
+    const job_status = true;
     const newcrons = new crons({
         job_type,
         job_name,
         job_id,
         job_status,
-        });
+    });
     newcrons.save()
     res.status(200).json(orderid)
 
 });
 
 function usernamegenerator(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
- charactersLength));
-   }
-   return result;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
 }
 
- /**
- * @swagger
- * '/g/tickets':
- *  post:
- *     tags:
- *     - User-guest
- *     summary: get tickts via filter
- *     requestBody:
- *      required: true
- *      content:
- *        application/json:
- *           schema:
- *              $ref: '#/components/schemas/filter'
- *     responses:
- *      200:
- *        description: added to account
- *      400:
- *        description: error for adding
- *      500:
- *        description: server error
- */
+/**
+* @swagger
+* '/g/tickets':
+*  post:
+*     tags:
+*     - User-guest
+*     summary: get tickts via filter
+*     requestBody:
+*      required: true
+*      content:
+*        application/json:
+*           schema:
+*              $ref: '#/components/schemas/filter'
+*     responses:
+*      200:
+*        description: added to account
+*      400:
+*        description: error for adding
+*      500:
+*        description: server error
+*/
 
-  router.route('/tickets').post(async(req,res) => {
+router.route('/tickets').post(async (req, res) => {
     // tickets.find({},(err,data) => {
     //     res.status(200).json(data) 
     // })
     var dataset1 = [];
-    if(!(req.body.dataarray.name =='')){
+    if (!(req.body.dataarray.name == '')) {
         //console.log(req.body.dataarray.name)
         var userRegex = new RegExp(req.body.dataarray.name, 'i')
-        dataset1 = await tickets.find({event_name: userRegex,status:true},(err,data) => {return data})
-    }else{
-        dataset1 = await tickets.find({status:true},(err,data) => {return data})
+        dataset1 = await tickets.find({ event_name: userRegex, status: true }, (err, data) => { return data })
+    } else {
+        dataset1 = await tickets.find({ status: true }, (err, data) => { return data })
     }
     //console.log(dataset)
     var dataset2 = [];
-    if(req.body.dataarray.category.length>0){
+    if (req.body.dataarray.category.length > 0) {
         var subdoc = req.body.dataarray.category;
         dataset2 = dataset1.filter(val => (
-            val.event_category == subdoc[0] 
+            val.event_category == subdoc[0]
             || val.event_category == subdoc[1]
             || val.event_category == subdoc[2]
             || val.event_category == subdoc[3]
@@ -747,15 +811,15 @@ function usernamegenerator(length) {
             || val.event_category == subdoc[13]
             || val.event_category == subdoc[14]
         ));
-    }else{
+    } else {
         dataset2 = dataset1;
     }
     //console.log(dataset2)
     var dataset3 = [];
-    if(req.body.dataarray.area.length>0){
+    if (req.body.dataarray.area.length > 0) {
         var subdoc = req.body.dataarray.area;
         dataset3 = dataset2.filter(val => (
-            val.area == subdoc[0] 
+            val.area == subdoc[0]
             || val.area == subdoc[1]
             || val.area == subdoc[2]
             || val.area == subdoc[3]
@@ -771,27 +835,27 @@ function usernamegenerator(length) {
             || val.area == subdoc[13]
             || val.area == subdoc[14]
         ));
-    }else{
+    } else {
         dataset3 = dataset2;
     }
     //console.log(dataset3)
     //console.log(req.body.dataarray.ticketTypes.l1)
-    if(!req.body.dataarray.ticketTypes.l1){
+    if (!req.body.dataarray.ticketTypes.l1) {
         dataset3 = dataset3.filter(val => !(val.ticket_level == 1))
     }
-    if(!req.body.dataarray.ticketTypes.l2){
+    if (!req.body.dataarray.ticketTypes.l2) {
         dataset3 = dataset3.filter(val => !(val.ticket_level == 2))
     }
-    if(!req.body.dataarray.ticketTypes.l3){
+    if (!req.body.dataarray.ticketTypes.l3) {
         dataset3 = dataset3.filter(val => !(val.ticket_level == 3))
     }
-    if(!req.body.dataarray.ticketTypes.l4){
+    if (!req.body.dataarray.ticketTypes.l4) {
         dataset3 = dataset3.filter(val => !(val.ticket_level == 4))
     }
-    if(!req.body.dataarray.ticketTypes.l5){
+    if (!req.body.dataarray.ticketTypes.l5) {
         dataset3 = dataset3.filter(val => !(val.ticket_level == 5))
     }
-    res.status(200).json(dataset3) 
+    res.status(200).json(dataset3)
 });
 
 module.exports = router;

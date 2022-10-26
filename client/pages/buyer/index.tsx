@@ -42,21 +42,21 @@ const index: NextPage = () => {
       setVisible(15);
       setNextCount(10);
     }
-    if (window.matchMedia("(max-width : 1300px)").matches) {
+    if (window.matchMedia("(max-width : 1775px)").matches) {
       setVisible(12);
       setNextCount(8);
     }
-    if (window.matchMedia("(max-width : 1246px)").matches) {
+    if (window.matchMedia("(max-width : 1300px)").matches) {
       setVisible(9);
       setNextCount(6);
     }
-    if (window.matchMedia("(max-width : 976px)").matches) {
+    if (window.matchMedia("(max-width : 1246px)").matches) {
       setVisible(6);
       setNextCount(6);
     }
-    if (window.matchMedia("(max-width : 707px)").matches) {
-      setVisible(3);
-      setNextCount(3);
+    if (window.matchMedia("(max-width : 500px)").matches) {
+      setVisible(4);
+      setNextCount(4);
     }
   }
 
