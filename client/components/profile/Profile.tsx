@@ -12,10 +12,10 @@ import Swal from 'sweetalert2'
 import {gethost} from '../../session/Session';
 
 function Profile() {
-    const [openAccount, setopenAccount] = React.useState(true);
+    const [openAccount, setopenAccount] = React.useState(false);
     const [openSecurity, setopenSecurity] = React.useState(false);
     const [openAdvance, setopenAdvance] = React.useState(false);
-    const [items, setitems] = React.useState<any[]>([])
+    const [items, setitems] = React.useState<any>([])
     const submitotp = () => {
         console.log('otp');
     };
@@ -27,8 +27,8 @@ function Profile() {
             headers: { Authorization: `Bearer ${res.data.accesstoken}` }
           };
           await axios.get(gethost() + 'a/mydata',config).then(async (res)=>{
-            await setitems(res.data)
-            console.log(res.data)
+            await setitems(res.data[0])
+            setopenAccount(true)
           })
         })
         .catch((err)=>{
@@ -48,18 +48,26 @@ function Profile() {
                 <div className={styles.profile_card}>
                     <div className={styles.profile_card_container}>
                         <div className={styles.profile_card_left}>
+                            {items.otp=='verified'?
+                            <Progressbar_light data={{progress : 100}}/>:
                             <Progressbar_light data={{progress : 70}}/>
+                            }
+                            
                         </div>
                         <div className={styles.profile_card_right}>
                             <h3>Profile Informations</h3>
                             <p>Complete your profile to unlock all features</p>
-                            <p>User Type : Seller</p>
-                            <p>Unverified User Account</p>
+                            <p>User Type : {items.usertype}</p>
+                            <p>{items.otp} User Account</p>
                         </div>                      
                     </div>
+                    {items.otp=='verified'?null:
                     <div className={styles.profile_card_container_footer}>
+                    
                         <h3><div onClick={submitotp}>Verify My Account</div></h3>
+                    
                     </div>
+                    }
                 </div>
                 <div className={styles.profile_card_menu}>
                     <div className={styles.profile_card_menu_container}>
@@ -106,7 +114,7 @@ function Profile() {
             <div className={styles.profile_container_bg_right}>
                 {openAccount?<Account data={items}/>:null}
                 {openSecurity?<Security/>:null}
-                {openAdvance?<Advance/>:null}
+                {openAdvance?<Advance userdata={items}/>:null}
             </div>
         </div>
     </div>

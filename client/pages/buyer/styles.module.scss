@@ -18,7 +18,7 @@
     padding-left: 30px;
 }
 .buyer_index_container_title{
-    padding-left: 100px;
+    padding-left: 150px;
 }
 .buyer_index_container_d2{
     position: absolute;
@@ -37,10 +37,19 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.buyer_index_loadmore_button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
 @media only screen and (max-width: 600px) {
     .buyer_index{
         display: block;
         overflow: auto;
+        padding-top: 120px;
     }
     .buyer_index_content h1{
         padding-left: 0px;
@@ -55,6 +64,9 @@
     }
     .buyer_index_container_parent{
         padding-top: 90px;
+    }
+    .buyer_index_container_title{
+        padding-left: 0px;
     }
 }
 /*end- Buyer index pg*/

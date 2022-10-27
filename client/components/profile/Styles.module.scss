@@ -127,8 +127,7 @@
     margin: 20px 0px;
 }
 .account_profile_container_form_section1_left{
-    width:50%;
-    padding-right: 20px;
+    width:100%;
 }
 .account_profile_container_form_section1_right{
     width:50%;
@@ -177,3 +176,36 @@
     border-radius: 50%;
 }
 /* End Account settings Section*/
+.device_card{
+    margin: 20px;
+    display: flex;
+    position: relative;
+}
+.device_card_qr{
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+}
+.device_card_data{
+    width: 60%;
+}
+.addMoreEndDevices{
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+
+}
+.device_list{
+    max-height: 50vh;
+    overflow: auto;
+}
+.device_card_close{
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top:0;
+    right: 0;
+}

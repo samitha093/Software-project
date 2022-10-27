@@ -14,7 +14,7 @@ interface AccountProps {
 const Account: React.FC<AccountProps> = ({data}) => {
   const [items, setitems] = React.useState<any>()
   React.useEffect(()=>{
-   setitems(data[0]);
+   setitems(data);
   },[])
   return (
     <div>
@@ -25,8 +25,8 @@ const Account: React.FC<AccountProps> = ({data}) => {
               <div className={styles.account_profile_card_container_left_img}><Image className={styles.account_profile_card_container_left_img_icon} src = {user} layout = "responsive" objectFit="cover" m-50="true" alt=''/></div>
           </div>
           <div className={styles.account_profile_card_container_right}>
-            <h1>kjhkjhj</h1>
-            jkljlkj
+            <h1>{data.username}</h1>
+            {data.email}
           </div>
         </div>
       </div>
@@ -41,19 +41,7 @@ const Account: React.FC<AccountProps> = ({data}) => {
                     <br></br>
                     <TextField fullWidth
                       id="filled-read-only-input"
-                      defaultValue="Lakshan"
-                      InputProps={{
-                        readOnly: true,
-                      }}
-                      variant="filled"
-                    />
-                </div>
-                <div className={styles.account_profile_container_form_section1_right}>
-                    Last Name
-                    <br></br>
-                    <TextField fullWidth
-                      id="filled-read-only-input"
-                      defaultValue="aPathiraja"
+                      defaultValue={data.username}
                       InputProps={{
                         readOnly: true,
                       }}
@@ -66,7 +54,7 @@ const Account: React.FC<AccountProps> = ({data}) => {
               <br></br>
               <TextField fullWidth
                 id="filled-read-only-input"
-                defaultValue="abc@gmail.com"
+                defaultValue={data.email}
                 InputProps={{
                   readOnly: true,
                 }}

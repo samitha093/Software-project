@@ -19,12 +19,14 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
 
 interface TopbarProps {
   id2: string;
+  data:any;
 }
 
-const ManagerTopBar: React.FC<TopbarProps> = ({ id2 }) => {
+const ManagerTopBar: React.FC<TopbarProps> = ({ id2 , data}) => {
   const [managertopbar1, setmanagertopbar1] = React.useState(true);
   const [managertopbar2, setmanagertopbar2] = React.useState(false);
   const [managertopbar3, setmanagertopbar3] = React.useState(false);
+  const [sellertopbarID, setsellertopbarID] = React.useState(id2);
   React.useEffect(() => {
     if (id2 == "1") {
       setmanagertopbar1(true);
@@ -39,27 +41,36 @@ const ManagerTopBar: React.FC<TopbarProps> = ({ id2 }) => {
       setmanagertopbar2(false);
       setmanagertopbar3(true);
     }
-  }, []);
+  }, [sellertopbarID]);
+
+  async function changeID(id:any, data:any){
+    if(id.target.childNodes[0].nodeValue == 'Pending'){
+      setsellertopbarID("1");
+      await data.change("1")
+    }else if(id.target.childNodes[0].nodeValue == 'Active'){
+      setsellertopbarID("2");
+      data.change("2")
+    }else if(id.target.childNodes[0].nodeValue == 'Declined'){
+      setsellertopbarID("3");
+      data.change("3")
+    }
+  }
+
+
   return (
     <div className={styles.manager_c_topbar}>
       <div className={styles.manager_c_topbar_container}>
-        <Link href="/manager/pendingevents">
-          <div className={managertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+          <div className={managertopbar1 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={(e)=>changeID( e, data)}>
             Pending
           </div>
-        </Link>
 
-        <Link href="/manager/activeevents">
-          <div className={managertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+          <div className={managertopbar2 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={(e)=>changeID( e, data)}>
             Active
           </div>
-        </Link>
 
-        <Link href="/manager/declinedevents">
-          <div className={managertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'}>
+          <div className={managertopbar3 ? 'manager-c-topbar-item active' : 'manager-c-topbar-item'} onClick={(e)=>changeID( e, data)}>
             Declined
           </div>
-        </Link>
       </div>
     </div>
   );

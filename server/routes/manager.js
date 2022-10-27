@@ -14,12 +14,20 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  *              type: object
  *              required:
  *                  - email
+ *                  - status
+ *                  - suspendstatus
  *              properties:
  *                  email:
  *                      type: string
  *                      description: Validated email Format
+ *                  status:
+ *                      type: boolean
+ *                  suspendstatus:
+ *                      type: boolean
  *              example:
- *                  email: "?"
+ *                  id: "?"
+ *                  status: true
+ *                  type:   false
  *          updateaevent:
  *              type: object
  *              required:
@@ -56,7 +64,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
 /**
    * @swagger
-   * '/m/selleractivate':
+   * '/m/Useractivate':
    *  post:
    *     tags:
    *     - User-Manager
@@ -80,20 +88,22 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
    *            description: Server failure
    */
   
- router.route('/selleractivate').post(verifyAccessToken,managerverification,(req,res) => {
-    User.find({email:req.body.email,otp:"0", status:false})
+ router.route('/Useractivate').post(verifyAccessToken,managerverification,(req,res) => {
+    User.findById(req.body.id)
         .then(data =>{
-            data[0].status = true;
-            data[0].save()
-                .then(()=> res.status(200).json("validated"))
+            data.status = req.body.status;
+            data.suspendstatus = req.body.suspendstatus;
+            data.save()
+                .then(()=> res.status(200).json(req.body.id))
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json(err))
 });
 
+
 /**
    * @swagger
-   * '/m/pendingsellerlist':
+   * '/m/userlist/{type}':
    *  get:
    *     tags:
    *     - User-Manager
@@ -112,56 +122,60 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
    *        500:
    *            description: Server failure
    */
- router.route('/pendingsellerlist').get(verifyAccessToken,managerverification,(req,res) => {
-    var Projection = { 
-        status: false,
-        otp: false,
-        password: false,
-        usertype: false,
-        secret: false,
-        token: false,
-        tickets: false
-    };
-    User.find({usertype:"SELLER",otp:"0", status:false},Projection,(err,data) => {
-        res.status(200).json(data) 
-    })
-});
-
-/**
-   * @swagger
-   * '/m/activesellerlist':
-   *  get:
-   *     tags:
-   *     - User-Manager
-   *     summary: Get Active Seller List (data-out*)
-   *     requestBody:
-   *      required: false
-   *     responses:
-   *        200:
-   *            description: Pending Seller List
-   *        400:
-   *            description: No Pending Sellers
-   *        403:
-   *            description: Authentication Failed
-   *        401:
-   *            description: NULL Header
-   *        500:
-   *            description: Server failure
-   */
- router.route('/activesellerlist').get(verifyAccessToken,managerverification,(req,res) => {
+ 
+ router.route('/userlist/:type').get(verifyAccessToken,managerverification,(req,res) => {
+  var userType = req.params.type;
   var Projection = { 
-      status: false,
-      otp: false,
       password: false,
-      usertype: false,
       secret: false,
       token: false,
       tickets: false
   };
-  User.find({usertype:"SELLER", status:true},Projection,(err,data) => {
-      res.status(200).json(data) 
-  })
+  if(userType == 'pending'){
+    User.find({usertype:["SELLER","BUYER"],otp: '0', status:false, suspendstatus: false},Projection,(err,data) => {
+        res.status(200).json(masking(data)) 
+    })
+  }else if(userType == 'active'){
+    User.find({usertype:["SELLER","BUYER"],otp: '0', status:true, suspendstatus: false},Projection,(err,data) => {
+        res.status(200).json(masking(data)) 
+    })
+  }else if(userType == 'declined'){
+    User.find({usertype:["SELLER","BUYER"],otp: '0', suspendstatus: true},Projection,(err,data) => {
+        res.status(200).json(masking(data)) 
+    })
+  }else if(userType == 'unverified'){
+    User.find({usertype:["SELLER","BUYER"],otp: { "$ne": '0' }},Projection,(err,data) => {
+        res.status(200).json(masking(data)) 
+    })
+  }else{
+    User.find({usertype:["SELLER","BUYER"]},Projection,(err,data) => {
+        res.status(200).json(masking(data)) 
+    })
+  }
+  
 });
+const masking = (data)=>{
+    var j = 0;
+    for(var i in data){
+        if(data[j].otp == '0'){
+            data[j].otp = "verified"
+        }else{
+            data[j].otp = "unverified"
+        }        
+        let str = data[j].email
+        str = str.split('');
+        let finalArr=[];
+        let len = str.indexOf('@');
+        str.forEach((item,pos)=>{
+        (pos>=1 && pos<=len-2) ? finalArr.push('*') : finalArr.push(str[pos]);
+        }) 
+        var newEmail = finalArr.join('');
+        data[j].email = newEmail;
+        j = j+1;
+    }
+    
+    return(data);
+}
 
 /**
  * @swagger
@@ -185,12 +199,12 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  *                  description: Server failure
  */
  router.route('/getevent/:type').get(verifyAccessToken,managerverification,(req,res) => {
-  events.find({status:req.params.type})
+  events.find({status:req.params.type.toUpperCase()})
       .then(data =>{
           if(data.length>0){
               res.status(200).json(data)
           }else{
-              res.status(404).json("No data Found")
+              res.status(400).json("No data Found")
           }
       })
       .catch(err => res.status(500).json("Server error"))
@@ -225,7 +239,8 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
  */
 
  router.route('/approveaevent/:eventid').put(verifyAccessToken,managerverification,(req,res) => {
-  //console.log(req.userdata.email);
+  console.log(req.userdata.email);
+  console.log(req.body);
    events.findById(req.params.eventid)
        .then(data =>{
           data.status = req.body.status;
@@ -235,7 +250,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
               .catch(err => res.status(500).json(err))
        })
        .catch(err => res.status(400).json(err))
-
+       if(req.body.status == 'ACTIVE'){
         const job_type = "A";
         const job_name = "CREATE_TICKETS_MANAGER";
         const job_id = req.params.eventid;
@@ -247,6 +262,8 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
             job_status,
             });
         newcrons.save()
+       }
+        
 });
 
 /**
@@ -273,6 +290,7 @@ const {verifyAccessToken,managerverification} = require('../auth/jwt');
 
  router.route('/utilcategory').post(verifyAccessToken,managerverification,(req,res) => {
    const name = req.body.name;
+   console.log(name);
     const newutil = new util_category({
         name,
     });

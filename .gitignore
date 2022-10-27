@@ -1,9 +1,10 @@
 /.idea
 /.vscode
 /database/
+/node_modules/
+.env
 
 #remove Library Files from Client
-/node_modules/
 /client/node_modules/
 /client/coverage/
 /client/.next/
@@ -11,11 +12,23 @@
 /client/.vscode/
 /client/out/
 /client/build/
+/client/.env
 
 #remove Library Files From Server
 /server/.vs/
 /server/.vscode/
 /server/node_modules/
+/server/.env
+/server/uploads/
+
+#remove Library Files From Fastify
+/fastify/node_modules/
+
+#remove Library Files From http proxy
+/websocket/node_modules/
+
+#remove SSL Files From nginx proxy
+/proxy/certificates/
 
 # ependencies
 /.pnp

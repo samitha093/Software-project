@@ -4,6 +4,11 @@ import LockIcon from '@mui/icons-material/Lock';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import Image from 'next/image';
+import lock from '../../assets/lock.png'
+import {Box,Grid,} from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+
 import {gethost} from '../../session/Session';
 
 interface LoginProps {
@@ -69,6 +74,7 @@ async function signinformn(){
       timer: 2500
     })
   })
+      
 };
 async function signUpformn(){
   if(name==="" || email==="" || password==="" || confirmPassword==="" || contact==="" || selectedRadiobtn===""){
@@ -150,6 +156,7 @@ async function signUpformn(){
                 text: 'System Admin Will Review Your Account',
                 //showConfirmButton: false,
                 //timer: 2500
+
               })
             }else{
               //delete account Api needed
@@ -157,9 +164,11 @@ async function signUpformn(){
                 icon: 'success',
                 title: 'Registration successful',
                 text: 'Now You can Login With Your Email and password',
+
                 //showConfirmButton: false,
                 //timer: 2500
               })
+              
             } 
           })
           .catch((err)=>{
@@ -228,6 +237,8 @@ async function signUpformn(){
     }
 
   })
+
+
 }
 
   const nameChangeHandler = (event:any) =>{
@@ -236,9 +247,39 @@ async function signUpformn(){
       setNameHasError(!isValid);
   }
 
+  const sendresetemail = (event:any) =>{
+    const verifydatapack = {
+      name:"",
+      email:login_email,
+      usertype:"reset"
+    }
+    axios.post(gethost() + 'g/verify',verifydatapack)
+    .then(async (res)=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'successful Send Reset link',
+        text: 'Please check your email inbox',
+        //showConfirmButton: false,
+        //timer: 2500
+      })
+    }) .catch((err)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.response.data,
+        showConfirmButton: false,
+        timer: 2500
+      })
+    })
+    
+}
+
+
+
   const passwordChangeHandler = (e:any)=>{
       setPassword(e.target.value);
-      const isValid = e.target.value.length > 5;
+      const newpassword_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      const isValid = !!e.target.value.match(newpassword_regex);
       setPasswordError(!isValid);
   }
   
@@ -276,7 +317,8 @@ async function signUpformn(){
 
   const login_passwordChangeHandler =(event:any)=>{
       login_setPassword(event.target.value);
-      const valid = event.target.value.trim().length >= 5;
+      const newpassword_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      const valid = !!event.target.value.match(newpassword_regex);
       login_setPasswordError(!valid);
     }
      
@@ -298,11 +340,114 @@ async function signUpformn(){
         } 
       };
 
-    
+      const fogotpassword = () => {
+        if (process.browser) {
+          const container = document.getElementById("maincontainer");
+          if (container !== null) {
+            container.classList.add( "testmainshifter");
+            container.classList.remove( "testmainshifter2");
+          }
+        } 
+      };
+      const backtosignin = () => {
+        if (process.browser) {
+          const container = document.getElementById("maincontainer");
+          if (container !== null) {
+            container.classList.add( "testmainshifter2");
+            container.classList.remove( "testmainshifter");
+          }
+        } 
+        
+      };
+
     return(
+        <div className="maincontainer" id="maincontainer">
 
+        <div className='subcontainer' id = 'subcontainer' > 
+        
+        <div className="modern_form">
+              <h1 className ="head_signin" >Sign in</h1>
+            
+            <div className ="input_box_container" > 
+             <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
+              <input 
+              className="inputbox_modern_1"
+              type="email" 
+              placeholder="User email"
+              value={login_email}
+              onChange={login_emailChangeHandler}
+            // onBlur={emailBlurHandler} 
+             />
+             </div>
+             {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+            <div className ="input_box_container"> 
+            <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
+              <input 
+              className="inputbox_modern_1"
+              type="password" 
+              placeholder="Password" 
+              value={login_password}
+              onChange={login_passwordChangeHandler}
+              onBlur={login_passwordChangeHandler}
+              // onBlur={emailBlurHandler}
+              />
+              </div>
+              {login_passwordError && (<p className="error_message"> *Invalid password</p>)}
+              <div className="modern_a" onClick={fogotpassword}>Forgot your password?</div>
+              <button className="modern_btn" onClick={signinformn}>Sign In</button>
+            </div>
+        
+        </div>
+        <div className='subcontainer-1' id = 'subcontainer-1' >
+          
+
+
+         </div> 
+         
+          <div className="restpassword" id="restpassword">
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={0}>
+                <Grid item md={6} className = "pwd_container" >
+                <div className="form_wrapper">
+                        <div className="modern_form">
+                         <h1 className = "head_password" >Forgot Password</h1>
+                         {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
+                        <div className ="input_box_container"> 
+                        <div className ="icn"><EmailIcon sx={{ fontSize: 18 }}></EmailIcon></div> 
+                        <input 
+                         className="inputbox_modern"
+                         type="email" 
+                         placeholder="Your Email"
+                         value={login_email}
+                         onChange={login_emailChangeHandler}
+                        // onBlur={emailBlurHandler} 
+                          />
+                          </div>
+                          <br/><br/>
+                          <button className="modern_btn" onClick={sendresetemail}>Send Email</button>
+                          </div>
+                        <div className="modern_a" onClick={backtosignin}>Back to sign in</div>  
+                   </div>
+                    
+                </Grid>
+                <Grid item xs className = "box_1" >
+                <Image
+                     src = {lock}
+                     layout = "responsive"
+                     m-50
+                     alt= " "
+                    ></Image>            
+                </Grid>
+                        
+            </Grid>
+        </Box>  
+
+          </div>
+        
+          
+        {/* login and register window */}
+        
         <div className="container" id="container">
-
           <div className="form_container sign_up_container">
             <div className="modern_form">
               <h1 className ="head_signup">Create Account</h1>
@@ -316,7 +461,7 @@ async function signUpformn(){
                 value={name}
                 onChange={nameChangeHandler}
                  /></div>
-                {nameHasError && (<p className="error_message"> * Name cannot be empty</p>)}
+                {nameHasError && (<p className="error_message"> *Name cannot be empty</p>)}
               
                <div className ="input_box_container" > 
               <input
@@ -344,10 +489,11 @@ async function signUpformn(){
               type="password" 
               placeholder="Password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)} 
-             //onChange={passwordChangeHandler}
+              //onChange={(e)=>setPassword(e.target.value)} 
+              onChange={passwordChangeHandler}
                /></div>
-              {passwordError && (<p className="error_message"> * Password can not be empty</p>)}
+              {passwordError && (<p className="error_message"> *  Minimum 8 characters, at least one Upper case,Lowercase,digit,special character
+              </p>)}
 
               <div className ="input_box_container" >  
               <input 
@@ -404,7 +550,6 @@ async function signUpformn(){
           <div className="form_container sign_in_container">
             <div className="modern_form">
               <h1 className ="head_signin" >Sign in</h1>
-              <span className="new_span">or use your account</span>
             
             <div className ="input_box_container" > 
              <div className ="icn"><PersonSharpIcon sx={{ fontSize: 18 }}></PersonSharpIcon></div>  
@@ -430,8 +575,8 @@ async function signUpformn(){
               // onBlur={emailBlurHandler}
               />
               </div>
-              {login_passwordError && (<p className="error_message"> * Password can not be empty</p>)}
-              <a href="./user/forgotpwd" className="modern_a">Forgot your password?</a>
+              {login_passwordError && (<p className="error_message"> *Invalid password</p>)}
+              <div className="modern_a" onClick={fogotpassword}>Forgot your password?</div>
               <button className="modern_btn" onClick={signinformn}>Sign In</button>
             </div>
           </div>
@@ -456,7 +601,7 @@ async function signUpformn(){
             </div>
           </div>
         </div>
-    
+      </div>
     );
 
 }

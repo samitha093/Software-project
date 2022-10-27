@@ -33,10 +33,15 @@ const removefromcart = (ticketid:string,data:any) =>{
 
 const Drowercard: React.FC<DrowercardProps> = ({ticketid,qty,data}) => {
     const [ticket,setticket] = React.useState<any>([]);
+    const [img,setimg] = React.useState<any>('');
     React.useEffect(()=>{
         axios.get(gethost() + 'g/ticketbyid/'+ticketid,{withCredentials:false})
         .then(async (res)=>{
-            setticket(res.data)
+            if(res.data){
+              setticket(res.data.ticket)
+              var asd = gethost()+res.data.ticket.img
+              setimg(`url("`+asd+`")`);
+            }
         })
         .catch((err)=>{
           Swal.fire({
@@ -50,7 +55,7 @@ const Drowercard: React.FC<DrowercardProps> = ({ticketid,qty,data}) => {
     },[])
     return (
         <div className={styles.Drowercardbg}>
-            <div style={{backgroundImage: `url("https://miro.medium.com/max/1400/1*ydhn1QPAKsrbt6UWfn3YnA.jpeg")`}} className={styles.Drowercard_left}>
+            <div style={{backgroundImage: img}} className={styles.Drowercard_left}>
 
             </div>
             <div className={styles.Drowercard_right}>

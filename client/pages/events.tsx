@@ -1,7 +1,7 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Navbar from '../components/Navbar'
-import Shop from '../components/Shop'
+import Shop from '../components/store/Shop'
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
@@ -15,13 +15,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-// import { DateRangePicker} from '@mui/x-date-pickers-pro'
-// import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
-// import AdapterDateFns from '@mui/lab/AdapterDateFns';
-// import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faPlusSquare} from "@fortawesome/free-regular-svg-icons";
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 import classnames from 'classnames';
 import {gethost } from '../session/Session';
 import axios from 'axios';
@@ -75,7 +72,8 @@ const advanceclick = () => {
      }
   };
 
-const events: NextPage = () => {
+
+  const events: NextPage = function ActiveEvents() {
     // const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
     const theme = useTheme();
     const [personName, setPersonName] = React.useState<string[]>([]);
@@ -259,7 +257,7 @@ const events: NextPage = () => {
                                 Advance Options
                             </div>
                             <div className={styles.advance_options_right}>
-                                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faPlusSquare} className={styles.font_icon} onClick={advanceclick}/>
+                                <FontAwesomeIcon style={{cursor:'pointer'}} icon={faPlusSquare as IconProp} className={styles.font_icon} onClick={advanceclick}/>
                             </div>
                         </div>
                         <div className={styles.auto_hide} id="advance-opt">

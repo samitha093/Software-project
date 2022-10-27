@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+const nextemail = process.env.GMAIL;
+const nextley = process.env.KEY;
 
 function emailnotifications (email, subject, html){
     length = 34;
@@ -7,13 +10,13 @@ function emailnotifications (email, subject, html){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'tickbid.mail@gmail.com',
-          pass: 'mutumsqbqhngurnw'
+          user: nextemail,
+          pass: nextley
         }
     });
     
     var mailOptions = {
-        from: 'Tickbid Team<tickbid.mail@gmail.com>',
+        from: 'Tickbid Team<'+nextemail+'>',
         to: email,
         subject: subject,
         html: html,

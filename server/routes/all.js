@@ -43,50 +43,48 @@ const {secretGenerator} = require('../auth/jwt')
  *        description: Server failure
  */
  router.route('/refreshtoken').get((req,res) => {
+  console.log("refreshtoken")
   var mytoken = req.cookies.TickBid;
-  if(mytoken == null) return res.sendStatus(401)
+  if(mytoken == null){
+    return res.sendStatus(401)
+  } else{
     User.find({token: mytoken})
         .then(data =>{
+          if(!data[0]){
+            res.sendStatus(403)
+          }else{
+            //issure a new jwt
             jwt.verify(mytoken, data[0].secret, async(err, datas)=>{
               if(err) {
                 console.log(err);
                 return res.sendStatus(403)
               }else{
                 const payload = {"email" : datas.email, "type":datas.type}
-                console.log(payload);
                 const activesecret = process.env.SECRET;
                 const accesstoken = await jwt.sign(payload,activesecret,{expiresIn: "300s"});
-                console.log(accesstoken);
-                const secret = await secretGenerator(250)
-                console.log(secret);
-                const token = await jwt.sign(payload,secret)
-                console.log(token);
+                // const secret = await secretGenerator(250)
+                // console.log(secret);
+                // const token = await jwt.sign(payload,secret)
+                // console.log(token);
                 let datapack = {
                   accesstoken: accesstoken,
                   type: datas.type, 
                 }
-                User.find({email:datas.email})
-                  .then(datas =>{
-                      datas[0].secret = secret;
-                      datas[0].token = token;
-                      datas[0].save()
-                  })
-                console.log("------------------------------------------------");
-                res.status(200).cookie(
-                  "TickBid",
-                  token,
-                  {
-                     sameSite : 'strict',
-                     httpOnly:true,
-                     //secure:true
-                  }
-              ).json(datapack);
+                // User.find({email:datas.email})
+                //   .then(datas =>{
+                //       datas[0].secret = secret;
+                //       datas[0].token = token;
+                //       datas[0].save()
+                //   })
+                res.status(200).json(datapack);
               }                   
             })
+          }
         })
         .catch(err =>{
-            return res.sendStatus(403)
+            return res.sendStatus(403).json(err);
         })
+  }
 });
 
 /**
@@ -112,16 +110,17 @@ const {secretGenerator} = require('../auth/jwt')
    */
 
 router.route('/logout').post(verifyAccessToken,(req,res) => {
+  console.log("logout")
   User.find({email:req.userdata.email, status:true})
       .then(data =>{
         data[0].secret = "";
         data[0].token = "";
           data[0].save()
-              .then(()=> res.status(200).clearCookie("TickBid").send("logout"))
+              .then(()=> res.status(200).json("logout"))
               .catch(err => res.status(500).json(err))
       })
       .catch(err => res.status(400).json(err))
-      res.status(200).clearCookie("TickBid").send("logout")
+
 });
 
 /**
@@ -175,15 +174,37 @@ router.route('/logout').post(verifyAccessToken,(req,res) => {
  router.route('/mydata').get(verifyAccessToken,(req,res) => {
   var Projection = { 
     status: false,
-    otp: false,
     password: false,
-    usertype: false,
     secret: false,
     token: false,
     tickets: false
   };
   User.find({email:req.userdata.email},Projection,(err,data) => {
-    res.status(200).json(data) 
+    res.status(200).json(masking(data)) 
   })
 });
+
+const masking = (data)=>{
+  var j = 0;
+  for(var i in data){
+      if(data[j].otp == '0'){
+          data[j].otp = "verified"
+      }else{
+          data[j].otp = "unverified"
+      }        
+      let str = data[j].email
+      str = str.split('');
+      let finalArr=[];
+      let len = str.indexOf('@');
+      str.forEach((item,pos)=>{
+      (pos>=1 && pos<=len-2) ? finalArr.push('*') : finalArr.push(str[pos]);
+      }) 
+      var newEmail = finalArr.join('');
+      data[j].email = newEmail;
+      j = j+1;
+  }
+  
+  return(data);
+}
+
 module.exports = router;

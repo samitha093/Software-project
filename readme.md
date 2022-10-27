@@ -6,47 +6,91 @@
 Event Organizers can Sell their tickets And Event
 Lovers Can get their chance with our platform.
 
-## Deployment
+## Deployment for production
 
-To Deploy Dev. mode on Docker
+Follow official dockerhub page
+
+```bash
+https://hub.docker.com/repository/docker/httpsdom/tickbid
+```
+
+
+## Local Deployment Guid - Dev
+
+Clone the project
+
+```bash
+  git clone https://github.com/samitha093/Software-project.git
+```
+
+Go to the project directory
+
+```bash
+  cd Software-project
+```
+
+Install Project (docker composer require*)
 
 ```bash
   docker-compose up -d --build
 ```
-To Deploy Production mode on Docker
+## Environment variable
 
 ```bash
-  docker-compose -f docker-compose.production.yml  up -d --build
+  DEV_DOMAIN={Your Local Ip Address or domain}
+  NGINX_SSL=true
+
+  MONGO_URI=mongodb://root:password@mongo:27017/tickbid
+  NEXT_HOST=https://{Your Static Ip or Local Ip Address}/
+  API_HOST=https://{Your Static Ip or Local Ip Address}/api
+  SECRET= {Replace With Your Secreat key}
+  GMAIL={comapy email}
+  KEY={gmail app key without space}
+  
+  HOST_IP={Your Static Ip or Local Ip Address}
 ```
 
-## Development User-Guid
+## Documentation (Use your network ip instead of localhost)
 
-For Nextjs App
+index 
 ```bash
-  http://localhost/
+  https://{IP or localhost}/
+```
+User Login
+```bash
+  https://{IP or localhost}/user
+```
+Remote Access
+```bash
+  https://{IP or localhost}/qr
 ```
 
 For API Service
 
 ```bash
-  http://localhost/api/
+  https://{IP or localhost}/api/
 ```
+
+For fastify Device tracker Service
+
+```bash
+  https://{IP or localhost}/fastify
+```
+For web socket
+
+```bash
+  https://{IP or localhost}/socket.io
+```
+
 For API Document (Swagger)
 
 ```bash
-  http://localhost/swagger/
+  https://{IP or localhost}/swagger/
 ```
-For Mongodb Database (Mongo express)
+For Mongodb Database (Mongo express)- Dev. use only
 
 ```bash
-  http://localhost:8081/
-```
-## Tests For Next.js APP
-
-To run tests, run the following command On client Directory
-
-```bash
-  npm run Dev
+  https://{IP or localhost}:8081/
 ```
 ## Database login
 Mongodb Compass

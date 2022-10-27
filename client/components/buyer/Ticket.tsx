@@ -12,7 +12,6 @@ const Ticket: React.FC<TicketProps> = ({id}) => {
         if(open == false){
             setOpen(true);
             const response = await QRCode.toDataURL(id);
-            console.log(response);
             setimg(response);
         }else{
             setOpen(false);

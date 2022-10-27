@@ -1,5 +1,5 @@
+//node packages
 import React from 'react'
-import Link from 'next/link'
 import Icon from '@mdi/react';
 import { mdiHomeOutline } from '@mdi/js';
 import { mdiCreditCardMarkerOutline } from '@mdi/js';
@@ -12,7 +12,9 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+//stylesheet
 import styles from './styles.module.scss'
+//Session and local storage data
 import {gethost } from '../../session/Session';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -28,50 +30,31 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
 
 interface SidebarProps {
  id : string;
+ data:any;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({id}) => {
-const router = useRouter()
-const [buyersidebar1,setbuyersidebar1] = React.useState(true);
-const [buyersidebar2,setbuyersidebar2] = React.useState(false);
-const [buyersidebar3,setbuyersidebar3] = React.useState(false);
-const [buyersidebar4,setbuyersidebar4] = React.useState(false);
-const [buyersidebar5,setbuyersidebar5] = React.useState(false);
-React.useEffect(() => {
-    if(id == "1"){
-        setbuyersidebar1(true);  
-        setbuyersidebar2(false);
-        setbuyersidebar3(false);
-        setbuyersidebar4(false);
-        setbuyersidebar5(false);
-    }else if(id == "2"){
-        setbuyersidebar1(false);  
-        setbuyersidebar2(true);
-        setbuyersidebar3(false);
-        setbuyersidebar4(false);
-        setbuyersidebar5(false);
-    }else if(id == "3"){
-        setbuyersidebar1(false);  
-        setbuyersidebar2(false);
-        setbuyersidebar3(true);
-        setbuyersidebar4(false);
-        setbuyersidebar5(false);
-    }else if(id == "4"){
-        setbuyersidebar1(false);  
-        setbuyersidebar2(false);
-        setbuyersidebar3(false);
-        setbuyersidebar4(true);
-        setbuyersidebar5(false);
-    }else if(id == "5"){
-        setbuyersidebar1(false);  
-        setbuyersidebar2(false);
-        setbuyersidebar3(false);
-        setbuyersidebar4(false);
-        setbuyersidebar5(true);
-    }
-},[]);
-    async function logout(){
+const Sidebar: React.FC<SidebarProps> = ({id,data}) => {
+    const router = useRouter()
 
+    const [buyersidebar,setbuyersidebar] = React.useState([{status:true},{status:false},{status:false},{status:false},{status:false}]);
+
+    React.useEffect(() => {
+
+    },[]);
+
+    async function tabchange(id:any,data:any){
+        data.change(id);
+        var datapack = [
+            {status:id=='1'?true:false},
+            {status:id=='2'?true:false},
+            {status:id=='3'?true:false},
+            {status:id=='4'?true:false},
+            {status:id=='5'?true:false}
+        ]
+        setbuyersidebar(datapack);  
+    }
+
+    async function logout(){
     axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
             const config = {
@@ -103,44 +86,42 @@ React.useEffect(() => {
           router.push('/user');
         })
     }
+
+
         return (
             <div className={styles.buyer_c_sidebar}>
                     <div className={styles.buyer_c_sidebar_container}>
-                        <Link href="/buyer">
-                            <BootstrapTooltip title="My Tickets">
-                                <div className={buyersidebar1 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
-                                    <Icon path={mdiHomeOutline} className={buyersidebar1 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
-                                </div>
-                            </BootstrapTooltip>
-                        </Link>
-                        <Link href="/buyer/payment">
+
+                        <BootstrapTooltip title="My Tickets">
+                            <div className={buyersidebar[0].status ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'} onClick={()=>tabchange('1',data)} id={'myTickets'}>
+                                <Icon path={mdiHomeOutline} className={buyersidebar[0].status ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
+                            </div>
+                        </BootstrapTooltip>
+
                         <BootstrapTooltip title="Pending Payment Tickets">
-                            <div className={buyersidebar2 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
-                                <Icon className={buyersidebar2 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'} path={mdiCreditCardMarkerOutline} />
+                            <div className={buyersidebar[1].status ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'} onClick={()=>tabchange('2',data)} id={'pendingTickets'}>
+                                <Icon className={buyersidebar[1].status ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'} path={mdiCreditCardMarkerOutline} />
                             </div>
                             </BootstrapTooltip>
-                        </Link>
-                        <Link href="/buyer/bids">
+
                         <BootstrapTooltip title="Pending Bids">
-                            <div className={buyersidebar3 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
-                                <Icon path={mdiCameraTimer} className={buyersidebar3 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
+                            <div className={buyersidebar[2].status ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'} onClick={()=>tabchange('3',data)} id={'pendingBids'}>
+                                <Icon path={mdiCameraTimer} className={buyersidebar[2].status ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
                             </div>
                             </BootstrapTooltip>
-                        </Link>
-                        <Link href="/buyer/tickets">
+
                         <BootstrapTooltip title="My Old Tickets">
-                            <div className={buyersidebar4 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
-                                <Icon path={ mdiTicketPercentOutline} className={buyersidebar4 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
+                            <div className={buyersidebar[3].status ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'} onClick={()=>tabchange('4',data)} id={'oldTickets'} >
+                                <Icon path={ mdiTicketPercentOutline} className={buyersidebar[3].status ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
                             </div>
                             </BootstrapTooltip>
-                        </Link>
-                        <Link href="/buyer/settings">
+
                         <BootstrapTooltip title="Change User information">
-                            <div className={buyersidebar5 ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'}>
-                                <Icon path={mdiCogs} className={buyersidebar5 ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
+                            <div className={buyersidebar[4].status ? 'buyer-c-sidebar-item active' : 'buyer-c-sidebar-item'} onClick={()=>tabchange('5',data)}>
+                                <Icon path={mdiCogs} className={buyersidebar[4].status ? 'buyer-c-sidebar-item-icon active' : 'buyer-c-sidebar-item-icon'}/>
                             </div>
                             </BootstrapTooltip>
-                        </Link>
+
                         <BootstrapTooltip title="Logout">
                         <div onClick={logout} className="buyer-c-sidebar-item">
                             <Icon path={mdiLogout} className="buyer-c-sidebar-item-icon"/>

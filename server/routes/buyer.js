@@ -5,6 +5,7 @@ const orders = require('../models/orders')
 const crons = require('../models/cron');
 const {verifyAccessToken,buyerverification} = require('../auth/jwt');
 const {getusername, getuserid} = require('../middlewares/user');
+const Bids = require('../models/bid');
 
 /**
  * @swagger
@@ -19,6 +20,28 @@ const {getusername, getuserid} = require('../middlewares/user');
  *                      type: string
  *              example:
  *                  cart: "?"
+ *          bids:
+ *              type: object
+ *              required:
+ *                  - bid_amount
+ *                  - ticketcount
+ *                  - ticketid
+ *                  - eventid
+ *              properties:
+ *                  bid_amount:
+ *                      type: Number
+ *                  ticketcount:
+ *                      type: Number
+ *                  ticketid:
+ *                      type: string
+ *                  eventid:
+ *                      type: string
+ * 
+ *              example:
+ *                  bid_amount: 0
+ *                  ticketcount: 0
+ *                  ticketid: "?"
+ *                  eventid: "?"
  */
 
 /**
@@ -61,7 +84,7 @@ const {getusername, getuserid} = require('../middlewares/user');
     }else if(type == 'pb'){
       subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
     }else if(type == 'ot'){
-      subdata = await subdata.filter(val => (val.ticket_status == true && val.bid_status == false))
+      subdata = await subdata.filter(val => (val.ticket_status == true))
     }else{
       res.status(200).json("not found data")
       return;
@@ -107,12 +130,10 @@ const {getusername, getuserid} = require('../middlewares/user');
   for (let item of cart) {
     await tickets.findById(item.itemid)
       .then(async(data) =>{
-        data.buy_quantity -= item.qty;
+        data.nosold += 1;
         data.save()
           .then(()=> console.log("ticket updated"))
           .catch(err => console.log(err))
-        //console.log(req.userid);
-        //console.log(req.userdata.type);
       })
     }
     await orders.findById(orderid)
@@ -126,7 +147,7 @@ const {getusername, getuserid} = require('../middlewares/user');
     const job_type = "B";
     const job_name = "CREATE_QR";
     const job_id = orderid;
-    const job_status = true;         
+    const job_status = true;
     const newcrons = new crons({
         job_type,
         job_name,
@@ -149,7 +170,7 @@ const {getusername, getuserid} = require('../middlewares/user');
  *      content:
  *        application/json:
  *           schema:
- *              $ref: '#/components/schemas/addtickets'
+ *              $ref: '#/components/schemas/bids'
  *     responses:
  *      200:
  *        description: added to account
@@ -158,6 +179,54 @@ const {getusername, getuserid} = require('../middlewares/user');
  *      500:
  *        description: server error
  */
+ router.route('/bid').post(verifyAccessToken,buyerverification,getuserid,(req,res) => {
+  var response = {};
+  const bid_amount = req.body.bid_amount;
+  const ticketcount = req.body.ticketcount;
+  const ticketid = req.body.ticketid;
+  const eventid = req.body.eventId;
+  const userid = req.userid;
+      const newbid = new Bids({
+        bid_amount,
+        ticketcount,
+        ticketid,
+        eventid,
+        userid,
+      });
+
+      newbid.save()
+          .then((result)=> {
+              tickets.findById(ticketid).then(ticketdata =>{
+                ticketdata.nobid += 1;
+                ticketdata.bids.push(result._id);
+                ticketdata.save();
+                User.findById(userid).then(userdata =>{
+                  const ticket ={
+                    "eventId":eventid,
+                    "ticketid": ticketid,
+                    "bidid":result._id,
+                    "bid_status":true,
+                  }
+                  userdata.tickets.push(ticket);
+                  userdata.save()
+
+                })
+              })
+              const job_type = "F";
+              const job_name = "BID_MONITOR";
+              const job_id = result._id;
+              const job_status = true;
+              const newcrons = new crons({
+                  job_type,
+                  job_name,
+                  job_id,
+                  job_status,
+                  });
+              newcrons.save()
+              res.status(200).json(result._id);
+          })
+          .catch(err => res.status(500).json(err))
+});
 
 /**
  * @swagger
@@ -180,4 +249,34 @@ const {getusername, getuserid} = require('../middlewares/user');
  *      500:
  *        description: server error
  */
+
+
+/**
+ * @swagger
+ * '/b/bidbyid/{bidid}':
+ *  get:
+ *     tags:
+ *     - User-buyer
+ *     summary: Get bid data by id(Public Link*)
+ *     parameters:
+ *      - in: path
+ *        name: bidid
+ *        schema:
+ *          type: String
+ *     requestBody:
+ *      required: false
+ *     responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: error
+ *      500:
+ *        description: Server failure
+ */
+ router.route('/bidbyid/:bidid').get(async(req,res) => {
+  Bids.findById(req.params.bidid)
+      .then(data =>{res.status(200).json(data)})
+      .catch(err => res.status(400).json("Wrong db connection"))
+});
+
 module.exports = router;

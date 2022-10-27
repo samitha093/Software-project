@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+const name = process.env.HOST_IP;
 
 export const startsession = (token: string, usertype: string) =>{
 
@@ -14,11 +15,18 @@ export const gettoken = () =>{
 export const getuser = () =>{
  
 }
-export const gethost = () =>{
-    const host = 'http://localhost/api/';
+export const getmyhost = () =>{
+    const host = 'https://'+name+'/';
     return host;
 }
-//cart session
+export const gethost = () =>{
+    const host = 'https://'+name+'/api/';
+    return host;
+}
+export const getfastify = () =>{
+    const host = 'https://'+name+'/fastify';
+    return host;
+}
 
 
 export const addcart = (itemid: string, qty: number) =>{
