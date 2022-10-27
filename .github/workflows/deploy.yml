@@ -24,7 +24,7 @@ jobs:
       - name: Checkout current repo
         uses: actions/checkout@v3
         
-      - name: script
+      - name: Multi script
         run: |
           docker-compose up -d
           docker login -u httpsdom -p dckr_pat_9XGuNVW0bHzsU7UKTHk9hZgc_z4
