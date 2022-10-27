@@ -92,17 +92,6 @@ function  ticketController (){
     return;
 };
 
-function  bidController (){
-    //control user added bids
-    crons.find({job_type:"F", job_status:true},(err,data_crone)=>{
-        if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{
-                console.log(dataSet);
-            });
-        }
-    })
-    return;
-};
 
 function  analiticBuilder1H (){
     crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
@@ -130,7 +119,6 @@ module.exports={
     eventController,
     orderController,
     ticketController,
-    bidController,
     analiticBuilder1H,
     analiticBuilder24H
 };

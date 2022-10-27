@@ -4,6 +4,7 @@ const tickets = require('../../models/tickets');
 const orders = require('../../models/orders');
 const qr = require('../../models/qr');
 const User = require('../../models/users');
+const monitor = require('../bids/monitor')
 
 const moment = require('moment'); // require
 moment().format(); 
@@ -18,6 +19,7 @@ function monitor (dataSet, dateset){
                 eventData.save()
                 data.status = false;
                 data.save()
+                monitor.monitor(dataSet.job_id[0]);
                 return 1;
             }else{
                 return 0;

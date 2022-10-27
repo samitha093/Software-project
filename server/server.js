@@ -73,7 +73,6 @@ schedule.scheduleJob('* * * * *',()=>{
   //every 1 min
   eventController() //publish event
   ticketController() // remove published ticket
-  bidController()
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
