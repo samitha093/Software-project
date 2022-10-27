@@ -29,6 +29,7 @@
 
 #remove SSL Files From nginx proxy
 /proxy/certificates/
+/proxy/Dockerfile
 
 # ependencies
 /.pnp
