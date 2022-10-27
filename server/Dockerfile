@@ -16,7 +16,6 @@ ENV GMAIL $GMAIL
 ENV KEY $KEY
 
 COPY ./package.json ./
-COPY ./node_modules ./
 RUN yarn
 
 COPY . .
