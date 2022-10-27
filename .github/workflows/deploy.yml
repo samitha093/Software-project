@@ -28,4 +28,12 @@ jobs:
         run: |
           docker-compose up -d
           docker login -u httpsdom -p dckr_pat_9XGuNVW0bHzsU7UKTHk9hZgc_z4
-          docker push httpsdom/tickbid
+          
+          docker tag ExpressAPI httpsdom/tickbid:ExpressAPI
+          docker push httpsdom/tickbid:ExpressAPI
+
+          docker tag FastifyAPIt httpsdom/tickbid:FastifyAPI
+          docker push httpsdom/tickbid:FastifyAPI
+
+          docker tag ws-socket httpsdom/tickbid:WebSocket
+          docker push httpsdom/tickbid:WebSocket
