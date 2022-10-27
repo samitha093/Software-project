@@ -5,7 +5,6 @@ ENV HOST_IP $HOST_IP
 
 WORKDIR /app
 COPY ./package.json ./
-COPY ./node_modules ./
 
 RUN yarn
 COPY . .
