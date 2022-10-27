@@ -29,11 +29,14 @@ jobs:
           docker-compose up -d
           docker login -u httpsdom -p dckr_pat_9XGuNVW0bHzsU7UKTHk9hZgc_z4
           
-          docker tag expressapi httpsdom/tickbid:expressapi
+          docker tag nextjs-app httpsdom/tickbid:reactapp
+          docker push httpsdom/tickbid:reactapp
+
+          docker tag api-servers httpsdom/tickbid:expressapi
           docker push httpsdom/tickbid:expressapi
 
-          docker tag fastifyapi httpsdom/tickbid:fastifyapi
+          docker tag fastify-servers httpsdom/tickbid:fastifyapi
           docker push httpsdom/tickbid:fastifyapi
 
-          docker tag websocket httpsdom/tickbid:websocket
+          docker tag ws-socket httpsdom/tickbid:websocket
           docker push httpsdom/tickbid:websocket
