@@ -28,7 +28,7 @@ jobs:
         run: |
           docker-compose up -d
 
-      - name: login docker hub
+      - name: auth login docker hub 
         run: |
           docker login -u httpsdom -p dckr_pat_9XGuNVW0bHzsU7UKTHk9hZgc_z4
           
