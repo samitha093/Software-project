@@ -1,5 +1,7 @@
-FROM node:16-alpine
-RUN npm install -g yarn
+FROM node:16
+
+
+
 WORKDIR /app
 
 ARG NEXT_HOST
