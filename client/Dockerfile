@@ -1,4 +1,5 @@
 FROM node:16-alpine
+RUN npm install -g yarn
 
 ARG HOST_IP
 ENV HOST_IP $HOST_IP
