@@ -5,7 +5,7 @@ services:
     image: nginx
     build:
       context:  ./
-      dockerfile:  Dockerfile.proxy
+      dockerfile:  Dockerfile
       args:
         - DEV_DOMAIN=${DEV_DOMAIN}
         - NGINX_SSL=${NGINX_SSL}
@@ -22,8 +22,6 @@ services:
   nextjs-app:
     image: httpsdom/tickbid:reactapp
     build:
-      context:  ./
-      dockerfile:  Dockerfile.next.app
       args:
         - HOST_IP=${HOST_IP}
     stdin_open: true
@@ -38,8 +36,6 @@ services:
   api-server:
     image: httpsdom/tickbid:expressapi
     build:
-      context:  ./
-      dockerfile:  Dockerfile.express.api
       args:
         - MONGO_URI=${MONGO_URI}
         - NEXT_HOST=${NEXT_HOST}
@@ -60,8 +56,6 @@ services:
   fastify-server:
     image: httpsdom/tickbid:fastifyapi
     build:
-      context:  ./
-      dockerfile:  Dockerfile.fastify.api
       args:
         - NEXT_HOST=${NEXT_HOST}
     networks:
@@ -73,8 +67,6 @@ services:
   ws-socket:
     image: httpsdom/tickbid:websocket
     build:
-      context:  ./
-      dockerfile:  Dockerfile.web.socket
       args:
         - NEXT_HOST=${NEXT_HOST}
     networks:
