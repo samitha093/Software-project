@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import lock from '../../assets/lock.png'
+import verify from '../../assets/verify1.png'
 import {Box,Grid,} from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
@@ -66,7 +66,7 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
                 <div className="form_wrapper">
                         <div className="modern_form" >
 
-                          <h1 className = "head_password" >Reset Password</h1>
+                          <h1 className = "head_password" >Re-Verification</h1>
                           {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
 
                           <div className ="input_box_container"> 
@@ -100,9 +100,9 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
                 </Grid>
                 <Grid item xs className = "box_1" >
                 <Image
-                     src = {lock}
+                     src = {verify}
                      layout = "responsive"
-                     m-50
+                     m-100
                      alt= " "
                     ></Image>            
                 </Grid>
