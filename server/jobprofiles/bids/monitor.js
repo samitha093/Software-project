@@ -8,9 +8,9 @@ const User = require('../../models/users');
 const moment = require('moment'); // require
 moment().format(); 
 
-function monitor (ticketid){
+function bidmonitor (ticketid){
  
  
 };
 
-module.exports={monitor};
+module.exports={bidmonitor};

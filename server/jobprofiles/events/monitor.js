@@ -9,7 +9,7 @@ const monitor = require('../bids/monitor')
 const moment = require('moment'); // require
 moment().format(); 
 
-function monitor (dataSet, dateset){
+function eventmonitor (dataSet, dateset){
  return tickets.findById(dataSet.job_id[0])
     .then(data =>{
         var result = events.findById(data.eventid).then(eventData =>{
@@ -31,4 +31,4 @@ function monitor (dataSet, dateset){
  
 };
 
-module.exports={monitor};
+module.exports={eventmonitor};

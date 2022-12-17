@@ -51,6 +51,17 @@
     padding-right: 30px;
     cursor: pointer;
 }
+.cartcount{
+    background-color: red;
+    height: 25px;
+    display: flex;
+    position: fixed;
+    top: 10px;
+    right: 21px;
+    padding: 2px 8px;
+    border-radius: 50px;
+    color: white;
+}
 .navbar_mobile{
     display: none;
     width:0px
@@ -336,6 +347,9 @@
     }
     .gotocheckout_btn{
         font-size: 20px;
+    }
+    .cartcount{
+        right: 5px;
     }
 }
 .cart_drower_empty_cart_container{

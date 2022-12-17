@@ -3,6 +3,8 @@ const User = require('../models/users');
 const tickets = require('../models/tickets');
 const orders = require('../models/orders')
 const crons = require('../models/cron');
+const sellerAnalitics = require('../models/sellerD');
+const events = require('../models/events');
 const {verifyAccessToken,buyerverification} = require('../auth/jwt');
 const {getusername, getuserid} = require('../middlewares/user');
 const Bids = require('../models/bid');
@@ -78,11 +80,11 @@ const Bids = require('../models/bid');
   await User.findById(userid).then(async(data) =>{
     var subdata = data.tickets;
     if(type == 'mt'){
-      subdata = await subdata.filter(val => (val.ticket_status == false && val.bid_status == false))
+      subdata = await subdata.filter(val => (val.bid_status == false && val.ticket_status == false))
     }else if(type == 'pp'){
-      subdata = await subdata.filter(val => (val.payment_status == true && val.bid_status == true))
+      subdata = await subdata.filter(val => (val.payment_status == true && val.bid_status == true && val.ticket_status == false))
     }else if(type == 'pb'){
-      subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true))
+      subdata = await subdata.filter(val => (val.payment_status == false && val.bid_status == true && val.ticket_status == false))
     }else if(type == 'ot'){
       subdata = await subdata.filter(val => (val.ticket_status == true))
     }else{
@@ -130,7 +132,7 @@ const Bids = require('../models/bid');
   for (let item of cart) {
     await tickets.findById(item.itemid)
       .then(async(data) =>{
-        data.nosold += 1;
+        data.nosold += item.qty;
         data.save()
           .then(()=> console.log("ticket updated"))
           .catch(err => console.log(err))
@@ -155,6 +157,15 @@ const Bids = require('../models/bid');
         job_status,
         });
     newcrons.save()
+    const job_type_2 = "Y";
+    const job_name_2 = "BUY_ANALYZER";
+    const newcrons2 = new crons({
+      "job_type":job_type_2,
+      "job_name":job_name_2,
+      job_id,
+      job_status,
+      });
+    newcrons2.save()
     res.status(200).json("Sys Prop Enabled")
 });
 
@@ -186,18 +197,17 @@ const Bids = require('../models/bid');
   const ticketid = req.body.ticketid;
   const eventid = req.body.eventId;
   const userid = req.userid;
-      const newbid = new Bids({
-        bid_amount,
-        ticketcount,
-        ticketid,
-        eventid,
-        userid,
-      });
-
+  const newbid = new Bids({
+    bid_amount,
+    ticketcount,
+    ticketid,
+    eventid,
+    userid,
+  });
       newbid.save()
-          .then((result)=> {
+          .then(async(result)=> {
               tickets.findById(ticketid).then(ticketdata =>{
-                ticketdata.nobid += 1;
+                ticketdata.nobids += ticketcount;
                 ticketdata.bids.push(result._id);
                 ticketdata.save();
                 User.findById(userid).then(userdata =>{
@@ -223,9 +233,20 @@ const Bids = require('../models/bid');
                   job_status,
                   });
               newcrons.save()
+              const job_type_2 = "Z";
+              const job_name_2 = "BID_ANALYZER";
+              const newcrons2 = new crons({
+                "job_type":job_type_2,
+                "job_name":job_name_2,
+                job_id,
+                job_status,
+                });
+              newcrons2.save()
+              //finished
               res.status(200).json(result._id);
           })
           .catch(err => res.status(500).json(err))
+
 });
 
 /**

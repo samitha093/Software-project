@@ -59,7 +59,6 @@ const swaggerOptions = {
         bearerAuth: [],
       },
     ],
-    
 	},
 	apis: ["./routes/*.js"],
 };
@@ -81,6 +80,7 @@ schedule.scheduleJob('0 * * * *',()=>{
 })
 
 schedule.scheduleJob('0 0 * * *',()=>{
+  // schedule.scheduleJob('* * * * *',()=>{
   //every day
   analiticBuilder24H()
 })

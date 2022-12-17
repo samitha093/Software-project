@@ -34,7 +34,7 @@ const Tabel: React.FC<TabelProps> = ({}) => {
                     <TableHead>
                     <TableRow>
                         <TableCell>Event Name</TableCell>
-                        <TableCell align="right">Seller</TableCell>
+                        <TableCell align="right">Ticket level</TableCell>
                         <TableCell align="center">Total Revenue</TableCell>
                         <TableCell align="center">No Of Sold Tickets</TableCell>
                         <TableCell align="center">No Of Bids</TableCell>

@@ -388,9 +388,9 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
     events.findById(req.params.eventid).then(async Edata => {
         tickets.find({eventid:req.params.eventid}).then(async Tdata =>{
             for (i in Tdata) {
-                var p3_cal = (Tdata[i].nosold/Tdata[i].buy_quantity)*100;
-                var b3_cal = (Tdata[i].nobids/Tdata[i].bid_quantity)*100;
-                var b3_any = b3_cal<100?b3_cal<50?b3_cal<30?1:2:3:4;
+                var p3_cal = Math.round((Tdata[i].nosold/Tdata[i].buy_quantity)*100);
+                var b3_cal = Math.round((Tdata[i].nobids/Tdata[i].bid_quantity)*100);
+                var b3_any = Math.round(b3_cal<100?b3_cal<50?b3_cal<30?1:2:3:4);
                 var response = {
                     Abids:Tdata[i].nobids,
                     Abuy:Tdata[i].nosold,

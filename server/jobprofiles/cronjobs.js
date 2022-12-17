@@ -4,6 +4,7 @@ const tickets = require('../models/tickets');
 const orders = require('../models/orders');
 const qr = require('../models/qr');
 const User = require('../models/users');
+const sellerAnalitics = require('../models/sellerD');
 
 var express = require('express');
 var router = express.Router();
@@ -12,7 +13,7 @@ var request = require('request');
 const publishEvent = require('./events/publishevent');
 const buyer = require('./orders/buyer');
 const guest = require('./orders/guest');
-const monitor = require('./events/monitor');
+const eventmonitor = require('./events/monitor');
 const ticketMonitor = require('./tickets/monitor')
 
 
@@ -33,8 +34,8 @@ function  eventController (){
             // Event End
             crons.find({job_type:"D", job_status:true},(err,data_crone)=>{
                 if(data_crone.length>0){
-                    data_crone.map(async(dataSet)=>{  
-                        var result = await monitor.monitor(dataSet, body);
+                    data_crone.map(async(dataSet)=>{
+                        var result = await eventmonitor.eventmonitor(dataSet, body);
                         if(result){
                             dataSet.job_status = false;
                             dataSet.save()
@@ -94,24 +95,46 @@ function  ticketController (){
 
 
 function  analiticBuilder1H (){
-    crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
-        if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{  
-                
-            });
-        }
+    request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+        crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
+            if(data_crone.length>0){
+                data_crone.map(async(dataSet)=>{
+                    //bid
+                    console.log("found - Z")
+                });
+            }
+        })
+        crons.find({job_type:"Y", job_status:true},(err,data_crone)=>{
+            if(data_crone.length>0){
+                data_crone.map(async(dataSet)=>{
+                    //order
+                    console.log("found - Y")
+                });
+            }
+        })
     })
     return;
 };
 
 function  analiticBuilder24H (){
-    crons.find({job_type:"Z", job_status:true},(err,data_crone)=>{
-        if(data_crone.length>0){
-            data_crone.map(async(dataSet)=>{  
-                
-            });
-        }
-    })
+    request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+        User.find({usertype:'SELLER'},(err,userlist)=>{
+            for (const element of userlist) {
+                sellerAnalitics.find({date:body.date,sellerid:element._id},(err,data_crone)=>{
+                    if(data_crone.length<1){
+                        const newDataset = new sellerAnalitics({
+                            sellerid : element._id,
+                            date : body.date,
+                        })
+                        newDataset.save().then().catch(err => console.log(err))
+                    }
+                })
+            }
+        })
+    });
+
     return;
 };
 
