@@ -26,21 +26,12 @@ import {
 
 
 interface GraphProps {
-
+  data:any
 }
 
-const Graph: React.FC<GraphProps> = ({}) => {
+const Graph: React.FC<GraphProps> = ({data}) => {
     const UserData = [
-        {
-          id: 1,
-          year: 'By Bid',
-          userLost: 823,
-        },
-        {
-          id: 2,
-          year: 'Direct Buy',
-          userLost: 345,
-        }
+        {id: 1,year: 'By Bid',userLost: 823,},{id: 2,year: 'Direct Buy',userLost: 345,}
     ];
     const [userData, setUserData] = React.useState({
         labels: UserData.map((data) => data.year),

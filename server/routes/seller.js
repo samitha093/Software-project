@@ -607,4 +607,79 @@ router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerve
 
 });
 
+
+/**
+ * @swagger
+ *  '/s/getdashboard/':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get seller dashboard data
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid,async (req,res) => {
+    const userid = req.userid;
+    const historydata = [
+        {id: 1,userGain: 80000,},
+        {id: 2,userGain: 45677,},
+        {id: 3,userGain: 78888,},
+        {id: 4,userGain: 90000,},
+        {id: 5,userGain: 4300,},
+        {id: 6,userGain: 80000,},
+        {id: 7,userGain: 45677,},
+        {id: 8,userGain: 78888,},
+        {id: 9,userGain: 90000,},
+        {id: 10,userGain: 4300,},
+        {id: 11,userGain: 80000,},
+        {id: 12,userGain: 45677,},
+        {id: 13,userGain: 78888,},
+        {id: 14,userGain: 90000,},
+        {id: 15,userGain: 4300,},
+        {id: 16,userGain: 80000,},
+        {id: 17,userGain: 45677,},
+        {d: 18,userGain: 78888,},
+        {id: 19,userGain: 90000,},
+        {id: 20,userGain: 4300,},
+        {id: 21,userGain: 80000,},
+        {id: 22,userGain: 45677,},
+        {id: 23,userGain: 78888,},
+        {id: 24,userGain: 90000,},
+        {id: 24,userGain: 90000,},
+        {id: 25,userGain: 90000,},
+        {id: 26,userGain: 60000,},
+        {id: 27,userGain: 30600,},
+        {id: 28,userGain: 90000,},
+        {id: 29,userGain: 40000,},
+        {id: 30,userGain: 90000,},
+    ];
+    const historydata2 = [
+        {id: 1,year: 'By Bid',userLost: 823,},
+        {id: 2,year: 'Direct Buy',userLost: 345,}
+    ];
+    var result = await tickets.find({userid:userid}).then(result=>{return result}).catch(err => console.log(err))
+    const activeEvents = [
+        {"id" : "14gsd54a3sfdc", "name":"Test Event 1", "level":"level 1", "revenue":"12,454","p1":1,"p2":120,"p3":"1%","b1":0,"b2":150,'b3':1,"status":"DEACTIVE",},
+        {"id" : "14gsd54e3sfdc", "name":"Test Event 2", "level":"level 2", "revenue":"14,156","p1":190,"p2":1500,"p3":"11%","b1":190,"b2":200,'b3':3, "status":"ACTIVE",},
+        {"id" : "14gsd54a3shdc", "name":"Test Event 3", "level":"level 3", "revenue":"2,456","p1":1,"p2":25000,"p3":"1%","b1":10,"b2":130,'b3':1, "status":"DEACTIVE",},
+        {"id" : "14gsd54a6sfdc","name":"Test Event 4", "level":"level 4", "revenue":"12,476" ,"p1":12000,"p2":45000,"p3":"42%","b1":11,"b2":20,'b3':2, "status":"ACTIVE",},
+        {"id" : "14gsd54a6sfdc","name":"Test Event 5", "level":"level 5", "revenue":"12,156","p1":72,"p2":12000,"p3":"1%","b1":30,"b2":12000,'b3':1, "status":"DEACTIVE",},
+        {"id" : "14gsd54a6sfdc","name":"Test Event 6", "level":"level 6", "revenue":"22,756","p1":990,"p2":1000,"p3":"99%","b1":50000,"b2":34000,'b3':4, "status":"PENDING",}
+    ];
+    var response = {
+        "dataset1":[42000,13670,55670],
+        "dataset2":[65,24000,12900],
+        "dataset3":[13,12,15],
+        "dataset4":historydata,
+        "dataset5":historydata2,
+        "dataset6":activeEvents
+    }
+    res.status(200).json(response)
+});
+
 module.exports = router;
