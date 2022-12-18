@@ -13,6 +13,7 @@ const {
   bidController,
   analiticBuilder1H,
   analiticBuilder24H,
+  pendingqrgenarator
 } = require('./jobprofiles/cronjobs');
 
 require('dotenv').config();
@@ -66,6 +67,7 @@ const swaggerOptions = {
 schedule.scheduleJob('* * * * * *',()=>{
   //every second
   orderController() // create qr for sold ticket
+  pendingqrgenarator()
 })
 
 schedule.scheduleJob('* * * * *',()=>{
@@ -80,8 +82,7 @@ schedule.scheduleJob('0 * * * *',()=>{
   analiticBuilder1H()
 })
 
-schedule.scheduleJob('0 0 * * *',()=>{
-  // schedule.scheduleJob('* * * * *',()=>{
+schedule.scheduleJob('* * * * *',()=>{
   //every day
   analiticBuilder24H()
 })

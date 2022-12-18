@@ -16,7 +16,7 @@ const guest = require('./orders/guest');
 const eventmonitor = require('./events/monitor');
 const ticketMonitor = require('./tickets/monitor')
 const bidmonitor = require('./bids/monitor')
-const bidvalidator = require('./bids/validator')
+const pendingqrgen = require('./bids/pendingqr')
 
 
 function  eventController (){
@@ -116,6 +116,17 @@ function  bidController (){
     return;
 };
 
+function pendingqrgenarator(){
+    crons.find({job_type:"G", job_status:true},(err,data_crone)=>{
+        if(data_crone.length>0){
+            console.log("No of pending qr to generate",data_crone.length)
+            data_crone[0].job_status = false;
+            data_crone[0].save()
+            pendingqrgen.pendingqrgen(data_crone[0]);
+        }
+   })
+}
+
 
 function  analiticBuilder1H (){
     request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
@@ -167,5 +178,6 @@ module.exports={
     ticketController,
     analiticBuilder1H,
     analiticBuilder24H,
-    bidController
+    bidController,
+    pendingqrgenarator
 };
