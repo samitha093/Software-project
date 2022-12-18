@@ -15,6 +15,8 @@ const buyer = require('./orders/buyer');
 const guest = require('./orders/guest');
 const eventmonitor = require('./events/monitor');
 const ticketMonitor = require('./tickets/monitor')
+const bidmonitor = require('./bids/monitor')
+const bidvalidator = require('./bids/validator')
 
 
 function  eventController (){
@@ -93,6 +95,27 @@ function  ticketController (){
     return;
 };
 
+function  bidController (){
+    // date check
+    request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+            //control user added tickets
+            crons.find({job_type:"F", job_status:true},(err,data_crone)=>{
+                if(data_crone.length>0){
+                    data_crone.map(async(dataSet)=>{
+                        var result = await bidmonitor.bidmonitor(dataSet, body);
+                        if(result){
+                            dataSet.job_status = false;
+                            dataSet.save()
+                        }
+                    });
+                }
+            })
+    });
+
+    return;
+};
+
 
 function  analiticBuilder1H (){
     request('https://timeapi.io/api/Time/current/zone?timeZone=asia/colombo', { json: true }, (err, res, body) => {
@@ -143,5 +166,6 @@ module.exports={
     orderController,
     ticketController,
     analiticBuilder1H,
-    analiticBuilder24H
+    analiticBuilder24H,
+    bidController
 };

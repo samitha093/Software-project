@@ -12,7 +12,7 @@ const {
   ticketController,
   bidController,
   analiticBuilder1H,
-  analiticBuilder24H
+  analiticBuilder24H,
 } = require('./jobprofiles/cronjobs');
 
 require('dotenv').config();
@@ -72,6 +72,7 @@ schedule.scheduleJob('* * * * *',()=>{
   //every 1 min
   eventController() //publish event
   ticketController() // remove published ticket
+  bidController()//validate bid with qr adding
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
