@@ -65,11 +65,10 @@ const Account: React.FC<AccountProps> = ({data}) => {
               <div className={styles.account_profile_container_form_section3_left}>
                   
               </div>
-              <div className={styles.account_profile_container_form_section3_right}>
+              {/* <div className={styles.account_profile_container_form_section3_right}>
                 <div className={styles.account_profile_container_form_section3_right_btn}>
-                  Save Changes
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
       </div>

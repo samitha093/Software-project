@@ -22,7 +22,7 @@ import { Button } from '@mui/material'
 
 const index: NextPage = function ActiveEvents() {
 
-    const [buyersidebar, setbuyersidebar] = React.useState([{ status: true }, { status: false }, { status: false }, { status: false }]);
+    const [buyersidebar, setbuyersidebar] = React.useState([{ status: false }, { status: true }, { status: false }, { status: false }]);
 
     const [itemID, setitemID] = React.useState("1");
     const [itemURL, setitemURL] = React.useState('m/getevent/pending');

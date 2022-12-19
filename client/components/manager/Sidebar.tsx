@@ -79,11 +79,11 @@ const Sidebar: React.FC<SidebarProps> = ({ id , data}) => {
         <div className={styles.manager_c_sidebar}>
             <div className={styles.manager_c_sidebar_container}>
 
-                    <Tooltip title="Home Page" placement="bottom-end">
+                    {/* <Tooltip title="Home Page" placement="bottom-end">
                         <div className={buyersidebar[0].status ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'} onClick={()=>tabchange('1',data)}>
                             <Icon className={buyersidebar[0].status ? 'manager-c-sidebar-item-icon active' : 'manager-c-sidebar-item-icon'} path={mdiHomeOutline} />
                         </div>
-                    </Tooltip>
+                    </Tooltip> */}
 
                     <Tooltip title="Events" placement="bottom-end">
                         <div className={buyersidebar[1].status ? 'manager-c-sidebar-item active' : 'manager-c-sidebar-item'} onClick={()=>tabchange('2',data)}>

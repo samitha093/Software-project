@@ -99,8 +99,6 @@ const Popup: React.FC<PopupProps> = ({data}) => {
     };
 
     const [ticketImg,setTicketImg] = React.useState("")
-    
-
     return (
         <div className={Styles.bg}>
             <div className={Styles.seller_c_tickets} onClick={handleClickOpen}>
@@ -130,15 +128,19 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <div className={Styles.ticketview}>
-                        <h1>{data.event_name}</h1>  
+                        <h1>{data.event_name}</h1>
                     </div>
                     <TabContext value={value}>
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
-                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"2"}/>
-                        <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
-                        <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
-                    </Tabs>  
+
+                            {/* ..limited for seller.. */}
+                            <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"2"}/>
+                            <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
+                            <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
+                            {/* ...limited for seller... */}
+
+                    </Tabs>
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
@@ -152,7 +154,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 <DialogActions>
                   {data.status=="PENDING"?
                     <Button autoFocus onClick={handleClose}>
-                        EDIT EVENT     
+                          
                     </Button>
                   :null}
                 </DialogActions>
