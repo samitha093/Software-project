@@ -125,12 +125,12 @@ const qr: NextPage = function ActiveEvents() {
             <div className={styles.bg}>
                 <Button variant="outlined" color="error" onClick={logout}>
                         logout
-                    </Button> 
+                    </Button>
             </div>
             </div>
             :
             <div>
-               403 Error 
+               403 Error
             </div>
             }
         </div>

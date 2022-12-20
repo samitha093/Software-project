@@ -25,7 +25,7 @@ services:
     image: nextjs-app
     build: 
       context:  ./client/
-      dockerfile:  Dockerfile-update
+      dockerfile:  Dockerfile
       args:
         - HOST_IP=${HOST_IP}
     stdin_open: true
@@ -44,7 +44,7 @@ services:
     image: api-servers
     build: 
       context:  ./server/
-      dockerfile:  Dockerfile-update
+      dockerfile:  Dockerfile
       args:
         - MONGO_URI=${MONGO_URI}
         - NEXT_HOST=${NEXT_HOST}
@@ -69,7 +69,7 @@ services:
     image: fastify-servers
     build: 
       context:  ./fastify/
-      dockerfile:  Dockerfile-update
+      dockerfile:  Dockerfile
       args:
         - NEXT_HOST=${NEXT_HOST}
     volumes: 
@@ -85,7 +85,7 @@ services:
     image: ws-socket
     build: 
       context:  ./websocket/
-      dockerfile:  Dockerfile-update
+      dockerfile:  Dockerfile
       args:
         - NEXT_HOST=${NEXT_HOST}
     volumes: 
