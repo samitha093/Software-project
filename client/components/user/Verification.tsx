@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import lock from '../../assets/lock.png'
+import verify from '../../assets/verify1.png'
 import {Box,Grid,} from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
@@ -9,15 +9,14 @@ import axios from 'axios'
 
 import {getfastify, getmyhost, gethost} from '../../session/Session';
 
-import LockIcon from '@mui/icons-material/Lock';
 import { useRouter } from "next/router";
 
-interface ForgotpwdProps {
+interface VerificationProps {
   email:any,
   otp:any
 }
 
-const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
+const Verification: React.FC<VerificationProps> = ({email,otp}) => {
 
   const { query } = useRouter();
 
@@ -31,31 +30,16 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
     login_setEmailError(!valid);
   }
 
-  const [newpassword,setnewpassword] = React.useState<string>("");
-  const newpasswordset = (event:any)=>{
-    setnewpassword(event.target.value)
-  }
+  const verification = (event:any)=>{
 
-  const changepassword = (event:any)=>{
-    const datapack = {
-      otp:otp,
-      email:email,
-      password:newpassword,
-    }
-    axios.post(gethost()+'g/passwordreset',datapack)
-    .then(async (res)=>{
-        Toast.fire({
-            icon: 'success',
-            title: "Password updated"
-        })
-    })
-    .catch((err)=>{
-      Toast.fire({
-        icon: 'warning',
-        title: err.response.data
-    })
-    })
+
+
+
+
+    
+    
   }
+  
 
   const Toast = Swal.mixin({
     toast: true,
@@ -82,7 +66,7 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
                 <div className="form_wrapper">
                         <div className="modern_form" >
 
-                          <h1 className = "head_password" >Reset Password</h1>
+                          <h1 className = "head_password" >Re-Verification</h1>
                           {login_emailHasError && (<p className="error_message"> * Invalid email</p>)}
 
                           <div className ="input_box_container"> 
@@ -105,46 +89,20 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
                           value={otp}
                           // onChange={login_emailChangeHandler}
                           // onBlur={emailBlurHandler} 
-                          /></div>
+                          /></div>  
 
-                          <div className ="input_box_container"> 
-                          <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
-                            <input 
-                            className="inputbox_modern_1"
-                            type="password" 
-                            placeholder="New Password" 
-                            value={newpassword}
-                            onChange={(e)=>newpasswordset(e)}
-                            onBlur={(e)=>newpasswordset(e)}
-                            // onBlur={emailBlurHandler}
-                            />
-                          </div>
+                           <br/><br/>
+                          <button className="modern_btn" onClick={verification}>Verify</button>
 
-                          <div className ="input_box_container"> 
-                          <div className="icn"> <LockIcon sx={{ fontSize: 18 }}></LockIcon></div>                       
-                            <input 
-                            className="inputbox_modern_1"
-                            type="password" 
-                            placeholder="Confirm Password" 
-                            // value={login_password}
-                            // onChange={login_passwordChangeHandler}
-                            // onBlur={login_passwordChangeHandler}
-                            // onBlur={emailBlurHandler}
-                            />
-                          </div>
-
-                          <br/><br/>
-                          <button className="modern_btn" onClick={changepassword}>Change Password</button>
-                        </div>
                           
                    </div>
-                    
+                </div>   
                 </Grid>
                 <Grid item xs className = "box_1" >
                 <Image
-                     src = {lock}
+                     src = {verify}
                      layout = "responsive"
-                     m-50
+                     m-100
                      alt= " "
                     ></Image>            
                 </Grid>
@@ -158,4 +116,4 @@ const Forgotpwd: React.FC<ForgotpwdProps> = ({email,otp}) => {
 
 
 }
-export default Forgotpwd;
+export default Verification;
