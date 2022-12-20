@@ -528,7 +528,7 @@ router.route('/reverify').post((req, res) => {
                     console.log(email);
                     const subject = "OTP for Reverify your TickBid Account";
                     const restlink = next + "user/verification?email=" + data.email + "&otp=" + otpid;
-                    const restlinktitle = "We received a request to reverify your Tickbid account , use below link to reset password <br>";
+                    const restlinktitle = "We received a request to reverify your Tickbid account , use below link to reverify!!! <br>";
                     const html = a + data.username + b + otpid + c + restlinktitle + restlink + d
                     await emailnotifications(email, subject, html);
                     res.status(200).json("Email Sended");
