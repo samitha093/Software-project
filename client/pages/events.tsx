@@ -233,8 +233,8 @@ const advanceclick = () => {
 
         return (
             
-            <div className={classnames(styles.buyer_bg, styles.shop_home)}>
-                <Navbar/>
+            <div className={classnames( styles.shop_home)}>
+                {/* <Navbar/> */}
                 <div className={styles.event_container}>
                     <div className={styles.event_container_left}>
                         <div className={styles.event_container_left_content}>

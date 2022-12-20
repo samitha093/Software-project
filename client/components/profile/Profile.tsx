@@ -52,20 +52,17 @@ function Profile() {
                             <Progressbar_light data={{progress : 100}}/>:
                             <Progressbar_light data={{progress : 70}}/>
                             }
-                            
                         </div>
                         <div className={styles.profile_card_right}>
                             <h3>Profile Informations</h3>
                             <p>Complete your profile to unlock all features</p>
                             <p>User Type : {items.usertype}</p>
                             <p>{items.otp} User Account</p>
-                        </div>                      
+                        </div>
                     </div>
                     {items.otp=='verified'?null:
                     <div className={styles.profile_card_container_footer}>
-                    
                         <h3><div onClick={submitotp}>Verify My Account</div></h3>
-                    
                     </div>
                     }
                 </div>
