@@ -1,11 +1,15 @@
-FROM node:16-alpine
+FROM node:16
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -y yarn
+RUN yarn install
 
 ARG HOST_IP
 ENV HOST_IP $HOST_IP
 
 WORKDIR /app
 COPY ./package.json ./
-COPY ./node_modules ./
 
 RUN yarn
 COPY . .

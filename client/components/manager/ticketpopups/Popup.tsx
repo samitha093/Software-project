@@ -217,16 +217,16 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabContext value={value}>
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
-                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"3"}/>
+                        {/* <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"3"}/>
                         <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"4"}/>
-                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"5"}/>
+                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"5"}/> */}
                     </Tabs>  
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="3">{data.status=="ACTIVE"?<SellingInfo/>:<Nopermission/>}</TabPanel>
+                    {/* <TabPanel value="3">{data.status=="ACTIVE"?<SellingInfo/>:<Nopermission/>}</TabPanel>
                     <TabPanel value="4">{data.status=="ACTIVE"?<Tickets/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="5">{data.status=="ACTIVE"?<Analitics/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{data.status=="ACTIVE"?<Analitics/>:<Nopermission/>}</TabPanel> */}
                     </TabContext>
                     
                 </DialogContent>

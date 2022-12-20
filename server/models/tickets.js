@@ -4,6 +4,8 @@ mongoose.plugin(require('@meanie/mongoose-to-json'));
 const schema = mongoose.Schema;
 
 const ticketschema = new schema({
+    views: {type:Number,default: 0},
+    Revenue:{type:Number,default: 0},
     ticket_level: {type:Number},// in ticket
     buy_quantity: {type:Number}, //in ticket
     buy_amount: {type:Number},//in ticket

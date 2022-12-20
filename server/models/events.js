@@ -16,6 +16,7 @@ const ticketschema = new schema({
 });
 
 const eventschema = new schema({
+    views: {type:Number,default:0},
     username:{type:String }, // get from middle-ware
     event_name: {type:String},
     event_venue: {type:String},

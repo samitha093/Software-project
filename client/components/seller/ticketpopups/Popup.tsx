@@ -50,6 +50,7 @@ export interface DialogTitleProps {
   }
   
   const BootstrapDialogTitle = (props: DialogTitleProps) => {
+    var ticketcount = 0;
     const { children, onClose, ...other } = props;
     return (
       <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
@@ -98,8 +99,6 @@ const Popup: React.FC<PopupProps> = ({data}) => {
     };
 
     const [ticketImg,setTicketImg] = React.useState("")
-    
-
     return (
         <div className={Styles.bg}>
             <div className={Styles.seller_c_tickets} onClick={handleClickOpen}>
@@ -111,16 +110,16 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                                     {data.event_name}
                                 </div>
                                 <div className={Styles.seller_c_tickets_top_info_left_date}>
-                                    {data.event_date} 
+                                    {data.event_date}
                                 </div>
                             </div>
                             <div className={Styles.seller_c_tickets_top_info_right}>
-                                <div className={Styles.seller_c_tickets_top_info_right_nooftickets}>460</div>
+                                <div className={Styles.seller_c_tickets_top_info_right_nooftickets}>{data.views}</div>
                                 <div className={Styles.seller_c_tickets_top_info_right_tickets}>views</div>
                             </div>
                         </div>
                     </div>
-                    <h5 className={Styles.seller_c_tickets_cardstatus}>400 Tickets Available</h5>
+                    <h5 className={Styles.seller_c_tickets_cardstatus}> {data.event_venue}</h5>
                 </div>
             </div>
             <BootstrapDialog aria-labelledby={Styles.customized_dialog_title1} open={Open} maxWidth={'lg'} fullWidth={true}>
@@ -129,16 +128,19 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <div className={Styles.ticketview}>
-                        <h1>{data.event_name}</h1>  
+                        <h1>{data.event_name}</h1>
                     </div>
                     <TabContext value={value}>
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
-                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"2"}/>
-                        <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
-                        <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
-                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"6"}/>
-                    </Tabs>  
+
+                            {/* ..limited for seller.. */}
+                            <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"2"}/>
+                            <Tab icon={<PersonPinIcon />} iconPosition="start" label="Bidder List" value={"4"} />
+                            <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"5"}/>
+                            {/* ...limited for seller... */}
+
+                    </Tabs>
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
@@ -148,12 +150,11 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabPanel value="3">{(data.status=="END")||(data.status=="ACTIVE")?<Buyers/>:<Nopermission/>}</TabPanel>
                     <TabPanel value="4">{(data.status=="END")||(data.status=="ACTIVE")?<Bidders data={data}/>:<Nopermission/>}</TabPanel>
                     </TabContext>
-                    
                 </DialogContent>
                 <DialogActions>
                   {data.status=="PENDING"?
                     <Button autoFocus onClick={handleClose}>
-                        EDIT EVENT     
+                          
                     </Button>
                   :null}
                 </DialogActions>

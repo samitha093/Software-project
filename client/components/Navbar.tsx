@@ -30,6 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
     const [navbar,setNavbar] = React.useState(false);
     const [cart,setcart] = React.useState([]);
     const [Amount,setAmount] = React.useState(0);
+    const [cartsize,setcartsize] = React.useState(0);
     async function navclick (){
       axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
@@ -103,10 +104,26 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
     };
     //window.addEventListener('scroll',changebg);
     React.useEffect(() => {
-    window.addEventListener('scroll',changebg);
-    setcart(getcart());
-    uploadeAmount();
+      window.addEventListener('scroll',changebg);
+      setcart(getcart());
+      uploadeAmount();
+      cartrefresh();
     },[]);
+
+    React.useEffect(() => {
+      try{
+        if(cart.length > 0){
+          setcartsize(cart.length);
+        }
+      }catch{}
+    },[cart]);
+
+    function cartrefresh(){
+      setcart(getcart());
+      setInterval(function() {
+        setcart(getcart());
+			}, 1000);
+    }
 
     function timeout(delay: number) {
       return new Promise( res => setTimeout(res, delay) );
@@ -173,7 +190,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                 showConfirmButton: false,
                 timer: 2500
             })
-          }) 
+          })
         }else if(res.data.type == 'MANAGER'){
           //not acess
           Swal.fire({
@@ -199,7 +216,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
       })
       .catch((err)=>{
         checkoutcartguest();
-      }) 
+      })
   };
 
         return (
@@ -224,12 +241,13 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <IconButton onClick={openminicart} className={style.navbar_active} size="large" aria-label="add to shopping cart">
                             <ShoppingCartOutlinedIcon fontSize="inherit" />
                         </IconButton>
+                        <div className={style.cartcount}>{cartsize}</div>
                     </div>
                 </div>
             </div>
             <div className={style.cart_drower} id='minicart'>
                 <CloseIcon fontSize='large' className={style.cart_close}  onClick={closeminicart}/>
-                <div className={style.cart_drower_content}> 
+                <div className={style.cart_drower_content}>
                   <div className={style.cart_drower_content_list}>
                     <div className={style.cart_drower_content_list_items}>
                     {cart !==null ? cart.map((itemdata:any)=>{
@@ -237,7 +255,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                         <Drowercard ticketid={itemdata.itemid} qty={itemdata.qty} data={{change: uploadedData}}/>
                       </div>)
                     }):<div className={style.cart_drower_empty_cart_container}>
-                      <div className={style.cart_drower_empty_cart_container_img}> 
+                      <div className={style.cart_drower_empty_cart_container_img}>
                         <Image className={style.cart_drower_empty_cart} src = {emptycart} layout = "responsive" m-50="true" alt=''/>
                       </div>
                       </div>}
@@ -268,12 +286,11 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                     />: (<span>Loading...</span>)}
                     </div>
                   </div>
-                  
                 </div>
             </div>
             <div className={style.menu_drower} id='minimenu'>
                 <CloseIcon fontSize='large' className={style.menu_close}  onClick={closeminimenu}/>
-                <div className={style.minimenu_drower_content}> 
+                <div className={style.minimenu_drower_content}>
                   <ul className={style.mobile_drower_menu}>
                     <li><Link href="/">Home</Link></li>
                     <li><Link href="/events">Events </Link></li>
@@ -283,7 +300,6 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                 </div>
             </div>
           </div>
-            
         );
 }
 

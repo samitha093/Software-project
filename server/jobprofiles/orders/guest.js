@@ -35,7 +35,7 @@ function guestOrder (dataSet){
                         "orderid":dataSet.job_id[0],
                         "eventId":ticketdata.eventid,
                         "ticketid": ticketid,
-                        "qridList":ticketqr,                        
+                        "qridList":ticketqr,
                     }
                     await User.findById(userid).then(async(userdata)=> {
                         userdata.tickets.push(ticket);

@@ -4,11 +4,12 @@ const tickets = require('../../models/tickets');
 const orders = require('../../models/orders');
 const qr = require('../../models/qr');
 const User = require('../../models/users');
+const bidvalidator = require('../bids/validator')
 
 const moment = require('moment'); // require
 moment().format(); 
 
-function monitor (dataSet, dateset){
+function eventmonitor (dataSet, dateset){
  return tickets.findById(dataSet.job_id[0])
     .then(data =>{
         var result = events.findById(data.eventid).then(eventData =>{
@@ -18,6 +19,7 @@ function monitor (dataSet, dateset){
                 eventData.save()
                 data.status = false;
                 data.save()
+                bidmonitor.bidvalidator(dataSet.job_id[0]);
                 return 1;
             }else{
                 return 0;
@@ -25,8 +27,7 @@ function monitor (dataSet, dateset){
         })
         return result;
     })
-    .catch(err => res.status(400).json("Wrong db connection"))
- 
+    .catch(err => console.log(err))
 };
 
-module.exports={monitor};
+module.exports={eventmonitor};

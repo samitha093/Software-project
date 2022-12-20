@@ -169,6 +169,16 @@ const next = process.env.NEXT_HOST;
  *                      description: validated data data
  *              example:
  *                  dataarray: "?"
+ *          viewcounter:
+ *              type: object
+ *              required:
+ *                  - eventid
+ *              properties:
+ *                  eventid:
+ *                      type: string
+ *                      description: validated email format
+ *              example:
+ *                  eventid: "?"
  * 
  */
 
@@ -716,7 +726,7 @@ router.route('/order').post(async (req, res) => {
     for (let item of cart) {
         await tickets.findById(item.itemid)
             .then(async (data) => {
-                data.nosold += 1;
+                data.nosold += item.qty;
                 data.save()
                     .then(() => console.log("ticket updated"))
                     .catch(err => console.log(err))
@@ -741,6 +751,15 @@ router.route('/order').post(async (req, res) => {
         job_status,
     });
     newcrons.save()
+    const job_type_2 = "Y";
+    const job_name_2 = "GUEST_BUY_ANALYZER";
+    const newcrons2 = new crons({
+      "job_type":job_type_2,
+      "job_name":job_name_2,
+      job_id,
+      job_status,
+      });
+    newcrons2.save()
     res.status(200).json(orderid)
 
 });
@@ -856,6 +875,39 @@ router.route('/tickets').post(async (req, res) => {
         dataset3 = dataset3.filter(val => !(val.ticket_level == 5))
     }
     res.status(200).json(dataset3)
+});
+
+
+/**
+ * @swagger
+ * '/g/viewcount':
+ *  post:
+ *     tags:
+ *     - User-guest
+ *     summary: views counter
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/viewcounter'
+ *     responses:
+ *      200:
+ *        description: collect views
+ */
+
+router.route('/viewcount').post(async (req, res) => {
+    tickets.findById(req.body.ticketid).then(async (ticketdata) => {
+            ticketdata.views += 1;
+            ticketdata.save()
+            events.findById(req.body.eventid).then(async (eventdata) => {
+                eventdata.views += 1;
+                eventdata.save()
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    res.status(200).json("count ok");
 });
 
 module.exports = router;

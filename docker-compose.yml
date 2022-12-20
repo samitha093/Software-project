@@ -11,6 +11,8 @@ services:
         - NGINX_SSL=${NGINX_SSL}
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf
+    env_file:
+      - ./.env
     ports:
       - 80:80
       - 443:443
