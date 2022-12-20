@@ -455,7 +455,7 @@ const index: NextPage = () => {
                               <div> <AlternateEmailIcon sx={{ color: grey[300] }}/></div>
                               <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
                             </div>
-                          </div>   
+                          </div>
                        </div> 
                 </div> 
                 </div>
