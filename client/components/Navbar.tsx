@@ -233,7 +233,6 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                 <div className={style.navbar_right} >
                     <ul className={style.main_menu}>
                         <li><Link href="/">Home</Link></li>
-                        <li><Link href="/events">Events </Link></li>
                         <li ><Link href ="/about">About us</Link></li>
                         <li onClick={navclick}>My Account</li>
                     </ul>
@@ -293,11 +292,13 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
                 <div className={style.minimenu_drower_content}>
                   <ul className={style.mobile_drower_menu}>
                     <li><Link href="/">Home</Link></li>
-                    <li><Link href="/events">Events </Link></li>
                     <li><Link href ="/user/about">About us</Link></li>
                     <li onClick={navclick}>My Account</li>
                   </ul>
                 </div>
+            </div>
+            <div>
+              
             </div>
           </div>
         );
