@@ -846,3 +846,9 @@
     padding-bottom: 20px!important;
     padding-right: 30px!important;
 }
+.seller_event_submit_validations{
+    color: crimson;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: #752E9E;
+}

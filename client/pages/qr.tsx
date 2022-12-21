@@ -83,19 +83,29 @@ const qr: NextPage = function ActiveEvents() {
                 title: 'Oops...',
                 text: 'Database connection error!'
                 })
-            }) 
-            
+            })
         }
     },[query.id])
 
     React.useEffect(()=>{
+        //
         if(scanned){
-            Toast.fire({
-                icon: 'success',
-                title: scanned
+            const datapack = {
+                device:query.id,
+                scan:scanned,
+            }
+            axios.post(gethost()+'s/ticketvalidate',datapack).then(async (res)=>{
+                Toast.fire({
+                    icon: 'success',
+                    title: res
+                })
+            }).catch((err)=>{
+                Toast.fire({
+                    icon: 'error',
+                    title: err
+                })
             })
         }
-        
     },[scanned])
 
     const Toast = Swal.mixin({
@@ -125,12 +135,12 @@ const qr: NextPage = function ActiveEvents() {
             <div className={styles.bg}>
                 <Button variant="outlined" color="error" onClick={logout}>
                         logout
-                    </Button> 
+                    </Button>
             </div>
             </div>
             :
             <div>
-               403 Error 
+               403 Error
             </div>
             }
         </div>

@@ -285,7 +285,7 @@ router.route('/register').post((req, res) => {
    */
 
 router.route('/activate').post((req, res) => {
-    User.find({ email: req.body.email, otp: req.body.otp, status: false })
+    User.find({ email: req.body.email, otp: req.body.otp})
         .then(data => {
             if (data[0].usertype === "BUYER") {
                 data[0].status = true;
@@ -301,6 +301,7 @@ router.route('/activate').post((req, res) => {
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json("Wrong OTP"))
+        console.log("user activation process run");
 });
 
 /**
@@ -527,8 +528,8 @@ router.route('/reverify').post((req, res) => {
                     const email = data.email;
                     console.log(email);
                     const subject = "OTP for Reverify your TickBid Account";
-                    const restlink = next + "user/resetpwd?email=" + data.email + "&otp=" + otpid;
-                    const restlinktitle = "We received a request to reverify your Tickbid account , use below link to reset password <br>";
+                    const restlink = next + "user/verification?email=" + data.email + "&otp=" + otpid;
+                    const restlinktitle = "We received a request to reverify your Tickbid account , use below link to reverify!!! <br>";
                     const html = a + data.username + b + otpid + c + restlinktitle + restlink + d
                     await emailnotifications(email, subject, html);
                     res.status(200).json("Email Sended");

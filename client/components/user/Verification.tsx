@@ -18,6 +18,9 @@ interface VerificationProps {
 
 const Verification: React.FC<VerificationProps> = ({email,otp}) => {
 
+  const [nemail,setnemail] = React.useState<string>("");
+  const [notp,setnotp] = React.useState<string>("");
+
   const { query } = useRouter();
 
   const [login_email,login_setEmail] = React.useState<string>("");
@@ -31,15 +34,29 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
   }
 
   const verification = (event:any)=>{
+    const datapack = {
+      "email":email,
+      "otp":otp,
+      
+    }
+    axios.post(gethost()+'g/activate',datapack)
+    .then(async (res)=>{
+        Toast.fire({
+          icon: 'success',
+          title: "Verified"
 
+        })
+        setnemail("")
+        setnotp("")
+    })
+    .catch((err)=>{
+      Toast.fire({
+        icon: 'warning',
+        title: err.response.data
+    })
+    })
 
-
-
-
-    
-    
   }
-  
 
   const Toast = Swal.mixin({
     toast: true,
@@ -56,7 +73,9 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
   React.useEffect(()=>{
     // console.log(email)
     // console.log(otp)
-  })
+    setnemail(email)
+    setnotp(otp)
+  },[email])
     return(
         <div className="container" id="container" >
         
@@ -75,7 +94,7 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
                           className="inputbox_modern"
                           type="email" 
                           placeholder="Your Email"
-                          value={email}
+                          value={nemail}
                           // onChange={login_emailChangeHandler}
                           // onBlur={emailBlurHandler} 
                           /></div>
@@ -86,7 +105,7 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
                           className="inputbox_modern_otp"
                           type="text" 
                           placeholder="OTP"
-                          value={otp}
+                          value={notp}
                           // onChange={login_emailChangeHandler}
                           // onBlur={emailBlurHandler} 
                           /></div>  
