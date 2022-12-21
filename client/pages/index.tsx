@@ -445,7 +445,7 @@ const index: NextPage = () => {
                             <h2 className ={style.h2}>Contact info</h2>
                             <div className ={style.row}>
                               <div> <LocationOnIcon sx={{ color: grey[300] }}/></div>
-                              <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
+                              <div className={style.text_4}>University of Ruhuna</div> 
                             </div>
                             <div className ={style.row}>
                               <div> <PhoneInTalkRoundedIcon sx={{ color: grey[300] }}/></div>
@@ -453,7 +453,7 @@ const index: NextPage = () => {
                             </div>
                             <div className ={style.row}>
                               <div> <AlternateEmailIcon sx={{ color: grey[300] }}/></div>
-                              <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
+                              <div className={style.text_4}>tickbid.mail@gmail.com</div> 
                             </div>
                           </div>
                        </div> 
