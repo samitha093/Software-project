@@ -109,7 +109,16 @@
 	width: auto;
 	font-family: 'Handlee', cursive;
 }
+.ticket_orientation{
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
   @media only screen and (max-width: 800px) {
+    .ticket_orientation{
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
       .advance_options{
           display: flex;
       }
