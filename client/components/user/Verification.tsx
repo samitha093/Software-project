@@ -31,6 +31,25 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
   }
 
   const verification = (event:any)=>{
+    const datapack = {
+      "email":email,
+      "otp":otp,
+      
+    }
+    axios.post(gethost()+'g/activate',datapack)
+    .then(async (res)=>{
+        Toast.fire({
+          icon: 'success',
+          title: "Verified"
+
+        })
+    })
+    .catch((err)=>{
+      Toast.fire({
+        icon: 'warning',
+        title: err.response.data
+    })
+    })
 
   }
 
