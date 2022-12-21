@@ -1,0 +1,139 @@
+version: '3.1'
+services:
+  #NGINX Proxy Server
+  proxy:
+    image: nginx
+    build: 
+      context:  ./proxy/
+      dockerfile:  Dockerfile
+      args:
+        - DEV_DOMAIN=${DEV_DOMAIN}
+        - NGINX_SSL=${NGINX_SSL}
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf
+    env_file:
+      - ./.env
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.100
+    restart: on-failure:3
+  #Nextjs APP
+  nextjs-app:
+    image: nextjs-app
+    build: 
+      context:  ./client/
+      dockerfile:  Dockerfile-update
+      args:
+        - HOST_IP=${HOST_IP}
+    stdin_open: true
+    volumes: 
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.101
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    restart: on-failure:3
+    command: yarn dev
+  #Express API Service
+  api-server:
+    image: api-servers
+    build: 
+      context:  ./server/
+      dockerfile:  Dockerfile-update
+      args:
+        - MONGO_URI=${MONGO_URI}
+        - NEXT_HOST=${NEXT_HOST}
+        - API_HOST=${API_HOST}
+        - SECRET=${SECRET}
+        - GMAIL=${GMAIL}
+        - KEY=${KEY}
+    volumes: 
+      - ./server:/app
+      - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.103
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    restart: on-failure:3
+    command: yarn dev
+    depends_on:
+      - mongo
+  #fastify API Service
+  fastify-server:
+    image: fastify-servers
+    build: 
+      context:  ./fastify/
+      dockerfile:  Dockerfile-update
+      args:
+        - NEXT_HOST=${NEXT_HOST}
+    volumes: 
+      - ./fastify:/app
+      - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.104
+    restart: on-failure:3
+    command: yarn dev
+  #ws Socket API
+  ws-socket:
+    image: ws-socket
+    build: 
+      context:  ./websocket/
+      dockerfile:  Dockerfile-update
+      args:
+        - NEXT_HOST=${NEXT_HOST}
+    volumes: 
+      - ./websocket:/app
+      - /app/node_modules
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.105
+    restart: on-failure:3
+    command: yarn dev
+  #mongo db database
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: on-failure:3
+    ports:
+      - 27017:27017
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.106
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - database:/data/db
+  # Mongo Express DB Ui
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: on-failure:3
+    ports:
+      - 8081:8081
+    networks:
+      Tickbidwebapp:
+        ipv4_address: 10.5.0.107
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_URL: mongodb://root:password@10.5.0.106:27017/
+    depends_on:
+      - mongo
+volumes:
+  database: {}
+networks: 
+  Tickbidwebapp:
+    name: Tickbidwebapp
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
