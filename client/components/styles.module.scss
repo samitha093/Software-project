@@ -246,6 +246,9 @@
 }
 .priceboxforbid:focus {
     outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
   }
 .buyer_index_container{
     padding-left: 0px;

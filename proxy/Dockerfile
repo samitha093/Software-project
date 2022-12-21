@@ -22,5 +22,5 @@ COPY vhosts/vhost.sh /etc/nginx/vhost.sh
 # RUN chmod +x /etc/nginx/vhost.sh
 # RUN cd /etc/nginx && ./vhost.sh
 
-EXPOSE 80
+
 EXPOSE 443
