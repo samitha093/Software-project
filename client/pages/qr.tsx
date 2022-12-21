@@ -13,6 +13,7 @@ const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 const qr: NextPage = function ActiveEvents() {
     const router = useRouter()
     const [scanned, setScanned] = React.useState("");
+    const [scannedold, setScannedold] = React.useState("");
 
     const onScan = (result: string | null) => {
         setScanned(result ? result : "");
@@ -43,7 +44,14 @@ const qr: NextPage = function ActiveEvents() {
 	}
 
     function logout(){
-        router.push('/');
+        axios.get(gethost() +'s/ticketvalidatelogout/'+query.id).then(async (res)=>{
+            router.push('/');
+        }).catch((err)=>{
+            Toast.fire({
+                icon: 'error',
+                title: err
+            })
+        })
     }
 
     React.useEffect(()=>{
@@ -88,24 +96,30 @@ const qr: NextPage = function ActiveEvents() {
     },[query.id])
 
     React.useEffect(()=>{
-        //
-        if(scanned){
-            const datapack = {
-                device:query.id,
-                scan:scanned,
+        if(scanned != scannedold){
+            if(scanned){
+                setScannedold(scanned)
+                const datapack = {
+                    device:query.id,
+                    scan:scanned,
+                }
+                axios.post(gethost()+'s/ticketvalidate',datapack).then(async (res)=>{
+                    Swal.fire(
+                        'Success',
+                        'Ticket was validated',
+                        'success'
+                      )
+                }).catch((err)=>{
+                    Swal.fire(
+                        'Opps!',
+                        'Unvalid ticket',
+                        'error'
+                      )
+                })
             }
-            axios.post(gethost()+'s/ticketvalidate',datapack).then(async (res)=>{
-                Toast.fire({
-                    icon: 'success',
-                    title: res
-                })
-            }).catch((err)=>{
-                Toast.fire({
-                    icon: 'error',
-                    title: err
-                })
-            })
         }
+        //
+        
     },[scanned])
 
     const Toast = Swal.mixin({
