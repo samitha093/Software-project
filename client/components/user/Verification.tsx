@@ -32,14 +32,7 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
 
   const verification = (event:any)=>{
 
-
-
-
-
-    
-    
   }
-  
 
   const Toast = Swal.mixin({
     toast: true,

@@ -83,19 +83,29 @@ const qr: NextPage = function ActiveEvents() {
                 title: 'Oops...',
                 text: 'Database connection error!'
                 })
-            }) 
-            
+            })
         }
     },[query.id])
 
     React.useEffect(()=>{
+        //
         if(scanned){
-            Toast.fire({
-                icon: 'success',
-                title: scanned
+            const datapack = {
+                device:query.id,
+                scan:scanned,
+            }
+            axios.post(gethost()+'s/ticketvalidate',datapack).then(async (res)=>{
+                Toast.fire({
+                    icon: 'success',
+                    title: res
+                })
+            }).catch((err)=>{
+                Toast.fire({
+                    icon: 'error',
+                    title: err
+                })
             })
         }
-        
     },[scanned])
 
     const Toast = Swal.mixin({

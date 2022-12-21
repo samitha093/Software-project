@@ -83,6 +83,31 @@ const {getusername, getuserid} = require('../middlewares/user');
  *                  buy_amount: 0
  *                  bid_quantity: 0
  *                  min_bid_amount: 0
+ *          ticketvalidate:
+ *              type: object
+ *              required:
+ *                  - ticket_level
+ *                  - buy_quantity
+ *                  - buy_amount
+ *                  - bid_quantity
+ *                  - min_bid_amount
+ *              properties:
+ *                  ticket_level:
+ *                      type: Number
+ *                  buy_quantity:
+ *                      type: Number
+ *                  buy_amount:
+ *                      type: Number
+ *                  bid_quantity:
+ *                      type: Number
+ *                  min_bid_amount:
+ *                      type: Number
+ *              example:
+ *                  ticket_level: 0
+ *                  buy_quantity: 0
+ *                  buy_amount: 0
+ *                  bid_quantity: 0
+ *                  min_bid_amount: 0
  */
 
 /**
@@ -680,6 +705,41 @@ router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid
         "dataset6":activeEvents
     }
     res.status(200).json(response)
+});
+
+/**
+ * @swagger
+ *  '/s/ticketvalidate':
+ *      post:
+ *          tags:
+ *              - User-seller
+ *          summary: Create a Ticket (one by one link *)
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/ticketvalidate'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: update error
+ *              500:
+ *                  description: Server failure
+ */
+router.route('/ticketvalidate').post((req,res) => {
+    Qr.findById(req.body.device).then(data =>{
+        console.log(data)
+    })
+    console.log(req.body)
+    res.status(200).json("ok")
 });
 
 module.exports = router;
