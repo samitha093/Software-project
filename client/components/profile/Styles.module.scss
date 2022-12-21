@@ -179,7 +179,7 @@
 .device_card{
     margin: 20px;
     display: flex;
-    width: 100%;
+    position: relative;
 }
 .device_card_qr{
     margin: 0px;
@@ -201,4 +201,11 @@
 .device_list{
     max-height: 50vh;
     overflow: auto;
+}
+.device_card_close{
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top:0;
+    right: 0;
 }

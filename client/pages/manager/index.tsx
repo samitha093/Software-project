@@ -1,8 +1,6 @@
 //node packages
-import React from 'react'
+import React, { useState } from 'react'
 import type { NextPage } from 'next'
-import Swal from 'sweetalert2'
-import { useRouter } from 'next/router'
 import axios from 'axios'
 //custom components
 import Sidebar from '../../components/manager/Sidebar'
@@ -20,10 +18,11 @@ import Auth from '../../components/auth/Auth'
 import { gethost } from '../../session/Session';
 //stylesheet
 import styles from './styles.module.css'
+import { Button } from '@mui/material'
 
 const index: NextPage = function ActiveEvents() {
 
-    const [buyersidebar, setbuyersidebar] = React.useState([{ status: true }, { status: false }, { status: false }, { status: false }]);
+    const [buyersidebar, setbuyersidebar] = React.useState([{ status: false }, { status: true }, { status: false }, { status: false }]);
 
     const [itemID, setitemID] = React.useState("1");
     const [itemURL, setitemURL] = React.useState('m/getevent/pending');
@@ -33,10 +32,38 @@ const index: NextPage = function ActiveEvents() {
     const [selleritemURL, setselleritemURL] = React.useState('m/userlist/all');
     const [selleritems, setselleritem] = React.useState([])
 
+    //Load more
     const [loader, setloader] = React.useState(false);
 
+    const [visible, setVisible] = useState(18);
+    const [nextCount, setNextCount] = useState(12);
+
+    const showMoreItems = () => {
+        setVisible((prevValue) => prevValue + nextCount);
+    };
+
+    //Load More Button Responsiveness
+    function screenSizeDetect() {
+        if (window.matchMedia("(max-width : 1775px)").matches) {
+            setVisible(12);
+            setNextCount(8);
+          }
+          if (window.matchMedia("(max-width : 1300px)").matches) {
+            setVisible(9);
+            setNextCount(6);
+          }
+          if (window.matchMedia("(max-width : 1246px)").matches) {
+            setVisible(6);
+            setNextCount(6);
+          }
+          if (window.matchMedia("(max-width : 500px)").matches) {
+            setVisible(4);
+            setNextCount(4);
+          }
+    }
+
     React.useEffect(() => {
-        console.log("loading call")
+        screenSizeDetect();
 
     }, [loader])
 
@@ -48,8 +75,8 @@ const index: NextPage = function ActiveEvents() {
             axios.get(gethost() + itemURL, config).then(async (res) => {
                 await setitem(res.data)
             })
-                .catch(() => {
-                   
+                .catch(async () => {
+                    await setitem([])
                 })
         })
             .catch((err) => { })
@@ -67,9 +94,7 @@ const index: NextPage = function ActiveEvents() {
                     setselleritem(res.data);
                     setloader(false);
                 })
-                .catch(() => {
-                   
-                })
+                .catch(() => { })
         })
             .catch((err) => { })
     }, [selleritemURL])
@@ -91,13 +116,11 @@ const index: NextPage = function ActiveEvents() {
                     setselleritem(res.data);
                     setloader(false);
                 })
-                .catch(() => {
-                   
-                })
+                .catch(() => { })
         })
             .catch((err) => { })
     };
-    
+
     async function tabchange(id: any) {
         var datapack = [
             { status: id == '1' ? true : false },
@@ -140,10 +163,9 @@ const index: NextPage = function ActiveEvents() {
         }
     };
 
-    const listitem = items.map((item: any) => (
+    const listitem = items.slice(0, visible).map((item: any) => (
         <Popup data={item} key={item.id} />
     ));
-
 
     return (
         <Auth type={"MANAGER"} >
@@ -168,12 +190,16 @@ const index: NextPage = function ActiveEvents() {
                             <div>
                                 <ManagerTopBar id2={itemID} data={{ change: changeEventList }} />
                                 <div className={styles.manager_index_scroll_set}>
-                                <div className={styles.manager_c_header}>
-                                    <h1 >Events</h1>
-                                </div>
+                                    <div className={styles.manager_c_header}>
+                                        <h1 >Events</h1>
+                                    </div>
                                     <div className={styles.manager_index_container}>
                                         {listitem}
+                                        <div className={styles.manager_index_loadmore_button}>
+                                            {listitem.length >= visible ? <Button variant="text" onClick={showMoreItems}>..Load More..</Button> : null}
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                             : null}
@@ -182,11 +208,11 @@ const index: NextPage = function ActiveEvents() {
                             <div>
                                 <div onClick={changeSellerList}><SellersTopBar id3={selleritemID} data={{ change: changeSellerList }} /></div>
                                 <div className={styles.manager_sellers_main_container}>
-                                <div className={styles.manager_c_header}>
-                                    <h1 >Sellers</h1>
-                                </div>
+                                    <div className={styles.manager_c_header}>
+                                        <h1 >Sellers</h1>
+                                    </div>
                                     <div className={styles.manager_sellers_main_container}>
-                                        {loader ? null : <Seller data={selleritems}  refresh={{ change: refresh }}/>}
+                                        {loader ? null : <Seller data={selleritems} refresh={{ change: refresh }} />}
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +236,6 @@ const index: NextPage = function ActiveEvents() {
                                 </div>
                             </div>
                             : null}
-
                     </div>
                 </div>
             </div>

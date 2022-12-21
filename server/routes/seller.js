@@ -2,6 +2,10 @@ const router = require('express').Router();
 const path = require('path')
 const multer  = require('multer');
 const events = require('../models/events');
+const tickets = require('../models/tickets');
+const User = require('../models/users');
+const Bids = require('../models/bid');
+const Qr = require('../models/qr');
 const {verifyAccessToken,sellerverification} = require('../auth/jwt');
 const {getusername, getuserid} = require('../middlewares/user');
 
@@ -55,6 +59,31 @@ const {getusername, getuserid} = require('../middlewares/user');
  *                  event_category: "?"
  *                  area: "?"
  *          createaticket:
+ *              type: object
+ *              required:
+ *                  - ticket_level
+ *                  - buy_quantity
+ *                  - buy_amount
+ *                  - bid_quantity
+ *                  - min_bid_amount
+ *              properties:
+ *                  ticket_level:
+ *                      type: Number
+ *                  buy_quantity:
+ *                      type: Number
+ *                  buy_amount:
+ *                      type: Number
+ *                  bid_quantity:
+ *                      type: Number
+ *                  min_bid_amount:
+ *                      type: Number
+ *              example:
+ *                  ticket_level: 0
+ *                  buy_quantity: 0
+ *                  buy_amount: 0
+ *                  bid_quantity: 0
+ *                  min_bid_amount: 0
+ *          ticketvalidate:
  *              type: object
  *              required:
  *                  - ticket_level
@@ -263,6 +292,148 @@ router.route('/createaticket/:eventid').post(verifyAccessToken,sellerverificatio
 
 /**
  * @swagger
+ *  '/s/event/bid/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/bid/:eventid').get(verifyAccessToken,(req,res) => {
+    Bids.find({eventid:req.params.eventid}).then(async (Bdata) =>{
+        var jsondata = [];
+        for (i in Bdata) {
+            var response = await User.findById(Bdata[i].userid).then(async Udata =>{
+                return await events.findById(Bdata[i].eventid).then(async Edata =>{
+                    return await tickets.findById(Bdata[i].ticketid).then(async Tdata =>{
+                        var response = {
+                            bidid:Bdata[i].id,
+                            tickets:Bdata[i].ticketcount,
+                            amount:Bdata[i].bid_amount,
+                            username:Udata.username,
+                            email:Udata.email,
+                            ticketLevel:Tdata.ticket_level,
+                        }
+                        return response;
+                    })
+                })
+            })
+            jsondata.push(response);
+        };
+
+        await res.status(200).json(jsondata);
+    }).catch(err => res.status(200).json("Server error"))
+});
+
+/**
+ * @swagger
+ *  '/s/event/buy/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+//  router.route('/event/buy/:eventid').get(verifyAccessToken,sellerverification,getuserid,(req,res) => {
+ router.route('/event/buy/:eventid').get(verifyAccessToken,(req,res) => {
+    var jsondata = [];
+     tickets.find({eventid:req.params.eventid}).then(async Edata =>{
+        for (i in Edata) {
+            await Qr.find({ticketid:Edata[i].id}).then(async (Qrdata) =>{
+                for (j in Qrdata) {
+
+                    var json_j = await User.findById(Qrdata[j].userid).then(async Udata =>{
+
+                        var response = {
+                            qrid:Qrdata[j].id,
+                            validity:Qrdata[j].validity,
+                            status:Qrdata[j].status,
+                            ticketLevel:Edata[i].ticket_level,
+                            username:Udata.username,
+                            email:Udata.email,
+                            type:Udata.usertype,
+                        }
+                        return(response);
+                    })
+                    jsondata.push(json_j);
+                }
+            })
+        }
+        res.status(200).json(jsondata);
+    }).catch(err => res.status(500).json("Server error"))
+});
+
+/**
+ * @swagger
+ *  '/s/event/ticket/{eventid}':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get event summary data
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+ router.route('/event/ticket/:eventid').get((req,res) => {
+    var jsondata = [];
+    events.findById(req.params.eventid).then(async Edata => {
+        tickets.find({eventid:req.params.eventid}).then(async Tdata =>{
+            for (i in Tdata) {
+                var p3_cal = Math.round((Tdata[i].nosold/Tdata[i].buy_quantity)*100);
+                var b3_cal = Math.round((Tdata[i].nobids/Tdata[i].bid_quantity)*100);
+                var b3_any = Math.round(b3_cal<100?b3_cal<50?b3_cal<30?1:2:3:4);
+                var response = {
+                    Abids:Tdata[i].nobids,
+                    Abuy:Tdata[i].nosold,
+                    bid:Tdata[i].bid_quantity,
+                    buy:Tdata[i].buy_quantity,
+                    level:Tdata[i].ticket_level,
+                    b3:b3_any,
+                    p3:p3_cal,
+                }
+                jsondata.push(response);
+            }
+            res.status(200).json(jsondata);
+         })
+    }).catch(err => res.status(500).json("Server error"))
+});
+
+/**
+ * @swagger
  *  '/s/updateaevent/{eventid}':
  *      put:
  *          tags:
@@ -459,6 +630,116 @@ router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerve
     })
     .catch(err => res.status(400).json(err))
 
+});
+
+
+/**
+ * @swagger
+ *  '/s/getdashboard/':
+ *      get:
+ *          tags:
+ *              - User-seller
+ *          summary: get seller dashboard data
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              404:
+ *                  description: No data found
+ *              500:
+ *                  description: Server failure
+ */
+router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid,async (req,res) => {
+    const userid = req.userid;
+    const historydata = [
+        {id: 1,userGain: 80000,},
+        {id: 2,userGain: 45677,},
+        {id: 3,userGain: 78888,},
+        {id: 4,userGain: 90000,},
+        {id: 5,userGain: 4300,},
+        {id: 6,userGain: 80000,},
+        {id: 7,userGain: 45677,},
+        {id: 8,userGain: 78888,},
+        {id: 9,userGain: 90000,},
+        {id: 10,userGain: 4300,},
+        {id: 11,userGain: 80000,},
+        {id: 12,userGain: 45677,},
+        {id: 13,userGain: 78888,},
+        {id: 14,userGain: 90000,},
+        {id: 15,userGain: 4300,},
+        {id: 16,userGain: 80000,},
+        {id: 17,userGain: 45677,},
+        {d: 18,userGain: 78888,},
+        {id: 19,userGain: 90000,},
+        {id: 20,userGain: 4300,},
+        {id: 21,userGain: 80000,},
+        {id: 22,userGain: 45677,},
+        {id: 23,userGain: 78888,},
+        {id: 24,userGain: 90000,},
+        {id: 24,userGain: 90000,},
+        {id: 25,userGain: 90000,},
+        {id: 26,userGain: 60000,},
+        {id: 27,userGain: 30600,},
+        {id: 28,userGain: 90000,},
+        {id: 29,userGain: 40000,},
+        {id: 30,userGain: 90000,},
+    ];
+    const historydata2 = [
+        {id: 1,year: 'By Bid',userLost: 823,},
+        {id: 2,year: 'Direct Buy',userLost: 345,}
+    ];
+    var result = await tickets.find({userid:userid}).then(result=>{return result}).catch(err => console.log(err))
+    const activeEvents = [
+        {"id" : "14gsd54a3sfdc", "name":"Test Event 1", "level":"level 1", "revenue":"12,454","p1":1,"p2":120,"p3":"1%","b1":0,"b2":150,'b3':1,"status":"DEACTIVE",},
+        {"id" : "14gsd54e3sfdc", "name":"Test Event 2", "level":"level 2", "revenue":"14,156","p1":190,"p2":1500,"p3":"11%","b1":190,"b2":200,'b3':3, "status":"ACTIVE",},
+        {"id" : "14gsd54a3shdc", "name":"Test Event 3", "level":"level 3", "revenue":"2,456","p1":1,"p2":25000,"p3":"1%","b1":10,"b2":130,'b3':1, "status":"DEACTIVE",},
+        {"id" : "14gsd54a6sfdc","name":"Test Event 4", "level":"level 4", "revenue":"12,476" ,"p1":12000,"p2":45000,"p3":"42%","b1":11,"b2":20,'b3':2, "status":"ACTIVE",},
+        {"id" : "14gsd54a6sfdc","name":"Test Event 5", "level":"level 5", "revenue":"12,156","p1":72,"p2":12000,"p3":"1%","b1":30,"b2":12000,'b3':1, "status":"DEACTIVE",},
+        {"id" : "14gsd54a6sfdc","name":"Test Event 6", "level":"level 6", "revenue":"22,756","p1":990,"p2":1000,"p3":"99%","b1":50000,"b2":34000,'b3':4, "status":"PENDING",}
+    ];
+    var response = {
+        "dataset1":[42000,13670,55670],
+        "dataset2":[65,24000,12900],
+        "dataset3":[13,12,15],
+        "dataset4":historydata,
+        "dataset5":historydata2,
+        "dataset6":activeEvents
+    }
+    res.status(200).json(response)
+});
+
+/**
+ * @swagger
+ *  '/s/ticketvalidate':
+ *      post:
+ *          tags:
+ *              - User-seller
+ *          summary: Create a Ticket (one by one link *)
+ *          parameters:
+ *              - in: path
+ *                required: false
+ *                name: eventid
+ *                schema:
+ *                  type: String
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/ticketvalidate'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              400:
+ *                  description: update error
+ *              500:
+ *                  description: Server failure
+ */
+router.route('/ticketvalidate').post((req,res) => {
+    Qr.findById(req.body.device).then(data =>{
+        console.log(data)
+    })
+    console.log(req.body)
+    res.status(200).json("ok")
 });
 
 module.exports = router;

@@ -37,6 +37,14 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.buyer_index_loadmore_button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
 @media only screen and (max-width: 600px) {
     .buyer_index{
         display: block;

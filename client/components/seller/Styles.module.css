@@ -391,6 +391,15 @@
     font-family: 'Palanquin', sans-serif;
     margin-top: -30px;
 }
+.seller_catergory_error_message {
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-left: 0px;
+    margin-right: 80px;
+    text-align: justify;
+}
 @media only screen and (max-width: 1550px) {
     .seller_progressbar {
         width: 70px;
@@ -830,6 +839,16 @@
     text-align: center;
 }
 .seller_c_create_table_header_item{
-    width:16%;
+    width:20%;
     text-align: center;
+}
+.seller_c_create_ticket_button{
+    padding-bottom: 20px!important;
+    padding-right: 30px!important;
+}
+.seller_event_submit_validations{
+    color: crimson;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: #752E9E;
 }

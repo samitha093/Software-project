@@ -5,15 +5,18 @@ const schema = mongoose.Schema;
 
 const ticketschema = new schema({
     ticket_level: {type:Number},
-    buy_quantity: {type:Number},
-    buy_amount: {type:Number},
-    bid_quantity: {type:Number},
-    min_bid_amount: {type:Number},
+    level_name: {type:String, default:""},
+    buy_quantity: {type:Number, default:0},
+    buy_amount: {type:Number, default:0},
+    bid_quantity: {type:Number, default:0},
+    min_bid_amount: {type:Number, default:0},
+    views:{type:Number, default:0},
 },{
     timestamps:true
 });
 
 const eventschema = new schema({
+    views: {type:Number,default:0},
     username:{type:String }, // get from middle-ware
     event_name: {type:String},
     event_venue: {type:String},
@@ -27,9 +30,9 @@ const eventschema = new schema({
     event_category: {type:String},
     area: {type:String},
     comments: [String],//can be null in begining
-    tickets: [ticketschema],
     status: {type:String, default:'PENDING'},//set from back-end
     userid:{type:String}, //get from middle-ware
+    tickets: [ticketschema],
 },{
     timestamps:true
 });

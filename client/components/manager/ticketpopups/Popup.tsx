@@ -100,7 +100,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       Swal.fire({
         title: 'Are you sure?',
         input: 'text',
-        text: "You won't be able to decline this Event!",
+        text: "You will decline this Event!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -110,7 +110,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowEscapeKey: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          setOpen(true);
+          //setOpen(true);
           //call to api
           axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
             const config = {
@@ -118,16 +118,14 @@ const Popup: React.FC<PopupProps> = ({data}) => {
             };
             const datapack = {
                 status: "DECLINED",
-                comment:"",
+                comment:result.value,
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
-                console.log(res.data)
-                // refresh.change(res.data);
             })
                 .catch(() => {
                     // Swal.fire(
                     //     'Activated!',
-                    //     'New seller has been activated.',
+                    //     'New event has been declined.',
                     //     'success'
                     //   )
                 })
@@ -145,7 +143,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
       setOpen(false);
       Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to approve this Event!",
+        text: "You won't be declined this event again!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -155,7 +153,7 @@ const Popup: React.FC<PopupProps> = ({data}) => {
         allowEscapeKey: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          setOpen(true);
+          // setOpen(true);
           //call to api
           axios.get(gethost() + 'a/refreshtoken', { withCredentials: true }).then(async (res) => {
             const config = {
@@ -166,13 +164,12 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                 comment:"",
             };
             axios.put(gethost() +'m/approveaevent/'+ data.id,datapack ,config).then(async (res) => {
-                console.log(res.data)
                 // refresh.change(res.data);
             })
                 .catch(() => {
                     // Swal.fire(
                     //     'Activated!',
-                    //     'New seller has been activated.',
+                    //     'New event has been approved.',
                     //     'success'
                     //   )
                 })
@@ -200,10 +197,10 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                                     {data.event_date} 
                                 </div>
                             </div>
-                            <div className={Styles.seller_c_tickets_top_info_right}>
+                            {/* <div className={Styles.seller_c_tickets_top_info_right}>
                                 <div className={Styles.seller_c_tickets_top_info_right_nooftickets}>460</div>
                                 <div className={Styles.seller_c_tickets_top_info_right_tickets}>tickets</div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <h5 className={Styles.seller_c_tickets_cardstatus}>Info</h5>
@@ -220,16 +217,16 @@ const Popup: React.FC<PopupProps> = ({data}) => {
                     <TabContext value={value}>
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
                         <Tab icon={<EventNoteIcon />} iconPosition="start" label="Event Summery" value={"1"}/>
-                        <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"3"}/>
+                        {/* <Tab icon={<FavoriteIcon />} iconPosition="start" label="Selling Info" value={"3"}/>
                         <Tab icon={<ConfirmationNumberIcon />} iconPosition="start" label="Tickets" value={"4"}/>
-                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"5"}/>
+                        <Tab icon={<EqualizerIcon />} iconPosition="start" label="Analitics" value={"5"}/> */}
                     </Tabs>  
                     <TabPanel value="1">
                         <EventInfo data={data}/>
                     </TabPanel>
-                    <TabPanel value="3">{data.status=="ACTIVE"?<SellingInfo/>:<Nopermission/>}</TabPanel>
+                    {/* <TabPanel value="3">{data.status=="ACTIVE"?<SellingInfo/>:<Nopermission/>}</TabPanel>
                     <TabPanel value="4">{data.status=="ACTIVE"?<Tickets/>:<Nopermission/>}</TabPanel>
-                    <TabPanel value="5">{data.status=="ACTIVE"?<Analitics/>:<Nopermission/>}</TabPanel>
+                    <TabPanel value="5">{data.status=="ACTIVE"?<Analitics/>:<Nopermission/>}</TabPanel> */}
                     </TabContext>
                     
                 </DialogContent>

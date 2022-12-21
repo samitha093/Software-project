@@ -7,9 +7,8 @@ const qrschema = new schema({
     userid:{type:String},
     ticketid:{type:String},
     qty:{type:Number},
-    validity:{type:Boolean, default:true},
-    status: {type:Boolean, default:true},
-    
+    validity:{type:Boolean, default:true}, //validate ticket
+    status: {type:Boolean, default:true}, //payment status
 },{
     timestamps:true
 });

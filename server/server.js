@@ -6,7 +6,15 @@ const swaggerUi = require('swagger-ui-express');
 const schedule = require('node-schedule');
 const cookieParser = require('cookie-parser');
 
-const {createtickets, createQR, createQRguest} = require('./jobprofiles/cronjobs');
+const {
+  eventController,
+  orderController,
+  ticketController,
+  bidController,
+  analiticBuilder1H,
+  analiticBuilder24H,
+  pendingqrgenarator
+} = require('./jobprofiles/cronjobs');
 
 require('dotenv').config();
 const uri = process.env.MONGO_URI;
@@ -20,7 +28,7 @@ const port = process.env.PORT || 8000;
 
 //app.use(cors({credentials:true, origin: next}));
 //app.use(cors({credentials:true}));
-app.use(cors());
+app.use(cors({origin: next}));
 app.use(express.json());
 app.use(cookieParser())
 
@@ -52,24 +60,31 @@ const swaggerOptions = {
         bearerAuth: [],
       },
     ],
-    
 	},
 	apis: ["./routes/*.js"],
 };
 
 schedule.scheduleJob('* * * * * *',()=>{
   //every second
-  createtickets()
-  createQR()
-  createQRguest()
+  orderController() // create qr for sold ticket
+  pendingqrgenarator()
+})
+
+schedule.scheduleJob('* * * * *',()=>{
+  //every 1 min
+  eventController() //publish event
+  ticketController() // remove published ticket
+  bidController()//validate bid with qr adding
 })
 
 schedule.scheduleJob('0 * * * *',()=>{
-  console.log("running every 1 hour 00:00")
+  //every 1 hr
+  analiticBuilder1H()
 })
 
-schedule.scheduleJob('0 0 * * *',()=>{
-  console.log("running every day mid night 00:00:00")
+schedule.scheduleJob('* * * * *',()=>{
+  //every day
+  analiticBuilder24H()
 })
 
 

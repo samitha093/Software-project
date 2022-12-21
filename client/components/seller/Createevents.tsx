@@ -20,6 +20,9 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import Styles from './Styles.module.css'
 import Upload from './components/Upload'
 import Swal from 'sweetalert2'
+import DialogActions from '@mui/material/DialogActions';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -31,9 +34,6 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     backgroundColor: theme.palette.common.black,
   },
 }));
-
-interface CreateeventProps {     
-}
 
 const currencies = [
   {
@@ -103,11 +103,14 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     );
   };
 
-export default function MaxWidthDialog() {
+export default function MaxWidthDialog(refreshData:any) {
   const [openevent, setOpenevent] = React.useState(false);
   const [openticket, setOpenticket] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('lg');
+  const [error1, seterror1] = React.useState("none");
+
+  const [arr,setarr] = React.useState<number[]>([]);
 
   const [value, setValue] = React.useState<Date | null>(
     new Date('2014-08-18T21:11:54'),
@@ -128,15 +131,17 @@ export default function MaxWidthDialog() {
   const [area,setarea] = React.useState("");
   const [category,setcategory] = React.useState("");
 
-  const [buy_quantity1,setbuyquantity1] = React.useState<string>("");
-  const [buy_amount1,setbuyamount1] = React.useState<string>("");
-  const [bid_quantity1,setbidquantity1] = React.useState<string>("");
-  const [bid_amount1,setbidamount1] = React.useState<string>("");
+  const [nameError, setNewnameError] = React.useState<boolean>(false);
+  const [venueError, setNewvenueError] = React.useState<boolean>(false);
+  const [dateError, setNewdateError] = React.useState<boolean>(false);
+  const [stdateError, setNewstdateError] = React.useState<boolean>(false);
+  const [spdateError, setNewspdateError] = React.useState<boolean>(false);
+  const [alldateError, setdatesError] = React.useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setlevels(event.target.value);
   };
-//For Area
+  //For Area
   const areahandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setarea(event.target.value);
   }
@@ -158,21 +163,28 @@ export default function MaxWidthDialog() {
     await submitevent();
   };
 
-  const handleClickSubmitticket = async() =>{
-    await submitticket();
-    //setOpenticket(false);
-  }
 
   const handleCloseticket = () => {
     setOpenticket(false);
   };
   const eventNameChangeHandler = (event:any)=>{
+    const newpcatergory_regex = /^[A-Z].{3,19}$/;
+    const valid = !!event.target.value.match(newpcatergory_regex);
     setname(event.target.value);
+    setNewnameError(!valid);
   };
   const eventVenueChangeHandler = (event:any)=>{
+    const newpcatergory_regex = /^[A-Z].{3,29}$/;
+    const valid = !!event.target.value.match(newpcatergory_regex);
     setvenue(event.target.value);
+    setNewvenueError(!valid);
   };
   const eventDateChangeHandler = (event:any)=>{
+    const date = new Date();
+    const days = 1
+    date.setDate(date.getDate() + days);
+    const valid = (new Date(event.target.value) > date);
+    setNewdateError(!valid);
     setdate(event.target.value);
   };
   const eventTimeChangeHandler = (event:any)=>{
@@ -180,15 +192,23 @@ export default function MaxWidthDialog() {
   };
   //starting date handler
   const startDateChangeHandler = (event:any)=>{
+    const valid = (new Date(event.target.value) > new Date());
+    setNewstdateError(!valid);
     setstart_event_date(event.target.value);
   };
   //closing date handler
   const endDateChangeHandler = (event:any)=>{
+    const valid = (new Date(event.target.value) > new Date());
+    setNewspdateError(!valid);
     setendevent_date(event.target.value);
   };
   const [eventid,seteventid] = React.useState<string>("");
   const submitevent = async() => {
-
+    if(event_name == "" || event_date == ""|| event_venue == ""||event_time== ""|| levels== ""||start_event_date== ""||endevent_date==""||area==""||category==""||event_img==""){
+      console.log("there is a empty row")
+      seterror1("block")
+      return 0;
+    }
     //get access from gatway for 5min
     await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
@@ -235,59 +255,99 @@ export default function MaxWidthDialog() {
           //end connection
         })
   };
-//file upload workflow submision
-let formdata = new FormData();
-const uploadedFileData = async(file:any)=>{
-  if(file){
-    await formdata.append('Img',file);
-    if(formdata){
-  axios.post(gethost()+'s/upload',formdata)
-  .then(async (res)=>{
-      //console.log(res.data)
-      setimg(res.data)
-  }).catch((err)=>{
-      console.log(err)
-  })
-    }
-  }
-};
-//submit tickets for workflow
-const submitticket = () => {
-  console.log(eventid)
-  return;
-  const ticketpack1 = {
-    TicketLevel: 1,
-    BuyQuantity:buy_quantity1,
-    BuyAmount:buy_amount1,
-    BidQuantity:bid_quantity1,
-    BidAmount:bid_amount1,
-    EventId:"6189137cf4bff50043c3c220"
-  }
-  axios.post(gethost()+'seller/ticketlevels',ticketpack1)
+  //file upload workflow submision
+  let formdata = new FormData();
+  const uploadedFileData = async(file:any)=>{
+    if(file){
+      await formdata.append('Img',file);
+      if(formdata){
+    axios.post(gethost()+'s/upload',formdata)
     .then(async (res)=>{
-        console.log(res.data)
-        setbuyquantity1("");
-        setbuyamount1("");
-        setbidquantity1("");
-        setbidamount1("");
+        //console.log(res.data)
+        setimg(res.data)
+    }).catch((err)=>{
+        console.log(err)
     })
-    .catch((err)=>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Authentication Failed',
-        text: 'Please Login to your account',
-        showConfirmButton: false,
-        timer: 2500
+      }
+    }
+  };
+  //submit tickets for workflow
+  const submitticket = (e:any,refreshData:any) => {
+    setLoading(true);
+    arr.forEach(submittodatabase);
+    setactive(true);
+    setLoading(false);
+    setOpenticket(false);
+    Toast.fire({
+      icon: 'success',
+      title: 'Pending Event Submited successfully'
+    })
+    setarr([]);
+    setactive(false);
+    refreshData.refreshData.change(eventid);
+  };
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+const submittodatabase =(id:any)=>{
+  //get access from gatway for 5min
+  axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
+  .then(async (res)=>{
+      //create a headet pack
+      const config = {
+      headers: { Authorization: `Bearer ${res.data.accesstoken}` }
+      };
+      //create a body pack
+      const datapack = {
+          ticket_level:id,
+          buy_quantity:ticket[id-1].buyCount,
+          buy_amount:ticket[id-1].buyAmount,
+          bid_quantity:ticket[id-1].bidCount,
+          min_bid_amount:ticket[id-1].bidAmount,
+      }
+      axios.post(gethost()+'s/createaticket/'+ eventid ,datapack,config)
+      .then(async (res)=>{
+         // console.log("saved");
       })
-    }) 
+      .catch((err)=>{
+          console.log(err);
+      })
+  })
+  //end connection
+}
+const [ticket,setticket] = React.useState([
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+  {buyCount:"",buyAmount:"",bidCount:"",bidAmount:""},
+]);
+const submitIntoArray = (e:any,tag:any,id:any) => {
+  if(id=="1"){
+    tag=="A"?ticket[0].buyCount=e.target.value:tag=="B"?ticket[0].buyAmount=e.target.value:tag=="C"?ticket[0].bidCount=e.target.value:ticket[0].bidAmount=e.target.value;
+  }
+  if(id=="2"){
+    tag=="A"?ticket[1].buyCount=e.target.value:tag=="B"?ticket[1].buyAmount=e.target.value:tag=="C"?ticket[1].bidCount=e.target.value:ticket[1].bidAmount=e.target.value;
+  }
+  if(id=="3"){
+    tag=="A"?ticket[2].buyCount=e.target.value:tag=="B"?ticket[2].buyAmount=e.target.value:tag=="C"?ticket[2].bidCount=e.target.value:ticket[2].bidAmount=e.target.value;
+  }
+  if(id=="4"){
+    tag=="A"?ticket[3].buyCount=e.target.value:tag=="B"?ticket[3].buyAmount=e.target.value:tag=="C"?ticket[3].bidCount=e.target.value:ticket[3].bidAmount=e.target.value;
+  }
+  if(id=="5"){
+    tag=="A"?ticket[4].buyCount=e.target.value:tag=="B"?ticket[4].buyAmount=e.target.value:tag=="C"?ticket[4].bidCount=e.target.value:ticket[4].bidAmount=e.target.value;
+  }
 };
 
-const createticketjson = async(data:any)=>{
-  console.log(data)
-  if(data){
-    //console.log(data)
-  }
-};
 const [arealist,setarealist] = React.useState<any>([]);
 const [categorylist,setcategorylist] = React.useState([]);
 React.useEffect(()=>{
@@ -318,9 +378,10 @@ React.useEffect(()=>{
       })
     }) 
 },[])
-const [arr,setarr] = React.useState<number[]>([]);
-var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:item}}/></div>);
 
+var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:item}} array={{change: submitIntoArray}}/></div>);
+const [loading, setLoading] = React.useState(false);
+const [activate, setactive] = React.useState(false);
   return (
     <React.Fragment >
       <div className={Styles.btn_class}>
@@ -343,7 +404,7 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
         </BootstrapDialogTitle>
         <DialogContent className={Styles.seller_c_create_table_pos_c}>
         <DialogContent dividers>
-        
+        <div style={{color:"red",padding:"20px",margin:"10px",display:error1,backgroundColor:"#FFCCCB"}}>Please fill all details in form</div>
       <Grid container spacing={2}>
         <Grid className={Styles.seller_c_create_img_in} item xs={6}>
             <div className={Styles.seller_c_create_img_in_R}>
@@ -362,6 +423,7 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
     >
 
       <div>
+        
       <TextField
           required
           id="outlined-select-currency"
@@ -382,12 +444,14 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
           label="Event Name"
           onChange={eventNameChangeHandler}
         />
+        {nameError && (<p className={Styles.seller_catergory_error_message}> * Event Name must contain 4-20 characters and first letter must be capital</p>)}
         <TextField
           required
           id="outlined-required"
           label="Event Venue"
           onChange={eventVenueChangeHandler}
         />
+        {venueError && (<p className={Styles.seller_catergory_error_message}> * Event Venue must contain 4-30 characters and first letter must be capital</p>)}
         <div className={Styles.seller_c_create_event_date_time}>
           <div className={Styles.seller_c_create_event_date_time_left}>
           <TextField
@@ -395,13 +459,14 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
             id="date"
             label="Event Date"
             type="date"
-            defaultValue="2020-02-02"
+            //defaultValue="2020-02-02"
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             onChange={eventDateChangeHandler}
-          />                    
+          />
+          {dateError && (<p className={Styles.seller_catergory_error_message}> * Event date must be Greater than the present date</p>)}                    
           </div>
           <div className={Styles.seller_c_create_event_date_time_right}>
           <TextField
@@ -428,13 +493,14 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
             id="date"
             label="Start Selling Date"
             type="date"
-            defaultValue="2020-02-02"
+            //defaultValue="2020-02-02"
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             onChange={startDateChangeHandler}
-          />                    
+          />
+          {stdateError && (<p className={Styles.seller_catergory_error_message}> * Start Selling date must be Equal or Greater than the present date</p>)}                    
           </div>
           <div className={Styles.seller_c_create_event_date_time_right}>
           <TextField
@@ -442,13 +508,14 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
             id="date"
             label="Stop Selling Date"
             type="date"
-            defaultValue="2020-02-02"
+            //defaultValue="2022-02-02"
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             onChange={endDateChangeHandler}
-          /> 
+          />
+          {spdateError && (<p className={Styles.seller_catergory_error_message}> * Stop Selling date must be Equal or Greater than the present date</p>)} 
           </div>
         </div>
         
@@ -495,9 +562,9 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
       </Grid>
     <div >
     <Stack direction="row" justifyContent="right" >
-    <Button onClick={handleClickOpenticket} variant="contained"  >Submit Event & Next</Button>
+    <Button disabled={nameError||venueError||spdateError||stdateError||dateError||alldateError} onClick={handleClickOpenticket} variant="contained"  >Submit Event & Next</Button>
     </Stack>
-    
+    {alldateError && (<p className={Styles.seller_catergory_error_message}> * Start '&' Stop selling dates must be less than Event date and Start date must be less or equal than Stop date</p>)}
     </div>
     
         </DialogContent>
@@ -532,9 +599,6 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
             <div className={Styles.seller_c_create_table_header_item}>
               Starting Bid
             </div>
-            <div className={Styles.seller_c_create_table_header_item}>
-              Action
-            </div>
           </div>
         {listItems}
         </div>
@@ -545,6 +609,22 @@ var listItems = arr.map((item)=><div key={item}><Ticket data={{eid:eventid,rid:i
           </div>
         </DialogContent>
         </DialogContent>
+        <DialogActions>
+          <div className={Styles.seller_c_create_ticket_button}>
+          <LoadingButton
+              size="small"
+              color="secondary"
+              onClick={(e)=>submitticket(e,refreshData)}
+              loading={loading}
+              loadingPosition="start"
+              startIcon={<SaveIcon />}
+              variant="contained"
+              disabled={activate}
+              >
+              Submit Event
+          </LoadingButton>
+          </div>
+        </DialogActions>
       </Dialog>
 
     </React.Fragment>

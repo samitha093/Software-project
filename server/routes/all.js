@@ -43,10 +43,16 @@ const {secretGenerator} = require('../auth/jwt')
  *        description: Server failure
  */
  router.route('/refreshtoken').get((req,res) => {
+  console.log("refreshtoken")
   var mytoken = req.cookies.TickBid;
-  if(mytoken == null) return res.sendStatus(401)
+  if(mytoken == null){
+    return res.sendStatus(401)
+  } else{
     User.find({token: mytoken})
         .then(data =>{
+          if(!data[0]){
+            res.sendStatus(403)
+          }else{
             //issure a new jwt
             jwt.verify(mytoken, data[0].secret, async(err, datas)=>{
               if(err) {
@@ -54,10 +60,8 @@ const {secretGenerator} = require('../auth/jwt')
                 return res.sendStatus(403)
               }else{
                 const payload = {"email" : datas.email, "type":datas.type}
-                console.log(payload);
                 const activesecret = process.env.SECRET;
                 const accesstoken = await jwt.sign(payload,activesecret,{expiresIn: "300s"});
-                console.log(accesstoken);
                 // const secret = await secretGenerator(250)
                 // console.log(secret);
                 // const token = await jwt.sign(payload,secret)
@@ -72,14 +76,15 @@ const {secretGenerator} = require('../auth/jwt')
                 //       datas[0].token = token;
                 //       datas[0].save()
                 //   })
-                console.log("------------------------------------------------");
                 res.status(200).json(datapack);
               }                   
             })
+          }
         })
         .catch(err =>{
             return res.sendStatus(403).json(err);
         })
+  }
 });
 
 /**
@@ -105,16 +110,17 @@ const {secretGenerator} = require('../auth/jwt')
    */
 
 router.route('/logout').post(verifyAccessToken,(req,res) => {
+  console.log("logout")
   User.find({email:req.userdata.email, status:true})
       .then(data =>{
         data[0].secret = "";
         data[0].token = "";
           data[0].save()
-              .then(()=> res.status(200).clearCookie("TickBid").send("logout"))
+              .then(()=> res.status(200).json("logout"))
               .catch(err => res.status(500).json(err))
       })
       .catch(err => res.status(400).json(err))
-      res.status(200).clearCookie("TickBid").send("logout")
+
 });
 
 /**

@@ -52,7 +52,6 @@ const Verification: React.FC<VerificationProps> = ({email,otp}) => {
     })
 
   }
-  
 
   const Toast = Swal.mixin({
     toast: true,
