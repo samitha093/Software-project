@@ -238,7 +238,7 @@ const advanceclick = () => {
                 <div className={styles.event_container}>
                     <div className={styles.event_container_left}>
                         <div className={styles.event_container_left_content}>
-                        {/*<Paper
+                        <Paper
                             component="form"
                             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%' }}
                             >
@@ -251,7 +251,7 @@ const advanceclick = () => {
                             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
                                 <SearchIcon />
                             </IconButton>
-                            </Paper>*/}
+                        </Paper>
                         <div className={styles.advance_options}>
                             <div className={styles.advance_options_left}>
                                 Advance Options
@@ -261,7 +261,7 @@ const advanceclick = () => {
                             </div>
                         </div>
                         <div className={styles.auto_hide} id="advance-opt">
-                        {/*<div>
+                        <div>
                             <h4>
                                 Event Category 
                             </h4>
@@ -318,7 +318,7 @@ const advanceclick = () => {
                                     </Select>
                                 </FormControl>
                             </div>
-                                    </div>*/}
+                        </div>
                         <div>
                             <h4>
                                 Ticket Types

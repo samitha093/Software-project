@@ -108,7 +108,6 @@ export default function MaxWidthDialog(refreshData:any) {
   const [openticket, setOpenticket] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('lg');
-  const [error1, seterror1] = React.useState("none");
 
   const [arr,setarr] = React.useState<number[]>([]);
 
@@ -204,11 +203,7 @@ export default function MaxWidthDialog(refreshData:any) {
   };
   const [eventid,seteventid] = React.useState<string>("");
   const submitevent = async() => {
-    if(event_name == "" || event_date == ""|| event_venue == ""||event_time== ""|| levels== ""||start_event_date== ""||endevent_date==""||area==""||category==""||event_img==""){
-      console.log("there is a empty row")
-      seterror1("block")
-      return 0;
-    }
+
     //get access from gatway for 5min
     await axios.get(gethost() + 'a/refreshtoken',{withCredentials:true})
         .then(async (res)=>{
@@ -404,7 +399,7 @@ const [activate, setactive] = React.useState(false);
         </BootstrapDialogTitle>
         <DialogContent className={Styles.seller_c_create_table_pos_c}>
         <DialogContent dividers>
-        <div style={{color:"red",padding:"20px",margin:"10px",display:error1,backgroundColor:"#FFCCCB"}}>Please fill all details in form</div>
+        
       <Grid container spacing={2}>
         <Grid className={Styles.seller_c_create_img_in} item xs={6}>
             <div className={Styles.seller_c_create_img_in_R}>
@@ -423,7 +418,6 @@ const [activate, setactive] = React.useState(false);
     >
 
       <div>
-        
       <TextField
           required
           id="outlined-select-currency"

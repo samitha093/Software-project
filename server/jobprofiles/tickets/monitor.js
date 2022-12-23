@@ -25,7 +25,6 @@ function ticketMonitor (dataSet, dateset){
                     for (var i in dataSet.job_id) {
                         qr.findById(dataSet.job_id[i]).then(newqrdata =>{
                             newqrdata.status = false;
-                            newqrdata.validity = false;
                             newqrdata.save();
                         })
                     }

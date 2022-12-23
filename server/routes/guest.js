@@ -285,7 +285,7 @@ router.route('/register').post((req, res) => {
    */
 
 router.route('/activate').post((req, res) => {
-    User.find({ email: req.body.email, otp: req.body.otp})
+    User.find({ email: req.body.email, otp: req.body.otp, status: false })
         .then(data => {
             if (data[0].usertype === "BUYER") {
                 data[0].status = true;
@@ -301,7 +301,6 @@ router.route('/activate').post((req, res) => {
                 .catch(err => res.status(500).json(err))
         })
         .catch(err => res.status(400).json("Wrong OTP"))
-        console.log("user activation process run");
 });
 
 /**

@@ -13,7 +13,6 @@ const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 const qr: NextPage = function ActiveEvents() {
     const router = useRouter()
     const [scanned, setScanned] = React.useState("");
-    const [scannedold, setScannedold] = React.useState("");
 
     const onScan = (result: string | null) => {
         setScanned(result ? result : "");
@@ -44,14 +43,7 @@ const qr: NextPage = function ActiveEvents() {
 	}
 
     function logout(){
-        axios.get(gethost() +'s/ticketvalidatelogout/'+query.id).then(async (res)=>{
-            router.push('/');
-        }).catch((err)=>{
-            Toast.fire({
-                icon: 'error',
-                title: err
-            })
-        })
+        router.push('/');
     }
 
     React.useEffect(()=>{
@@ -91,34 +83,18 @@ const qr: NextPage = function ActiveEvents() {
                 title: 'Oops...',
                 text: 'Database connection error!'
                 })
-            })
+            }) 
+            
         }
     },[query.id])
 
     React.useEffect(()=>{
-        if(scanned != scannedold){
-            if(scanned){
-                setScannedold(scanned)
-                const datapack = {
-                    device:query.id,
-                    scan:scanned,
-                }
-                axios.post(gethost()+'s/ticketvalidate',datapack).then(async (res)=>{
-                    Swal.fire(
-                        'Success',
-                        'Ticket was validated',
-                        'success'
-                      )
-                }).catch((err)=>{
-                    Swal.fire(
-                        'Opps!',
-                        'Unvalid ticket',
-                        'error'
-                      )
-                })
-            }
+        if(scanned){
+            Toast.fire({
+                icon: 'success',
+                title: scanned
+            })
         }
-        //
         
     },[scanned])
 
