@@ -306,14 +306,14 @@ const index: NextPage = () => {
                     </svg>
                 </div>
                 <div>
-                    <div className={styles.trending_board_container}><h2 className={styles.trending_board}>Trending Events</h2></div>
+                    {/* <div className={styles.trending_board_container}><h2 className={styles.trending_board}>Trending Events</h2></div> */}
                     
                 </div>
                 <div>
                 <div className={classnames( styles.shop_home)}>
                 {/* <Navbar/> */}
-                <div /*className={styles.event_container}*/>
-                    <div /*className={styles.event_container_left}*/>
+                <div  /*className={styles.event_container}*/>
+                    <div className={styles.new_event_container}/*className={styles.event_container_left}*/>
                         <div className={styles.event_container_left_content}>
                         <Paper
                             component="form"
