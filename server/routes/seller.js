@@ -7,6 +7,7 @@ const User = require('../models/users');
 const Bids = require('../models/bid');
 const Qr = require('../models/qr');
 const devices = require('../models/devices');
+const sellerAnalitics = require('../models/sellerD')
 const {verifyAccessToken,sellerverification} = require('../auth/jwt');
 const {getusername, getuserid} = require('../middlewares/user');
 
@@ -651,6 +652,8 @@ router.route('/updateaticket/:eventid/:ticketid').put(verifyAccessToken,sellerve
  */
 router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid,async (req,res) => {
     const userid = req.userid;
+    var result = await sellerAnalitics.find({sellerid:userid}).then(result=>{return result}).catch(err => console.log(err))
+    //console.log(result)
     const historydata = [
         {id: 1,userGain: 80000,},
         {id: 2,userGain: 45677,},
@@ -669,7 +672,7 @@ router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid
         {id: 15,userGain: 4300,},
         {id: 16,userGain: 80000,},
         {id: 17,userGain: 45677,},
-        {d: 18,userGain: 78888,},
+        {id: 18,userGain: 78888,},
         {id: 19,userGain: 90000,},
         {id: 20,userGain: 4300,},
         {id: 21,userGain: 80000,},
@@ -685,25 +688,31 @@ router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid
         {id: 30,userGain: 90000,},
     ];
     const historydata2 = [
-        {id: 1,year: 'By Bid',userLost: 823,},
-        {id: 2,year: 'Direct Buy',userLost: 345,}
+        {id: 1,year: 'By Bid',userLost: 829,},
+        {id: 2,year: 'Direct Buy',userLost: 329,}
     ];
     var result = await tickets.find({userid:userid}).then(result=>{return result}).catch(err => console.log(err))
-    const activeEvents = [
-        {"id" : "14gsd54a3sfdc", "name":"Test Event 1", "level":"level 1", "revenue":"12,454","p1":1,"p2":120,"p3":"1%","b1":0,"b2":150,'b3':1,"status":"DEACTIVE",},
-        {"id" : "14gsd54e3sfdc", "name":"Test Event 2", "level":"level 2", "revenue":"14,156","p1":190,"p2":1500,"p3":"11%","b1":190,"b2":200,'b3':3, "status":"ACTIVE",},
-        {"id" : "14gsd54a3shdc", "name":"Test Event 3", "level":"level 3", "revenue":"2,456","p1":1,"p2":25000,"p3":"1%","b1":10,"b2":130,'b3':1, "status":"DEACTIVE",},
-        {"id" : "14gsd54a6sfdc","name":"Test Event 4", "level":"level 4", "revenue":"12,476" ,"p1":12000,"p2":45000,"p3":"42%","b1":11,"b2":20,'b3':2, "status":"ACTIVE",},
-        {"id" : "14gsd54a6sfdc","name":"Test Event 5", "level":"level 5", "revenue":"12,156","p1":72,"p2":12000,"p3":"1%","b1":30,"b2":12000,'b3':1, "status":"DEACTIVE",},
-        {"id" : "14gsd54a6sfdc","name":"Test Event 6", "level":"level 6", "revenue":"22,756","p1":990,"p2":1000,"p3":"99%","b1":50000,"b2":34000,'b3':4, "status":"PENDING",}
-    ];
+    console.log(result)
+    const activeEventsdata = []
+    for(i=0;i<result.length;i++){
+        activeEventsdata[i]= {"id" : result[i]._id, "name":result[i].event_name, "level":result[i].ticket_level, "revenue":result[i].views,"p1":result[i].nosold,"p2":result[i].buy_quantity,"p3":"1%","b1":result[i].nobids,"b2":result[i].bid_quantity,'b3':1,"status":"DEACTIVE",}
+    }
+    console.log(activeEventsdata)
+    // const activeEvents = [
+    //     {"id" : "14gsd54a3sfdc", "name":"Test Event 1", "level":"level 1", "revenue":"12,454","p1":1,"p2":120,"p3":"1%","b1":0,"b2":150,'b3':1,"status":"DEACTIVE",},
+    //     {"id" : "14gsd54e3sfdc", "name":"Test Event 2", "level":"level 2", "revenue":"14,156","p1":190,"p2":1500,"p3":"11%","b1":190,"b2":200,'b3':3, "status":"ACTIVE",},
+    //     {"id" : "14gsd54a3shdc", "name":"Test Event 3", "level":"level 3", "revenue":"2,456","p1":1,"p2":25000,"p3":"1%","b1":10,"b2":130,'b3':1, "status":"DEACTIVE",},
+    //     {"id" : "14gsd54a6sfdc","name":"Test Event 4", "level":"level 4", "revenue":"12,476" ,"p1":12000,"p2":45000,"p3":"42%","b1":11,"b2":20,'b3':2, "status":"ACTIVE",},
+    //     {"id" : "14gsd54a6sfdc","name":"Test Event 5", "level":"level 5", "revenue":"12,156","p1":72,"p2":12000,"p3":"1%","b1":30,"b2":12000,'b3':1, "status":"DEACTIVE",},
+    //     {"id" : "14gsd54a6sfdc","name":"Test Event 6", "level":"level 6", "revenue":"22,756","p1":990,"p2":1000,"p3":"99%","b1":50000,"b2":34000,'b3':4, "status":"PENDING",}
+    // ];
     var response = {
-        "dataset1":[42000,13670,55670],
-        "dataset2":[65,24000,12900],
-        "dataset3":[13,12,15],
+        "dataset1":[42000,13670,55670,45],
+        "dataset2":[65,24000,12900,54],
+        "dataset3":[13,12,15,32],
         "dataset4":historydata,
         "dataset5":historydata2,
-        "dataset6":activeEvents
+        "dataset6":activeEventsdata
     }
     res.status(200).json(response)
 });
@@ -745,7 +754,7 @@ router.route('/ticketvalidate').post((req,res) => {
                 console.log(QRdata)
                 res.status(200).json("ok")
             }else{
-                res.status(400).json("wrong QR code") 
+                res.status(400).json("wrong QR code")
             }
         }).catch(err => res.status(400).json("wrong QR code"))
     }).catch(err => res.status(400).json("not compatible device"))

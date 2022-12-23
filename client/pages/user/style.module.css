@@ -127,6 +127,28 @@
 .svgstyle{
 	margin-bottom: -20px;
 }
+@media only screen and (max-width: 1500px) {
+    
+	.svgstyle{
+		margin-bottom: -80px;
+	}
+}
+@media only screen and (max-width: 1300px) {
+	.svgstyle{
+		margin-bottom: -280px;
+	}
+}
+/* @media only screen and (max-width: 550px) {
+    
+	.svgstyle{
+		margin-bottom: -200px;
+	}
+}
+@media only screen and (max-width: 450px) {
+	.svgstyle{
+		margin-bottom: -20px;
+	}
+}
 @media only screen and (max-width: 550px) {
     
 	.svgstyle{
@@ -134,11 +156,10 @@
 	}
 }
 @media only screen and (max-width: 450px) {
-    
 	.svgstyle{
 		margin-bottom: -20px;
 	}
-}
+} */
 	
 @media only screen and (max-width: 900px) {
 	.btn_create{

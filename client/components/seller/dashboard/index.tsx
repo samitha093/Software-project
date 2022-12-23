@@ -48,7 +48,7 @@ const index: React.FC<indexProps> = ({}) => {
     return (
         <div className={styles.bg}>
             <div className={styles.bg_container}>
-                <Card value={55}>
+                <Card value={1}>
                     <div>
                     Yesterday Revanue
                         <div>
@@ -67,7 +67,7 @@ const index: React.FC<indexProps> = ({}) => {
                         </div>
                     </div>
                 </Card>
-                <Card value={70}>
+                <Card value={2}>
                     <div>
                         Yesterday Tickets
                         <div>
@@ -86,7 +86,7 @@ const index: React.FC<indexProps> = ({}) => {
                         </div>
                     </div>
                 </Card>
-                <Card value={35}>
+                <Card value={3}>
                     <div>
                     Yesterday Bids
                         <div>
@@ -107,8 +107,8 @@ const index: React.FC<indexProps> = ({}) => {
                 </Card>
             </div>
             <div className={styles.bg_container}>
-                <Chart data={card4}/>
-                <Graph data={card5}/>
+                <Chart datas={card4}/>
+                <Graph datas={card5}/>
             </div>
             <div className={styles.bg_container}>
                 <Tabel data={card6}/>

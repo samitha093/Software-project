@@ -49,10 +49,10 @@ const Tabel: React.FC<TabelProps> = ({data}) => {
                     <TableRow>
                         <TableCell>Event Name</TableCell>
                         <TableCell align="right">Ticket level</TableCell>
-                        <TableCell align="center">Total Revenue</TableCell>
+                        <TableCell align="center">Views</TableCell>
                         <TableCell align="center">No Of Sold Tickets</TableCell>
                         <TableCell align="center">No Of Bids</TableCell>
-                        <TableCell align="center">Action</TableCell>
+                        {/* <TableCell align="center">Action</TableCell> */}
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -64,19 +64,24 @@ const Tabel: React.FC<TabelProps> = ({data}) => {
                         <TableCell component="th" scope="row">
                             {row.name}
                         </TableCell>
-                        <TableCell align="right">{row.level}</TableCell>
+                        <TableCell align="right">Level {row.level}</TableCell>
                         <TableCell align="center">
-                            LKR {row.revenue}
+                            {row.revenue}
                         </TableCell>
                         <TableCell align="center">
                             <ProgressBar completed={row.p1} maxCompleted={row.p2}  customLabel={row.p3} labelAlignment="outside" labelColor='#000000'/>
                         </TableCell>
                         <TableCell align="center">
+
                             <div className={row.b3==1?styles.table_bid_l1:row.b3==2?styles.table_bid_l2:row.b3==3?styles.table_bid_l3:styles.table_bid_l4}>
-                            {row.b1+'/'+row.b2}
+                            {row.b2==null?
+                            'Unavailable'
+                            :
+                            row.b1+'/'+row.b2
+                            }
                             </div>
                         </TableCell>
-                        <TableCell align="center">
+                        {/* <TableCell align="center">
                             <div className={styles.table_seller_action}>
                                 {row.status === "DEACTIVE"?
                                 <div className={styles.table_seller_action_activate}>Activate</div>
@@ -84,7 +89,7 @@ const Tabel: React.FC<TabelProps> = ({data}) => {
                                 <div className={styles.table_seller_action_deactivate}>Deactivate</div>
                                 }
                             </div>
-                        </TableCell>
+                        </TableCell> */}
                         </TableRow>
                     ))}
                     </TableBody>

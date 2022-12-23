@@ -7,7 +7,7 @@ interface AnaliticbarProps {
 
 const Analiticbar: React.FC<AnaliticbarProps> = ({data}) => {
     const [progress,setprogress] = React.useState<any>();
-    React.useEffect(() => { 
+    React.useEffect(() => {
       setprogress(472 - ((data.progress/100)*472));
     }, [])
     return (
