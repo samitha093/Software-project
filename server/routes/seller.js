@@ -655,26 +655,26 @@ router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid
     var result = await sellerAnalitics.find({sellerid:userid}).then(result=>{return result}).catch(err => console.log(err))
     //console.log(result)
     const historydata = [
-        {id: 1,userGain: 80000,},
+        {id: 1,userGain: 60000,},
         {id: 2,userGain: 45677,},
         {id: 3,userGain: 78888,},
         {id: 4,userGain: 90000,},
-        {id: 5,userGain: 4300,},
-        {id: 6,userGain: 80000,},
-        {id: 7,userGain: 45677,},
+        {id: 5,userGain: 6300,},
+        {id: 6,userGain: 90000,},
+        {id: 7,userGain: 75677,},
         {id: 8,userGain: 78888,},
         {id: 9,userGain: 90000,},
         {id: 10,userGain: 4300,},
-        {id: 11,userGain: 80000,},
+        {id: 11,userGain: 90000,},
         {id: 12,userGain: 65677,},
         {id: 13,userGain: 78888,},
         {id: 14,userGain: 90000,},
-        {id: 15,userGain: 4300,},
+        {id: 15,userGain: 2300,},
         {id: 16,userGain: 80000,},
         {id: 17,userGain: 25677,},
-        {id: 18,userGain: 78888,},
+        {id: 18,userGain: 98888,},
         {id: 19,userGain: 90000,},
-        {id: 20,userGain: 4300,},
+        {id: 20,userGain: 8300,},
         {id: 21,userGain: 80000,},
         {id: 22,userGain: 75677,},
         {id: 23,userGain: 78888,},
@@ -695,7 +695,7 @@ router.route('/getdashboard').get(verifyAccessToken,sellerverification,getuserid
     console.log(result)
     const activeEventsdata = []
     for(i=0;i<result.length;i++){
-        var pp3 = result[i].nosold/result[i].buy_quantity;
+        var pp3 = parseInt(result[i].nosold/result[i].buy_quantity);
         if(result[i].buy_quantity == null){pp3=0}
         activeEventsdata[i]= {"id" : result[i]._id, "name":result[i].event_name, "level":result[i].ticket_level, "revenue":result[i].views,"p1":result[i].nosold,"p2":result[i].buy_quantity,"p3":pp3+"%","b1":result[i].nobids,"b2":result[i].bid_quantity,'b3':1,"status":"DEACTIVE",}
     }
