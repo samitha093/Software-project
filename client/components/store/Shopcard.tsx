@@ -338,9 +338,9 @@ const Shopcard: React.FC<ShopcardProps> = ({level,ticketdata}) => {
           <div className={style.ticketview_count}>
             <div className={style.ticketview_count_text}><div className={style.ticketview_count_text_item}>No. Of Tickets : </div></div>
             <div className={style.ticketview_count_number}>
-              <div className={style.ticketview_count_number_a}><Image className={style.button_img} src={remove} width={'20px'} height={'20px'} alt="" onClick={ handleClickremove}/></div> 
+              {/*<div className={style.ticketview_count_number_a}><Image className={style.button_img} src={remove} width={'20px'} height={'20px'} alt="" onClick={ handleClickremove}/></div>*/} 
               <div className={style.ticketview_count_number_num}> {ticketcount} </div>
-              <div className={style.ticketview_count_number_b}><Image className={style.button_img} src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>
+              {/*<div className={style.ticketview_count_number_b}><Image className={style.button_img} src={add} width={'20px'} height={'20px'} alt="" onClick={handleClickadd}/></div>*/}
             </div>
           </div>
           <div className={style.ticketview_price_btn} onClick={bidnow}>

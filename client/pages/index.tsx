@@ -312,8 +312,8 @@ const index: NextPage = () => {
                 <div>
                 <div className={classnames( styles.shop_home)}>
                 {/* <Navbar/> */}
-                <div className={styles.event_container}>
-                    <div className={styles.event_container_left}>
+                <div /*className={styles.event_container}*/>
+                    <div /*className={styles.event_container_left}*/>
                         <div className={styles.event_container_left_content}>
                         <Paper
                             component="form"
@@ -338,7 +338,7 @@ const index: NextPage = () => {
                             </div>
                         </div>
                         <div className={styles.auto_hide} id="advance-opt">
-                        <div>
+                        {/*<div>
                             <h4>
                                 Event Category 
                             </h4>
@@ -395,12 +395,12 @@ const index: NextPage = () => {
                                     </Select>
                                 </FormControl>
                             </div>
-                        </div>
-                        <div>
+                                    </div>*/}
+                        <div >
                             <h4>
                                 Ticket Types
                             </h4>
-                            <FormGroup>
+                            <FormGroup className={styles.ticket_orientation}>
                                 <FormControlLabel control={<Checkbox checked={l1} />} label="Level 1 Tickets" onChange={(e)=>levelChangeHandler(e,'l1')}/>
                                 <FormControlLabel control={<Checkbox checked={l2} />} label="Level 2 Tickets" onChange={(e)=>levelChangeHandler(e,'l2')}/>
                                 <FormControlLabel control={<Checkbox checked={l3} />} label="Level 3 Tickets" onChange={(e)=>levelChangeHandler(e,'l3')}/>
@@ -445,7 +445,7 @@ const index: NextPage = () => {
                             <h2 className ={style.h2}>Contact info</h2>
                             <div className ={style.row}>
                               <div> <LocationOnIcon sx={{ color: grey[300] }}/></div>
-                              <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
+                              <div className={style.text_4}>University of Ruhuna</div> 
                             </div>
                             <div className ={style.row}>
                               <div> <PhoneInTalkRoundedIcon sx={{ color: grey[300] }}/></div>
@@ -453,7 +453,7 @@ const index: NextPage = () => {
                             </div>
                             <div className ={style.row}>
                               <div> <AlternateEmailIcon sx={{ color: grey[300] }}/></div>
-                              <div className={style.text_4}>fhjsfhjdhjshfjsfhjdf</div> 
+                              <div className={style.text_4}>tickbid.mail@gmail.com</div> 
                             </div>
                           </div>
                        </div> 
