@@ -142,12 +142,12 @@ Mongodb Compass
 **Database:** Mongodb
 
 ## 🚀 Developer Team
-Lakshan Pathiraja
+Lakshan Pathiraja - Team leader - Full Stack developer and Designer
 
-Poorna Manujaya Amarasinghe
+Poorna Manujaya Amarasinghe - frontend Developer
 
-Rashmi Thennakoon
+Rashmi Thennakoon - frontend Developer
 
-Aroshan Wanigasundara
+Aroshan Wanigasundara - frontend Developer
 
 
